@@ -6,6 +6,7 @@ from pathlib import Path
 from app.routers.members import router as members_router
 from app.routers.bills import router as bills_router
 from app.routers.votes import router as votes_router
+from app.routers.search import router as search_router
 
 app = FastAPI(title="ClearVote", version="0.1.0")
 
@@ -15,6 +16,7 @@ app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
 app.include_router(members_router)
 app.include_router(bills_router)
 app.include_router(votes_router)
+app.include_router(search_router)
 
 
 @app.get("/api/health")
