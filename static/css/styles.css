@@ -880,6 +880,114 @@ select:focus, input:focus {
 }
 
 /* ============================================
+   Member Voting Profile
+   ============================================ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    font-family: var(--font-heading);
+}
+
+.stat-big-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    line-height: 1;
+}
+
+.stat-sublabel {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+.stat-legend {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.issue-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.vote-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    transition: all var(--transition);
+}
+
+.vote-item:hover {
+    border-color: var(--accent-gold-dim);
+    background: var(--bg-card-hover);
+}
+
+.vote-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.3rem;
+}
+
+.vote-item-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.vote-item-oneliner {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 0.6rem;
+}
+
+.vote-item-bottom {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.vote-item-result {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-weight: 500;
+}
+
+/* ============================================
    Mobile Responsive
    ============================================ */
 @media (max-width: 768px) {
@@ -922,6 +1030,21 @@ select:focus, input:focus {
     .member-header {
         flex-direction: column;
         text-align: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .issue-filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.5rem;
+    }
+
+    .issue-filters .category-tag {
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
     .bill-header h2 { font-size: 1.35rem; }
