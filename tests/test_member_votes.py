@@ -63,6 +63,20 @@ async def test_get_member_votes_pagination():
     assert response.status_code == 200
     data = response.json()
     assert len(data["votes"]) == 3
+    assert "total_count" in data
+    assert data["total_count"] >= 3
+
+
+@pytest.mark.asyncio
+async def test_get_member_votes_invalid_params():
+    """Negative offset or zero limit returns 422."""
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        neg_offset = await client.get("/api/members/S001217/votes?offset=-1")
+        zero_limit = await client.get("/api/members/S001217/votes?limit=0")
+
+    assert neg_offset.status_code == 422
+    assert zero_limit.status_code == 422
 
 
 @pytest.mark.asyncio

@@ -1,5 +1,5 @@
 import copy
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from app.dependencies import get_congress_client
 from app.services.mock_data import get_mock_members, get_mock_member_detail, get_mock_member_votes
 
@@ -12,7 +12,12 @@ def _is_demo() -> bool:
 
 
 @router.get("/{bioguide_id}/votes")
-async def get_member_votes(bioguide_id: str, congress: int = 119, limit: int = 20, offset: int = 0):
+async def get_member_votes(
+    bioguide_id: str,
+    congress: int = 119,
+    limit: int = Query(20, ge=1, le=100),
+    offset: int = Query(0, ge=0),
+):
     if _is_demo():
         mock = get_mock_member_votes(bioguide_id)
         if not mock:
@@ -24,6 +29,7 @@ async def get_member_votes(bioguide_id: str, congress: int = 119, limit: int = 2
             "congress": mock["congress"],
             "stats": mock["stats"],
             "votes": paginated,
+            "total_count": len(sorted_votes),
             "policy_areas": mock["policy_areas"],
         }
 

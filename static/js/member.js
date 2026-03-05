@@ -321,7 +321,7 @@ function renderVoteFilters(container, policyAreas, votes) {
 
 function filterVotes(area) {
     document.querySelectorAll('.issue-filters .category-tag').forEach(c => c.classList.remove('active'));
-    const active = document.querySelector(`.issue-filters .category-tag[data-area="${area}"]`);
+    const active = document.querySelector(`.issue-filters .category-tag[data-area="${CSS.escape(area)}"]`);
     if (active) active.classList.add('active');
 
     const filtered = area === 'all' ? allVotes : allVotes.filter(v => v.policy_area === area);
@@ -359,7 +359,7 @@ function _renderVoteItems(listEl, votes) {
         const voteBadge = el('span', { className: 'vote-label ' + vote.vote.toLowerCase().replace(/\s+/g, '-') }, vote.vote);
         bottomRow.appendChild(voteBadge);
 
-        const resultText = vote.result === 'Passed' ? 'Bill Passed' : 'Bill Failed';
+        const resultText = 'Bill ' + vote.result;
         bottomRow.appendChild(el('span', { className: 'vote-item-result' }, resultText));
 
         const policyTag = el('span', { className: 'impact-tag' }, vote.policy_area);
