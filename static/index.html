@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearVote — See How Your Representatives Vote</title>
+    <meta name="description" content="Unbiased congressional voting records. See how your representatives vote on bills — facts only, no opinions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="logo">Clear<span>Vote</span></a>
+            <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+            <nav>
+                <a href="/" class="active">Home</a>
+                <a href="#browse">Browse Bills</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <h2>See how your representatives vote.</h2>
+            <p>Facts only. No opinions. No spin.</p>
+        </section>
+
+        <section class="lookup" aria-label="Find your representatives">
+            <h3>Find Your Representatives</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="state-select">State</label>
+                    <select id="state-select" aria-label="Select your state">
+                        <option value="">Select a state...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="district-input">District (optional)</label>
+                    <input type="number" id="district-input" placeholder="e.g. 7" min="0" max="53" aria-label="Congressional district number">
+                </div>
+            </div>
+            <button id="lookup-btn" class="btn btn-primary" disabled>Find My Representatives</button>
+        </section>
+
+        <section id="results" class="results" hidden aria-label="Your representatives">
+            <h3>Your Representatives</h3>
+            <div class="party-toggle-section">
+                <p>You're viewing representatives without party labels.</p>
+                <button id="party-toggle" class="btn btn-secondary btn-small">Reveal Party Affiliations</button>
+            </div>
+            <div id="member-grid" class="member-grid"></div>
+        </section>
+
+        <section id="browse" class="browse" aria-label="Browse bills">
+            <h3>Browse Bills</h3>
+            <div class="search-bar">
+                <input type="search" id="bill-search" placeholder="Search bills by keyword..." aria-label="Search bills">
+                <button id="search-btn" class="btn btn-primary" style="width: auto;">Search</button>
+            </div>
+
+            <h3>Browse by Topic</h3>
+            <div id="category-grid" class="category-grid"></div>
+
+            <h3>Recent Bills</h3>
+            <div id="bill-list" class="bill-list">
+                <div class="loading"><span class="spinner"></span> Loading recent bills...</div>
+            </div>
+            <div class="pagination">
+                <button id="load-more-btn" class="btn btn-secondary btn-small" hidden>Load More</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Data sourced from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a>.</p>
+        <p>ClearVote does not express opinions on legislation or representatives.</p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
