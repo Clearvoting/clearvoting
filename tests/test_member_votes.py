@@ -80,3 +80,17 @@ async def test_get_member_votes_stats_structure():
     assert "not_voting_count" in stats
     assert "participation_rate" in stats
     assert isinstance(stats["participation_rate"], (int, float))
+
+
+@pytest.mark.asyncio
+async def test_get_member_votes_house_member():
+    """House member (Byron Donalds) returns voting data correctly."""
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.get("/api/members/D000032/votes")
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["member_id"] == "D000032"
+    assert len(data["votes"]) > 0
+    assert data["votes"][0]["chamber"] == "House"
