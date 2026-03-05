@@ -297,3 +297,91 @@ function renderVotingStats(container, stats) {
     section.appendChild(statsGrid);
     container.appendChild(section);
 }
+
+function renderVoteFilters(container, policyAreas, votes) {
+    allVotes = votes;
+    const section = el('section', { className: 'bill-section' });
+    section.appendChild(el('h3', null, 'Voting Record'));
+
+    const filterRow = el('div', { className: 'issue-filters' });
+
+    const allChip = el('button', { className: 'category-tag active', 'data-area': 'all' }, 'All');
+    allChip.addEventListener('click', () => filterVotes('all'));
+    filterRow.appendChild(allChip);
+
+    policyAreas.forEach(area => {
+        const chip = el('button', { className: 'category-tag', 'data-area': area }, area);
+        chip.addEventListener('click', () => filterVotes(area));
+        filterRow.appendChild(chip);
+    });
+
+    section.appendChild(filterRow);
+    container.appendChild(section);
+}
+
+function filterVotes(area) {
+    document.querySelectorAll('.issue-filters .category-tag').forEach(c => c.classList.remove('active'));
+    const active = document.querySelector(`.issue-filters .category-tag[data-area="${area}"]`);
+    if (active) active.classList.add('active');
+
+    const filtered = area === 'all' ? allVotes : allVotes.filter(v => v.policy_area === area);
+    const listEl = document.getElementById('vote-list');
+    if (listEl) {
+        clearEl(listEl);
+        _renderVoteItems(listEl, filtered);
+    }
+}
+
+function renderVoteList(container, votes) {
+    const listEl = el('div', { id: 'vote-list', className: 'bill-list' });
+    _renderVoteItems(listEl, votes);
+    container.appendChild(listEl);
+}
+
+function _renderVoteItems(listEl, votes) {
+    if (votes.length === 0) {
+        listEl.appendChild(el('div', { className: 'empty-state' }, 'No votes found for this category.'));
+        return;
+    }
+
+    votes.forEach(vote => {
+        const item = el('div', { className: 'vote-item' });
+
+        const topRow = el('div', { className: 'vote-item-top' });
+        topRow.appendChild(el('span', { className: 'bill-number' }, vote.bill_number));
+        topRow.appendChild(el('span', { className: 'bill-date' }, vote.date));
+        item.appendChild(topRow);
+
+        item.appendChild(el('div', { className: 'vote-item-title' }, vote.bill_title));
+        item.appendChild(el('div', { className: 'vote-item-oneliner' }, vote.one_liner));
+
+        const bottomRow = el('div', { className: 'vote-item-bottom' });
+        const voteBadge = el('span', { className: 'vote-label ' + vote.vote.toLowerCase().replace(/\s+/g, '-') }, vote.vote);
+        bottomRow.appendChild(voteBadge);
+
+        const resultText = vote.result === 'Passed' ? 'Bill Passed' : 'Bill Failed';
+        bottomRow.appendChild(el('span', { className: 'vote-item-result' }, resultText));
+
+        const policyTag = el('span', { className: 'impact-tag' }, vote.policy_area);
+        bottomRow.appendChild(policyTag);
+        item.appendChild(bottomRow);
+
+        // Link to bill detail if it's a standard bill type
+        if (vote.bill_type === 'HR' || vote.bill_type === 'S') {
+            item.style.cursor = 'pointer';
+            item.addEventListener('click', () => {
+                window.location.href = `/bill?congress=${vote.congress}&type=${vote.bill_type}&number=${vote.bill_number_raw}`;
+            });
+            item.setAttribute('role', 'link');
+            item.setAttribute('tabindex', '0');
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.location.href = `/bill?congress=${vote.congress}&type=${vote.bill_type}&number=${vote.bill_number_raw}`;
+                }
+            });
+        }
+
+        listEl.appendChild(item);
+    });
+}
