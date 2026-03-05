@@ -148,6 +148,17 @@ function renderBill(container, bill, congress, type, number) {
         container.appendChild(sponsorSection);
     }
 
+    // Votes section (placeholder — loaded async)
+    const votesSection = el('section', { className: 'bill-section', id: 'votes-section' });
+    votesSection.appendChild(el('h3', null, 'Roll Call Votes'));
+    votesSection.appendChild(el('div', { id: 'votes-content', className: 'loading' },
+        el('span', { className: 'spinner' }),
+        ' Loading vote data...'
+    ));
+    container.appendChild(votesSection);
+
+    loadBillVotes(congress, type, number);
+
     // Source link
     const typeForUrl = (type || '').toLowerCase().replace('hr', 'house-bill').replace('s', 'senate-bill');
     const congressGovUrl = `https://www.congress.gov/bill/${congress}th-congress/${typeForUrl}/${number}`;
@@ -197,4 +208,102 @@ async function loadAISummary(congress, type, number) {
             'Plain-language summary is not available for this bill. See the official summary below.'
         ));
     }
+}
+
+// --- Votes ---
+async function loadBillVotes(congress, type, number) {
+    const votesContent = document.getElementById('votes-content');
+    if (!votesContent) return;
+
+    try {
+        const response = await fetch(`/api/bills/${congress}/${type}/${number}/votes`);
+        if (!response.ok) throw new Error('Failed to load votes');
+        const data = await response.json();
+
+        const senateVotes = data.senate || [];
+        const hasVotes = senateVotes.length > 0;
+
+        if (!hasVotes) {
+            clearEl(votesContent);
+            votesContent.className = '';
+            votesContent.appendChild(el('div', { className: 'empty-state' },
+                'No roll call votes recorded for this bill yet.'
+            ));
+            return;
+        }
+
+        clearEl(votesContent);
+        votesContent.className = '';
+
+        for (const voteRef of senateVotes) {
+            await loadSenateVote(votesContent, voteRef.congress, voteRef.session, voteRef.vote_number);
+        }
+    } catch {
+        clearEl(votesContent);
+        votesContent.className = '';
+        votesContent.appendChild(el('div', { className: 'empty-state' },
+            'Vote data is not available for this bill.'
+        ));
+    }
+}
+
+async function loadSenateVote(container, congress, session, voteNumber) {
+    try {
+        const url = `/api/votes/senate/${congress}/${session}/${voteNumber}`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Vote not found');
+        const data = await response.json();
+
+        const voteBlock = el('div', { className: 'vote-block' });
+
+        // Header
+        voteBlock.appendChild(el('h4', null,
+            `Senate Vote #${data.vote_number} — ${data.vote_date || ''}`
+        ));
+        voteBlock.appendChild(el('div', { className: 'vote-question' }, data.question || ''));
+        voteBlock.appendChild(el('div', { className: 'vote-result' }, `Result: ${data.result || ''}`));
+
+        if (data.note) {
+            voteBlock.appendChild(el('div', { className: 'vote-note' }, data.note));
+        }
+
+        // Vote bar and summary
+        const counts = data.counts || {};
+        const bar = window.ClearVoteUI.renderVoteBar(counts);
+        if (bar) voteBlock.appendChild(bar);
+        voteBlock.appendChild(window.ClearVoteUI.renderVoteSummary(counts));
+
+        // Party toggle
+        const toggleSection = el('div', { className: 'party-toggle-section', style: 'margin-top:1rem;' });
+        toggleSection.appendChild(el('p', null, 'Viewing senators without party labels.'));
+        const toggleBtn = el('button', { className: 'btn btn-secondary btn-small' }, 'Reveal Party Affiliations');
+        toggleSection.appendChild(toggleBtn);
+        voteBlock.appendChild(toggleSection);
+
+        // Table (initially without party)
+        const members = data.members || [];
+        const tableContainer = el('div', { id: `vote-table-${voteNumber}` });
+        tableContainer.appendChild(window.ClearVoteUI.renderVoteTable(members, false));
+        voteBlock.appendChild(tableContainer);
+
+        let voteShowParty = false;
+        toggleBtn.addEventListener('click', async () => {
+            voteShowParty = !voteShowParty;
+            toggleBtn.textContent = voteShowParty ? 'Hide Party Affiliations' : 'Reveal Party Affiliations';
+
+            if (voteShowParty) {
+                const resp = await fetch(`${url}?show_party=true`);
+                if (resp.ok) {
+                    const partyData = await resp.json();
+                    clearEl(tableContainer);
+                    tableContainer.appendChild(window.ClearVoteUI.renderVoteTable(partyData.members || [], true));
+                }
+            } else {
+                clearEl(tableContainer);
+                tableContainer.appendChild(window.ClearVoteUI.renderVoteTable(members, false));
+            }
+        });
+
+        container.appendChild(voteBlock);
+    } catch { /* silently fail for individual vote */ }
 }

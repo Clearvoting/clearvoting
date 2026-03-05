@@ -123,7 +123,8 @@ async def test_get_senate_vote_strips_party():
             {"first_name": "Test", "last_name": "Senator", "party": "D", "state": "FL", "vote": "Yea"}
         ],
     }
-    with patch("app.routers.votes.get_senate_vote_service") as mock_get:
+    with patch("app.routers.votes._is_demo", return_value=False), \
+         patch("app.routers.votes.get_senate_vote_service") as mock_get:
         mock_service = MagicMock()
         mock_service.get_vote = AsyncMock(return_value=mock_data)
         mock_get.return_value = mock_service
@@ -148,7 +149,8 @@ async def test_get_senate_vote_shows_party():
             {"first_name": "Test", "last_name": "Senator", "party": "D", "state": "FL", "vote": "Yea"}
         ],
     }
-    with patch("app.routers.votes.get_senate_vote_service") as mock_get:
+    with patch("app.routers.votes._is_demo", return_value=False), \
+         patch("app.routers.votes.get_senate_vote_service") as mock_get:
         mock_service = MagicMock()
         mock_service.get_vote = AsyncMock(return_value=mock_data)
         mock_get.return_value = mock_service

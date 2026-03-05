@@ -1,7 +1,7 @@
 import httpx
 from fastapi import APIRouter, HTTPException, Query
 from app.dependencies import get_congress_client, get_ai_summary_service
-from app.services.mock_data import get_mock_bills, get_mock_bill_detail, get_mock_ai_summary
+from app.services.mock_data import get_mock_bills, get_mock_bill_detail, get_mock_ai_summary, get_mock_bill_votes
 
 router = APIRouter(prefix="/api/bills", tags=["bills"])
 
@@ -94,3 +94,14 @@ async def get_ai_summary(congress: int, bill_type: str, bill_number: int):
         )
     except Exception as e:
         raise HTTPException(status_code=502, detail=str(e))
+
+
+@router.get("/{congress}/{bill_type}/{bill_number}/votes")
+async def get_bill_votes(congress: int, bill_type: str, bill_number: int):
+    if _is_demo():
+        mock = get_mock_bill_votes(congress, bill_type, bill_number)
+        if mock:
+            return mock
+        return {"senate": [], "house": []}
+
+    return {"senate": [], "house": []}

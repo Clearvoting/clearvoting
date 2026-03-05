@@ -569,6 +569,43 @@ select:focus, input:focus {
 }
 
 /* ============================================
+   Vote Block (on bill detail page)
+   ============================================ */
+.vote-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.vote-block h4 {
+    font-family: var(--font-heading);
+    color: var(--accent-gold);
+    margin: 0 0 0.5rem;
+}
+
+.vote-question {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.vote-result {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.vote-note {
+    color: var(--accent-gold-dim);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+}
+
+/* ============================================
    Table
    ============================================ */
 .data-table {
