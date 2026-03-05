@@ -176,6 +176,16 @@ function renderMember(container, member, bioguideId) {
 
     loadSponsoredLegislation(bioguideId);
 
+    // Voting record (loaded async)
+    const votingSection = el('div', { id: 'voting-record' });
+    votingSection.appendChild(el('div', { className: 'loading' },
+        el('span', { className: 'spinner' }),
+        ' Loading voting record...'
+    ));
+    container.appendChild(votingSection);
+
+    loadVotingRecord(bioguideId);
+
     // Source link
     const sourceLink = el('a', {
         href: `https://www.congress.gov/member/${bioguideId}`,
@@ -218,4 +228,72 @@ async function loadSponsoredLegislation(bioguideId) {
         clearEl(listEl);
         listEl.appendChild(el('div', { className: 'empty-state' }, 'Unable to load sponsored legislation.'));
     }
+}
+
+// --- Voting Record ---
+
+let allVotes = [];
+
+async function loadVotingRecord(bioguideId) {
+    const container = document.getElementById('voting-record');
+    if (!container) return;
+
+    try {
+        const response = await fetch(`/api/members/${bioguideId}/votes`);
+        if (!response.ok) throw new Error('Failed to load votes');
+        const data = await response.json();
+
+        clearEl(container);
+        renderVotingStats(container, data.stats);
+        renderVoteFilters(container, data.policy_areas, data.votes);
+        renderVoteList(container, data.votes);
+    } catch (err) {
+        clearEl(container);
+        container.appendChild(el('div', { className: 'empty-state' }, 'Voting record unavailable.'));
+    }
+}
+
+function renderVotingStats(container, stats) {
+    const section = el('section', { className: 'bill-section' });
+    section.appendChild(el('h3', null, 'Voting Statistics'));
+
+    const statsGrid = el('div', { className: 'stats-grid' });
+
+    // Participation donut
+    const participationWrapper = el('div', { className: 'stat-card' });
+    participationWrapper.appendChild(el('div', { className: 'stat-label' }, 'Participation'));
+    const participationChart = window.ClearVoteUI.renderVotePieChart({
+        yeas: Math.round(stats.participation_rate),
+        nays: Math.round(100 - stats.participation_rate),
+    }, 100);
+    if (participationChart) participationWrapper.appendChild(participationChart);
+    participationWrapper.appendChild(el('div', { className: 'stat-value' }, `${stats.participation_rate}%`));
+    statsGrid.appendChild(participationWrapper);
+
+    // Yea/Nay donut
+    const voteWrapper = el('div', { className: 'stat-card' });
+    voteWrapper.appendChild(el('div', { className: 'stat-label' }, 'Vote Breakdown'));
+    const voteChart = window.ClearVoteUI.renderVotePieChart({
+        yeas: stats.yea_count,
+        nays: stats.nay_count,
+        absent: stats.not_voting_count,
+    }, 100);
+    if (voteChart) voteWrapper.appendChild(voteChart);
+    const legend = el('div', { className: 'stat-legend' },
+        el('span', null, `Yea: ${stats.yea_count}`),
+        el('span', null, ` · Nay: ${stats.nay_count}`),
+        el('span', null, ` · Missed: ${stats.not_voting_count}`)
+    );
+    voteWrapper.appendChild(legend);
+    statsGrid.appendChild(voteWrapper);
+
+    // Total votes
+    const totalWrapper = el('div', { className: 'stat-card' });
+    totalWrapper.appendChild(el('div', { className: 'stat-label' }, 'Total Votes'));
+    totalWrapper.appendChild(el('div', { className: 'stat-big-number' }, String(stats.total_votes)));
+    totalWrapper.appendChild(el('div', { className: 'stat-sublabel' }, '119th Congress'));
+    statsGrid.appendChild(totalWrapper);
+
+    section.appendChild(statsGrid);
+    container.appendChild(section);
 }
