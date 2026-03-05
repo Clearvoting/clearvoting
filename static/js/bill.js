@@ -267,11 +267,17 @@ async function loadSenateVote(container, congress, session, voteNumber) {
             voteBlock.appendChild(el('div', { className: 'vote-note' }, data.note));
         }
 
-        // Vote bar and summary
+        // Pie chart + legend
         const counts = data.counts || {};
-        const bar = window.ClearVoteUI.renderVoteBar(counts);
-        if (bar) voteBlock.appendChild(bar);
-        voteBlock.appendChild(window.ClearVoteUI.renderVoteSummary(counts));
+        const chartRow = el('div', { className: 'vote-chart-row' });
+        const pie = window.ClearVoteUI.renderVotePieChart(counts);
+        if (pie) chartRow.appendChild(pie);
+        chartRow.appendChild(window.ClearVoteUI.renderVoteSummary(counts));
+        voteBlock.appendChild(chartRow);
+
+        // Party breakdown container (shown on reveal)
+        const partyBreakdown = el('div', { id: `party-breakdown-${voteNumber}`, className: 'party-breakdown' });
+        voteBlock.appendChild(partyBreakdown);
 
         // Party toggle
         const toggleSection = el('div', { className: 'party-toggle-section', style: 'margin-top:1rem;' });
@@ -295,10 +301,19 @@ async function loadSenateVote(container, congress, session, voteNumber) {
                 const resp = await fetch(`${url}?show_party=true`);
                 if (resp.ok) {
                     const partyData = await resp.json();
+                    const partyMembers = partyData.members || [];
+
+                    // Show party breakdown pie charts
+                    clearEl(partyBreakdown);
+                    const partyCharts = window.ClearVoteUI.renderPartyVotePieCharts(partyMembers);
+                    if (partyCharts) partyBreakdown.appendChild(partyCharts);
+
+                    // Update table with party column
                     clearEl(tableContainer);
-                    tableContainer.appendChild(window.ClearVoteUI.renderVoteTable(partyData.members || [], true));
+                    tableContainer.appendChild(window.ClearVoteUI.renderVoteTable(partyMembers, true));
                 }
             } else {
+                clearEl(partyBreakdown);
                 clearEl(tableContainer);
                 tableContainer.appendChild(window.ClearVoteUI.renderVoteTable(members, false));
             }

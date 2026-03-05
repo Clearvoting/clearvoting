@@ -606,6 +606,65 @@ select:focus, input:focus {
 }
 
 /* ============================================
+   Pie Charts
+   ============================================ */
+.vote-chart-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1rem 0;
+}
+
+.vote-pie {
+    flex-shrink: 0;
+}
+
+.party-breakdown {
+    margin: 1rem 0;
+}
+
+.party-pie-charts {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.party-pie-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.party-pie-wrapper h5 {
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.pie-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.pie-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.pie-legend-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+/* ============================================
    Table
    ============================================ */
 .data-table {

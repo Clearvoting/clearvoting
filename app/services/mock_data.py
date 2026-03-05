@@ -569,13 +569,14 @@ MOCK_BILL_DETAILS = {
 MOCK_AI_SUMMARIES = {
     "119-hr-1": {
         "provisions": [
-            "Extends provisions of the 2017 Tax Cuts and Jobs Act, including individual income tax rates and the $10,000 state and local tax (SALT) deduction cap",
+            "Extends provisions of the 2017 Tax Cuts and Jobs Act, including individual income tax rates and the $10,000 state and local tax (SALT) deduction cap, through 2033",
             "Increases SNAP work requirements: adults up to age 65 (currently 55) must meet work requirements; parents must meet requirements if their child is age 14 or older (currently 18)",
-            "Requires states to verify Medicaid eligibility every 6 months for certain populations and adds work reporting requirements",
-            "Allocates funding for border security including physical barriers, technology, and personnel",
-            "Increases the statutory debt limit",
+            "Requires states to verify Medicaid eligibility every 6 months for certain populations and adds work reporting requirements; estimated to reduce Medicaid enrollment by 7.6 million people over 10 years",
+            "Allocates $46.5 billion for border security including physical barriers, technology, and 10,000 new Border Patrol and ICE agents",
+            "Increases the statutory debt limit by $4 trillion, from $36.1 trillion to $40.1 trillion",
             "Creates a new tax deduction for tip income up to $25,000 per year for workers in tipped occupations",
-            "Passed the House 215-214 and the Senate 51-50",
+            "Estimated to add $3.8 trillion to the federal deficit over 10 years according to the Congressional Budget Office",
+            "Passed the House 215-214 and the Senate 51-50 (Vice President cast tiebreaking vote)",
         ],
         "impact_categories": ["Taxes", "Healthcare", "Immigration", "Wages & Income", "Government Operations"],
     },
