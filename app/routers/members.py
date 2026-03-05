@@ -1,8 +1,14 @@
 import copy
 from fastapi import APIRouter, HTTPException
 from app.dependencies import get_congress_client
+from app.services.mock_data import get_mock_members, get_mock_member_detail
 
 router = APIRouter(prefix="/api/members", tags=["members"])
+
+
+def _is_demo() -> bool:
+    from app.config import CONGRESS_API_KEY
+    return not CONGRESS_API_KEY
 
 
 @router.get("/{state_code}")
@@ -10,6 +16,13 @@ async def get_members_by_state(state_code: str):
     state_code = state_code.upper()
     if len(state_code) != 2:
         raise HTTPException(status_code=400, detail="State code must be 2 letters")
+
+    if _is_demo():
+        mock = get_mock_members(state_code)
+        if mock:
+            return _strip_party(mock)
+        return {"members": []}
+
     client = get_congress_client()
     try:
         data = await client.get_members_by_state(state_code)
@@ -20,6 +33,12 @@ async def get_members_by_state(state_code: str):
 
 @router.get("/detail/{bioguide_id}")
 async def get_member_detail(bioguide_id: str, show_party: bool = False):
+    if _is_demo():
+        mock = get_mock_member_detail(bioguide_id)
+        if mock:
+            return mock if show_party else _strip_party(mock)
+        raise HTTPException(status_code=404, detail="Member not found")
+
     client = get_congress_client()
     try:
         data = await client.get_member(bioguide_id)
@@ -33,6 +52,14 @@ async def get_member_detail(bioguide_id: str, show_party: bool = False):
 @router.get("/{state_code}/{district}")
 async def get_members_by_district(state_code: str, district: int):
     state_code = state_code.upper()
+
+    if _is_demo():
+        mock = get_mock_members(state_code)
+        if mock:
+            filtered = [m for m in mock["members"] if m.get("district") == district or m.get("district") is None]
+            return _strip_party({"members": filtered})
+        return {"members": []}
+
     client = get_congress_client()
     try:
         data = await client.get_members_by_district(state_code, district)

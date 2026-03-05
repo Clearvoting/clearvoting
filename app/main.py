@@ -21,7 +21,8 @@ app.include_router(search_router)
 
 @app.get("/api/health")
 async def health_check() -> dict:
-    return {"status": "ok", "version": "0.1.0"}
+    from app.config import CONGRESS_API_KEY
+    return {"status": "ok", "version": "0.1.0", "demo_mode": not bool(CONGRESS_API_KEY)}
 
 
 @app.get("/")

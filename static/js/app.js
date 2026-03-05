@@ -47,11 +47,23 @@ const BILL_LIMIT = 20;
 
 // --- Initialize ---
 document.addEventListener('DOMContentLoaded', () => {
+    checkDemoMode();
     populateStates();
     populateCategories();
     loadRecentBills();
     setupEventListeners();
 });
+
+async function checkDemoMode() {
+    try {
+        const resp = await fetch('/api/health');
+        const data = await resp.json();
+        if (data.demo_mode) {
+            const banner = document.getElementById('demo-banner');
+            if (banner) banner.hidden = false;
+        }
+    } catch { /* ignore */ }
+}
 
 function setupEventListeners() {
     const stateSelect = document.getElementById('state-select');

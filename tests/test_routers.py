@@ -13,7 +13,8 @@ async def test_get_members_by_state():
             {"bioguideId": "T001", "name": "Test Senator", "state": "FL", "partyName": "Democrat"}
         ]
     }
-    with patch("app.routers.members.get_congress_client") as mock_get:
+    with patch("app.routers.members._is_demo", return_value=False), \
+         patch("app.routers.members.get_congress_client") as mock_get:
         mock_client = MagicMock()
         mock_client.get_members_by_state = AsyncMock(return_value=mock_data)
         mock_get.return_value = mock_client
@@ -41,7 +42,8 @@ async def test_get_member_detail_strips_party_by_default():
     mock_data = {
         "member": {"bioguideId": "T001", "firstName": "Test", "party": "Democrat", "partyName": "Democrat"}
     }
-    with patch("app.routers.members.get_congress_client") as mock_get:
+    with patch("app.routers.members._is_demo", return_value=False), \
+         patch("app.routers.members.get_congress_client") as mock_get:
         mock_client = MagicMock()
         mock_client.get_member = AsyncMock(return_value=mock_data)
         mock_get.return_value = mock_client
@@ -60,7 +62,8 @@ async def test_get_member_detail_shows_party_when_requested():
     mock_data = {
         "member": {"bioguideId": "T001", "firstName": "Test", "party": "Democrat", "partyName": "Democrat"}
     }
-    with patch("app.routers.members.get_congress_client") as mock_get:
+    with patch("app.routers.members._is_demo", return_value=False), \
+         patch("app.routers.members.get_congress_client") as mock_get:
         mock_client = MagicMock()
         mock_client.get_member = AsyncMock(return_value=mock_data)
         mock_get.return_value = mock_client
@@ -78,7 +81,8 @@ async def test_get_member_detail_shows_party_when_requested():
 @pytest.mark.asyncio
 async def test_list_bills():
     mock_data = {"bills": [{"number": "1", "title": "Test"}]}
-    with patch("app.routers.bills.get_congress_client") as mock_get:
+    with patch("app.routers.bills._is_demo", return_value=False), \
+         patch("app.routers.bills.get_congress_client") as mock_get:
         mock_client = MagicMock()
         mock_client.get_bills = AsyncMock(return_value=mock_data)
         mock_get.return_value = mock_client
@@ -93,7 +97,8 @@ async def test_list_bills():
 async def test_get_bill_detail():
     mock_bill = {"bill": {"number": "1234", "title": "Test", "congress": 119}}
     mock_subjects = {"subjects": []}
-    with patch("app.routers.bills.get_congress_client") as mock_get:
+    with patch("app.routers.bills._is_demo", return_value=False), \
+         patch("app.routers.bills.get_congress_client") as mock_get:
         mock_client = MagicMock()
         mock_client.get_bill = AsyncMock(return_value=mock_bill)
         mock_client.get_bill_subjects = AsyncMock(return_value=mock_subjects)

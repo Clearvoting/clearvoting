@@ -1,8 +1,14 @@
 import httpx
 from fastapi import APIRouter, HTTPException, Query
 from app.dependencies import get_congress_client, get_ai_summary_service
+from app.services.mock_data import get_mock_bills, get_mock_bill_detail, get_mock_ai_summary
 
 router = APIRouter(prefix="/api/bills", tags=["bills"])
+
+
+def _is_demo() -> bool:
+    from app.config import CONGRESS_API_KEY
+    return not CONGRESS_API_KEY
 
 
 @router.get("")
@@ -11,6 +17,11 @@ async def list_bills(
     offset: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=50),
 ):
+    if _is_demo():
+        mock = get_mock_bills()
+        bills = mock["bills"][offset:offset + limit]
+        return {"bills": bills}
+
     client = get_congress_client()
     try:
         return await client.get_bills(congress=congress, offset=offset, limit=limit)
@@ -20,6 +31,13 @@ async def list_bills(
 
 @router.get("/{congress}/{bill_type}/{bill_number}")
 async def get_bill(congress: int, bill_type: str, bill_number: int):
+    if _is_demo():
+        mock = get_mock_bill_detail(congress, bill_type, bill_number)
+        if mock:
+            result = dict(mock)
+            return result
+        return {"bill": {"congress": congress, "type": bill_type.upper(), "number": str(bill_number), "title": f"{bill_type.upper()}.{bill_number}", "latestAction": {}, "summaries": []}, "subjects": {"legislativeSubjects": []}}
+
     client = get_congress_client()
     try:
         bill = await client.get_bill(congress, bill_type.lower(), bill_number)
@@ -32,6 +50,12 @@ async def get_bill(congress: int, bill_type: str, bill_number: int):
 
 @router.get("/{congress}/{bill_type}/{bill_number}/ai-summary")
 async def get_ai_summary(congress: int, bill_type: str, bill_number: int):
+    if _is_demo():
+        mock = get_mock_ai_summary(congress, bill_type, bill_number)
+        if mock:
+            return mock
+        return {"provisions": ["No AI summary available in demo mode for this bill."], "impact_categories": []}
+
     congress_client = get_congress_client()
     ai_service = get_ai_summary_service()
     try:
