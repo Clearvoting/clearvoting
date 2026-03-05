@@ -51,3 +51,32 @@ async def test_get_member_votes_sorted_by_date():
     data = response.json()
     dates = [v["date"] for v in data["votes"]]
     assert dates == sorted(dates, reverse=True), "Votes should be sorted newest first"
+
+
+@pytest.mark.asyncio
+async def test_get_member_votes_pagination():
+    """Pagination with limit and offset works."""
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.get("/api/members/S001217/votes?limit=3&offset=0")
+
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data["votes"]) == 3
+
+
+@pytest.mark.asyncio
+async def test_get_member_votes_stats_structure():
+    """Stats include all required fields."""
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.get("/api/members/S001217/votes")
+
+    data = response.json()
+    stats = data["stats"]
+    assert "total_votes" in stats
+    assert "yea_count" in stats
+    assert "nay_count" in stats
+    assert "not_voting_count" in stats
+    assert "participation_rate" in stats
+    assert isinstance(stats["participation_rate"], (int, float))
