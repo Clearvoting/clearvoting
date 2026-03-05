@@ -160,7 +160,8 @@ function renderBill(container, bill, congress, type, number) {
     loadBillVotes(congress, type, number);
 
     // Source link
-    const typeForUrl = (type || '').toLowerCase().replace('hr', 'house-bill').replace('s', 'senate-bill');
+    const typeMap = { hr: 'house-bill', s: 'senate-bill', hjres: 'house-joint-resolution', sjres: 'senate-joint-resolution' };
+    const typeForUrl = typeMap[(type || '').toLowerCase()] || (type || '').toLowerCase();
     const congressGovUrl = `https://www.congress.gov/bill/${congress}th-congress/${typeForUrl}/${number}`;
     container.appendChild(el('a', {
         href: congressGovUrl,

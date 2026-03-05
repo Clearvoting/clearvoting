@@ -403,7 +403,7 @@ MOCK_BILL_DETAILS = {
                 {"bioguideId": "D000032", "fullName": "Rep. Donalds, Byron [R-FL-19]"}
             ],
             "summaries": [
-                {"text": "This bill allows middle-income homeowners to deduct the cost of flood insurance premiums from their federal taxes. It amends the Internal Revenue Code to create a new above-the-line deduction for National Flood Insurance Program premiums paid by individuals with adjusted gross income below specified thresholds."}
+                {"text": "This bill allows middle-income homeowners to deduct the cost of flood insurance premiums from their federal taxes. It amends the Internal Revenue Code to create a new above-the-line deduction for National Flood Insurance Program (NFIP) premiums paid by individuals with adjusted gross income below specified thresholds. The NFIP currently carries $22.5 billion in debt to the U.S. Treasury and insures approximately 4.7 million properties nationwide."}
             ],
         },
         "subjects": {"legislativeSubjects": [
@@ -453,7 +453,7 @@ MOCK_BILL_DETAILS = {
                 {"bioguideId": "P000034", "fullName": "Rep. Pallone, Frank [D-NJ-6]"}
             ],
             "summaries": [
-                {"text": "This bill reauthorizes and reforms the National Flood Insurance Program (NFIP). The NFIP provides flood insurance to property owners, renters, and businesses in participating communities. The program is set to expire without reauthorization. This bill extends the program and addresses affordability, mapping accuracy, and mitigation funding."}
+                {"text": "This bill reauthorizes and reforms the National Flood Insurance Program (NFIP). The NFIP provides flood insurance to property owners, renters, and businesses in approximately 22,000 participating communities. The program's current authorization expires September 30, 2025 and has been extended 33 times through short-term reauthorizations since FY2017. This bill extends the program and addresses affordability, mapping accuracy, and mitigation funding. The NFIP currently carries $22.5 billion in debt to the U.S. Treasury."}
             ],
         },
         "subjects": {"legislativeSubjects": [
@@ -562,6 +562,56 @@ MOCK_BILL_DETAILS = {
             {"name": "Tax policy"},
         ]},
     },
+    "119-hr-6934": {
+        "bill": {
+            "congress": 119,
+            "type": "HR",
+            "number": "6934",
+            "title": "National Flood Insurance Program Affordability Act",
+            "originChamber": "House",
+            "latestAction": {
+                "actionDate": "2025-12-30",
+                "text": "Referred to the House Committee on Financial Services."
+            },
+            "policyArea": {"name": "Finance and Financial Sector"},
+            "sponsors": [
+                {"bioguideId": "C001111", "fullName": "Rep. Castor, Kathy [D-FL-14]"}
+            ],
+            "summaries": [
+                {"text": "This bill addresses the affordability of flood insurance premiums under the National Flood Insurance Program (NFIP). It caps annual premium increases for existing policyholders and directs FEMA to create a means-tested assistance program for low-income policyholders. The bill responds to premium increases under FEMA's Risk Rating 2.0 pricing methodology, which began in October 2021 and shifted to risk-based pricing. Florida has approximately 1.7 million NFIP policies, the most of any state."}
+            ],
+        },
+        "subjects": {"legislativeSubjects": [
+            {"name": "Flood insurance"},
+            {"name": "National Flood Insurance Program"},
+            {"name": "Insurance rates"},
+        ]},
+    },
+    "119-hr-6017": {
+        "bill": {
+            "congress": 119,
+            "type": "HR",
+            "number": "6017",
+            "title": "Veterans Bill of Rights Act",
+            "originChamber": "House",
+            "latestAction": {
+                "actionDate": "2025-11-10",
+                "text": "Referred to the House Committee on Veterans' Affairs."
+            },
+            "policyArea": {"name": "Armed Forces and National Security"},
+            "sponsors": [
+                {"bioguideId": "W000823", "fullName": "Rep. Waltz, Michael [R-FL-6]"}
+            ],
+            "summaries": [
+                {"text": "This bill establishes a formal bill of rights for veterans receiving care through the Department of Veterans Affairs. It requires the VA to notify veterans of their rights including access to timely care, choice of provider, and appeal processes. The VA must publish wait-time data for each of its health care facilities and report annually to Congress on compliance with veterans' rights standards."}
+            ],
+        },
+        "subjects": {"legislativeSubjects": [
+            {"name": "Veterans' medical care"},
+            {"name": "Department of Veterans Affairs"},
+            {"name": "Government information and archives"},
+        ]},
+    },
 }
 
 # --- AI Summaries (factual, no adjectives, mechanisms only) ---
@@ -585,27 +635,31 @@ MOCK_AI_SUMMARIES = {
             "Creates a federal tax deduction for National Flood Insurance Program (NFIP) premiums paid by homeowners",
             "Applies to homeowners with adjusted gross income below specified thresholds",
             "The deduction is above-the-line, meaning taxpayers can claim it without itemizing",
+            "The NFIP currently carries $22.5 billion in debt to the U.S. Treasury as of February 2025",
+            "Florida has the most NFIP policies of any state; the state added nearly 100,000 new NFIP policies since Risk Rating 2.0 began in 2021",
             "Sponsored by Rep. Byron Donalds of Florida's 19th Congressional District",
         ],
-        "impact_categories": ["Taxes", "Housing"],
+        "impact_categories": ["Taxes", "Housing", "Insurance"],
     },
     "119-hr-152": {
         "provisions": [
             "Requires FEMA to develop a plan to reduce duplicative information collection from disaster assistance applicants",
             "Establishes a working group to identify overlapping preliminary damage assessment processes across federal agencies",
             "Directs FEMA to evaluate using drones and other emerging technologies to speed up damage assessments",
-            "Requires a public report to Congress with findings and recommendations",
-            "Passed the House 405-5",
+            "Requires a public report to Congress with findings and recommendations within 1 year of enactment",
+            "Florida sustained over $38.85 billion in damages from hurricanes and flooding in 2023-2024",
+            "Passed the House 405-5 with bipartisan support",
         ],
-        "impact_categories": ["Government Operations", "Infrastructure"],
+        "impact_categories": ["Government Operations", "Infrastructure", "Emergency Management"],
     },
     "119-s-770": {
         "provisions": [
             "Increases Social Security benefits by changing the calculation of the primary insurance amount",
-            "Revises cost-of-living adjustments to reflect spending patterns of individuals over age 62",
+            "Revises cost-of-living adjustments to use the CPI-E (Consumer Price Index for the Elderly) instead of CPI-W, which typically shows higher inflation for seniors",
             "Establishes a new minimum benefit for workers who earned low wages over a career of at least 30 years",
-            "Extends Social Security payroll taxes to income above $250,000 (current cap is $176,100 in 2025)",
+            "Extends the 12.4% Social Security payroll tax to income above $250,000; income between $176,100 and $250,000 would not be taxed (a 'donut hole')",
             "Combines the Old-Age and Survivors Insurance Trust Fund and Disability Insurance Trust Fund into one fund",
+            "About 72.5 million Americans currently receive Social Security benefits; the combined trust funds are projected to be depleted by 2033 without legislative changes",
             "Allows full-time students who are children of deceased or disabled workers to collect benefits until age 22",
         ],
         "impact_categories": ["Social Security & Medicare", "Taxes", "Wages & Income"],
@@ -613,39 +667,65 @@ MOCK_AI_SUMMARIES = {
     "119-hr-318": {
         "provisions": [
             "Requires DHS to suspend entry of non-U.S. nationals without valid entry documents when DHS cannot detain or return them",
-            "Allows states to sue DHS to enforce the entry suspension requirement",
-            "Authorizes DHS to suspend entry at the border to achieve operational control",
+            "Allows any of the 50 states to sue DHS in federal court to enforce the entry suspension requirement",
+            "Authorizes DHS to suspend entry at any of the 328 official ports of entry to achieve operational control of the border",
+            "Applies to the approximately 1,954-mile U.S.-Mexico land border",
             "Individuals found to have a credible fear of persecution are currently subject to detention while their asylum claim is considered; this bill adds suspension of entry when detention capacity is unavailable",
         ],
         "impact_categories": ["Immigration", "Criminal Justice", "Government Operations"],
     },
     "119-s-219": {
         "provisions": [
-            "Creates a three-year pilot program allowing enrolled veterans to choose any provider in the VA covered care system",
+            "Creates a 3-year pilot program allowing enrolled veterans to choose any provider in the VA covered care system",
             "Covered care system includes VA medical facilities, Veterans Community Care Program providers, and Veterans Care Agreement providers",
-            "Removes location-based requirements that currently limit where veterans can receive care",
-            "After four years, permanently eliminates location requirements for accessing care under VCCP and Veterans Care Agreements",
-            "Allows veterans to receive care at any VA medical facility regardless of which Veterans Integrated Service Network they reside in",
+            "Removes the current requirement that veterans must live more than 30 minutes from a VA facility or wait more than 20 days for an appointment to access community care",
+            "After 4 years, permanently eliminates location and wait-time requirements for accessing care under VCCP and Veterans Care Agreements",
+            "Allows veterans to receive care at any VA medical facility regardless of which of the 18 Veterans Integrated Service Networks they reside in",
+            "Florida has the 3rd-largest veteran population in the U.S. with approximately 1.4 million veterans",
         ],
         "impact_categories": ["Military & Veterans", "Healthcare"],
     },
     "119-hr-1040": {
         "provisions": [
             "Eliminates federal income tax on all Social Security benefits",
-            "Under current law, up to 85% of Social Security benefits may be included in taxable income depending on total income",
-            "Repeals Internal Revenue Code provisions that determine the taxable portion of Social Security benefits",
-            "Applies to all recipients of Social Security benefits regardless of income level",
+            "Under current law, single filers with combined income above $25,000 pay tax on up to 50% of benefits; above $34,000, up to 85% is taxable",
+            "For joint filers, the thresholds are $32,000 (50% taxable) and $44,000 (85% taxable)",
+            "These thresholds have not been adjusted for inflation since they were set in 1984 and 1993, causing more recipients to be taxed each year",
+            "Repeals Internal Revenue Code Sections 86(a) and 86(b) that determine the taxable portion of Social Security benefits",
+            "Applies to all 72.5 million recipients of Social Security benefits regardless of income level",
         ],
         "impact_categories": ["Taxes", "Social Security & Medicare"],
     },
+    "119-hr-6934": {
+        "provisions": [
+            "Addresses affordability of National Flood Insurance Program (NFIP) premiums that increased under FEMA's Risk Rating 2.0 methodology",
+            "Caps annual premium increases for existing policyholders to limit financial impact of new risk-based pricing",
+            "Florida policyholders saw average premium increases of 11-18% per year under Risk Rating 2.0",
+            "The NFIP insures approximately 4.7 million properties nationwide; Florida accounts for roughly 1.7 million of those policies",
+            "Directs FEMA to provide a means-tested assistance program for low-income policyholders",
+        ],
+        "impact_categories": ["Housing", "Insurance", "Government Operations"],
+    },
+    "119-hr-6017": {
+        "provisions": [
+            "Establishes a formal bill of rights for veterans receiving care through the Department of Veterans Affairs",
+            "Requires the VA to notify veterans of their rights including access to timely care, choice of provider, and appeal processes",
+            "Mandates the VA publish wait-time data for each of its 1,321 health care facilities nationwide",
+            "Requires annual reporting to Congress on compliance with veterans' rights standards",
+            "Florida has approximately 1.4 million veterans, the 3rd-highest veteran population of any state",
+        ],
+        "impact_categories": ["Military & Veterans", "Healthcare", "Government Operations"],
+    },
     "119-hr-5484": {
         "provisions": [
-            "Reauthorizes the National Flood Insurance Program (NFIP), which provides flood insurance to property owners, renters, and businesses in participating communities",
-            "Addresses affordability of flood insurance premiums for policyholders",
-            "Updates flood mapping accuracy requirements",
-            "Provides funding for flood mitigation projects",
+            "Reauthorizes the National Flood Insurance Program (NFIP), which currently has $22.5 billion in debt to the U.S. Treasury",
+            "The NFIP has been reauthorized 33 times through short-term extensions since FY2017; current authorization expires September 30, 2025",
+            "Addresses affordability of flood insurance premiums under FEMA's Risk Rating 2.0 pricing methodology, which began in October 2021",
+            "Updates flood mapping accuracy requirements for the roughly 22,000 communities participating in the NFIP",
+            "On February 10, 2025, the NFIP borrowed an additional $2 billion from Treasury to pay claims, leaving $7.9 billion in remaining borrowing authority",
+            "Provides funding for flood mitigation projects to reduce future claims",
         ],
-        "impact_categories": ["Housing", "Environment"],
+        "impact_categories": ["Housing", "Environment", "Insurance", "Government Operations"],
     },
 }
 
