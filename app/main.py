@@ -16,7 +16,7 @@ from app.routers.bills import router as bills_router
 from app.routers.votes import router as votes_router
 from app.routers.search import router as search_router
 
-app = FastAPI(title="ClearVote", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None)
+app = FastAPI(title="ClearVoting", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None)
 app.state.limiter = limiter
 app.add_middleware(SlowAPIMiddleware)
 

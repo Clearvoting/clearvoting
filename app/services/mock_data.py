@@ -1,7 +1,7 @@
 """Mock data for demo mode when no Congress API key is configured.
 
 Bills and members are based on real 119th Congress (2025-2026) data
-researched from Congress.gov. Summaries are written in ClearVote's
+researched from Congress.gov. Summaries are written in ClearVoting's
 factual, no-adjectives style.
 """
 

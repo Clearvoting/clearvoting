@@ -1,5 +1,5 @@
 /* ============================================
-   ClearVote — Landing Page
+   ClearVoting — Landing Page
    ============================================ */
 
 const STATES = [

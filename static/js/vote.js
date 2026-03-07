@@ -1,13 +1,13 @@
 /* ============================================
-   ClearVote — Vote Detail (embedded in bill page)
+   ClearVoting — Vote Detail (embedded in bill page)
    Reusable vote rendering functions
    ============================================ */
 
 const VOTE_COLORS = {
-    yea: '#4CAF6A',
-    nay: '#D64550',
-    present: '#5B8FB8',
-    absent: '#6B7B8B',
+    yea: '#2E8540',
+    nay: '#CD2026',
+    present: '#0071BC',
+    absent: '#AEB0B5',
 };
 
 // --- SVG Pie Chart ---
@@ -128,7 +128,7 @@ function _buildPieChart(segments, total, size) {
     text.setAttribute('y', String(cy));
     text.setAttribute('text-anchor', 'middle');
     text.setAttribute('dominant-baseline', 'central');
-    text.setAttribute('fill', '#F0F4F8');
+    text.setAttribute('fill', '#1B1B1B');
     text.setAttribute('font-size', String(Math.round(size * 0.18)));
     text.setAttribute('font-weight', '600');
     text.setAttribute('font-family', 'Inter, system-ui, sans-serif');
@@ -259,7 +259,7 @@ function renderVoteTable(members, showPartyColumn) {
 }
 
 // Export for use in other scripts
-window.ClearVoteUI = {
+window.ClearVotingUI = {
     renderVoteBar: renderVoteBar,
     renderVoteSummary: renderVoteSummary,
     renderVoteTable: renderVoteTable,

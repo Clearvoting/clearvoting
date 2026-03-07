@@ -1,5 +1,5 @@
 /* ============================================
-   ClearVote — Member Profile Page
+   ClearVoting — Member Profile Page
    ============================================ */
 
 let showParty = false;
@@ -63,7 +63,7 @@ async function loadMember(bioguideId) {
         const data = await response.json();
 
         memberData = data.member || data;
-        document.title = `${memberData.directOrderName || memberData.firstName || 'Representative'} — ClearVote`;
+        document.title = `${memberData.directOrderName || memberData.firstName || 'Representative'} — ClearVoting`;
         renderMember(container, memberData, bioguideId);
     } catch (err) {
         showError('Unable to load representative data. Congress.gov may be temporarily unavailable.');
@@ -437,7 +437,7 @@ function renderVotingStats(container, stats) {
     // Participation donut
     const participationWrapper = el('div', { className: 'stat-card' });
     participationWrapper.appendChild(el('div', { className: 'stat-label' }, 'Participation'));
-    const participationChart = window.ClearVoteUI.renderVotePieChart({
+    const participationChart = window.ClearVotingUI.renderVotePieChart({
         yeas: Math.round(stats.participation_rate),
         nays: Math.round(100 - stats.participation_rate),
     }, 100);
@@ -448,7 +448,7 @@ function renderVotingStats(container, stats) {
     // Yea/Nay donut
     const voteWrapper = el('div', { className: 'stat-card' });
     voteWrapper.appendChild(el('div', { className: 'stat-label' }, 'Vote Breakdown'));
-    const voteChart = window.ClearVoteUI.renderVotePieChart({
+    const voteChart = window.ClearVotingUI.renderVotePieChart({
         yeas: stats.yea_count,
         nays: stats.nay_count,
         absent: stats.not_voting_count,

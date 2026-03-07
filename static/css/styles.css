@@ -1,29 +1,29 @@
 /* ============================================
-   ClearVote — Design Tokens
+   ClearVoting — Design Tokens
    ============================================ */
 :root {
-    --bg-primary: #0A1628;
-    --bg-secondary: #122241;
-    --bg-card: #1A2E52;
-    --bg-card-hover: #223A63;
-    --text-primary: #F0F4F8;
-    --text-secondary: #B8C4D4;
-    --text-dim: #6B7D94;
-    --accent: #4A90D9;
-    --accent-dim: #3670B3;
+    --bg-primary: #F5F6FA;
+    --bg-secondary: #112E51;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #EEF1F6;
+    --text-primary: #1B1B1B;
+    --text-secondary: #5B616B;
+    --text-dim: #8D9297;
+    --accent: #0071BC;
+    --accent-dim: #205493;
     --accent-red: #C5283D;
-    --vote-yea: #4CAF6A;
-    --vote-nay: #D64550;
-    --vote-absent: #6B7B8B;
-    --vote-present: #5B8FB8;
-    --border: #243B5E;
-    --border-light: #2E4A72;
+    --vote-yea: #2E8540;
+    --vote-nay: #CD2026;
+    --vote-absent: #AEB0B5;
+    --vote-present: #0071BC;
+    --border: #D6D7D9;
+    --border-light: #E8E8E8;
     --font-body: 'Inter', system-ui, -apple-system, sans-serif;
     --font-heading: 'Playfair Display', Georgia, serif;
     --radius: 8px;
     --radius-lg: 12px;
-    --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
     --max-width: 1100px;
     --transition: 0.2s ease;
 }
@@ -95,12 +95,11 @@ a:hover {
    ============================================ */
 .site-header {
     background: var(--bg-secondary);
-    border-bottom: 1px solid var(--border);
+    border-bottom: none;
     padding: 1rem 2rem;
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(10px);
 }
 
 .header-inner {
@@ -114,12 +113,12 @@ a:hover {
 .logo {
     font-family: var(--font-heading);
     font-size: 1.5rem;
-    color: var(--accent);
+    color: #fff;
     letter-spacing: 0.02em;
 }
 
 .logo span {
-    color: var(--text-primary);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 nav {
@@ -129,20 +128,20 @@ nav {
 }
 
 nav a {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.75);
     font-size: 0.9rem;
     font-weight: 500;
 }
 
 nav a:hover, nav a.active {
-    color: var(--accent);
+    color: #fff;
 }
 
 .hamburger {
     display: none;
     background: none;
     border: none;
-    color: var(--text-primary);
+    color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
 }
@@ -220,7 +219,7 @@ main {
 }
 
 select, input[type="number"], input[type="text"], input[type="search"] {
-    background: var(--bg-secondary);
+    background: #fff;
     border: 1px solid var(--border);
     color: var(--text-primary);
     padding: 0.65rem 0.85rem;
@@ -259,7 +258,7 @@ select:focus, input:focus {
 }
 
 .btn-primary:hover {
-    background: #9E2033;
+    background: #A82235;
 }
 
 .btn-primary:disabled {
@@ -334,7 +333,7 @@ select:focus, input:focus {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: var(--bg-secondary);
+    background: var(--bg-card-hover);
     border: 2px solid var(--border);
     display: flex;
     align-items: center;
@@ -505,7 +504,7 @@ select:focus, input:focus {
 }
 
 .impact-tag {
-    background: var(--bg-secondary);
+    background: var(--bg-card-hover);
     border: 1px solid var(--border);
     border-radius: 999px;
     padding: 0.2rem 0.6rem;
@@ -576,7 +575,7 @@ select:focus, input:focus {
 .vote-label.present { background: var(--vote-present); color: #fff; }
 .vote-label.not-voting, .vote-label.absent {
     background: var(--vote-absent);
-    color: #ccc;
+    color: #fff;
 }
 
 /* ============================================
@@ -744,6 +743,7 @@ select:focus, input:focus {
     border-radius: var(--radius-lg);
     padding: 1.5rem;
     margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
 }
 
 .bill-section h3 {
@@ -839,6 +839,7 @@ select:focus, input:focus {
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 1.5rem;
+    box-shadow: var(--shadow);
 }
 
 .voting-summary-card h3 {
@@ -992,7 +993,7 @@ select:focus, input:focus {
 }
 
 .summary-deficit-net.deficit-decrease {
-    background: rgba(76, 175, 106, 0.1);
+    background: rgba(46, 133, 64, 0.1);
     border-left: 3px solid var(--vote-yea);
 }
 
@@ -1027,7 +1028,7 @@ select:focus, input:focus {
 }
 
 .cbo-tag.deficit-decrease {
-    background: rgba(76, 175, 106, 0.15);
+    background: rgba(46, 133, 64, 0.15);
     color: var(--vote-yea);
 }
 
@@ -1095,7 +1096,7 @@ select:focus, input:focus {
 }
 
 .scorecard-net.deficit-decrease {
-    background: rgba(76, 175, 106, 0.1);
+    background: rgba(46, 133, 64, 0.1);
     border-left: 3px solid var(--vote-yea);
     color: var(--vote-yea);
 }
@@ -1111,7 +1112,7 @@ select:focus, input:focus {
     align-items: flex-start;
     gap: 0.6rem;
     padding: 0.45rem 0;
-    border-bottom: 1px solid rgba(36, 59, 94, 0.4);
+    border-bottom: 1px solid rgba(214, 215, 217, 0.4);
     line-height: 1.4;
 }
 
@@ -1130,12 +1131,12 @@ select:focus, input:focus {
 }
 
 .scorecard-vote-badge.vote-yea {
-    background: rgba(76, 175, 106, 0.2);
+    background: rgba(46, 133, 64, 0.2);
     color: var(--vote-yea);
 }
 
 .scorecard-vote-badge.vote-nay {
-    background: rgba(214, 69, 80, 0.2);
+    background: rgba(205, 32, 38, 0.2);
     color: var(--vote-nay);
 }
 
@@ -1295,7 +1296,7 @@ select:focus, input:focus {
     align-items: center;
     gap: 0.5rem;
     padding: 1rem;
-    background: var(--bg-secondary);
+    background: var(--bg-card);
     border-radius: var(--radius);
     border: 1px solid var(--border);
 }

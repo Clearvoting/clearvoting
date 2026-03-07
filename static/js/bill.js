@@ -1,5 +1,5 @@
 /* ============================================
-   ClearVote — Bill Detail Page
+   ClearVoting — Bill Detail Page
    ============================================ */
 
 let showParty = false;
@@ -64,7 +64,7 @@ async function loadBill(congress, type, number) {
         const data = await response.json();
 
         const bill = data.bill || data;
-        document.title = `${bill.title || 'Bill'} — ClearVote`;
+        document.title = `${bill.title || 'Bill'} — ClearVoting`;
         renderBill(container, bill, congress, type, number);
 
         // Load AI summary asynchronously
@@ -271,9 +271,9 @@ async function loadSenateVote(container, congress, session, voteNumber) {
         // Pie chart + legend
         const counts = data.counts || {};
         const chartRow = el('div', { className: 'vote-chart-row' });
-        const pie = window.ClearVoteUI.renderVotePieChart(counts);
+        const pie = window.ClearVotingUI.renderVotePieChart(counts);
         if (pie) chartRow.appendChild(pie);
-        chartRow.appendChild(window.ClearVoteUI.renderVoteSummary(counts));
+        chartRow.appendChild(window.ClearVotingUI.renderVoteSummary(counts));
         voteBlock.appendChild(chartRow);
 
         // Party breakdown container (shown on reveal)
@@ -290,7 +290,7 @@ async function loadSenateVote(container, congress, session, voteNumber) {
         // Table (initially without party)
         const members = data.members || [];
         const tableContainer = el('div', { id: `vote-table-${voteNumber}` });
-        tableContainer.appendChild(window.ClearVoteUI.renderVoteTable(members, false));
+        tableContainer.appendChild(window.ClearVotingUI.renderVoteTable(members, false));
         voteBlock.appendChild(tableContainer);
 
         let voteShowParty = false;
@@ -306,17 +306,17 @@ async function loadSenateVote(container, congress, session, voteNumber) {
 
                     // Show party breakdown pie charts
                     clearEl(partyBreakdown);
-                    const partyCharts = window.ClearVoteUI.renderPartyVotePieCharts(partyMembers);
+                    const partyCharts = window.ClearVotingUI.renderPartyVotePieCharts(partyMembers);
                     if (partyCharts) partyBreakdown.appendChild(partyCharts);
 
                     // Update table with party column
                     clearEl(tableContainer);
-                    tableContainer.appendChild(window.ClearVoteUI.renderVoteTable(partyMembers, true));
+                    tableContainer.appendChild(window.ClearVotingUI.renderVoteTable(partyMembers, true));
                 }
             } else {
                 clearEl(partyBreakdown);
                 clearEl(tableContainer);
-                tableContainer.appendChild(window.ClearVoteUI.renderVoteTable(members, false));
+                tableContainer.appendChild(window.ClearVotingUI.renderVoteTable(members, false));
             }
         });
 
