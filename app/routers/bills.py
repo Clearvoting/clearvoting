@@ -1,14 +1,27 @@
 import httpx
-from fastapi import APIRouter, HTTPException, Query
+from urllib.parse import urlparse
+from fastapi import APIRouter, HTTPException, Query, Request
 from app.dependencies import get_congress_client, get_ai_summary_service
+from app.limiter import limiter
 from app.services.mock_data import get_mock_bills, get_mock_bill_detail, get_mock_ai_summary, get_mock_bill_votes
 
 router = APIRouter(prefix="/api/bills", tags=["bills"])
+
+ALLOWED_FETCH_DOMAINS = {"congress.gov", "www.congress.gov", "api.congress.gov"}
 
 
 def _is_demo() -> bool:
     from app.config import CONGRESS_API_KEY
     return not CONGRESS_API_KEY
+
+
+def _is_safe_url(url: str) -> bool:
+    parsed = urlparse(url)
+    return (
+        parsed.scheme == "https"
+        and parsed.hostname in ALLOWED_FETCH_DOMAINS
+        and "@" not in url
+    )
 
 
 @router.get("")
@@ -49,7 +62,8 @@ async def get_bill(congress: int, bill_type: str, bill_number: int):
 
 
 @router.get("/{congress}/{bill_type}/{bill_number}/ai-summary")
-async def get_ai_summary(congress: int, bill_type: str, bill_number: int):
+@limiter.limit("10/minute")
+async def get_ai_summary(request: Request, congress: int, bill_type: str, bill_number: int):
     if _is_demo():
         mock = get_mock_ai_summary(congress, bill_type, bill_number)
         if mock:
@@ -79,8 +93,8 @@ async def get_ai_summary(congress: int, bill_type: str, bill_number: int):
                     break
 
         bill_text_excerpt = ""
-        if bill_text_url:
-            async with httpx.AsyncClient() as http_client:
+        if bill_text_url and _is_safe_url(bill_text_url):
+            async with httpx.AsyncClient(timeout=10.0) as http_client:
                 resp = await http_client.get(bill_text_url)
                 if resp.status_code == 200:
                     bill_text_excerpt = resp.text[:5000]
