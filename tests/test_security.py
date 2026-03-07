@@ -123,3 +123,42 @@ async def test_error_messages_are_generic():
     detail = resp.json()["detail"]
     assert "traceback" not in detail.lower()
     assert "exception" not in detail.lower()
+
+
+# --- Security Headers ---
+
+@pytest.mark.asyncio
+async def test_security_headers_present():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.get("/api/health")
+
+    assert resp.headers["X-Content-Type-Options"] == "nosniff"
+    assert resp.headers["X-Frame-Options"] == "DENY"
+    assert resp.headers["Referrer-Policy"] == "strict-origin-when-cross-origin"
+    assert "camera=()" in resp.headers["Permissions-Policy"]
+    assert "default-src 'self'" in resp.headers["Content-Security-Policy"]
+
+
+@pytest.mark.asyncio
+async def test_swagger_and_openapi_disabled():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        docs = await client.get("/docs")
+        redoc = await client.get("/redoc")
+        openapi = await client.get("/openapi.json")
+
+    assert docs.status_code == 404
+    assert redoc.status_code == 404
+    assert openapi.status_code == 404
+
+
+@pytest.mark.asyncio
+async def test_health_no_demo_mode_leak():
+    """Health endpoint should not reveal whether API keys are configured."""
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.get("/api/health")
+    data = resp.json()
+    assert "demo_mode" not in data
+    assert data["status"] == "ok"

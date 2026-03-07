@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pathlib import Path
@@ -10,7 +10,7 @@ from app.routers.bills import router as bills_router
 from app.routers.votes import router as votes_router
 from app.routers.search import router as search_router
 
-app = FastAPI(title="ClearVote", version="0.1.0")
+app = FastAPI(title="ClearVote", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None)
 app.state.limiter = limiter
 app.add_middleware(SlowAPIMiddleware)
 
@@ -23,10 +23,27 @@ app.include_router(votes_router)
 app.include_router(search_router)
 
 
+@app.middleware("http")
+async def add_security_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; "
+        "style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; "
+        "font-src 'self' https://fonts.gstatic.com; "
+        "img-src 'self' https://www.congress.gov; "
+        "script-src 'self'; "
+        "connect-src 'self'"
+    )
+    return response
+
+
 @app.get("/api/health")
 async def health_check() -> dict:
-    from app.config import CONGRESS_API_KEY
-    return {"status": "ok", "version": "0.1.0", "demo_mode": not bool(CONGRESS_API_KEY)}
+    return {"status": "ok", "version": "0.1.0"}
 
 
 @app.get("/")
