@@ -7,6 +7,9 @@
 **Architecture:** A standalone sync script (`sync.py`) fetches all member, bill, and vote data from Congress.gov/Senate.gov, generates AI summaries via Claude, and saves everything as JSON files in `data/synced/`. A new `DataService` loads these files at startup and serves them to routers. Routers are simplified to a single code path — no more demo/live branching.
 
 **Tech Stack:** Python, FastAPI, httpx, anthropic SDK, existing CacheService, flat-file JSON storage
+**Status:** Complete
+**Completed:** 2026-03-07
+**Review:** `docs/development/reviews/2026-03-07-data-sync-architecture-review.md`
 
 **Design doc:** `docs/plans/2026-03-07-data-sync-architecture-design.md`
 
