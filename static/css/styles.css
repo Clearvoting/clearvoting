@@ -2,21 +2,22 @@
    ClearVote — Design Tokens
    ============================================ */
 :root {
-    --bg-primary: #0C1B33;
-    --bg-secondary: #132744;
-    --bg-card: #1A3055;
-    --bg-card-hover: #213A62;
-    --text-primary: #E8E0D4;
-    --text-secondary: #B0A898;
-    --text-dim: #7A7268;
-    --accent-gold: #D4A853;
-    --accent-gold-dim: #A8863F;
-    --vote-yea: #5B8A72;
-    --vote-nay: #8A5B5B;
-    --vote-absent: #6B6B6B;
-    --vote-present: #5B6F8A;
-    --border: #2A4060;
-    --border-light: #3A5070;
+    --bg-primary: #0A1628;
+    --bg-secondary: #122241;
+    --bg-card: #1A2E52;
+    --bg-card-hover: #223A63;
+    --text-primary: #F0F4F8;
+    --text-secondary: #B8C4D4;
+    --text-dim: #6B7D94;
+    --accent: #4A90D9;
+    --accent-dim: #3670B3;
+    --accent-red: #C5283D;
+    --vote-yea: #4CAF6A;
+    --vote-nay: #D64550;
+    --vote-absent: #6B7B8B;
+    --vote-present: #5B8FB8;
+    --border: #243B5E;
+    --border-light: #2E4A72;
     --font-body: 'Inter', system-ui, -apple-system, sans-serif;
     --font-heading: 'Playfair Display', Georgia, serif;
     --radius: 8px;
@@ -50,7 +51,7 @@ body {
 }
 
 a {
-    color: var(--accent-gold);
+    color: var(--accent);
     text-decoration: none;
     transition: color var(--transition);
 }
@@ -63,8 +64,8 @@ a:hover {
    Demo Banner
    ============================================ */
 .demo-banner {
-    background: var(--accent-gold);
-    color: var(--bg-primary);
+    background: var(--accent-red);
+    color: #fff;
     text-align: center;
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
@@ -78,8 +79,8 @@ a:hover {
     position: absolute;
     top: -100%;
     left: 0;
-    background: var(--accent-gold);
-    color: var(--bg-primary);
+    background: var(--accent-red);
+    color: #fff;
     padding: 0.5rem 1rem;
     z-index: 1000;
     font-weight: 600;
@@ -113,7 +114,7 @@ a:hover {
 .logo {
     font-family: var(--font-heading);
     font-size: 1.5rem;
-    color: var(--accent-gold);
+    color: var(--accent);
     letter-spacing: 0.02em;
 }
 
@@ -134,7 +135,7 @@ nav a {
 }
 
 nav a:hover, nav a.active {
-    color: var(--accent-gold);
+    color: var(--accent);
 }
 
 .hamburger {
@@ -194,7 +195,7 @@ main {
     font-family: var(--font-heading);
     font-size: 1.25rem;
     margin-bottom: 1rem;
-    color: var(--accent-gold);
+    color: var(--accent);
 }
 
 .form-row {
@@ -232,7 +233,7 @@ select, input[type="number"], input[type="text"], input[type="search"] {
 
 select:focus, input:focus {
     outline: none;
-    border-color: var(--accent-gold);
+    border-color: var(--accent);
 }
 
 .btn {
@@ -252,13 +253,13 @@ select:focus, input:focus {
 }
 
 .btn-primary {
-    background: var(--accent-gold);
-    color: var(--bg-primary);
+    background: var(--accent-red);
+    color: #fff;
     width: 100%;
 }
 
 .btn-primary:hover {
-    background: var(--accent-gold-dim);
+    background: #9E2033;
 }
 
 .btn-primary:disabled {
@@ -268,13 +269,13 @@ select:focus, input:focus {
 
 .btn-secondary {
     background: transparent;
-    color: var(--accent-gold);
-    border: 1px solid var(--accent-gold);
+    color: var(--accent);
+    border: 1px solid var(--accent);
 }
 
 .btn-secondary:hover {
-    background: var(--accent-gold);
-    color: var(--bg-primary);
+    background: var(--accent);
+    color: #fff;
 }
 
 .btn-small {
@@ -293,7 +294,7 @@ select:focus, input:focus {
     font-family: var(--font-heading);
     font-size: 1.25rem;
     margin-bottom: 1rem;
-    color: var(--accent-gold);
+    color: var(--accent);
 }
 
 .member-grid {
@@ -316,7 +317,7 @@ select:focus, input:focus {
 
 .member-card:hover {
     background: var(--bg-card-hover);
-    border-color: var(--accent-gold-dim);
+    border-color: var(--accent-dim);
     box-shadow: var(--shadow);
 }
 
@@ -389,14 +390,14 @@ select:focus, input:focus {
 }
 
 .party-toggle-inline:hover {
-    border-color: var(--accent-gold);
-    color: var(--accent-gold);
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
 .party-toggle-inline.active {
-    background: var(--accent-gold);
-    color: var(--bg-primary);
-    border-color: var(--accent-gold);
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
 }
 
 /* ============================================
@@ -410,7 +411,7 @@ select:focus, input:focus {
     font-family: var(--font-heading);
     font-size: 1.25rem;
     margin-bottom: 1rem;
-    color: var(--accent-gold);
+    color: var(--accent);
 }
 
 .search-bar {
@@ -443,8 +444,8 @@ select:focus, input:focus {
 }
 
 .category-tag:hover, .category-tag.active {
-    border-color: var(--accent-gold);
-    color: var(--accent-gold);
+    border-color: var(--accent);
+    color: var(--accent);
     background: var(--bg-card-hover);
 }
 
@@ -467,7 +468,7 @@ select:focus, input:focus {
 }
 
 .bill-item:hover {
-    border-color: var(--accent-gold-dim);
+    border-color: var(--accent-dim);
     background: var(--bg-card-hover);
 }
 
@@ -477,7 +478,7 @@ select:focus, input:focus {
 }
 
 .bill-item .bill-number {
-    color: var(--accent-gold);
+    color: var(--accent);
     font-weight: 600;
     font-size: 0.85rem;
 }
@@ -509,7 +510,7 @@ select:focus, input:focus {
     border-radius: 999px;
     padding: 0.2rem 0.6rem;
     font-size: 0.75rem;
-    color: var(--accent-gold);
+    color: var(--accent);
     font-weight: 500;
 }
 
@@ -591,7 +592,7 @@ select:focus, input:focus {
 
 .vote-block h4 {
     font-family: var(--font-heading);
-    color: var(--accent-gold);
+    color: var(--accent);
     margin: 0 0 0.5rem;
 }
 
@@ -609,7 +610,7 @@ select:focus, input:focus {
 }
 
 .vote-note {
-    color: var(--accent-gold-dim);
+    color: var(--accent-dim);
     font-size: 0.85rem;
     font-style: italic;
     margin-bottom: 0.75rem;
@@ -720,7 +721,7 @@ select:focus, input:focus {
 }
 
 .bill-header .bill-number {
-    color: var(--accent-gold);
+    color: var(--accent);
     font-size: 0.95rem;
     font-weight: 600;
 }
@@ -748,7 +749,7 @@ select:focus, input:focus {
 .bill-section h3 {
     font-family: var(--font-heading);
     font-size: 1.15rem;
-    color: var(--accent-gold);
+    color: var(--accent);
     margin-bottom: 1rem;
 }
 
@@ -773,7 +774,7 @@ select:focus, input:focus {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--accent-gold);
+    background: var(--accent);
 }
 
 .ai-disclaimer {
@@ -843,7 +844,7 @@ select:focus, input:focus {
 .voting-summary-card h3 {
     font-family: var(--font-heading);
     font-size: 1.25rem;
-    color: var(--accent-gold);
+    color: var(--accent);
     margin-bottom: 0.75rem;
 }
 
@@ -958,7 +959,7 @@ select:focus, input:focus {
 }
 
 .summary-deficit h4 {
-    color: var(--accent-gold);
+    color: var(--accent);
     font-size: 0.95rem;
     margin-bottom: 0.5rem;
 }
@@ -991,7 +992,7 @@ select:focus, input:focus {
 }
 
 .summary-deficit-net.deficit-decrease {
-    background: rgba(91, 138, 114, 0.1);
+    background: rgba(76, 175, 106, 0.1);
     border-left: 3px solid var(--vote-yea);
 }
 
@@ -1026,7 +1027,7 @@ select:focus, input:focus {
 }
 
 .cbo-tag.deficit-decrease {
-    background: rgba(91, 138, 114, 0.15);
+    background: rgba(76, 175, 106, 0.15);
     color: var(--vote-yea);
 }
 
@@ -1036,7 +1037,7 @@ select:focus, input:focus {
 }
 
 .scorecard-section > h3 {
-    color: var(--accent-gold);
+    color: var(--accent);
     font-size: 1.2rem;
     margin-bottom: 0.3rem;
 }
@@ -1094,7 +1095,7 @@ select:focus, input:focus {
 }
 
 .scorecard-net.deficit-decrease {
-    background: rgba(91, 138, 114, 0.1);
+    background: rgba(76, 175, 106, 0.1);
     border-left: 3px solid var(--vote-yea);
     color: var(--vote-yea);
 }
@@ -1110,7 +1111,7 @@ select:focus, input:focus {
     align-items: flex-start;
     gap: 0.6rem;
     padding: 0.45rem 0;
-    border-bottom: 1px solid rgba(42, 64, 96, 0.4);
+    border-bottom: 1px solid rgba(36, 59, 94, 0.4);
     line-height: 1.4;
 }
 
@@ -1129,12 +1130,12 @@ select:focus, input:focus {
 }
 
 .scorecard-vote-badge.vote-yea {
-    background: rgba(91, 138, 114, 0.2);
+    background: rgba(76, 175, 106, 0.2);
     color: var(--vote-yea);
 }
 
 .scorecard-vote-badge.vote-nay {
-    background: rgba(138, 91, 91, 0.2);
+    background: rgba(214, 69, 80, 0.2);
     color: var(--vote-nay);
 }
 
@@ -1172,7 +1173,7 @@ select:focus, input:focus {
 .service-compact h3 {
     font-family: var(--font-heading);
     font-size: 0.95rem;
-    color: var(--accent-gold);
+    color: var(--accent);
     margin: 0;
     white-space: nowrap;
 }
@@ -1197,8 +1198,8 @@ select:focus, input:focus {
 }
 
 .service-expand-btn:hover {
-    border-color: var(--accent-gold);
-    color: var(--accent-gold);
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
 .service-detail-table {
@@ -1224,7 +1225,7 @@ select:focus, input:focus {
     width: 24px;
     height: 24px;
     border: 3px solid var(--border);
-    border-top-color: var(--accent-gold);
+    border-top-color: var(--accent);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
     margin-right: 0.5rem;
@@ -1310,7 +1311,7 @@ select:focus, input:focus {
 .stat-value {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--accent-gold);
+    color: var(--accent);
     font-family: var(--font-heading);
 }
 
@@ -1349,7 +1350,7 @@ select:focus, input:focus {
 }
 
 .vote-item:hover {
-    border-color: var(--accent-gold-dim);
+    border-color: var(--accent-dim);
     background: var(--bg-card-hover);
 }
 
