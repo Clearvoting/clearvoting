@@ -1,7 +1,9 @@
 import pytest
+from defusedxml.common import EntitiesForbidden
 from httpx import AsyncClient, ASGITransport
 from app.main import app
 from app.routers.bills import _is_safe_url
+from app.services.senate_votes import parse_senate_vote_xml
 
 
 # --- SSRF URL Validation ---
@@ -162,3 +164,28 @@ async def test_health_no_demo_mode_leak():
     data = resp.json()
     assert "demo_mode" not in data
     assert data["status"] == "ok"
+
+
+# --- XML Safety ---
+
+def test_xxe_payload_blocked():
+    """defusedxml should block XML External Entity attacks."""
+    xxe_xml = """<?xml version="1.0"?>
+<!DOCTYPE foo [
+  <!ENTITY xxe SYSTEM "file:///etc/passwd">
+]>
+<roll_call_vote>
+  <congress>119</congress>
+  <session>2</session>
+  <vote_number>1</vote_number>
+  <vote_date>2026-01-01</vote_date>
+  <vote_question_text>&xxe;</vote_question_text>
+  <vote_document_text>Test</vote_document_text>
+  <vote_result_text>Passed</vote_result_text>
+  <vote_title>Test</vote_title>
+  <count><yeas>50</yeas><nays>49</nays><present>0</present><absent>1</absent></count>
+  <members></members>
+</roll_call_vote>"""
+
+    with pytest.raises(EntitiesForbidden):
+        parse_senate_vote_xml(xxe_xml)
