@@ -1,7 +1,10 @@
 import copy
-from fastapi import APIRouter, HTTPException
+import logging
+from fastapi import APIRouter, HTTPException, Path
 from app.dependencies import get_congress_client, get_senate_vote_service
 from app.services.mock_data import get_mock_senate_vote
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/votes", tags=["votes"])
 
@@ -12,16 +15,17 @@ def _is_demo() -> bool:
 
 
 @router.get("/house/{congress}/{session}")
-async def list_house_votes(congress: int, session: int):
+async def list_house_votes(congress: int = Path(ge=1, le=200), session: int = Path(ge=1, le=3)):
     client = get_congress_client()
     try:
         return await client.get_house_votes(congress, session)
     except Exception as e:
-        raise HTTPException(status_code=502, detail=str(e))
+        logger.error("Congress API error in list_house_votes: %s", e)
+        raise HTTPException(status_code=502, detail="External service temporarily unavailable")
 
 
 @router.get("/house/{congress}/{session}/{vote_number}")
-async def get_house_vote(congress: int, session: int, vote_number: int, show_party: bool = False):
+async def get_house_vote(congress: int = Path(ge=1, le=200), session: int = Path(ge=1, le=3), vote_number: int = Path(), show_party: bool = False):
     client = get_congress_client()
     try:
         vote = await client.get_house_vote_detail(congress, session, vote_number)
@@ -30,11 +34,12 @@ async def get_house_vote(congress: int, session: int, vote_number: int, show_par
             members = _strip_party_from_votes(members)
         return {"vote": vote, "members": members}
     except Exception as e:
-        raise HTTPException(status_code=502, detail=str(e))
+        logger.error("Congress API error in get_house_vote: %s", e)
+        raise HTTPException(status_code=502, detail="External service temporarily unavailable")
 
 
 @router.get("/senate/{congress}/{session}/{vote_number}")
-async def get_senate_vote(congress: int, session: int, vote_number: int, show_party: bool = False):
+async def get_senate_vote(congress: int = Path(ge=1, le=200), session: int = Path(ge=1, le=3), vote_number: int = Path(), show_party: bool = False):
     if _is_demo():
         mock = get_mock_senate_vote(congress, session, vote_number)
         if mock:
@@ -54,7 +59,8 @@ async def get_senate_vote(congress: int, session: int, vote_number: int, show_pa
                 member.pop("party", None)
         return data
     except Exception as e:
-        raise HTTPException(status_code=502, detail=str(e))
+        logger.error("Senate vote service error: %s", e)
+        raise HTTPException(status_code=502, detail="External service temporarily unavailable")
 
 
 def _strip_party_from_votes(data: dict) -> dict:

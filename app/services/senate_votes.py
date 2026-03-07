@@ -1,4 +1,4 @@
-import xml.etree.ElementTree as ET
+import defusedxml.ElementTree as ET
 import httpx
 from app.services.cache import CacheService
 
@@ -56,7 +56,7 @@ class SenateVoteService:
             return cached
 
         url = self._build_url(congress, session, vote_number)
-        async with httpx.AsyncClient() as client:
+        async with httpx.AsyncClient(timeout=10.0) as client:
             response = await client.get(url)
             response.raise_for_status()
 

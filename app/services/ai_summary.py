@@ -1,6 +1,9 @@
 import json
+import logging
 import anthropic
 from app.services.cache import CacheService
+
+logger = logging.getLogger(__name__)
 
 IMPACT_CATEGORIES = [
     "Wages & Income",
@@ -74,7 +77,11 @@ Return ONLY valid JSON. Example format:
         )
 
         raw_text = response.content[0].text
-        result = json.loads(raw_text)
+        try:
+            result = json.loads(raw_text)
+        except json.JSONDecodeError:
+            logger.error("AI response was not valid JSON: %s", raw_text[:200])
+            return {"provisions": ["AI summary temporarily unavailable"], "impact_categories": []}
 
         valid_categories = [c for c in result.get("impact_categories", []) if c in IMPACT_CATEGORIES]
         result["impact_categories"] = valid_categories

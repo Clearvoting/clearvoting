@@ -36,7 +36,7 @@ async def test_get_member_votes_unknown_member():
     """Unknown member returns 404."""
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/api/members/UNKNOWN123/votes")
+        response = await client.get("/api/members/X999999/votes")
 
     assert response.status_code == 404
 

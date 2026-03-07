@@ -10,7 +10,7 @@ from app.main import app
 async def test_get_members_by_state():
     mock_data = {
         "members": [
-            {"bioguideId": "T001", "name": "Test Senator", "state": "FL", "partyName": "Democrat"}
+            {"bioguideId": "T000001", "name": "Test Senator", "state": "FL", "partyName": "Democrat"}
         ]
     }
     with patch("app.routers.members._is_demo", return_value=False), \
@@ -40,7 +40,7 @@ async def test_invalid_state_code():
 @pytest.mark.asyncio
 async def test_get_member_detail_strips_party_by_default():
     mock_data = {
-        "member": {"bioguideId": "T001", "firstName": "Test", "party": "Democrat", "partyName": "Democrat"}
+        "member": {"bioguideId": "T000001", "firstName": "Test", "party": "Democrat", "partyName": "Democrat"}
     }
     with patch("app.routers.members._is_demo", return_value=False), \
          patch("app.routers.members.get_congress_client") as mock_get:
@@ -50,7 +50,7 @@ async def test_get_member_detail_strips_party_by_default():
 
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/detail/T001")
+            response = await client.get("/api/members/detail/T000001")
 
     data = response.json()
     assert "party" not in data.get("member", {})
@@ -60,7 +60,7 @@ async def test_get_member_detail_strips_party_by_default():
 @pytest.mark.asyncio
 async def test_get_member_detail_shows_party_when_requested():
     mock_data = {
-        "member": {"bioguideId": "T001", "firstName": "Test", "party": "Democrat", "partyName": "Democrat"}
+        "member": {"bioguideId": "T000001", "firstName": "Test", "party": "Democrat", "partyName": "Democrat"}
     }
     with patch("app.routers.members._is_demo", return_value=False), \
          patch("app.routers.members.get_congress_client") as mock_get:
@@ -70,7 +70,7 @@ async def test_get_member_detail_shows_party_when_requested():
 
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/detail/T001?show_party=true")
+            response = await client.get("/api/members/detail/T000001?show_party=true")
 
     data = response.json()
     assert data["member"]["partyName"] == "Democrat"
