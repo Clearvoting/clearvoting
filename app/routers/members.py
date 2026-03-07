@@ -31,7 +31,7 @@ def _validate_state_code(state_code: str) -> str:
 @router.get("/{bioguide_id}/votes")
 async def get_member_votes(
     bioguide_id: str,
-    congress: int = 119,
+    congress: int = Query(119, ge=1, le=200),
     limit: int = Query(20, ge=1, le=100),
     offset: int = Query(0, ge=0),
 ):

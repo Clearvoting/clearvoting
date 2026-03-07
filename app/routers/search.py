@@ -10,7 +10,7 @@ router = APIRouter(prefix="/api/search", tags=["search"])
 @router.get("/bills")
 async def search_bills(
     q: str = Query(..., min_length=1),
-    congress: int | None = None,
+    congress: int | None = Query(None, ge=1, le=200),
     offset: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=50),
 ):
