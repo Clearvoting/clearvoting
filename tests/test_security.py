@@ -1,9 +1,22 @@
 import pytest
+from unittest.mock import patch
+from pathlib import Path
 from defusedxml.common import EntitiesForbidden
 from httpx import AsyncClient, ASGITransport
 from app.main import app
 from app.routers.bills import _is_safe_url
 from app.services.senate_votes import parse_senate_vote_xml
+
+FIXTURES = Path(__file__).parent / "fixtures" / "synced"
+
+
+def _patch_data_dir():
+    return patch("app.dependencies.get_data_dir", return_value=FIXTURES)
+
+
+def _clear_data_service_cache():
+    from app.dependencies import get_data_service
+    get_data_service.cache_clear()
 
 
 # --- SSRF URL Validation ---
@@ -40,14 +53,16 @@ def test_safe_url_rejects_empty_and_malformed():
 @pytest.mark.asyncio
 async def test_rate_limit_ai_summary():
     """AI summary endpoint returns 429 after exceeding rate limit."""
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        responses = []
-        for _ in range(12):
-            resp = await client.get("/api/bills/119/hr/1/ai-summary")
-            responses.append(resp.status_code)
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            responses = []
+            for _ in range(12):
+                resp = await client.get("/api/bills/119/hr/1/ai-summary")
+                responses.append(resp.status_code)
 
-    # First 10 should succeed (200), 11th+ should be rate-limited (429)
+    _clear_data_service_cache()
     assert 429 in responses, "Rate limiter should reject requests after limit exceeded"
     success_count = sum(1 for s in responses if s == 200)
     assert success_count == 10
@@ -66,11 +81,15 @@ async def test_invalid_bill_type_returns_400():
 
 @pytest.mark.asyncio
 async def test_valid_bill_types_accepted():
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        for bt in ["hr", "s", "hjres", "sjres", "HR", "S"]:
-            resp = await client.get(f"/api/bills/119/{bt}/1")
-            assert resp.status_code == 200, f"Bill type '{bt}' should be accepted"
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            for bt in ["hr", "s", "hjres", "sjres", "HR", "S"]:
+                resp = await client.get(f"/api/bills/119/{bt}/1")
+                assert resp.status_code == 200, f"Bill type '{bt}' should be accepted"
+
+    _clear_data_service_cache()
 
 
 @pytest.mark.asyncio
@@ -84,9 +103,13 @@ async def test_invalid_bioguide_id_returns_400():
 
 @pytest.mark.asyncio
 async def test_valid_bioguide_id_accepted():
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        resp = await client.get("/api/members/detail/S001217")
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            resp = await client.get("/api/members/detail/S001217")
+
+    _clear_data_service_cache()
     assert resp.status_code == 200
 
 
@@ -120,7 +143,6 @@ async def test_error_messages_are_generic():
     """Error responses should not leak internal exception details."""
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
-        # Invalid bill type gives a clear but safe message
         resp = await client.get("/api/bills/119/xxx/1")
     detail = resp.json()["detail"]
     assert "traceback" not in detail.lower()

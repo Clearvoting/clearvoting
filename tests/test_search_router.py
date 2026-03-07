@@ -1,22 +1,34 @@
 import pytest
-from unittest.mock import patch, AsyncMock, MagicMock
+from unittest.mock import patch
+from pathlib import Path
 from httpx import AsyncClient, ASGITransport
 from app.main import app
+
+FIXTURES = Path(__file__).parent / "fixtures" / "synced"
+
+
+def _patch_data_dir():
+    return patch("app.dependencies.get_data_dir", return_value=FIXTURES)
+
+
+def _clear_data_service_cache():
+    from app.dependencies import get_data_service
+    get_data_service.cache_clear()
 
 
 @pytest.mark.asyncio
 async def test_search_bills():
-    mock_data = {"bills": [{"number": "1", "title": "Test Bill"}]}
-    with patch("app.routers.search.get_congress_client") as mock_get:
-        mock_client = MagicMock()
-        mock_client.get_bills = AsyncMock(return_value=mock_data)
-        mock_get.return_value = mock_client
-
+    with _patch_data_dir():
+        _clear_data_service_cache()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/search/bills?q=wage")
+            response = await client.get("/api/search/bills?q=beautiful")
 
+    _clear_data_service_cache()
     assert response.status_code == 200
+    data = response.json()
+    assert len(data["bills"]) == 1
+    assert "Beautiful" in data["bills"][0]["title"]
 
 
 @pytest.mark.asyncio

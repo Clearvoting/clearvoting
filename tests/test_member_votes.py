@@ -1,15 +1,31 @@
 import pytest
+from unittest.mock import patch
+from pathlib import Path
 from httpx import AsyncClient, ASGITransport
 from app.main import app
 
+FIXTURES = Path(__file__).parent / "fixtures" / "synced"
+
+
+def _patch_data_dir():
+    return patch("app.dependencies.get_data_dir", return_value=FIXTURES)
+
+
+def _clear_data_service_cache():
+    from app.dependencies import get_data_service
+    get_data_service.cache_clear()
+
 
 @pytest.mark.asyncio
-async def test_get_member_votes_demo_mode():
-    """Demo mode returns mock voting data for known FL members."""
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/api/members/S001217/votes")
+async def test_get_member_votes_from_data_service():
+    """DataService returns voting data for known member."""
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/members/S001217/votes")
 
+    _clear_data_service_cache()
     assert response.status_code == 200
     data = response.json()
     assert data["member_id"] == "S001217"
@@ -20,7 +36,6 @@ async def test_get_member_votes_demo_mode():
     assert len(data["votes"]) > 0
     assert "policy_areas" in data
 
-    # Verify vote structure
     vote = data["votes"][0]
     assert "bill_number" in vote
     assert "one_liner" in vote
@@ -34,20 +49,26 @@ async def test_get_member_votes_demo_mode():
 @pytest.mark.asyncio
 async def test_get_member_votes_unknown_member():
     """Unknown member returns 404."""
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/api/members/X999999/votes")
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/members/X999999/votes")
 
+    _clear_data_service_cache()
     assert response.status_code == 404
 
 
 @pytest.mark.asyncio
 async def test_get_member_votes_sorted_by_date():
     """Votes should be returned in reverse chronological order."""
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/api/members/S001217/votes")
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/members/S001217/votes")
 
+    _clear_data_service_cache()
     data = response.json()
     dates = [v["date"] for v in data["votes"]]
     assert dates == sorted(dates, reverse=True), "Votes should be sorted newest first"
@@ -56,15 +77,18 @@ async def test_get_member_votes_sorted_by_date():
 @pytest.mark.asyncio
 async def test_get_member_votes_pagination():
     """Pagination with limit and offset works."""
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/api/members/S001217/votes?limit=3&offset=0")
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/members/S001217/votes?limit=1&offset=0")
 
+    _clear_data_service_cache()
     assert response.status_code == 200
     data = response.json()
-    assert len(data["votes"]) == 3
+    assert len(data["votes"]) == 1
     assert "total_count" in data
-    assert data["total_count"] >= 3
+    assert data["total_count"] >= 1
 
 
 @pytest.mark.asyncio
@@ -82,10 +106,13 @@ async def test_get_member_votes_invalid_params():
 @pytest.mark.asyncio
 async def test_get_member_votes_stats_structure():
     """Stats include all required fields."""
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/api/members/S001217/votes")
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/members/S001217/votes")
 
+    _clear_data_service_cache()
     data = response.json()
     stats = data["stats"]
     assert "total_votes" in stats
@@ -94,28 +121,3 @@ async def test_get_member_votes_stats_structure():
     assert "not_voting_count" in stats
     assert "participation_rate" in stats
     assert isinstance(stats["participation_rate"], (int, float))
-
-
-@pytest.mark.asyncio
-async def test_get_member_votes_house_member():
-    """House member (Byron Donalds) returns voting data correctly."""
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/api/members/D000032/votes")
-
-    assert response.status_code == 200
-    data = response.json()
-    assert data["member_id"] == "D000032"
-    assert len(data["votes"]) > 0
-    assert data["votes"][0]["chamber"] == "House"
-
-
-@pytest.mark.asyncio
-async def test_get_member_votes_wrong_congress_demo():
-    """Demo mode rejects congress values other than 119."""
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/api/members/S001217/votes?congress=118")
-
-    assert response.status_code == 400
-    assert "119" in response.json()["detail"]

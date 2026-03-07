@@ -1,9 +1,20 @@
 from functools import lru_cache
-from app.config import CONGRESS_API_KEY, ANTHROPIC_API_KEY, CACHE_DIR, CACHE_TTL_SECONDS
+from pathlib import Path
+from app.config import CONGRESS_API_KEY, ANTHROPIC_API_KEY, CACHE_DIR, CACHE_TTL_SECONDS, BASE_DIR
 from app.services.cache import CacheService
 from app.services.congress_api import CongressAPIClient
 from app.services.senate_votes import SenateVoteService
 from app.services.ai_summary import AISummaryService
+from app.services.data_service import DataService
+
+
+def get_data_dir() -> Path:
+    return BASE_DIR / "data" / "synced"
+
+
+@lru_cache
+def get_data_service() -> DataService:
+    return DataService(data_dir=get_data_dir())
 
 
 @lru_cache

@@ -1,30 +1,36 @@
 import pytest
-from unittest.mock import patch, AsyncMock, MagicMock
+from unittest.mock import patch
+from pathlib import Path
 from httpx import AsyncClient, ASGITransport
 from app.main import app
+
+FIXTURES = Path(__file__).parent / "fixtures" / "synced"
+
+
+def _patch_data_dir():
+    """Patch data dir to use test fixtures and reset the DataService singleton."""
+    return patch("app.dependencies.get_data_dir", return_value=FIXTURES)
+
+
+def _clear_data_service_cache():
+    from app.dependencies import get_data_service
+    get_data_service.cache_clear()
 
 
 # --- Members Router ---
 
 @pytest.mark.asyncio
 async def test_get_members_by_state():
-    mock_data = {
-        "members": [
-            {"bioguideId": "T000001", "name": "Test Senator", "state": "FL", "partyName": "Democrat"}
-        ]
-    }
-    with patch("app.routers.members._is_demo", return_value=False), \
-         patch("app.routers.members.get_congress_client") as mock_get:
-        mock_client = MagicMock()
-        mock_client.get_members_by_state = AsyncMock(return_value=mock_data)
-        mock_get.return_value = mock_client
-
+    with _patch_data_dir():
+        _clear_data_service_cache()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
             response = await client.get("/api/members/FL")
 
+    _clear_data_service_cache()
     assert response.status_code == 200
     data = response.json()
+    assert len(data["members"]) == 2
     for member in data.get("members", []):
         assert "partyName" not in member
 
@@ -39,100 +45,71 @@ async def test_invalid_state_code():
 
 @pytest.mark.asyncio
 async def test_get_member_detail_strips_party_by_default():
-    mock_data = {
-        "member": {"bioguideId": "T000001", "firstName": "Test", "party": "Democrat", "partyName": "Democrat"}
-    }
-    with patch("app.routers.members._is_demo", return_value=False), \
-         patch("app.routers.members.get_congress_client") as mock_get:
-        mock_client = MagicMock()
-        mock_client.get_member = AsyncMock(return_value=mock_data)
-        mock_get.return_value = mock_client
-
+    with _patch_data_dir():
+        _clear_data_service_cache()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/detail/T000001")
+            response = await client.get("/api/members/detail/S001217")
 
+    _clear_data_service_cache()
     data = response.json()
-    assert "party" not in data.get("member", {})
     assert "partyName" not in data.get("member", {})
+    assert "partyCode" not in data.get("member", {})
 
 
 @pytest.mark.asyncio
 async def test_get_member_detail_shows_party_when_requested():
-    mock_data = {
-        "member": {"bioguideId": "T000001", "firstName": "Test", "party": "Democrat", "partyName": "Democrat"}
-    }
-    with patch("app.routers.members._is_demo", return_value=False), \
-         patch("app.routers.members.get_congress_client") as mock_get:
-        mock_client = MagicMock()
-        mock_client.get_member = AsyncMock(return_value=mock_data)
-        mock_get.return_value = mock_client
-
+    with _patch_data_dir():
+        _clear_data_service_cache()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/detail/T000001?show_party=true")
+            response = await client.get("/api/members/detail/S001217?show_party=true")
 
+    _clear_data_service_cache()
     data = response.json()
-    assert data["member"]["partyName"] == "Democrat"
+    assert data["member"]["partyName"] == "Republican"
 
 
 # --- Bills Router ---
 
 @pytest.mark.asyncio
 async def test_list_bills():
-    mock_data = {"bills": [{"number": "1", "title": "Test"}]}
-    with patch("app.routers.bills._is_demo", return_value=False), \
-         patch("app.routers.bills.get_congress_client") as mock_get:
-        mock_client = MagicMock()
-        mock_client.get_bills = AsyncMock(return_value=mock_data)
-        mock_get.return_value = mock_client
-
+    with _patch_data_dir():
+        _clear_data_service_cache()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
             response = await client.get("/api/bills")
+
+    _clear_data_service_cache()
     assert response.status_code == 200
+    data = response.json()
+    assert len(data["bills"]) == 2
 
 
 @pytest.mark.asyncio
 async def test_get_bill_detail():
-    mock_bill = {"bill": {"number": "1234", "title": "Test", "congress": 119}}
-    mock_subjects = {"subjects": []}
-    with patch("app.routers.bills._is_demo", return_value=False), \
-         patch("app.routers.bills.get_congress_client") as mock_get:
-        mock_client = MagicMock()
-        mock_client.get_bill = AsyncMock(return_value=mock_bill)
-        mock_client.get_bill_subjects = AsyncMock(return_value=mock_subjects)
-        mock_get.return_value = mock_client
-
+    with _patch_data_dir():
+        _clear_data_service_cache()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/bills/119/hr/1234")
+            response = await client.get("/api/bills/119/hr/1")
+
+    _clear_data_service_cache()
     assert response.status_code == 200
-    assert response.json()["bill"]["number"] == "1234"
+    assert response.json()["bill"]["title"] == "One Big Beautiful Bill Act"
 
 
 # --- Votes Router ---
 
 @pytest.mark.asyncio
 async def test_get_senate_vote_strips_party():
-    mock_data = {
-        "congress": 119, "session": 2, "vote_number": 44,
-        "question": "On Cloture", "result": "Agreed to",
-        "counts": {"yeas": 84, "nays": 6, "present": 1, "absent": 9},
-        "members": [
-            {"first_name": "Test", "last_name": "Senator", "party": "D", "state": "FL", "vote": "Yea"}
-        ],
-    }
-    with patch("app.routers.votes._is_demo", return_value=False), \
-         patch("app.routers.votes.get_senate_vote_service") as mock_get:
-        mock_service = MagicMock()
-        mock_service.get_vote = AsyncMock(return_value=mock_data)
-        mock_get.return_value = mock_service
-
+    with _patch_data_dir():
+        _clear_data_service_cache()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/votes/senate/119/2/44")
+            response = await client.get("/api/votes/senate/119/1/372")
 
+    _clear_data_service_cache()
     assert response.status_code == 200
     data = response.json()
     for member in data["members"]:
@@ -141,23 +118,12 @@ async def test_get_senate_vote_strips_party():
 
 @pytest.mark.asyncio
 async def test_get_senate_vote_shows_party():
-    mock_data = {
-        "congress": 119, "session": 2, "vote_number": 44,
-        "question": "On Cloture", "result": "Agreed to",
-        "counts": {"yeas": 84, "nays": 6, "present": 1, "absent": 9},
-        "members": [
-            {"first_name": "Test", "last_name": "Senator", "party": "D", "state": "FL", "vote": "Yea"}
-        ],
-    }
-    with patch("app.routers.votes._is_demo", return_value=False), \
-         patch("app.routers.votes.get_senate_vote_service") as mock_get:
-        mock_service = MagicMock()
-        mock_service.get_vote = AsyncMock(return_value=mock_data)
-        mock_get.return_value = mock_service
-
+    with _patch_data_dir():
+        _clear_data_service_cache()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/votes/senate/119/2/44?show_party=true")
+            response = await client.get("/api/votes/senate/119/1/372?show_party=true")
 
+    _clear_data_service_cache()
     data = response.json()
-    assert data["members"][0]["party"] == "D"
+    assert data["members"][0]["party"] == "R"
