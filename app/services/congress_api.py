@@ -15,12 +15,13 @@ class CongressAPIClient:
             return cached
 
         url = f"{self.base_url}{path}"
-        request_params = {"api_key": self.api_key, "format": "json"}
+        request_params = {"format": "json"}
         if params:
             request_params.update(params)
+        headers = {"X-Api-Key": self.api_key}
 
         async with httpx.AsyncClient(timeout=10.0) as client:
-            response = await client.get(url, params=request_params)
+            response = await client.get(url, params=request_params, headers=headers)
             response.raise_for_status()
             data = response.json()
 
