@@ -299,7 +299,7 @@ async function reloadMembersWithParty() {
             ];
 
             if (party) {
-                const badge = el('span', { className: 'party-badge', style: 'display:inline-block;background:var(--bg-secondary);color:var(--text-secondary);border:1px solid var(--border);' }, party);
+                const badge = el('span', { className: 'party-badge', style: 'display:inline-block;background:#fff;color:#0071BC;border:1px solid #0071BC;' }, party);
                 infoChildren.push(badge);
             }
 
