@@ -7,6 +7,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app/ app/
 COPY static/ static/
+COPY data/synced/ data/synced/
 
 EXPOSE 8080
 
