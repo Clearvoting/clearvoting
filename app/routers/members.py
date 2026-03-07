@@ -19,6 +19,8 @@ async def get_member_votes(
     offset: int = Query(0, ge=0),
 ):
     if _is_demo():
+        if congress != 119:
+            raise HTTPException(status_code=400, detail="Demo mode only supports the 119th Congress")
         mock = get_mock_member_votes(bioguide_id)
         if not mock:
             raise HTTPException(status_code=404, detail="Member not found")
@@ -28,6 +30,7 @@ async def get_member_votes(
             "member_id": mock["member_id"],
             "congress": mock["congress"],
             "stats": mock["stats"],
+            "scorecard": mock.get("scorecard", []),
             "votes": paginated,
             "total_count": len(sorted_votes),
             "policy_areas": mock["policy_areas"],

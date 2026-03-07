@@ -108,3 +108,14 @@ async def test_get_member_votes_house_member():
     assert data["member_id"] == "D000032"
     assert len(data["votes"]) > 0
     assert data["votes"][0]["chamber"] == "House"
+
+
+@pytest.mark.asyncio
+async def test_get_member_votes_wrong_congress_demo():
+    """Demo mode rejects congress values other than 119."""
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.get("/api/members/S001217/votes?congress=118")
+
+    assert response.status_code == 400
+    assert "119" in response.json()["detail"]
