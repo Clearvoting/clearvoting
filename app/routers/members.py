@@ -1,7 +1,7 @@
 import copy
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from app.dependencies import get_congress_client
-from app.services.mock_data import get_mock_members, get_mock_member_detail
+from app.services.mock_data import get_mock_members, get_mock_member_detail, get_mock_member_votes
 
 router = APIRouter(prefix="/api/members", tags=["members"])
 
@@ -9,6 +9,35 @@ router = APIRouter(prefix="/api/members", tags=["members"])
 def _is_demo() -> bool:
     from app.config import CONGRESS_API_KEY
     return not CONGRESS_API_KEY
+
+
+@router.get("/{bioguide_id}/votes")
+async def get_member_votes(
+    bioguide_id: str,
+    congress: int = 119,
+    limit: int = Query(20, ge=1, le=100),
+    offset: int = Query(0, ge=0),
+):
+    if _is_demo():
+        if congress != 119:
+            raise HTTPException(status_code=400, detail="Demo mode only supports the 119th Congress")
+        mock = get_mock_member_votes(bioguide_id)
+        if not mock:
+            raise HTTPException(status_code=404, detail="Member not found")
+        sorted_votes = sorted(mock["votes"], key=lambda v: v["date"], reverse=True)
+        paginated = sorted_votes[offset:offset + limit]
+        return {
+            "member_id": mock["member_id"],
+            "congress": mock["congress"],
+            "stats": mock["stats"],
+            "scorecard": mock.get("scorecard", []),
+            "votes": paginated,
+            "total_count": len(sorted_votes),
+            "policy_areas": mock["policy_areas"],
+        }
+
+    # Real mode: TODO — fetch from Congress API + Senate XML
+    raise HTTPException(status_code=501, detail="Real-mode voting records not yet implemented")
 
 
 @router.get("/{state_code}")
