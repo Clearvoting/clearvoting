@@ -4,10 +4,10 @@
    ============================================ */
 
 const VOTE_COLORS = {
-    yea: '#5B8A72',
-    nay: '#8A5B5B',
-    present: '#5B6F8A',
-    absent: '#6B6B6B',
+    yea: '#4CAF6A',
+    nay: '#D64550',
+    present: '#5B8FB8',
+    absent: '#6B7B8B',
 };
 
 // --- SVG Pie Chart ---
@@ -128,7 +128,7 @@ function _buildPieChart(segments, total, size) {
     text.setAttribute('y', String(cy));
     text.setAttribute('text-anchor', 'middle');
     text.setAttribute('dominant-baseline', 'central');
-    text.setAttribute('fill', '#E8E0D4');
+    text.setAttribute('fill', '#F0F4F8');
     text.setAttribute('font-size', String(Math.round(size * 0.18)));
     text.setAttribute('font-weight', '600');
     text.setAttribute('font-family', 'Inter, system-ui, sans-serif');
