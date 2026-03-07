@@ -49,3 +49,77 @@ async def test_rate_limit_ai_summary():
     assert 429 in responses, "Rate limiter should reject requests after limit exceeded"
     success_count = sum(1 for s in responses if s == 200)
     assert success_count == 10
+
+
+# --- Input Validation ---
+
+@pytest.mark.asyncio
+async def test_invalid_bill_type_returns_400():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.get("/api/bills/119/faketype/1")
+    assert resp.status_code == 400
+    assert "Invalid bill type" in resp.json()["detail"]
+
+
+@pytest.mark.asyncio
+async def test_valid_bill_types_accepted():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        for bt in ["hr", "s", "hjres", "sjres", "HR", "S"]:
+            resp = await client.get(f"/api/bills/119/{bt}/1")
+            assert resp.status_code == 200, f"Bill type '{bt}' should be accepted"
+
+
+@pytest.mark.asyncio
+async def test_invalid_bioguide_id_returns_400():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.get("/api/members/detail/INVALID")
+    assert resp.status_code == 400
+    assert "Invalid member ID" in resp.json()["detail"]
+
+
+@pytest.mark.asyncio
+async def test_valid_bioguide_id_accepted():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.get("/api/members/detail/S001217")
+    assert resp.status_code == 200
+
+
+@pytest.mark.asyncio
+async def test_non_alpha_state_code_returns_400():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.get("/api/members/!!")
+    assert resp.status_code == 400
+    assert "2 letters" in resp.json()["detail"]
+
+
+@pytest.mark.asyncio
+async def test_numeric_state_code_returns_400():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.get("/api/members/12")
+    assert resp.status_code == 400
+
+
+@pytest.mark.asyncio
+async def test_congress_out_of_range_returns_422():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.get("/api/bills/999/hr/1")
+    assert resp.status_code == 422
+
+
+@pytest.mark.asyncio
+async def test_error_messages_are_generic():
+    """Error responses should not leak internal exception details."""
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        # Invalid bill type gives a clear but safe message
+        resp = await client.get("/api/bills/119/xxx/1")
+    detail = resp.json()["detail"]
+    assert "traceback" not in detail.lower()
+    assert "exception" not in detail.lower()
