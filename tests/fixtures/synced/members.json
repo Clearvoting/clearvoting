@@ -1,0 +1,52 @@
+{
+  "members": [
+    {
+      "bioguideId": "S001217",
+      "name": "Scott, Rick",
+      "directOrderName": "Rick Scott",
+      "state": "Florida",
+      "stateCode": "FL",
+      "district": null,
+      "partyName": "Republican",
+      "partyCode": "R",
+      "chamber": "Senate",
+      "terms": {"item": [
+        {"chamber": "Senate", "congress": 119, "startYear": 2025, "endYear": null, "stateCode": "FL"}
+      ]},
+      "depiction": {"imageUrl": "https://www.congress.gov/img/member/s001217_200.jpg", "attribution": ""},
+      "currentMember": true
+    },
+    {
+      "bioguideId": "D000032",
+      "name": "Donalds, Byron",
+      "directOrderName": "Byron Donalds",
+      "state": "Florida",
+      "stateCode": "FL",
+      "district": 19,
+      "partyName": "Republican",
+      "partyCode": "R",
+      "chamber": "House",
+      "terms": {"item": [
+        {"chamber": "House of Representatives", "congress": 119, "startYear": 2025, "endYear": null, "stateCode": "FL"}
+      ]},
+      "depiction": {"imageUrl": "https://www.congress.gov/img/member/d000032_200.jpg", "attribution": ""},
+      "currentMember": true
+    },
+    {
+      "bioguideId": "S000148",
+      "name": "Schumer, Charles E.",
+      "directOrderName": "Charles E. Schumer",
+      "state": "New York",
+      "stateCode": "NY",
+      "district": null,
+      "partyName": "Democrat",
+      "partyCode": "D",
+      "chamber": "Senate",
+      "terms": {"item": [
+        {"chamber": "Senate", "congress": 119, "startYear": 2025, "endYear": null, "stateCode": "NY"}
+      ]},
+      "depiction": {"imageUrl": "https://www.congress.gov/img/member/s000148_200.jpg", "attribution": ""},
+      "currentMember": true
+    }
+  ]
+}

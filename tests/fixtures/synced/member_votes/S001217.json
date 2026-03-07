@@ -1,0 +1,39 @@
+{
+  "member_id": "S001217",
+  "congress": 119,
+  "stats": {
+    "total_votes": 2,
+    "yea_count": 1,
+    "nay_count": 1,
+    "not_voting_count": 0,
+    "participation_rate": 100.0
+  },
+  "scorecard": [
+    {"issue": "Taxes", "description": "Tax policy and reform", "votes_for": 1, "votes_against": 0, "total_votes": 1, "alignment_pct": 100}
+  ],
+  "votes": [
+    {
+      "bill_number": "H.R. 1",
+      "bill_id": "119-hr-1",
+      "one_liner": "One Big Beautiful Bill Act",
+      "vote": "Yea",
+      "date": "2025-05-22",
+      "result": "Bill Passed",
+      "policy_area": "Taxation",
+      "chamber": "Senate",
+      "cbo_deficit_impact": "+$2.3 trillion over 10 years"
+    },
+    {
+      "bill_number": "S. 100",
+      "bill_id": "119-s-100",
+      "one_liner": "Veterans Benefits Enhancement Act",
+      "vote": "Nay",
+      "date": "2025-04-10",
+      "result": "Bill Failed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null
+    }
+  ],
+  "policy_areas": ["Taxation", "Armed Forces and National Security"]
+}

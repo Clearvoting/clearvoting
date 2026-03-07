@@ -1,0 +1,15 @@
+{
+  "congress": 119,
+  "session": 1,
+  "vote_number": 372,
+  "vote_date": "2025-05-22",
+  "question": "On Passage of the Bill",
+  "document": "H.R. 1",
+  "result": "Bill Passed",
+  "title": "One Big Beautiful Bill Act",
+  "counts": {"yeas": 51, "nays": 49, "present": 0, "absent": 0},
+  "members": [
+    {"first_name": "Rick", "last_name": "Scott", "party": "R", "state": "FL", "vote": "Yea", "lis_member_id": "S001217"},
+    {"first_name": "Charles", "last_name": "Schumer", "party": "D", "state": "NY", "vote": "Nay", "lis_member_id": "S000148"}
+  ]
+}

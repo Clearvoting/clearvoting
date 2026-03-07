@@ -1,0 +1,24 @@
+{
+  "bills": [
+    {
+      "congress": 119,
+      "type": "HR",
+      "number": "1",
+      "title": "One Big Beautiful Bill Act",
+      "latestAction": {"actionDate": "2025-05-22", "text": "Passed Senate"},
+      "sponsors": [{"bioguideId": "S001217", "fullName": "Rep. Smith, Jason [R-MO-8]"}],
+      "policyArea": {"name": "Taxation"},
+      "summaries": [{"text": "Official summary text here."}]
+    },
+    {
+      "congress": 119,
+      "type": "S",
+      "number": "100",
+      "title": "Veterans Benefits Enhancement Act",
+      "latestAction": {"actionDate": "2025-04-10", "text": "Introduced in Senate"},
+      "sponsors": [],
+      "policyArea": {"name": "Armed Forces and National Security"},
+      "summaries": []
+    }
+  ]
+}
