@@ -15,6 +15,7 @@ import argparse
 import asyncio
 import json
 import os
+import shutil
 import sys
 import tempfile
 from datetime import datetime, timezone
@@ -268,7 +269,138 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, con
     return len(all_bills)
 
 
-async def build_member_votes(output_dir: Path) -> int:
+async def sync_bill_summaries(
+    output_dir: Path,
+    api_key: str,
+    batch_size: int = 5,
+    rate_limit: float = 1.0,
+) -> dict:
+    """Generate AI summaries for all bills through the writer-grader loop.
+
+    Processes in batches to prevent context degradation.
+    Returns stats dict with pass/fail counts.
+    """
+    from app.services.ai_summary import AISummaryService
+    from app.services.summary_grader import SummaryGrader
+    from app.services.writer_grader_loop import WriterGraderLoop
+    from app.services.grader_learnings import GraderLearnings
+
+    bills_path = output_dir / "bills.json"
+    summaries_path = output_dir / "ai_summaries.json"
+    learnings_path = output_dir / "grader_learnings.json"
+
+    if not bills_path.exists():
+        print("  No bills.json — skipping AI summaries")
+        return {"total": 0, "passed": 0, "failed": 0}
+
+    with open(bills_path) as f:
+        bills = json.load(f).get("bills", [])
+
+    # Load existing summaries (incremental)
+    existing: dict[str, dict] = {}
+    if summaries_path.exists():
+        with open(summaries_path) as f:
+            existing = json.load(f)
+
+    # Setup services
+    cache = CacheService(cache_dir=CACHE_DIR, ttl_seconds=86400)
+    writer_service = AISummaryService(api_key=api_key, cache=cache)
+    grader = SummaryGrader(api_key=api_key)
+
+    # Load learnings
+    learnings_store = GraderLearnings(learnings_path)
+    grader.load_learnings(learnings_store.get_learnings())
+
+    # Find bills needing summaries
+    to_process = []
+    for bill in bills:
+        bill_type = bill.get("type", "").lower()
+        bill_number = bill.get("number", "")
+        congress = bill.get("congress", 119)
+        key = f"{congress}-{bill_type}-{bill_number}"
+        if key not in existing:
+            to_process.append((key, bill))
+
+    if not to_process:
+        print("  All bills already have summaries — skipping")
+        return {"total": 0, "passed": 0, "failed": 0}
+
+    print(f"  Generating summaries for {len(to_process)} bills (batch size: {batch_size})")
+
+    stats: dict = {"total": 0, "passed": 0, "failed": 0, "needs_review": []}
+    grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
+    all_feedback: list[str] = []
+
+    for batch_start in range(0, len(to_process), batch_size):
+        batch = to_process[batch_start:batch_start + batch_size]
+        print(f"  Batch {batch_start // batch_size + 1}/{(len(to_process) + batch_size - 1) // batch_size}")
+
+        for key, bill in batch:
+            bill_id = key
+            title = bill.get("title", "")
+            summaries = bill.get("summaries", [])
+            official_summary = summaries[0].get("text", "") if summaries else ""
+            bill_text = bill.get("textVersions", [{}])[0].get("text", "") if bill.get("textVersions") else ""
+
+            print(f"    Grading: {title[:60]}...")
+
+            async def writer_fn(grader_feedback=None, _bill_id=bill_id, _title=title, _official_summary=official_summary, _bill_text=bill_text, **kwargs):
+                return await writer_service.generate_summary(
+                    bill_id=_bill_id,
+                    title=_title,
+                    official_summary=_official_summary,
+                    bill_text_excerpt=_bill_text[:2000],
+                    grader_feedback=grader_feedback,
+                )
+
+            loop = WriterGraderLoop(writer_fn=writer_fn, grader=grader)
+            result = await loop.run(
+                summary_type="bill_summary",
+                writer_kwargs={},
+                grader_context={"title": title, "official_summary": official_summary},
+            )
+
+            summary_data = result.best_summary
+            if result.needs_review:
+                summary_data["needs_review"] = True
+                stats["needs_review"].append(key)
+                stats["failed"] += 1
+            else:
+                stats["passed"] += 1
+
+            existing[key] = summary_data
+            stats["total"] += 1
+            grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
+            all_feedback.append(result.best_grade.feedback)
+
+            await asyncio.sleep(rate_limit)
+
+        # Save after each batch (crash-safe)
+        _atomic_write_json(summaries_path, existing)
+
+    # Extract new learnings
+    new_patterns = learnings_store.extract_patterns(all_feedback)
+    for pattern in new_patterns:
+        learnings_store.add_learning(pattern)
+
+    learnings_store.record_batch(
+        total=stats["total"],
+        passed=stats["passed"],
+        failed=stats["failed"],
+        grade_distribution=grade_dist,
+        needs_review_ids=stats["needs_review"],
+    )
+    learnings_store.save()
+
+    print(f"  Summaries: {stats['passed']} passed, {stats['failed']} flagged for review")
+    print(f"  Grades: {grade_dist}")
+    if stats["needs_review"]:
+        print(f"  Needs review: {stats['needs_review']}")
+
+    return stats
+
+
+async def build_member_votes(output_dir: Path, anthropic_key: str | None = None) -> int:
     """Cross-reference votes with members to build per-member voting records."""
     members_path = output_dir / "members.json"
     bills_path = output_dir / "bills.json"
@@ -453,8 +585,45 @@ async def main() -> None:
     parser = argparse.ArgumentParser(description="ClearVote Data Sync")
     parser.add_argument("--states", type=str, default=None,
                         help="Comma-separated state codes (e.g., NY,FL). Default: all states.")
+    parser.add_argument("--grade", action="store_true",
+                        help="Re-grade existing AI summaries without re-syncing source data.")
     args = parser.parse_args()
 
+    anthropic_key = os.getenv("ANTHROPIC_API_KEY", "")
+
+    # --- Re-grade mode ---
+    if args.grade:
+        if not anthropic_key:
+            print("ERROR: ANTHROPIC_API_KEY not set — cannot grade without it")
+            sys.exit(1)
+
+        SYNC_DIR.mkdir(parents=True, exist_ok=True)
+
+        print("=== ClearVote Re-Grade Mode ===")
+        print("Re-grading all existing AI summaries...")
+        print()
+
+        # Back up and clear existing summaries to force re-generation
+        summaries_path = SYNC_DIR / "ai_summaries.json"
+        if summaries_path.exists():
+            backup_path = SYNC_DIR / "ai_summaries.backup.json"
+            shutil.copy2(summaries_path, backup_path)
+            print(f"  Backed up existing summaries to {backup_path.name}")
+            _atomic_write_json(summaries_path, {})
+
+        print()
+        print("[1/2] Re-grading bill summaries...")
+        await sync_bill_summaries(SYNC_DIR, anthropic_key, batch_size=5, rate_limit=1.0)
+
+        print()
+        print("[2/2] Re-building member voting records...")
+        await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
+
+        print()
+        print("=== Re-grade complete ===")
+        return
+
+    # --- Normal sync mode ---
     states = [s.strip().upper() for s in args.states.split(",")] if args.states else None
 
     api_key = os.getenv("CONGRESS_API_KEY", "")
@@ -473,29 +642,43 @@ async def main() -> None:
     print()
 
     # Step 1: Members
-    print("[1/5] Syncing members...")
+    print("[1/7] Syncing members...")
     members_count = await sync_members(client, SYNC_DIR, states=states, rate_limit=0.5)
 
     # Step 2: Senate votes
     print()
     senate_service = SenateVoteService(cache=cache)
-    print("[2/5] Syncing Senate votes...")
+    print("[2/7] Syncing Senate votes...")
     senate_count = await sync_senate_votes(senate_service, SYNC_DIR, rate_limit=0.3)
 
     # Step 3: House votes
     print()
-    print("[3/5] Syncing House votes...")
+    print("[3/7] Syncing House votes...")
     house_count = await sync_house_votes(client, SYNC_DIR, rate_limit=0.3)
 
     # Step 4: Bills (only those referenced in votes from both chambers)
     print()
-    print("[4/5] Syncing voted-on bills...")
+    print("[4/7] Syncing voted-on bills...")
     bills_count = await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
 
-    # Step 5: Member voting records (both chambers)
+    # Step 5: AI bill summaries (writer-grader loop)
+    if anthropic_key:
+        print()
+        print("[5/7] Generating graded AI bill summaries...")
+        summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key, batch_size=5, rate_limit=1.0)
+    else:
+        print()
+        print("[5/7] Skipping AI summaries — ANTHROPIC_API_KEY not set")
+        summary_stats = {"total": 0}
+
+    # Step 6: Member voting records (both chambers)
     print()
-    print("[5/5] Building member voting records...")
-    member_votes_count = await build_member_votes(SYNC_DIR)
+    print("[6/7] Building member voting records...")
+    member_votes_count = await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
+
+    # Step 7: Grader report
+    print()
+    print("[7/7] Sync summary")
 
     # Write metadata
     metadata = {
@@ -506,6 +689,7 @@ async def main() -> None:
         "senate_votes_count": senate_count,
         "house_votes_count": house_count,
         "member_votes_count": member_votes_count,
+        "summary_stats": summary_stats,
     }
     _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
     print()
@@ -515,6 +699,8 @@ async def main() -> None:
     print(f"  Senate votes: {senate_count}")
     print(f"  House votes: {house_count}")
     print(f"  Member vote records: {member_votes_count}")
+    if summary_stats.get("total"):
+        print(f"  AI summaries graded: {summary_stats['total']} ({summary_stats.get('passed', 0)} passed)")
 
 
 if __name__ == "__main__":

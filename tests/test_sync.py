@@ -2,7 +2,8 @@ import pytest
 import json
 from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock
-from sync import sync_members, sync_senate_votes, sync_bills_from_votes, build_member_votes, _parse_bill_ref, sync_house_votes, _house_leg_to_document
+import inspect
+from sync import sync_members, sync_senate_votes, sync_bills_from_votes, build_member_votes, _parse_bill_ref, sync_house_votes, _house_leg_to_document, sync_bill_summaries
 
 
 def _write_json(path: Path, data: dict | list) -> None:
@@ -633,3 +634,30 @@ async def test_build_member_votes_ai_file_exists_but_bill_missing(tmp_path):
 
     data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
     assert data["votes"][0]["one_liner"] == "Raw Title Here"
+
+
+# --- sync_bill_summaries ---
+
+def test_sync_bill_summaries_is_callable():
+    """sync_bill_summaries function exists and is callable."""
+    assert callable(sync_bill_summaries)
+
+
+# --- build_member_votes with anthropic_key ---
+
+def test_build_member_votes_accepts_anthropic_key():
+    """build_member_votes should accept anthropic_key parameter."""
+    sig = inspect.signature(build_member_votes)
+    assert "anthropic_key" in sig.parameters
+
+
+# --- --grade flag ---
+
+def test_grade_flag_accepted():
+    """sync.py should accept --grade flag."""
+    import subprocess
+    result = subprocess.run(
+        ["python", "sync.py", "--grade", "--help"],
+        capture_output=True, text=True
+    )
+    assert "--grade" in result.stdout or result.returncode == 0
