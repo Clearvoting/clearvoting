@@ -300,8 +300,10 @@ function renderVotingSummary(stats, votes) {
         const key = v.bill_id || v.one_liner;
         if (!key || seenBills.has(key)) return;
         seenBills.add(key);
-        if (v.vote === 'Yea') uniqueYea.push(v);
-        else if (v.vote === 'Nay') uniqueNay.push(v);
+        const isYea = v.vote === 'Yea' || v.vote === 'Aye';
+        const isNay = v.vote === 'Nay' || v.vote === 'No';
+        if (isYea) uniqueYea.push(v);
+        else if (isNay) uniqueNay.push(v);
     });
 
     // Build the summary card
