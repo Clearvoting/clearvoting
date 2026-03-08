@@ -520,3 +520,79 @@ async def test_build_member_votes_both_chambers(tmp_path):
 
     house_data = json.loads((tmp_path / "member_votes" / "B001257.json").read_text())
     assert house_data["stats"]["nay_count"] == 1
+
+
+# --- build_member_votes (AI one_liner integration) ---
+
+@pytest.mark.asyncio
+async def test_build_member_votes_uses_ai_one_liner(tmp_path):
+    """When AI summary has a one_liner, use it instead of raw bill title."""
+    members = {"members": [
+        {"bioguideId": "S001217", "name": "Scott, Rick", "directOrderName": "Rick Scott",
+         "stateCode": "FL", "chamber": "Senate"},
+    ]}
+    _write_json(tmp_path / "members.json", members)
+
+    bills = {"bills": [
+        {"congress": 119, "type": "HR", "number": "1",
+         "title": "Providing for congressional disapproval under chapter 8 of title 5",
+         "policyArea": {"name": "Taxation"}, "summaries": []},
+    ]}
+    _write_json(tmp_path / "bills.json", bills)
+
+    ai_summaries = {
+        "119-hr-1": {
+            "one_liner": "Cancel a tax rule on crypto trading platforms",
+            "provisions": ["This cancels a rule..."],
+            "impact_categories": ["Taxation"],
+        }
+    }
+    _write_json(tmp_path / "ai_summaries.json", ai_summaries)
+
+    vote_dir = tmp_path / "votes" / "senate"
+    vote_dir.mkdir(parents=True)
+    _write_json(vote_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "vote_date": "2025-01-15", "document": "H.R. 1",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [
+            {"first_name": "Rick", "last_name": "Scott", "party": "R", "state": "FL", "vote": "Yea"},
+        ],
+    })
+
+    count = await build_member_votes(tmp_path)
+
+    data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
+    assert data["votes"][0]["one_liner"] == "Cancel a tax rule on crypto trading platforms"
+
+
+@pytest.mark.asyncio
+async def test_build_member_votes_falls_back_to_title(tmp_path):
+    """When no AI summary exists, fall back to raw bill title."""
+    members = {"members": [
+        {"bioguideId": "S001217", "name": "Scott, Rick", "directOrderName": "Rick Scott",
+         "stateCode": "FL", "chamber": "Senate"},
+    ]}
+    _write_json(tmp_path / "members.json", members)
+
+    bills = {"bills": [
+        {"congress": 119, "type": "HR", "number": "1", "title": "Some Raw Title",
+         "policyArea": {"name": "Taxation"}, "summaries": []},
+    ]}
+    _write_json(tmp_path / "bills.json", bills)
+
+    vote_dir = tmp_path / "votes" / "senate"
+    vote_dir.mkdir(parents=True)
+    _write_json(vote_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "vote_date": "2025-01-15", "document": "H.R. 1",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [
+            {"first_name": "Rick", "last_name": "Scott", "party": "R", "state": "FL", "vote": "Yea"},
+        ],
+    })
+
+    count = await build_member_votes(tmp_path)
+
+    data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
+    assert data["votes"][0]["one_liner"] == "Some Raw Title"

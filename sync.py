@@ -293,6 +293,21 @@ async def build_member_votes(output_dir: Path) -> int:
             key = f"{bill_type}-{bill_number}"
             bill_lookup[key] = bill
 
+    # Load AI summaries for one_liner lookup
+    ai_summaries: dict[str, dict] = {}
+    ai_summaries_path = output_dir / "ai_summaries.json"
+    if ai_summaries_path.exists():
+        with open(ai_summaries_path) as f:
+            ai_summaries = json.load(f)
+
+    def _get_one_liner(bill_ref: str | None, bill_info: dict, doc: str) -> str:
+        if bill_ref:
+            summary_key = f"119-{bill_ref}"
+            ai_summary = ai_summaries.get(summary_key, {})
+            if ai_summary.get("one_liner"):
+                return ai_summary["one_liner"]
+        return bill_info.get("title", doc)
+
     # Load all votes from both chambers
     senate_votes: list[dict] = []
     senate_dir = output_dir / "votes" / "senate"
@@ -340,7 +355,7 @@ async def build_member_votes(output_dir: Path) -> int:
                 member_vote_list.append({
                     "bill_number": doc,
                     "bill_id": f"119-{bill_ref}" if bill_ref else None,
-                    "one_liner": bill_info.get("title", doc),
+                    "one_liner": _get_one_liner(bill_ref, bill_info, doc),
                     "vote": matched.get("vote", ""),
                     "date": vote.get("vote_date", ""),
                     "result": vote.get("result", ""),
@@ -367,7 +382,7 @@ async def build_member_votes(output_dir: Path) -> int:
                 member_vote_list.append({
                     "bill_number": doc,
                     "bill_id": f"119-{bill_ref}" if bill_ref else None,
-                    "one_liner": bill_info.get("title", doc),
+                    "one_liner": _get_one_liner(bill_ref, bill_info, doc),
                     "vote": matched.get("vote", ""),
                     "date": vote.get("vote_date", ""),
                     "result": vote.get("result", ""),
