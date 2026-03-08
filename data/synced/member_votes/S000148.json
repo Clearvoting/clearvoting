@@ -13,7 +13,7 @@
     {
       "bill_number": "S. 2296",
       "bill_id": "119-s-2296",
-      "one_liner": "National Defense Authorization Act for Fiscal Year 2026",
+      "one_liner": "This bill sets the budget and rules for the Department of Defense, military building projects, and nuclear security programs for the year starting October 2025.",
       "vote": "Yea",
       "date": "September 2, 2025,  05:27 PM",
       "result": "Cloture on the Motion to Proceed Agreed to (84-14, 3/5 majority required)",
@@ -24,7 +24,7 @@
     {
       "bill_number": "H.J.Res. 60",
       "bill_id": "119-hjres-60",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Park Service relating to \"Glen Canyon National Recreation Area: Motor Vehicles\".",
+      "one_liner": "This resolution cancels a National Park Service rule about motor vehicle use in Glen Canyon National Recreation Area in northern Arizona and southern Utah.",
       "vote": "Nay",
       "date": "May 8, 2025,  11:50 AM",
       "result": "Joint Resolution Passed (50-43)",
@@ -35,7 +35,7 @@
     {
       "bill_number": "S.J.Res. 7",
       "bill_id": "119-sjres-7",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Federal Communications Commission relating to \"Addressing the Homework Gap Through the E-Rate Program\".",
+      "one_liner": "This cancels an August 2024 FCC rule that let schools and libraries use E-Rate program money to buy Wi-Fi hotspots for students.",
       "vote": "Nay",
       "date": "May 8, 2025,  11:18 AM",
       "result": "Joint Resolution Passed (50-38)",
@@ -46,7 +46,7 @@
     {
       "bill_number": "S. 1582",
       "bill_id": "119-s-1582",
-      "one_liner": "GENIUS Act",
+      "one_liner": "This bill creates rules for payment stablecoins, which are digital tokens designed to always be worth a fixed amount, like one U.S. dollar.",
       "vote": "Nay",
       "date": "May 8, 2025,  01:51 PM",
       "result": "Cloture on the Motion to Proceed Rejected (48-49, 3/5 majority required)",
@@ -57,7 +57,7 @@
     {
       "bill_number": "S.J.Res. 13",
       "bill_id": "119-sjres-13",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Office of the Comptroller of the Currency of the Department of the Treasury relating to the review of applications under the Bank Merger Act.",
+      "one_liner": "This cancels a rule from September 2024 by the Office of the Comptroller of the Currency (OCC), the agency that oversees national banks.",
       "vote": "Nay",
       "date": "May 7, 2025,  05:30 PM",
       "result": "Joint Resolution Passed (52-47)",
@@ -68,7 +68,7 @@
     {
       "bill_number": "S.J.Res. 13",
       "bill_id": "119-sjres-13",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Office of the Comptroller of the Currency of the Department of the Treasury relating to the review of applications under the Bank Merger Act.",
+      "one_liner": "This cancels a rule from September 2024 by the Office of the Comptroller of the Currency (OCC), the agency that oversees national banks.",
       "vote": "Nay",
       "date": "May 6, 2025,  12:25 PM",
       "result": "Motion to Proceed Agreed to (53-46)",
@@ -79,7 +79,7 @@
     {
       "bill_number": "H.J.Res. 61",
       "bill_id": "119-hjres-61",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"National Emission Standards for Hazardous Air Pollutants: Rubber Tire Manufacturing\".",
+      "one_liner": "This resolution cancels an EPA rule that set limits on toxic air pollution released by rubber tire factories.",
       "vote": "Nay",
       "date": "May 6, 2025,  11:31 AM",
       "result": "Joint Resolution Passed (55-45)",
@@ -90,7 +90,7 @@
     {
       "bill_number": "H.J.Res. 60",
       "bill_id": "119-hjres-60",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Park Service relating to \"Glen Canyon National Recreation Area: Motor Vehicles\".",
+      "one_liner": "This resolution cancels a National Park Service rule about motor vehicle use in Glen Canyon National Recreation Area in northern Arizona and southern Utah.",
       "vote": "Nay",
       "date": "May 6, 2025,  05:10 PM",
       "result": "Motion to Proceed Agreed to (53-47)",
@@ -101,7 +101,7 @@
     {
       "bill_number": "S.J.Res. 7",
       "bill_id": "119-sjres-7",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Federal Communications Commission relating to \"Addressing the Homework Gap Through the E-Rate Program\".",
+      "one_liner": "This cancels an August 2024 FCC rule that let schools and libraries use E-Rate program money to buy Wi-Fi hotspots for students.",
       "vote": "Nay",
       "date": "May 6, 2025,  02:52 PM",
       "result": "Motion to Proceed Agreed to (53-47)",
@@ -123,7 +123,7 @@
     {
       "bill_number": "H.J.Res. 61",
       "bill_id": "119-hjres-61",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"National Emission Standards for Hazardous Air Pollutants: Rubber Tire Manufacturing\".",
+      "one_liner": "This resolution cancels an EPA rule that set limits on toxic air pollution released by rubber tire factories.",
       "vote": "Nay",
       "date": "May 5, 2025,  05:29 PM",
       "result": "Motion to Proceed Agreed to (51-43)",
@@ -134,7 +134,7 @@
     {
       "bill_number": "H.J.Res. 89",
       "bill_id": "119-hjres-89",
-      "one_liner": "Providing congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"California State Motor Vehicle and Engine and Nonroad Engine Pollution Control Standards; The 'Omnibus' Low NOX Regulation; Waiver of Preemption; Notice of Decision\".",
+      "one_liner": "This resolution cancels an EPA notice that allowed California to set its own stricter rules limiting nitrogen oxide (NOX) pollution from cars and off-road engines.",
       "vote": "Nay",
       "date": "May 22, 2025,  12:59 PM",
       "result": "Motion to Proceed Agreed to (51-46)",
@@ -145,7 +145,7 @@
     {
       "bill_number": "H.J.Res. 87",
       "bill_id": "119-hjres-87",
-      "one_liner": "Providing congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"California State Motor Vehicle and Engine Pollution Control Standards; Heavy-Duty Vehicle and Engine Emission Warranty and Maintenance Provisions; Advanced Clean Trucks; Zero Emission Airport Shuttle; Zero-Emission Power Train Certification; Waiver of Preemption; Notice of Decision\".",
+      "one_liner": "This resolution cancels an EPA notice that allowed California to set its own stricter emission rules for heavy-duty trucks.",
       "vote": "Nay",
       "date": "May 22, 2025,  12:22 PM",
       "result": "Joint Resolution Passed (51-45)",
@@ -156,7 +156,7 @@
     {
       "bill_number": "H.J.Res. 87",
       "bill_id": "119-hjres-87",
-      "one_liner": "Providing congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"California State Motor Vehicle and Engine Pollution Control Standards; Heavy-Duty Vehicle and Engine Emission Warranty and Maintenance Provisions; Advanced Clean Trucks; Zero Emission Airport Shuttle; Zero-Emission Power Train Certification; Waiver of Preemption; Notice of Decision\".",
+      "one_liner": "This resolution cancels an EPA notice that allowed California to set its own stricter emission rules for heavy-duty trucks.",
       "vote": "Nay",
       "date": "May 22, 2025,  11:11 AM",
       "result": "Motion to Proceed Agreed to (51-46)",
@@ -167,7 +167,7 @@
     {
       "bill_number": "H.J.Res. 88",
       "bill_id": "119-hjres-88",
-      "one_liner": "Providing congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"California State Motor Vehicle and Engine Pollution Control Standards; Advanced Clean Cars II; Waiver of Preemption; Notice of Decision\".",
+      "one_liner": "This resolution cancels an EPA notice that allowed California to set its own stricter car emission rules under a program called Advanced Clean Cars II.",
       "vote": "Nay",
       "date": "May 22, 2025,  10:30 AM",
       "result": "Joint Resolution Passed (51-44)",
@@ -178,7 +178,7 @@
     {
       "bill_number": "H.J.Res. 89",
       "bill_id": "119-hjres-89",
-      "one_liner": "Providing congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"California State Motor Vehicle and Engine and Nonroad Engine Pollution Control Standards; The 'Omnibus' Low NOX Regulation; Waiver of Preemption; Notice of Decision\".",
+      "one_liner": "This resolution cancels an EPA notice that allowed California to set its own stricter rules limiting nitrogen oxide (NOX) pollution from cars and off-road engines.",
       "vote": "Nay",
       "date": "May 22, 2025,  02:09 PM",
       "result": "Joint Resolution Passed (49-46)",
@@ -189,7 +189,7 @@
     {
       "bill_number": "S.J.Res. 55",
       "bill_id": "119-sjres-55",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Highway Traffic Safety Administration relating to \"Federal Motor Vehicle Safety Standards; Fuel System Integrity of Hydrogen Vehicles; Compressed Hydrogen Storage System Integrity; Incorporation by Reference\".",
+      "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
       "vote": "Nay",
       "date": "May 21, 2025,  12:19 PM",
       "result": "Motion to Proceed Agreed to (53-46)",
@@ -200,7 +200,7 @@
     {
       "bill_number": "S. 1582",
       "bill_id": "119-s-1582",
-      "one_liner": "GENIUS Act",
+      "one_liner": "This bill creates rules for payment stablecoins, which are digital tokens designed to always be worth a fixed amount, like one U.S. dollar.",
       "vote": "Nay",
       "date": "May 21, 2025,  11:40 AM",
       "result": "Motion to Proceed Agreed to (69-31)",
@@ -211,7 +211,7 @@
     {
       "bill_number": "H.J.Res. 88",
       "bill_id": "119-hjres-88",
-      "one_liner": "Providing congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"California State Motor Vehicle and Engine Pollution Control Standards; Advanced Clean Cars II; Waiver of Preemption; Notice of Decision\".",
+      "one_liner": "This resolution cancels an EPA notice that allowed California to set its own stricter car emission rules under a program called Advanced Clean Cars II.",
       "vote": "Nay",
       "date": "May 21, 2025,  11:21 PM",
       "result": "Motion to Proceed Agreed to (51-46)",
@@ -222,7 +222,7 @@
     {
       "bill_number": "S.J.Res. 55",
       "bill_id": "119-sjres-55",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Highway Traffic Safety Administration relating to \"Federal Motor Vehicle Safety Standards; Fuel System Integrity of Hydrogen Vehicles; Compressed Hydrogen Storage System Integrity; Incorporation by Reference\".",
+      "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
       "vote": "Nay",
       "date": "May 21, 2025,  11:06 PM",
       "result": "Joint Resolution Passed (51-46)",
@@ -233,7 +233,7 @@
     {
       "bill_number": "S.J.Res. 55",
       "bill_id": "119-sjres-55",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Highway Traffic Safety Administration relating to \"Federal Motor Vehicle Safety Standards; Fuel System Integrity of Hydrogen Vehicles; Compressed Hydrogen Storage System Integrity; Incorporation by Reference\".",
+      "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
       "vote": "Nay",
       "date": "May 21, 2025,  10:51 PM",
       "result": "Point of Order Sustained (51-46)",
@@ -244,7 +244,7 @@
     {
       "bill_number": "S.J.Res. 55",
       "bill_id": "119-sjres-55",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Highway Traffic Safety Administration relating to \"Federal Motor Vehicle Safety Standards; Fuel System Integrity of Hydrogen Vehicles; Compressed Hydrogen Storage System Integrity; Incorporation by Reference\".",
+      "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
       "vote": "Nay",
       "date": "May 21, 2025,  10:32 PM",
       "result": "Point of Order Sustained (51-46)",
@@ -255,7 +255,7 @@
     {
       "bill_number": "S.J.Res. 55",
       "bill_id": "119-sjres-55",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Highway Traffic Safety Administration relating to \"Federal Motor Vehicle Safety Standards; Fuel System Integrity of Hydrogen Vehicles; Compressed Hydrogen Storage System Integrity; Incorporation by Reference\".",
+      "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
       "vote": "Yea",
       "date": "May 21, 2025,  10:10 PM",
       "result": "Motion to Adjourn Rejected (46-51)",
@@ -266,7 +266,7 @@
     {
       "bill_number": "S.J.Res. 55",
       "bill_id": "119-sjres-55",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Highway Traffic Safety Administration relating to \"Federal Motor Vehicle Safety Standards; Fuel System Integrity of Hydrogen Vehicles; Compressed Hydrogen Storage System Integrity; Incorporation by Reference\".",
+      "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
       "vote": "Yea",
       "date": "May 21, 2025,  09:50 PM",
       "result": "Motion Rejected (45-52)",
@@ -277,7 +277,7 @@
     {
       "bill_number": "S.J.Res. 55",
       "bill_id": "119-sjres-55",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Highway Traffic Safety Administration relating to \"Federal Motor Vehicle Safety Standards; Fuel System Integrity of Hydrogen Vehicles; Compressed Hydrogen Storage System Integrity; Incorporation by Reference\".",
+      "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
       "vote": "Yea",
       "date": "May 21, 2025,  09:34 PM",
       "result": "Motion Rejected (46-51)",
@@ -288,7 +288,7 @@
     {
       "bill_number": "S.J.Res. 55",
       "bill_id": "119-sjres-55",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Highway Traffic Safety Administration relating to \"Federal Motor Vehicle Safety Standards; Fuel System Integrity of Hydrogen Vehicles; Compressed Hydrogen Storage System Integrity; Incorporation by Reference\".",
+      "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
       "vote": "Yea",
       "date": "May 21, 2025,  09:17 PM",
       "result": "Motion Rejected (46-51)",
@@ -299,7 +299,7 @@
     {
       "bill_number": "S.J.Res. 55",
       "bill_id": "119-sjres-55",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Highway Traffic Safety Administration relating to \"Federal Motor Vehicle Safety Standards; Fuel System Integrity of Hydrogen Vehicles; Compressed Hydrogen Storage System Integrity; Incorporation by Reference\".",
+      "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
       "vote": "Yea",
       "date": "May 21, 2025,  08:59 PM",
       "result": "Motion Rejected (45-51)",
@@ -310,7 +310,7 @@
     {
       "bill_number": "S.J.Res. 55",
       "bill_id": "119-sjres-55",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Highway Traffic Safety Administration relating to \"Federal Motor Vehicle Safety Standards; Fuel System Integrity of Hydrogen Vehicles; Compressed Hydrogen Storage System Integrity; Incorporation by Reference\".",
+      "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
       "vote": "Yea",
       "date": "May 21, 2025,  08:20 PM",
       "result": "Motion Rejected (46-51)",
@@ -321,7 +321,7 @@
     {
       "bill_number": "S.J.Res. 55",
       "bill_id": "119-sjres-55",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Highway Traffic Safety Administration relating to \"Federal Motor Vehicle Safety Standards; Fuel System Integrity of Hydrogen Vehicles; Compressed Hydrogen Storage System Integrity; Incorporation by Reference\".",
+      "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
       "vote": "Nay",
       "date": "May 21, 2025,  06:59 PM",
       "result": "Motion to Table Agreed to (51-46)",
@@ -332,7 +332,7 @@
     {
       "bill_number": "S.J.Res. 55",
       "bill_id": "119-sjres-55",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Highway Traffic Safety Administration relating to \"Federal Motor Vehicle Safety Standards; Fuel System Integrity of Hydrogen Vehicles; Compressed Hydrogen Storage System Integrity; Incorporation by Reference\".",
+      "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
       "vote": "Yea",
       "date": "May 21, 2025,  06:25 PM",
       "result": "Motion to Table Failed (46-52)",
@@ -343,7 +343,7 @@
     {
       "bill_number": "S. 1582",
       "bill_id": "119-s-1582",
-      "one_liner": "GENIUS Act",
+      "one_liner": "This bill creates rules for payment stablecoins, which are digital tokens designed to always be worth a fixed amount, like one U.S. dollar.",
       "vote": "Nay",
       "date": "May 19, 2025,  08:41 PM",
       "result": "Cloture on the Motion to Proceed Agreed to (66-32, 3/5 majority required)",
@@ -387,7 +387,7 @@
     {
       "bill_number": "S.Res. 195",
       "bill_id": "119-sres-195",
-      "one_liner": "A resolution requesting information on El Salvador's human rights practices pursuant to section 502B(c) of the Foreign Assistance Act of 1961.",
+      "one_liner": "This resolution requests information from the State Department about El Salvador's human rights practices.",
       "vote": "Yea",
       "date": "May 15, 2025,  01:44 PM",
       "result": "Motion to Discharge Rejected (45-50)",
@@ -585,7 +585,7 @@
     {
       "bill_number": "S.J.Res. 31",
       "bill_id": "119-sjres-31",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Review of Final Rule Reclassification of Major Sources as Area Sources Under Section 112 of the Clean Air Act\".",
+      "one_liner": "This cancels a September 2024 EPA rule about how air pollution sources are classified.",
       "vote": "Nay",
       "date": "May 1, 2025,  11:52 AM",
       "result": "Joint Resolution Passed (52-46)",
@@ -596,7 +596,7 @@
     {
       "bill_number": "H.J.Res. 75",
       "bill_id": "119-hjres-75",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Office of Energy Efficiency and Renewable Energy, Department of Energy relating to \"Energy Conservation Program: Energy Conservation Standards for Commercial Refrigerators, Freezers, and Refrigerator-Freezers\".",
+      "one_liner": "This resolution cancels a Department of Energy rule from January that set new energy efficiency standards for commercial refrigerators, freezers, and combination units.",
       "vote": "Nay",
       "date": "May 1, 2025,  10:57 AM",
       "result": "Joint Resolution Passed (52-45)",
@@ -629,7 +629,7 @@
     {
       "bill_number": "S. 331",
       "bill_id": "119-s-331",
-      "one_liner": "HALT Fentanyl Act",
+      "one_liner": "This bill permanently makes all chemicals related to fentanyl illegal under the strictest drug category.",
       "vote": "Yea",
       "date": "March 6, 2025,  02:39 PM",
       "result": "Cloture on the Motion to Proceed Agreed to (82-12, 3/5 majority required)",
@@ -673,7 +673,7 @@
     {
       "bill_number": "S.J.Res. 28",
       "bill_id": "119-sjres-28",
-      "one_liner": "A joint resolution disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to \"Defining Larger Participants of a Market for General-Use Digital Consumer Payment Applications\".",
+      "one_liner": "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about digital payment apps.",
       "vote": "Nay",
       "date": "March 5, 2025,  04:49 PM",
       "result": "Joint Resolution Passed (51-47)",
@@ -695,7 +695,7 @@
     {
       "bill_number": "S.J.Res. 3",
       "bill_id": "119-sjres-3",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Internal Revenue Service relating to \"Gross Proceeds Reporting by Brokers That Regularly Provide Services Effectuating Digital Asset Sales\".",
+      "one_liner": "This cancels an IRS rule that would have required certain crypto trading websites to report user transaction data to the IRS.",
       "vote": "Yea",
       "date": "March 4, 2025,  11:02 AM",
       "result": "Motion to Proceed Agreed to (70-28)",
@@ -706,7 +706,7 @@
     {
       "bill_number": "S.J.Res. 28",
       "bill_id": "119-sjres-28",
-      "one_liner": "A joint resolution disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to \"Defining Larger Participants of a Market for General-Use Digital Consumer Payment Applications\".",
+      "one_liner": "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about digital payment apps.",
       "vote": "Nay",
       "date": "March 4, 2025,  05:58 PM",
       "result": "Motion to Proceed Agreed to (50-47)",
@@ -717,7 +717,7 @@
     {
       "bill_number": "S.J.Res. 3",
       "bill_id": "119-sjres-3",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Internal Revenue Service relating to \"Gross Proceeds Reporting by Brokers That Regularly Provide Services Effectuating Digital Asset Sales\".",
+      "one_liner": "This cancels an IRS rule that would have required certain crypto trading websites to report user transaction data to the IRS.",
       "vote": "Yea",
       "date": "March 4, 2025,  05:05 PM",
       "result": "Joint Resolution Passed (70-27)",
@@ -739,7 +739,7 @@
     {
       "bill_number": "S. 9",
       "bill_id": "119-s-9",
-      "one_liner": "Protection of Women and Girls in Sports Act of 2025",
+      "one_liner": "Schools that get federal money cannot let athletes born male play on women's or girls' sports teams.",
       "vote": "Nay",
       "date": "March 3, 2025,  06:27 PM",
       "result": "Cloture on the Motion to Proceed Rejected (51-45, 3/5 majority required)",
@@ -772,7 +772,7 @@
     {
       "bill_number": "S.J.Res. 18",
       "bill_id": "119-sjres-18",
-      "one_liner": "A joint resolution disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to \"Overdraft Lending: Very Large Financial Institutions\".",
+      "one_liner": "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about overdraft fees.",
       "vote": "Nay",
       "date": "March 27, 2025,  11:28 AM",
       "result": "Joint Resolution Passed (52-48)",
@@ -816,7 +816,7 @@
     {
       "bill_number": "S.J.Res. 18",
       "bill_id": "119-sjres-18",
-      "one_liner": "A joint resolution disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to \"Overdraft Lending: Very Large Financial Institutions\".",
+      "one_liner": "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about overdraft fees.",
       "vote": "Nay",
       "date": "March 26, 2025,  08:48 PM",
       "result": "Motion to Proceed Agreed to (52-47)",
@@ -827,7 +827,7 @@
     {
       "bill_number": "H.J.Res. 25",
       "bill_id": "119-hjres-25",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Internal Revenue Service relating to \"Gross Proceeds Reporting by Brokers That Regularly Provide Services Effectuating Digital Asset Sales\".",
+      "one_liner": "This resolution cancels an IRS rule from December 2024 that would have required certain crypto trading websites to report sales to the IRS.",
       "vote": "Yea",
       "date": "March 26, 2025,  08:01 PM",
       "result": "Joint Resolution Passed (70-28)",
@@ -838,7 +838,7 @@
     {
       "bill_number": "H.J.Res. 25",
       "bill_id": "119-hjres-25",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Internal Revenue Service relating to \"Gross Proceeds Reporting by Brokers That Regularly Provide Services Effectuating Digital Asset Sales\".",
+      "one_liner": "This resolution cancels an IRS rule from December 2024 that would have required certain crypto trading websites to report sales to the IRS.",
       "vote": "Yea",
       "date": "March 26, 2025,  06:01 PM",
       "result": "Motion to Proceed Agreed to (70-28)",
@@ -1014,7 +1014,7 @@
     {
       "bill_number": "H.R. 1968",
       "bill_id": "119-hr-1968",
-      "one_liner": "Full-Year Continuing Appropriations and Extensions Act, 2025",
+      "one_liner": "This bill keeps federal agencies funded through September 30, 2025, at the same spending levels as the year before.",
       "vote": "Nay",
       "date": "March 14, 2025,  06:04 PM",
       "result": "Bill Passed (54-46)",
@@ -1069,7 +1069,7 @@
     {
       "bill_number": "H.R. 1968",
       "bill_id": "119-hr-1968",
-      "one_liner": "Full-Year Continuing Appropriations and Extensions Act, 2025",
+      "one_liner": "This bill keeps federal agencies funded through September 30, 2025, at the same spending levels as the year before.",
       "vote": "Yea",
       "date": "March 14, 2025,  04:27 PM",
       "result": "Cloture Motion Agreed to (62-38, 3/5 majority required)",
@@ -1080,7 +1080,7 @@
     {
       "bill_number": "S. 331",
       "bill_id": "119-s-331",
-      "one_liner": "HALT Fentanyl Act",
+      "one_liner": "This bill permanently makes all chemicals related to fentanyl illegal under the strictest drug category.",
       "vote": "Yea",
       "date": "March 14, 2025,  02:21 PM",
       "result": "Bill Passed (84-16)",
@@ -1135,7 +1135,7 @@
     {
       "bill_number": "S. 331",
       "bill_id": "119-s-331",
-      "one_liner": "HALT Fentanyl Act",
+      "one_liner": "This bill permanently makes all chemicals related to fentanyl illegal under the strictest drug category.",
       "vote": "Yea",
       "date": "March 13, 2025,  05:36 PM",
       "result": "Cloture Motion Agreed to (84-15, 3/5 majority required)",
@@ -1377,7 +1377,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  12:52 PM",
       "result": "Motion Rejected (49-51)",
@@ -1388,7 +1388,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  12:23 PM",
       "result": "Motion Rejected (48-52)",
@@ -1399,7 +1399,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  12:00 PM",
       "result": "Motion Rejected (47-53)",
@@ -1410,7 +1410,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Nay",
       "date": "June 30, 2025,  11:35 PM",
       "result": "Motion Agreed to (51-48, 3/5 majority required)",
@@ -1421,7 +1421,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  11:23 PM",
       "result": "Motion Rejected (47-53)",
@@ -1432,7 +1432,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  11:06 AM",
       "result": "Motion Rejected (49-51)",
@@ -1443,7 +1443,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  10:44 AM",
       "result": "Motion Rejected (47-53)",
@@ -1465,7 +1465,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Nay",
       "date": "June 30, 2025,  10:12 AM",
       "result": "Decision of Chair Sustained (53-47)",
@@ -1476,7 +1476,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  10:02 PM",
       "result": "Motion Rejected (47-53)",
@@ -1487,7 +1487,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  09:37 PM",
       "result": "Motion Rejected (49-51)",
@@ -1509,7 +1509,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  08:15 PM",
       "result": "Motion Rejected (48-52)",
@@ -1520,7 +1520,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  07:45 PM",
       "result": "Motion Rejected (47-53)",
@@ -1531,7 +1531,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  07:14 PM",
       "result": "Motion Rejected (47-53)",
@@ -1542,7 +1542,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  06:35 PM",
       "result": "Motion Rejected (47-53)",
@@ -1608,7 +1608,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  02:24 PM",
       "result": "Motion Rejected (48-52)",
@@ -1630,7 +1630,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "June 30, 2025,  01:18 PM",
       "result": "Motion Rejected (48-52)",
@@ -1696,7 +1696,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Nay",
       "date": "June 28, 2025,  07:31 PM",
       "result": "Motion to Proceed Agreed to (51-49)",
@@ -1707,7 +1707,7 @@
     {
       "bill_number": "S.J.Res. 59",
       "bill_id": "119-sjres-59",
-      "one_liner": "A joint resolution to direct the removal of United States Armed Forces from hostilities against the Islamic Republic of Iran that have not been authorized by Congress.",
+      "one_liner": "This tells the President to pull U.S. military forces out of any fighting against Iran within 30 days of the resolution passing.",
       "vote": "Yea",
       "date": "June 27, 2025,  06:12 PM",
       "result": "Motion to Discharge Rejected (47-53)",
@@ -1839,7 +1839,7 @@
     {
       "bill_number": "S. 1582",
       "bill_id": "119-s-1582",
-      "one_liner": "GENIUS Act",
+      "one_liner": "This bill creates rules for payment stablecoins, which are digital tokens designed to always be worth a fixed amount, like one U.S. dollar.",
       "vote": "Nay",
       "date": "June 17, 2025,  05:11 PM",
       "result": "Bill Passed (68-30)",
@@ -1905,7 +1905,7 @@
     {
       "bill_number": "S. 1582",
       "bill_id": "119-s-1582",
-      "one_liner": "GENIUS Act",
+      "one_liner": "This bill creates rules for payment stablecoins, which are digital tokens designed to always be worth a fixed amount, like one U.S. dollar.",
       "vote": "Nay",
       "date": "June 12, 2025,  02:21 PM",
       "result": "Cloture Motion Agreed to (67-27, 3/5 majority required)",
@@ -1960,7 +1960,7 @@
     {
       "bill_number": "S.J.Res. 54",
       "bill_id": "119-sjres-54",
-      "one_liner": "A joint resolution providing for congressional disapproval of the proposed foreign military sale to the Government of the United Arab Emirates of certain defense articles and services.",
+      "one_liner": "This would block a proposed sale of U.S. military weapons and services to the United Arab Emirates (UAE).",
       "vote": "Yea",
       "date": "June 11, 2025,  05:20 PM",
       "result": "Motion to Discharge Rejected (39-56)",
@@ -1971,7 +1971,7 @@
     {
       "bill_number": "S.J.Res. 53",
       "bill_id": "119-sjres-53",
-      "one_liner": "A joint resolution providing for congressional disapproval of the proposed foreign military sale to the Government of Qatar of certain defense articles and services.",
+      "one_liner": "This would block a proposed sale of U.S. military weapons and services to Qatar.",
       "vote": "Yea",
       "date": "June 11, 2025,  04:40 PM",
       "result": "Motion to Discharge Rejected (39-56)",
@@ -1982,7 +1982,7 @@
     {
       "bill_number": "S. 1582",
       "bill_id": "119-s-1582",
-      "one_liner": "GENIUS Act",
+      "one_liner": "This bill creates rules for payment stablecoins, which are digital tokens designed to always be worth a fixed amount, like one U.S. dollar.",
       "vote": "Nay",
       "date": "June 11, 2025,  02:07 PM",
       "result": "Cloture Motion Agreed to (68-30, 3/5 majority required)",
@@ -2279,7 +2279,7 @@
     {
       "bill_number": "S.J.Res. 34",
       "bill_id": "119-sjres-34",
-      "one_liner": "A joint resolution providing for congressional disapproval of the proposed foreign military sale to the Government of Israel of certain defense articles and services.",
+      "one_liner": "This would block a third proposed sale of U.S. military weapons and services to Israel.",
       "vote": "Nay",
       "date": "July 30, 2025,  09:42 PM",
       "result": "Motion to Discharge Rejected (24-73)",
@@ -2290,7 +2290,7 @@
     {
       "bill_number": "S.J.Res. 41",
       "bill_id": "119-sjres-41",
-      "one_liner": "A joint resolution providing for congressional disapproval of the proposed export of certain defense articles to Israel.",
+      "one_liner": "This would block a proposed export of U.S. defense items to Israel.",
       "vote": "Nay",
       "date": "July 30, 2025,  09:12 PM",
       "result": "Motion to Discharge Rejected (27-70)",
@@ -2587,7 +2587,7 @@
     {
       "bill_number": "H.R. 3944",
       "bill_id": "119-hr-3944",
-      "one_liner": "Military Construction and Veterans Affairs, Agriculture, and Legislative Branch Appropriations Act, 2026",
+      "one_liner": "This bill pays for military building projects starting October 2025, including building and repairing military bases and housing.",
       "vote": "Yea",
       "date": "July 23, 2025,  02:02 PM",
       "result": "Motion to Proceed Agreed to (90-8)",
@@ -2653,7 +2653,7 @@
     {
       "bill_number": "H.R. 3944",
       "bill_id": "119-hr-3944",
-      "one_liner": "Military Construction and Veterans Affairs, Agriculture, and Legislative Branch Appropriations Act, 2026",
+      "one_liner": "This bill pays for military building projects starting October 2025, including building and repairing military bases and housing.",
       "vote": "Yea",
       "date": "July 22, 2025,  05:26 PM",
       "result": "Cloture on the Motion to Proceed Agreed to (91-7, 3/5 majority required)",
@@ -2664,7 +2664,7 @@
     {
       "bill_number": "H.R. 3944",
       "bill_id": "119-hr-3944",
-      "one_liner": "Military Construction and Veterans Affairs, Agriculture, and Legislative Branch Appropriations Act, 2026",
+      "one_liner": "This bill pays for military building projects starting October 2025, including building and repairing military bases and housing.",
       "vote": "Nay",
       "date": "July 22, 2025,  04:29 PM",
       "result": "Motion to Proceed Agreed to (50-48)",
@@ -2752,7 +2752,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Rescissions Act of 2025",
+      "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
       "vote": "Nay",
       "date": "July 17, 2025,  02:18 AM",
       "result": "Bill Passed (51-48)",
@@ -2840,7 +2840,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Rescissions Act of 2025",
+      "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
       "vote": "Yea",
       "date": "July 16, 2025,  08:38 PM",
       "result": "Motion to Recommit Rejected (48-51)",
@@ -2862,7 +2862,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Rescissions Act of 2025",
+      "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
       "vote": "Yea",
       "date": "July 16, 2025,  07:28 PM",
       "result": "Motion to Recommit Rejected (47-50)",
@@ -2884,7 +2884,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Rescissions Act of 2025",
+      "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
       "vote": "Yea",
       "date": "July 16, 2025,  06:11 PM",
       "result": "Motion to Recommit Rejected (47-52)",
@@ -2895,7 +2895,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Rescissions Act of 2025",
+      "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
       "vote": "Yea",
       "date": "July 16, 2025,  05:34 PM",
       "result": "Motion to Recommit Rejected (48-51)",
@@ -2917,7 +2917,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Rescissions Act of 2025",
+      "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
       "vote": "Yea",
       "date": "July 16, 2025,  04:15 PM",
       "result": "Motion to Recommit Rejected (48-51)",
@@ -2928,7 +2928,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Rescissions Act of 2025",
+      "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
       "vote": "Yea",
       "date": "July 16, 2025,  03:03 PM",
       "result": "Motion to Recommit Rejected (48-51)",
@@ -2939,7 +2939,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Rescissions Act of 2025",
+      "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
       "vote": "Yea",
       "date": "July 16, 2025,  02:29 PM",
       "result": "Motion to Recommit Rejected (48-51)",
@@ -2983,7 +2983,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Rescissions Act of 2025",
+      "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
       "vote": "Nay",
       "date": "July 15, 2025,  09:20 PM",
       "result": "Motion to Proceed Agreed to (50-50, Vice President of the United States, voted Yea)",
@@ -2994,7 +2994,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Rescissions Act of 2025",
+      "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
       "vote": "Nay",
       "date": "July 15, 2025,  08:07 PM",
       "result": "Motion to Discharge Agreed to (50-50, Vice President of the United States, voted Yea)",
@@ -3104,7 +3104,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Nay",
       "date": "July 1, 2025,  11:56 AM",
       "result": "Bill Passed (50-50, Vice President of the United States, voted Yea)",
@@ -3115,7 +3115,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "July 1, 2025,  11:49 AM",
       "result": "Motion Rejected (47-53)",
@@ -3258,7 +3258,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "July 1, 2025,  02:36 AM",
       "result": "Motion Rejected (48-51)",
@@ -3280,7 +3280,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "An act to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
+      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
       "vote": "Yea",
       "date": "July 1, 2025,  01:56 AM",
       "result": "Motion Rejected (47-53)",
@@ -3302,7 +3302,7 @@
     {
       "bill_number": "S. 5",
       "bill_id": "119-s-5",
-      "one_liner": "Laken Riley Act",
+      "one_liner": "This bill requires the Department of Homeland Security to arrest and hold non-citizens who are charged with or found guilty of break-ins, theft, or shoplifting.",
       "vote": "Yea",
       "date": "January 9, 2025,  02:54 PM",
       "result": "Cloture on the Motion to Proceed Agreed to (84-9, 3/5 majority required)",
@@ -3390,7 +3390,7 @@
     {
       "bill_number": "H.R. 23",
       "bill_id": "119-hr-23",
-      "one_liner": "Illegitimate Court Counteraction Act",
+      "one_liner": "This bill puts sanctions on any foreign person who helps the International Criminal Court (ICC) investigate, arrest, or put on trial people the bill covers.",
       "vote": "Nay",
       "date": "January 28, 2025,  02:23 PM",
       "result": "Cloture on the Motion to Proceed Rejected (54-45, 3/5 majority required)",
@@ -3500,7 +3500,7 @@
     {
       "bill_number": "S. 6",
       "bill_id": "119-s-6",
-      "one_liner": "Born-Alive Abortion Survivors Protection Act",
+      "one_liner": "This bill requires doctors and nurses to give the same medical care to a child born alive during an attempted abortion as they would give to any other newborn baby at the same stage of development.",
       "vote": "Nay",
       "date": "January 22, 2025,  02:38 PM",
       "result": "Cloture on the Motion to Proceed Rejected (52-47, 3/5 majority required)",
@@ -3544,7 +3544,7 @@
     {
       "bill_number": "S. 5",
       "bill_id": "119-s-5",
-      "one_liner": "Laken Riley Act",
+      "one_liner": "This bill requires the Department of Homeland Security to arrest and hold non-citizens who are charged with or found guilty of break-ins, theft, or shoplifting.",
       "vote": "Nay",
       "date": "January 20, 2025,  06:12 PM",
       "result": "Bill Passed (64-35)",
@@ -3566,7 +3566,7 @@
     {
       "bill_number": "S. 5",
       "bill_id": "119-s-5",
-      "one_liner": "Laken Riley Act",
+      "one_liner": "This bill requires the Department of Homeland Security to arrest and hold non-citizens who are charged with or found guilty of break-ins, theft, or shoplifting.",
       "vote": "Nay",
       "date": "January 17, 2025,  10:03 AM",
       "result": "Cloture Motion Agreed to (61-35, 3/5 majority required)",
@@ -3599,7 +3599,7 @@
     {
       "bill_number": "S. 5",
       "bill_id": "119-s-5",
-      "one_liner": "Laken Riley Act",
+      "one_liner": "This bill requires the Department of Homeland Security to arrest and hold non-citizens who are charged with or found guilty of break-ins, theft, or shoplifting.",
       "vote": "Yea",
       "date": "January 13, 2025,  05:26 PM",
       "result": "Motion to Proceed Agreed to (82-10)",
@@ -3830,7 +3830,7 @@
     {
       "bill_number": "H.J.Res. 35",
       "bill_id": "119-hjres-35",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Waste Emissions Charge for Petroleum and Natural Gas Systems: Procedures for Facilitating Compliance, Including Netting and Exemptions\".",
+      "one_liner": "This resolution cancels an EPA rule that required oil and gas companies to pay fees when they release too much methane into the air. The fee was $900 per ton in 2024, rising to $1,500 per ton by 2026.",
       "vote": "Nay",
       "date": "February 27, 2025,  12:04 PM",
       "result": "Joint Resolution Passed (52-47)",
@@ -3863,7 +3863,7 @@
     {
       "bill_number": "S.J.Res. 12",
       "bill_id": "119-sjres-12",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Waste Emissions Charge for Petroleum and Natural Gas Systems: Procedures for Facilitating Compliance, Including Netting and Exemptions\".",
+      "one_liner": "This cancels an EPA rule that created fees for oil and gas companies that release methane waste into the air.",
       "vote": "Nay",
       "date": "February 26, 2025,  06:10 PM",
       "result": "Motion to Proceed Agreed to (52-47)",
@@ -3874,7 +3874,7 @@
     {
       "bill_number": "S.J.Res. 10",
       "bill_id": "119-sjres-10",
-      "one_liner": "A joint resolution terminating the national emergency declared with respect to energy.",
+      "one_liner": "This cancels the national emergency about energy that the President declared on January 20, 2025.",
       "vote": "Yea",
       "date": "February 26, 2025,  05:26 PM",
       "result": "Joint Resolution Defeated (47-52)",
@@ -3885,7 +3885,7 @@
     {
       "bill_number": "S.J.Res. 11",
       "bill_id": "119-sjres-11",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Ocean Energy Management relating to \"Protection of Marine Archaeological Resources\".",
+      "one_liner": "This cancels a rule from September 2024 by the Bureau of Ocean Energy Management (BOEM).",
       "vote": "Nay",
       "date": "February 25, 2025,  12:11 PM",
       "result": "Motion to Proceed Agreed to (54-42)",
@@ -3918,7 +3918,7 @@
     {
       "bill_number": "S.J.Res. 11",
       "bill_id": "119-sjres-11",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Ocean Energy Management relating to \"Protection of Marine Archaeological Resources\".",
+      "one_liner": "This cancels a rule from September 2024 by the Bureau of Ocean Energy Management (BOEM).",
       "vote": "Nay",
       "date": "February 25, 2025,  05:24 PM",
       "result": "Joint Resolution Passed (54-44)",
@@ -3984,7 +3984,7 @@
     {
       "bill_number": "S.Con.Res. 7",
       "bill_id": "119-sconres-7",
-      "one_liner": "An original concurrent resolution setting forth the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034.",
+      "one_liner": "This resolution sets the congressional budget for the federal government.",
       "vote": "Nay",
       "date": "February 21, 2025,  04:34 AM",
       "result": "Concurrent Resolution Agreed to (52-48)",
@@ -4270,7 +4270,7 @@
     {
       "bill_number": "S.Con.Res. 7",
       "bill_id": "119-sconres-7",
-      "one_liner": "An original concurrent resolution setting forth the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034.",
+      "one_liner": "This resolution sets the congressional budget for the federal government.",
       "vote": "Nay",
       "date": "February 18, 2025,  06:45 PM",
       "result": "Motion to Proceed Agreed to (50-47)",
@@ -4611,7 +4611,7 @@
     {
       "bill_number": "H.R. 3944",
       "bill_id": "119-hr-3944",
-      "one_liner": "Military Construction and Veterans Affairs, Agriculture, and Legislative Branch Appropriations Act, 2026",
+      "one_liner": "This bill pays for military building projects starting October 2025, including building and repairing military bases and housing.",
       "vote": "Yea",
       "date": "August 1, 2025,  07:26 PM",
       "result": "Bill Passed (87-9, 3/5 majority required)",
@@ -4754,7 +4754,7 @@
     {
       "bill_number": "H.J.Res. 20",
       "bill_id": "119-hjres-20",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Energy relating to \"Energy Conservation Program: Energy Conservation Standards for Consumer Gas-fired Instantaneous Water Heaters\".",
+      "one_liner": "This resolution cancels a Department of Energy rule from December 2024 that set new energy efficiency standards for gas tankless water heaters.",
       "vote": "Nay",
       "date": "April 9, 2025,  07:44 PM",
       "result": "Motion to Proceed Agreed to (52-42)",
@@ -4941,7 +4941,7 @@
     {
       "bill_number": "H.Con.Res. 14",
       "bill_id": "119-hconres-14",
-      "one_liner": "Establishing the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034.",
+      "one_liner": "This resolution sets the federal budget for the budget year starting October 2024 and plans spending through 2034.",
       "vote": "Nay",
       "date": "April 5, 2025,  02:26 AM",
       "result": "Concurrent Resolution Agreed to (51-48)",
@@ -5139,7 +5139,7 @@
     {
       "bill_number": "H.J.Res. 75",
       "bill_id": "119-hjres-75",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Office of Energy Efficiency and Renewable Energy, Department of Energy relating to \"Energy Conservation Program: Energy Conservation Standards for Commercial Refrigerators, Freezers, and Refrigerator-Freezers\".",
+      "one_liner": "This resolution cancels a Department of Energy rule from January that set new energy efficiency standards for commercial refrigerators, freezers, and combination units.",
       "vote": "Nay",
       "date": "April 30, 2025,  12:24 PM",
       "result": "Motion to Proceed Agreed to (52-46)",
@@ -5150,7 +5150,7 @@
     {
       "bill_number": "H.J.Res. 42",
       "bill_id": "119-hjres-42",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Energy relating to \"Energy Conservation Program for Appliance Standards: Certification Requirements, Labeling Requirements, and Enforcement Provisions for Certain Consumer Products and Commercial Equipment\".",
+      "one_liner": "This resolution cancels a Department of Energy rule from October 2024 about how companies prove their household products and business equipment meet energy-saving rules.",
       "vote": "Nay",
       "date": "April 30, 2025,  11:32 AM",
       "result": "Joint Resolution Passed (52-46)",
@@ -5161,7 +5161,7 @@
     {
       "bill_number": "S.J.Res. 31",
       "bill_id": "119-sjres-31",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Review of Final Rule Reclassification of Major Sources as Area Sources Under Section 112 of the Clean Air Act\".",
+      "one_liner": "This cancels a September 2024 EPA rule about how air pollution sources are classified.",
       "vote": "Nay",
       "date": "April 30, 2025,  08:16 PM",
       "result": "Motion to Proceed Agreed to (52-40)",
@@ -5172,7 +5172,7 @@
     {
       "bill_number": "S.J.Res. 49",
       "bill_id": "119-sjres-49",
-      "one_liner": "A joint resolution terminating the national emergency declared to impose global tariffs.",
+      "one_liner": "This cancels the national emergency declared on April 2, 2025 that was used to put tariffs on imports from most countries.",
       "vote": "Nay",
       "date": "April 30, 2025,  06:50 PM",
       "result": "Motion to Table Agreed to (49-49, Vice President of the United States, voted Yea)",
@@ -5183,7 +5183,7 @@
     {
       "bill_number": "S.J.Res. 49",
       "bill_id": "119-sjres-49",
-      "one_liner": "A joint resolution terminating the national emergency declared to impose global tariffs.",
+      "one_liner": "This cancels the national emergency declared on April 2, 2025 that was used to put tariffs on imports from most countries.",
       "vote": "Yea",
       "date": "April 30, 2025,  05:42 PM",
       "result": "Joint Resolution Defeated (49-49)",
@@ -5216,7 +5216,7 @@
     {
       "bill_number": "H.J.Res. 24",
       "bill_id": "119-hjres-24",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Energy relating to \"Energy Conservation Program: Energy Conservation Standards for Walk-In Coolers and Walk-In Freezers\".",
+      "one_liner": "This resolution cancels a Department of Energy rule from December 2024 that set new energy efficiency standards for walk-in coolers and walk-in freezers.",
       "vote": "Nay",
       "date": "April 3, 2025,  11:01 AM",
       "result": "Joint Resolution Passed (53-42)",
@@ -5227,7 +5227,7 @@
     {
       "bill_number": "H.Con.Res. 14",
       "bill_id": "119-hconres-14",
-      "one_liner": "Establishing the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034.",
+      "one_liner": "This resolution sets the federal budget for the budget year starting October 2024 and plans spending through 2034.",
       "vote": "Nay",
       "date": "April 3, 2025,  06:17 PM",
       "result": "Motion to Proceed Agreed to (52-48)",
@@ -5260,7 +5260,7 @@
     {
       "bill_number": "S.J.Res. 26",
       "bill_id": "119-sjres-26",
-      "one_liner": "A joint resolution providing for congressional disapproval of the proposed foreign military sale to Israel of certain defense articles and services.",
+      "one_liner": "This would block a specific proposed sale of U.S. military weapons and services to Israel.",
       "vote": "Nay",
       "date": "April 3, 2025,  03:24 PM",
       "result": "Motion to Discharge Rejected (15-83)",
@@ -5271,7 +5271,7 @@
     {
       "bill_number": "S.J.Res. 33",
       "bill_id": "119-sjres-33",
-      "one_liner": "A joint resolution providing for congressional disapproval of the proposed foreign military sale to the Government of Israel of certain defense articles and services.",
+      "one_liner": "This would block a second proposed sale of U.S. military weapons and services to Israel.",
       "vote": "Nay",
       "date": "April 3, 2025,  02:46 PM",
       "result": "Motion to Discharge Rejected (15-82)",
@@ -5304,7 +5304,7 @@
     {
       "bill_number": "H.J.Res. 42",
       "bill_id": "119-hjres-42",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Energy relating to \"Energy Conservation Program for Appliance Standards: Certification Requirements, Labeling Requirements, and Enforcement Provisions for Certain Consumer Products and Commercial Equipment\".",
+      "one_liner": "This resolution cancels a Department of Energy rule from October 2024 about how companies prove their household products and business equipment meet energy-saving rules.",
       "vote": "Nay",
       "date": "April 29, 2025,  09:25 PM",
       "result": "Motion to Proceed Agreed to (52-46)",
@@ -5381,7 +5381,7 @@
     {
       "bill_number": "H.J.Res. 24",
       "bill_id": "119-hjres-24",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Energy relating to \"Energy Conservation Program: Energy Conservation Standards for Walk-In Coolers and Walk-In Freezers\".",
+      "one_liner": "This resolution cancels a Department of Energy rule from December 2024 that set new energy efficiency standards for walk-in coolers and walk-in freezers.",
       "vote": "Nay",
       "date": "April 2, 2025,  07:38 PM",
       "result": "Motion to Proceed Agreed to (51-46)",
@@ -5392,7 +5392,7 @@
     {
       "bill_number": "S.J.Res. 37",
       "bill_id": "119-sjres-37",
-      "one_liner": "A joint resolution terminating the national emergency declared to impose duties on articles imported from Canada.",
+      "one_liner": "This cancels the national emergency declared on February 1, 2025 that was used to put tariffs on goods from Canada, the largest U.S. trading partner.",
       "vote": "Yea",
       "date": "April 2, 2025,  07:00 PM",
       "result": "Joint Resolution Passed (51-48)",
@@ -5480,7 +5480,7 @@
     {
       "bill_number": "H.J.Res. 20",
       "bill_id": "119-hjres-20",
-      "one_liner": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Energy relating to \"Energy Conservation Program: Energy Conservation Standards for Consumer Gas-fired Instantaneous Water Heaters\".",
+      "one_liner": "This resolution cancels a Department of Energy rule from December 2024 that set new energy efficiency standards for gas tankless water heaters.",
       "vote": "Nay",
       "date": "April 10, 2025,  10:57 AM",
       "result": "Joint Resolution Passed (53-44)",

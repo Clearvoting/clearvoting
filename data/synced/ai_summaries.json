@@ -8,7 +8,8 @@
     "impact_categories": [
       "Environment",
       "Small Business"
-    ]
+    ],
+    "one_liner": "This resolution cancels a Department of Energy rule from December 2024 that set new energy efficiency standards for gas tankless water heaters."
   },
   "119-hjres-24": {
     "provisions": [
@@ -19,7 +20,8 @@
     "impact_categories": [
       "Small Business",
       "Environment"
-    ]
+    ],
+    "one_liner": "This resolution cancels a Department of Energy rule from December 2024 that set new energy efficiency standards for walk-in coolers and walk-in freezers."
   },
   "119-hjres-25": {
     "provisions": [
@@ -30,18 +32,20 @@
     "impact_categories": [
       "Taxes",
       "Technology"
-    ]
+    ],
+    "one_liner": "This resolution cancels an IRS rule from December 2024 that would have required certain crypto trading websites to report sales to the IRS."
   },
   "119-hjres-35": {
     "provisions": [
       "This resolution cancels an EPA rule that required oil and gas companies to pay fees when they release too much methane into the air. The fee was $900 per ton in 2024, rising to $1,500 per ton by 2026.",
       "Companies that drill for oil or produce natural gas no longer owe these fees for excess methane releases.",
-      "The methane fee was part of a program to reduce greenhouse gas leaks from oil and gas operations."
+      "The fee applied to oil and gas companies that released methane above certain limits."
     ],
     "impact_categories": [
       "Environment",
       "Wages & Income"
-    ]
+    ],
+    "one_liner": "This resolution cancels an EPA rule that required oil and gas companies to pay fees when they release too much methane into the air. The fee was $900 per ton in 2024, rising to $1,500 per ton by 2026."
   },
   "119-hjres-42": {
     "provisions": [
@@ -52,7 +56,8 @@
     "impact_categories": [
       "Small Business",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution cancels a Department of Energy rule from October 2024 about how companies prove their household products and business equipment meet energy-saving rules."
   },
   "119-hjres-60": {
     "provisions": [
@@ -63,7 +68,8 @@
     "impact_categories": [
       "Environment",
       "Infrastructure"
-    ]
+    ],
+    "one_liner": "This resolution cancels a National Park Service rule about motor vehicle use in Glen Canyon National Recreation Area in northern Arizona and southern Utah."
   },
   "119-hjres-61": {
     "provisions": [
@@ -74,7 +80,8 @@
     "impact_categories": [
       "Environment",
       "Small Business"
-    ]
+    ],
+    "one_liner": "This resolution cancels an EPA rule that set limits on toxic air pollution released by rubber tire factories."
   },
   "119-hjres-75": {
     "provisions": [
@@ -85,7 +92,8 @@
     "impact_categories": [
       "Small Business",
       "Environment"
-    ]
+    ],
+    "one_liner": "This resolution cancels a Department of Energy rule from January that set new energy efficiency standards for commercial refrigerators, freezers, and combination units."
   },
   "119-hjres-87": {
     "provisions": [
@@ -96,7 +104,8 @@
     "impact_categories": [
       "Environment",
       "Infrastructure"
-    ]
+    ],
+    "one_liner": "This resolution cancels an EPA notice that allowed California to set its own stricter emission rules for heavy-duty trucks."
   },
   "119-hjres-88": {
     "provisions": [
@@ -107,7 +116,8 @@
     "impact_categories": [
       "Environment",
       "Technology"
-    ]
+    ],
+    "one_liner": "This resolution cancels an EPA notice that allowed California to set its own stricter car emission rules under a program called Advanced Clean Cars II."
   },
   "119-hjres-89": {
     "provisions": [
@@ -117,7 +127,8 @@
     ],
     "impact_categories": [
       "Environment"
-    ]
+    ],
+    "one_liner": "This resolution cancels an EPA notice that allowed California to set its own stricter rules limiting nitrogen oxide (NOX) pollution from cars and off-road engines."
   },
   "119-hr-1": {
     "provisions": [
@@ -126,8 +137,8 @@
       "It spends $150 billion on immigration enforcement and border security, including holding facilities, border walls, and hiring new agents.",
       "It reduces Medicaid spending by $880 billion over 10 years by requiring most adults ages 19-64 to work and by checking who qualifies more often. About 72 million people are currently enrolled in Medicaid.",
       "It puts $100 billion toward defense and military spending.",
-      "It changes education funding by creating new school savings accounts and changing how student loans are paid back.",
-      "It speeds up approval for energy and building projects on federal land."
+      "It changes education funding by creating new school savings accounts and changing student loan repayment rules.",
+      "It shortens the review timeline for energy and building projects on federal land."
     ],
     "impact_categories": [
       "Taxes",
@@ -139,22 +150,23 @@
       "Infrastructure",
       "Social Security & Medicare",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens."
   },
   "119-hr-1968": {
     "provisions": [
       "This bill keeps federal agencies funded through September 30, 2025, at the same spending levels as the year before.",
       "It extends programs that were set to expire before that date.",
-      "Without this bill, agencies that had not received their regular yearly funding would have had to shut down or reduce operations.",
-      "Some programs receive small adjustments to their funding levels, but most stay flat compared to the prior year."
+      "Some programs receive changes to their funding levels, but most stay at the same amount as the year before."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill keeps federal agencies funded through September 30, 2025, at the same spending levels as the year before."
   },
   "119-hr-23": {
     "provisions": [
-      "This bill punishes any foreign person who helps the International Criminal Court (ICC) investigate, arrest, or put on trial people the bill protects.",
+      "This bill puts sanctions on any foreign person who helps the International Criminal Court (ICC) investigate, arrest, or put on trial people the bill covers.",
       "Protected people include U.S. citizens, U.S. military members, and citizens of U.S. ally countries listed in the bill.",
       "Punishments can include freezing their money and property in the U.S. and banning them from entering the country.",
       "The president can skip these punishments if doing so is needed for national security."
@@ -162,7 +174,8 @@
     "impact_categories": [
       "Military & Veterans",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill puts sanctions on any foreign person who helps the International Criminal Court (ICC) investigate, arrest, or put on trial people the bill covers."
   },
   "119-hr-3944": {
     "provisions": [
@@ -175,7 +188,8 @@
       "Military & Veterans",
       "Agriculture",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill pays for military building projects starting October 2025, including building and repairing military bases and housing."
   },
   "119-hr-4": {
     "provisions": [
@@ -186,7 +200,8 @@
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent."
   },
   "119-s-1582": {
     "provisions": [
@@ -200,7 +215,8 @@
       "Technology",
       "Small Business",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill creates rules for payment stablecoins, which are digital tokens designed to always be worth a fixed amount, like one U.S. dollar."
   },
   "119-s-2296": {
     "provisions": [
@@ -212,7 +228,8 @@
     "impact_categories": [
       "Military & Veterans",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill sets the budget and rules for the Department of Defense, military building projects, and nuclear security programs for the year starting October 2025."
   },
   "119-s-331": {
     "provisions": [
@@ -224,7 +241,8 @@
     "impact_categories": [
       "Criminal Justice",
       "Healthcare"
-    ]
+    ],
+    "one_liner": "This bill permanently makes all chemicals related to fentanyl illegal under the strictest drug category."
   },
   "119-s-5": {
     "provisions": [
@@ -235,7 +253,8 @@
     "impact_categories": [
       "Immigration",
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This bill requires the Department of Homeland Security to arrest and hold non-citizens who are charged with or found guilty of break-ins, theft, or shoplifting."
   },
   "119-s-6": {
     "provisions": [
@@ -247,7 +266,8 @@
     "impact_categories": [
       "Healthcare",
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This bill requires doctors and nurses to give the same medical care to a child born alive during an attempted abortion as they would give to any other newborn baby at the same stage of development."
   },
   "119-s-9": {
     "provisions": [
@@ -259,7 +279,8 @@
     "impact_categories": [
       "Education",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "Schools that get federal money cannot let athletes born male play on women's or girls' sports teams."
   },
   "119-sjres-10": {
     "provisions": [
@@ -271,7 +292,8 @@
     "impact_categories": [
       "Environment",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This cancels the national emergency about energy that the President declared on January 20, 2025."
   },
   "119-sjres-11": {
     "provisions": [
@@ -283,7 +305,8 @@
     "impact_categories": [
       "Environment",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This cancels a rule from September 2024 by the Bureau of Ocean Energy Management (BOEM)."
   },
   "119-sjres-12": {
     "provisions": [
@@ -295,19 +318,20 @@
     "impact_categories": [
       "Environment",
       "Small Business"
-    ]
+    ],
+    "one_liner": "This cancels an EPA rule that created fees for oil and gas companies that release methane waste into the air."
   },
   "119-sjres-13": {
     "provisions": [
       "This cancels a rule from September 2024 by the Office of the Comptroller of the Currency (OCC), the agency that oversees national banks.",
       "That rule changed how the government reviews whether two banks should be allowed to merge into one.",
-      "Without this rule, bank mergers go back to being reviewed under the older process.",
-      "The older process had fewer review steps."
+      "Without this rule, bank mergers go back to being reviewed under the older process."
     ],
     "impact_categories": [
       "Small Business",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This cancels a rule from September 2024 by the Office of the Comptroller of the Currency (OCC), the agency that oversees national banks."
   },
   "119-sjres-18": {
     "provisions": [
@@ -319,7 +343,8 @@
     "impact_categories": [
       "Wages & Income",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about overdraft fees."
   },
   "119-sjres-26": {
     "provisions": [
@@ -331,19 +356,21 @@
     "impact_categories": [
       "Military & Veterans",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This would block a specific proposed sale of U.S. military weapons and services to Israel."
   },
   "119-sjres-28": {
     "provisions": [
       "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about digital payment apps.",
-      "That rule defined which companies running digital payment apps \u2014 like Apple Pay, Google Pay, Venmo, and Cash App \u2014 were large enough to face direct federal oversight.",
-      "Companies handling more than 50 million transactions per year would have been watched more closely by the CFPB.",
+      "That rule defined which companies running digital payment apps \u2014 like Apple Pay, Google Pay, Venmo, and Cash App \u2014 were large enough to face direct federal review.",
+      "Companies handling more than 50 million transactions per year would have had to follow CFPB rules and submit to regular reviews.",
       "Without this rule, those digital payment companies do not face this added federal review."
     ],
     "impact_categories": [
       "Technology",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about digital payment apps."
   },
   "119-sjres-3": {
     "provisions": [
@@ -355,7 +382,8 @@
     "impact_categories": [
       "Taxes",
       "Technology"
-    ]
+    ],
+    "one_liner": "This cancels an IRS rule that would have required certain crypto trading websites to report user transaction data to the IRS."
   },
   "119-sjres-31": {
     "provisions": [
@@ -367,7 +395,8 @@
     "impact_categories": [
       "Environment",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This cancels a September 2024 EPA rule about how air pollution sources are classified."
   },
   "119-sjres-33": {
     "provisions": [
@@ -379,7 +408,8 @@
     "impact_categories": [
       "Military & Veterans",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This would block a second proposed sale of U.S. military weapons and services to Israel."
   },
   "119-sjres-34": {
     "provisions": [
@@ -391,7 +421,8 @@
     "impact_categories": [
       "Military & Veterans",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This would block a third proposed sale of U.S. military weapons and services to Israel."
   },
   "119-sjres-37": {
     "provisions": [
@@ -404,7 +435,8 @@
       "Taxes",
       "Small Business",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This cancels the national emergency declared on February 1, 2025 that was used to put tariffs on goods from Canada, the largest U.S. trading partner."
   },
   "119-sjres-41": {
     "provisions": [
@@ -416,7 +448,8 @@
     "impact_categories": [
       "Military & Veterans",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This would block a proposed export of U.S. defense items to Israel."
   },
   "119-sjres-49": {
     "provisions": [
@@ -429,7 +462,8 @@
       "Taxes",
       "Small Business",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This cancels the national emergency declared on April 2, 2025 that was used to put tariffs on imports from most countries."
   },
   "119-sjres-53": {
     "provisions": [
@@ -441,7 +475,8 @@
     "impact_categories": [
       "Military & Veterans",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This would block a proposed sale of U.S. military weapons and services to Qatar."
   },
   "119-sjres-54": {
     "provisions": [
@@ -453,7 +488,8 @@
     "impact_categories": [
       "Military & Veterans",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This would block a proposed sale of U.S. military weapons and services to the United Arab Emirates (UAE)."
   },
   "119-sjres-55": {
     "provisions": [
@@ -466,7 +502,8 @@
       "Technology",
       "Environment",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles."
   },
   "119-sjres-59": {
     "provisions": [
@@ -478,7 +515,8 @@
     "impact_categories": [
       "Military & Veterans",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This tells the President to pull U.S. military forces out of any fighting against Iran within 30 days of the resolution passing."
   },
   "119-sjres-7": {
     "provisions": [
@@ -490,29 +528,32 @@
     "impact_categories": [
       "Education",
       "Technology"
-    ]
+    ],
+    "one_liner": "This cancels an August 2024 FCC rule that let schools and libraries use E-Rate program money to buy Wi-Fi hotspots for students."
   },
   "119-hconres-14": {
     "provisions": [
-      "This resolution sets the federal budget for fiscal year 2025 and plans spending through 2034.",
+      "This resolution sets the federal budget for the budget year starting October 2024 and plans spending through 2034.",
       "It tells House committees to write bills that change taxes, spending, and the debt limit by specific amounts.",
       "It raises the federal debt limit to allow the government to borrow more money.",
-      "It sets targets for revenue, spending, and deficits for each year through 2034."
+      "It sets targets for how much money the government takes in, how much it spends, and how much more it spends than it takes in, for each year through 2034."
     ],
     "impact_categories": [
       "Economy",
       "Government Operations",
-      "Taxation"
-    ]
+      "Taxes"
+    ],
+    "one_liner": "This resolution sets the federal budget for the budget year starting October 2024 and plans spending through 2034."
   },
   "119-hconres-30": {
     "provisions": [
-      "This resolution states that Congress supports local law enforcement officers.",
+      "This resolution states that Congress recognizes local law enforcement officers.",
       "It is a non-binding statement that does not create new laws or spending."
     ],
     "impact_categories": [
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This resolution states that Congress recognizes local law enforcement officers."
   },
   "119-hjres-104": {
     "provisions": [
@@ -523,7 +564,8 @@
     "impact_categories": [
       "Energy",
       "Environment"
-    ]
+    ],
+    "one_liner": "This resolution cancels a Bureau of Land Management plan for the Miles City Field Office in Montana issued November 20, 2024."
   },
   "119-hjres-105": {
     "provisions": [
@@ -534,7 +576,8 @@
     "impact_categories": [
       "Energy",
       "Environment"
-    ]
+    ],
+    "one_liner": "This resolution cancels a Bureau of Land Management plan for North Dakota issued January 8, 2025."
   },
   "119-hjres-106": {
     "provisions": [
@@ -545,7 +588,8 @@
     "impact_categories": [
       "Energy",
       "Environment"
-    ]
+    ],
+    "one_liner": "This resolution cancels a Bureau of Land Management plan for Alaska's Central Yukon area issued November 12, 2024."
   },
   "119-hjres-78": {
     "provisions": [
@@ -555,7 +599,8 @@
     ],
     "impact_categories": [
       "Environment"
-    ]
+    ],
+    "one_liner": "This resolution cancels a Fish and Wildlife Service rule from July 30, 2024 that listed the San Francisco Bay-Delta longfin smelt as an endangered species."
   },
   "119-hr-1039": {
     "provisions": [
@@ -565,31 +610,34 @@
       "It also extends certain VA home loan fee rates through June 23, 2034."
     ],
     "impact_categories": [
-      "Veterans"
-    ]
+      "Military & Veterans"
+    ],
+    "one_liner": "This bill requires the VA to hire an outside research center to review the notices it sends to veterans about their benefits claims."
   },
   "119-hr-1048": {
     "provisions": [
       "This bill requires colleges to report to the Department of Education any gifts from countries like China or Russia.",
       "Schools that receive more than $1 million from foreign sources of concern must disclose it.",
       "The bill also requires reporting on foreign-funded research partnerships.",
-      "It expands oversight of foreign influence at U.S. colleges."
+      "It adds more reporting rules for colleges that get money or have research deals with certain foreign governments."
     ],
     "impact_categories": [
       "Education",
       "Foreign Affairs"
-    ]
+    ],
+    "one_liner": "This bill requires colleges to report to the Department of Education any gifts from countries like China or Russia."
   },
   "119-hr-1156": {
     "provisions": [
       "This bill extends the time limit for charging people with fraud related to pandemic unemployment programs from 5 years to 10 years.",
       "It covers programs like Pandemic Unemployment Assistance and Federal Pandemic Unemployment Compensation.",
-      "The extension applies to both criminal charges and civil enforcement actions."
+      "The extension applies to both criminal charges and government lawsuits."
     ],
     "impact_categories": [
       "Criminal Justice",
       "Labor"
-    ]
+    ],
+    "one_liner": "This bill extends the time limit for charging people with fraud related to pandemic unemployment programs from 5 years to 10 years."
   },
   "119-hr-1223": {
     "provisions": [
@@ -600,27 +648,30 @@
     "impact_categories": [
       "Technology",
       "Defense"
-    ]
+    ],
+    "one_liner": "This bill requires the National Science Foundation to improve cybersecurity on U.S. research ships."
   },
   "119-hr-1228": {
     "provisions": [
       "This bill moves the Office of Survivors Assistance within the VA so it reports directly to the Secretary of Veterans Affairs.",
-      "Currently, the office is buried inside a sub-division of the Veterans Benefits Administration.",
-      "The change is meant to give survivors of veterans more direct access to leadership."
+      "Currently, the office is inside a sub-division of the Veterans Benefits Administration.",
+      "With this change, the office would report directly to the VA Secretary instead of a lower-level manager."
     ],
     "impact_categories": [
-      "Veterans"
-    ]
+      "Military & Veterans"
+    ],
+    "one_liner": "This bill moves the Office of Survivors Assistance within the VA so it reports directly to the Secretary of Veterans Affairs."
   },
   "119-hr-1263": {
     "provisions": [
-      "This bill directs the State Department to set up a working group with Japan, Australia, and India (the Quad alliance).",
-      "The working group would coordinate on shared interests across the Indo-Pacific region.",
-      "The State Department must report to Congress on its strategy for strengthening Quad cooperation."
+      "This bill tells the State Department to set up a working group with Japan, Australia, and India (the Quad alliance).",
+      "The working group would meet to discuss issues the four countries have in common in Asia and the Pacific Ocean area.",
+      "The State Department must send Congress a report on how the Quad group is working together."
     ],
     "impact_categories": [
       "Foreign Affairs"
-    ]
+    ],
+    "one_liner": "This bill tells the State Department to set up a working group with Japan, Australia, and India (the Quad alliance)."
   },
   "119-hr-1286": {
     "provisions": [
@@ -629,19 +680,21 @@
       "The VA must put the recommendations into practice within two years."
     ],
     "impact_categories": [
-      "Veterans"
-    ]
+      "Military & Veterans"
+    ],
+    "one_liner": "This bill requires the VA to hire an outside research center to review the forms veterans must fill out for benefits claims."
   },
   "119-hr-1326": {
     "provisions": [
       "This bill requires the Department of Energy and Department of Agriculture to work together on research through a formal agreement.",
-      "They can share funding and staff to avoid duplicating research efforts.",
+      "They can share funding and staff on joint research projects.",
       "They can also partner with other federal agencies on joint projects."
     ],
     "impact_categories": [
       "Agriculture",
       "Energy"
-    ]
+    ],
+    "one_liner": "This bill requires the Department of Energy and Department of Agriculture to work together on research through a formal agreement."
   },
   "119-hr-1402": {
     "provisions": [
@@ -652,7 +705,8 @@
     "impact_categories": [
       "Infrastructure",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill requires the Transportation Security Administration to report on how long travelers wait in airport security lines."
   },
   "119-hr-144": {
     "provisions": [
@@ -663,7 +717,8 @@
     "impact_categories": [
       "Government Operations",
       "Energy"
-    ]
+    ],
+    "one_liner": "This bill requires the Tennessee Valley Authority to publicly report salary and bonus information for its executives."
   },
   "119-hr-1442": {
     "provisions": [
@@ -672,19 +727,20 @@
       "The Consumer Product Safety Commission must update its standards based on new data about poisoning risks."
     ],
     "impact_categories": [
-      "Healthcare",
-      "Social Policy"
-    ]
+      "Healthcare"
+    ],
+    "one_liner": "This bill updates safety rules for packaging that children might get into."
   },
   "119-hr-1491": {
     "provisions": [
-      "This bill gives the IRS authority to extend tax filing deadlines when a federal disaster is declared.",
+      "This bill lets the IRS push back tax filing deadlines when a federal disaster is declared.",
       "Taxpayers in disaster areas would get extra time to file returns and pay taxes without penalties.",
       "The extensions can last up to 1 year after the disaster declaration."
     ],
     "impact_categories": [
-      "Taxation"
-    ]
+      "Taxes"
+    ],
+    "one_liner": "This bill lets the IRS push back tax filing deadlines when a federal disaster is declared."
   },
   "119-hr-1503": {
     "provisions": [
@@ -696,28 +752,31 @@
     "impact_categories": [
       "Criminal Justice",
       "Foreign Affairs"
-    ]
+    ],
+    "one_liner": "This bill makes it a federal crime to participate in forced organ harvesting."
   },
   "119-hr-152": {
     "provisions": [
-      "This bill requires federal agencies to better coordinate disaster response assistance.",
+      "This bill requires federal agencies to coordinate disaster response assistance.",
       "It sets up a system so that people affected by disasters can access help from multiple agencies more easily.",
       "Agencies must share information to reduce duplicate paperwork for disaster victims."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill requires federal agencies to coordinate disaster response assistance."
   },
   "119-hr-1526": {
     "provisions": [
-      "This bill reauthorizes the National Oceanic and Atmospheric Administration's ocean research programs.",
+      "This bill renews funding for the National Oceanic and Atmospheric Administration's (NOAA) ocean research programs.",
       "It funds activities like ocean mapping, weather forecasting, and marine research.",
       "The bill sets priorities for NOAA's research fleet and technology upgrades."
     ],
     "impact_categories": [
       "Environment",
       "Technology"
-    ]
+    ],
+    "one_liner": "This bill renews funding for the National Oceanic and Atmospheric Administration's (NOAA) ocean research programs."
   },
   "119-hr-153": {
     "provisions": [
@@ -727,33 +786,36 @@
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill requires FEMA to create an online dashboard showing how federal disaster assistance money is being spent."
   },
   "119-hr-1534": {
     "provisions": [
-      "This bill creates incentives for domestic manufacturing of products that are currently imported.",
+      "This bill gives tax breaks to companies that make products in the U.S. instead of buying them from other countries.",
       "It provides tax credits or other benefits to companies that build factories in the U.S.",
-      "The goal is to reduce dependence on foreign supply chains."
+      "The tax credits apply to products in categories where the U.S. currently buys most of its supply from other countries."
     ],
     "impact_categories": [
       "Economy",
       "Small Business"
-    ]
+    ],
+    "one_liner": "This bill gives tax breaks to companies that make products in the U.S. instead of buying them from other countries."
   },
   "119-hr-164": {
     "provisions": [
       "This bill provides funding for electrical grid improvements and clean energy projects.",
-      "It authorizes grants to upgrade aging power lines and build new transmission capacity.",
-      "The bill supports projects that make the grid more reliable during extreme weather."
+      "It lets the government give money to replace old power lines and build new ones that carry more electricity.",
+      "The bill pays for projects that keep the power grid running during storms and heat waves."
     ],
     "impact_categories": [
       "Energy",
       "Infrastructure"
-    ]
+    ],
+    "one_liner": "This bill provides funding for electrical grid improvements and clean energy projects."
   },
   "119-hr-1642": {
     "provisions": [
-      "This bill helps small businesses connect with graduates of career and technical education programs.",
+      "This bill creates a program to connect small businesses with graduates of career and technical education programs.",
       "The Small Business Administration must create resources to help businesses recruit workers with trade skills.",
       "It covers fields like manufacturing, healthcare, and information technology."
     ],
@@ -761,7 +823,8 @@
       "Small Business",
       "Education",
       "Labor"
-    ]
+    ],
+    "one_liner": "This bill creates a program to connect small businesses with graduates of career and technical education programs."
   },
   "119-hr-165": {
     "provisions": [
@@ -770,9 +833,10 @@
       "The memorial would honor the approximately 300 Lakota people killed by U.S. soldiers at Wounded Knee Creek."
     ],
     "impact_categories": [
-      "Social Policy",
+      "Healthcare",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill designates the site of the 1890 Wounded Knee Massacre in South Dakota as a national memorial."
   },
   "119-hr-1709": {
     "provisions": [
@@ -782,33 +846,36 @@
     ],
     "impact_categories": [
       "Technology"
-    ]
+    ],
+    "one_liner": "This bill requires a study of cybersecurity risks in mobile phone networks."
   },
   "119-hr-1717": {
     "provisions": [
       "This bill addresses security of communications networks in the United States.",
-      "It requires the FCC to identify and address equipment from companies that pose national security risks.",
+      "It requires the FCC to find and remove equipment from companies the government considers security threats.",
       "It provides funding to help small telecom companies replace equipment from banned manufacturers."
     ],
     "impact_categories": [
       "Technology",
       "Defense"
-    ]
+    ],
+    "one_liner": "This bill addresses security of communications networks in the United States."
   },
   "119-hr-1770": {
     "provisions": [
-      "This bill directs the Consumer Product Safety Commission to study how technology can improve product safety.",
+      "This bill tells the Consumer Product Safety Commission to study how technology can improve product safety.",
       "It covers areas like artificial intelligence and internet-connected devices.",
       "The Commission must report on how new technology creates both risks and safety improvements."
     ],
     "impact_categories": [
       "Technology",
-      "Social Policy"
-    ]
+      "Healthcare"
+    ],
+    "one_liner": "This bill tells the Consumer Product Safety Commission to study how technology can improve product safety."
   },
   "119-hr-1804": {
     "provisions": [
-      "This bill increases oversight of agents and lenders involved in SBA 7(a) loans.",
+      "This bill adds more rules and tracking for agents and lenders involved in SBA 7(a) loans.",
       "7(a) loans are the most common type of SBA small business loan.",
       "The SBA must create a registration system for loan agents and monitor their activities.",
       "Agents who commit fraud can be banned from the program."
@@ -816,7 +883,8 @@
     "impact_categories": [
       "Small Business",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill adds more rules and tracking for agents and lenders involved in SBA 7(a) loans."
   },
   "119-hr-186": {
     "provisions": [
@@ -825,43 +893,47 @@
       "The monument would be placed on federal land in or near Washington, D.C."
     ],
     "impact_categories": [
-      "Veterans",
+      "Military & Veterans",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill designates a location for a monument honoring Medal of Honor recipient Hershel Woody Williams."
   },
   "119-hr-187": {
     "provisions": [
       "This bill updates programs for mapping and monitoring U.S. waterways.",
-      "It supports mapping of rivers, lakes, and coastal areas for flood prediction and water management.",
+      "It pays for mapping of rivers, lakes, and coastal areas for flood prediction and water management.",
       "Federal agencies must coordinate their water mapping efforts to avoid duplication."
     ],
     "impact_categories": [
       "Environment",
       "Infrastructure"
-    ]
+    ],
+    "one_liner": "This bill updates programs for mapping and monitoring U.S. waterways."
   },
   "119-hr-1917": {
     "provisions": [
-      "This bill reauthorizes the Great Lakes fish marking program.",
+      "This bill renews the Great Lakes fish marking program.",
       "The program tags fish to track populations and manage fisheries across the Great Lakes.",
-      "It helps state and federal agencies coordinate fish stocking and conservation efforts."
+      "State and federal agencies use the data to decide how many fish to add to lakes and rivers."
     ],
     "impact_categories": [
       "Environment"
-    ]
+    ],
+    "one_liner": "This bill renews the Great Lakes fish marking program."
   },
   "119-hr-1919": {
     "provisions": [
       "This bill prohibits the Federal Reserve from creating a central bank digital currency (CBDC).",
       "A CBDC would be a digital version of the U.S. dollar issued directly by the Federal Reserve.",
-      "The bill also prevents the Fed from using a CBDC to implement monetary policy.",
+      "The bill also stops the Fed from using a digital dollar to control interest rates or the money supply.",
       "It does not affect privately issued digital currencies like Bitcoin or stablecoins."
     ],
     "impact_categories": [
       "Technology",
       "Economy",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill prohibits the Federal Reserve from creating a central bank digital currency (CBDC)."
   },
   "119-hr-192": {
     "provisions": [
@@ -872,52 +944,55 @@
     "impact_categories": [
       "Infrastructure",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill requires Amtrak to publicly disclose bonuses paid to its executives."
   },
   "119-hr-1998": {
     "provisions": [
-      "This bill creates sanctions against individuals and groups involved in sea piracy.",
+      "This bill punishes people and groups involved in sea piracy by freezing their money and banning them from the U.S.",
       "It targets pirates operating in international waters who hijack ships or take hostages.",
       "Sanctioned individuals would have their U.S. assets frozen and be banned from entering the country."
     ],
     "impact_categories": [
       "Foreign Affairs",
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This bill punishes people and groups involved in sea piracy by freezing their money and banning them from the U.S."
   },
   "119-hr-2035": {
     "provisions": [
       "This bill requires that a certain percentage of cargo shipped between U.S. ports be carried on American-built, American-crewed ships.",
-      "It aims to strengthen the U.S. merchant marine fleet.",
       "The requirements would be phased in over several years."
     ],
     "impact_categories": [
       "Infrastructure",
       "Defense",
       "Labor"
-    ]
+    ],
+    "one_liner": "This bill requires that a certain percentage of cargo shipped between U.S. ports be carried on American-built, American-crewed ships."
   },
   "119-hr-2056": {
     "provisions": [
       "This bill requires the District of Columbia to comply with federal immigration enforcement.",
       "D.C. law enforcement would be required to cooperate with federal immigration agencies.",
-      "The bill would override any local D.C. policies that limit immigration enforcement cooperation."
+      "D.C. rules that say local police do not have to work with federal immigration agencies would no longer apply under this bill."
     ],
     "impact_categories": [
       "Immigration",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill requires the District of Columbia to comply with federal immigration enforcement."
   },
   "119-hr-2096": {
     "provisions": [
-      "This bill provides emergency measures to protect the nation's capital.",
-      "It authorizes additional security resources for federal buildings and landmarks in Washington, D.C.",
-      "The bill addresses specific security threats identified in the D.C. area."
+      "This bill adds security measures in the nation's capital.",
+      "It pays for more guards, cameras, and other security at federal buildings and landmarks in Washington, D.C."
     ],
     "impact_categories": [
       "Criminal Justice",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill adds security measures in the nation's capital."
   },
   "119-hr-21": {
     "provisions": [
@@ -930,7 +1005,8 @@
     "impact_categories": [
       "Healthcare",
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This bill requires doctors and nurses to provide medical care to any baby born alive during an attempted abortion."
   },
   "119-hr-22": {
     "provisions": [
@@ -942,17 +1018,19 @@
     "impact_categories": [
       "Government Operations",
       "Immigration"
-    ]
+    ],
+    "one_liner": "This bill requires people to show proof of U.S. citizenship when registering to vote in federal elections."
   },
   "119-hr-2215": {
     "provisions": [
-      "This bill redesignates the Salem Maritime National Historic Site in Massachusetts as a national historical park.",
+      "This bill renames the Salem Maritime National Historic Site in Massachusetts to a national historical park.",
       "It also requires a study of whether the park's boundaries should be expanded.",
       "Salem Maritime was the first national historic site established in the United States in 1938."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill renames the Salem Maritime National Historic Site in Massachusetts to a national historical park."
   },
   "119-hr-2240": {
     "provisions": [
@@ -963,18 +1041,20 @@
     "impact_categories": [
       "Criminal Justice",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill requires the Attorney General to collect and publish data on injuries and deaths of law enforcement officers."
   },
   "119-hr-2243": {
     "provisions": [
       "This bill updates the Law Enforcement Officers Safety Act (LEOSA).",
       "LEOSA allows current and retired law enforcement officers to carry concealed firearms in all 50 states.",
-      "The bill clarifies eligibility requirements and streamlines the credentialing process.",
-      "It addresses situations where some states had created barriers to LEOSA compliance."
+      "It spells out who qualifies and cuts the number of steps to get the ID card needed to carry under this law.",
+      "Some states had added extra rules on top of LEOSA. This bill says those extra rules do not apply."
     ],
     "impact_categories": [
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This bill updates the Law Enforcement Officers Safety Act (LEOSA)."
   },
   "119-hr-2255": {
     "provisions": [
@@ -985,19 +1065,20 @@
     "impact_categories": [
       "Criminal Justice",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill allows federal law enforcement officers to buy their service weapons when they retire."
   },
   "119-hr-2483": {
     "provisions": [
-      "This bill reauthorizes programs from the SUPPORT Act that address substance use disorders and opioid addiction.",
+      "This bill renews programs from the SUPPORT Act that deal with drug and opioid addiction.",
       "It continues funding for treatment, prevention, and recovery services.",
       "The bill covers Medicare and Medicaid rules for covering addiction treatment.",
-      "It includes provisions for workforce training in behavioral health."
+      "It pays to train more workers in mental health and addiction care."
     ],
     "impact_categories": [
-      "Healthcare",
-      "Social Policy"
-    ]
+      "Healthcare"
+    ],
+    "one_liner": "This bill renews programs from the SUPPORT Act that deal with drug and opioid addiction."
   },
   "119-hr-249": {
     "provisions": [
@@ -1006,52 +1087,57 @@
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill renames certain buildings and features at Paterson Great Falls National Historical Park in New Jersey."
   },
   "119-hr-26": {
     "provisions": [
-      "This bill rolls back restrictions on oil and gas drilling on federal land and offshore areas.",
+      "This bill removes limits on oil and gas drilling on federal land and in ocean areas.",
       "It resumes oil and gas lease sales that had been paused or canceled.",
-      "It speeds up the permitting process for energy projects on federal land.",
-      "It limits the ability of federal agencies to block energy development for environmental reasons."
+      "It shortens the review timeline for permits on energy projects on federal land.",
+      "It changes the rules so federal agencies have fewer ways to stop energy projects based on environmental reviews."
     ],
     "impact_categories": [
       "Energy",
       "Environment"
-    ]
+    ],
+    "one_liner": "This bill removes limits on oil and gas drilling on federal land and in ocean areas."
   },
   "119-hr-27": {
     "provisions": [
-      "This bill permanently classifies all fentanyl-related substances as Schedule I controlled substances.",
-      "Schedule I is the strictest drug category, carrying the heaviest penalties for manufacturing and distribution.",
-      "Previously, fentanyl-related substances were only temporarily classified under emergency scheduling.",
+      "This bill permanently makes all fentanyl-related chemicals illegal under the strictest drug category.",
+      "The strictest drug category carries the longest prison sentences for making or selling these drugs.",
+      "Before this bill, fentanyl-related chemicals were made illegal on a temporary basis that had to be renewed.",
       "The bill includes a process to remove a specific substance from the ban if a review shows it does not belong."
     ],
     "impact_categories": [
       "Criminal Justice",
       "Healthcare"
-    ]
+    ],
+    "one_liner": "This bill permanently makes all fentanyl-related chemicals illegal under the strictest drug category."
   },
   "119-hr-275": {
     "provisions": [
-      "This bill requires DHS to report to Congress when it encounters non-citizens from countries identified as security concerns.",
+      "This bill requires the Department of Homeland Security to report to Congress when it encounters non-citizens from countries identified as security concerns.",
       "These are people from countries with known terrorist activity or that are state sponsors of terrorism.",
       "The reports must include how many people were encountered and what actions were taken."
     ],
     "impact_categories": [
       "Immigration",
       "Defense"
-    ]
+    ],
+    "one_liner": "This bill requires the Department of Homeland Security to report to Congress when it encounters non-citizens from countries identified as security concerns."
   },
   "119-hr-276": {
     "provisions": [
       "This bill renames the Gulf of Mexico to the Gulf of America in all federal documents, maps, and communications.",
       "All federal agencies must use the new name going forward.",
-      "The bill directs the U.S. Board on Geographic Names to make the change official."
+      "The bill tells the U.S. Board on Geographic Names to make the change official."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill renames the Gulf of Mexico to the Gulf of America in all federal documents, maps, and communications."
   },
   "119-hr-28": {
     "provisions": [
@@ -1063,50 +1149,55 @@
     "impact_categories": [
       "Education",
       "Civil Rights"
-    ]
+    ],
+    "one_liner": "This bill prohibits schools that receive federal funding from allowing athletes born male to play on women's or girls' sports teams."
   },
   "119-hr-29": {
     "provisions": [
-      "This bill requires the Department of Homeland Security to detain non-citizens charged with or convicted of theft, burglary, or shoplifting.",
+      "This bill requires the Department of Homeland Security to hold non-citizens charged with or found guilty of theft, break-ins, or shoplifting.",
       "It allows state governments to sue the federal government if immigration enforcement failures lead to crimes in their state.",
-      "Named after Laken Riley, it was passed in response to a specific criminal case involving a non-citizen."
+      "This bill is named the Laken Riley Act."
     ],
     "impact_categories": [
       "Immigration",
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This bill requires the Department of Homeland Security to hold non-citizens charged with or found guilty of theft, break-ins, or shoplifting."
   },
   "119-hr-2931": {
     "provisions": [
       "This bill prohibits the SBA from providing loans or grants to businesses in cities that have sanctuary policies limiting immigration enforcement cooperation.",
-      "Sanctuary cities are places where local police do not assist federal immigration authorities.",
+      "These are cities where local police have policies that say they do not help federal immigration agents.",
       "The SBA would need to verify a city's immigration cooperation status before issuing certain assistance."
     ],
     "impact_categories": [
       "Small Business",
       "Immigration"
-    ]
+    ],
+    "one_liner": "This bill prohibits the SBA from providing loans or grants to businesses in cities that have sanctuary policies limiting immigration enforcement cooperation."
   },
   "119-hr-2966": {
     "provisions": [
       "This bill prioritizes SBA resources for American entrepreneurs and small business owners.",
-      "It changes eligibility rules for certain SBA programs to focus on U.S. citizens and legal residents.",
-      "The bill aims to ensure that federal small business assistance goes to American-owned businesses first."
+      "It changes the rules for who can use certain SBA programs to focus on U.S. citizens and legal residents.",
+      "Under this bill, federal small business help goes to American-owned businesses first."
     ],
     "impact_categories": [
       "Small Business",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill prioritizes SBA resources for American entrepreneurs and small business owners."
   },
   "119-hr-2987": {
     "provisions": [
       "This bill requires federal agencies to stop certain enforcement actions while legal challenges are pending.",
-      "It addresses situations where agencies continue enforcing rules that courts have questioned.",
+      "It covers situations where agencies keep enforcing rules while courts are reviewing whether those rules are legal.",
       "The bill would limit agencies' ability to act until courts make final decisions on challenged regulations."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill requires federal agencies to stop certain enforcement actions while legal challenges are pending."
   },
   "119-hr-30": {
     "provisions": [
@@ -1117,18 +1208,20 @@
     "impact_categories": [
       "Immigration",
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This bill increases criminal penalties for non-citizens who commit violent crimes against women."
   },
   "119-hr-3095": {
     "provisions": [
       "This bill requires the U.S. Postal Service to assign unique ZIP codes to certain communities.",
       "It addresses areas that currently share ZIP codes with neighboring towns.",
-      "Having a unique ZIP code helps communities with emergency services, mail delivery, and community identity."
+      "ZIP codes are used to route mail, direct emergency services, and identify communities in government data."
     ],
     "impact_categories": [
       "Government Operations",
       "Infrastructure"
-    ]
+    ],
+    "one_liner": "This bill requires the U.S. Postal Service to assign unique ZIP codes to certain communities."
   },
   "119-hr-33": {
     "provisions": [
@@ -1137,89 +1230,97 @@
       "The bill applies to workers like restaurant servers, bartenders, and hotel staff who regularly earn tips."
     ],
     "impact_categories": [
-      "Taxation",
+      "Taxes",
       "Labor"
-    ]
+    ],
+    "one_liner": "This bill changes tax rules for tips earned by workers in service industries."
   },
   "119-hr-3351": {
     "provisions": [
-      "This bill improves public access to information about small business programs run by the SBA.",
-      "The SBA must make data about its lending and contracting programs easier to find and understand.",
-      "It requires the SBA to publish reports on how its programs are helping small businesses."
+      "This bill changes how the public can find information about small business programs run by the Small Business Administration (SBA).",
+      "The SBA must publish data about its lending and contracting programs on a public website.",
+      "It requires the SBA to publish reports on how small businesses are using its programs."
     ],
     "impact_categories": [
       "Small Business",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill changes how the public can find information about small business programs run by the Small Business Administration (SBA)."
   },
   "119-hr-3357": {
     "provisions": [
-      "This bill requires companies with multiple classes of stock to provide clearer disclosures to investors.",
+      "This bill requires companies with multiple classes of stock to give investors more details about how each class works.",
       "Multi-class share structures give some shareholders more voting power than others.",
       "Companies must explain how these structures affect regular shareholders' voting rights."
     ],
     "impact_categories": [
       "Economy",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill requires companies with multiple classes of stock to give investors more details about how each class works."
   },
   "119-hr-3394": {
     "provisions": [
       "This bill expands who can invest in private investment opportunities that are currently limited to wealthy individuals.",
-      "It allows people with certain professional certifications or knowledge to qualify as accredited investors.",
+      "It lets people with certain professional certifications or knowledge invest in private deals that are currently limited to wealthy people.",
       "Currently, most private investments require investors to have a net worth over $1 million or income over $200,000."
     ],
     "impact_categories": [
       "Economy",
       "Small Business"
-    ]
+    ],
+    "one_liner": "This bill expands who can invest in private investment opportunities that are currently limited to wealthy individuals."
   },
   "119-hr-3422": {
     "provisions": [
-      "This bill supports small and emerging companies trying to raise money from investors.",
-      "It directs the SEC to study barriers that make it hard for small businesses to access capital markets.",
-      "It promotes non-traditional ways of raising money, like crowdfunding and community-based investing."
+      "This bill changes rules for how small and new companies can raise money from investors.",
+      "It tells the SEC to study what makes it hard for small businesses to raise money by selling stock.",
+      "It creates new rules for raising money through crowdfunding and community-based investing."
     ],
     "impact_categories": [
       "Small Business",
       "Economy"
-    ]
+    ],
+    "one_liner": "This bill changes rules for how small and new companies can raise money from investors."
   },
   "119-hr-35": {
     "provisions": [
       "This bill is named after Border Patrol Agent Raul Gonzalez.",
-      "It increases protections and resources for federal officers working at the border.",
-      "It addresses officer safety concerns in high-risk border areas."
+      "It adds equipment, staffing, and legal rules for federal officers working at the border.",
+      "It creates safety requirements for federal officers in border areas."
     ],
     "impact_categories": [
       "Immigration",
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This bill is named after Border Patrol Agent Raul Gonzalez."
   },
   "119-hr-359": {
     "provisions": [
-      "This bill requires more accountability in how the federal government shares costs with states for disaster recovery.",
+      "This bill changes the rules for how the federal government shares disaster recovery costs with states.",
       "FEMA must provide clearer information about cost-sharing formulas to state and local governments.",
       "It ensures that communities understand their financial responsibility before and after disasters."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill changes the rules for how the federal government shares disaster recovery costs with states."
   },
   "119-hr-36": {
     "provisions": [
-      "This bill supports Georgia's sovereignty and territorial integrity.",
-      "It directs the U.S. government to work with European allies to counter Russian influence in Georgia.",
+      "This bill creates programs and funding related to Georgia's independence and borders.",
+      "It tells the U.S. government to work with European countries to reduce Russian involvement in Georgia.",
       "MEGOBARI means 'friend' in Georgian.",
-      "The bill calls for closer U.S.-Georgia diplomatic and economic relations."
+      "The bill creates programs for U.S.-Georgia diplomatic and economic cooperation."
     ],
     "impact_categories": [
       "Foreign Affairs"
-    ]
+    ],
+    "one_liner": "This bill creates programs and funding related to Georgia's independence and borders."
   },
   "119-hr-3633": {
     "provisions": [
-      "This bill creates a legal framework for regulating digital assets like cryptocurrency.",
+      "This bill creates rules for digital assets like cryptocurrency.",
       "It defines when a digital asset is a commodity (regulated by the CFTC) versus a security (regulated by the SEC).",
       "It establishes rules for digital asset exchanges and trading platforms.",
       "The bill creates consumer protections for people who buy and sell digital assets."
@@ -1228,33 +1329,36 @@
       "Technology",
       "Economy",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill creates rules for digital assets like cryptocurrency."
   },
   "119-hr-375": {
     "provisions": [
-      "This bill reauthorizes a program to fight Rapid Ohia Death, a disease killing ohia trees in Hawaii.",
+      "This bill renews funding for a program to fight Rapid Ohia Death, a disease killing ohia trees in Hawaii.",
       "Ohia trees are the most common native tree in Hawaii and are culturally important.",
       "The bill funds research and response efforts to stop the spread of the fungal disease."
     ],
     "impact_categories": [
       "Environment",
       "Agriculture"
-    ]
+    ],
+    "one_liner": "This bill renews funding for a program to fight Rapid Ohia Death, a disease killing ohia trees in Hawaii."
   },
   "119-hr-3937": {
     "provisions": [
       "This bill transfers a parcel of federal land to the Wabeno area in Wisconsin for economic development.",
-      "The land would be used to support local jobs and business growth.",
+      "The local group receiving the land can use it for business and development.",
       "The transfer is from the U.S. Forest Service to a local entity."
     ],
     "impact_categories": [
       "Economy",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill transfers a parcel of federal land to the Wabeno area in Wisconsin for economic development."
   },
   "119-hr-4016": {
     "provisions": [
-      "This bill funds the Department of Defense for fiscal year 2026.",
+      "This bill funds the Department of Defense for the year starting October 2025.",
       "It covers military pay, equipment purchases, training, and day-to-day operations.",
       "It sets spending levels for each branch of the military and defense agencies.",
       "The bill also funds intelligence community operations."
@@ -1262,45 +1366,49 @@
     "impact_categories": [
       "Defense",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill funds the Department of Defense for the year starting October 2025."
   },
   "119-hr-4216": {
     "provisions": [
       "This bill requires the Department of Defense to prioritize buying American-made products.",
-      "It strengthens Buy American requirements for military equipment and supplies.",
+      "It adds new Buy American requirements for military equipment and supplies.",
       "The bill limits waivers that allow the Pentagon to purchase foreign-made goods."
     ],
     "impact_categories": [
       "Defense",
       "Economy"
-    ]
+    ],
+    "one_liner": "This bill requires the Department of Defense to prioritize buying American-made products."
   },
   "119-hr-4275": {
     "provisions": [
-      "This bill authorizes funding and programs for the U.S. Coast Guard.",
+      "This bill sets up funding and programs for the U.S. Coast Guard.",
       "It covers personnel, equipment, and operations for the Coast Guard.",
-      "The bill includes provisions for Coast Guard facilities, ships, and aircraft.",
+      "The bill covers Coast Guard buildings, ships, and aircraft.",
       "It also addresses workforce issues like recruitment and retention."
     ],
     "impact_categories": [
       "Defense",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill sets up funding and programs for the U.S. Coast Guard."
   },
   "119-hr-43": {
     "provisions": [
       "This bill restores land to Alaska Native villages that was taken when villages incorporated as municipalities.",
-      "When villages became cities, they lost control of land that had been promised to them.",
+      "When villages became cities, they lost control of land that had been set aside for them.",
       "The bill allows these communities to regain title to their traditional lands."
     ],
     "impact_categories": [
       "Civil Rights",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill restores land to Alaska Native villages that was taken when villages incorporated as municipalities."
   },
   "119-hr-4553": {
     "provisions": [
-      "This bill funds the Department of Energy, Army Corps of Engineers, and other water-related agencies for fiscal year 2026.",
+      "This bill funds the Department of Energy, Army Corps of Engineers, and other water-related agencies for the year starting October 2025.",
       "It covers energy research, nuclear weapons programs, and water infrastructure projects.",
       "The bill sets spending levels for dam safety, flood control, and environmental cleanup."
     ],
@@ -1308,30 +1416,33 @@
       "Energy",
       "Infrastructure",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill funds the Department of Energy, Army Corps of Engineers, and other water-related agencies for the year starting October 2025."
   },
   "119-hr-471": {
     "provisions": [
-      "This bill speeds up approval of forest management projects under the National Environmental Policy Act.",
+      "This bill shortens the review timeline for forest management projects under the National Environmental Policy Act.",
       "It creates faster review processes for logging and wildfire prevention projects on federal land.",
-      "The bill allows certain forestry projects to skip lengthy environmental reviews.",
-      "It aims to reduce wildfire risk by removing dead trees and brush more quickly."
+      "The bill lets certain forestry projects skip the full environmental review process.",
+      "It lets agencies remove dead trees and brush with a shorter review process."
     ],
     "impact_categories": [
       "Environment",
       "Infrastructure"
-    ]
+    ],
+    "one_liner": "This bill shortens the review timeline for forest management projects under the National Environmental Policy Act."
   },
   "119-hr-495": {
     "provisions": [
-      "This bill authorizes construction of barriers and infrastructure underground at the U.S.-Mexico border.",
+      "This bill lets the government build barriers and structures underground at the U.S.-Mexico border.",
       "It addresses the use of tunnels to smuggle drugs and people across the border.",
       "The bill funds detection technology and physical barriers below the surface."
     ],
     "impact_categories": [
       "Immigration",
       "Infrastructure"
-    ]
+    ],
+    "one_liner": "This bill lets the government build barriers and structures underground at the U.S.-Mexico border."
   },
   "119-hr-517": {
     "provisions": [
@@ -1340,68 +1451,74 @@
       "The bill applies to federally declared disaster areas."
     ],
     "impact_categories": [
-      "Taxation"
-    ]
+      "Taxes"
+    ],
+    "one_liner": "This bill extends tax filing deadlines for people and businesses affected by natural disasters."
   },
   "119-hr-530": {
     "provisions": [
       "This bill provides resources for cleaning up and redeveloping contaminated industrial sites.",
       "It funds environmental cleanup of brownfields \u2014 abandoned properties with pollution or hazardous waste.",
-      "The bill supports communities in turning contaminated land into productive use."
+      "The bill gives money to communities to clean up and reuse polluted land."
     ],
     "impact_categories": [
       "Environment",
       "Economy"
-    ]
+    ],
+    "one_liner": "This bill provides resources for cleaning up and redeveloping contaminated industrial sites."
   },
   "119-hr-586": {
     "provisions": [
       "This bill requires a study of liver cancer rates among Vietnam War veterans exposed to liver flukes.",
       "Liver flukes are parasites found in freshwater fish that were common in Vietnam.",
-      "Veterans who served in Vietnam may have higher rates of a specific type of liver cancer called cholangiocarcinoma.",
+      "Veterans who served in Vietnam may have higher rates of a specific type of liver cancer linked to these parasites.",
       "The study would determine if the VA should provide benefits for this condition."
     ],
     "impact_categories": [
-      "Veterans",
+      "Military & Veterans",
       "Healthcare"
-    ]
+    ],
+    "one_liner": "This bill requires a study of liver cancer rates among Vietnam War veterans exposed to liver flukes."
   },
   "119-hr-692": {
     "provisions": [
       "This bill requires the Treasury Department to report on how China manages its currency exchange rate.",
-      "China has been accused of keeping its currency artificially low to make its exports cheaper.",
+      "The reports must cover whether China's government takes actions to lower its currency value and how that affects U.S. trade.",
       "The reports must include data on China's currency interventions and their effects on U.S. trade."
     ],
     "impact_categories": [
       "Foreign Affairs",
       "Economy"
-    ]
+    ],
+    "one_liner": "This bill requires the Treasury Department to report on how China manages its currency exchange rate."
   },
   "119-hr-695": {
     "provisions": [
       "This bill updates rules for the Medal of Honor, the highest U.S. military decoration.",
       "It addresses administrative and benefit issues for Medal of Honor recipients.",
-      "The bill may change eligibility rules or benefits associated with the medal."
+      "The bill changes the rules for who can receive the medal and what benefits come with it."
     ],
     "impact_categories": [
-      "Veterans",
+      "Military & Veterans",
       "Defense"
-    ]
+    ],
+    "one_liner": "This bill updates rules for the Medal of Honor, the highest U.S. military decoration."
   },
   "119-hr-736": {
     "provisions": [
       "This bill reduces paperwork requirements for small businesses.",
-      "It delays or eliminates certain federal reporting rules that are burdensome for small companies.",
-      "The bill targets regulations where the cost of compliance is higher than the benefit."
+      "It delays or removes certain federal reporting rules for small companies.",
+      "The bill lists specific federal reporting rules that small businesses would no longer have to follow."
     ],
     "impact_categories": [
       "Small Business",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill reduces paperwork requirements for small businesses."
   },
   "119-hr-747": {
     "provisions": [
-      "This bill imposes sanctions on people and companies involved in manufacturing and distributing fentanyl from China.",
+      "This bill punishes people and companies involved in making and shipping fentanyl from China by freezing their money and banning them from the U.S. financial system.",
       "It targets Chinese chemical companies that supply fentanyl ingredients to drug cartels.",
       "Sanctioned individuals and businesses would have their U.S. assets frozen.",
       "The bill requires the President to identify and sanction foreign fentanyl traffickers."
@@ -1409,7 +1526,8 @@
     "impact_categories": [
       "Criminal Justice",
       "Foreign Affairs"
-    ]
+    ],
+    "one_liner": "This bill punishes people and companies involved in making and shipping fentanyl from China by freezing their money and banning them from the U.S. financial system."
   },
   "119-hr-758": {
     "provisions": [
@@ -1420,7 +1538,8 @@
     "impact_categories": [
       "Criminal Justice",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill requires the U.S. Postal Service to report on deaths caused by illegal drugs sent through the mail."
   },
   "119-hr-77": {
     "provisions": [
@@ -1431,53 +1550,58 @@
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill allows Congress to cancel multiple federal regulations with a single vote."
   },
   "119-hr-776": {
     "provisions": [
-      "This bill reauthorizes a program to control and eliminate nutria, an invasive rodent species.",
+      "This bill renews funding for a program to control and eliminate nutria, an invasive rodent species.",
       "Nutria destroy wetlands and levees in states like Louisiana, Maryland, and Virginia.",
-      "The bill funds trapping and removal efforts to protect coastal ecosystems."
+      "The bill pays for trapping and removing nutria from wetlands and coastal areas."
     ],
     "impact_categories": [
       "Environment"
-    ]
+    ],
+    "one_liner": "This bill renews funding for a program to control and eliminate nutria, an invasive rodent species."
   },
   "119-hr-788": {
     "provisions": [
       "This bill requires the Department of Energy and Small Business Administration to coordinate research activities.",
       "The agencies must identify areas where their research programs overlap or could benefit from collaboration.",
-      "The bill aims to help small businesses access DOE research and technology."
+      "The bill creates a way for small businesses to use Department of Energy research and technology."
     ],
     "impact_categories": [
       "Energy",
       "Small Business"
-    ]
+    ],
+    "one_liner": "This bill requires the Department of Energy and Small Business Administration to coordinate research activities."
   },
   "119-hr-804": {
     "provisions": [
-      "This bill helps rural small businesses prepare for and recover from natural disasters.",
+      "This bill creates programs for rural small businesses to prepare for and recover from natural disasters.",
       "The SBA must create programs specifically for businesses in rural areas.",
       "It includes technical assistance and loan programs tailored to rural communities."
     ],
     "impact_categories": [
       "Small Business"
-    ]
+    ],
+    "one_liner": "This bill creates programs for rural small businesses to prepare for and recover from natural disasters."
   },
   "119-hr-818": {
     "provisions": [
-      "This bill supports rural economic development through USDA programs.",
+      "This bill funds rural economic development through USDA programs.",
       "It funds infrastructure projects in rural areas like broadband, water systems, and roads.",
-      "The bill helps rural communities access federal grants and loans for development projects."
+      "The bill makes federal grants and loans available to rural communities for development projects."
     ],
     "impact_categories": [
       "Infrastructure",
       "Economy"
-    ]
+    ],
+    "one_liner": "This bill funds rural economic development through USDA programs."
   },
   "119-hr-825": {
     "provisions": [
-      "This bill strengthens fraud prevention in SBA lending programs.",
+      "This bill adds new fraud checks to Small Business Administration (SBA) lending programs.",
       "It requires the SBA to improve its systems for detecting fraudulent loan applications.",
       "The bill targets fraud that occurred during pandemic-era small business lending programs.",
       "It increases penalties for people who submit false information to get SBA loans."
@@ -1485,29 +1609,32 @@
     "impact_categories": [
       "Small Business",
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This bill adds new fraud checks to Small Business Administration (SBA) lending programs."
   },
   "119-hr-832": {
     "provisions": [
-      "This bill improves the SBA's Office of Advocacy, which represents small business interests in federal rulemaking.",
+      "This bill changes how the Small Business Administration's Office of Advocacy works. That office speaks up for small businesses when the federal government writes new rules.",
       "The office reviews new federal regulations to assess their impact on small businesses.",
-      "The bill gives the office more authority and resources to push back against regulations that hurt small businesses."
+      "The bill gives the office more staff and legal power to review new federal rules and report on how they affect small businesses."
     ],
     "impact_categories": [
       "Small Business",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill changes how the Small Business Administration's Office of Advocacy works. That office speaks up for small businesses when the federal government writes new rules."
   },
   "119-hr-856": {
     "provisions": [
       "This bill sets rules for how federal agencies buy smart devices and internet-connected products.",
       "Agencies must ensure that connected devices they purchase meet cybersecurity standards.",
-      "The bill aims to prevent the government from buying devices that could be hacked or used for surveillance."
+      "Under this bill, the government cannot buy connected devices that do not meet security standards."
     ],
     "impact_categories": [
       "Technology",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill sets rules for how federal agencies buy smart devices and internet-connected products."
   },
   "119-hr-859": {
     "provisions": [
@@ -1517,33 +1644,36 @@
     ],
     "impact_categories": [
       "Technology",
-      "Social Policy"
-    ]
+      "Healthcare"
+    ],
+    "one_liner": "This bill requires manufacturers to inform consumers about smart features in their devices."
   },
   "119-hr-875": {
     "provisions": [
       "This bill increases penalties for non-citizens who commit crimes against community members.",
       "Named after victims of crimes committed by non-citizens in the U.S.",
       "It requires detention of non-citizens charged with certain violent offenses.",
-      "It strengthens cooperation between local law enforcement and federal immigration agencies."
+      "It requires local police to share information with federal immigration agencies."
     ],
     "impact_categories": [
       "Immigration",
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This bill increases penalties for non-citizens who commit crimes against community members."
   },
   "119-hr-881": {
     "provisions": [
       "This bill restricts the Department of Homeland Security from working with Confucius Institutes or similar Chinese-government-linked organizations.",
       "Confucius Institutes are cultural centers at U.S. colleges funded by the Chinese government.",
       "DHS employees and contractors cannot participate in programs run by these organizations.",
-      "The bill covers other Chinese entities the government considers security concerns."
+      "The bill also covers other Chinese groups or organizations the government considers security concerns."
     ],
     "impact_categories": [
       "Education",
       "Foreign Affairs",
       "Defense"
-    ]
+    ],
+    "one_liner": "This bill restricts the Department of Homeland Security from working with Confucius Institutes or similar Chinese-government-linked organizations."
   },
   "119-hr-884": {
     "provisions": [
@@ -1554,108 +1684,119 @@
     "impact_categories": [
       "Immigration",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill prohibits non-citizens from voting in elections in Washington, D.C."
   },
   "119-hr-901": {
     "provisions": [
-      "This bill strengthens research security at the Department of Homeland Security.",
-      "DHS-funded researchers must disclose foreign funding sources and affiliations.",
-      "The bill aims to prevent foreign governments from accessing sensitive research through U.S. institutions."
+      "This bill adds new research security rules at the Department of Homeland Security.",
+      "DHS-funded researchers must report any money or connections they have with foreign groups.",
+      "Under this bill, researchers who do not report foreign ties can lose their DHS funding."
     ],
     "impact_categories": [
       "Defense",
       "Technology"
-    ]
+    ],
+    "one_liner": "This bill adds new research security rules at the Department of Homeland Security."
   },
   "119-hr-973": {
     "provisions": [
       "This bill sets safety standards for lithium-ion batteries in consumer products.",
       "Lithium-ion batteries are used in phones, laptops, e-bikes, and scooters.",
       "The Consumer Product Safety Commission must create standards to prevent battery fires and explosions.",
-      "Manufacturers and importers must certify that their batteries meet the new standards."
+      "Manufacturers and importers must prove that their batteries meet the new standards."
     ],
     "impact_categories": [
       "Technology",
-      "Social Policy"
-    ]
+      "Healthcare"
+    ],
+    "one_liner": "This bill sets safety standards for lithium-ion batteries in consumer products."
   },
   "119-hr-993": {
     "provisions": [
-      "This bill supports the development of new border security technology.",
+      "This bill creates a program to develop new border security technology.",
       "It funds research into sensors, cameras, drones, and other technology for border monitoring.",
-      "The bill encourages partnerships between DHS and private companies to develop new tools."
+      "The bill creates a program for DHS and private companies to work together on new tools."
     ],
     "impact_categories": [
       "Immigration",
       "Technology"
-    ]
+    ],
+    "one_liner": "This bill creates a program to develop new border security technology."
   },
   "119-hr-997": {
     "provisions": [
-      "This bill strengthens the Office of the National Taxpayer Advocate within the IRS.",
+      "This bill gives more power to the Office of the National Taxpayer Advocate within the IRS.",
       "The Taxpayer Advocate helps people resolve problems with the IRS.",
-      "The bill gives the advocate more authority to intervene on behalf of taxpayers.",
+      "The bill gives the advocate more power to step in and help individual taxpayers with IRS problems.",
       "It requires the IRS to respond to the advocate's recommendations."
     ],
     "impact_categories": [
-      "Taxation",
+      "Taxes",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This bill gives more power to the Office of the National Taxpayer Advocate within the IRS."
   },
   "119-hres-5": {
     "provisions": [
       "This resolution adopts the rules for how the House of Representatives operates during the 119th Congress.",
-      "House rules cover how bills are debated, amended, and voted on.",
+      "House rules cover how bills are discussed, changed, and voted on.",
       "New rules are adopted at the start of each two-year congressional session."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution adopts the rules for how the House of Representatives operates during the 119th Congress."
   },
   "119-hres-53": {
     "provisions": [
       "This resolution sets the rules for House debate on H.R. 471, the Fix Our Forests Act.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.R. 471, the Fix Our Forests Act."
   },
   "119-hres-93": {
     "provisions": [
       "This resolution sets the rules for House debate on H.R. 27, the HALT Fentanyl Act.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.R. 27, the HALT Fentanyl Act."
   },
   "119-hres-122": {
     "provisions": [
       "This resolution sets the rules for House debate on H.R. 77, the Midnight Rules Relief Act.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.R. 77, the Midnight Rules Relief Act."
   },
   "119-hres-161": {
     "provisions": [
       "This resolution sets the rules for House debate on H.J.Res. 20.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.J.Res. 20."
   },
   "119-hres-177": {
     "provisions": [
       "This resolution sets the rules for House debate on H.J.Res. 42.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.J.Res. 42."
   },
   "119-hres-189": {
     "provisions": [
@@ -1665,52 +1806,58 @@
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution is a formal censure of Representative Al Green of Texas."
   },
   "119-hres-211": {
     "provisions": [
       "This resolution sets the rules for House debate on H.J.Res. 25.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.J.Res. 25."
   },
   "119-hres-242": {
     "provisions": [
       "This resolution sets the rules for House debate on H.J.Res. 24.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.J.Res. 24."
   },
   "119-hres-282": {
     "provisions": [
       "This resolution sets the rules for House debate on S.J.Res. 18, regarding overdraft fee regulations.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on S.J.Res. 18, regarding overdraft fee regulations."
   },
   "119-hres-294": {
     "provisions": [
       "This resolution sets the rules for House debate on S.J.Res. 18.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on S.J.Res. 18."
   },
   "119-hres-313": {
     "provisions": [
-      "This resolution sets the rules for House debate on a Senate amendment to a budget resolution.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "This resolution sets the rules for House debate on a Senate change to a budget plan.",
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on a Senate change to a budget plan."
   },
   "119-hres-352": {
     "provisions": [
@@ -1720,100 +1867,111 @@
     ],
     "impact_categories": [
       "Civil Rights"
-    ]
+    ],
+    "one_liner": "This resolution calls on elected officials and community leaders to speak out against antisemitism."
   },
   "119-hres-354": {
     "provisions": [
       "This resolution sets the rules for House debate on H.J.Res. 60.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.J.Res. 60."
   },
   "119-hres-377": {
     "provisions": [
       "This resolution sets the rules for House debate on H.R. 276, the Gulf of America Act.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.R. 276, the Gulf of America Act."
   },
   "119-hres-405": {
     "provisions": [
       "This resolution sets the rules for House debate on H.R. 2240, regarding law enforcement data.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.R. 2240, regarding law enforcement data."
   },
   "119-hres-426": {
     "provisions": [
       "This resolution sets the rules for House debate on S.J.Res. 13, regarding bank merger regulations.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on S.J.Res. 13, regarding bank merger regulations."
   },
   "119-hres-436": {
     "provisions": [
-      "This resolution sets the rules for House debate on H.R. 1, the reconciliation bill.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "This resolution sets the rules for House debate on H.R. 1, the tax and spending bill.",
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.R. 1, the tax and spending bill."
   },
   "119-hres-458": {
     "provisions": [
       "This resolution sets the rules for House debate on H.R. 2483, the SUPPORT Act reauthorization.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.R. 2483, the SUPPORT Act reauthorization."
   },
   "119-hres-481": {
     "provisions": [
       "This resolution condemns antisemitic attacks on Jewish individuals in the United States.",
       "It is a non-binding statement that does not create new laws or spending.",
-      "It calls for increased efforts to prevent hate-motivated violence."
+      "It asks for more work to prevent violence driven by hate."
     ],
     "impact_categories": [
       "Civil Rights"
-    ]
+    ],
+    "one_liner": "This resolution condemns antisemitic attacks on Jewish individuals in the United States."
   },
   "119-hres-488": {
     "provisions": [
       "This resolution denounces an antisemitic terrorist attack in Boulder, Colorado.",
       "It is a non-binding statement expressing the House's condemnation of the attack.",
-      "It calls for justice for the victims and their families."
+      "It asks that the people responsible be held accountable."
     ],
     "impact_categories": [
       "Civil Rights",
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This resolution denounces an antisemitic terrorist attack in Boulder, Colorado."
   },
   "119-hres-489": {
     "provisions": [
       "This resolution sets the rules for House debate on H.R. 884, regarding non-citizen voting in D.C.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.R. 884, regarding non-citizen voting in D.C."
   },
   "119-hres-499": {
     "provisions": [
-      "This resolution sets the rules for House debate on H.R. 4, the spending rescissions bill.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "This resolution sets the rules for House debate on H.R. 4, the spending cuts bill.",
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.R. 4, the spending cuts bill."
   },
   "119-hres-516": {
     "provisions": [
@@ -1822,7 +1980,8 @@
     ],
     "impact_categories": [
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This resolution condemns violent riots that occurred in Los Angeles, California in June 2025."
   },
   "119-hres-519": {
     "provisions": [
@@ -1831,72 +1990,80 @@
     ],
     "impact_categories": [
       "Criminal Justice"
-    ]
+    ],
+    "one_liner": "This resolution condemns attacks on Minnesota lawmakers in Brooklyn Park and Champlin, Minnesota."
   },
   "119-hres-530": {
     "provisions": [
-      "This resolution sets the rules for House debate on H.R. 3944, a military and veterans appropriations bill.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "This resolution sets the rules for House debate on H.R. 3944, a military and veterans spending bill.",
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.R. 3944, a military and veterans spending bill."
   },
   "119-hres-537": {
     "provisions": [
       "This resolution is an article of impeachment against President Donald J. Trump.",
-      "It charges the President with high crimes and misdemeanors.",
+      "It charges the President with serious wrongdoing in office (the constitutional term is \"high crimes and misdemeanors\").",
       "An impeachment resolution must pass the full House before a Senate trial can occur."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution is an article of impeachment against President Donald J. Trump."
   },
   "119-hres-539": {
     "provisions": [
       "This resolution censures Representative LaMonica McIver and removes her from the Committee on Homeland Security.",
       "A censure is an official statement of disapproval by the House of Representatives.",
-      "Removal from a committee limits a member's ability to participate in that policy area."
+      "Members removed from a committee can no longer vote on bills in that committee."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution censures Representative LaMonica McIver and removes her from the Committee on Homeland Security."
   },
   "119-hres-566": {
     "provisions": [
-      "This resolution sets the rules for House debate on a Senate amendment to H.R. 1.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "This resolution sets the rules for House debate on a Senate change to H.R. 1.",
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on a Senate change to H.R. 1."
   },
   "119-hres-580": {
     "provisions": [
-      "This resolution sets the rules for House debate on H.R. 4016, the Defense appropriations bill.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "This resolution sets the rules for House debate on H.R. 4016, the Defense spending bill.",
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.R. 4016, the Defense spending bill."
   },
   "119-hres-590": {
     "provisions": [
-      "This resolution sets the rules for House debate on a Senate amendment to H.R. 4, the spending rescissions bill.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "This resolution sets the rules for House debate on a Senate change to H.R. 4, the spending cuts bill.",
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on a Senate change to H.R. 4, the spending cuts bill."
   },
   "119-hres-672": {
     "provisions": [
-      "This resolution sets the rules for House debate on H.R. 4553, the Energy and Water appropriations bill.",
-      "It determines how long debate lasts, what amendments are allowed, and the order of votes."
+      "This resolution sets the rules for House debate on H.R. 4553, the Energy and Water spending bill.",
+      "It determines how long debate lasts, what changes are allowed, and the order of votes."
     ],
     "impact_categories": [
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the rules for House debate on H.R. 4553, the Energy and Water spending bill."
   },
   "119-s-146": {
     "provisions": [
@@ -1909,29 +2076,32 @@
       "Technology",
       "Criminal Justice",
       "Civil Rights"
-    ]
+    ],
+    "one_liner": "This bill requires websites and apps to take down intimate images posted without consent within 48 hours of a request."
   },
   "119-s-1596": {
     "provisions": [
       "This bill designates a national wildlife refuge in honor of Jocelyn Nungaray.",
       "The refuge would protect wildlife habitat in a specific area.",
-      "It is named after a victim of a crime and serves as a memorial."
+      "It is named after Jocelyn Nungaray."
     ],
     "impact_categories": [
       "Environment"
-    ]
+    ],
+    "one_liner": "This bill designates a national wildlife refuge in honor of Jocelyn Nungaray."
   },
   "119-sconres-7": {
     "provisions": [
       "This resolution sets the congressional budget for the federal government.",
-      "It establishes spending and revenue targets for the upcoming fiscal year.",
-      "It includes reconciliation instructions directing committees to find savings or raise revenue by specific amounts.",
-      "Budget resolutions are non-binding but guide the appropriations process."
+      "It sets spending and income targets for the government's budget year starting October 2025.",
+      "It tells certain congressional groups to find ways to cut spending or bring in more money by set amounts.",
+      "Budget resolutions do not become law on their own, but they set the targets for how much Congress can spend."
     ],
     "impact_categories": [
       "Economy",
       "Government Operations"
-    ]
+    ],
+    "one_liner": "This resolution sets the congressional budget for the federal government."
   },
   "119-sres-195": {
     "provisions": [
@@ -1942,6 +2112,7 @@
     "impact_categories": [
       "Foreign Affairs",
       "Civil Rights"
-    ]
+    ],
+    "one_liner": "This resolution requests information from the State Department about El Salvador's human rights practices."
   }
 }
