@@ -19,6 +19,8 @@ const IMPACT_CATEGORIES = [
 let showParty = false;
 let billOffset = 0;
 const BILL_LIMIT = 20;
+let expandedCardId = null;
+const summaryCache = new Map();
 
 // --- Initialize ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -183,6 +185,7 @@ async function lookupMembers() {
 
 function renderMembers(grid, members) {
     clearChildren(grid);
+    expandedCardId = null;
 
     members.forEach(member => {
         const bioguideId = member.bioguideId || '';
@@ -205,21 +208,126 @@ function renderMembers(grid, members) {
             el('div', { className: 'state-district' }, `${stateText} ${district}`.trim())
         );
 
+        const header = el('div', { className: 'card-header' }, photoEl, infoEl);
+
         const card = el('article', {
             className: 'member-card',
-            role: 'link',
+            role: 'button',
             tabindex: '0',
-            'aria-label': `View voting record for ${name}`,
-        }, photoEl, infoEl);
+            'aria-expanded': 'false',
+            'aria-label': `View voting snapshot for ${name}`,
+            'data-member-id': bioguideId,
+        }, header);
 
-        const navigate = () => { window.location.href = `/member?id=${bioguideId}`; };
-        card.addEventListener('click', navigate);
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('a')) return;
+            toggleCard(bioguideId, card);
+        });
         card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(); }
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (e.target.closest('a')) return;
+                toggleCard(bioguideId, card);
+            }
         });
 
         grid.appendChild(card);
     });
+}
+
+// --- Card Expand/Collapse ---
+function toggleCard(bioguideId, card) {
+    if (expandedCardId === bioguideId) {
+        collapseCard(card);
+        expandedCardId = null;
+    } else {
+        const prev = expandedCardId ? document.querySelector(`.member-card[data-member-id="${expandedCardId}"]`) : null;
+        if (prev) collapseCard(prev);
+        expandCard(bioguideId, card);
+        expandedCardId = bioguideId;
+    }
+}
+
+async function expandCard(bioguideId, card) {
+    card.classList.add('expanded');
+    card.setAttribute('aria-expanded', 'true');
+
+    const snapshot = el('div', { className: 'card-snapshot' });
+    card.appendChild(snapshot);
+
+    // Trigger reflow then animate
+    snapshot.offsetHeight;
+    snapshot.classList.add('visible');
+
+    if (summaryCache.has(bioguideId)) {
+        renderCardSnapshot(snapshot, summaryCache.get(bioguideId), bioguideId);
+        return;
+    }
+
+    snapshot.appendChild(el('div', { className: 'snapshot-loading' },
+        el('span', { className: 'spinner' }), ' Loading...'
+    ));
+
+    try {
+        const resp = await fetch(`/api/members/${bioguideId}/summary`);
+        if (!resp.ok) throw new Error('Not found');
+        const data = await resp.json();
+        summaryCache.set(bioguideId, data);
+        clearChildren(snapshot);
+        renderCardSnapshot(snapshot, data, bioguideId);
+    } catch {
+        clearChildren(snapshot);
+        snapshot.appendChild(el('div', { className: 'snapshot-empty' }, 'Voting record not yet available'));
+    }
+}
+
+function collapseCard(card) {
+    card.classList.remove('expanded');
+    card.setAttribute('aria-expanded', 'false');
+    const snapshot = card.querySelector('.card-snapshot');
+    if (snapshot) snapshot.remove();
+}
+
+function renderCardSnapshot(container, data, bioguideId) {
+    const stats = data.stats || {};
+    const yeaPct = stats.total_votes ? Math.round((stats.yea_count / stats.total_votes) * 100) : 0;
+    const nayPct = 100 - yeaPct;
+
+    const statsRow = el('div', { className: 'snapshot-stats' },
+        el('span', { className: 'snapshot-stat' },
+            el('strong', null, `${stats.participation_rate ?? 0}%`), ' participation'
+        ),
+        el('span', { className: 'snapshot-stat' },
+            el('span', { className: 'snapshot-yea' }, `${yeaPct}% yea`),
+            ' / ',
+            el('span', { className: 'snapshot-nay' }, `${nayPct}% nay`)
+        )
+    );
+    container.appendChild(statsRow);
+
+    const areas = data.top_policy_areas || [];
+    if (areas.length > 0) {
+        const areaHeader = el('div', { className: 'snapshot-area-header' }, 'Top Policy Areas');
+        container.appendChild(areaHeader);
+
+        areas.forEach(area => {
+            const yeaWidth = area.total ? Math.round((area.yea / area.total) * 100) : 0;
+            const row = el('div', { className: 'summary-issue-row' },
+                el('span', { className: 'summary-issue-name' }, area.name),
+                el('span', { className: 'summary-issue-count' }, `${area.yea}/${area.total}`),
+                el('div', { className: 'summary-mini-bar' },
+                    el('div', { className: 'summary-mini-bar-yea', style: `width:${yeaWidth}%` })
+                )
+            );
+            container.appendChild(row);
+        });
+    }
+
+    const profileLink = el('a', {
+        className: 'snapshot-profile-link',
+        href: `/member?id=${bioguideId}`,
+    }, 'View Full Profile \u2192');
+    container.appendChild(profileLink);
 }
 
 async function reloadMembersWithParty() {
@@ -251,6 +359,7 @@ async function reloadMembersWithParty() {
 
         const grid = document.getElementById('member-grid');
         clearChildren(grid);
+        expandedCardId = null;
 
         detailedMembers.forEach(member => {
             const bioguideId = member.bioguideId || '';
@@ -279,12 +388,26 @@ async function reloadMembersWithParty() {
             }
 
             const infoEl = el('div', { className: 'member-info' }, ...infoChildren);
-            const card = el('article', { className: 'member-card', tabindex: '0' }, photoEl, infoEl);
+            const header = el('div', { className: 'card-header' }, photoEl, infoEl);
+            const card = el('article', {
+                className: 'member-card',
+                role: 'button',
+                tabindex: '0',
+                'aria-expanded': 'false',
+                'aria-label': `View voting snapshot for ${name}`,
+                'data-member-id': bioguideId,
+            }, header);
 
-            const navigate = () => { window.location.href = `/member?id=${bioguideId}`; };
-            card.addEventListener('click', navigate);
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('a')) return;
+                toggleCard(bioguideId, card);
+            });
             card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(); }
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (e.target.closest('a')) return;
+                    toggleCard(bioguideId, card);
+                }
             });
 
             grid.appendChild(card);

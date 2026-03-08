@@ -178,6 +178,78 @@ main {
     margin: 0 auto;
 }
 
+.hero-mission-link {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.hero-mission-link a {
+    color: var(--text-dim);
+    transition: color var(--transition);
+}
+
+.hero-mission-link a:hover {
+    color: var(--accent);
+}
+
+/* ============================================
+   About Page
+   ============================================ */
+.about-page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.about-section {
+    margin-bottom: 2.5rem;
+}
+
+.about-section h2 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+}
+
+.about-section p {
+    color: var(--text-primary);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+}
+
+.about-list {
+    list-style: none;
+    padding: 0;
+}
+
+.about-list li {
+    padding: 0.5rem 0 0.5rem 1.25rem;
+    position: relative;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.about-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.9rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.about-list li strong {
+    color: var(--text-primary);
+}
+
+.about-cta {
+    width: auto;
+    margin-top: 0.5rem;
+}
+
 /* ============================================
    Lookup Section
    ============================================ */
@@ -310,8 +382,20 @@ select:focus, input:focus {
     cursor: pointer;
     transition: all var(--transition);
     display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+}
+
+.card-header {
+    display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.member-card.expanded {
+    border-color: var(--accent-dim);
+    box-shadow: var(--shadow);
 }
 
 .member-card:hover {
@@ -369,6 +453,96 @@ select:focus, input:focus {
 
 .show-party .party-badge {
     display: inline-block;
+}
+
+/* ============================================
+   Card Snapshot (expandable voting summary)
+   ============================================ */
+.card-snapshot {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.card-snapshot.visible {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.snapshot-stats {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.75rem 0 0.5rem;
+    border-top: 1px solid var(--border-light);
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+}
+
+.snapshot-stat strong {
+    color: var(--text-primary);
+}
+
+.snapshot-yea {
+    color: var(--vote-yea);
+    font-weight: 600;
+}
+
+.snapshot-nay {
+    color: var(--vote-nay);
+    font-weight: 600;
+}
+
+.snapshot-area-header {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin: 0.6rem 0 0.35rem;
+}
+
+.card-snapshot .summary-issue-row {
+    grid-template-columns: 120px 45px 1fr;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+}
+
+.snapshot-profile-link {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.snapshot-profile-link:hover {
+    color: var(--accent-dim);
+}
+
+.snapshot-loading {
+    padding: 0.75rem 0;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border-light);
+    margin-top: 0.75rem;
+}
+
+.snapshot-loading .spinner {
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+}
+
+.snapshot-empty {
+    padding: 0.75rem 0;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    font-style: italic;
+    border-top: 1px solid var(--border-light);
+    margin-top: 0.75rem;
 }
 
 /* ============================================
@@ -1444,6 +1618,10 @@ select:focus, input:focus {
     .summary-issue-row {
         grid-template-columns: 110px 50px 1fr;
         gap: 0.5rem;
+    }
+
+    .card-snapshot .summary-issue-row {
+        grid-template-columns: 100px 40px 1fr;
     }
 
     .stats-grid {

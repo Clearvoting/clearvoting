@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — ClearVoting</title>
+    <meta name="description" content="Why we built ClearVoting and how you can help make congressional voting records accessible to everyone.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="logo">Clear<span>Voting</span></a>
+            <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/#browse">Browse Bills</a>
+                <a href="/about" class="active">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <article class="about-page">
+            <section class="about-section">
+                <h2>Why We Built This</h2>
+                <p>We built ClearVoting because we couldn't find a simple way to see how our representatives actually vote. Congressional voting records are public, but they're buried in government websites, written in legal language, and hard to make sense of.</p>
+                <p>We believe democracy works better when everyone can understand what's happening in Congress — not just lawyers and policy experts. So we built a tool that takes real voting data and presents it in plain language, without jargon, without spin, and without telling you what to think.</p>
+            </section>
+
+            <section class="about-section">
+                <h2>What We Do Differently</h2>
+                <ul class="about-list">
+                    <li><strong>Plain language</strong> — Bill summaries written so anyone can understand them, not just policy experts</li>
+                    <li><strong>No party bias</strong> — Party affiliations are hidden by default so you can evaluate representatives on their votes, not their label</li>
+                    <li><strong>Just the facts</strong> — We show voting records and let you form your own opinion. No editorials, no ratings, no spin.</li>
+                    <li><strong>Real data</strong> — Everything comes directly from Congress.gov and Senate.gov official records</li>
+                </ul>
+            </section>
+
+            <section class="about-section">
+                <h2>Help Us Improve</h2>
+                <p>ClearVoting is a work in progress and your feedback makes it better. Tell us what's working, what's confusing, or what you wish this tool could do.</p>
+                <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" rel="noopener" class="btn btn-primary about-cta">Share Your Feedback</a>
+            </section>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <p>Data sourced from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a>.</p>
+        <p>ClearVoting does not express opinions on legislation or representatives.</p>
+    </footer>
+
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('open');
+            document.querySelector('.hamburger').setAttribute('aria-expanded', nav.classList.contains('open'));
+        });
+    </script>
+</body>
+</html>
