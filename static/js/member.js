@@ -291,9 +291,18 @@ function renderVotingSummary(stats, votes) {
     const sortedAreas = Object.entries(areaVotes).sort((a, b) => b[1].total - a[1].total);
     const topAreas = sortedAreas.slice(0, 5);
 
-    // Separate yea and nay votes
-    const yeaVotes = votes.filter(v => v.vote === 'Yea');
-    const nayVotes = votes.filter(v => v.vote === 'Nay');
+    // Deduplicate votes by bill — keep final (most recent) vote per bill
+    // Votes are sorted newest-first, so first occurrence per bill is the final vote
+    const seenBills = new Set();
+    const uniqueYea = [];
+    const uniqueNay = [];
+    votes.forEach(v => {
+        const key = v.bill_id || v.one_liner;
+        if (!key || seenBills.has(key)) return;
+        seenBills.add(key);
+        if (v.vote === 'Yea') uniqueYea.push(v);
+        else if (v.vote === 'Nay') uniqueNay.push(v);
+    });
 
     // Build the summary card
     const card = el('section', { className: 'voting-summary-card' });
@@ -301,7 +310,7 @@ function renderVotingSummary(stats, votes) {
 
     // Overview — plain language
     const overview = el('p', { className: 'summary-overview' },
-        `Supports ${yeaPct}% of bills that come to a vote. Shows up for ${stats.participation_rate}% of all votes. Most active on ${topAreas.slice(0, 3).map(a => a[0].toLowerCase()).join(', ')}.`
+        `Supports ${yeaPct}% of bills that come to a vote. Shows up for ${stats.participation_rate}% of all votes. Most votes in ${topAreas.slice(0, 3).map(a => a[0].toLowerCase()).join(', ')}.`
     );
     card.appendChild(overview);
 
@@ -327,24 +336,24 @@ function renderVotingSummary(stats, votes) {
     });
     card.appendChild(issuesSection);
 
-    // What they voted for — plain language, no bill titles
-    if (yeaVotes.length > 0) {
+    // What they voted for — deduplicated, plain language
+    if (uniqueYea.length > 0) {
         const forSection = el('div', { className: 'summary-voted-section summary-for' });
         forSection.appendChild(el('h4', null, 'What They Supported'));
         const forList = el('ul', { className: 'summary-vote-list' });
-        yeaVotes.slice(0, 6).forEach(v => {
+        uniqueYea.slice(0, 6).forEach(v => {
             forList.appendChild(el('li', null, v.one_liner));
         });
         forSection.appendChild(forList);
         card.appendChild(forSection);
     }
 
-    // What they voted against — plain language, no bill titles
-    if (nayVotes.length > 0) {
+    // What they voted against — deduplicated, plain language
+    if (uniqueNay.length > 0) {
         const againstSection = el('div', { className: 'summary-voted-section summary-against' });
         againstSection.appendChild(el('h4', null, 'What They Opposed'));
         const againstList = el('ul', { className: 'summary-vote-list' });
-        nayVotes.slice(0, 4).forEach(v => {
+        uniqueNay.slice(0, 4).forEach(v => {
             againstList.appendChild(el('li', null, v.one_liner));
         });
         againstSection.appendChild(againstList);
