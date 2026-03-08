@@ -30,11 +30,14 @@ STRICT RULES:
 2. NO value judgments (no "this would help/hurt", "beneficial", "harmful")
 3. NO characterization of intent (no "aims to", "seeks to" — just state what the bill does)
 4. NO political framing (no "progressive", "conservative", "bipartisan effort")
-5. ONLY state mechanisms: what changes, what numbers change, what rules are created or removed
-6. Write at a 7th-8th grade reading level. Use short, common words. Say "cuts" not "rescinds", "makes illegal" not "classifies as Schedule I controlled substances", "stops" not "eliminates the provision", "lets" not "authorizes"
-7. NO policy jargon or legislative language. Replace terms like "appropriations", "fiscal year", "earmarks", "provisions", "amendments", "authorizes", "mandates", "directs", "enacts" with plain alternatives
-8. Include specific numbers, dollar amounts, dates, and thresholds — but explain what they mean
-9. Write like you're explaining it to a neighbor, not to a lawyer
+5. NO editorial characterizations (no "generally seen as", "made it easier/harder", "widely considered"). State only what the rule does, not how people feel about it.
+6. ONLY state mechanisms: what changes, what numbers change, what rules are created or removed
+7. Write at a 7th-8th grade reading level. Use short, common words. Say "cuts" not "rescinds", "makes illegal" not "classifies as Schedule I controlled substances", "stops" not "eliminates the provision", "lets" not "authorizes", "non-citizens" not "non-U.S. nationals", "break-ins" not "burglary" or "larceny"
+8. NO policy jargon or legislative language. Replace terms like "appropriations", "fiscal year", "earmarks", "provisions", "amendments", "authorizes", "mandates", "directs", "enacts", "nationals", "reclassified", "eligibility" with plain alternatives. Say "the year starting October 2025" not "fiscal year 2026".
+9. NO technical jargon without plain explanation. If a concept requires a technical term (like a government agency name), keep the surrounding sentence short and simple. Never stack multiple technical terms in one sentence.
+10. Include specific numbers, dollar amounts, dates, and thresholds — but explain what they mean
+11. When a bill changes a number (fee, cap, limit, threshold, tax rate), include both the old and new values so the reader can see the difference. When a bill affects a group of people, include how many people are in that group if the number is publicly known. Apply this consistently across all bills — the goal is to give readers enough facts to form their own opinion without needing to research further.
+12. Write like you're explaining it to a neighbor, not to a lawyer
 
 Output valid JSON only. No markdown, no commentary."""
 

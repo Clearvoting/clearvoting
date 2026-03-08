@@ -17,15 +17,15 @@
   },
   "119-hjres-25": {
     "provisions": [
-      "This resolution cancels an IRS rule from December 2024 that would have required decentralized finance (DeFi) platforms to report the total sale amounts of cryptocurrency transactions.",
-      "DeFi platforms no longer have to collect and send customer crypto sale information to the IRS.",
-      "People who buy and sell crypto through DeFi platforms will not receive the tax forms that the rule would have required."
+      "This resolution cancels an IRS rule from December 2024 that would have required certain crypto trading websites to report sales to the IRS.",
+      "These websites, which let people trade crypto without a bank or broker in the middle, no longer have to collect and send customer crypto sale information to the IRS.",
+      "People who buy and sell crypto through these websites will not receive the tax forms that the rule would have required."
     ],
     "impact_categories": ["Taxes", "Technology"]
   },
   "119-hjres-35": {
     "provisions": [
-      "This resolution cancels an EPA rule that required oil and gas companies to pay fees when they release too much methane into the air.",
+      "This resolution cancels an EPA rule that required oil and gas companies to pay fees when they release too much methane into the air. The fee was $900 per ton in 2024, rising to $1,500 per ton by 2026.",
       "Companies that drill for oil or produce natural gas no longer owe these fees for excess methane releases.",
       "The methane fee was part of a program to reduce greenhouse gas leaks from oil and gas operations."
     ],
@@ -33,9 +33,9 @@
   },
   "119-hjres-42": {
     "provisions": [
-      "This resolution cancels a Department of Energy rule from October 2024 about how manufacturers certify, label, and follow energy efficiency rules for household products and business equipment.",
-      "The rule covered the testing and paperwork process companies must follow to show their products meet energy standards.",
-      "Without the rule, the previous certification and labeling process stays in place."
+      "This resolution cancels a Department of Energy rule from October 2024 about how companies prove their household products and business equipment meet energy-saving rules.",
+      "The rule covered the testing and paperwork companies must do to show their products use energy the right way.",
+      "Without the rule, the older testing and paperwork steps stay in place."
     ],
     "impact_categories": ["Small Business", "Government Operations"]
   },
@@ -74,7 +74,7 @@
   "119-hjres-88": {
     "provisions": [
       "This resolution cancels an EPA notice that allowed California to set its own stricter car emission rules under a program called Advanced Clean Cars II.",
-      "That California program included requirements for car dealers to sell a rising percentage of electric vehicles over time.",
+      "That California program required car dealers to sell a rising share of electric vehicles — 35% of new cars by 2026, reaching 100% by 2035.",
       "Without the federal permission, California must follow the same vehicle emission rules as other states."
     ],
     "impact_categories": ["Environment", "Technology"]
@@ -89,20 +89,20 @@
   },
   "119-hr-1": {
     "provisions": [
-      "This bill changes tax rules, including raising the state and local tax (SALT) deduction cap to $40,000, extending the 2017 tax cuts, and creating new deductions for tips, car loan interest, and senior citizens.",
-      "It raises the federal debt limit by $4 trillion.",
-      "It spends $150 billion on immigration enforcement and border security, including money for detention facilities, border barriers, and hiring new agents.",
-      "It cuts $880 billion from Medicaid over 10 years by adding work requirements for adults ages 19-64 and checking eligibility more often.",
+      "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
+      "It raises the government's borrowing limit by $4 trillion.",
+      "It spends $150 billion on immigration enforcement and border security, including holding facilities, border walls, and hiring new agents.",
+      "It reduces Medicaid spending by $880 billion over 10 years by requiring most adults ages 19-64 to work and by checking who qualifies more often. About 72 million people are currently enrolled in Medicaid.",
       "It puts $100 billion toward defense and military spending.",
-      "It changes education funding by creating new school savings accounts and changing student loan repayment plans.",
-      "It speeds up permits for energy and infrastructure projects on federal land."
+      "It changes education funding by creating new school savings accounts and changing how student loans are paid back.",
+      "It speeds up approval for energy and building projects on federal land."
     ],
     "impact_categories": ["Taxes", "Healthcare", "Military & Veterans", "Immigration", "Education", "Environment", "Infrastructure", "Social Security & Medicare", "Government Operations"]
   },
   "119-hr-1968": {
     "provisions": [
-      "This bill keeps federal agencies funded for the rest of fiscal year 2025 (through September 30, 2025) at the same spending levels as fiscal year 2024.",
-      "It extends programs that were set to expire before the end of the fiscal year.",
+      "This bill keeps federal agencies funded through September 30, 2025, at the same spending levels as the year before.",
+      "It extends programs that were set to expire before that date.",
       "Without this bill, agencies that had not received their regular yearly funding would have had to shut down or reduce operations.",
       "Some programs receive small adjustments to their funding levels, but most stay flat compared to the prior year."
     ],
@@ -110,18 +110,18 @@
   },
   "119-hr-23": {
     "provisions": [
-      "This bill places sanctions on any foreign person who directly helps the International Criminal Court (ICC) investigate, arrest, or put on trial people the bill protects.",
-      "Protected people include U.S. citizens, U.S. service members, and nationals of countries allied with the U.S., such as Israel.",
-      "Sanctions can include freezing bank accounts and property in the U.S. and banning the person from entering the country.",
-      "The president can waive the sanctions if doing so is in the national security interest of the U.S."
+      "This bill punishes any foreign person who helps the International Criminal Court (ICC) investigate, arrest, or put on trial people the bill protects.",
+      "Protected people include U.S. citizens, U.S. military members, and citizens of U.S. ally countries listed in the bill.",
+      "Punishments can include freezing their money and property in the U.S. and banning them from entering the country.",
+      "The president can skip these punishments if doing so is needed for national security."
     ],
     "impact_categories": ["Military & Veterans", "Government Operations"]
   },
   "119-hr-3944": {
     "provisions": [
-      "This bill provides fiscal year 2026 funding for military construction projects, including building and repairing military bases and housing.",
+      "This bill pays for military building projects starting October 2025, including building and repairing military bases and housing.",
       "It funds the Department of Veterans Affairs, covering veterans' health care, benefits, and cemetery operations.",
-      "It provides fiscal year 2026 money for the Department of Agriculture, including food safety, nutrition programs, and farm support.",
+      "It pays for the Department of Agriculture starting October 2025, including food safety, nutrition programs, and farm support.",
       "It funds operations of Congress and related offices like the Library of Congress and the Government Accountability Office."
     ],
     "impact_categories": ["Military & Veterans", "Agriculture", "Government Operations"]
@@ -129,7 +129,7 @@
   "119-hr-4": {
     "provisions": [
       "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
-      "The money is taken from the State Department, the U.S. Agency for International Development (USAID), and the Corporation for Public Broadcasting.",
+      "The money is taken from the State Department, the U.S. Agency for International Development (USAID, which has a total budget of about $28 billion), and the Corporation for Public Broadcasting.",
       "Once taken back, these funds cannot be spent on their original purposes.",
       "The bill lists specific accounts and dollar amounts for each agency."
     ],
@@ -147,27 +147,27 @@
   },
   "119-s-2296": {
     "provisions": [
-      "This bill sets the rules and spending levels for the Department of Defense, military construction, and Department of Energy nuclear security programs for fiscal year 2026.",
-      "It covers military pay, equipment purchases, training, and base operations.",
+      "This bill sets the budget and rules for the Department of Defense, military building projects, and nuclear security programs for the year starting October 2025.",
+      "It covers military pay, equipment purchases, training, and day-to-day base operations.",
       "It includes money for building and repairing military facilities.",
-      "The bill sets policies on things like troop strength numbers, weapons programs, and military readiness."
+      "The bill sets rules on how many troops to keep, which weapons to buy, and how prepared the military must be."
     ],
     "impact_categories": ["Military & Veterans", "Government Operations"]
   },
   "119-s-331": {
     "provisions": [
-      "This bill permanently adds all substances chemically related to fentanyl to Schedule I, the most restricted category of controlled substances.",
-      "Before this bill, fentanyl-related substances were temporarily placed on Schedule I and that classification had to keep being renewed.",
-      "Making, selling, or possessing these substances carries the same criminal penalties as other Schedule I drugs.",
-      "The bill includes a process for removing a specific substance from this classification if a review shows it does not belong."
+      "This bill permanently makes all chemicals related to fentanyl illegal under the strictest drug category.",
+      "Before this bill, these fentanyl-like chemicals were only temporarily banned and the ban had to keep being renewed.",
+      "Making, selling, or having these chemicals carries the same penalties as other drugs in the strictest category, like heroin.",
+      "The bill includes a way to remove a specific chemical from the ban if a review shows it does not belong."
     ],
     "impact_categories": ["Criminal Justice", "Healthcare"]
   },
   "119-s-5": {
     "provisions": [
-      "This bill requires the Department of Homeland Security to arrest and hold non-U.S. nationals who are charged with or convicted of burglary, theft, larceny, or shoplifting.",
-      "It allows state governments to sue the federal government in court over immigration enforcement decisions that affect their residents.",
-      "If a non-citizen who was released from custody commits one of these crimes, the state where it happened can take legal action against the federal government."
+      "This bill requires the Department of Homeland Security to arrest and hold non-citizens who are charged with or found guilty of break-ins, theft, or shoplifting.",
+      "It allows state governments to sue the federal government over immigration enforcement decisions that affect their residents.",
+      "If a non-citizen who was released from custody commits one of these crimes, the state where it happened can take the federal government to court."
     ],
     "impact_categories": ["Immigration", "Criminal Justice"]
   },
@@ -185,7 +185,7 @@
       "Schools that get federal money cannot let athletes born male play on women's or girls' sports teams.",
       "This applies to all levels — elementary school through college.",
       "A school that breaks this rule would be treated the same as breaking Title IX, the law that requires equal treatment of men and women in school programs.",
-      "Students could lose their spot on a team if their birth sex was male, regardless of any other factor."
+      "A student born male could not play on a girls' or women's team, even after changing their gender identity."
     ],
     "impact_categories": ["Education", "Government Operations"]
   },
@@ -201,9 +201,9 @@
   "119-sjres-11": {
     "provisions": [
       "This cancels a rule from September 2024 by the Bureau of Ocean Energy Management (BOEM).",
-      "That rule required oil and gas companies drilling on the ocean floor to protect underwater historical and archaeological sites.",
-      "Without this rule, those companies would no longer have to follow those specific protection requirements.",
-      "The rule applied to drilling on the outer continental shelf, which is the underwater land off the U.S. coast controlled by the federal government."
+      "That rule required oil and gas companies drilling on the ocean floor to protect underwater historical sites.",
+      "Without this rule, those companies no longer have to follow those specific protection rules.",
+      "The rule applied to drilling on federally controlled underwater land off the U.S. coast."
     ],
     "impact_categories": ["Environment", "Government Operations"]
   },
@@ -220,8 +220,8 @@
     "provisions": [
       "This cancels a rule from September 2024 by the Office of the Comptroller of the Currency (OCC), the agency that oversees national banks.",
       "That rule changed how the government reviews whether two banks should be allowed to merge into one.",
-      "Without this rule, bank mergers would go back to being reviewed under the older process.",
-      "The older process was generally seen as faster and had fewer review steps."
+      "Without this rule, bank mergers go back to being reviewed under the older process.",
+      "The older process had fewer review steps."
     ],
     "impact_categories": ["Small Business", "Government Operations"]
   },
@@ -230,7 +230,7 @@
       "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about overdraft fees.",
       "That rule changed how banks with more than $10 billion in assets could charge customers for overdrawing their accounts.",
       "The CFPB rule would have capped most overdraft fees at $5 unless the bank met certain conditions.",
-      "Without this rule, large banks can keep charging overdraft fees at their current rates, which are often around $35 per overdraft."
+      "Without this rule, large banks can keep charging overdraft fees at their current rates, which are typically around $35 per overdraft."
     ],
     "impact_categories": ["Wages & Income", "Government Operations"]
   },
@@ -247,16 +247,16 @@
     "provisions": [
       "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about digital payment apps.",
       "That rule defined which companies running digital payment apps — like Apple Pay, Google Pay, Venmo, and Cash App — were large enough to face direct federal oversight.",
-      "Companies processing more than 50 million transactions per year would have been classified as 'larger participants' and subject to CFPB examinations.",
-      "Without this rule, those digital payment companies would not face this specific layer of federal review."
+      "Companies handling more than 50 million transactions per year would have been watched more closely by the CFPB.",
+      "Without this rule, those digital payment companies do not face this added federal review."
     ],
     "impact_categories": ["Technology", "Government Operations"]
   },
   "119-sjres-3": {
     "provisions": [
-      "This cancels an IRS rule that would have required decentralized finance (DeFi) platforms to report user transaction data to the IRS.",
-      "DeFi platforms let people trade cryptocurrency without a traditional company acting as a middleman.",
-      "Under the canceled rule, these platforms would have had to collect and send user names, addresses, and transaction details to the IRS, similar to what stock brokers do.",
+      "This cancels an IRS rule that would have required certain crypto trading websites to report user transaction data to the IRS.",
+      "These websites let people trade crypto without a bank or broker in the middle.",
+      "Under the canceled rule, these websites would have had to collect and send user names, addresses, and transaction details to the IRS, similar to what stock brokers do.",
       "This is the Senate version of the same topic covered by House bill HJRES 25."
     ],
     "impact_categories": ["Taxes", "Technology"]
@@ -264,9 +264,9 @@
   "119-sjres-31": {
     "provisions": [
       "This cancels a September 2024 EPA rule about how air pollution sources are classified.",
-      "The rule changed when a facility that used to be a 'major' pollution source could be reclassified as a smaller 'area' source under the Clean Air Act.",
-      "Major sources face stricter pollution controls and monitoring than area sources.",
-      "Without this rule, the previous classification process — which made it easier for facilities to move from the major to the area category — stays in place."
+      "The rule changed when a factory or plant labeled a 'major' pollution source could be moved to a smaller 'area' source category under the Clean Air Act.",
+      "Major sources must follow stricter pollution controls and monitoring than area sources.",
+      "Without this rule, the older process for changing a source's category stays in place."
     ],
     "impact_categories": ["Environment", "Government Operations"]
   },
@@ -290,7 +290,7 @@
   },
   "119-sjres-37": {
     "provisions": [
-      "This cancels the national emergency declared on February 1, 2025 that was used to put tariffs on goods from Canada.",
+      "This cancels the national emergency declared on February 1, 2025 that was used to put tariffs on goods from Canada, the largest U.S. trading partner.",
       "Those tariffs added a 25% tax on most products imported from Canada.",
       "Canadian energy imports like oil had a lower tariff rate of 10%.",
       "Canceling the emergency would remove the legal basis for those tariffs, and they would no longer be collected."
@@ -347,7 +347,7 @@
       "This tells the President to pull U.S. military forces out of any fighting against Iran within 30 days of the resolution passing.",
       "The President could not send troops to fight Iran unless Congress officially declares war or passes a specific law allowing it.",
       "This uses Congress's power under the War Powers Resolution, which limits the President's ability to use military force without Congress's approval.",
-      "It does not affect military operations against other countries or non-state groups."
+      "It does not affect military operations against other countries or armed groups that are not countries."
     ],
     "impact_categories": ["Military & Veterans", "Government Operations"]
   },
