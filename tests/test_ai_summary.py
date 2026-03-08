@@ -180,3 +180,26 @@ async def test_generate_summary_json_error_includes_one_liner():
 
     assert "one_liner" in result
     assert result["one_liner"] == "Fallback Title"
+
+
+def test_build_prompt_with_grader_feedback():
+    service = AISummaryService(api_key="test", cache=MagicMock())
+    prompt = service._build_prompt(
+        title="Test Bill",
+        official_summary="A bill to do things.",
+        bill_text_excerpt="Section 1.",
+        grader_feedback="Use simpler words. Avoid 'appropriations'."
+    )
+    assert "simpler words" in prompt
+    assert "appropriations" in prompt
+    assert "PREVIOUS ATTEMPT" in prompt or "feedback" in prompt.lower()
+
+
+def test_build_prompt_without_grader_feedback():
+    service = AISummaryService(api_key="test", cache=MagicMock())
+    prompt = service._build_prompt(
+        title="Test Bill",
+        official_summary="A bill to do things.",
+        bill_text_excerpt="Section 1.",
+    )
+    assert "PREVIOUS ATTEMPT" not in prompt

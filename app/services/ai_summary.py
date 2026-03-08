@@ -53,9 +53,9 @@ class AISummaryService:
         self.client = anthropic.AsyncAnthropic(api_key=api_key)
         self.cache = cache
 
-    def _build_prompt(self, title: str, official_summary: str, bill_text_excerpt: str) -> str:
+    def _build_prompt(self, title: str, official_summary: str, bill_text_excerpt: str, grader_feedback: str | None = None) -> str:
         categories_str = ", ".join(IMPACT_CATEGORIES)
-        return f"""Analyze this bill and return JSON with three fields:
+        prompt = f"""Analyze this bill and return JSON with three fields:
 
 1. "one_liner": A single plain-English phrase (max 15 words) starting with a verb that says what this bill does. No period. No adjectives. Examples: "Cancel an EPA rule limiting methane fees on oil and gas companies", "Fund the military and set troop pay for 2026".
 
@@ -72,13 +72,25 @@ Bill Text (excerpt): {bill_text_excerpt}
 Return ONLY valid JSON. Example format:
 {{"one_liner": "Raise the federal minimum wage to $15 per hour", "provisions": ["Raises the minimum wage from $7.25 to $15.00 per hour over 5 years", "Gives veterans a raise to keep up with the rising cost of living"], "impact_categories": ["Wages & Income"]}}"""
 
-    async def generate_summary(self, bill_id: str, title: str, official_summary: str, bill_text_excerpt: str) -> dict:
-        cache_key = f"ai_summary:{bill_id}"
-        cached = self.cache.get(cache_key)
-        if cached is not None:
-            return cached
+        if grader_feedback:
+            prompt += f"""
 
-        prompt = self._build_prompt(title, official_summary, bill_text_excerpt)
+IMPORTANT — PREVIOUS ATTEMPT WAS REJECTED. Fix these specific issues:
+{grader_feedback}
+
+Generate a corrected version. Return ONLY valid JSON."""
+
+        return prompt
+
+    async def generate_summary(self, bill_id: str, title: str, official_summary: str, bill_text_excerpt: str, grader_feedback: str | None = None) -> dict:
+        # Skip cache when grader_feedback is present (this is a retry)
+        if not grader_feedback:
+            cache_key = f"ai_summary:{bill_id}"
+            cached = self.cache.get(cache_key)
+            if cached is not None:
+                return cached
+
+        prompt = self._build_prompt(title, official_summary, bill_text_excerpt, grader_feedback=grader_feedback)
 
         response = await self.client.messages.create(
             model="claude-sonnet-4-20250514",
@@ -100,5 +112,8 @@ Return ONLY valid JSON. Example format:
         if "one_liner" not in result or not result["one_liner"]:
             result["one_liner"] = result["provisions"][0] if result.get("provisions") else title
 
-        self.cache.set(cache_key, result)
+        # Only cache final results (no grader_feedback = final or first pass)
+        if not grader_feedback:
+            self.cache.set(cache_key, result)
+
         return result
