@@ -297,8 +297,12 @@ async def build_member_votes(output_dir: Path) -> int:
     ai_summaries: dict[str, dict] = {}
     ai_summaries_path = output_dir / "ai_summaries.json"
     if ai_summaries_path.exists():
-        with open(ai_summaries_path) as f:
-            ai_summaries = json.load(f)
+        try:
+            with open(ai_summaries_path) as f:
+                ai_summaries = json.load(f)
+        except json.JSONDecodeError:
+            print("  Warning: ai_summaries.json is malformed — using raw titles")
+            ai_summaries = {}
 
     def _get_one_liner(bill_ref: str | None, bill_info: dict, doc: str) -> str:
         if bill_ref:

@@ -596,3 +596,40 @@ async def test_build_member_votes_falls_back_to_title(tmp_path):
 
     data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
     assert data["votes"][0]["one_liner"] == "Some Raw Title"
+
+
+@pytest.mark.asyncio
+async def test_build_member_votes_ai_file_exists_but_bill_missing(tmp_path):
+    """AI summaries file exists but doesn't have this bill — falls back to title."""
+    members = {"members": [
+        {"bioguideId": "S001217", "name": "Scott, Rick", "directOrderName": "Rick Scott",
+         "stateCode": "FL", "chamber": "Senate"},
+    ]}
+    _write_json(tmp_path / "members.json", members)
+
+    bills = {"bills": [
+        {"congress": 119, "type": "HR", "number": "1", "title": "Raw Title Here",
+         "policyArea": {"name": "Taxation"}, "summaries": []},
+    ]}
+    _write_json(tmp_path / "bills.json", bills)
+
+    # AI summaries exist but for a DIFFERENT bill
+    _write_json(tmp_path / "ai_summaries.json", {
+        "119-s-999": {"one_liner": "Something else", "provisions": [], "impact_categories": []}
+    })
+
+    vote_dir = tmp_path / "votes" / "senate"
+    vote_dir.mkdir(parents=True)
+    _write_json(vote_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "vote_date": "2025-01-15", "document": "H.R. 1",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [
+            {"first_name": "Rick", "last_name": "Scott", "party": "R", "state": "FL", "vote": "Yea"},
+        ],
+    })
+
+    count = await build_member_votes(tmp_path)
+
+    data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
+    assert data["votes"][0]["one_liner"] == "Raw Title Here"
