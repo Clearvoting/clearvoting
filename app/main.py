@@ -65,3 +65,8 @@ async def serve_member():
 @app.get("/bill")
 async def serve_bill():
     return FileResponse(str(static_dir / "bill.html"))
+
+
+@app.get("/about")
+async def serve_about():
+    return FileResponse(str(static_dir / "about.html"))
