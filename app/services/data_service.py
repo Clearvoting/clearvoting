@@ -54,6 +54,35 @@ class DataService:
         with open(path, "r") as f:
             return json.load(f)
 
+    def get_member_vote_summary(self, bioguide_id: str) -> dict | None:
+        data = self.get_member_votes(bioguide_id)
+        if not data:
+            return None
+
+        area_counts: dict[str, dict[str, int]] = {}
+        for vote in data.get("votes", []):
+            area = vote.get("policy_area", "Other")
+            if area not in area_counts:
+                area_counts[area] = {"yea": 0, "nay": 0, "total": 0}
+            position = vote.get("vote", "").lower()
+            if position == "yea":
+                area_counts[area]["yea"] += 1
+            elif position == "nay":
+                area_counts[area]["nay"] += 1
+            area_counts[area]["total"] += 1
+
+        top_areas = sorted(area_counts.items(), key=lambda x: x[1]["total"], reverse=True)[:3]
+        top_policy_areas = [
+            {"name": name, "yea": counts["yea"], "nay": counts["nay"], "total": counts["total"]}
+            for name, counts in top_areas
+        ]
+
+        return {
+            "member_id": data["member_id"],
+            "stats": data["stats"],
+            "top_policy_areas": top_policy_areas,
+        }
+
     def get_bills(self, offset: int = 0, limit: int = 20) -> dict:
         paginated = self._bills[offset:offset + limit]
         return {"bills": paginated}

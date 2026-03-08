@@ -70,6 +70,34 @@ async def test_get_member_detail_shows_party_when_requested():
     assert data["member"]["partyName"] == "Republican"
 
 
+@pytest.mark.asyncio
+async def test_get_member_summary():
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/members/S001217/summary")
+
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    data = response.json()
+    assert data["member_id"] == "S001217"
+    assert "stats" in data
+    assert "top_policy_areas" in data
+
+
+@pytest.mark.asyncio
+async def test_get_member_summary_not_found():
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/members/X999999/summary")
+
+    _clear_data_service_cache()
+    assert response.status_code == 404
+
+
 # --- Bills Router ---
 
 @pytest.mark.asyncio

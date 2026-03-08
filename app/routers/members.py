@@ -47,6 +47,16 @@ async def get_member_votes(
     }
 
 
+@router.get("/{bioguide_id}/summary")
+async def get_member_summary(bioguide_id: str):
+    _validate_bioguide_id(bioguide_id)
+    data_service = get_data_service()
+    summary = data_service.get_member_vote_summary(bioguide_id)
+    if not summary:
+        raise HTTPException(status_code=404, detail="Member not found")
+    return summary
+
+
 @router.get("/{state_code}")
 async def get_members_by_state(state_code: str):
     state_code = _validate_state_code(state_code)
