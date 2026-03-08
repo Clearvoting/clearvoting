@@ -1,1 +1,363 @@
-{}
+{
+  "119-hjres-20": {
+    "provisions": [
+      "This resolution cancels a Department of Energy rule from December 2024 that set new energy efficiency standards for gas tankless water heaters.",
+      "Without this rule, gas tankless water heaters do not have to meet the newer efficiency requirements.",
+      "Manufacturers can continue making and selling gas tankless water heaters that meet the older standards."
+    ],
+    "impact_categories": ["Environment", "Small Business"]
+  },
+  "119-hjres-24": {
+    "provisions": [
+      "This resolution cancels a Department of Energy rule from December 2024 that set new energy efficiency standards for walk-in coolers and walk-in freezers.",
+      "Businesses that use walk-in coolers and freezers, like restaurants and grocery stores, do not have to meet the newer efficiency requirements.",
+      "The older energy standards for this equipment stay in place."
+    ],
+    "impact_categories": ["Small Business", "Environment"]
+  },
+  "119-hjres-25": {
+    "provisions": [
+      "This resolution cancels an IRS rule from December 2024 that would have required decentralized finance (DeFi) platforms to report the total sale amounts of cryptocurrency transactions.",
+      "DeFi platforms no longer have to collect and send customer crypto sale information to the IRS.",
+      "People who buy and sell crypto through DeFi platforms will not receive the tax forms that the rule would have required."
+    ],
+    "impact_categories": ["Taxes", "Technology"]
+  },
+  "119-hjres-35": {
+    "provisions": [
+      "This resolution cancels an EPA rule that required oil and gas companies to pay fees when they release too much methane into the air.",
+      "Companies that drill for oil or produce natural gas no longer owe these fees for excess methane releases.",
+      "The methane fee was part of a program to reduce greenhouse gas leaks from oil and gas operations."
+    ],
+    "impact_categories": ["Environment", "Wages & Income"]
+  },
+  "119-hjres-42": {
+    "provisions": [
+      "This resolution cancels a Department of Energy rule from October 2024 about how manufacturers certify, label, and follow energy efficiency rules for household products and business equipment.",
+      "The rule covered the testing and paperwork process companies must follow to show their products meet energy standards.",
+      "Without the rule, the previous certification and labeling process stays in place."
+    ],
+    "impact_categories": ["Small Business", "Government Operations"]
+  },
+  "119-hjres-60": {
+    "provisions": [
+      "This resolution cancels a National Park Service rule about motor vehicle use in Glen Canyon National Recreation Area in northern Arizona and southern Utah.",
+      "The canceled rule placed limits on where and how motor vehicles could be driven within the recreation area.",
+      "Previous motor vehicle rules for Glen Canyon remain in effect."
+    ],
+    "impact_categories": ["Environment", "Infrastructure"]
+  },
+  "119-hjres-61": {
+    "provisions": [
+      "This resolution cancels an EPA rule that set limits on toxic air pollution released by rubber tire factories.",
+      "Tire manufacturers do not have to follow the newer emission limits from that rule.",
+      "The previous emission limits for tire factories remain in place."
+    ],
+    "impact_categories": ["Environment", "Small Business"]
+  },
+  "119-hjres-75": {
+    "provisions": [
+      "This resolution cancels a Department of Energy rule from January that set new energy efficiency standards for commercial refrigerators, freezers, and combination units.",
+      "Businesses like restaurants, convenience stores, and supermarkets do not have to buy equipment meeting the newer standards.",
+      "The older efficiency standards for commercial refrigeration equipment stay in effect."
+    ],
+    "impact_categories": ["Small Business", "Environment"]
+  },
+  "119-hjres-87": {
+    "provisions": [
+      "This resolution cancels an EPA notice that allowed California to set its own stricter emission rules for heavy-duty trucks.",
+      "California's Advanced Clean Trucks rule and Zero Emission Airport Shuttle rule no longer have federal permission to be enforced.",
+      "Truck manufacturers selling in California follow the same federal emission rules as every other state."
+    ],
+    "impact_categories": ["Environment", "Infrastructure"]
+  },
+  "119-hjres-88": {
+    "provisions": [
+      "This resolution cancels an EPA notice that allowed California to set its own stricter car emission rules under a program called Advanced Clean Cars II.",
+      "That California program included requirements for car dealers to sell a rising percentage of electric vehicles over time.",
+      "Without the federal permission, California must follow the same vehicle emission rules as other states."
+    ],
+    "impact_categories": ["Environment", "Technology"]
+  },
+  "119-hjres-89": {
+    "provisions": [
+      "This resolution cancels an EPA notice that allowed California to set its own stricter rules limiting nitrogen oxide (NOX) pollution from cars and off-road engines.",
+      "California no longer has federal permission to enforce these tighter NOX limits.",
+      "Vehicles and off-road engines sold in California follow the same federal NOX rules as other states."
+    ],
+    "impact_categories": ["Environment"]
+  },
+  "119-hr-1": {
+    "provisions": [
+      "This bill changes tax rules, including raising the state and local tax (SALT) deduction cap to $40,000, extending the 2017 tax cuts, and creating new deductions for tips, car loan interest, and senior citizens.",
+      "It raises the federal debt limit by $4 trillion.",
+      "It spends $150 billion on immigration enforcement and border security, including money for detention facilities, border barriers, and hiring new agents.",
+      "It cuts $880 billion from Medicaid over 10 years by adding work requirements for adults ages 19-64 and checking eligibility more often.",
+      "It puts $100 billion toward defense and military spending.",
+      "It changes education funding by creating new school savings accounts and changing student loan repayment plans.",
+      "It speeds up permits for energy and infrastructure projects on federal land."
+    ],
+    "impact_categories": ["Taxes", "Healthcare", "Military & Veterans", "Immigration", "Education", "Environment", "Infrastructure", "Social Security & Medicare", "Government Operations"]
+  },
+  "119-hr-1968": {
+    "provisions": [
+      "This bill keeps federal agencies funded for the rest of fiscal year 2025 (through September 30, 2025) at the same spending levels as fiscal year 2024.",
+      "It extends programs that were set to expire before the end of the fiscal year.",
+      "Without this bill, agencies that had not received their regular yearly funding would have had to shut down or reduce operations.",
+      "Some programs receive small adjustments to their funding levels, but most stay flat compared to the prior year."
+    ],
+    "impact_categories": ["Government Operations"]
+  },
+  "119-hr-23": {
+    "provisions": [
+      "This bill places sanctions on any foreign person who directly helps the International Criminal Court (ICC) investigate, arrest, or put on trial people the bill protects.",
+      "Protected people include U.S. citizens, U.S. service members, and nationals of countries allied with the U.S., such as Israel.",
+      "Sanctions can include freezing bank accounts and property in the U.S. and banning the person from entering the country.",
+      "The president can waive the sanctions if doing so is in the national security interest of the U.S."
+    ],
+    "impact_categories": ["Military & Veterans", "Government Operations"]
+  },
+  "119-hr-3944": {
+    "provisions": [
+      "This bill provides fiscal year 2026 funding for military construction projects, including building and repairing military bases and housing.",
+      "It funds the Department of Veterans Affairs, covering veterans' health care, benefits, and cemetery operations.",
+      "It provides fiscal year 2026 money for the Department of Agriculture, including food safety, nutrition programs, and farm support.",
+      "It funds operations of Congress and related offices like the Library of Congress and the Government Accountability Office."
+    ],
+    "impact_categories": ["Military & Veterans", "Agriculture", "Government Operations"]
+  },
+  "119-hr-4": {
+    "provisions": [
+      "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
+      "The money is taken from the State Department, the U.S. Agency for International Development (USAID), and the Corporation for Public Broadcasting.",
+      "Once taken back, these funds cannot be spent on their original purposes.",
+      "The bill lists specific accounts and dollar amounts for each agency."
+    ],
+    "impact_categories": ["Government Operations"]
+  },
+  "119-s-1582": {
+    "provisions": [
+      "This bill creates rules for payment stablecoins, which are digital tokens designed to always be worth a fixed amount, like one U.S. dollar.",
+      "Only companies that get a federal or state license can issue payment stablecoins.",
+      "Issuers must hold reserves equal to the full value of all their stablecoins in cash, U.S. Treasury bonds, or similar assets.",
+      "Issuers must let customers cash out their stablecoins at face value.",
+      "Companies with more than $10 billion in stablecoins are regulated by the federal government; smaller issuers can be regulated by their state."
+    ],
+    "impact_categories": ["Technology", "Small Business", "Government Operations"]
+  },
+  "119-s-2296": {
+    "provisions": [
+      "This bill sets the rules and spending levels for the Department of Defense, military construction, and Department of Energy nuclear security programs for fiscal year 2026.",
+      "It covers military pay, equipment purchases, training, and base operations.",
+      "It includes money for building and repairing military facilities.",
+      "The bill sets policies on things like troop strength numbers, weapons programs, and military readiness."
+    ],
+    "impact_categories": ["Military & Veterans", "Government Operations"]
+  },
+  "119-s-331": {
+    "provisions": [
+      "This bill permanently adds all substances chemically related to fentanyl to Schedule I, the most restricted category of controlled substances.",
+      "Before this bill, fentanyl-related substances were temporarily placed on Schedule I and that classification had to keep being renewed.",
+      "Making, selling, or possessing these substances carries the same criminal penalties as other Schedule I drugs.",
+      "The bill includes a process for removing a specific substance from this classification if a review shows it does not belong."
+    ],
+    "impact_categories": ["Criminal Justice", "Healthcare"]
+  },
+  "119-s-5": {
+    "provisions": [
+      "This bill requires the Department of Homeland Security to arrest and hold non-U.S. nationals who are charged with or convicted of burglary, theft, larceny, or shoplifting.",
+      "It allows state governments to sue the federal government in court over immigration enforcement decisions that affect their residents.",
+      "If a non-citizen who was released from custody commits one of these crimes, the state where it happened can take legal action against the federal government."
+    ],
+    "impact_categories": ["Immigration", "Criminal Justice"]
+  },
+  "119-s-6": {
+    "provisions": [
+      "This bill requires doctors and nurses to give the same medical care to a child born alive during an attempted abortion as they would give to any other newborn baby at the same stage of development.",
+      "The child must be immediately taken to a hospital for further care.",
+      "A health care worker who does not follow these rules can face criminal penalties.",
+      "The woman on whom the abortion was performed cannot be charged under this law."
+    ],
+    "impact_categories": ["Healthcare", "Criminal Justice"]
+  },
+  "119-s-9": {
+    "provisions": [
+      "Schools that get federal money cannot let athletes born male play on women's or girls' sports teams.",
+      "This applies to all levels — elementary school through college.",
+      "A school that breaks this rule would be treated the same as breaking Title IX, the law that requires equal treatment of men and women in school programs.",
+      "Students could lose their spot on a team if their birth sex was male, regardless of any other factor."
+    ],
+    "impact_categories": ["Education", "Government Operations"]
+  },
+  "119-sjres-10": {
+    "provisions": [
+      "This cancels the national emergency about energy that the President declared on January 20, 2025.",
+      "That emergency declaration (Executive Order 14156) said the country's energy supply and infrastructure were not enough to meet demand.",
+      "Canceling the emergency would remove any special powers the President gained through that declaration.",
+      "Any actions taken under the emergency could lose their legal backing."
+    ],
+    "impact_categories": ["Environment", "Government Operations"]
+  },
+  "119-sjres-11": {
+    "provisions": [
+      "This cancels a rule from September 2024 by the Bureau of Ocean Energy Management (BOEM).",
+      "That rule required oil and gas companies drilling on the ocean floor to protect underwater historical and archaeological sites.",
+      "Without this rule, those companies would no longer have to follow those specific protection requirements.",
+      "The rule applied to drilling on the outer continental shelf, which is the underwater land off the U.S. coast controlled by the federal government."
+    ],
+    "impact_categories": ["Environment", "Government Operations"]
+  },
+  "119-sjres-12": {
+    "provisions": [
+      "This cancels an EPA rule that created fees for oil and gas companies that release methane waste into the air.",
+      "Methane is a gas released during oil and gas production.",
+      "Without this rule, those companies would not face the EPA's methane waste charges.",
+      "This is the Senate version of the same topic covered by House bill HJRES 35."
+    ],
+    "impact_categories": ["Environment", "Small Business"]
+  },
+  "119-sjres-13": {
+    "provisions": [
+      "This cancels a rule from September 2024 by the Office of the Comptroller of the Currency (OCC), the agency that oversees national banks.",
+      "That rule changed how the government reviews whether two banks should be allowed to merge into one.",
+      "Without this rule, bank mergers would go back to being reviewed under the older process.",
+      "The older process was generally seen as faster and had fewer review steps."
+    ],
+    "impact_categories": ["Small Business", "Government Operations"]
+  },
+  "119-sjres-18": {
+    "provisions": [
+      "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about overdraft fees.",
+      "That rule changed how banks with more than $10 billion in assets could charge customers for overdrawing their accounts.",
+      "The CFPB rule would have capped most overdraft fees at $5 unless the bank met certain conditions.",
+      "Without this rule, large banks can keep charging overdraft fees at their current rates, which are often around $35 per overdraft."
+    ],
+    "impact_categories": ["Wages & Income", "Government Operations"]
+  },
+  "119-sjres-26": {
+    "provisions": [
+      "This would block a specific proposed sale of U.S. military weapons and services to Israel.",
+      "The sale would need to be stopped within 30 days of this resolution passing.",
+      "Congress has the power to block foreign military sales under the Arms Export Control Act.",
+      "The resolution does not affect other existing or future military agreements with Israel."
+    ],
+    "impact_categories": ["Military & Veterans", "Government Operations"]
+  },
+  "119-sjres-28": {
+    "provisions": [
+      "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about digital payment apps.",
+      "That rule defined which companies running digital payment apps — like Apple Pay, Google Pay, Venmo, and Cash App — were large enough to face direct federal oversight.",
+      "Companies processing more than 50 million transactions per year would have been classified as 'larger participants' and subject to CFPB examinations.",
+      "Without this rule, those digital payment companies would not face this specific layer of federal review."
+    ],
+    "impact_categories": ["Technology", "Government Operations"]
+  },
+  "119-sjres-3": {
+    "provisions": [
+      "This cancels an IRS rule that would have required decentralized finance (DeFi) platforms to report user transaction data to the IRS.",
+      "DeFi platforms let people trade cryptocurrency without a traditional company acting as a middleman.",
+      "Under the canceled rule, these platforms would have had to collect and send user names, addresses, and transaction details to the IRS, similar to what stock brokers do.",
+      "This is the Senate version of the same topic covered by House bill HJRES 25."
+    ],
+    "impact_categories": ["Taxes", "Technology"]
+  },
+  "119-sjres-31": {
+    "provisions": [
+      "This cancels a September 2024 EPA rule about how air pollution sources are classified.",
+      "The rule changed when a facility that used to be a 'major' pollution source could be reclassified as a smaller 'area' source under the Clean Air Act.",
+      "Major sources face stricter pollution controls and monitoring than area sources.",
+      "Without this rule, the previous classification process — which made it easier for facilities to move from the major to the area category — stays in place."
+    ],
+    "impact_categories": ["Environment", "Government Operations"]
+  },
+  "119-sjres-33": {
+    "provisions": [
+      "This would block a second proposed sale of U.S. military weapons and services to Israel.",
+      "This covers a different set of items than the sale addressed in S.J.Res. 26.",
+      "Congress has the power to block foreign military sales under the Arms Export Control Act.",
+      "The resolution does not affect other existing or future military agreements with Israel."
+    ],
+    "impact_categories": ["Military & Veterans", "Government Operations"]
+  },
+  "119-sjres-34": {
+    "provisions": [
+      "This would block a third proposed sale of U.S. military weapons and services to Israel.",
+      "This covers a different set of items than the sales addressed in S.J.Res. 26 and S.J.Res. 33.",
+      "Congress has the power to block foreign military sales under the Arms Export Control Act.",
+      "The resolution does not affect other existing or future military agreements with Israel."
+    ],
+    "impact_categories": ["Military & Veterans", "Government Operations"]
+  },
+  "119-sjres-37": {
+    "provisions": [
+      "This cancels the national emergency declared on February 1, 2025 that was used to put tariffs on goods from Canada.",
+      "Those tariffs added a 25% tax on most products imported from Canada.",
+      "Canadian energy imports like oil had a lower tariff rate of 10%.",
+      "Canceling the emergency would remove the legal basis for those tariffs, and they would no longer be collected."
+    ],
+    "impact_categories": ["Taxes", "Small Business", "Government Operations"]
+  },
+  "119-sjres-41": {
+    "provisions": [
+      "This would block a proposed export of U.S. defense items to Israel.",
+      "This resolution is separate from the three foreign military sale blocks (S.J.Res. 26, 33, and 34) and covers a different type of transfer.",
+      "Foreign military sales are government-to-government deals, while defense exports are made by private U.S. companies with government approval.",
+      "The resolution does not affect other existing or future defense export licenses for Israel."
+    ],
+    "impact_categories": ["Military & Veterans", "Government Operations"]
+  },
+  "119-sjres-49": {
+    "provisions": [
+      "This cancels the national emergency declared on April 2, 2025 that was used to put tariffs on imports from most countries.",
+      "Those tariffs added a 10% tax on nearly all imports coming into the United States.",
+      "Some countries faced additional tariffs on top of the 10% base rate.",
+      "Canceling the emergency would remove the legal basis for all of these tariffs."
+    ],
+    "impact_categories": ["Taxes", "Small Business", "Government Operations"]
+  },
+  "119-sjres-53": {
+    "provisions": [
+      "This would block a proposed sale of U.S. military weapons and services to Qatar.",
+      "The sale would need to be stopped within 30 days of this resolution passing.",
+      "Congress has the power to block foreign military sales under the Arms Export Control Act.",
+      "The resolution does not affect other existing or future military agreements with Qatar."
+    ],
+    "impact_categories": ["Military & Veterans", "Government Operations"]
+  },
+  "119-sjres-54": {
+    "provisions": [
+      "This would block a proposed sale of U.S. military weapons and services to the United Arab Emirates (UAE).",
+      "The sale would need to be stopped within 30 days of this resolution passing.",
+      "Congress has the power to block foreign military sales under the Arms Export Control Act.",
+      "The resolution does not affect other existing or future military agreements with the UAE."
+    ],
+    "impact_categories": ["Military & Veterans", "Government Operations"]
+  },
+  "119-sjres-55": {
+    "provisions": [
+      "This cancels a rule from the National Highway Traffic Safety Administration (NHTSA) about hydrogen-powered vehicles.",
+      "That rule set safety standards for the fuel systems in cars and trucks that run on compressed hydrogen gas.",
+      "The standards covered how hydrogen fuel tanks must be built, tested, and installed to prevent leaks or ruptures.",
+      "Without this rule, there would be no specific federal safety standard for hydrogen vehicle fuel systems."
+    ],
+    "impact_categories": ["Technology", "Environment", "Government Operations"]
+  },
+  "119-sjres-59": {
+    "provisions": [
+      "This tells the President to pull U.S. military forces out of any fighting against Iran within 30 days of the resolution passing.",
+      "The President could not send troops to fight Iran unless Congress officially declares war or passes a specific law allowing it.",
+      "This uses Congress's power under the War Powers Resolution, which limits the President's ability to use military force without Congress's approval.",
+      "It does not affect military operations against other countries or non-state groups."
+    ],
+    "impact_categories": ["Military & Veterans", "Government Operations"]
+  },
+  "119-sjres-7": {
+    "provisions": [
+      "This cancels an August 2024 FCC rule that let schools and libraries use E-Rate program money to buy Wi-Fi hotspots for students.",
+      "The E-Rate program gives schools and libraries money to pay for internet and phone service.",
+      "The canceled rule would have let that money also cover portable Wi-Fi devices sent home with students who don't have internet access.",
+      "Without this rule, E-Rate funds can only be used for internet connections inside school and library buildings, not for home use."
+    ],
+    "impact_categories": ["Education", "Technology"]
+  }
+}

@@ -1,1 +1,12 @@
-{"last_sync": null, "members_count": 0, "bills_count": 0, "ai_summaries_count": 0, "senate_votes_count": 0, "member_votes_count": 0}
+{
+  "last_sync": "2026-03-08T15:08:23.142356+00:00",
+  "states_synced": [
+    "NY",
+    "FL"
+  ],
+  "members_count": 40,
+  "bills_count": 41,
+  "senate_votes_count": 500,
+  "member_votes_count": 4,
+  "ai_summaries_count": 41
+}

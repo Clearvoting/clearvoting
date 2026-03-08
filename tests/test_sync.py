@@ -2,7 +2,7 @@ import pytest
 import json
 from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock
-from sync import sync_members, sync_bills, sync_senate_votes, sync_ai_summaries, build_member_votes, _parse_bill_ref
+from sync import sync_members, sync_senate_votes, sync_bills_from_votes, build_member_votes, _parse_bill_ref
 
 
 def _write_json(path: Path, data: dict | list) -> None:
@@ -48,29 +48,20 @@ async def test_sync_members_handles_api_error(tmp_path):
     assert count == 1
 
 
-# --- sync_bills ---
-
 @pytest.mark.asyncio
-async def test_sync_bills(tmp_path):
+async def test_sync_members_rate_limiting(tmp_path):
+    """Verify rate limiting delay is called between API requests."""
     mock_client = MagicMock()
-    mock_client.get_bills = AsyncMock(side_effect=[
-        {"bills": [
-            {"number": "1", "type": "HR", "congress": 119, "title": "Test Bill"},
-            {"number": "100", "type": "S", "congress": 119, "title": "Another Bill"},
-        ]},
-        {"bills": []},
+    mock_client.get_members_by_state = AsyncMock(side_effect=[
+        {"members": [{"bioguideId": "A1", "terms": {"item": [{"chamber": "Senate"}]}}]},
+        {"members": [{"bioguideId": "B1", "terms": {"item": [{"chamber": "Senate"}]}}]},
     ])
-    mock_client.get_bill_summary = AsyncMock(return_value={"summaries": [{"text": "Summary text"}]})
 
-    count = await sync_bills(mock_client, tmp_path)
-
-    bills_file = tmp_path / "bills.json"
-    assert bills_file.exists()
-    data = json.loads(bills_file.read_text())
-    assert len(data["bills"]) == 2
-    assert count == 2
-    # Verify summaries were fetched
-    assert len(data["bills"][0]["summaries"]) == 1
+    import unittest.mock
+    with unittest.mock.patch("sync.asyncio.sleep", new_callable=AsyncMock) as mock_sleep:
+        await sync_members(mock_client, tmp_path, states=["FL", "NY"], rate_limit=0.1)
+        assert mock_sleep.call_count == 2
+        mock_sleep.assert_called_with(0.1)
 
 
 # --- sync_senate_votes ---
@@ -121,45 +112,99 @@ async def test_sync_senate_votes_skips_existing(tmp_path):
     assert (vote_dir / "119_1_00002.json").exists()
 
 
-# --- sync_ai_summaries ---
+@pytest.mark.asyncio
+async def test_sync_senate_votes_rate_limiting(tmp_path):
+    """Verify rate limiting between Senate vote fetches."""
+    mock_service = MagicMock()
+    mock_service.get_vote = AsyncMock(side_effect=[
+        {"congress": 119, "session": 1, "vote_number": 1, "vote_date": "2025-01-15",
+         "question": "Test", "result": "Passed", "counts": {}, "members": []},
+        Exception("No more"),
+    ])
+
+    import unittest.mock
+    with unittest.mock.patch("sync.asyncio.sleep", new_callable=AsyncMock) as mock_sleep:
+        await sync_senate_votes(mock_service, tmp_path, congress=119, session=1, max_vote=2, rate_limit=0.3)
+        assert mock_sleep.call_count >= 1
+
+
+# --- sync_bills_from_votes ---
 
 @pytest.mark.asyncio
-async def test_sync_ai_summaries(tmp_path):
-    bills = {"bills": [
-        {"congress": 119, "type": "HR", "number": "1", "title": "Test Bill", "summaries": [{"text": "Official summary"}]},
-        {"congress": 119, "type": "S", "number": "50", "title": "Another", "summaries": []},
-    ]}
-    _write_json(tmp_path / "bills.json", bills)
-
-    # Existing summaries (should be skipped)
-    existing = {"119-hr-1": {"provisions": ["Already done"], "impact_categories": ["Taxes"]}}
-    _write_json(tmp_path / "ai_summaries.json", existing)
-
-    mock_ai = MagicMock()
-    mock_ai.generate_summary = AsyncMock(return_value={
-        "provisions": ["New summary"], "impact_categories": ["Healthcare"]
+async def test_sync_bills_from_votes(tmp_path):
+    """Only fetches bills that appear in Senate vote documents."""
+    vote_dir = tmp_path / "votes" / "senate"
+    vote_dir.mkdir(parents=True)
+    _write_json(vote_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "document": "H.R. 1", "vote_date": "2025-01-15",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [],
+    })
+    _write_json(vote_dir / "119_1_00002.json", {
+        "congress": 119, "session": 1, "vote_number": 2,
+        "document": "S. 100", "vote_date": "2025-01-16",
+        "question": "On Passage", "result": "Failed",
+        "counts": {}, "members": [],
+    })
+    # Duplicate bill ref — should only fetch once
+    _write_json(vote_dir / "119_1_00003.json", {
+        "congress": 119, "session": 1, "vote_number": 3,
+        "document": "H.R. 1", "vote_date": "2025-01-17",
+        "question": "On the Motion", "result": "Passed",
+        "counts": {}, "members": [],
     })
 
-    mock_congress = MagicMock()
-    mock_congress.get_bill_text = AsyncMock(return_value={"textVersions": []})
+    mock_client = MagicMock()
+    mock_client.get_bill = AsyncMock(side_effect=[
+        {"bill": {"number": "1", "type": "HR", "congress": 119, "title": "Test Bill", "policyArea": {"name": "Taxation"}}},
+        {"bill": {"number": "100", "type": "S", "congress": 119, "title": "Senate Bill", "policyArea": {"name": "Healthcare"}}},
+    ])
+    mock_client.get_bill_summary = AsyncMock(return_value={"summaries": [{"text": "Summary"}]})
 
-    count = await sync_ai_summaries(mock_ai, mock_congress, tmp_path)
+    count = await sync_bills_from_votes(mock_client, tmp_path)
 
-    data = json.loads((tmp_path / "ai_summaries.json").read_text())
-    assert "119-hr-1" in data
-    assert data["119-hr-1"]["provisions"] == ["Already done"]  # Not overwritten
-    assert "119-s-50" in data  # New one added
-    assert count == 1
+    bills_file = tmp_path / "bills.json"
+    assert bills_file.exists()
+    data = json.loads(bills_file.read_text())
+    assert len(data["bills"]) == 2
+    assert count == 2
+    # Should have fetched exactly 2 unique bills
+    assert mock_client.get_bill.call_count == 2
 
 
 @pytest.mark.asyncio
-async def test_sync_ai_summaries_no_bills(tmp_path):
-    """Skips gracefully when no bills.json exists."""
-    mock_ai = MagicMock()
-    mock_congress = MagicMock()
-
-    count = await sync_ai_summaries(mock_ai, mock_congress, tmp_path)
+async def test_sync_bills_from_votes_no_votes(tmp_path):
+    """Handles missing vote directory gracefully."""
+    mock_client = MagicMock()
+    count = await sync_bills_from_votes(mock_client, tmp_path)
     assert count == 0
+
+
+@pytest.mark.asyncio
+async def test_sync_bills_from_votes_skips_existing(tmp_path):
+    """Skips bills already in bills.json (incremental)."""
+    vote_dir = tmp_path / "votes" / "senate"
+    vote_dir.mkdir(parents=True)
+    _write_json(vote_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "document": "H.R. 1", "vote_date": "2025-01-15",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [],
+    })
+
+    # Pre-existing bills.json with HR 1 already synced
+    _write_json(tmp_path / "bills.json", {"bills": [
+        {"number": "1", "type": "HR", "congress": 119, "title": "Already Here", "summaries": []},
+    ]})
+
+    mock_client = MagicMock()
+    mock_client.get_bill = AsyncMock()  # Should not be called
+
+    count = await sync_bills_from_votes(mock_client, tmp_path)
+
+    assert count == 1  # 1 bill total (the existing one)
+    assert mock_client.get_bill.call_count == 0  # No new fetches
 
 
 # --- build_member_votes ---
@@ -186,7 +231,7 @@ async def test_build_member_votes(tmp_path):
         "counts": {"yeas": 60, "nays": 40, "present": 0, "absent": 0},
         "members": [
             {"first_name": "Rick", "last_name": "Scott", "party": "R",
-             "state": "FL", "vote": "Yea", "lis_member_id": "S001217"},
+             "state": "FL", "vote": "Yea", "lis_member_id": "S404"},
         ],
     }
     _write_json(vote_dir / "119_1_00001.json", vote)

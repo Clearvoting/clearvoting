@@ -8,10 +8,10 @@ def parse_senate_vote_xml(xml_string: str) -> dict:
 
     counts_el = root.find("count")
     counts = {
-        "yeas": int(counts_el.findtext("yeas", "0")),
-        "nays": int(counts_el.findtext("nays", "0")),
-        "present": int(counts_el.findtext("present", "0")),
-        "absent": int(counts_el.findtext("absent", "0")),
+        "yeas": int(counts_el.findtext("yeas", "0") or "0"),
+        "nays": int(counts_el.findtext("nays", "0") or "0"),
+        "present": int(counts_el.findtext("present", "0") or "0"),
+        "absent": int(counts_el.findtext("absent", "0") or "0"),
     }
 
     members = []
@@ -31,7 +31,7 @@ def parse_senate_vote_xml(xml_string: str) -> dict:
         "vote_number": int(root.findtext("vote_number", "0")),
         "vote_date": root.findtext("vote_date", ""),
         "question": root.findtext("vote_question_text", ""),
-        "document": root.findtext("vote_document_text", ""),
+        "document": root.findtext("document/document_name", "") or root.findtext("vote_document_text", ""),
         "result": root.findtext("vote_result_text", ""),
         "title": root.findtext("vote_title", ""),
         "counts": counts,
