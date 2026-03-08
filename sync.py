@@ -401,7 +401,11 @@ async def sync_bill_summaries(
 
 
 async def build_member_votes(output_dir: Path, anthropic_key: str | None = None) -> int:
-    """Cross-reference votes with members to build per-member voting records."""
+    """Cross-reference votes with members to build per-member voting records.
+
+    When anthropic_key is set, vote one-liners will be generated through
+    the writer-grader loop (not yet implemented — currently uses _get_one_liner fallback).
+    """
     members_path = output_dir / "members.json"
     bills_path = output_dir / "bills.json"
     member_votes_dir = output_dir / "member_votes"

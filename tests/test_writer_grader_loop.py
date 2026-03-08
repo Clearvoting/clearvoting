@@ -103,3 +103,29 @@ async def test_loop_passes_grader_feedback_to_writer():
     assert "grader_feedback" not in call_kwargs[0]
     assert "grader_feedback" in call_kwargs[1]
     assert call_kwargs[1]["grader_feedback"] == "Use simpler words."
+
+
+@pytest.mark.asyncio
+async def test_loop_exits_early_on_a_grade():
+    """When round 1 gets an A, don't waste API calls on rounds 2 and 3."""
+    mock_writer = AsyncMock(
+        return_value={"one_liner": "Perfect", "provisions": ["Perfect"], "impact_categories": []}
+    )
+
+    mock_grader = MagicMock()
+    mock_grader.grade = AsyncMock(return_value=GradeResult(
+        grade="A", passed=True, feedback="Perfect.", checks={}
+    ))
+
+    loop = WriterGraderLoop(writer_fn=mock_writer, grader=mock_grader)
+    result = await loop.run(
+        summary_type="bill_summary",
+        writer_kwargs={"title": "Test"},
+        grader_context={"title": "Test"},
+    )
+
+    assert mock_writer.call_count == 1
+    assert mock_grader.grade.call_count == 1
+    assert result.rounds == 1
+    assert result.best_grade.grade == "A"
+    assert result.all_grades == ["A"]

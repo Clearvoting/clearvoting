@@ -64,12 +64,16 @@ class WriterGraderLoop:
 
             last_feedback = grade_result.feedback
 
+            # Early exit: an A can't be improved
+            if grade_result.grade == "A":
+                break
+
         needs_review = not best_grade.passed
 
         return LoopResult(
             best_summary=best_summary,
             best_grade=best_grade,
-            rounds=MAX_ROUNDS,
+            rounds=len(all_grades),
             needs_review=needs_review,
             all_grades=all_grades,
         )
