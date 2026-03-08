@@ -1,0 +1,14 @@
+{
+  "member_id": "M001245",
+  "congress": 119,
+  "stats": {
+    "total_votes": 0,
+    "yea_count": 0,
+    "nay_count": 0,
+    "not_voting_count": 0,
+    "participation_rate": 0
+  },
+  "scorecard": [],
+  "votes": [],
+  "policy_areas": []
+}
