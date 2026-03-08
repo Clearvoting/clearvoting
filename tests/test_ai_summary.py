@@ -100,3 +100,83 @@ async def test_generate_summary_uses_cache():
         bill_text_excerpt="Cached"
     )
     assert result["provisions"][0] == "Cached provision"
+
+
+def test_build_prompt_requests_one_liner():
+    service = AISummaryService(api_key="test", cache=MagicMock())
+    prompt = service._build_prompt(
+        title="Test Bill",
+        official_summary="A bill to do things.",
+        bill_text_excerpt="Section 1."
+    )
+    assert "one_liner" in prompt
+
+
+@pytest.mark.asyncio
+async def test_generate_summary_includes_one_liner():
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = None
+    service = AISummaryService(api_key="test", cache=mock_cache)
+
+    mock_response = MagicMock()
+    mock_response.content = [MagicMock(
+        text='{"provisions": ["Raises the minimum wage to $15"], "impact_categories": ["Wages & Income"], "one_liner": "Raise the federal minimum wage to $15 per hour"}'
+    )]
+
+    with patch.object(service, "client") as mock_client:
+        mock_client.messages.create = AsyncMock(return_value=mock_response)
+        result = await service.generate_summary(
+            bill_id="119-hr-1234",
+            title="Minimum Wage Act",
+            official_summary="A bill to raise the minimum wage.",
+            bill_text_excerpt="The minimum wage shall be $15."
+        )
+
+    assert "one_liner" in result
+    assert result["one_liner"] == "Raise the federal minimum wage to $15 per hour"
+
+
+@pytest.mark.asyncio
+async def test_generate_summary_fallback_when_no_one_liner():
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = None
+    service = AISummaryService(api_key="test", cache=mock_cache)
+
+    mock_response = MagicMock()
+    mock_response.content = [MagicMock(
+        text='{"provisions": ["Does something"], "impact_categories": ["Taxes"]}'
+    )]
+
+    with patch.object(service, "client") as mock_client:
+        mock_client.messages.create = AsyncMock(return_value=mock_response)
+        result = await service.generate_summary(
+            bill_id="119-hr-999",
+            title="Some Act",
+            official_summary="Does things.",
+            bill_text_excerpt="Text."
+        )
+
+    assert "one_liner" in result
+    assert result["one_liner"] == "Does something"
+
+
+@pytest.mark.asyncio
+async def test_generate_summary_json_error_includes_one_liner():
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = None
+    service = AISummaryService(api_key="test", cache=mock_cache)
+
+    mock_response = MagicMock()
+    mock_response.content = [MagicMock(text='not valid json')]
+
+    with patch.object(service, "client") as mock_client:
+        mock_client.messages.create = AsyncMock(return_value=mock_response)
+        result = await service.generate_summary(
+            bill_id="119-hr-bad",
+            title="Fallback Title",
+            official_summary="Test",
+            bill_text_excerpt="Test"
+        )
+
+    assert "one_liner" in result
+    assert result["one_liner"] == "Fallback Title"

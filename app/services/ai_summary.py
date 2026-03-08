@@ -21,6 +21,12 @@ IMPACT_CATEGORIES = [
     "Infrastructure",
     "Social Security & Medicare",
     "Government Operations",
+    "Energy",
+    "Foreign Affairs",
+    "Civil Rights",
+    "Economy",
+    "Defense",
+    "Labor",
 ]
 
 SYSTEM_PROMPT = """You are a nonpartisan legislative analyst. Your job is to explain what bills do in everyday English that any American can understand — written at a 7th-8th grade reading level.
@@ -49,11 +55,13 @@ class AISummaryService:
 
     def _build_prompt(self, title: str, official_summary: str, bill_text_excerpt: str) -> str:
         categories_str = ", ".join(IMPACT_CATEGORIES)
-        return f"""Analyze this bill and return JSON with two fields:
+        return f"""Analyze this bill and return JSON with three fields:
 
-1. "provisions": An array of 3-7 strings. Each string is one short, everyday-English sentence describing what this bill does. Use words a middle schooler would know. Focus on: dollar amounts, timelines, and what changes for real people. No adjectives. No opinions. No jargon.
+1. "one_liner": A single plain-English phrase (max 15 words) starting with a verb that says what this bill does. No period. No adjectives. Examples: "Cancel an EPA rule limiting methane fees on oil and gas companies", "Fund the military and set troop pay for 2026".
 
-2. "impact_categories": An array of strings from this list — Impact Categories: [{categories_str}]. Only include categories that directly apply.
+2. "provisions": An array of 3-7 strings. Each string is one short, everyday-English sentence describing what this bill does. Use words a middle schooler would know. Focus on: dollar amounts, timelines, and what changes for real people. No adjectives. No opinions. No jargon.
+
+3. "impact_categories": An array of strings from this list — Impact Categories: [{categories_str}]. Only include categories that directly apply.
 
 Bill Title: {title}
 
@@ -62,7 +70,7 @@ Official Summary: {official_summary}
 Bill Text (excerpt): {bill_text_excerpt}
 
 Return ONLY valid JSON. Example format:
-{{"provisions": ["Cuts taxes on tips for workers like servers and bartenders, up to $25,000 a year", "Gives veterans a raise to keep up with the rising cost of living"], "impact_categories": ["Wages & Income"]}}"""
+{{"one_liner": "Raise the federal minimum wage to $15 per hour", "provisions": ["Raises the minimum wage from $7.25 to $15.00 per hour over 5 years", "Gives veterans a raise to keep up with the rising cost of living"], "impact_categories": ["Wages & Income"]}}"""
 
     async def generate_summary(self, bill_id: str, title: str, official_summary: str, bill_text_excerpt: str) -> dict:
         cache_key = f"ai_summary:{bill_id}"
@@ -84,10 +92,13 @@ Return ONLY valid JSON. Example format:
             result = json.loads(raw_text)
         except json.JSONDecodeError:
             logger.error("AI response was not valid JSON: %s", raw_text[:200])
-            return {"provisions": ["AI summary temporarily unavailable"], "impact_categories": []}
+            return {"provisions": ["AI summary temporarily unavailable"], "impact_categories": [], "one_liner": title}
 
         valid_categories = [c for c in result.get("impact_categories", []) if c in IMPACT_CATEGORIES]
         result["impact_categories"] = valid_categories
+
+        if "one_liner" not in result or not result["one_liner"]:
+            result["one_liner"] = result["provisions"][0] if result.get("provisions") else title
 
         self.cache.set(cache_key, result)
         return result
