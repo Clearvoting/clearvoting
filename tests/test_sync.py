@@ -2,7 +2,7 @@ import pytest
 import json
 from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock
-from sync import sync_members, sync_senate_votes, sync_bills_from_votes, build_member_votes, _parse_bill_ref
+from sync import sync_members, sync_senate_votes, sync_bills_from_votes, build_member_votes, _parse_bill_ref, sync_house_votes, _house_leg_to_document
 
 
 def _write_json(path: Path, data: dict | list) -> None:
@@ -274,6 +274,249 @@ def test_parse_bill_ref_joint_resolutions():
     assert _parse_bill_ref("S.J.Res. 10") == "sjres-10"
 
 
+def test_parse_bill_ref_house_resolutions():
+    assert _parse_bill_ref("H.Res. 5") == "hres-5"
+    assert _parse_bill_ref("H.Con.Res. 14") == "hconres-14"
+    assert _parse_bill_ref("S.Res. 50") == "sres-50"
+    assert _parse_bill_ref("S.Con.Res. 10") == "sconres-10"
+
+
 def test_parse_bill_ref_unknown():
     assert _parse_bill_ref("Something else") is None
     assert _parse_bill_ref("") is None
+
+
+# --- _house_leg_to_document ---
+
+def test_house_leg_to_document():
+    assert _house_leg_to_document("HR", "153") == "H.R. 153"
+    assert _house_leg_to_document("S", "100") == "S. 100"
+    assert _house_leg_to_document("HJRES", "42") == "H.J.Res. 42"
+    assert _house_leg_to_document("HRES", "5") == "H.Res. 5"
+    assert _house_leg_to_document("HCONRES", "14") == "H.Con.Res. 14"
+    assert _house_leg_to_document(None, None) == ""
+    assert _house_leg_to_document("", "") == ""
+
+
+# --- sync_house_votes ---
+
+@pytest.mark.asyncio
+async def test_sync_house_votes(tmp_path):
+    """Fetches House votes and saves as JSON files."""
+    mock_client = MagicMock()
+    mock_client.get_house_vote_detail = AsyncMock(side_effect=[
+        {"houseRollCallVote": {
+            "congress": 119, "sessionNumber": 1, "rollCallNumber": 1,
+            "legislationType": "HR", "legislationNumber": "153",
+            "voteQuestion": "On Motion to Suspend the Rules and Pass",
+            "result": "Passed", "startDate": "2025-01-10T14:00:00-05:00",
+            "votePartyTotal": [
+                {"voteParty": "R", "yeaTotal": 200, "nayTotal": 10, "notVotingTotal": 5, "presentTotal": 0},
+                {"voteParty": "D", "yeaTotal": 180, "nayTotal": 20, "notVotingTotal": 5, "presentTotal": 0},
+            ],
+        }},
+        Exception("No more votes"),
+    ])
+    mock_client.get_house_vote_members = AsyncMock(return_value={
+        "houseRollCallVoteMemberVotes": {
+            "results": [
+                {"bioguideID": "A000055", "firstName": "Robert", "lastName": "Aderholt",
+                 "voteCast": "Yea", "voteParty": "R", "voteState": "AL"},
+            ],
+        },
+    })
+
+    count = await sync_house_votes(mock_client, tmp_path, congress=119, session=1, max_vote=2)
+
+    vote_dir = tmp_path / "votes" / "house"
+    assert vote_dir.exists()
+    filepath = vote_dir / "119_1_00001.json"
+    assert filepath.exists()
+    assert count == 1
+
+    data = json.loads(filepath.read_text())
+    assert data["congress"] == 119
+    assert data["vote_number"] == 1
+    assert data["question"] == "On Motion to Suspend the Rules and Pass"
+    assert data["document"] == "H.R. 153"
+    assert len(data["members"]) == 1
+    assert data["members"][0]["bioguide_id"] == "A000055"
+    assert data["members"][0]["vote"] == "Yea"
+
+
+@pytest.mark.asyncio
+async def test_sync_house_votes_skips_existing(tmp_path):
+    """Incremental sync skips votes that already have files."""
+    vote_dir = tmp_path / "votes" / "house"
+    vote_dir.mkdir(parents=True)
+    _write_json(vote_dir / "119_1_00001.json", {"vote_number": 1})
+
+    mock_client = MagicMock()
+    mock_client.get_house_vote_detail = AsyncMock(side_effect=[
+        {"houseRollCallVote": {
+            "congress": 119, "sessionNumber": 1, "rollCallNumber": 2,
+            "legislationType": "HR", "legislationNumber": "200",
+            "voteQuestion": "On Passage", "result": "Failed",
+            "startDate": "2025-01-11T10:00:00-05:00", "votePartyTotal": [],
+        }},
+        Exception("No more"),
+    ])
+    mock_client.get_house_vote_members = AsyncMock(return_value={
+        "houseRollCallVoteMemberVotes": {"results": []},
+    })
+
+    count = await sync_house_votes(mock_client, tmp_path, congress=119, session=1, max_vote=3)
+
+    assert count == 2  # 1 existing + 1 new
+    assert (vote_dir / "119_1_00002.json").exists()
+
+
+@pytest.mark.asyncio
+async def test_sync_house_votes_rate_limiting(tmp_path):
+    """Verify rate limiting between House vote fetches."""
+    mock_client = MagicMock()
+    mock_client.get_house_vote_detail = AsyncMock(side_effect=[
+        {"houseRollCallVote": {
+            "congress": 119, "sessionNumber": 1, "rollCallNumber": 1,
+            "voteQuestion": "Test", "result": "Passed",
+            "startDate": "2025-01-10T14:00:00-05:00", "votePartyTotal": [],
+        }},
+        Exception("No more"),
+    ])
+    mock_client.get_house_vote_members = AsyncMock(return_value={
+        "houseRollCallVoteMemberVotes": {"results": []},
+    })
+
+    import unittest.mock
+    with unittest.mock.patch("sync.asyncio.sleep", new_callable=AsyncMock) as mock_sleep:
+        await sync_house_votes(mock_client, tmp_path, congress=119, session=1, max_vote=2, rate_limit=0.3)
+        assert mock_sleep.call_count >= 1
+
+
+# --- sync_bills_from_votes (House expansion) ---
+
+@pytest.mark.asyncio
+async def test_sync_bills_from_votes_includes_house(tmp_path):
+    """Scans both Senate and House vote directories for bill references."""
+    senate_dir = tmp_path / "votes" / "senate"
+    senate_dir.mkdir(parents=True)
+    _write_json(senate_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "document": "H.R. 1", "vote_date": "2025-01-15",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [],
+    })
+
+    house_dir = tmp_path / "votes" / "house"
+    house_dir.mkdir(parents=True)
+    _write_json(house_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "document": "H.R. 200", "vote_date": "2025-01-16",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [], "chamber": "House",
+    })
+
+    mock_client = MagicMock()
+    mock_client.get_bill = AsyncMock(side_effect=[
+        {"bill": {"number": "1", "type": "HR", "congress": 119, "title": "Bill One", "policyArea": {"name": "Taxation"}}},
+        {"bill": {"number": "200", "type": "HR", "congress": 119, "title": "Bill Two", "policyArea": {"name": "Defense"}}},
+    ])
+    mock_client.get_bill_summary = AsyncMock(return_value={"summaries": []})
+
+    count = await sync_bills_from_votes(mock_client, tmp_path)
+
+    data = json.loads((tmp_path / "bills.json").read_text())
+    assert len(data["bills"]) == 2
+    assert count == 2
+    assert mock_client.get_bill.call_count == 2
+
+
+# --- build_member_votes (House expansion) ---
+
+@pytest.mark.asyncio
+async def test_build_member_votes_house(tmp_path):
+    """House members get vote records from House vote files."""
+    members = {"members": [
+        {"bioguideId": "A000055", "name": "Aderholt, Robert", "directOrderName": "Robert Aderholt",
+         "stateCode": "AL", "chamber": "House of Representatives"},
+    ]}
+    _write_json(tmp_path / "members.json", members)
+
+    bills = {"bills": [
+        {"congress": 119, "type": "HR", "number": "153", "title": "Test House Bill",
+         "policyArea": {"name": "Defense"}, "summaries": []},
+    ]}
+    _write_json(tmp_path / "bills.json", bills)
+
+    vote_dir = tmp_path / "votes" / "house"
+    vote_dir.mkdir(parents=True)
+    vote = {
+        "congress": 119, "session": 1, "vote_number": 10,
+        "vote_date": "2025-01-10", "document": "H.R. 153",
+        "question": "On Motion to Suspend the Rules and Pass",
+        "result": "Passed", "chamber": "House",
+        "counts": {"yeas": 380, "nays": 30, "present": 0, "absent": 24},
+        "members": [
+            {"bioguide_id": "A000055", "first_name": "Robert", "last_name": "Aderholt",
+             "party": "R", "state": "AL", "vote": "Yea"},
+        ],
+    }
+    _write_json(vote_dir / "119_1_00010.json", vote)
+
+    count = await build_member_votes(tmp_path)
+
+    member_file = tmp_path / "member_votes" / "A000055.json"
+    assert member_file.exists()
+    data = json.loads(member_file.read_text())
+    assert data["member_id"] == "A000055"
+    assert data["stats"]["total_votes"] == 1
+    assert data["stats"]["yea_count"] == 1
+    assert data["votes"][0]["chamber"] == "House"
+    assert data["votes"][0]["bill_id"] == "119-hr-153"
+    assert count == 1
+
+
+@pytest.mark.asyncio
+async def test_build_member_votes_both_chambers(tmp_path):
+    """Both Senate and House members get records when both vote dirs exist."""
+    members = {"members": [
+        {"bioguideId": "S001217", "name": "Scott, Rick", "directOrderName": "Rick Scott",
+         "stateCode": "FL", "chamber": "Senate"},
+        {"bioguideId": "B001257", "name": "Bilirakis, Gus", "directOrderName": "Gus Bilirakis",
+         "stateCode": "FL", "chamber": "House of Representatives"},
+    ]}
+    _write_json(tmp_path / "members.json", members)
+    _write_json(tmp_path / "bills.json", {"bills": []})
+
+    senate_dir = tmp_path / "votes" / "senate"
+    senate_dir.mkdir(parents=True)
+    _write_json(senate_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "vote_date": "2025-01-15", "document": "S. 1",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [
+            {"first_name": "Rick", "last_name": "Scott", "party": "R", "state": "FL", "vote": "Yea"},
+        ],
+    })
+
+    house_dir = tmp_path / "votes" / "house"
+    house_dir.mkdir(parents=True)
+    _write_json(house_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "vote_date": "2025-01-16", "document": "H.R. 10",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "chamber": "House",
+        "members": [
+            {"bioguide_id": "B001257", "first_name": "Gus", "last_name": "Bilirakis",
+             "party": "R", "state": "FL", "vote": "Nay"},
+        ],
+    })
+
+    count = await build_member_votes(tmp_path)
+
+    assert count == 2
+    assert (tmp_path / "member_votes" / "S001217.json").exists()
+    assert (tmp_path / "member_votes" / "B001257.json").exists()
+
+    house_data = json.loads((tmp_path / "member_votes" / "B001257.json").read_text())
+    assert house_data["stats"]["nay_count"] == 1
