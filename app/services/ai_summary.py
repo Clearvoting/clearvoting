@@ -92,7 +92,7 @@ Return ONLY valid JSON. Example format:
             result = json.loads(raw_text)
         except json.JSONDecodeError:
             logger.error("AI response was not valid JSON: %s", raw_text[:200])
-            return {"provisions": ["AI summary temporarily unavailable"], "impact_categories": []}
+            return {"provisions": ["AI summary temporarily unavailable"], "impact_categories": [], "one_liner": title}
 
         valid_categories = [c for c in result.get("impact_categories", []) if c in IMPACT_CATEGORIES]
         result["impact_categories"] = valid_categories

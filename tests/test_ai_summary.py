@@ -158,3 +158,25 @@ async def test_generate_summary_fallback_when_no_one_liner():
 
     assert "one_liner" in result
     assert result["one_liner"] == "Does something"
+
+
+@pytest.mark.asyncio
+async def test_generate_summary_json_error_includes_one_liner():
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = None
+    service = AISummaryService(api_key="test", cache=mock_cache)
+
+    mock_response = MagicMock()
+    mock_response.content = [MagicMock(text='not valid json')]
+
+    with patch.object(service, "client") as mock_client:
+        mock_client.messages.create = AsyncMock(return_value=mock_response)
+        result = await service.generate_summary(
+            bill_id="119-hr-bad",
+            title="Fallback Title",
+            official_summary="Test",
+            bill_text_excerpt="Test"
+        )
+
+    assert "one_liner" in result
+    assert result["one_liner"] == "Fallback Title"
