@@ -929,6 +929,931 @@
       "url": "https://api.congress.gov/v3/member/C001127?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "S001150",
+      "depiction": {
+        "attribution": "Official U.S. Senate Photo",
+        "imageUrl": "https://www.congress.gov/img/member/677d870dfdb6cf36bbb649b3_200.jpg"
+      },
+      "name": "Schiff, Adam B.",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "endYear": 2024,
+            "startYear": 2001
+          },
+          {
+            "chamber": "Senate",
+            "startYear": 2024
+          }
+        ]
+      },
+      "updateDate": "2026-03-08T10:32:34Z",
+      "url": "https://api.congress.gov/v3/member/S001150?format=json",
+      "stateCode": "CA",
+      "chamber": "Senate"
+    },
+    {
+      "bioguideId": "P000145",
+      "depiction": {
+        "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+        "imageUrl": "https://www.congress.gov/img/member/p000145_200.jpg"
+      },
+      "name": "Padilla, Alex",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "Senate",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2026-03-08T10:32:16Z",
+      "url": "https://api.congress.gov/v3/member/P000145?format=json",
+      "stateCode": "CA",
+      "chamber": "Senate"
+    },
+    {
+      "bioguideId": "C001059",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/6973c909ded7781a35cc1fd7_200.jpg"
+      },
+      "district": 21,
+      "name": "Costa, Jim",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2005
+          }
+        ]
+      },
+      "updateDate": "2026-01-23T19:43:13Z",
+      "url": "https://api.congress.gov/v3/member/C001059?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "W000187",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/w000187_200.jpg"
+      },
+      "district": 43,
+      "name": "Waters, Maxine",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 1991
+          }
+        ]
+      },
+      "updateDate": "2025-12-06T08:30:19Z",
+      "url": "https://api.congress.gov/v3/member/W000187?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "P000197",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/p000197_200.jpg"
+      },
+      "district": 11,
+      "name": "Pelosi, Nancy",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 1987
+          }
+        ]
+      },
+      "updateDate": "2025-12-06T08:30:18Z",
+      "url": "https://api.congress.gov/v3/member/P000197?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "W000830",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/68dc43db199559bad714973d_200.jpg"
+      },
+      "district": 27,
+      "name": "Whitesides, George",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2025
+          }
+        ]
+      },
+      "updateDate": "2025-09-30T21:12:36Z",
+      "url": "https://api.congress.gov/v3/member/W000830?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "F000483",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/677427070b34857ecc9090a1_200.jpg"
+      },
+      "district": 30,
+      "name": "Friedman, Laura",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2025
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:20Z",
+      "url": "https://api.congress.gov/v3/member/F000483?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "F000480",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/669ff04f5d19788d1f2034aa_200.jpg"
+      },
+      "district": 20,
+      "name": "Fong, Vince",
+      "partyName": "Republican",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2024
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:19Z",
+      "url": "https://api.congress.gov/v3/member/F000480?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "C001123",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/6807d8d63e52ea7df920ef05_200.jpg"
+      },
+      "district": 31,
+      "name": "Cisneros, Gilbert Ray",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "endYear": 2021,
+            "startYear": 2019
+          },
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2025
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:19Z",
+      "url": "https://api.congress.gov/v3/member/C001123?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "M001225",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/m001225_200.jpg"
+      },
+      "district": 15,
+      "name": "Mullin, Kevin",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/M001225?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "K000401",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/k000401_200.jpg"
+      },
+      "district": 3,
+      "name": "Kiley, Kevin",
+      "partyName": "Republican",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/K000401?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "K000400",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/k000400_200.jpg"
+      },
+      "district": 37,
+      "name": "Kamlager-Dove, Sydney",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/K000400?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "G000598",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/g000598_200.jpg"
+      },
+      "district": 42,
+      "name": "Garcia, Robert",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/G000598?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "O000019",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/o000019_200.jpg"
+      },
+      "district": 23,
+      "name": "Obernolte, Jay",
+      "partyName": "Republican",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/O000019?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "K000397",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/k000397_200.jpg"
+      },
+      "district": 40,
+      "name": "Kim, Young",
+      "partyName": "Republican",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/K000397?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "J000305",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/j000305_200.jpg"
+      },
+      "district": 51,
+      "name": "Jacobs, Sara",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/J000305?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "H001090",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/h001090_200.jpg"
+      },
+      "district": 9,
+      "name": "Harder, Josh",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2019
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/H001090?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "P000613",
+      "depiction": {
+        "attribution": "Congressional Pictorial Directory",
+        "imageUrl": "https://www.congress.gov/img/member/116_rp_ca_20_panetta_jimmy_200.jpg"
+      },
+      "district": 19,
+      "name": "Panetta, Jimmy",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2017
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/P000613?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "L000582",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/l000582_200.jpg"
+      },
+      "district": 36,
+      "name": "Lieu, Ted",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2015
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/L000582?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "A000371",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/a000371_200.jpg"
+      },
+      "district": 33,
+      "name": "Aguilar, Pete",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2015
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/A000371?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "C001098",
+      "depiction": {
+        "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+        "imageUrl": "https://www.congress.gov/img/member/c001098_200.jpg"
+      },
+      "name": "Cruz, Ted",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "Senate",
+            "startYear": 2013
+          }
+        ]
+      },
+      "updateDate": "2026-03-08T10:31:01Z",
+      "url": "https://api.congress.gov/v3/member/C001098?format=json",
+      "stateCode": "TX",
+      "chamber": "Senate"
+    },
+    {
+      "bioguideId": "C001056",
+      "depiction": {
+        "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+        "imageUrl": "https://www.congress.gov/img/member/c001056_200.jpg"
+      },
+      "name": "Cornyn, John",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "Senate",
+            "startYear": 2002
+          }
+        ]
+      },
+      "updateDate": "2026-03-08T10:30:53Z",
+      "url": "https://api.congress.gov/v3/member/C001056?format=json",
+      "stateCode": "TX",
+      "chamber": "Senate"
+    },
+    {
+      "bioguideId": "M001245",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/698206b2eb30d3271899373e_200.jpg"
+      },
+      "district": 18,
+      "name": "Menefee, Christian D.",
+      "partyName": "Democratic",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2026
+          }
+        ]
+      },
+      "updateDate": "2026-02-18T08:40:24Z",
+      "url": "https://api.congress.gov/v3/member/M001245?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "C001120",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/698a13d0a7af728d4e6c2038_200.jpg"
+      },
+      "district": 2,
+      "name": "Crenshaw, Dan",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2019
+          }
+        ]
+      },
+      "updateDate": "2026-02-09T17:22:01Z",
+      "url": "https://api.congress.gov/v3/member/C001120?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "J000310",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/67742df60b34857ecc9090e9_200.jpg"
+      },
+      "district": 32,
+      "name": "Johnson, Julie",
+      "partyName": "Democratic",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2025
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:20Z",
+      "url": "https://api.congress.gov/v3/member/J000310?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "G000603",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/677428ac0b34857ecc9090b3_200.jpg"
+      },
+      "district": 26,
+      "name": "Gill, Brandon",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2025
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:20Z",
+      "url": "https://api.congress.gov/v3/member/G000603?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "G000601",
+      "depiction": {
+        "imageUrl": "https://www.congress.gov/img/member/6774277d0b34857ecc9090a7_200.jpg"
+      },
+      "district": 12,
+      "name": "Goldman, Craig A.",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2025
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:20Z",
+      "url": "https://api.congress.gov/v3/member/G000601?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "S001224",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/s001224_200.jpg"
+      },
+      "district": 3,
+      "name": "Self, Keith",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:19Z",
+      "url": "https://api.congress.gov/v3/member/S001224?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "M001224",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/680008c5f22eaf56065817f4_200.jpg"
+      },
+      "district": 1,
+      "name": "Moran, Nathaniel",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:19Z",
+      "url": "https://api.congress.gov/v3/member/M001224?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "L000603",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/l000603_200.jpg"
+      },
+      "district": 8,
+      "name": "Luttrell, Morgan",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:19Z",
+      "url": "https://api.congress.gov/v3/member/L000603?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "H001095",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/h001095_200.jpg"
+      },
+      "district": 38,
+      "name": "Hunt, Wesley",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:19Z",
+      "url": "https://api.congress.gov/v3/member/H001095?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "D000594",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/66d9fd54f440bf1dc174fbf6_200.jpg"
+      },
+      "district": 15,
+      "name": "De La Cruz, Monica",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:19Z",
+      "url": "https://api.congress.gov/v3/member/D000594?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "C001130",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/c001130_200.jpg"
+      },
+      "district": 30,
+      "name": "Crockett, Jasmine",
+      "partyName": "Democratic",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:19Z",
+      "url": "https://api.congress.gov/v3/member/C001130?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "C001131",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/c001131_200.jpg"
+      },
+      "district": 35,
+      "name": "Casar, Greg",
+      "partyName": "Democratic",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:19Z",
+      "url": "https://api.congress.gov/v3/member/C001131?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "G000581",
+      "depiction": {
+        "attribution": "Congressional Pictorial Directory",
+        "imageUrl": "https://www.congress.gov/img/member/115_rp_tx_15_gonzalez_vicente_200.jpg"
+      },
+      "district": 34,
+      "name": "Gonzalez, Vicente",
+      "partyName": "Democratic",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2017
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:19Z",
+      "url": "https://api.congress.gov/v3/member/G000581?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "G000553",
+      "depiction": {
+        "attribution": "Congressional Pictorial Directory",
+        "imageUrl": "https://www.congress.gov/img/member/116_rp_tx_9_green_al_200.jpg"
+      },
+      "district": 9,
+      "name": "Green, Al",
+      "partyName": "Democratic",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2005
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:19Z",
+      "url": "https://api.congress.gov/v3/member/G000553?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "D000399",
+      "depiction": {
+        "attribution": "Image, Congressional Pictorial Directory, 109th.",
+        "imageUrl": "https://www.congress.gov/img/member/d000399_200.jpg"
+      },
+      "district": 37,
+      "name": "Doggett, Lloyd",
+      "partyName": "Democratic",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 1995
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:19Z",
+      "url": "https://api.congress.gov/v3/member/D000399?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "E000071",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/e000071_200.jpg"
+      },
+      "district": 6,
+      "name": "Ellzey, Jake",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/E000071?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "V000134",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/677461060b34857ecc9091af_200.jpg"
+      },
+      "district": 24,
+      "name": "Van Duyne, Beth",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/V000134?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "N000026",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/n000026_200.jpg"
+      },
+      "district": 22,
+      "name": "Nehls, Troy E.",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2025-09-24T07:40:17Z",
+      "url": "https://api.congress.gov/v3/member/N000026?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
     }
   ]
 }

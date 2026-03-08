@@ -1,12 +1,13 @@
 {
-  "last_sync": "2026-03-08T15:08:23.142356+00:00",
+  "last_sync": "2026-03-08T15:27:27.413240+00:00",
   "states_synced": [
     "NY",
-    "FL"
+    "FL",
+    "CA",
+    "TX"
   ],
-  "members_count": 40,
+  "members_count": 80,
   "bills_count": 41,
   "senate_votes_count": 500,
-  "member_votes_count": 4,
-  "ai_summaries_count": 41
+  "member_votes_count": 8
 }
