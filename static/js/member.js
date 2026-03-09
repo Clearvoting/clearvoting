@@ -174,7 +174,6 @@ function renderMember(container, member, bioguideId) {
         const table = el('table', { className: 'data-table service-detail-table' });
         const thead = el('thead', null,
             el('tr', null,
-                el('th', null, 'Congress'),
                 el('th', null, 'Chamber'),
                 el('th', null, 'Years')
             )
@@ -184,7 +183,6 @@ function renderMember(container, member, bioguideId) {
         const tbody = el('tbody');
         termItems.forEach(term => {
             const row = el('tr', null,
-                el('td', null, String(term.congress || '')),
                 el('td', null, term.chamber || ''),
                 el('td', null, `${term.startYear || ''}–${term.endYear || 'present'}`)
             );
@@ -222,9 +220,10 @@ function renderMember(container, member, bioguideId) {
 
     loadVotingRecord(bioguideId);
 
-    // Source link
+    // Source link — Congress.gov requires /member/{name-slug}/{bioguideId}
+    const nameSlug = name.toLowerCase().replace(/[^a-z\s-]/g, '').trim().replace(/\s+/g, '-');
     const sourceLink = el('a', {
-        href: `https://www.congress.gov/member/${bioguideId}`,
+        href: `https://www.congress.gov/member/${nameSlug}/${bioguideId}`,
         target: '_blank',
         rel: 'noopener',
         className: 'source-link',
@@ -247,8 +246,10 @@ async function loadSponsoredLegislation(bioguideId) {
         const cosponsored = member.cosponsoredLegislation?.count || 0;
         countEl.textContent = `${count} bills sponsored · ${cosponsored} cosponsored`;
 
+        const rawName = member.directOrderName || `${member.firstName || ''} ${member.lastName || ''}`.trim() || '';
+        const slug = rawName.toLowerCase().replace(/[^a-z\s-]/g, '').trim().replace(/\s+/g, '-');
         const detailsLink = el('a', {
-            href: `https://www.congress.gov/member/${bioguideId}?q=%7B%22sponsorship%22%3A%22sponsored%22%7D`,
+            href: `https://www.congress.gov/member/${slug}/${bioguideId}?q=%7B%22sponsorship%22%3A%22sponsored%22%7D`,
             target: '_blank',
             rel: 'noopener',
             className: 'service-expand-btn',

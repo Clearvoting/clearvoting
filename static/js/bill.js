@@ -159,10 +159,13 @@ function renderBill(container, bill, congress, type, number) {
 
     loadBillVotes(congress, type, number);
 
-    // Source link
-    const typeMap = { hr: 'house-bill', s: 'senate-bill', hjres: 'house-joint-resolution', sjres: 'senate-joint-resolution' };
-    const typeForUrl = typeMap[(type || '').toLowerCase()] || (type || '').toLowerCase();
-    const congressGovUrl = `https://www.congress.gov/bill/${congress}th-congress/${typeForUrl}/${number}`;
+    // Source link — prefer the canonical URL from Congress.gov API when available
+    let congressGovUrl = bill.legislationUrl;
+    if (!congressGovUrl) {
+        const typeMap = { hr: 'house-bill', s: 'senate-bill', hjres: 'house-joint-resolution', sjres: 'senate-joint-resolution', hres: 'house-resolution', sres: 'senate-resolution', hconres: 'house-concurrent-resolution', sconres: 'senate-concurrent-resolution' };
+        const typeForUrl = typeMap[(type || '').toLowerCase()] || (type || '').toLowerCase();
+        congressGovUrl = `https://www.congress.gov/bill/${congress}th-congress/${typeForUrl}/${number}`;
+    }
     container.appendChild(el('a', {
         href: congressGovUrl,
         target: '_blank',
