@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock
 import inspect
-from sync import sync_members, sync_senate_votes, sync_bills_from_votes, build_member_votes, _parse_bill_ref, sync_house_votes, _house_leg_to_document, sync_bill_summaries, backfill_bill_directions
+from sync import sync_members, sync_senate_votes, sync_bills_from_votes, build_member_votes, _parse_bill_ref, sync_house_votes, _house_leg_to_document, sync_bill_summaries, backfill_bill_directions, sync_member_summaries
 
 
 def _write_json(path: Path, data: dict | list) -> None:
@@ -894,3 +894,80 @@ async def test_backfill_skips_existing_direction(tmp_path):
     assert stats["skipped"] == 1
     data = json.loads((tmp_path / "ai_summaries.json").read_text())
     assert data["119-hr-1"]["direction"] == "strengthens"
+
+
+# --- sync_member_summaries ---
+
+@pytest.mark.asyncio
+async def test_sync_member_summaries_generates_narrative(tmp_path):
+    """sync_member_summaries generates narrative for each member."""
+    members = {"members": [
+        {"bioguideId": "G000555", "name": "Gillibrand, Kirsten E.",
+         "directOrderName": "Kirsten E. Gillibrand",
+         "stateCode": "NY", "chamber": "Senate"},
+    ]}
+    _write_json(tmp_path / "members.json", members)
+
+    member_votes_dir = tmp_path / "member_votes"
+    member_votes_dir.mkdir()
+    _write_json(member_votes_dir / "G000555.json", {
+        "member_id": "G000555",
+        "congresses": [119],
+        "stats": {"total_votes": 10, "yea_count": 7, "nay_count": 3,
+                  "not_voting_count": 0, "participation_rate": 100.0},
+        "votes": [
+            {"bill_id": "119-hr-1", "one_liner": "Fund the military", "vote": "Yea",
+             "policy_area": "Armed Forces and National Security", "direction": "strengthens",
+             "congress": 119, "date": "2025-01-15", "result": "Passed", "chamber": "Senate"},
+        ],
+        "policy_areas": ["Armed Forces and National Security"],
+    })
+
+    import unittest.mock
+    with unittest.mock.patch("app.services.member_summary.MemberSummaryService") as MockService:
+        mock_instance = MagicMock()
+        mock_instance.generate_member_summary = AsyncMock(return_value={
+            "narrative": "Gillibrand voted 10 times with 100% participation.",
+            "top_areas": ["Armed Forces and National Security"],
+        })
+        MockService.return_value = mock_instance
+
+        count = await sync_member_summaries(tmp_path, api_key="test")
+
+    summaries_path = tmp_path / "member_summaries.json"
+    assert summaries_path.exists()
+    data = json.loads(summaries_path.read_text())
+    assert "G000555" in data
+    assert "narrative" in data["G000555"]
+    assert count == 1
+
+
+@pytest.mark.asyncio
+async def test_sync_member_summaries_skips_existing(tmp_path):
+    """Incremental: skips members who already have summaries."""
+    members = {"members": [
+        {"bioguideId": "G000555", "name": "Gillibrand, Kirsten E.",
+         "stateCode": "NY", "chamber": "Senate"},
+    ]}
+    _write_json(tmp_path / "members.json", members)
+
+    member_votes_dir = tmp_path / "member_votes"
+    member_votes_dir.mkdir()
+    _write_json(member_votes_dir / "G000555.json", {
+        "member_id": "G000555", "congresses": [119],
+        "stats": {"total_votes": 10, "yea_count": 7, "nay_count": 3,
+                  "not_voting_count": 0, "participation_rate": 100.0},
+        "votes": [{"bill_id": "119-hr-1", "one_liner": "Test", "vote": "Yea",
+                    "policy_area": "Test", "direction": "strengthens",
+                    "congress": 119, "date": "2025-01-15", "result": "Passed", "chamber": "Senate"}],
+        "policy_areas": ["Test"],
+    })
+
+    # Pre-existing summary
+    _write_json(tmp_path / "member_summaries.json", {
+        "G000555": {"narrative": "Already exists.", "top_areas": []},
+    })
+
+    count = await sync_member_summaries(tmp_path)
+
+    assert count == 0  # No new summaries generated

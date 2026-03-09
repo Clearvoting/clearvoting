@@ -619,6 +619,136 @@ def _parse_bill_ref(document: str) -> str | None:
     return None
 
 
+async def sync_member_summaries(
+    output_dir: Path,
+    api_key: str | None = None,
+    rate_limit: float = 1.0,
+) -> int:
+    """Generate AI narrative summaries for each member based on their voting record.
+
+    Incremental — skips members who already have summaries.
+    Returns count of new summaries generated.
+    """
+    from app.services.member_summary import MemberSummaryService
+
+    members_path = output_dir / "members.json"
+    member_votes_dir = output_dir / "member_votes"
+    summaries_path = output_dir / "member_summaries.json"
+
+    if not members_path.exists():
+        print("  No members.json — skipping member summaries")
+        return 0
+
+    with open(members_path) as f:
+        members = json.load(f).get("members", [])
+
+    # Load existing summaries (incremental)
+    existing: dict[str, dict] = {}
+    if summaries_path.exists():
+        with open(summaries_path) as f:
+            existing = json.load(f)
+
+    service = MemberSummaryService(api_key=api_key)
+    count = 0
+
+    for member in members:
+        bioguide_id = member["bioguideId"]
+
+        # Skip if already has summary
+        if bioguide_id in existing:
+            continue
+
+        # Load member's voting record
+        votes_path = member_votes_dir / f"{bioguide_id}.json"
+        if not votes_path.exists():
+            continue
+
+        with open(votes_path) as f:
+            vote_data = json.load(f)
+
+        votes = vote_data.get("votes", [])
+        if not votes:
+            continue
+
+        member_name = member.get("directOrderName") or member.get("name", bioguide_id)
+        chamber = member.get("chamber", "")
+        state = member.get("state", member.get("stateCode", ""))
+        congresses = vote_data.get("congresses", [119])
+        stats = vote_data.get("stats", {})
+
+        # Compute top areas with direction counts
+        area_counts: dict[str, dict] = {}
+        for v in votes:
+            area = v.get("policy_area", "")
+            if not area:
+                continue
+            if area not in area_counts:
+                area_counts[area] = {"name": area, "strengthen": 0, "weaken": 0, "neutral": 0, "total": 0}
+            area_counts[area]["total"] += 1
+            direction = v.get("direction")
+            is_yea = v.get("vote", "").lower() in ("yea", "aye")
+            is_nay = v.get("vote", "").lower() in ("nay", "no")
+            if direction == "strengthens":
+                if is_yea:
+                    area_counts[area]["strengthen"] += 1
+                elif is_nay:
+                    area_counts[area]["weaken"] += 1
+            elif direction == "weakens":
+                if is_yea:
+                    area_counts[area]["weaken"] += 1
+                elif is_nay:
+                    area_counts[area]["strengthen"] += 1
+            else:
+                area_counts[area]["neutral"] += 1
+
+        top_areas = sorted(area_counts.values(), key=lambda x: x["total"], reverse=True)[:5]
+
+        # Collect top supported/opposed one-liners (deduplicated by bill_id)
+        seen_supported: set[str] = set()
+        seen_opposed: set[str] = set()
+        top_supported: list[str] = []
+        top_opposed: list[str] = []
+        for v in votes:
+            bill_id = v.get("bill_id")
+            one_liner = v.get("one_liner", "")
+            if not one_liner or not bill_id:
+                continue
+            if v.get("vote", "").lower() in ("yea", "aye") and bill_id not in seen_supported:
+                seen_supported.add(bill_id)
+                top_supported.append(one_liner)
+            elif v.get("vote", "").lower() in ("nay", "no") and bill_id not in seen_opposed:
+                seen_opposed.add(bill_id)
+                top_opposed.append(one_liner)
+
+        print(f"  Generating summary for {member_name}...")
+
+        try:
+            result = await service.generate_member_summary(
+                member_name=member_name,
+                chamber=chamber,
+                state=state,
+                congresses=congresses,
+                stats=stats,
+                top_areas=top_areas,
+                top_supported=top_supported[:8],
+                top_opposed=top_opposed[:6],
+            )
+
+            result["generated_at"] = datetime.now(timezone.utc).isoformat()
+            existing[bioguide_id] = result
+            count += 1
+        except Exception as e:
+            print(f"  WARNING: Failed to generate summary for {member_name}: {e}")
+
+        await asyncio.sleep(rate_limit)
+
+        # Save after each member (crash-safe)
+        _atomic_write_json(summaries_path, existing)
+
+    print(f"  Generated {count} member summaries")
+    return count
+
+
 async def backfill_bill_directions(
     output_dir: Path,
     api_key: str | None = None,
@@ -996,7 +1126,11 @@ async def main() -> None:
     print("[6/9] Building member voting records...")
     member_votes_count = await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
 
-    # Step 7: Member summaries (placeholder — not yet implemented)
+    # Step 7: Member summaries
+    print()
+    print(f"[7/9] Generating AI member summaries ({'API' if anthropic_key else 'Claude CLI'})...")
+    member_summary_count = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
+
     # Step 8: Member summary grading (placeholder — not yet implemented)
 
     # Step 9: Sync summary
@@ -1012,6 +1146,7 @@ async def main() -> None:
         "senate_votes_count": senate_count,
         "house_votes_count": house_count,
         "member_votes_count": member_votes_count,
+        "member_summary_count": member_summary_count,
         "summary_stats": summary_stats,
     }
     _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
