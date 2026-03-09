@@ -8,6 +8,7 @@ class DataService:
         self._members: list[dict] = []
         self._bills: list[dict] = []
         self._ai_summaries: dict[str, dict] = {}
+        self._member_summaries: dict[str, dict] = {}
         self._metadata: dict = {}
         self._load()
 
@@ -15,6 +16,7 @@ class DataService:
         self._members = self._read_json("members.json").get("members", [])
         self._bills = self._read_json("bills.json").get("bills", [])
         self._ai_summaries = self._read_json("ai_summaries.json")
+        self._member_summaries = self._read_json("member_summaries.json")
         metadata_path = self.data_dir / "sync_metadata.json"
         if metadata_path.exists():
             self._metadata = self._read_json("sync_metadata.json")
@@ -101,6 +103,10 @@ class DataService:
             "stats": data["stats"],
             "top_policy_areas": top_policy_areas,
         }
+
+    def get_member_narrative(self, bioguide_id: str) -> dict | None:
+        bioguide_id = bioguide_id.upper()
+        return self._member_summaries.get(bioguide_id)
 
     def get_bills(self, offset: int = 0, limit: int = 20) -> dict:
         paginated = self._bills[offset:offset + limit]

@@ -1,0 +1,19 @@
+{
+  "S001217": {
+    "bioguide_id": "S001217",
+    "narrative": "This member has focused primarily on taxation and defense policy, consistently voting to reduce tax regulations while opposing defense spending increases.",
+    "top_areas": [
+      {
+        "area": "Taxation",
+        "stance": "Voted to weaken existing tax regulations",
+        "vote_count": 1
+      },
+      {
+        "area": "Armed Forces and National Security",
+        "stance": "Voted against strengthening defense measures",
+        "vote_count": 1
+      }
+    ],
+    "generated_at": "2026-03-09T00:00:00Z"
+  }
+}

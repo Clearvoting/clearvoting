@@ -157,3 +157,23 @@ def test_get_bill_votes_hjres(data_service):
 def test_get_bill_votes_not_found(data_service):
     result = data_service.get_bill_votes(119, "hr", 9999)
     assert result is None
+
+
+def test_get_member_narrative(data_service):
+    result = data_service.get_member_narrative("S001217")
+    assert result is not None
+    assert result["bioguide_id"] == "S001217"
+    assert "taxation" in result["narrative"].lower()
+    assert len(result["top_areas"]) == 2
+    assert result["top_areas"][0]["area"] == "Taxation"
+
+
+def test_get_member_narrative_case_insensitive(data_service):
+    result = data_service.get_member_narrative("s001217")
+    assert result is not None
+    assert result["bioguide_id"] == "S001217"
+
+
+def test_get_member_narrative_not_found(data_service):
+    result = data_service.get_member_narrative("X999999")
+    assert result is None

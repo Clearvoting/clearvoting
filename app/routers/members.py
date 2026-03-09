@@ -54,6 +54,13 @@ async def get_member_summary(bioguide_id: str):
     summary = data_service.get_member_vote_summary(bioguide_id)
     if not summary:
         raise HTTPException(status_code=404, detail="Member not found")
+
+    # Include AI narrative if available
+    narrative = data_service.get_member_narrative(bioguide_id)
+    if narrative:
+        summary["narrative"] = narrative.get("narrative", "")
+        summary["narrative_top_areas"] = narrative.get("top_areas", [])
+
     return summary
 
 
