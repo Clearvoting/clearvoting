@@ -1065,6 +1065,15 @@ select:focus, input:focus {
     margin-bottom: 0.75rem;
 }
 
+.summary-narrative {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
 .summary-overview {
     font-size: 1rem;
     color: var(--text-primary);

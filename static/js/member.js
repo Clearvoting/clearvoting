@@ -276,12 +276,20 @@ async function loadVotingRecord(bioguideId) {
     if (!container) return;
 
     try {
-        const response = await fetch(`/api/members/${bioguideId}/votes`);
-        if (!response.ok) throw new Error('Failed to load votes');
-        const data = await response.json();
+        const [votesResponse, summaryResponse] = await Promise.all([
+            fetch(`/api/members/${bioguideId}/votes`),
+            fetch(`/api/members/${bioguideId}/summary`).catch(() => null)
+        ]);
+        if (!votesResponse.ok) throw new Error('Failed to load votes');
+        const data = await votesResponse.json();
+
+        let summaryData = null;
+        if (summaryResponse && summaryResponse.ok) {
+            summaryData = await summaryResponse.json();
+        }
 
         clearEl(container);
-        renderVotingSummary(data.stats, data.votes);
+        renderVotingSummary(data.stats, data.votes, summaryData);
         if (data.scorecard && data.scorecard.length > 0) {
             renderScorecard(container, data.scorecard);
         }
@@ -294,7 +302,7 @@ async function loadVotingRecord(bioguideId) {
     }
 }
 
-function renderVotingSummary(stats, votes) {
+function renderVotingSummary(stats, votes, summaryData) {
     const summaryEl = document.getElementById('voting-summary');
     if (!summaryEl) return;
     clearEl(summaryEl);
@@ -345,6 +353,12 @@ function renderVotingSummary(stats, votes) {
     // Build the summary card
     const card = el('section', { className: 'voting-summary-card' });
     card.appendChild(el('h3', null, 'At a Glance'));
+
+    // AI narrative (if available)
+    if (summaryData && summaryData.narrative) {
+        const narrative = el('p', { className: 'summary-narrative' }, summaryData.narrative);
+        card.appendChild(narrative);
+    }
 
     // Overview — plain language
     const overview = el('p', { className: 'summary-overview' },
