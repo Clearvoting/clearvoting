@@ -442,7 +442,8 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
         for bill in bills_data.get("bills", []):
             bill_type = bill.get("type", "").lower()
             bill_number = bill.get("number", "")
-            key = f"{bill_type}-{bill_number}"
+            congress = bill.get("congress", 119)
+            key = f"{congress}-{bill_type}-{bill_number}"
             bill_lookup[key] = bill
 
     # Load AI summaries for one_liner lookup
@@ -456,17 +457,17 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
             print("  Warning: ai_summaries.json is malformed — using raw titles")
             ai_summaries = {}
 
-    def _get_one_liner(bill_ref: str | None, bill_info: dict, doc: str) -> str:
+    def _get_one_liner(bill_ref: str | None, bill_info: dict, doc: str, congress: int = 119) -> str:
         if bill_ref:
-            summary_key = f"119-{bill_ref}"
+            summary_key = f"{congress}-{bill_ref}"
             ai_summary = ai_summaries.get(summary_key, {})
             if ai_summary.get("one_liner"):
                 return ai_summary["one_liner"]
         return bill_info.get("title", doc)
 
-    def _get_direction(bill_ref: str | None) -> str | None:
+    def _get_direction(bill_ref: str | None, congress: int = 119) -> str | None:
         if bill_ref:
-            summary_key = f"119-{bill_ref}"
+            summary_key = f"{congress}-{bill_ref}"
             summary = ai_summaries.get(summary_key, {})
             return summary.get("direction")
         return None
@@ -511,21 +512,24 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                 if not matched:
                     continue
 
+                vote_congress = vote.get("congress", 119)
                 doc = vote.get("document", "")
                 bill_ref = _parse_bill_ref(doc)
-                bill_info = bill_lookup.get(bill_ref, {}) if bill_ref else {}
+                bill_key = f"{vote_congress}-{bill_ref}" if bill_ref else None
+                bill_info = bill_lookup.get(bill_key, {}) if bill_key else {}
 
                 member_vote_list.append({
                     "bill_number": doc,
-                    "bill_id": f"119-{bill_ref}" if bill_ref else None,
-                    "one_liner": _get_one_liner(bill_ref, bill_info, doc),
+                    "bill_id": f"{vote_congress}-{bill_ref}" if bill_ref else None,
+                    "one_liner": _get_one_liner(bill_ref, bill_info, doc, congress=vote_congress),
                     "vote": matched.get("vote", ""),
                     "date": vote.get("vote_date", ""),
                     "result": vote.get("result", ""),
                     "policy_area": bill_info.get("policyArea", {}).get("name", ""),
                     "chamber": "Senate",
                     "cbo_deficit_impact": None,
-                    "direction": _get_direction(bill_ref),
+                    "direction": _get_direction(bill_ref, congress=vote_congress),
+                    "congress": vote_congress,
                 })
 
         elif chamber == "House of Representatives":
@@ -539,21 +543,24 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                 if not matched:
                     continue
 
+                vote_congress = vote.get("congress", 119)
                 doc = vote.get("document", "")
                 bill_ref = _parse_bill_ref(doc)
-                bill_info = bill_lookup.get(bill_ref, {}) if bill_ref else {}
+                bill_key = f"{vote_congress}-{bill_ref}" if bill_ref else None
+                bill_info = bill_lookup.get(bill_key, {}) if bill_key else {}
 
                 member_vote_list.append({
                     "bill_number": doc,
-                    "bill_id": f"119-{bill_ref}" if bill_ref else None,
-                    "one_liner": _get_one_liner(bill_ref, bill_info, doc),
+                    "bill_id": f"{vote_congress}-{bill_ref}" if bill_ref else None,
+                    "one_liner": _get_one_liner(bill_ref, bill_info, doc, congress=vote_congress),
                     "vote": matched.get("vote", ""),
                     "date": vote.get("vote_date", ""),
                     "result": vote.get("result", ""),
                     "policy_area": bill_info.get("policyArea", {}).get("name", ""),
                     "chamber": "House",
                     "cbo_deficit_impact": None,
-                    "direction": _get_direction(bill_ref),
+                    "direction": _get_direction(bill_ref, congress=vote_congress),
+                    "congress": vote_congress,
                 })
 
         # Compute stats
@@ -565,9 +572,11 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
 
         policy_areas = sorted(set(v["policy_area"] for v in member_vote_list if v["policy_area"]))
 
+        congresses_seen = sorted(set(v.get("congress", 119) for v in member_vote_list if v.get("congress")))
+
         record = {
             "member_id": bioguide_id,
-            "congress": 119,
+            "congresses": congresses_seen if congresses_seen else [119],
             "stats": {
                 "total_votes": total,
                 "yea_count": yea,

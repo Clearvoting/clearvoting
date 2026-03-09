@@ -38,7 +38,7 @@ async def get_member_votes(
     paginated = sorted_votes[offset:offset + limit]
     return {
         "member_id": data["member_id"],
-        "congress": data["congress"],
+        "congresses": data.get("congresses", [data["congress"]] if "congress" in data else [119]),
         "stats": data["stats"],
         "scorecard": data.get("scorecard", []),
         "votes": paginated,
