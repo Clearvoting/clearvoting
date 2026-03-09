@@ -5,6 +5,17 @@ from app.services.cache import CacheService
 
 logger = logging.getLogger(__name__)
 
+
+def _strip_code_fences(text: str) -> str:
+    """Remove markdown code fences (```json ... ```) from LLM output."""
+    text = text.strip()
+    if text.startswith("```"):
+        first_newline = text.index("\n") if "\n" in text else len(text)
+        text = text[first_newline + 1:]
+    if text.endswith("```"):
+        text = text[:-3]
+    return text.strip()
+
 IMPACT_CATEGORIES = [
     "Wages & Income",
     "Healthcare",
@@ -49,9 +60,25 @@ Output valid JSON only. No markdown, no commentary."""
 
 
 class AISummaryService:
-    def __init__(self, api_key: str, cache: CacheService):
-        self.client = anthropic.AsyncAnthropic(api_key=api_key)
+    def __init__(self, api_key: str | None, cache: CacheService):
         self.cache = cache
+        if api_key:
+            self.client = anthropic.AsyncAnthropic(api_key=api_key)
+        else:
+            self.client = None
+
+    async def _call_llm(self, system: str, user_prompt: str) -> str:
+        if self.client:
+            response = await self.client.messages.create(
+                model="claude-sonnet-4-20250514",
+                max_tokens=1024,
+                system=system,
+                messages=[{"role": "user", "content": user_prompt}],
+            )
+            return response.content[0].text
+        else:
+            from app.services.claude_cli import call_claude_cli
+            return await call_claude_cli(system, user_prompt)
 
     def _build_prompt(self, title: str, official_summary: str, bill_text_excerpt: str, grader_feedback: str | None = None) -> str:
         categories_str = ", ".join(IMPACT_CATEGORIES)
@@ -92,14 +119,8 @@ Generate a corrected version. Return ONLY valid JSON."""
 
         prompt = self._build_prompt(title, official_summary, bill_text_excerpt, grader_feedback=grader_feedback)
 
-        response = await self.client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=1024,
-            system=SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": prompt}],
-        )
-
-        raw_text = response.content[0].text
+        raw_text = await self._call_llm(SYSTEM_PROMPT, prompt)
+        raw_text = _strip_code_fences(raw_text)
         try:
             result = json.loads(raw_text)
         except json.JSONDecodeError:

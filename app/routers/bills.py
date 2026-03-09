@@ -42,11 +42,7 @@ async def get_bill(congress: int = Path(ge=1, le=200), bill_type: str = Path(), 
     data_service = get_data_service()
     result = data_service.get_bill_detail(congress, bill_type, bill_number)
     if not result:
-        return {
-            "bill": {"congress": congress, "type": bill_type.upper(), "number": str(bill_number),
-                     "title": f"{bill_type.upper()}.{bill_number}", "latestAction": {}, "summaries": []},
-            "subjects": {"legislativeSubjects": []}
-        }
+        raise HTTPException(status_code=404, detail="Bill not found")
     return result
 
 

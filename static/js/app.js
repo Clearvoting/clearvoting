@@ -13,7 +13,8 @@ const IMPACT_CATEGORIES = [
     'Wages & Income', 'Healthcare', 'Small Business', 'Housing', 'Education',
     'Taxes', 'Military & Veterans', 'Agriculture', 'Environment', 'Immigration',
     'Criminal Justice', 'Technology', 'Infrastructure', 'Social Security & Medicare',
-    'Government Operations',
+    'Government Operations', 'Energy', 'Foreign Affairs', 'Civil Rights',
+    'Economy', 'Defense', 'Labor',
 ];
 
 let showParty = false;
@@ -453,15 +454,11 @@ async function searchBills() {
     loadMoreBtn.hidden = true;
 
     try {
-        const response = await fetch(`/api/bills?limit=50`);
+        const response = await fetch(`/api/search/bills?q=${encodeURIComponent(query)}&limit=50`);
         if (!response.ok) throw new Error('Search failed');
         const data = await response.json();
 
-        const queryLower = query.toLowerCase();
-        const bills = (data.bills || []).filter(b => {
-            const title = (b.title || b.latestTitle || '').toLowerCase();
-            return title.includes(queryLower);
-        });
+        const bills = data.bills || [];
 
         clearChildren(billList);
         if (bills.length === 0) {

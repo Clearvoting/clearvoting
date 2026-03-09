@@ -87,7 +87,7 @@ async def test_valid_bill_types_accepted():
         async with AsyncClient(transport=transport, base_url="http://test") as client:
             for bt in ["hr", "s", "hjres", "sjres", "HR", "S"]:
                 resp = await client.get(f"/api/bills/119/{bt}/1")
-                assert resp.status_code == 200, f"Bill type '{bt}' should be accepted"
+                assert resp.status_code != 400, f"Bill type '{bt}' should be accepted"
 
     _clear_data_service_cache()
 

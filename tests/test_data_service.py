@@ -46,7 +46,7 @@ def test_get_member_votes_not_found(data_service):
 
 def test_get_bills(data_service):
     result = data_service.get_bills()
-    assert len(result["bills"]) == 2
+    assert len(result["bills"]) == 3
 
 
 def test_get_bills_pagination(data_service):
@@ -130,3 +130,16 @@ def test_get_bill_votes(data_service):
     result = data_service.get_bill_votes(119, "hr", 1)
     assert result is not None
     assert len(result["senate"]) == 1
+    assert "house" in result
+
+
+def test_get_bill_votes_hjres(data_service):
+    result = data_service.get_bill_votes(119, "hjres", 20)
+    assert result is not None
+    assert len(result["senate"]) == 1
+    assert len(result["house"]) == 1
+
+
+def test_get_bill_votes_not_found(data_service):
+    result = data_service.get_bill_votes(119, "hr", 9999)
+    assert result is None

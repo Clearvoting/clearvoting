@@ -271,7 +271,7 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, con
 
 async def sync_bill_summaries(
     output_dir: Path,
-    api_key: str,
+    api_key: str | None = None,
     batch_size: int = 5,
     rate_limit: float = 1.0,
 ) -> dict:
@@ -585,26 +585,190 @@ def _parse_bill_ref(document: str) -> str | None:
     return None
 
 
+async def _run_audit(anthropic_key: str | None) -> None:
+    """Grade existing summaries and only regenerate failures."""
+    from app.services.ai_summary import AISummaryService
+    from app.services.summary_grader import SummaryGrader
+    from app.services.writer_grader_loop import WriterGraderLoop
+    from app.services.grader_learnings import GraderLearnings
+
+    SYNC_DIR.mkdir(parents=True, exist_ok=True)
+    api_key = anthropic_key or None
+
+    bills_path = SYNC_DIR / "bills.json"
+    summaries_path = SYNC_DIR / "ai_summaries.json"
+    learnings_path = SYNC_DIR / "grader_learnings.json"
+
+    if not bills_path.exists():
+        print("No bills.json — nothing to audit")
+        return
+
+    with open(bills_path) as f:
+        bills = json.load(f).get("bills", [])
+
+    existing: dict[str, dict] = {}
+    if summaries_path.exists():
+        with open(summaries_path) as f:
+            existing = json.load(f)
+
+    # Build bill lookup by key
+    bill_by_key: dict[str, dict] = {}
+    for bill in bills:
+        bt = bill.get("type", "").lower()
+        bn = bill.get("number", "")
+        congress = bill.get("congress", 119)
+        key = f"{congress}-{bt}-{bn}"
+        bill_by_key[key] = bill
+
+    # Only audit bills that have existing summaries
+    to_audit = [(k, existing[k]) for k in existing if k in bill_by_key]
+
+    if not to_audit:
+        print("No summaries to audit")
+        return
+
+    print("=== ClearVote Summary Audit ===")
+    print(f"  Mode: {'API' if api_key else 'Claude CLI (Max plan)'}")
+    print(f"  Summaries to audit: {len(to_audit)}")
+    print()
+
+    # Setup services
+    cache = CacheService(cache_dir=CACHE_DIR, ttl_seconds=86400)
+    grader = SummaryGrader(api_key=api_key)
+    writer_service = AISummaryService(api_key=api_key, cache=cache)
+
+    learnings_store = GraderLearnings(learnings_path)
+    grader.load_learnings(learnings_store.get_learnings())
+
+    grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
+    failures: list[tuple[str, dict]] = []
+    all_feedback: list[str] = []
+
+    # Phase 1: Grade existing summaries
+    print("[1/3] Grading existing summaries...")
+    for i, (key, summary) in enumerate(to_audit):
+        bill = bill_by_key[key]
+        title = bill.get("title", "")
+        summaries_list = bill.get("summaries", [])
+        official = summaries_list[0].get("text", "") if summaries_list else ""
+
+        print(f"  [{i + 1}/{len(to_audit)}] {title[:60]}...")
+
+        grade_result = await grader.grade(
+            summary_type="bill_summary",
+            summary_text=json.dumps(summary),
+            context={"title": title, "official_summary": official},
+        )
+
+        grade_dist[grade_result.grade] = grade_dist.get(grade_result.grade, 0) + 1
+        all_feedback.append(grade_result.feedback)
+
+        if not grade_result.passed:
+            failures.append((key, bill))
+            print(f"    FAIL ({grade_result.grade}): {grade_result.feedback[:80]}")
+        else:
+            print(f"    PASS ({grade_result.grade})")
+
+        await asyncio.sleep(0.5)
+
+    print()
+    print(f"  Grades: {grade_dist}")
+    print(f"  Passed: {grade_dist.get('A', 0) + grade_dist.get('B', 0)}")
+    print(f"  Failed: {len(failures)}")
+    print()
+
+    # Phase 2: Regenerate failures through writer-grader loop
+    if failures:
+        print(f"[2/3] Regenerating {len(failures)} failed summaries...")
+        regen_stats = {"passed": 0, "failed": 0}
+
+        for i, (key, bill) in enumerate(failures):
+            title = bill.get("title", "")
+            summaries_list = bill.get("summaries", [])
+            official = summaries_list[0].get("text", "") if summaries_list else ""
+            bill_text = bill.get("textVersions", [{}])[0].get("text", "") if bill.get("textVersions") else ""
+
+            print(f"  [{i + 1}/{len(failures)}] {title[:60]}...")
+
+            async def writer_fn(grader_feedback=None, _key=key, _title=title, _official=official, _bill_text=bill_text, **kwargs):
+                return await writer_service.generate_summary(
+                    bill_id=_key,
+                    title=_title,
+                    official_summary=_official,
+                    bill_text_excerpt=_bill_text[:2000],
+                    grader_feedback=grader_feedback,
+                )
+
+            loop = WriterGraderLoop(writer_fn=writer_fn, grader=grader)
+            result = await loop.run(
+                summary_type="bill_summary",
+                writer_kwargs={},
+                grader_context={"title": title, "official_summary": official},
+            )
+
+            new_summary = result.best_summary
+            if result.needs_review:
+                new_summary["needs_review"] = True
+                regen_stats["failed"] += 1
+                print(f"    Still failing ({result.best_grade.grade}) — flagged for review")
+            else:
+                regen_stats["passed"] += 1
+                print(f"    Fixed ({result.best_grade.grade})")
+
+            existing[key] = new_summary
+            _atomic_write_json(summaries_path, existing)
+
+            await asyncio.sleep(1.0)
+
+        print()
+        print(f"  Regenerated: {regen_stats['passed']} fixed, {regen_stats['failed']} still need review")
+    else:
+        print("[2/3] No failures — skipping regeneration")
+
+    # Save final summaries
+    _atomic_write_json(summaries_path, existing)
+
+    # Phase 3: Rebuild member votes
+    print()
+    print("[3/3] Rebuilding member voting records...")
+    await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
+
+    # Save learnings
+    new_patterns = learnings_store.extract_patterns(all_feedback)
+    for pattern in new_patterns:
+        learnings_store.add_learning(pattern)
+    learnings_store.save()
+
+    print()
+    print("=== Audit complete ===")
+
+
 async def main() -> None:
     parser = argparse.ArgumentParser(description="ClearVote Data Sync")
     parser.add_argument("--states", type=str, default=None,
                         help="Comma-separated state codes (e.g., NY,FL). Default: all states.")
     parser.add_argument("--grade", action="store_true",
                         help="Re-grade existing AI summaries without re-syncing source data.")
+    parser.add_argument("--audit", action="store_true",
+                        help="Grade existing summaries and only regenerate failures.")
     args = parser.parse_args()
 
-    anthropic_key = os.getenv("ANTHROPIC_API_KEY", "")
+    raw_key = os.getenv("ANTHROPIC_API_KEY", "")
+    anthropic_key = raw_key if raw_key.startswith("sk-") else ""
+
+    # --- Audit mode: grade existing, only regenerate failures ---
+    if args.audit:
+        await _run_audit(anthropic_key)
+        return
 
     # --- Re-grade mode ---
     if args.grade:
-        if not anthropic_key:
-            print("ERROR: ANTHROPIC_API_KEY not set — cannot grade without it")
-            sys.exit(1)
 
         SYNC_DIR.mkdir(parents=True, exist_ok=True)
 
         print("=== ClearVote Re-Grade Mode ===")
         print("Re-grading all existing AI summaries...")
+        print(f"  Mode: {'API' if anthropic_key else 'Claude CLI (Max plan)'}")
         print()
 
         # Back up and clear existing summaries to force re-generation
@@ -617,11 +781,11 @@ async def main() -> None:
 
         print()
         print("[1/2] Re-grading bill summaries...")
-        await sync_bill_summaries(SYNC_DIR, anthropic_key, batch_size=5, rate_limit=1.0)
+        await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
 
         print()
         print("[2/2] Re-building member voting records...")
-        await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
+        await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key or None)
 
         print()
         print("=== Re-grade complete ===")
@@ -666,14 +830,9 @@ async def main() -> None:
     bills_count = await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
 
     # Step 5: AI bill summaries (writer-grader loop)
-    if anthropic_key:
-        print()
-        print("[5/7] Generating graded AI bill summaries...")
-        summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key, batch_size=5, rate_limit=1.0)
-    else:
-        print()
-        print("[5/7] Skipping AI summaries — ANTHROPIC_API_KEY not set")
-        summary_stats = {"total": 0}
+    print()
+    print(f"[5/7] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
+    summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
 
     # Step 6: Member voting records (both chambers)
     print()

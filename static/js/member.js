@@ -63,7 +63,8 @@ async function loadMember(bioguideId) {
         const data = await response.json();
 
         memberData = data.member || data;
-        document.title = `${memberData.directOrderName || memberData.firstName || 'Representative'} — ClearVoting`;
+        const titleName = memberData.directOrderName || memberData.name || memberData.firstName || 'Representative';
+        document.title = `${titleName.includes(', ') ? titleName.split(', ').reverse().join(' ') : titleName} — ClearVoting`;
         renderMember(container, memberData, bioguideId);
     } catch (err) {
         showError('Unable to load representative data. Congress.gov may be temporarily unavailable.');
@@ -73,7 +74,9 @@ async function loadMember(bioguideId) {
 function renderMember(container, member, bioguideId) {
     clearEl(container);
 
-    const name = member.directOrderName || `${member.firstName || ''} ${member.lastName || ''}`.trim();
+    const rawName = member.directOrderName || `${member.firstName || ''} ${member.lastName || ''}`.trim() || member.name || 'Unknown';
+    // Convert "Last, First" to "First Last" if needed
+    const name = rawName.includes(', ') ? rawName.split(', ').reverse().join(' ') : rawName;
     const depiction = member.depiction;
     const imageUrl = depiction ? depiction.imageUrl : '';
     const stateText = member.state || '';
@@ -127,6 +130,26 @@ function renderMember(container, member, bioguideId) {
 
     const header = el('div', { className: 'member-header' }, photoEl, headerInfo);
     container.appendChild(header);
+
+    // Sticky name bar — appears when the member header scrolls out of view
+    const stickyBar = el('div', { className: 'member-sticky-bar' });
+    if (imageUrl) {
+        stickyBar.appendChild(el('img', { src: imageUrl, alt: '' }));
+    }
+    stickyBar.appendChild(el('span', { className: 'sticky-name' }, name));
+    stickyBar.appendChild(el('span', { className: 'sticky-meta' }, metaText));
+    container.appendChild(stickyBar);
+
+    // Position sticky bar just below the site header
+    const siteHeader = document.querySelector('.site-header');
+    if (siteHeader) {
+        stickyBar.style.top = siteHeader.offsetHeight + 'px';
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+        stickyBar.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0 });
+    observer.observe(header);
 
     // Voting summary (brief text at top, loaded async)
     const summaryEl = el('div', { id: 'voting-summary', className: 'voting-summary' });

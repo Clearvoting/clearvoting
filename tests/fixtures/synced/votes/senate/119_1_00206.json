@@ -1,0 +1,14 @@
+{
+  "congress": 119,
+  "session": 1,
+  "vote_number": 206,
+  "vote_date": "2025-03-27",
+  "question": "On Passage of the Joint Resolution",
+  "document": "H.J.Res. 20",
+  "result": "Joint Resolution Passed",
+  "title": "A joint resolution providing for congressional disapproval",
+  "counts": {"yeas": 56, "nays": 42, "present": 0, "absent": 2},
+  "members": [
+    {"first_name": "Rick", "last_name": "Scott", "party": "R", "state": "FL", "vote": "Yea", "lis_member_id": "S001217"}
+  ]
+}

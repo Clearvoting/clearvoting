@@ -5,6 +5,17 @@ import anthropic
 
 logger = logging.getLogger(__name__)
 
+
+def _strip_code_fences(text: str) -> str:
+    """Remove markdown code fences (```json ... ```) from LLM output."""
+    text = text.strip()
+    if text.startswith("```"):
+        first_newline = text.index("\n") if "\n" in text else len(text)
+        text = text[first_newline + 1:]
+    if text.endswith("```"):
+        text = text[:-3]
+    return text.strip()
+
 GRADE_ORDER = {"A": 4, "B": 3, "C": 2, "D": 1, "F": 0}
 
 
@@ -17,9 +28,25 @@ class GradeResult:
 
 
 class SummaryGrader:
-    def __init__(self, api_key: str):
-        self.client = anthropic.AsyncAnthropic(api_key=api_key)
+    def __init__(self, api_key: str | None = None):
+        if api_key:
+            self.client = anthropic.AsyncAnthropic(api_key=api_key)
+        else:
+            self.client = None
         self.learnings: list[str] = []
+
+    async def _call_llm(self, system: str, user_prompt: str) -> str:
+        if self.client:
+            response = await self.client.messages.create(
+                model="claude-sonnet-4-20250514",
+                max_tokens=1024,
+                system=system,
+                messages=[{"role": "user", "content": user_prompt}],
+            )
+            return response.content[0].text
+        else:
+            from app.services.claude_cli import call_claude_cli
+            return await call_claude_cli(system, user_prompt)
 
     def load_learnings(self, learnings: list[str]) -> None:
         self.learnings = learnings
@@ -96,14 +123,8 @@ Evaluate against every check in your checklist. Be strict — this tool exists t
         user_prompt = self._build_grade_prompt(summary_type, summary_text, context)
 
         try:
-            response = await self.client.messages.create(
-                model="claude-sonnet-4-20250514",
-                max_tokens=1024,
-                system=system_prompt,
-                messages=[{"role": "user", "content": user_prompt}],
-            )
-
-            raw_text = response.content[0].text
+            raw_text = await self._call_llm(system_prompt, user_prompt)
+            raw_text = _strip_code_fences(raw_text)
             result = json.loads(raw_text)
 
             return GradeResult(

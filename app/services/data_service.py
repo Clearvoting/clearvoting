@@ -108,22 +108,48 @@ class DataService:
         with open(path, "r") as f:
             return json.load(f)
 
+    @staticmethod
+    def _bill_type_to_document_pattern(bill_type: str, bill_number: int) -> str | None:
+        """Convert normalized bill type to the document field pattern used in vote files."""
+        patterns = {
+            "hr": f"H.R. {bill_number}",
+            "s": f"S. {bill_number}",
+            "hjres": f"H.J.Res. {bill_number}",
+            "sjres": f"S.J.Res. {bill_number}",
+            "hconres": f"H.Con.Res. {bill_number}",
+            "sconres": f"S.Con.Res. {bill_number}",
+            "hres": f"H.Res. {bill_number}",
+            "sres": f"S.Res. {bill_number}",
+        }
+        return patterns.get(bill_type.lower())
+
+    def _search_votes_in_dir(self, vote_dir: Path, pattern: str) -> list[dict]:
+        """Search a vote directory for votes matching a bill document pattern."""
+        votes = []
+        if not vote_dir.exists():
+            return votes
+        pattern_lower = pattern.lower()
+        for vote_file in vote_dir.glob("*.json"):
+            with open(vote_file, "r") as f:
+                vote = json.load(f)
+            doc = vote.get("document", "").lower()
+            if pattern_lower in doc:
+                votes.append(vote)
+        return votes
+
     def get_bill_votes(self, congress: int, bill_type: str, bill_number: int) -> dict | None:
-        bill_type = bill_type.lower()
-        senate_votes = []
-        senate_dir = self.data_dir / "votes" / "senate"
-        if senate_dir.exists():
-            for vote_file in senate_dir.glob("*.json"):
-                with open(vote_file, "r") as f:
-                    vote = json.load(f)
-                doc = vote.get("document", "").lower()
-                if bill_type == "hr" and f"h.r. {bill_number}" in doc:
-                    senate_votes.append(vote)
-                elif bill_type == "s" and f"s. {bill_number}" in doc:
-                    senate_votes.append(vote)
-        if not senate_votes:
+        pattern = self._bill_type_to_document_pattern(bill_type, bill_number)
+        if not pattern:
             return None
-        return {"senate": senate_votes, "house": []}
+        senate_votes = self._search_votes_in_dir(
+            self.data_dir / "votes" / "senate", pattern
+        )
+        house_votes = self._search_votes_in_dir(
+            self.data_dir / "votes" / "house", pattern
+        )
+        if not senate_votes and not house_votes:
+            return None
+        return {"senate": senate_votes, "house": house_votes}
 
     def get_sync_metadata(self) -> dict:
         return self._metadata

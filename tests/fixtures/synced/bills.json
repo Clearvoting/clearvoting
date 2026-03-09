@@ -19,6 +19,16 @@
       "sponsors": [],
       "policyArea": {"name": "Armed Forces and National Security"},
       "summaries": []
+    },
+    {
+      "congress": 119,
+      "type": "HJRES",
+      "number": "20",
+      "title": "Providing for congressional disapproval of energy efficiency standards",
+      "latestAction": {"actionDate": "2025-04-01", "text": "Became Public Law No: 119-6."},
+      "sponsors": [],
+      "policyArea": {"name": "Energy"},
+      "summaries": []
     }
   ]
 }

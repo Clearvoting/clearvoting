@@ -979,6 +979,47 @@ select:focus, input:focus {
     margin-bottom: 1rem;
 }
 
+.member-sticky-bar {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.member-sticky-bar.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.member-sticky-bar img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.member-sticky-bar .sticky-name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.member-sticky-bar .sticky-meta {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
 .member-header .member-photo,
 .member-header .member-photo-placeholder {
     width: 96px;
@@ -1611,6 +1652,10 @@ select:focus, input:focus {
         justify-content: center;
     }
 
+    .member-sticky-bar {
+        padding: 0.4rem 1rem;
+    }
+
     .service-compact-header {
         flex-wrap: wrap;
     }
@@ -1646,6 +1691,115 @@ select:focus, input:focus {
         padding: 0.5rem;
     }
 }
+
+/* ============================================
+   Feedback Button & Modal
+   ============================================ */
+.feedback-btn {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--bg-secondary);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.5rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-family: var(--font-body);
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition);
+    z-index: 90;
+}
+
+.feedback-btn:hover {
+    color: #fff;
+    background: var(--accent-dim);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.feedback-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 1.5rem;
+}
+
+.feedback-modal[hidden] {
+    display: none;
+}
+
+.feedback-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.feedback-form {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    width: 360px;
+    max-width: 100%;
+    box-shadow: var(--shadow-lg);
+}
+
+.feedback-form h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.feedback-context {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+}
+
+.feedback-form textarea {
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.65rem 0.85rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color var(--transition);
+}
+
+.feedback-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.feedback-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.feedback-status {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.feedback-success { color: var(--vote-yea); }
+.feedback-error { color: var(--vote-nay); }
 
 /* ============================================
    Reduced Motion

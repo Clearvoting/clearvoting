@@ -1,0 +1,14 @@
+{
+  "congress": 119,
+  "session": 1,
+  "vote_number": 53,
+  "vote_date": "2025-02-11",
+  "question": "On Passage",
+  "document": "H.J.Res. 20",
+  "result": "Passed",
+  "title": "Providing for congressional disapproval of energy efficiency standards",
+  "counts": {"yeas": 235, "nays": 190, "present": 0, "absent": 10},
+  "members": [
+    {"first_name": "Byron", "last_name": "Donalds", "party": "R", "state": "FL", "vote": "Yea", "bioguide_id": "D000032"}
+  ]
+}

@@ -111,7 +111,7 @@ async def test_list_bills():
     _clear_data_service_cache()
     assert response.status_code == 200
     data = response.json()
-    assert len(data["bills"]) == 2
+    assert len(data["bills"]) == 3
 
 
 @pytest.mark.asyncio
@@ -125,6 +125,33 @@ async def test_get_bill_detail():
     _clear_data_service_cache()
     assert response.status_code == 200
     assert response.json()["bill"]["title"] == "One Big Beautiful Bill Act"
+
+
+@pytest.mark.asyncio
+async def test_get_bill_detail_not_found():
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/bills/119/hr/999999")
+
+    _clear_data_service_cache()
+    assert response.status_code == 404
+
+
+@pytest.mark.asyncio
+async def test_get_bill_votes_includes_house():
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/bills/119/hjres/20/votes")
+
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data["senate"]) == 1
+    assert len(data["house"]) == 1
 
 
 # --- Votes Router ---
