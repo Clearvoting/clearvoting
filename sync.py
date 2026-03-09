@@ -212,12 +212,12 @@ async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress
     return count
 
 
-async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, congress: int = 119, rate_limit: float = 0.0) -> int:
+async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rate_limit: float = 0.0) -> int:
     """Fetch only bills referenced in Senate and House vote documents. Incremental."""
     bills_path = output_dir / "bills.json"
 
-    # Collect unique bill references from both Senate and House vote files
-    bill_refs: set[str] = set()
+    # Collect unique bill references as (congress, ref) tuples from both chambers
+    bill_refs: set[tuple[int, str]] = set()
     for chamber_dir in ["senate", "house"]:
         vote_dir = output_dir / "votes" / chamber_dir
         if not vote_dir.exists():
@@ -227,7 +227,8 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, con
                 vote = json.load(f)
             ref = _parse_bill_ref(vote.get("document", ""))
             if ref:
-                bill_refs.add(ref)
+                vote_congress = vote.get("congress", 119)
+                bill_refs.add((vote_congress, ref))
 
     if not bill_refs:
         print("  No bill references found in votes — skipping")
@@ -242,26 +243,31 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, con
         with open(bills_path) as f:
             existing_bills = json.load(f).get("bills", [])
         for b in existing_bills:
-            key = f"{b.get('type', '').lower()}-{b.get('number', '')}"
+            congress = b.get("congress", 119)
+            key = f"{congress}-{b.get('type', '').lower()}-{b.get('number', '')}"
             existing_keys.add(key)
 
     # Fetch new bills
     new_bills = []
-    refs_to_fetch = sorted(bill_refs - existing_keys)
-    for i, ref in enumerate(refs_to_fetch):
+    # Build comparable keys from bill_refs: "congress-ref" e.g. "119-hr-1"
+    ref_keys = {(c, ref): f"{c}-{ref}" for c, ref in bill_refs}
+    refs_to_fetch = sorted(
+        [(c, ref) for (c, ref), key in ref_keys.items() if key not in existing_keys]
+    )
+    for i, (bill_congress, ref) in enumerate(refs_to_fetch):
         parts = ref.rsplit("-", 1)
         if len(parts) != 2:
             continue
         bill_type, bill_number_str = parts
 
-        print(f"  Fetching {bill_type.upper()} {bill_number_str}... ({i + 1}/{len(refs_to_fetch)})")
+        print(f"  Fetching {bill_type.upper()} {bill_number_str} (congress {bill_congress})... ({i + 1}/{len(refs_to_fetch)})")
         try:
-            data = await client.get_bill(congress, bill_type, int(bill_number_str))
+            data = await client.get_bill(bill_congress, bill_type, int(bill_number_str))
             bill = data.get("bill", {})
 
             # Also fetch official summary
             try:
-                summary_data = await client.get_bill_summary(congress, bill_type, int(bill_number_str))
+                summary_data = await client.get_bill_summary(bill_congress, bill_type, int(bill_number_str))
                 bill["summaries"] = summary_data.get("summaries", [])
             except Exception:
                 bill["summaries"] = []

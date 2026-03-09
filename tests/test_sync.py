@@ -432,6 +432,39 @@ async def test_sync_bills_from_votes_includes_house(tmp_path):
     assert mock_client.get_bill.call_count == 2
 
 
+@pytest.mark.asyncio
+async def test_sync_bills_from_votes_multi_congress(tmp_path):
+    """Bills from different congresses are fetched with correct congress number."""
+    senate_dir = tmp_path / "votes" / "senate"
+    senate_dir.mkdir(parents=True)
+    _write_json(senate_dir / "117_1_00001.json", {
+        "congress": 117, "session": 1, "vote_number": 1,
+        "document": "H.R. 1", "vote_date": "2021-03-03",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [],
+    })
+    _write_json(senate_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "document": "H.R. 1", "vote_date": "2025-01-15",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [],
+    })
+
+    mock_client = MagicMock()
+    mock_client.get_bill = AsyncMock(side_effect=[
+        {"bill": {"number": "1", "type": "HR", "congress": 117, "title": "117th Bill"}},
+        {"bill": {"number": "1", "type": "HR", "congress": 119, "title": "119th Bill"}},
+    ])
+    mock_client.get_bill_summary = AsyncMock(return_value={"summaries": []})
+
+    count = await sync_bills_from_votes(mock_client, tmp_path)
+
+    data = json.loads((tmp_path / "bills.json").read_text())
+    assert len(data["bills"]) == 2
+    congresses = {b["congress"] for b in data["bills"]}
+    assert congresses == {117, 119}
+
+
 # --- build_member_votes (House expansion) ---
 
 @pytest.mark.asyncio
