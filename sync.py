@@ -42,6 +42,14 @@ US_STATES = [
     "DC", "AS", "GU", "MP", "PR", "VI",
 ]
 
+# Congress/session pairs to sync — add older congresses to expand history
+# Each congress has 2 sessions (odd year = session 1, even year = session 2)
+CONGRESSES = [
+    (117, 1), (117, 2),
+    (118, 1), (118, 2),
+    (119, 1), (119, 2),
+]
+
 
 def _atomic_write_json(path: Path, data: dict | list) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -204,12 +212,12 @@ async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress
     return count
 
 
-async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, congress: int = 119, rate_limit: float = 0.0) -> int:
+async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rate_limit: float = 0.0) -> int:
     """Fetch only bills referenced in Senate and House vote documents. Incremental."""
     bills_path = output_dir / "bills.json"
 
-    # Collect unique bill references from both Senate and House vote files
-    bill_refs: set[str] = set()
+    # Collect unique bill references as (congress, ref) tuples from both chambers
+    bill_refs: set[tuple[int, str]] = set()
     for chamber_dir in ["senate", "house"]:
         vote_dir = output_dir / "votes" / chamber_dir
         if not vote_dir.exists():
@@ -219,7 +227,8 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, con
                 vote = json.load(f)
             ref = _parse_bill_ref(vote.get("document", ""))
             if ref:
-                bill_refs.add(ref)
+                vote_congress = vote.get("congress", 119)
+                bill_refs.add((vote_congress, ref))
 
     if not bill_refs:
         print("  No bill references found in votes — skipping")
@@ -234,26 +243,31 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, con
         with open(bills_path) as f:
             existing_bills = json.load(f).get("bills", [])
         for b in existing_bills:
-            key = f"{b.get('type', '').lower()}-{b.get('number', '')}"
+            congress = b.get("congress", 119)
+            key = f"{congress}-{b.get('type', '').lower()}-{b.get('number', '')}"
             existing_keys.add(key)
 
     # Fetch new bills
     new_bills = []
-    refs_to_fetch = sorted(bill_refs - existing_keys)
-    for i, ref in enumerate(refs_to_fetch):
+    # Build comparable keys from bill_refs: "congress-ref" e.g. "119-hr-1"
+    ref_keys = {(c, ref): f"{c}-{ref}" for c, ref in bill_refs}
+    refs_to_fetch = sorted(
+        [(c, ref) for (c, ref), key in ref_keys.items() if key not in existing_keys]
+    )
+    for i, (bill_congress, ref) in enumerate(refs_to_fetch):
         parts = ref.rsplit("-", 1)
         if len(parts) != 2:
             continue
         bill_type, bill_number_str = parts
 
-        print(f"  Fetching {bill_type.upper()} {bill_number_str}... ({i + 1}/{len(refs_to_fetch)})")
+        print(f"  Fetching {bill_type.upper()} {bill_number_str} (congress {bill_congress})... ({i + 1}/{len(refs_to_fetch)})")
         try:
-            data = await client.get_bill(congress, bill_type, int(bill_number_str))
+            data = await client.get_bill(bill_congress, bill_type, int(bill_number_str))
             bill = data.get("bill", {})
 
             # Also fetch official summary
             try:
-                summary_data = await client.get_bill_summary(congress, bill_type, int(bill_number_str))
+                summary_data = await client.get_bill_summary(bill_congress, bill_type, int(bill_number_str))
                 bill["summaries"] = summary_data.get("summaries", [])
             except Exception:
                 bill["summaries"] = []
@@ -428,7 +442,8 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
         for bill in bills_data.get("bills", []):
             bill_type = bill.get("type", "").lower()
             bill_number = bill.get("number", "")
-            key = f"{bill_type}-{bill_number}"
+            congress = bill.get("congress", 119)
+            key = f"{congress}-{bill_type}-{bill_number}"
             bill_lookup[key] = bill
 
     # Load AI summaries for one_liner lookup
@@ -442,17 +457,17 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
             print("  Warning: ai_summaries.json is malformed — using raw titles")
             ai_summaries = {}
 
-    def _get_one_liner(bill_ref: str | None, bill_info: dict, doc: str) -> str:
+    def _get_one_liner(bill_ref: str | None, bill_info: dict, doc: str, congress: int = 119) -> str:
         if bill_ref:
-            summary_key = f"119-{bill_ref}"
+            summary_key = f"{congress}-{bill_ref}"
             ai_summary = ai_summaries.get(summary_key, {})
             if ai_summary.get("one_liner"):
                 return ai_summary["one_liner"]
         return bill_info.get("title", doc)
 
-    def _get_direction(bill_ref: str | None) -> str | None:
+    def _get_direction(bill_ref: str | None, congress: int = 119) -> str | None:
         if bill_ref:
-            summary_key = f"119-{bill_ref}"
+            summary_key = f"{congress}-{bill_ref}"
             summary = ai_summaries.get(summary_key, {})
             return summary.get("direction")
         return None
@@ -497,21 +512,24 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                 if not matched:
                     continue
 
+                vote_congress = vote.get("congress", 119)
                 doc = vote.get("document", "")
                 bill_ref = _parse_bill_ref(doc)
-                bill_info = bill_lookup.get(bill_ref, {}) if bill_ref else {}
+                bill_key = f"{vote_congress}-{bill_ref}" if bill_ref else None
+                bill_info = bill_lookup.get(bill_key, {}) if bill_key else {}
 
                 member_vote_list.append({
                     "bill_number": doc,
-                    "bill_id": f"119-{bill_ref}" if bill_ref else None,
-                    "one_liner": _get_one_liner(bill_ref, bill_info, doc),
+                    "bill_id": f"{vote_congress}-{bill_ref}" if bill_ref else None,
+                    "one_liner": _get_one_liner(bill_ref, bill_info, doc, congress=vote_congress),
                     "vote": matched.get("vote", ""),
                     "date": vote.get("vote_date", ""),
                     "result": vote.get("result", ""),
                     "policy_area": bill_info.get("policyArea", {}).get("name", ""),
                     "chamber": "Senate",
                     "cbo_deficit_impact": None,
-                    "direction": _get_direction(bill_ref),
+                    "direction": _get_direction(bill_ref, congress=vote_congress),
+                    "congress": vote_congress,
                 })
 
         elif chamber == "House of Representatives":
@@ -525,21 +543,24 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                 if not matched:
                     continue
 
+                vote_congress = vote.get("congress", 119)
                 doc = vote.get("document", "")
                 bill_ref = _parse_bill_ref(doc)
-                bill_info = bill_lookup.get(bill_ref, {}) if bill_ref else {}
+                bill_key = f"{vote_congress}-{bill_ref}" if bill_ref else None
+                bill_info = bill_lookup.get(bill_key, {}) if bill_key else {}
 
                 member_vote_list.append({
                     "bill_number": doc,
-                    "bill_id": f"119-{bill_ref}" if bill_ref else None,
-                    "one_liner": _get_one_liner(bill_ref, bill_info, doc),
+                    "bill_id": f"{vote_congress}-{bill_ref}" if bill_ref else None,
+                    "one_liner": _get_one_liner(bill_ref, bill_info, doc, congress=vote_congress),
                     "vote": matched.get("vote", ""),
                     "date": vote.get("vote_date", ""),
                     "result": vote.get("result", ""),
                     "policy_area": bill_info.get("policyArea", {}).get("name", ""),
                     "chamber": "House",
                     "cbo_deficit_impact": None,
-                    "direction": _get_direction(bill_ref),
+                    "direction": _get_direction(bill_ref, congress=vote_congress),
+                    "congress": vote_congress,
                 })
 
         # Compute stats
@@ -551,9 +572,11 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
 
         policy_areas = sorted(set(v["policy_area"] for v in member_vote_list if v["policy_area"]))
 
+        congresses_seen = sorted(set(v.get("congress", 119) for v in member_vote_list if v.get("congress")))
+
         record = {
             "member_id": bioguide_id,
-            "congress": 119,
+            "congresses": congresses_seen if congresses_seen else [119],
             "stats": {
                 "total_votes": total,
                 "yea_count": yea,
@@ -936,38 +959,49 @@ async def main() -> None:
     print()
 
     # Step 1: Members
-    print("[1/7] Syncing members...")
+    print("[1/9] Syncing members...")
     members_count = await sync_members(client, SYNC_DIR, states=states, rate_limit=0.5)
 
-    # Step 2: Senate votes
+    # Step 2: Senate votes (all congresses)
     print()
     senate_service = SenateVoteService(cache=cache)
-    print("[2/7] Syncing Senate votes...")
-    senate_count = await sync_senate_votes(senate_service, SYNC_DIR, rate_limit=0.3)
+    print("[2/9] Syncing Senate votes...")
+    senate_count = 0
+    for congress, session in CONGRESSES:
+        print(f"  Congress {congress}, Session {session}...")
+        count = await sync_senate_votes(senate_service, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+        senate_count += count
 
-    # Step 3: House votes
+    # Step 3: House votes (all congresses)
     print()
-    print("[3/7] Syncing House votes...")
-    house_count = await sync_house_votes(client, SYNC_DIR, rate_limit=0.3)
+    print("[3/9] Syncing House votes...")
+    house_count = 0
+    for congress, session in CONGRESSES:
+        print(f"  Congress {congress}, Session {session}...")
+        count = await sync_house_votes(client, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+        house_count += count
 
     # Step 4: Bills (only those referenced in votes from both chambers)
     print()
-    print("[4/7] Syncing voted-on bills...")
+    print("[4/9] Syncing voted-on bills...")
     bills_count = await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
 
     # Step 5: AI bill summaries (writer-grader loop)
     print()
-    print(f"[5/7] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
+    print(f"[5/9] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
     summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
 
     # Step 6: Member voting records (both chambers)
     print()
-    print("[6/7] Building member voting records...")
+    print("[6/9] Building member voting records...")
     member_votes_count = await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
 
-    # Step 7: Grader report
+    # Step 7: Member summaries (placeholder — not yet implemented)
+    # Step 8: Member summary grading (placeholder — not yet implemented)
+
+    # Step 9: Sync summary
     print()
-    print("[7/7] Sync summary")
+    print("[9/9] Sync summary")
 
     # Write metadata
     metadata = {

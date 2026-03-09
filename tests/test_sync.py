@@ -432,6 +432,39 @@ async def test_sync_bills_from_votes_includes_house(tmp_path):
     assert mock_client.get_bill.call_count == 2
 
 
+@pytest.mark.asyncio
+async def test_sync_bills_from_votes_multi_congress(tmp_path):
+    """Bills from different congresses are fetched with correct congress number."""
+    senate_dir = tmp_path / "votes" / "senate"
+    senate_dir.mkdir(parents=True)
+    _write_json(senate_dir / "117_1_00001.json", {
+        "congress": 117, "session": 1, "vote_number": 1,
+        "document": "H.R. 1", "vote_date": "2021-03-03",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [],
+    })
+    _write_json(senate_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "document": "H.R. 1", "vote_date": "2025-01-15",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [],
+    })
+
+    mock_client = MagicMock()
+    mock_client.get_bill = AsyncMock(side_effect=[
+        {"bill": {"number": "1", "type": "HR", "congress": 117, "title": "117th Bill"}},
+        {"bill": {"number": "1", "type": "HR", "congress": 119, "title": "119th Bill"}},
+    ])
+    mock_client.get_bill_summary = AsyncMock(return_value={"summaries": []})
+
+    count = await sync_bills_from_votes(mock_client, tmp_path)
+
+    data = json.loads((tmp_path / "bills.json").read_text())
+    assert len(data["bills"]) == 2
+    congresses = {b["congress"] for b in data["bills"]}
+    assert congresses == {117, 119}
+
+
 # --- build_member_votes (House expansion) ---
 
 @pytest.mark.asyncio
@@ -747,6 +780,67 @@ async def test_build_member_votes_direction_none_when_missing(tmp_path):
 
     data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
     assert data["votes"][0]["direction"] is None
+
+
+# --- build_member_votes (multi-congress) ---
+
+@pytest.mark.asyncio
+async def test_build_member_votes_multi_congress(tmp_path):
+    """Member votes aggregate across multiple congresses."""
+    members = {"members": [
+        {"bioguideId": "S001217", "name": "Scott, Rick", "directOrderName": "Rick Scott",
+         "stateCode": "FL", "chamber": "Senate"},
+    ]}
+    _write_json(tmp_path / "members.json", members)
+
+    bills = {"bills": [
+        {"congress": 117, "type": "HR", "number": "1", "title": "117th Bill",
+         "policyArea": {"name": "Taxation"}, "summaries": []},
+        {"congress": 119, "type": "HR", "number": "1", "title": "119th Bill",
+         "policyArea": {"name": "Healthcare"}, "summaries": []},
+    ]}
+    _write_json(tmp_path / "bills.json", bills)
+    _write_json(tmp_path / "ai_summaries.json", {
+        "117-hr-1": {"one_liner": "117th Congress bill", "direction": "strengthens"},
+        "119-hr-1": {"one_liner": "119th Congress bill", "direction": "weakens"},
+    })
+
+    vote_dir = tmp_path / "votes" / "senate"
+    vote_dir.mkdir(parents=True)
+    _write_json(vote_dir / "117_1_00001.json", {
+        "congress": 117, "session": 1, "vote_number": 1,
+        "vote_date": "2021-03-03", "document": "H.R. 1",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [
+            {"first_name": "Rick", "last_name": "Scott", "party": "R", "state": "FL", "vote": "Yea"},
+        ],
+    })
+    _write_json(vote_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "vote_date": "2025-01-15", "document": "H.R. 1",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [
+            {"first_name": "Rick", "last_name": "Scott", "party": "R", "state": "FL", "vote": "Nay"},
+        ],
+    })
+
+    count = await build_member_votes(tmp_path)
+
+    data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
+    assert data["stats"]["total_votes"] == 2
+    assert data["stats"]["yea_count"] == 1
+    assert data["stats"]["nay_count"] == 1
+    assert set(data["congresses"]) == {117, 119}
+
+    # Check bill_ids use correct congress
+    bill_ids = {v["bill_id"] for v in data["votes"]}
+    assert "117-hr-1" in bill_ids
+    assert "119-hr-1" in bill_ids
+
+    # Check one_liners come from correct congress summaries
+    one_liners = {v["one_liner"] for v in data["votes"]}
+    assert "117th Congress bill" in one_liners
+    assert "119th Congress bill" in one_liners
 
 
 # --- backfill_bill_directions ---

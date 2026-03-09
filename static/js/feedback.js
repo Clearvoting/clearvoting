@@ -37,6 +37,10 @@
             };
         }
 
+        if (path === '/about') {
+            return { page_type: 'about', context_id: '', context_label: '' };
+        }
+
         return { page_type: 'home', context_id: '', context_label: '' };
     }
 
