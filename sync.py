@@ -341,16 +341,18 @@ async def sync_bill_summaries(
             summaries = bill.get("summaries", [])
             official_summary = summaries[0].get("text", "") if summaries else ""
             bill_text = bill.get("textVersions", [{}])[0].get("text", "") if bill.get("textVersions") else ""
+            policy_area = bill.get("policyArea", {}).get("name")
 
             print(f"    Grading: {title[:60]}...")
 
-            async def writer_fn(grader_feedback=None, _bill_id=bill_id, _title=title, _official_summary=official_summary, _bill_text=bill_text, **kwargs):
+            async def writer_fn(grader_feedback=None, _bill_id=bill_id, _title=title, _official_summary=official_summary, _bill_text=bill_text, _policy_area=policy_area, **kwargs):
                 return await writer_service.generate_summary(
                     bill_id=_bill_id,
                     title=_title,
                     official_summary=_official_summary,
                     bill_text_excerpt=_bill_text[:2000],
                     grader_feedback=grader_feedback,
+                    policy_area=_policy_area,
                 )
 
             loop = WriterGraderLoop(writer_fn=writer_fn, grader=grader)
@@ -448,6 +450,13 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                 return ai_summary["one_liner"]
         return bill_info.get("title", doc)
 
+    def _get_direction(bill_ref: str | None) -> str | None:
+        if bill_ref:
+            summary_key = f"119-{bill_ref}"
+            summary = ai_summaries.get(summary_key, {})
+            return summary.get("direction")
+        return None
+
     # Load all votes from both chambers
     senate_votes: list[dict] = []
     senate_dir = output_dir / "votes" / "senate"
@@ -502,6 +511,7 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                     "policy_area": bill_info.get("policyArea", {}).get("name", ""),
                     "chamber": "Senate",
                     "cbo_deficit_impact": None,
+                    "direction": _get_direction(bill_ref),
                 })
 
         elif chamber == "House of Representatives":
@@ -529,6 +539,7 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                     "policy_area": bill_info.get("policyArea", {}).get("name", ""),
                     "chamber": "House",
                     "cbo_deficit_impact": None,
+                    "direction": _get_direction(bill_ref),
                 })
 
         # Compute stats
@@ -583,6 +594,106 @@ def _parse_bill_ref(document: str) -> str | None:
         if doc.startswith(prefix):
             return f"{ref_prefix}{doc[len(prefix):]}"
     return None
+
+
+async def backfill_bill_directions(
+    output_dir: Path,
+    api_key: str | None = None,
+    rate_limit: float = 0.5,
+) -> dict:
+    """Backfill 'direction' field for existing AI summaries missing it.
+
+    For each summary without a direction, sends a lightweight prompt with
+    the one_liner, provisions, and policy_area to classify direction.
+
+    Returns stats dict with total/updated/skipped counts.
+    """
+    from app.services.ai_summary import AISummaryService
+
+    bills_path = output_dir / "bills.json"
+    summaries_path = output_dir / "ai_summaries.json"
+
+    if not summaries_path.exists():
+        print("  No ai_summaries.json — nothing to backfill")
+        return {"total": 0, "updated": 0, "skipped": 0}
+
+    with open(summaries_path) as f:
+        summaries = json.load(f)
+
+    # Build bill lookup for policy areas
+    bill_lookup: dict[str, dict] = {}
+    if bills_path.exists():
+        with open(bills_path) as f:
+            bills_data = json.load(f)
+        for bill in bills_data.get("bills", []):
+            bt = bill.get("type", "").lower()
+            bn = bill.get("number", "")
+            congress = bill.get("congress", 119)
+            key = f"{congress}-{bt}-{bn}"
+            bill_lookup[key] = bill
+
+    # Find summaries missing direction
+    to_backfill = [
+        (key, summary) for key, summary in summaries.items()
+        if "direction" not in summary
+    ]
+
+    if not to_backfill:
+        print("  All summaries already have direction — skipping")
+        return {"total": len(summaries), "updated": 0, "skipped": len(summaries)}
+
+    print(f"  Backfilling direction for {len(to_backfill)} summaries...")
+
+    cache = CacheService(cache_dir=CACHE_DIR, ttl_seconds=86400)
+    service = AISummaryService(api_key=api_key, cache=cache)
+
+    system_prompt = """You are a nonpartisan legislative analyst. Classify the direction of a bill relative to its policy area.
+Return ONLY valid JSON: {"direction": "strengthens"|"weakens"|"neutral"}
+- "strengthens": creates, funds, expands, or tightens rules in the policy area
+- "weakens": cancels, blocks, repeals, defunds, or loosens rules in the policy area
+- "neutral": unclear, procedural, or mixed"""
+
+    stats = {"total": len(summaries), "updated": 0, "skipped": 0}
+
+    for i, (key, summary) in enumerate(to_backfill):
+        bill = bill_lookup.get(key, {})
+        policy_area = bill.get("policyArea", {}).get("name", "Unknown")
+        one_liner = summary.get("one_liner", "")
+        provisions = summary.get("provisions", [])
+        provisions_text = "; ".join(provisions[:3])
+
+        user_prompt = f"""Bill: {one_liner}
+Provisions: {provisions_text}
+Policy Area: {policy_area}
+
+Return JSON only."""
+
+        print(f"  [{i + 1}/{len(to_backfill)}] {one_liner[:60]}...")
+
+        try:
+            raw = await service._call_llm(system_prompt, user_prompt)
+            from app.services.ai_summary import _strip_code_fences
+            raw = _strip_code_fences(raw)
+            result = json.loads(raw)
+            direction = result.get("direction", "neutral")
+            if direction not in ["strengthens", "weakens", "neutral"]:
+                direction = "neutral"
+            summary["direction"] = direction
+            stats["updated"] += 1
+        except Exception as e:
+            print(f"    SKIPPED — LLM call failed (will retry next run): {e}")
+            stats["skipped"] += 1
+
+        await asyncio.sleep(rate_limit)
+
+    _atomic_write_json(summaries_path, summaries)
+    print(f"  Backfill complete: {stats['updated']} updated")
+
+    # Rebuild member votes with direction data
+    print("  Rebuilding member voting records...")
+    await build_member_votes(output_dir)
+
+    return stats
 
 
 async def _run_audit(anthropic_key: str | None) -> None:
@@ -687,16 +798,18 @@ async def _run_audit(anthropic_key: str | None) -> None:
             summaries_list = bill.get("summaries", [])
             official = summaries_list[0].get("text", "") if summaries_list else ""
             bill_text = bill.get("textVersions", [{}])[0].get("text", "") if bill.get("textVersions") else ""
+            policy_area = bill.get("policyArea", {}).get("name")
 
             print(f"  [{i + 1}/{len(failures)}] {title[:60]}...")
 
-            async def writer_fn(grader_feedback=None, _key=key, _title=title, _official=official, _bill_text=bill_text, **kwargs):
+            async def writer_fn(grader_feedback=None, _key=key, _title=title, _official=official, _bill_text=bill_text, _policy_area=policy_area, **kwargs):
                 return await writer_service.generate_summary(
                     bill_id=_key,
                     title=_title,
                     official_summary=_official,
                     bill_text_excerpt=_bill_text[:2000],
                     grader_feedback=grader_feedback,
+                    policy_area=_policy_area,
                 )
 
             loop = WriterGraderLoop(writer_fn=writer_fn, grader=grader)
@@ -751,6 +864,8 @@ async def main() -> None:
                         help="Re-grade existing AI summaries without re-syncing source data.")
     parser.add_argument("--audit", action="store_true",
                         help="Grade existing summaries and only regenerate failures.")
+    parser.add_argument("--backfill-direction", action="store_true",
+                        help="Backfill direction field for AI summaries missing it.")
     args = parser.parse_args()
 
     raw_key = os.getenv("ANTHROPIC_API_KEY", "")
@@ -759,6 +874,17 @@ async def main() -> None:
     # --- Audit mode: grade existing, only regenerate failures ---
     if args.audit:
         await _run_audit(anthropic_key)
+        return
+
+    # --- Backfill direction mode ---
+    if args.backfill_direction:
+        SYNC_DIR.mkdir(parents=True, exist_ok=True)
+        print("=== ClearVote Direction Backfill ===")
+        print(f"  Mode: {'API' if anthropic_key else 'Claude CLI (Max plan)'}")
+        print()
+        await backfill_bill_directions(SYNC_DIR, api_key=anthropic_key or None)
+        print()
+        print("=== Backfill complete ===")
         return
 
     # --- Re-grade mode ---

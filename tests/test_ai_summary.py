@@ -203,3 +203,107 @@ def test_build_prompt_without_grader_feedback():
         bill_text_excerpt="Section 1.",
     )
     assert "PREVIOUS ATTEMPT" not in prompt
+
+
+def test_build_prompt_includes_direction_field():
+    service = AISummaryService(api_key="test", cache=MagicMock())
+    prompt = service._build_prompt(
+        title="Test Bill",
+        official_summary="A bill to do things.",
+        bill_text_excerpt="Section 1.",
+    )
+    assert "direction" in prompt
+    assert "strengthens" in prompt
+    assert "weakens" in prompt
+    assert "neutral" in prompt
+
+
+def test_build_prompt_includes_policy_area_when_provided():
+    service = AISummaryService(api_key="test", cache=MagicMock())
+    prompt = service._build_prompt(
+        title="Test Bill",
+        official_summary="A bill to do things.",
+        bill_text_excerpt="Section 1.",
+        policy_area="Environmental Protection",
+    )
+    assert "Environmental Protection" in prompt
+    assert "Policy Area" in prompt
+
+
+def test_build_prompt_omits_policy_area_when_none():
+    service = AISummaryService(api_key="test", cache=MagicMock())
+    prompt = service._build_prompt(
+        title="Test Bill",
+        official_summary="A bill to do things.",
+        bill_text_excerpt="Section 1.",
+    )
+    assert "Policy Area" not in prompt
+
+
+@pytest.mark.asyncio
+async def test_generate_summary_valid_direction_passes_through():
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = None
+    service = AISummaryService(api_key="test", cache=mock_cache)
+
+    mock_response = MagicMock()
+    mock_response.content = [MagicMock(
+        text='{"provisions": ["Cancels an EPA rule"], "impact_categories": ["Environment"], "one_liner": "Cancel an EPA rule", "direction": "weakens"}'
+    )]
+
+    with patch.object(service, "client") as mock_client:
+        mock_client.messages.create = AsyncMock(return_value=mock_response)
+        result = await service.generate_summary(
+            bill_id="119-hjres-20",
+            title="CRA Disapproval",
+            official_summary="Disapproval of EPA rule.",
+            bill_text_excerpt="This joint resolution...",
+        )
+
+    assert result["direction"] == "weakens"
+
+
+@pytest.mark.asyncio
+async def test_generate_summary_invalid_direction_defaults_to_neutral():
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = None
+    service = AISummaryService(api_key="test", cache=mock_cache)
+
+    mock_response = MagicMock()
+    mock_response.content = [MagicMock(
+        text='{"provisions": ["Does something"], "impact_categories": ["Taxes"], "one_liner": "Do something", "direction": "bogus_value"}'
+    )]
+
+    with patch.object(service, "client") as mock_client:
+        mock_client.messages.create = AsyncMock(return_value=mock_response)
+        result = await service.generate_summary(
+            bill_id="119-hr-999",
+            title="Test",
+            official_summary="Test",
+            bill_text_excerpt="Test",
+        )
+
+    assert result["direction"] == "neutral"
+
+
+@pytest.mark.asyncio
+async def test_generate_summary_missing_direction_defaults_to_neutral():
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = None
+    service = AISummaryService(api_key="test", cache=mock_cache)
+
+    mock_response = MagicMock()
+    mock_response.content = [MagicMock(
+        text='{"provisions": ["Does something"], "impact_categories": ["Taxes"], "one_liner": "Do something"}'
+    )]
+
+    with patch.object(service, "client") as mock_client:
+        mock_client.messages.create = AsyncMock(return_value=mock_response)
+        result = await service.generate_summary(
+            bill_id="119-hr-998",
+            title="Test",
+            official_summary="Test",
+            bill_text_excerpt="Test",
+        )
+
+    assert result["direction"] == "neutral"

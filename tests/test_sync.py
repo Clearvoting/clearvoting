@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock
 import inspect
-from sync import sync_members, sync_senate_votes, sync_bills_from_votes, build_member_votes, _parse_bill_ref, sync_house_votes, _house_leg_to_document, sync_bill_summaries
+from sync import sync_members, sync_senate_votes, sync_bills_from_votes, build_member_votes, _parse_bill_ref, sync_house_votes, _house_leg_to_document, sync_bill_summaries, backfill_bill_directions
 
 
 def _write_json(path: Path, data: dict | list) -> None:
@@ -661,3 +661,142 @@ def test_grade_flag_accepted():
         capture_output=True, text=True
     )
     assert "--grade" in result.stdout or result.returncode == 0
+
+
+# --- build_member_votes (direction propagation) ---
+
+@pytest.mark.asyncio
+async def test_build_member_votes_propagates_direction(tmp_path):
+    """Direction from ai_summaries propagates to member vote records."""
+    members = {"members": [
+        {"bioguideId": "S001217", "name": "Scott, Rick", "directOrderName": "Rick Scott",
+         "stateCode": "FL", "chamber": "Senate"},
+    ]}
+    _write_json(tmp_path / "members.json", members)
+
+    bills = {"bills": [
+        {"congress": 119, "type": "HR", "number": "1", "title": "Test Bill",
+         "policyArea": {"name": "Environmental Protection"}, "summaries": []},
+    ]}
+    _write_json(tmp_path / "bills.json", bills)
+
+    ai_summaries = {
+        "119-hr-1": {
+            "one_liner": "Cancel an EPA methane fee rule",
+            "provisions": ["Cancels a rule..."],
+            "impact_categories": ["Environment"],
+            "direction": "weakens",
+        }
+    }
+    _write_json(tmp_path / "ai_summaries.json", ai_summaries)
+
+    vote_dir = tmp_path / "votes" / "senate"
+    vote_dir.mkdir(parents=True)
+    _write_json(vote_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "vote_date": "2025-01-15", "document": "H.R. 1",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [
+            {"first_name": "Rick", "last_name": "Scott", "party": "R", "state": "FL", "vote": "Yea"},
+        ],
+    })
+
+    await build_member_votes(tmp_path)
+
+    data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
+    assert data["votes"][0]["direction"] == "weakens"
+
+
+@pytest.mark.asyncio
+async def test_build_member_votes_direction_none_when_missing(tmp_path):
+    """Direction is None when AI summary has no direction field."""
+    members = {"members": [
+        {"bioguideId": "S001217", "name": "Scott, Rick", "directOrderName": "Rick Scott",
+         "stateCode": "FL", "chamber": "Senate"},
+    ]}
+    _write_json(tmp_path / "members.json", members)
+
+    bills = {"bills": [
+        {"congress": 119, "type": "HR", "number": "1", "title": "Test Bill",
+         "policyArea": {"name": "Taxation"}, "summaries": []},
+    ]}
+    _write_json(tmp_path / "bills.json", bills)
+
+    # AI summary without direction
+    ai_summaries = {
+        "119-hr-1": {
+            "one_liner": "Do something",
+            "provisions": ["Does something"],
+            "impact_categories": ["Taxation"],
+        }
+    }
+    _write_json(tmp_path / "ai_summaries.json", ai_summaries)
+
+    vote_dir = tmp_path / "votes" / "senate"
+    vote_dir.mkdir(parents=True)
+    _write_json(vote_dir / "119_1_00001.json", {
+        "congress": 119, "session": 1, "vote_number": 1,
+        "vote_date": "2025-01-15", "document": "H.R. 1",
+        "question": "On Passage", "result": "Passed",
+        "counts": {}, "members": [
+            {"first_name": "Rick", "last_name": "Scott", "party": "R", "state": "FL", "vote": "Yea"},
+        ],
+    })
+
+    await build_member_votes(tmp_path)
+
+    data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
+    assert data["votes"][0]["direction"] is None
+
+
+# --- backfill_bill_directions ---
+
+@pytest.mark.asyncio
+async def test_backfill_adds_direction_to_missing(tmp_path):
+    """Backfill adds direction to summaries missing it."""
+    _write_json(tmp_path / "bills.json", {"bills": [
+        {"congress": 119, "type": "HR", "number": "1", "title": "Test",
+         "policyArea": {"name": "Taxation"}, "summaries": []},
+    ]})
+    _write_json(tmp_path / "members.json", {"members": []})
+    _write_json(tmp_path / "ai_summaries.json", {
+        "119-hr-1": {
+            "one_liner": "Cut taxes on tips",
+            "provisions": ["Cuts taxes on tips"],
+            "impact_categories": ["Taxes"],
+        }
+    })
+
+    import unittest.mock
+    with unittest.mock.patch("app.services.ai_summary.AISummaryService") as MockService:
+        mock_instance = MagicMock()
+        mock_instance._call_llm = AsyncMock(return_value='{"direction": "weakens"}')
+        MockService.return_value = mock_instance
+
+        stats = await backfill_bill_directions(tmp_path, api_key="test")
+
+    assert stats["updated"] == 1
+    data = json.loads((tmp_path / "ai_summaries.json").read_text())
+    assert data["119-hr-1"]["direction"] == "weakens"
+
+
+@pytest.mark.asyncio
+async def test_backfill_skips_existing_direction(tmp_path):
+    """Backfill skips summaries that already have direction."""
+    _write_json(tmp_path / "bills.json", {"bills": []})
+    _write_json(tmp_path / "members.json", {"members": []})
+    _write_json(tmp_path / "ai_summaries.json", {
+        "119-hr-1": {
+            "one_liner": "Test",
+            "provisions": ["Test"],
+            "impact_categories": ["Taxes"],
+            "direction": "strengthens",
+        }
+    })
+
+    stats = await backfill_bill_directions(tmp_path)
+
+    assert stats["updated"] == 0
+    assert stats["skipped"] == 1
+    data = json.loads((tmp_path / "ai_summaries.json").read_text())
+    assert data["119-hr-1"]["direction"] == "strengthens"

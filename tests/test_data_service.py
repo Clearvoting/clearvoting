@@ -121,6 +121,20 @@ def test_get_member_vote_summary(data_service):
     assert armed_area["total"] == 1
 
 
+def test_get_member_vote_summary_direction_stance(data_service):
+    """Verify effective stance: Yea on 'weakens' = weaken, Nay on 'strengthens' = weaken."""
+    result = data_service.get_member_vote_summary("S001217")
+    areas = result["top_policy_areas"]
+    # HR 1 has direction=weakens, vote=Yea → weaken Taxation
+    tax_area = next(a for a in areas if a["name"] == "Taxation")
+    assert tax_area["weaken"] == 1
+    assert tax_area["strengthen"] == 0
+    # S 100 has direction=strengthens, vote=Nay → weaken Armed Forces
+    armed_area = next(a for a in areas if a["name"] == "Armed Forces and National Security")
+    assert armed_area["weaken"] == 1
+    assert armed_area["strengthen"] == 0
+
+
 def test_get_member_vote_summary_not_found(data_service):
     result = data_service.get_member_vote_summary("X999999")
     assert result is None

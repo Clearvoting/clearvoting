@@ -312,13 +312,33 @@ function renderCardSnapshot(container, data, bioguideId) {
         container.appendChild(areaHeader);
 
         areas.forEach(area => {
-            const yeaWidth = area.total ? Math.round((area.yea / area.total) * 100) : 0;
+            const hasDirection = (area.strengthen || 0) + (area.weaken || 0) > 0;
+            let countLabel, barClass, barWidth, barBg;
+
+            if (hasDirection) {
+                const parts = [];
+                if (area.strengthen > 0) parts.push(`${area.strengthen} str`);
+                if (area.weaken > 0) parts.push(`${area.weaken} wkn`);
+                countLabel = parts.join('·') || `${area.total}`;
+                const stanceTotal = (area.strengthen || 0) + (area.weaken || 0) + (area.neutral || 0);
+                barWidth = stanceTotal > 0 ? Math.round(((area.strengthen || 0) / stanceTotal) * 100) : 0;
+                barClass = 'summary-mini-bar-strengthen';
+                barBg = 'var(--vote-weaken)';
+            } else {
+                countLabel = `${area.yea}/${area.total}`;
+                barWidth = area.total ? Math.round((area.yea / area.total) * 100) : 0;
+                barClass = 'summary-mini-bar-yea';
+                barBg = null;
+            }
+
+            const bar = el('div', { className: 'summary-mini-bar' });
+            if (barBg) bar.style.background = barBg;
+            bar.appendChild(el('div', { className: barClass, style: `width:${barWidth}%` }));
+
             const row = el('div', { className: 'summary-issue-row' },
                 el('span', { className: 'summary-issue-name' }, area.name),
-                el('span', { className: 'summary-issue-count' }, `${area.yea}/${area.total}`),
-                el('div', { className: 'summary-mini-bar' },
-                    el('div', { className: 'summary-mini-bar-yea', style: `width:${yeaWidth}%` })
-                )
+                el('span', { className: 'summary-issue-count' }, countLabel),
+                bar
             );
             container.appendChild(row);
         });

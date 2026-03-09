@@ -63,17 +63,36 @@ class DataService:
         for vote in data.get("votes", []):
             area = vote.get("policy_area", "Other")
             if area not in area_counts:
-                area_counts[area] = {"yea": 0, "nay": 0, "total": 0}
+                area_counts[area] = {"yea": 0, "nay": 0, "total": 0, "strengthen": 0, "weaken": 0, "neutral": 0}
             position = vote.get("vote", "").lower()
-            if position == "yea":
+            direction = vote.get("direction")
+            is_yea = position in ("yea", "aye")
+            is_nay = position in ("nay", "no")
+            if is_yea:
                 area_counts[area]["yea"] += 1
-            elif position == "nay":
+            elif is_nay:
                 area_counts[area]["nay"] += 1
             area_counts[area]["total"] += 1
 
+            # Compute effective stance: Yea on "strengthens" or Nay on "weakens" = strengthen
+            if direction == "strengthens":
+                if is_yea:
+                    area_counts[area]["strengthen"] += 1
+                elif is_nay:
+                    area_counts[area]["weaken"] += 1
+            elif direction == "weakens":
+                if is_yea:
+                    area_counts[area]["weaken"] += 1
+                elif is_nay:
+                    area_counts[area]["strengthen"] += 1
+            elif direction == "neutral" or direction is None:
+                if is_yea or is_nay:
+                    area_counts[area]["neutral"] += 1
+
         top_areas = sorted(area_counts.items(), key=lambda x: x[1]["total"], reverse=True)[:3]
         top_policy_areas = [
-            {"name": name, "yea": counts["yea"], "nay": counts["nay"], "total": counts["total"]}
+            {"name": name, "yea": counts["yea"], "nay": counts["nay"], "total": counts["total"],
+             "strengthen": counts["strengthen"], "weaken": counts["weaken"], "neutral": counts["neutral"]}
             for name, counts in top_areas
         ]
 

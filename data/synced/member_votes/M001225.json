@@ -19,7 +19,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 672",
@@ -30,7 +31,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 539",
@@ -41,7 +43,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.J.Res. 104",
@@ -52,7 +55,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.J.Res. 106",
@@ -63,7 +67,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.J.Res. 105",
@@ -74,7 +79,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 4553",
@@ -85,7 +91,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4553",
@@ -96,7 +103,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4553",
@@ -107,7 +115,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4553",
@@ -118,7 +127,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4553",
@@ -129,7 +139,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4553",
@@ -140,7 +151,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4553",
@@ -151,7 +163,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4553",
@@ -162,7 +175,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4216",
@@ -173,7 +187,8 @@
       "result": "Passed",
       "policy_area": "International Affairs",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 747",
@@ -184,7 +199,8 @@
       "result": "Passed",
       "policy_area": "International Affairs",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 3357",
@@ -195,7 +211,8 @@
       "result": "Passed",
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4275",
@@ -206,7 +223,8 @@
       "result": "Passed",
       "policy_area": "Transportation and Public Works",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 3937",
@@ -217,7 +235,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 1917",
@@ -228,7 +247,8 @@
       "result": "Passed",
       "policy_area": "Environmental Protection",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 3095",
@@ -239,7 +259,8 @@
       "result": "Passed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 3351",
@@ -250,7 +271,8 @@
       "result": "Passed",
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.Res. 590",
@@ -261,7 +283,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 4016",
@@ -272,7 +295,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4016",
@@ -283,7 +307,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4016",
@@ -294,7 +319,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4016",
@@ -305,7 +331,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4016",
@@ -316,7 +343,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4016",
@@ -327,7 +355,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4016",
@@ -338,7 +367,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4016",
@@ -349,7 +379,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4016",
@@ -360,7 +391,8 @@
       "result": "Passed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 3633",
@@ -371,7 +403,8 @@
       "result": "Passed",
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "S. 1582",
@@ -382,7 +415,8 @@
       "result": "Passed",
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1919",
@@ -393,7 +427,8 @@
       "result": "Passed",
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.Res. 590",
@@ -404,7 +439,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 580",
@@ -415,7 +451,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 580",
@@ -426,7 +463,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 580",
@@ -437,7 +475,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 580",
@@ -448,7 +487,8 @@
       "result": "Failed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 1717",
@@ -459,7 +499,8 @@
       "result": "Passed",
       "policy_area": "Science, Technology, Communications",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1709",
@@ -470,7 +511,8 @@
       "result": "Passed",
       "policy_area": "Science, Technology, Communications",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 1770",
@@ -481,7 +523,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "S. 1596",
@@ -492,7 +535,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 566",
@@ -503,7 +547,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 1",
@@ -514,7 +559,8 @@
       "result": "Passed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "",
@@ -525,7 +571,8 @@
       "result": "Passed",
       "policy_area": "",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": null
     },
     {
       "bill_number": "",
@@ -536,7 +583,8 @@
       "result": "Passed",
       "policy_area": "",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": null
     },
     {
       "bill_number": "H.Res. 566",
@@ -547,7 +595,8 @@
       "result": "Agreed to",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 516",
@@ -558,7 +607,8 @@
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 875",
@@ -569,7 +619,8 @@
       "result": "Passed",
       "policy_area": "Immigration",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 275",
@@ -580,7 +631,8 @@
       "result": "Passed",
       "policy_area": "Immigration",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 519",
@@ -591,7 +643,8 @@
       "result": "Passed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 3944",
@@ -602,7 +655,8 @@
       "result": "Agreed to",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 3944",
@@ -613,7 +667,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 3944",
@@ -624,7 +679,8 @@
       "result": "Passed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 537",
@@ -635,7 +691,8 @@
       "result": "Passed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 530",
@@ -646,7 +703,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 530",
@@ -657,7 +715,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "",
@@ -668,7 +727,8 @@
       "result": "Failed",
       "policy_area": "",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": null
     },
     {
       "bill_number": "H.R. 1998",
@@ -679,7 +739,8 @@
       "result": "Passed",
       "policy_area": "International Affairs",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 3394",
@@ -690,7 +751,8 @@
       "result": "Passed",
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 3422",
@@ -701,7 +763,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "S. 331",
@@ -712,7 +775,8 @@
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 4",
@@ -723,7 +787,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 4",
@@ -734,7 +799,8 @@
       "result": "Passed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "",
@@ -745,7 +811,8 @@
       "result": "Failed",
       "policy_area": "",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": null
     },
     {
       "bill_number": "H.R. 2056",
@@ -756,7 +823,8 @@
       "result": "Failed",
       "policy_area": "Immigration",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 2056",
@@ -767,7 +835,8 @@
       "result": "Passed",
       "policy_area": "Immigration",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 499",
@@ -778,7 +847,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 499",
@@ -789,7 +859,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 489",
@@ -800,7 +871,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 489",
@@ -811,7 +883,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 2096",
@@ -822,7 +895,8 @@
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 884",
@@ -833,7 +907,8 @@
       "result": "Passed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 2035",
@@ -844,7 +919,8 @@
       "result": "Passed",
       "policy_area": "Transportation and Public Works",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 488",
@@ -855,7 +931,8 @@
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 481",
@@ -866,7 +943,8 @@
       "result": "Passed",
       "policy_area": "Civil Rights and Liberties, Minority Issues",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 2966",
@@ -877,7 +955,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 2931",
@@ -888,7 +967,8 @@
       "result": "Failed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 2931",
@@ -899,7 +979,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 2987",
@@ -910,7 +991,8 @@
       "result": "Failed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 2987",
@@ -921,7 +1003,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 458",
@@ -932,7 +1015,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 458",
@@ -943,7 +1027,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 2483",
@@ -954,7 +1039,8 @@
       "result": "Failed",
       "policy_area": "Health",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 2483",
@@ -965,7 +1051,8 @@
       "result": "Passed",
       "policy_area": "Health",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1642",
@@ -976,7 +1063,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1804",
@@ -987,7 +1075,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 436",
@@ -998,7 +1087,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 436",
@@ -1009,7 +1099,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 436",
@@ -1020,7 +1111,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 436",
@@ -1031,7 +1123,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "S.J.Res. 31",
@@ -1042,7 +1135,8 @@
       "result": "Passed",
       "policy_area": "Environmental Protection",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 1",
@@ -1053,7 +1147,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 1",
@@ -1064,7 +1159,8 @@
       "result": "Passed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "",
@@ -1075,7 +1171,8 @@
       "result": "Failed",
       "policy_area": "",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": null
     },
     {
       "bill_number": "H.Res. 426",
@@ -1086,7 +1183,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 426",
@@ -1097,7 +1195,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1223",
@@ -1108,7 +1207,8 @@
       "result": "Passed",
       "policy_area": "Science, Technology, Communications",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "S.J.Res. 13",
@@ -1119,7 +1219,8 @@
       "result": "Passed",
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 1263",
@@ -1130,7 +1231,8 @@
       "result": "Passed",
       "policy_area": "International Affairs",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1286",
@@ -1141,7 +1243,8 @@
       "result": "Passed",
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 2255",
@@ -1152,7 +1255,8 @@
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 2240",
@@ -1163,7 +1267,8 @@
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 2215",
@@ -1174,7 +1279,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 405",
@@ -1185,7 +1291,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 405",
@@ -1196,7 +1303,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 2243",
@@ -1207,7 +1315,8 @@
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 352",
@@ -1218,7 +1327,8 @@
       "result": "Passed",
       "policy_area": "Civil Rights and Liberties, Minority Issues",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Con.Res. 30",
@@ -1229,7 +1339,8 @@
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 249",
@@ -1240,7 +1351,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 276",
@@ -1251,7 +1363,8 @@
       "result": "Failed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 276",
@@ -1262,7 +1375,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 1503",
@@ -1273,7 +1387,8 @@
       "result": "Passed",
       "policy_area": "International Affairs",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 881",
@@ -1284,7 +1399,8 @@
       "result": "Passed",
       "policy_area": "Education",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.Res. 377",
@@ -1295,7 +1411,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 377",
@@ -1306,7 +1423,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 530",
@@ -1317,7 +1435,8 @@
       "result": "Passed",
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 36",
@@ -1328,7 +1447,8 @@
       "result": "Passed",
       "policy_area": "International Affairs",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.J.Res. 78",
@@ -1339,7 +1459,8 @@
       "result": "Passed",
       "policy_area": "Animals",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.J.Res. 88",
@@ -1350,7 +1471,8 @@
       "result": "Passed",
       "policy_area": "Environmental Protection",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.J.Res. 87",
@@ -1361,7 +1483,8 @@
       "result": "Passed",
       "policy_area": "Environmental Protection",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.J.Res. 89",
@@ -1372,7 +1495,8 @@
       "result": "Passed",
       "policy_area": "Environmental Protection",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.Res. 354",
@@ -1383,7 +1507,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 354",
@@ -1394,7 +1519,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1402",
@@ -1405,7 +1531,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1442",
@@ -1416,7 +1543,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 859",
@@ -1427,7 +1555,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.J.Res. 60",
@@ -1438,7 +1567,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 973",
@@ -1449,7 +1579,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "S. 146",
@@ -1460,7 +1591,8 @@
       "result": "Passed",
       "policy_area": "Science, Technology, Communications",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Con.Res. 14",
@@ -1471,7 +1603,8 @@
       "result": "Passed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 22",
@@ -1482,7 +1615,8 @@
       "result": "Failed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 22",
@@ -1493,7 +1627,8 @@
       "result": "Passed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 313",
@@ -1504,7 +1639,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 313",
@@ -1515,7 +1651,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "S.J.Res. 28",
@@ -1526,7 +1663,8 @@
       "result": "Passed",
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "S.J.Res. 18",
@@ -1537,7 +1675,8 @@
       "result": "Passed",
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 1526",
@@ -1548,7 +1687,8 @@
       "result": "Failed",
       "policy_area": "Law",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 1526",
@@ -1559,7 +1699,8 @@
       "result": "Passed",
       "policy_area": "Law",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 1228",
@@ -1570,7 +1711,8 @@
       "result": "Passed",
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 294",
@@ -1581,7 +1723,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 294",
@@ -1592,7 +1735,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 586",
@@ -1603,7 +1747,8 @@
       "result": "Passed",
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1039",
@@ -1614,7 +1759,8 @@
       "result": "Passed",
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 282",
@@ -1625,7 +1771,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 282",
@@ -1636,7 +1783,8 @@
       "result": "Failed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1491",
@@ -1647,7 +1795,8 @@
       "result": "Passed",
       "policy_area": "Taxation",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 517",
@@ -1658,7 +1807,8 @@
       "result": "Passed",
       "policy_area": "Taxation",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 997",
@@ -1669,7 +1819,8 @@
       "result": "Passed",
       "policy_area": "Taxation",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.J.Res. 24",
@@ -1680,7 +1831,8 @@
       "result": "Passed",
       "policy_area": "Energy",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.J.Res. 75",
@@ -1691,7 +1843,8 @@
       "result": "Passed",
       "policy_area": "Energy",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 1048",
@@ -1702,7 +1855,8 @@
       "result": "Failed",
       "policy_area": "Education",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1048",
@@ -1713,7 +1867,8 @@
       "result": "Failed",
       "policy_area": "Education",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1048",
@@ -1724,7 +1879,8 @@
       "result": "Failed",
       "policy_area": "Education",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1048",
@@ -1735,7 +1891,8 @@
       "result": "Failed",
       "policy_area": "Education",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1048",
@@ -1746,7 +1903,8 @@
       "result": "Passed",
       "policy_area": "Education",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1534",
@@ -1757,7 +1915,8 @@
       "result": "Passed",
       "policy_area": "Science, Technology, Communications",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 242",
@@ -1768,7 +1927,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 242",
@@ -1779,7 +1939,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 359",
@@ -1790,7 +1951,8 @@
       "result": "Passed",
       "policy_area": "Energy",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1326",
@@ -1801,7 +1963,8 @@
       "result": "Passed",
       "policy_area": "Agriculture and Food",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 211",
@@ -1812,7 +1975,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 211",
@@ -1823,7 +1987,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 1156",
@@ -1834,7 +1999,8 @@
       "result": "Passed",
       "policy_area": "Labor and Employment",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1968",
@@ -1845,7 +2011,8 @@
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 1968",
@@ -1856,7 +2023,8 @@
       "result": "Passed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.J.Res. 25",
@@ -1867,7 +2035,8 @@
       "result": "Passed",
       "policy_area": "Taxation",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 495",
@@ -1878,7 +2047,8 @@
       "result": "Passed",
       "policy_area": "Immigration",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 901",
@@ -1889,7 +2059,8 @@
       "result": "Passed",
       "policy_area": "Science, Technology, Communications",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 993",
@@ -1900,7 +2071,8 @@
       "result": "Passed",
       "policy_area": "Immigration",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "S.J.Res. 11",
@@ -1911,7 +2083,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.Res. 189",
@@ -1922,7 +2095,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.J.Res. 61",
@@ -1933,7 +2107,8 @@
       "result": "Passed",
       "policy_area": "Environmental Protection",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.J.Res. 42",
@@ -1944,7 +2119,8 @@
       "result": "Passed",
       "policy_area": "Energy",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.Res. 189",
@@ -1955,7 +2131,8 @@
       "result": "Failed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 177",
@@ -1966,7 +2143,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 177",
@@ -1977,7 +2155,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 856",
@@ -1988,7 +2167,8 @@
       "result": "Passed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 758",
@@ -1999,7 +2179,8 @@
       "result": "Passed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.J.Res. 20",
@@ -2010,7 +2191,8 @@
       "result": "Passed",
       "policy_area": "Energy",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 695",
@@ -2021,7 +2203,8 @@
       "result": "Passed",
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.J.Res. 35",
@@ -2032,7 +2215,8 @@
       "result": "Passed",
       "policy_area": "Environmental Protection",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.Res. 161",
@@ -2043,7 +2227,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 161",
@@ -2054,7 +2239,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 788",
@@ -2065,7 +2251,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 804",
@@ -2076,7 +2263,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Con.Res. 14",
@@ -2087,7 +2275,8 @@
       "result": "Passed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 825",
@@ -2098,7 +2287,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 832",
@@ -2109,7 +2299,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 818",
@@ -2120,7 +2311,8 @@
       "result": "Passed",
       "policy_area": "Commerce",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 35",
@@ -2131,7 +2323,8 @@
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 77",
@@ -2142,7 +2335,8 @@
       "result": "Failed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 77",
@@ -2153,7 +2347,8 @@
       "result": "Passed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 122",
@@ -2164,7 +2359,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 122",
@@ -2175,7 +2371,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 692",
@@ -2186,7 +2383,8 @@
       "result": "Passed",
       "policy_area": "International Affairs",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 736",
@@ -2197,7 +2395,8 @@
       "result": "Passed",
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 26",
@@ -2208,7 +2407,8 @@
       "result": "Failed",
       "policy_area": "Energy",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 26",
@@ -2219,7 +2419,8 @@
       "result": "Passed",
       "policy_area": "Energy",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 27",
@@ -2230,7 +2431,8 @@
       "result": "Failed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 27",
@@ -2241,7 +2443,8 @@
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 93",
@@ -2252,7 +2455,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 93",
@@ -2263,7 +2467,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 43",
@@ -2274,7 +2479,8 @@
       "result": "Passed",
       "policy_area": "Native Americans",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 776",
@@ -2285,7 +2491,8 @@
       "result": "Passed",
       "policy_area": "Animals",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 375",
@@ -2296,7 +2503,8 @@
       "result": "Passed",
       "policy_area": "Animals",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 471",
@@ -2307,7 +2515,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 21",
@@ -2318,7 +2527,8 @@
       "result": "Failed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 21",
@@ -2329,7 +2539,8 @@
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 53",
@@ -2340,7 +2551,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.Res. 53",
@@ -2351,7 +2563,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "neutral"
     },
     {
       "bill_number": "H.R. 165",
@@ -2362,7 +2575,8 @@
       "result": "Passed",
       "policy_area": "Native Americans",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "S. 5",
@@ -2373,7 +2587,8 @@
       "result": "Passed",
       "policy_area": "Immigration",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 186",
@@ -2384,7 +2599,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 187",
@@ -2395,7 +2611,8 @@
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 30",
@@ -2406,7 +2623,8 @@
       "result": "Failed",
       "policy_area": "Immigration",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 30",
@@ -2417,7 +2635,8 @@
       "result": "Passed",
       "policy_area": "Immigration",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 164",
@@ -2428,7 +2647,8 @@
       "result": "Passed",
       "policy_area": "Emergency Management",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 144",
@@ -2439,7 +2659,8 @@
       "result": "Passed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 33",
@@ -2450,7 +2671,8 @@
       "result": "Passed",
       "policy_area": "Taxation",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 153",
@@ -2461,7 +2683,8 @@
       "result": "Passed",
       "policy_area": "Emergency Management",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 28",
@@ -2472,7 +2695,8 @@
       "result": "Failed",
       "policy_area": "Civil Rights and Liberties, Minority Issues",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 28",
@@ -2483,7 +2707,8 @@
       "result": "Passed",
       "policy_area": "Civil Rights and Liberties, Minority Issues",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 192",
@@ -2494,7 +2719,8 @@
       "result": "Passed",
       "policy_area": "Transportation and Public Works",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 152",
@@ -2505,7 +2731,8 @@
       "result": "Passed",
       "policy_area": "Emergency Management",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.R. 23",
@@ -2516,7 +2743,8 @@
       "result": "Passed",
       "policy_area": "International Affairs",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "weakens"
     },
     {
       "bill_number": "H.R. 29",
@@ -2527,7 +2755,8 @@
       "result": "Passed",
       "policy_area": "Immigration",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "",
@@ -2538,7 +2767,8 @@
       "result": "Passed",
       "policy_area": "",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": null
     },
     {
       "bill_number": "",
@@ -2549,7 +2779,8 @@
       "result": "Johnson (LA)",
       "policy_area": "",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": null
     },
     {
       "bill_number": "H.Res. 5",
@@ -2560,7 +2791,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 5",
@@ -2571,7 +2803,8 @@
       "result": "Failed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     },
     {
       "bill_number": "H.Res. 5",
@@ -2582,7 +2815,8 @@
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
-      "cbo_deficit_impact": null
+      "cbo_deficit_impact": null,
+      "direction": "strengthens"
     }
   ],
   "policy_areas": [

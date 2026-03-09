@@ -4,6 +4,7 @@
       "Cuts taxes on tips for workers like servers and bartenders, up to $25,000 a year.",
       "Raises the limit on state and local tax deductions from $10,000 to $40,000."
     ],
-    "impact_categories": ["Taxes", "Wages & Income"]
+    "impact_categories": ["Taxes", "Wages & Income"],
+    "direction": "weakens"
   }
 }

@@ -16,6 +16,7 @@
     --vote-nay: #CD2026;
     --vote-absent: #AEB0B5;
     --vote-present: #0071BC;
+    --vote-weaken: #E8913A;
     --border: #D6D7D9;
     --border-light: #E8E8E8;
     --font-body: 'Inter', system-ui, -apple-system, sans-serif;
@@ -1114,6 +1115,20 @@ select:focus, input:focus {
 .summary-mini-bar-yea {
     height: 100%;
     background: var(--vote-yea);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.summary-mini-bar-strengthen {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.summary-mini-bar-weaken {
+    height: 100%;
+    background: var(--vote-weaken, #E8913A);
     border-radius: 3px;
     transition: width 0.3s ease;
 }

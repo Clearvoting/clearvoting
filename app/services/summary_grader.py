@@ -89,8 +89,15 @@ FACTUAL CONTEXT
 - When a bill affects a group, include how many people are affected if publicly known
 - Include scale references where helpful
 
+DIRECTION ACCURACY
+- The "direction" field must be one of: "strengthens", "weakens", "neutral"
+- "strengthens" = creates, funds, expands, or tightens rules in the policy area
+- "weakens" = cancels, blocks, repeals, defunds, or loosens rules
+- Congressional Review Act (CRA) disapproval resolutions that cancel rules = "weakens"
+- "neutral" = procedural, unclear, or genuinely mixed
+
 STRUCTURE
-- Bill summaries: one_liner (single phrase, max 15 words, starts with verb, no period), provisions (3-7 items, each a single sentence), impact_categories (from allowed list)
+- Bill summaries: one_liner (single phrase, max 15 words, starts with verb, no period), provisions (3-7 items, each a single sentence), impact_categories (from allowed list), direction (strengthens/weakens/neutral)
 - Vote one-liners: single sentence, under 30 words, describes what the vote means
 {learnings_block}
 
@@ -104,7 +111,7 @@ GRADING SCALE:
 A or B = pass. C, D, or F = fail.
 
 Return valid JSON only:
-{{"grade": "A|B|C|D|F", "passed": true|false, "feedback": "Specific actionable feedback for the writer", "checks": {{"reading_level": "pass|fail: detail", "no_jargon": "pass|fail: detail", "no_bias": "pass|fail: detail", "vote_context": "pass|fail|n/a: detail", "factual_context": "pass|fail: detail", "structure": "pass|fail: detail"}}}}"""
+{{"grade": "A|B|C|D|F", "passed": true|false, "feedback": "Specific actionable feedback for the writer", "checks": {{"reading_level": "pass|fail: detail", "no_jargon": "pass|fail: detail", "no_bias": "pass|fail: detail", "vote_context": "pass|fail|n/a: detail", "factual_context": "pass|fail: detail", "structure": "pass|fail: detail", "direction_accuracy": "pass|fail|n/a: detail"}}}}"""
 
     def _build_grade_prompt(self, summary_type: str, summary_text: str, context: dict) -> str:
         context_str = json.dumps(context, indent=2)
