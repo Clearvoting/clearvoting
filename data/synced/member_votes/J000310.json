@@ -13,7 +13,7 @@
     {
       "bill_number": "H.Res. 672",
       "bill_id": "119-hres-672",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 4553, the Energy and Water spending bill.",
+      "one_liner": "Set up votes on energy funding and three land management rule cancellations",
       "vote": "Nay",
       "date": "2025-09-03",
       "result": "Passed",
@@ -24,7 +24,7 @@
     {
       "bill_number": "H.Res. 672",
       "bill_id": "119-hres-672",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 4553, the Energy and Water spending bill.",
+      "one_liner": "Set up votes on energy funding and three land management rule cancellations",
       "vote": "No",
       "date": "2025-09-03",
       "result": "Passed",
@@ -35,7 +35,7 @@
     {
       "bill_number": "H.Res. 539",
       "bill_id": "119-hres-539",
-      "one_liner": "This resolution censures Representative LaMonica McIver and removes her from the Committee on Homeland Security.",
+      "one_liner": "Formally criticize Representative LaMonica McIver and remove her from the Committee on Homeland Security",
       "vote": "Yea",
       "date": "2025-09-03",
       "result": "Passed",
@@ -46,7 +46,7 @@
     {
       "bill_number": "H.J.Res. 104",
       "bill_id": "119-hjres-104",
-      "one_liner": "This resolution cancels a Bureau of Land Management plan for the Miles City Field Office in Montana issued November 20, 2024.",
+      "one_liner": "Cancel a federal rule that blocks coal leasing on 1.7 million acres in Montana",
       "vote": "Nay",
       "date": "2025-09-03",
       "result": "Passed",
@@ -57,7 +57,7 @@
     {
       "bill_number": "H.J.Res. 106",
       "bill_id": "119-hjres-106",
-      "one_liner": "This resolution cancels a Bureau of Land Management plan for Alaska's Central Yukon area issued November 12, 2024.",
+      "one_liner": "Cancel a federal rule on 3.6 million acres in Alaska",
       "vote": "Nay",
       "date": "2025-09-03",
       "result": "Passed",
@@ -68,7 +68,7 @@
     {
       "bill_number": "H.J.Res. 105",
       "bill_id": "119-hjres-105",
-      "one_liner": "This resolution cancels a Bureau of Land Management plan for North Dakota issued January 8, 2025.",
+      "one_liner": "Cancel a Bureau of Land Management rule limiting oil and gas development in North Dakota",
       "vote": "Nay",
       "date": "2025-09-03",
       "result": "Passed",
@@ -79,7 +79,7 @@
     {
       "bill_number": "H.R. 4553",
       "bill_id": "119-hr-4553",
-      "one_liner": "This bill funds the Department of Energy, Army Corps of Engineers, and other water-related agencies for the year starting October 2025.",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
       "vote": "No",
       "date": "2025-09-03",
       "result": "Failed",
@@ -90,7 +90,7 @@
     {
       "bill_number": "H.R. 4553",
       "bill_id": "119-hr-4553",
-      "one_liner": "This bill funds the Department of Energy, Army Corps of Engineers, and other water-related agencies for the year starting October 2025.",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
       "vote": "No",
       "date": "2025-09-03",
       "result": "Failed",
@@ -101,7 +101,7 @@
     {
       "bill_number": "H.R. 4553",
       "bill_id": "119-hr-4553",
-      "one_liner": "This bill funds the Department of Energy, Army Corps of Engineers, and other water-related agencies for the year starting October 2025.",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
       "vote": "No",
       "date": "2025-09-03",
       "result": "Failed",
@@ -112,7 +112,7 @@
     {
       "bill_number": "H.R. 4553",
       "bill_id": "119-hr-4553",
-      "one_liner": "This bill funds the Department of Energy, Army Corps of Engineers, and other water-related agencies for the year starting October 2025.",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
       "vote": "No",
       "date": "2025-09-03",
       "result": "Failed",
@@ -123,7 +123,7 @@
     {
       "bill_number": "H.R. 4553",
       "bill_id": "119-hr-4553",
-      "one_liner": "This bill funds the Department of Energy, Army Corps of Engineers, and other water-related agencies for the year starting October 2025.",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
       "vote": "No",
       "date": "2025-09-03",
       "result": "Failed",
@@ -134,7 +134,7 @@
     {
       "bill_number": "H.R. 4553",
       "bill_id": "119-hr-4553",
-      "one_liner": "This bill funds the Department of Energy, Army Corps of Engineers, and other water-related agencies for the year starting October 2025.",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
       "vote": "No",
       "date": "2025-09-03",
       "result": "Failed",
@@ -145,7 +145,7 @@
     {
       "bill_number": "H.R. 4553",
       "bill_id": "119-hr-4553",
-      "one_liner": "This bill funds the Department of Energy, Army Corps of Engineers, and other water-related agencies for the year starting October 2025.",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
       "vote": "No",
       "date": "2025-09-03",
       "result": "Failed",
@@ -156,7 +156,7 @@
     {
       "bill_number": "H.R. 4553",
       "bill_id": "119-hr-4553",
-      "one_liner": "This bill funds the Department of Energy, Army Corps of Engineers, and other water-related agencies for the year starting October 2025.",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
       "vote": "No",
       "date": "2025-09-03",
       "result": "Failed",
@@ -167,7 +167,7 @@
     {
       "bill_number": "H.R. 4216",
       "bill_id": "119-hr-4216",
-      "one_liner": "This bill requires the Department of Defense to prioritize buying American-made products.",
+      "one_liner": "Review which military equipment can be sold directly by companies to foreign governments",
       "vote": "Yea",
       "date": "2025-09-02",
       "result": "Passed",
@@ -178,7 +178,7 @@
     {
       "bill_number": "H.R. 747",
       "bill_id": "119-hr-747",
-      "one_liner": "This bill punishes people and companies involved in making and shipping fentanyl from China by freezing their money and banning them from the U.S. financial system.",
+      "one_liner": "Target Chinese companies and officials with sanctions for fentanyl trafficking",
       "vote": "Not Voting",
       "date": "2025-09-02",
       "result": "Passed",
@@ -189,7 +189,7 @@
     {
       "bill_number": "H.R. 3357",
       "bill_id": "119-hr-3357",
-      "one_liner": "This bill requires companies with multiple classes of stock to give investors more details about how each class works.",
+      "one_liner": "Require companies with unequal voting shares to disclose ownership details",
       "vote": "Yea",
       "date": "2025-07-23",
       "result": "Passed",
@@ -200,7 +200,7 @@
     {
       "bill_number": "H.R. 4275",
       "bill_id": "119-hr-4275",
-      "one_liner": "This bill sets up funding and programs for the U.S. Coast Guard.",
+      "one_liner": "Authorize funding for the Coast Guard and create a Secretary of the Coast Guard position",
       "vote": "Yea",
       "date": "2025-07-23",
       "result": "Passed",
@@ -211,7 +211,7 @@
     {
       "bill_number": "H.R. 3937",
       "bill_id": "119-hr-3937",
-      "one_liner": "This bill transfers a parcel of federal land to the Wabeno area in Wisconsin for economic development.",
+      "one_liner": "Sell 14 acres of federal forest land in Wisconsin to a concrete company",
       "vote": "Yea",
       "date": "2025-07-22",
       "result": "Passed",
@@ -222,7 +222,7 @@
     {
       "bill_number": "H.R. 1917",
       "bill_id": "119-hr-1917",
-      "one_liner": "This bill renews the Great Lakes fish marking program.",
+      "one_liner": "Make official a federal program that marks hatchery fish in the Great Lakes",
       "vote": "Yea",
       "date": "2025-07-22",
       "result": "Passed",
@@ -233,7 +233,7 @@
     {
       "bill_number": "H.R. 3095",
       "bill_id": "119-hr-3095",
-      "one_liner": "This bill requires the U.S. Postal Service to assign unique ZIP codes to certain communities.",
+      "one_liner": "Require USPS to give 74 communities their own ZIP codes",
       "vote": "Yea",
       "date": "2025-07-21",
       "result": "Passed",
@@ -244,7 +244,7 @@
     {
       "bill_number": "H.R. 3351",
       "bill_id": "119-hr-3351",
-      "one_liner": "This bill changes how the public can find information about small business programs run by the Small Business Administration (SBA).",
+      "one_liner": "Remove paperwork rules for an SEC office that helps small businesses get funding",
       "vote": "Yea",
       "date": "2025-07-21",
       "result": "Passed",
@@ -255,7 +255,7 @@
     {
       "bill_number": "H.Res. 590",
       "bill_id": "119-hres-590",
-      "one_liner": "This resolution sets the rules for House debate on a Senate change to H.R. 4, the spending cuts bill.",
+      "one_liner": "Set up a vote on Senate changes to spending cuts proposed by the President",
       "vote": "No",
       "date": "2025-07-18",
       "result": "Passed",
@@ -266,7 +266,7 @@
     {
       "bill_number": "H.R. 4016",
       "bill_id": "119-hr-4016",
-      "one_liner": "This bill funds the Department of Defense for the year starting October 2025.",
+      "one_liner": "Fund the military for the year starting October 2025",
       "vote": "No",
       "date": "2025-07-18",
       "result": "Failed",
@@ -277,7 +277,7 @@
     {
       "bill_number": "H.R. 4016",
       "bill_id": "119-hr-4016",
-      "one_liner": "This bill funds the Department of Defense for the year starting October 2025.",
+      "one_liner": "Fund the military for the year starting October 2025",
       "vote": "No",
       "date": "2025-07-18",
       "result": "Failed",
@@ -288,7 +288,7 @@
     {
       "bill_number": "H.R. 4016",
       "bill_id": "119-hr-4016",
-      "one_liner": "This bill funds the Department of Defense for the year starting October 2025.",
+      "one_liner": "Fund the military for the year starting October 2025",
       "vote": "No",
       "date": "2025-07-18",
       "result": "Failed",
@@ -299,7 +299,7 @@
     {
       "bill_number": "H.R. 4016",
       "bill_id": "119-hr-4016",
-      "one_liner": "This bill funds the Department of Defense for the year starting October 2025.",
+      "one_liner": "Fund the military for the year starting October 2025",
       "vote": "No",
       "date": "2025-07-18",
       "result": "Failed",
@@ -310,7 +310,7 @@
     {
       "bill_number": "H.R. 4016",
       "bill_id": "119-hr-4016",
-      "one_liner": "This bill funds the Department of Defense for the year starting October 2025.",
+      "one_liner": "Fund the military for the year starting October 2025",
       "vote": "No",
       "date": "2025-07-18",
       "result": "Failed",
@@ -321,7 +321,7 @@
     {
       "bill_number": "H.R. 4016",
       "bill_id": "119-hr-4016",
-      "one_liner": "This bill funds the Department of Defense for the year starting October 2025.",
+      "one_liner": "Fund the military for the year starting October 2025",
       "vote": "No",
       "date": "2025-07-18",
       "result": "Failed",
@@ -332,7 +332,7 @@
     {
       "bill_number": "H.R. 4016",
       "bill_id": "119-hr-4016",
-      "one_liner": "This bill funds the Department of Defense for the year starting October 2025.",
+      "one_liner": "Fund the military for the year starting October 2025",
       "vote": "No",
       "date": "2025-07-18",
       "result": "Failed",
@@ -343,7 +343,7 @@
     {
       "bill_number": "H.R. 4016",
       "bill_id": "119-hr-4016",
-      "one_liner": "This bill funds the Department of Defense for the year starting October 2025.",
+      "one_liner": "Fund the military for the year starting October 2025",
       "vote": "Yea",
       "date": "2025-07-18",
       "result": "Failed",
@@ -354,7 +354,7 @@
     {
       "bill_number": "H.R. 4016",
       "bill_id": "119-hr-4016",
-      "one_liner": "This bill funds the Department of Defense for the year starting October 2025.",
+      "one_liner": "Fund the military for the year starting October 2025",
       "vote": "Nay",
       "date": "2025-07-18",
       "result": "Passed",
@@ -365,7 +365,7 @@
     {
       "bill_number": "H.R. 3633",
       "bill_id": "119-hr-3633",
-      "one_liner": "This bill creates rules for digital assets like cryptocurrency.",
+      "one_liner": "Create federal rules for companies that buy and sell digital assets",
       "vote": "Yea",
       "date": "2025-07-17",
       "result": "Passed",
@@ -376,7 +376,7 @@
     {
       "bill_number": "S. 1582",
       "bill_id": "119-s-1582",
-      "one_liner": "This bill creates rules for payment stablecoins, which are digital tokens designed to always be worth a fixed amount, like one U.S. dollar.",
+      "one_liner": "Create federal rules for digital stablecoins and require companies to back them with real money",
       "vote": "Yea",
       "date": "2025-07-17",
       "result": "Passed",
@@ -387,7 +387,7 @@
     {
       "bill_number": "H.R. 1919",
       "bill_id": "119-hr-1919",
-      "one_liner": "This bill prohibits the Federal Reserve from creating a central bank digital currency (CBDC).",
+      "one_liner": "Stop the Federal Reserve from creating a digital dollar",
       "vote": "Nay",
       "date": "2025-07-17",
       "result": "Passed",
@@ -398,7 +398,7 @@
     {
       "bill_number": "H.Res. 590",
       "bill_id": "119-hres-590",
-      "one_liner": "This resolution sets the rules for House debate on a Senate change to H.R. 4, the spending cuts bill.",
+      "one_liner": "Set up a vote on Senate changes to spending cuts proposed by the President",
       "vote": "Nay",
       "date": "2025-07-17",
       "result": "Passed",
@@ -409,7 +409,7 @@
     {
       "bill_number": "H.Res. 580",
       "bill_id": "119-hres-580",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 4016, the Defense spending bill.",
+      "one_liner": "Set House rules for debating defense spending and financial regulation bills",
       "vote": "Nay",
       "date": "2025-07-16",
       "result": "Passed",
@@ -420,7 +420,7 @@
     {
       "bill_number": "H.Res. 580",
       "bill_id": "119-hres-580",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 4016, the Defense spending bill.",
+      "one_liner": "Set House rules for debating defense spending and financial regulation bills",
       "vote": "No",
       "date": "2025-07-16",
       "result": "Passed",
@@ -431,7 +431,7 @@
     {
       "bill_number": "H.Res. 580",
       "bill_id": "119-hres-580",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 4016, the Defense spending bill.",
+      "one_liner": "Set House rules for debating defense spending and financial regulation bills",
       "vote": "Nay",
       "date": "2025-07-15",
       "result": "Passed",
@@ -442,7 +442,7 @@
     {
       "bill_number": "H.Res. 580",
       "bill_id": "119-hres-580",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 4016, the Defense spending bill.",
+      "one_liner": "Set House rules for debating defense spending and financial regulation bills",
       "vote": "No",
       "date": "2025-07-15",
       "result": "Failed",
@@ -453,7 +453,7 @@
     {
       "bill_number": "H.R. 1717",
       "bill_id": "119-hr-1717",
-      "one_liner": "This bill addresses security of communications networks in the United States.",
+      "one_liner": "Give legal power to a council advising FCC on network safety",
       "vote": "Yea",
       "date": "2025-07-15",
       "result": "Passed",
@@ -475,7 +475,7 @@
     {
       "bill_number": "H.R. 1770",
       "bill_id": "119-hr-1770",
-      "one_liner": "This bill tells the Consumer Product Safety Commission to study how technology can improve product safety.",
+      "one_liner": "Create a pilot program using artificial intelligence to help track unsafe consumer products",
       "vote": "Yea",
       "date": "2025-07-14",
       "result": "Passed",
@@ -486,7 +486,7 @@
     {
       "bill_number": "S. 1596",
       "bill_id": "119-s-1596",
-      "one_liner": "This bill designates a national wildlife refuge in honor of Jocelyn Nungaray.",
+      "one_liner": "Rename the Anahuac National Wildlife Refuge in Texas to Jocelyn Nungaray National Wildlife Refuge",
       "vote": "Yea",
       "date": "2025-07-14",
       "result": "Passed",
@@ -497,7 +497,7 @@
     {
       "bill_number": "H.Res. 566",
       "bill_id": "119-hres-566",
-      "one_liner": "This resolution sets the rules for House debate on a Senate change to H.R. 1.",
+      "one_liner": "Set rules for a House vote on Senate changes to budget bill H.R. 1",
       "vote": "Nay",
       "date": "2025-07-03",
       "result": "Passed",
@@ -508,7 +508,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
+      "one_liner": "Cut taxes for families and businesses while raising the debt limit by $4 trillion",
       "vote": "No",
       "date": "2025-07-03",
       "result": "Passed",
@@ -541,7 +541,7 @@
     {
       "bill_number": "H.Res. 566",
       "bill_id": "119-hres-566",
-      "one_liner": "This resolution sets the rules for House debate on a Senate change to H.R. 1.",
+      "one_liner": "Set rules for a House vote on Senate changes to budget bill H.R. 1",
       "vote": "No",
       "date": "2025-07-02",
       "result": "Agreed to",
@@ -552,7 +552,7 @@
     {
       "bill_number": "H.Res. 516",
       "bill_id": "119-hres-516",
-      "one_liner": "This resolution condemns violent riots that occurred in Los Angeles, California in June 2025.",
+      "one_liner": "Condemn June 2025 Los Angeles riots and thank law enforcement agencies",
       "vote": "Nay",
       "date": "2025-06-27",
       "result": "Passed",
@@ -563,7 +563,7 @@
     {
       "bill_number": "H.R. 875",
       "bill_id": "119-hr-875",
-      "one_liner": "This bill increases penalties for non-citizens who commit crimes against community members.",
+      "one_liner": "Make drunk driving a reason to deny entry or remove non-citizens from the US",
       "vote": "Nay",
       "date": "2025-06-26",
       "result": "Passed",
@@ -574,7 +574,7 @@
     {
       "bill_number": "H.R. 275",
       "bill_id": "119-hr-275",
-      "one_liner": "This bill requires the Department of Homeland Security to report to Congress when it encounters non-citizens from countries identified as security concerns.",
+      "one_liner": "Require monthly reports on non-citizens trying to enter illegally who pose security risks",
       "vote": "Nay",
       "date": "2025-06-26",
       "result": "Passed",
@@ -585,7 +585,7 @@
     {
       "bill_number": "H.Res. 519",
       "bill_id": "119-hres-519",
-      "one_liner": "This resolution condemns attacks on Minnesota lawmakers in Brooklyn Park and Champlin, Minnesota.",
+      "one_liner": "Condemn attacks on Minnesota lawmakers and call for rejection of political violence",
       "vote": "Yea",
       "date": "2025-06-25",
       "result": "Passed",
@@ -596,7 +596,7 @@
     {
       "bill_number": "H.R. 3944",
       "bill_id": "119-hr-3944",
-      "one_liner": "This bill pays for military building projects starting October 2025, including building and repairing military bases and housing.",
+      "one_liner": "Fund military construction and veterans programs for the year starting October 2025",
       "vote": "No",
       "date": "2025-06-25",
       "result": "Agreed to",
@@ -607,7 +607,7 @@
     {
       "bill_number": "H.R. 3944",
       "bill_id": "119-hr-3944",
-      "one_liner": "This bill pays for military building projects starting October 2025, including building and repairing military bases and housing.",
+      "one_liner": "Fund military construction and veterans programs for the year starting October 2025",
       "vote": "Yea",
       "date": "2025-06-25",
       "result": "Failed",
@@ -618,7 +618,7 @@
     {
       "bill_number": "H.R. 3944",
       "bill_id": "119-hr-3944",
-      "one_liner": "This bill pays for military building projects starting October 2025, including building and repairing military bases and housing.",
+      "one_liner": "Fund military construction and veterans programs for the year starting October 2025",
       "vote": "Nay",
       "date": "2025-06-25",
       "result": "Passed",
@@ -629,7 +629,7 @@
     {
       "bill_number": "H.Res. 537",
       "bill_id": "119-hres-537",
-      "one_liner": "This resolution is an article of impeachment against President Donald J. Trump.",
+      "one_liner": "Impeach President Trump for taking Congress's power to declare war",
       "vote": "Yea",
       "date": "2025-06-24",
       "result": "Passed",
@@ -640,7 +640,7 @@
     {
       "bill_number": "H.Res. 530",
       "bill_id": "119-hres-530",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 3944, a military and veterans spending bill.",
+      "one_liner": "Set up House debate and voting rules for four bills",
       "vote": "Nay",
       "date": "2025-06-24",
       "result": "Passed",
@@ -651,7 +651,7 @@
     {
       "bill_number": "H.Res. 530",
       "bill_id": "119-hres-530",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 3944, a military and veterans spending bill.",
+      "one_liner": "Set up House debate and voting rules for four bills",
       "vote": "No",
       "date": "2025-06-24",
       "result": "Passed",
@@ -673,7 +673,7 @@
     {
       "bill_number": "H.R. 1998",
       "bill_id": "119-hr-1998",
-      "one_liner": "This bill punishes people and groups involved in sea piracy by freezing their money and banning them from the U.S.",
+      "one_liner": "Block visas and freeze property of people who commit piracy",
       "vote": "Yea",
       "date": "2025-06-23",
       "result": "Passed",
@@ -684,7 +684,7 @@
     {
       "bill_number": "H.R. 3394",
       "bill_id": "119-hr-3394",
-      "one_liner": "This bill expands who can invest in private investment opportunities that are currently limited to wealthy individuals.",
+      "one_liner": "Let more people invest in private company deals based on professional knowledge",
       "vote": "Yea",
       "date": "2025-06-23",
       "result": "Passed",
@@ -695,7 +695,7 @@
     {
       "bill_number": "H.R. 3422",
       "bill_id": "119-hr-3422",
-      "one_liner": "This bill changes rules for how small and new companies can raise money from investors.",
+      "one_liner": "Expand an SEC office to help small businesses raise money",
       "vote": "Yea",
       "date": "2025-06-23",
       "result": "Passed",
@@ -706,7 +706,7 @@
     {
       "bill_number": "S. 331",
       "bill_id": "119-s-331",
-      "one_liner": "This bill permanently makes all chemicals related to fentanyl illegal under the strictest drug category.",
+      "one_liner": "Make all fentanyl-type drugs permanently illegal with set penalties",
       "vote": "Yea",
       "date": "2025-06-12",
       "result": "Passed",
@@ -717,7 +717,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
+      "one_liner": "Cancel $9.4 billion in unspent funding for foreign aid and public broadcasting",
       "vote": "Yea",
       "date": "2025-06-12",
       "result": "Failed",
@@ -728,7 +728,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "This bill takes back $9.4 billion that was given to federal agencies but not yet spent.",
+      "one_liner": "Cancel $9.4 billion in unspent funding for foreign aid and public broadcasting",
       "vote": "Nay",
       "date": "2025-06-12",
       "result": "Passed",
@@ -750,7 +750,7 @@
     {
       "bill_number": "H.R. 2056",
       "bill_id": "119-hr-2056",
-      "one_liner": "This bill requires the District of Columbia to comply with federal immigration enforcement.",
+      "one_liner": "Require Washington D.C. to cooperate with federal immigration enforcement",
       "vote": "Yea",
       "date": "2025-06-12",
       "result": "Failed",
@@ -761,7 +761,7 @@
     {
       "bill_number": "H.R. 2056",
       "bill_id": "119-hr-2056",
-      "one_liner": "This bill requires the District of Columbia to comply with federal immigration enforcement.",
+      "one_liner": "Require Washington D.C. to cooperate with federal immigration enforcement",
       "vote": "Nay",
       "date": "2025-06-12",
       "result": "Passed",
@@ -794,7 +794,7 @@
     {
       "bill_number": "H.Res. 489",
       "bill_id": "119-hres-489",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 884, regarding non-citizen voting in D.C.",
+      "one_liner": "Set debate rules for four bills on DC voting, immigration, police, and fentanyl drug classification",
       "vote": "Nay",
       "date": "2025-06-10",
       "result": "Passed",
@@ -805,7 +805,7 @@
     {
       "bill_number": "H.Res. 489",
       "bill_id": "119-hres-489",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 884, regarding non-citizen voting in D.C.",
+      "one_liner": "Set debate rules for four bills on DC voting, immigration, police, and fentanyl drug classification",
       "vote": "No",
       "date": "2025-06-10",
       "result": "Passed",
@@ -816,7 +816,7 @@
     {
       "bill_number": "H.R. 2096",
       "bill_id": "119-hr-2096",
-      "one_liner": "This bill adds security measures in the nation's capital.",
+      "one_liner": "Change rules for disciplining DC police officers",
       "vote": "Nay",
       "date": "2025-06-10",
       "result": "Passed",
@@ -827,7 +827,7 @@
     {
       "bill_number": "H.R. 884",
       "bill_id": "119-hr-884",
-      "one_liner": "This bill prohibits non-citizens from voting in elections in Washington, D.C.",
+      "one_liner": "Stop non-citizens from voting in Washington D.C. elections",
       "vote": "Yea",
       "date": "2025-06-10",
       "result": "Passed",
@@ -838,7 +838,7 @@
     {
       "bill_number": "H.R. 2035",
       "bill_id": "119-hr-2035",
-      "one_liner": "This bill requires that a certain percentage of cargo shipped between U.S. ports be carried on American-built, American-crewed ships.",
+      "one_liner": "Require all Department of Transportation cargo to be shipped on U.S.-flagged vessels",
       "vote": "Yea",
       "date": "2025-06-09",
       "result": "Passed",
@@ -849,7 +849,7 @@
     {
       "bill_number": "H.Res. 488",
       "bill_id": "119-hres-488",
-      "one_liner": "This resolution denounces an antisemitic terrorist attack in Boulder, Colorado.",
+      "one_liner": "Denounces an antisemitic terrorist attack in Boulder, Colorado",
       "vote": "Nay",
       "date": "2025-06-09",
       "result": "Passed",
@@ -860,7 +860,7 @@
     {
       "bill_number": "H.Res. 481",
       "bill_id": "119-hres-481",
-      "one_liner": "This resolution condemns antisemitic attacks on Jewish individuals in the United States.",
+      "one_liner": "Condemn attacks on Jewish people and state commitment to fight antisemitism",
       "vote": "Yea",
       "date": "2025-06-09",
       "result": "Passed",
@@ -871,7 +871,7 @@
     {
       "bill_number": "H.R. 2966",
       "bill_id": "119-hr-2966",
-      "one_liner": "This bill prioritizes SBA resources for American entrepreneurs and small business owners.",
+      "one_liner": "Restrict Small Business Administration loans to US citizens and permanent residents only",
       "vote": "Nay",
       "date": "2025-06-06",
       "result": "Passed",
@@ -882,7 +882,7 @@
     {
       "bill_number": "H.R. 2931",
       "bill_id": "119-hr-2931",
-      "one_liner": "This bill prohibits the SBA from providing loans or grants to businesses in cities that have sanctuary policies limiting immigration enforcement cooperation.",
+      "one_liner": "Move Small Business Administration offices out of cities that limit cooperation with immigration enforcement",
       "vote": "Yea",
       "date": "2025-06-05",
       "result": "Failed",
@@ -893,7 +893,7 @@
     {
       "bill_number": "H.R. 2931",
       "bill_id": "119-hr-2931",
-      "one_liner": "This bill prohibits the SBA from providing loans or grants to businesses in cities that have sanctuary policies limiting immigration enforcement cooperation.",
+      "one_liner": "Move Small Business Administration offices out of cities that limit cooperation with immigration enforcement",
       "vote": "Nay",
       "date": "2025-06-05",
       "result": "Passed",
@@ -904,7 +904,7 @@
     {
       "bill_number": "H.R. 2987",
       "bill_id": "119-hr-2987",
-      "one_liner": "This bill requires federal agencies to stop certain enforcement actions while legal challenges are pending.",
+      "one_liner": "Cap for-profit companies that can make government-backed small business loans at 16",
       "vote": "Yea",
       "date": "2025-06-05",
       "result": "Failed",
@@ -915,7 +915,7 @@
     {
       "bill_number": "H.R. 2987",
       "bill_id": "119-hr-2987",
-      "one_liner": "This bill requires federal agencies to stop certain enforcement actions while legal challenges are pending.",
+      "one_liner": "Cap for-profit companies that can make government-backed small business loans at 16",
       "vote": "Nay",
       "date": "2025-06-05",
       "result": "Passed",
@@ -926,7 +926,7 @@
     {
       "bill_number": "H.Res. 458",
       "bill_id": "119-hres-458",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 2483, the SUPPORT Act reauthorization.",
+      "one_liner": "Allow House votes on four bills about opioid programs and small business rules",
       "vote": "Nay",
       "date": "2025-06-04",
       "result": "Passed",
@@ -937,7 +937,7 @@
     {
       "bill_number": "H.Res. 458",
       "bill_id": "119-hres-458",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 2483, the SUPPORT Act reauthorization.",
+      "one_liner": "Allow House votes on four bills about opioid programs and small business rules",
       "vote": "No",
       "date": "2025-06-04",
       "result": "Passed",
@@ -948,7 +948,7 @@
     {
       "bill_number": "H.R. 2483",
       "bill_id": "119-hr-2483",
-      "one_liner": "This bill renews programs from the SUPPORT Act that deal with drug and opioid addiction.",
+      "one_liner": "Continue funding programs that treat drug addiction and mental health through 2030",
       "vote": "Aye",
       "date": "2025-06-04",
       "result": "Failed",
@@ -959,7 +959,7 @@
     {
       "bill_number": "H.R. 2483",
       "bill_id": "119-hr-2483",
-      "one_liner": "This bill renews programs from the SUPPORT Act that deal with drug and opioid addiction.",
+      "one_liner": "Continue funding programs that treat drug addiction and mental health through 2030",
       "vote": "Yea",
       "date": "2025-06-04",
       "result": "Passed",
@@ -970,7 +970,7 @@
     {
       "bill_number": "H.R. 1642",
       "bill_id": "119-hr-1642",
-      "one_liner": "This bill creates a program to connect small businesses with graduates of career and technical education programs.",
+      "one_liner": "Require business centers to tell small businesses about hiring career school graduates",
       "vote": "Yea",
       "date": "2025-06-03",
       "result": "Passed",
@@ -981,7 +981,7 @@
     {
       "bill_number": "H.R. 1804",
       "bill_id": "119-hr-1804",
-      "one_liner": "This bill adds more rules and tracking for agents and lenders involved in SBA 7(a) loans.",
+      "one_liner": "Require yearly reports on agents who help with small business loans",
       "vote": "Yea",
       "date": "2025-06-03",
       "result": "Passed",
@@ -992,7 +992,7 @@
     {
       "bill_number": "H.Res. 436",
       "bill_id": "119-hres-436",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 1, the tax and spending bill.",
+      "one_liner": "Set rules for how the House will debate and vote on H.R. 1",
       "vote": "Nay",
       "date": "2025-05-22",
       "result": "Passed",
@@ -1003,7 +1003,7 @@
     {
       "bill_number": "H.Res. 436",
       "bill_id": "119-hres-436",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 1, the tax and spending bill.",
+      "one_liner": "Set rules for how the House will debate and vote on H.R. 1",
       "vote": "Nay",
       "date": "2025-05-22",
       "result": "Passed",
@@ -1014,7 +1014,7 @@
     {
       "bill_number": "H.Res. 436",
       "bill_id": "119-hres-436",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 1, the tax and spending bill.",
+      "one_liner": "Set rules for how the House will debate and vote on H.R. 1",
       "vote": "Nay",
       "date": "2025-05-22",
       "result": "Passed",
@@ -1025,7 +1025,7 @@
     {
       "bill_number": "H.Res. 436",
       "bill_id": "119-hres-436",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 1, the tax and spending bill.",
+      "one_liner": "Set rules for how the House will debate and vote on H.R. 1",
       "vote": "No",
       "date": "2025-05-22",
       "result": "Passed",
@@ -1036,7 +1036,7 @@
     {
       "bill_number": "S.J.Res. 31",
       "bill_id": "119-sjres-31",
-      "one_liner": "This cancels a September 2024 EPA rule about how air pollution sources are classified.",
+      "one_liner": "Cancel an EPA air pollution rule from September 2024",
       "vote": "Nay",
       "date": "2025-05-22",
       "result": "Passed",
@@ -1047,7 +1047,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
+      "one_liner": "Cut taxes for families and businesses while raising the debt limit by $4 trillion",
       "vote": "Yea",
       "date": "2025-05-22",
       "result": "Failed",
@@ -1058,7 +1058,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "This bill changes tax rules: it lets people deduct up to $40,000 in state and local taxes (up from $10,000), keeps the 2017 tax cuts going, and creates new tax breaks for tips, car loan payments, and senior citizens.",
+      "one_liner": "Cut taxes for families and businesses while raising the debt limit by $4 trillion",
       "vote": "Nay",
       "date": "2025-05-22",
       "result": "Passed",
@@ -1080,7 +1080,7 @@
     {
       "bill_number": "H.Res. 426",
       "bill_id": "119-hres-426",
-      "one_liner": "This resolution sets the rules for House debate on S.J.Res. 13, regarding bank merger regulations.",
+      "one_liner": "Set up House votes to cancel two federal rules on bank mergers and air pollution",
       "vote": "Nay",
       "date": "2025-05-20",
       "result": "Passed",
@@ -1091,7 +1091,7 @@
     {
       "bill_number": "H.Res. 426",
       "bill_id": "119-hres-426",
-      "one_liner": "This resolution sets the rules for House debate on S.J.Res. 13, regarding bank merger regulations.",
+      "one_liner": "Set up House votes to cancel two federal rules on bank mergers and air pollution",
       "vote": "No",
       "date": "2025-05-20",
       "result": "Passed",
@@ -1102,7 +1102,7 @@
     {
       "bill_number": "H.R. 1223",
       "bill_id": "119-hr-1223",
-      "one_liner": "This bill requires the National Science Foundation to improve cybersecurity on U.S. research ships.",
+      "one_liner": "Require the National Science Foundation to plan cybersecurity upgrades for research ships",
       "vote": "Yea",
       "date": "2025-05-20",
       "result": "Passed",
@@ -1113,7 +1113,7 @@
     {
       "bill_number": "S.J.Res. 13",
       "bill_id": "119-sjres-13",
-      "one_liner": "This cancels a rule from September 2024 by the Office of the Comptroller of the Currency (OCC), the agency that oversees national banks.",
+      "one_liner": "Cancel a Treasury rule that ended automatic approvals for some bank mergers",
       "vote": "Nay",
       "date": "2025-05-20",
       "result": "Passed",
@@ -1124,7 +1124,7 @@
     {
       "bill_number": "H.R. 1263",
       "bill_id": "119-hr-1263",
-      "one_liner": "This bill tells the State Department to set up a working group with Japan, Australia, and India (the Quad alliance).",
+      "one_liner": "Create a working group with Japan, Australia and India for security and economic cooperation",
       "vote": "Yea",
       "date": "2025-05-19",
       "result": "Passed",
@@ -1135,7 +1135,7 @@
     {
       "bill_number": "H.R. 1286",
       "bill_id": "119-hr-1286",
-      "one_liner": "This bill requires the VA to hire an outside research center to review the forms veterans must fill out for benefits claims.",
+      "one_liner": "Make the VA get help fixing their veteran claim forms",
       "vote": "Yea",
       "date": "2025-05-19",
       "result": "Passed",
@@ -1157,7 +1157,7 @@
     {
       "bill_number": "H.R. 2240",
       "bill_id": "119-hr-2240",
-      "one_liner": "This bill requires the Attorney General to collect and publish data on injuries and deaths of law enforcement officers.",
+      "one_liner": "Require the Justice Department to report on attacks against police officers and mental health resources",
       "vote": "Yea",
       "date": "2025-05-15",
       "result": "Passed",
@@ -1168,7 +1168,7 @@
     {
       "bill_number": "H.R. 2215",
       "bill_id": "119-hr-2215",
-      "one_liner": "This bill renames the Salem Maritime National Historic Site in Massachusetts to a national historical park.",
+      "one_liner": "Rename Salem Maritime National Historic Site to Salem Maritime National Historical Park",
       "vote": "Yea",
       "date": "2025-05-14",
       "result": "Passed",
@@ -1179,7 +1179,7 @@
     {
       "bill_number": "H.Res. 405",
       "bill_id": "119-hres-405",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 2240, regarding law enforcement data.",
+      "one_liner": "Sets up House votes on three bills about police officer safety and weapons",
       "vote": "Nay",
       "date": "2025-05-14",
       "result": "Passed",
@@ -1190,7 +1190,7 @@
     {
       "bill_number": "H.Res. 405",
       "bill_id": "119-hres-405",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 2240, regarding law enforcement data.",
+      "one_liner": "Sets up House votes on three bills about police officer safety and weapons",
       "vote": "No",
       "date": "2025-05-14",
       "result": "Passed",
@@ -1201,7 +1201,7 @@
     {
       "bill_number": "H.R. 2243",
       "bill_id": "119-hr-2243",
-      "one_liner": "This bill updates the Law Enforcement Officers Safety Act (LEOSA).",
+      "one_liner": "Expand where law enforcement officers can carry concealed guns across state lines",
       "vote": "Nay",
       "date": "2025-05-14",
       "result": "Passed",
@@ -1212,7 +1212,7 @@
     {
       "bill_number": "H.Res. 352",
       "bill_id": "119-hres-352",
-      "one_liner": "This resolution calls on elected officials and community leaders to speak out against antisemitism.",
+      "one_liner": "Ask officials and community leaders to condemn antisemitism",
       "vote": "Yea",
       "date": "2025-05-14",
       "result": "Passed",
@@ -1223,7 +1223,7 @@
     {
       "bill_number": "H.Con.Res. 30",
       "bill_id": "119-hconres-30",
-      "one_liner": "This resolution states that Congress recognizes local law enforcement officers.",
+      "one_liner": "Express support for local law enforcement officers",
       "vote": "Yea",
       "date": "2025-05-13",
       "result": "Passed",
@@ -1234,7 +1234,7 @@
     {
       "bill_number": "H.R. 249",
       "bill_id": "119-hr-249",
-      "one_liner": "This bill renames certain buildings and features at Paterson Great Falls National Historical Park in New Jersey.",
+      "one_liner": "Rename trail bridge and park at Paterson Great Falls after Bill Pascrell Jr",
       "vote": "Yea",
       "date": "2025-05-13",
       "result": "Passed",
@@ -1245,7 +1245,7 @@
     {
       "bill_number": "H.R. 276",
       "bill_id": "119-hr-276",
-      "one_liner": "This bill renames the Gulf of Mexico to the Gulf of America in all federal documents, maps, and communications.",
+      "one_liner": "Rename the Gulf of Mexico to the Gulf of America",
       "vote": "Yea",
       "date": "2025-05-08",
       "result": "Failed",
@@ -1256,7 +1256,7 @@
     {
       "bill_number": "H.R. 276",
       "bill_id": "119-hr-276",
-      "one_liner": "This bill renames the Gulf of Mexico to the Gulf of America in all federal documents, maps, and communications.",
+      "one_liner": "Rename the Gulf of Mexico to the Gulf of America",
       "vote": "No",
       "date": "2025-05-08",
       "result": "Passed",
@@ -1267,7 +1267,7 @@
     {
       "bill_number": "H.R. 1503",
       "bill_id": "119-hr-1503",
-      "one_liner": "This bill makes it a federal crime to participate in forced organ harvesting.",
+      "one_liner": "Block property and visas of people who harvest organs by force",
       "vote": "Yea",
       "date": "2025-05-07",
       "result": "Passed",
@@ -1278,7 +1278,7 @@
     {
       "bill_number": "H.R. 881",
       "bill_id": "119-hr-881",
-      "one_liner": "This bill restricts the Department of Homeland Security from working with Confucius Institutes or similar Chinese-government-linked organizations.",
+      "one_liner": "Stop DHS from funding colleges that work with certain Chinese organizations",
       "vote": "Nay",
       "date": "2025-05-07",
       "result": "Passed",
@@ -1289,7 +1289,7 @@
     {
       "bill_number": "H.Res. 377",
       "bill_id": "119-hres-377",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 276, the Gulf of America Act.",
+      "one_liner": "Allow House votes on renaming the Gulf of Mexico and restricting college funding",
       "vote": "Nay",
       "date": "2025-05-06",
       "result": "Passed",
@@ -1300,7 +1300,7 @@
     {
       "bill_number": "H.Res. 377",
       "bill_id": "119-hres-377",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 276, the Gulf of America Act.",
+      "one_liner": "Allow House votes on renaming the Gulf of Mexico and restricting college funding",
       "vote": "No",
       "date": "2025-05-06",
       "result": "Passed",
@@ -1311,7 +1311,7 @@
     {
       "bill_number": "H.R. 530",
       "bill_id": "119-hr-530",
-      "one_liner": "This bill provides resources for cleaning up and redeveloping contaminated industrial sites.",
+      "one_liner": "Order a study of cancer rates among veterans who flew military planes",
       "vote": "Yea",
       "date": "2025-05-05",
       "result": "Passed",
@@ -1322,7 +1322,7 @@
     {
       "bill_number": "H.R. 36",
       "bill_id": "119-hr-36",
-      "one_liner": "This bill creates programs and funding related to Georgia's independence and borders.",
+      "one_liner": "Impose sanctions on Georgian officials who block the country's NATO and EU membership",
       "vote": "Yea",
       "date": "2025-05-05",
       "result": "Passed",
@@ -1333,7 +1333,7 @@
     {
       "bill_number": "H.J.Res. 78",
       "bill_id": "119-hjres-78",
-      "one_liner": "This resolution cancels a Fish and Wildlife Service rule from July 30, 2024 that listed the San Francisco Bay-Delta longfin smelt as an endangered species.",
+      "one_liner": "Cancel a rule that protects longfin smelt fish as endangered",
       "vote": "Nay",
       "date": "2025-05-01",
       "result": "Passed",
@@ -1344,7 +1344,7 @@
     {
       "bill_number": "H.J.Res. 88",
       "bill_id": "119-hjres-88",
-      "one_liner": "This resolution cancels an EPA notice that allowed California to set its own stricter car emission rules under a program called Advanced Clean Cars II.",
+      "one_liner": "Cancel an EPA decision that lets California set its own car emission standards",
       "vote": "Yea",
       "date": "2025-05-01",
       "result": "Passed",
@@ -1355,7 +1355,7 @@
     {
       "bill_number": "H.J.Res. 87",
       "bill_id": "119-hjres-87",
-      "one_liner": "This resolution cancels an EPA notice that allowed California to set its own stricter emission rules for heavy-duty trucks.",
+      "one_liner": "Cancel EPA permission for California to set stricter truck emission standards",
       "vote": "Nay",
       "date": "2025-04-30",
       "result": "Passed",
@@ -1366,7 +1366,7 @@
     {
       "bill_number": "H.J.Res. 89",
       "bill_id": "119-hjres-89",
-      "one_liner": "This resolution cancels an EPA notice that allowed California to set its own stricter rules limiting nitrogen oxide (NOX) pollution from cars and off-road engines.",
+      "one_liner": "Block California from requiring stricter pollution controls on heavy trucks than federal rules",
       "vote": "Nay",
       "date": "2025-04-30",
       "result": "Passed",
@@ -1377,7 +1377,7 @@
     {
       "bill_number": "H.Res. 354",
       "bill_id": "119-hres-354",
-      "one_liner": "This resolution sets the rules for House debate on H.J.Res. 60.",
+      "one_liner": "Schedule House votes on overturning five federal environmental and park rules",
       "vote": "Nay",
       "date": "2025-04-29",
       "result": "Passed",
@@ -1388,7 +1388,7 @@
     {
       "bill_number": "H.Res. 354",
       "bill_id": "119-hres-354",
-      "one_liner": "This resolution sets the rules for House debate on H.J.Res. 60.",
+      "one_liner": "Schedule House votes on overturning five federal environmental and park rules",
       "vote": "No",
       "date": "2025-04-29",
       "result": "Passed",
@@ -1399,7 +1399,7 @@
     {
       "bill_number": "H.R. 1402",
       "bill_id": "119-hr-1402",
-      "one_liner": "This bill requires the Transportation Security Administration to report on how long travelers wait in airport security lines.",
+      "one_liner": "Require ticket sellers to show total prices upfront and ban selling tickets they don't have",
       "vote": "Yea",
       "date": "2025-04-29",
       "result": "Passed",
@@ -1410,7 +1410,7 @@
     {
       "bill_number": "H.R. 1442",
       "bill_id": "119-hr-1442",
-      "one_liner": "This bill updates safety rules for packaging that children might get into.",
+      "one_liner": "Ban consumer products containing 10% or more sodium nitrite",
       "vote": "Yea",
       "date": "2025-04-29",
       "result": "Passed",
@@ -1421,7 +1421,7 @@
     {
       "bill_number": "H.R. 859",
       "bill_id": "119-hr-859",
-      "one_liner": "This bill requires manufacturers to inform consumers about smart features in their devices.",
+      "one_liner": "Require companies to tell customers if smart devices have cameras or microphones",
       "vote": "Yea",
       "date": "2025-04-29",
       "result": "Passed",
@@ -1432,7 +1432,7 @@
     {
       "bill_number": "H.J.Res. 60",
       "bill_id": "119-hjres-60",
-      "one_liner": "This resolution cancels a National Park Service rule about motor vehicle use in Glen Canyon National Recreation Area in northern Arizona and southern Utah.",
+      "one_liner": "Cancel a National Park Service rule limiting off-road vehicles in Glen Canyon",
       "vote": "Nay",
       "date": "2025-04-29",
       "result": "Passed",
@@ -1443,7 +1443,7 @@
     {
       "bill_number": "H.R. 973",
       "bill_id": "119-hr-973",
-      "one_liner": "This bill sets safety standards for lithium-ion batteries in consumer products.",
+      "one_liner": "Create government safety rules for batteries in electric bikes and scooters",
       "vote": "Yea",
       "date": "2025-04-28",
       "result": "Passed",
@@ -1454,7 +1454,7 @@
     {
       "bill_number": "S. 146",
       "bill_id": "119-s-146",
-      "one_liner": "This bill requires websites and apps to take down intimate images posted without consent within 48 hours of a request.",
+      "one_liner": "Ban posting intimate photos online without consent and require platforms to remove them",
       "vote": "Yea",
       "date": "2025-04-28",
       "result": "Passed",
@@ -1465,7 +1465,7 @@
     {
       "bill_number": "H.Con.Res. 14",
       "bill_id": "119-hconres-14",
-      "one_liner": "This resolution sets the federal budget for the budget year starting October 2024 and plans spending through 2034.",
+      "one_liner": "Set federal budget targets for 2025-2034 and order committees to write deficit-changing laws",
       "vote": "Nay",
       "date": "2025-04-10",
       "result": "Passed",
@@ -1476,7 +1476,7 @@
     {
       "bill_number": "H.R. 22",
       "bill_id": "119-hr-22",
-      "one_liner": "This bill requires people to show proof of U.S. citizenship when registering to vote in federal elections.",
+      "one_liner": "Require documentary proof of U.S. citizenship to register to vote in federal elections",
       "vote": "Yea",
       "date": "2025-04-10",
       "result": "Failed",
@@ -1487,7 +1487,7 @@
     {
       "bill_number": "H.R. 22",
       "bill_id": "119-hr-22",
-      "one_liner": "This bill requires people to show proof of U.S. citizenship when registering to vote in federal elections.",
+      "one_liner": "Require documentary proof of U.S. citizenship to register to vote in federal elections",
       "vote": "Nay",
       "date": "2025-04-10",
       "result": "Passed",
@@ -1498,7 +1498,7 @@
     {
       "bill_number": "H.Res. 313",
       "bill_id": "119-hres-313",
-      "one_liner": "This resolution sets the rules for House debate on a Senate change to a budget plan.",
+      "one_liner": "Set rules for House vote on Senate changes to budget plan for 2025-2034",
       "vote": "Nay",
       "date": "2025-04-09",
       "result": "Passed",
@@ -1509,7 +1509,7 @@
     {
       "bill_number": "H.Res. 313",
       "bill_id": "119-hres-313",
-      "one_liner": "This resolution sets the rules for House debate on a Senate change to a budget plan.",
+      "one_liner": "Set rules for House vote on Senate changes to budget plan for 2025-2034",
       "vote": "No",
       "date": "2025-04-09",
       "result": "Passed",
@@ -1520,7 +1520,7 @@
     {
       "bill_number": "S.J.Res. 28",
       "bill_id": "119-sjres-28",
-      "one_liner": "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about digital payment apps.",
+      "one_liner": "Cancel a rule defining which payment apps get federal oversight",
       "vote": "Nay",
       "date": "2025-04-09",
       "result": "Passed",
@@ -1531,7 +1531,7 @@
     {
       "bill_number": "S.J.Res. 18",
       "bill_id": "119-sjres-18",
-      "one_liner": "This cancels a December 2024 rule from the Consumer Financial Protection Bureau (CFPB) about overdraft fees.",
+      "one_liner": "Cancel a rule that would cap overdraft fees at $5 at large banks",
       "vote": "Nay",
       "date": "2025-04-09",
       "result": "Passed",
@@ -1542,7 +1542,7 @@
     {
       "bill_number": "H.R. 1526",
       "bill_id": "119-hr-1526",
-      "one_liner": "This bill renews funding for the National Oceanic and Atmospheric Administration's (NOAA) ocean research programs.",
+      "one_liner": "Limit federal court orders that block government rules nationwide",
       "vote": "Yea",
       "date": "2025-04-09",
       "result": "Failed",
@@ -1553,7 +1553,7 @@
     {
       "bill_number": "H.R. 1526",
       "bill_id": "119-hr-1526",
-      "one_liner": "This bill renews funding for the National Oceanic and Atmospheric Administration's (NOAA) ocean research programs.",
+      "one_liner": "Limit federal court orders that block government rules nationwide",
       "vote": "Nay",
       "date": "2025-04-09",
       "result": "Passed",
@@ -1564,7 +1564,7 @@
     {
       "bill_number": "H.R. 1228",
       "bill_id": "119-hr-1228",
-      "one_liner": "This bill moves the Office of Survivors Assistance within the VA so it reports directly to the Secretary of Veterans Affairs.",
+      "one_liner": "Move the Office of Survivors Assistance to report directly to the VA Secretary",
       "vote": "Yea",
       "date": "2025-04-09",
       "result": "Passed",
@@ -1575,7 +1575,7 @@
     {
       "bill_number": "H.Res. 294",
       "bill_id": "119-hres-294",
-      "one_liner": "This resolution sets the rules for House debate on S.J.Res. 18.",
+      "one_liner": "Set rules for House votes on four bills covering bank fees, court powers, and voting requirements",
       "vote": "Nay",
       "date": "2025-04-08",
       "result": "Passed",
@@ -1586,7 +1586,7 @@
     {
       "bill_number": "H.Res. 294",
       "bill_id": "119-hres-294",
-      "one_liner": "This resolution sets the rules for House debate on S.J.Res. 18.",
+      "one_liner": "Set rules for House votes on four bills covering bank fees, court powers, and voting requirements",
       "vote": "No",
       "date": "2025-04-08",
       "result": "Passed",
@@ -1597,7 +1597,7 @@
     {
       "bill_number": "H.R. 586",
       "bill_id": "119-hr-586",
-      "one_liner": "This bill requires a study of liver cancer rates among Vietnam War veterans exposed to liver flukes.",
+      "one_liner": "Require the VA to study bile duct cancer rates in Vietnam veterans",
       "vote": "Yea",
       "date": "2025-04-07",
       "result": "Passed",
@@ -1608,7 +1608,7 @@
     {
       "bill_number": "H.R. 1039",
       "bill_id": "119-hr-1039",
-      "one_liner": "This bill requires the VA to hire an outside research center to review the notices it sends to veterans about their benefits claims.",
+      "one_liner": "Require VA to review letters sent to veterans and extend loan fees through 2034",
       "vote": "Yea",
       "date": "2025-04-07",
       "result": "Passed",
@@ -1619,7 +1619,7 @@
     {
       "bill_number": "H.Res. 282",
       "bill_id": "119-hres-282",
-      "one_liner": "This resolution sets the rules for House debate on S.J.Res. 18, regarding overdraft fee regulations.",
+      "one_liner": "Set up House votes on bank overdraft rules, digital payment rules, court powers, and voter registration",
       "vote": "Nay",
       "date": "2025-04-01",
       "result": "Passed",
@@ -1630,7 +1630,7 @@
     {
       "bill_number": "H.Res. 282",
       "bill_id": "119-hres-282",
-      "one_liner": "This resolution sets the rules for House debate on S.J.Res. 18, regarding overdraft fee regulations.",
+      "one_liner": "Set up House votes on bank overdraft rules, digital payment rules, court powers, and voter registration",
       "vote": "No",
       "date": "2025-04-01",
       "result": "Failed",
@@ -1641,7 +1641,7 @@
     {
       "bill_number": "H.R. 1491",
       "bill_id": "119-hr-1491",
-      "one_liner": "This bill lets the IRS push back tax filing deadlines when a federal disaster is declared.",
+      "one_liner": "Make disaster deadline delays count as tax extensions",
       "vote": "Yea",
       "date": "2025-04-01",
       "result": "Passed",
@@ -1652,7 +1652,7 @@
     {
       "bill_number": "H.R. 517",
       "bill_id": "119-hr-517",
-      "one_liner": "This bill extends tax filing deadlines for people and businesses affected by natural disasters.",
+      "one_liner": "Let states request federal tax deadline extensions for disaster victims and double automatic extension time",
       "vote": "Yea",
       "date": "2025-03-31",
       "result": "Passed",
@@ -1663,7 +1663,7 @@
     {
       "bill_number": "H.R. 997",
       "bill_id": "119-hr-997",
-      "one_liner": "This bill gives more power to the Office of the National Taxpayer Advocate within the IRS.",
+      "one_liner": "Let the National Taxpayer Advocate hire lawyers and manage all staff directly",
       "vote": "Yea",
       "date": "2025-03-31",
       "result": "Passed",
@@ -1674,7 +1674,7 @@
     {
       "bill_number": "H.J.Res. 24",
       "bill_id": "119-hjres-24",
-      "one_liner": "This resolution cancels a Department of Energy rule from December 2024 that set new energy efficiency standards for walk-in coolers and walk-in freezers.",
+      "one_liner": "Cancel Department of Energy rule setting new energy standards for walk-in coolers and freezers",
       "vote": "Nay",
       "date": "2025-03-27",
       "result": "Passed",
@@ -1685,7 +1685,7 @@
     {
       "bill_number": "H.J.Res. 75",
       "bill_id": "119-hjres-75",
-      "one_liner": "This resolution cancels a Department of Energy rule from January that set new energy efficiency standards for commercial refrigerators, freezers, and combination units.",
+      "one_liner": "Cancel a Department of Energy rule on commercial refrigerator energy standards",
       "vote": "Nay",
       "date": "2025-03-27",
       "result": "Passed",
@@ -1696,7 +1696,7 @@
     {
       "bill_number": "H.R. 1048",
       "bill_id": "119-hr-1048",
-      "one_liner": "This bill requires colleges to report to the Department of Education any gifts from countries like China or Russia.",
+      "one_liner": "Require colleges to report smaller foreign gifts and restrict contracts with China and Russia",
       "vote": "Aye",
       "date": "2025-03-27",
       "result": "Failed",
@@ -1707,7 +1707,7 @@
     {
       "bill_number": "H.R. 1048",
       "bill_id": "119-hr-1048",
-      "one_liner": "This bill requires colleges to report to the Department of Education any gifts from countries like China or Russia.",
+      "one_liner": "Require colleges to report smaller foreign gifts and restrict contracts with China and Russia",
       "vote": "No",
       "date": "2025-03-27",
       "result": "Failed",
@@ -1718,7 +1718,7 @@
     {
       "bill_number": "H.R. 1048",
       "bill_id": "119-hr-1048",
-      "one_liner": "This bill requires colleges to report to the Department of Education any gifts from countries like China or Russia.",
+      "one_liner": "Require colleges to report smaller foreign gifts and restrict contracts with China and Russia",
       "vote": "No",
       "date": "2025-03-27",
       "result": "Failed",
@@ -1729,7 +1729,7 @@
     {
       "bill_number": "H.R. 1048",
       "bill_id": "119-hr-1048",
-      "one_liner": "This bill requires colleges to report to the Department of Education any gifts from countries like China or Russia.",
+      "one_liner": "Require colleges to report smaller foreign gifts and restrict contracts with China and Russia",
       "vote": "No",
       "date": "2025-03-27",
       "result": "Failed",
@@ -1740,7 +1740,7 @@
     {
       "bill_number": "H.R. 1048",
       "bill_id": "119-hr-1048",
-      "one_liner": "This bill requires colleges to report to the Department of Education any gifts from countries like China or Russia.",
+      "one_liner": "Require colleges to report smaller foreign gifts and restrict contracts with China and Russia",
       "vote": "Nay",
       "date": "2025-03-27",
       "result": "Passed",
@@ -1751,7 +1751,7 @@
     {
       "bill_number": "H.R. 1534",
       "bill_id": "119-hr-1534",
-      "one_liner": "This bill gives tax breaks to companies that make products in the U.S. instead of buying them from other countries.",
+      "one_liner": "Fund research into cement, concrete, and asphalt that produce less pollution",
       "vote": "Yea",
       "date": "2025-03-25",
       "result": "Passed",
@@ -1762,7 +1762,7 @@
     {
       "bill_number": "H.Res. 242",
       "bill_id": "119-hres-242",
-      "one_liner": "This resolution sets the rules for House debate on H.J.Res. 24.",
+      "one_liner": "Allow the House to vote on three bills about energy rules and foreign influence in universities",
       "vote": "Nay",
       "date": "2025-03-25",
       "result": "Passed",
@@ -1773,7 +1773,7 @@
     {
       "bill_number": "H.Res. 242",
       "bill_id": "119-hres-242",
-      "one_liner": "This resolution sets the rules for House debate on H.J.Res. 24.",
+      "one_liner": "Allow the House to vote on three bills about energy rules and foreign influence in universities",
       "vote": "No",
       "date": "2025-03-25",
       "result": "Passed",
@@ -1784,7 +1784,7 @@
     {
       "bill_number": "H.R. 359",
       "bill_id": "119-hr-359",
-      "one_liner": "This bill changes the rules for how the federal government shares disaster recovery costs with states.",
+      "one_liner": "Require the Department of Energy to report on when it reduces cost requirements for energy projects",
       "vote": "Yea",
       "date": "2025-03-24",
       "result": "Passed",
@@ -1795,7 +1795,7 @@
     {
       "bill_number": "H.R. 1326",
       "bill_id": "119-hr-1326",
-      "one_liner": "This bill requires the Department of Energy and Department of Agriculture to work together on research through a formal agreement.",
+      "one_liner": "Require the Department of Energy and Department of Agriculture to work together on research projects",
       "vote": "Yea",
       "date": "2025-03-24",
       "result": "Passed",
@@ -1806,7 +1806,7 @@
     {
       "bill_number": "H.Res. 211",
       "bill_id": "119-hres-211",
-      "one_liner": "This resolution sets the rules for House debate on H.J.Res. 25.",
+      "one_liner": "Set House rules for voting on digital asset reporting, unemployment fraud, and government funding bills",
       "vote": "Nay",
       "date": "2025-03-11",
       "result": "Passed",
@@ -1817,7 +1817,7 @@
     {
       "bill_number": "H.Res. 211",
       "bill_id": "119-hres-211",
-      "one_liner": "This resolution sets the rules for House debate on H.J.Res. 25.",
+      "one_liner": "Set House rules for voting on digital asset reporting, unemployment fraud, and government funding bills",
       "vote": "No",
       "date": "2025-03-11",
       "result": "Passed",
@@ -1828,7 +1828,7 @@
     {
       "bill_number": "H.R. 1156",
       "bill_id": "119-hr-1156",
-      "one_liner": "This bill extends the time limit for charging people with fraud related to pandemic unemployment programs from 5 years to 10 years.",
+      "one_liner": "Extend time limits for prosecuting fraud in COVID unemployment programs from 5 to 10 years",
       "vote": "Yea",
       "date": "2025-03-11",
       "result": "Passed",
@@ -1839,7 +1839,7 @@
     {
       "bill_number": "H.R. 1968",
       "bill_id": "119-hr-1968",
-      "one_liner": "This bill keeps federal agencies funded through September 30, 2025, at the same spending levels as the year before.",
+      "one_liner": "Fund the federal government through September 2025",
       "vote": "Yea",
       "date": "2025-03-11",
       "result": "Failed",
@@ -1850,7 +1850,7 @@
     {
       "bill_number": "H.R. 1968",
       "bill_id": "119-hr-1968",
-      "one_liner": "This bill keeps federal agencies funded through September 30, 2025, at the same spending levels as the year before.",
+      "one_liner": "Fund the federal government through September 2025",
       "vote": "Nay",
       "date": "2025-03-11",
       "result": "Passed",
@@ -1861,7 +1861,7 @@
     {
       "bill_number": "H.J.Res. 25",
       "bill_id": "119-hjres-25",
-      "one_liner": "This resolution cancels an IRS rule from December 2024 that would have required certain crypto trading websites to report sales to the IRS.",
+      "one_liner": "Cancel an IRS rule requiring brokers to report cryptocurrency sales to the government",
       "vote": "Yea",
       "date": "2025-03-11",
       "result": "Passed",
@@ -1872,7 +1872,7 @@
     {
       "bill_number": "H.R. 495",
       "bill_id": "119-hr-495",
-      "one_liner": "This bill lets the government build barriers and structures underground at the U.S.-Mexico border.",
+      "one_liner": "Require annual reports on border tunnel defense plans",
       "vote": "Yea",
       "date": "2025-03-10",
       "result": "Passed",
@@ -1883,7 +1883,7 @@
     {
       "bill_number": "H.R. 901",
       "bill_id": "119-hr-901",
-      "one_liner": "This bill adds new research security rules at the Department of Homeland Security.",
+      "one_liner": "Require DHS to protect research from unauthorized access and audit disclosure compliance",
       "vote": "Yea",
       "date": "2025-03-10",
       "result": "Passed",
@@ -1894,7 +1894,7 @@
     {
       "bill_number": "H.R. 993",
       "bill_id": "119-hr-993",
-      "one_liner": "This bill creates a program to develop new border security technology.",
+      "one_liner": "Require border agencies to write a plan for new technologies",
       "vote": "Yea",
       "date": "2025-03-10",
       "result": "Passed",
@@ -1905,7 +1905,7 @@
     {
       "bill_number": "S.J.Res. 11",
       "bill_id": "119-sjres-11",
-      "one_liner": "This cancels a rule from September 2024 by the Bureau of Ocean Energy Management (BOEM).",
+      "one_liner": "Cancel a rule requiring archaeological surveys for offshore oil and gas drilling",
       "vote": "Yea",
       "date": "2025-03-06",
       "result": "Passed",
@@ -1916,7 +1916,7 @@
     {
       "bill_number": "H.Res. 189",
       "bill_id": "119-hres-189",
-      "one_liner": "This resolution is a formal censure of Representative Al Green of Texas.",
+      "one_liner": "Formally criticize Representative Al Green for his conduct",
       "vote": "Nay",
       "date": "2025-03-06",
       "result": "Passed",
@@ -1927,7 +1927,7 @@
     {
       "bill_number": "H.J.Res. 61",
       "bill_id": "119-hjres-61",
-      "one_liner": "This resolution cancels an EPA rule that set limits on toxic air pollution released by rubber tire factories.",
+      "one_liner": "Cancel an EPA rule limiting air pollution from tire factories",
       "vote": "Nay",
       "date": "2025-03-05",
       "result": "Passed",
@@ -1938,7 +1938,7 @@
     {
       "bill_number": "H.J.Res. 42",
       "bill_id": "119-hjres-42",
-      "one_liner": "This resolution cancels a Department of Energy rule from October 2024 about how companies prove their household products and business equipment meet energy-saving rules.",
+      "one_liner": "Cancel a Department of Energy rule changing appliance energy reporting and labeling",
       "vote": "Nay",
       "date": "2025-03-05",
       "result": "Passed",
@@ -1949,7 +1949,7 @@
     {
       "bill_number": "H.Res. 189",
       "bill_id": "119-hres-189",
-      "one_liner": "This resolution is a formal censure of Representative Al Green of Texas.",
+      "one_liner": "Formally criticize Representative Al Green for his conduct",
       "vote": "Yea",
       "date": "2025-03-05",
       "result": "Failed",
@@ -1960,7 +1960,7 @@
     {
       "bill_number": "H.Res. 177",
       "bill_id": "119-hres-177",
-      "one_liner": "This resolution sets the rules for House debate on H.J.Res. 42.",
+      "one_liner": "Set rules for House votes to cancel three federal agency regulations",
       "vote": "Nay",
       "date": "2025-03-04",
       "result": "Passed",
@@ -1971,7 +1971,7 @@
     {
       "bill_number": "H.Res. 177",
       "bill_id": "119-hres-177",
-      "one_liner": "This resolution sets the rules for House debate on H.J.Res. 42.",
+      "one_liner": "Set rules for House votes to cancel three federal agency regulations",
       "vote": "No",
       "date": "2025-03-04",
       "result": "Passed",
@@ -1982,7 +1982,7 @@
     {
       "bill_number": "H.R. 856",
       "bill_id": "119-hr-856",
-      "one_liner": "This bill sets rules for how federal agencies buy smart devices and internet-connected products.",
+      "one_liner": "Require a study of federal purchasing rules to find security risks",
       "vote": "Yea",
       "date": "2025-03-03",
       "result": "Passed",
@@ -1993,7 +1993,7 @@
     {
       "bill_number": "H.R. 758",
       "bill_id": "119-hr-758",
-      "one_liner": "This bill requires the U.S. Postal Service to report on deaths caused by illegal drugs sent through the mail.",
+      "one_liner": "Require the Postal Service to track and report deaths from mail truck crashes",
       "vote": "Yea",
       "date": "2025-03-03",
       "result": "Passed",
@@ -2004,7 +2004,7 @@
     {
       "bill_number": "H.J.Res. 20",
       "bill_id": "119-hjres-20",
-      "one_liner": "This resolution cancels a Department of Energy rule from December 2024 that set new energy efficiency standards for gas tankless water heaters.",
+      "one_liner": "Cancel a Department of Energy rule setting new efficiency standards for gas water heaters",
       "vote": "Nay",
       "date": "2025-02-27",
       "result": "Passed",
@@ -2015,7 +2015,7 @@
     {
       "bill_number": "H.R. 695",
       "bill_id": "119-hr-695",
-      "one_liner": "This bill updates rules for the Medal of Honor, the highest U.S. military decoration.",
+      "one_liner": "Increase monthly payments to Medal of Honor recipients and their surviving spouses",
       "vote": "Yea",
       "date": "2025-02-26",
       "result": "Passed",
@@ -2026,7 +2026,7 @@
     {
       "bill_number": "H.J.Res. 35",
       "bill_id": "119-hjres-35",
-      "one_liner": "This resolution cancels an EPA rule that required oil and gas companies to pay fees when they release too much methane into the air. The fee was $900 per ton in 2024, rising to $1,500 per ton by 2026.",
+      "one_liner": "Overturn an EPA rule that charges oil and gas companies fees for methane emissions",
       "vote": "Nay",
       "date": "2025-02-26",
       "result": "Passed",
@@ -2037,7 +2037,7 @@
     {
       "bill_number": "H.Res. 161",
       "bill_id": "119-hres-161",
-      "one_liner": "This resolution sets the rules for House debate on H.J.Res. 20.",
+      "one_liner": "Allow House votes on canceling two federal rules and setting the federal budget",
       "vote": "Nay",
       "date": "2025-02-25",
       "result": "Passed",
@@ -2048,7 +2048,7 @@
     {
       "bill_number": "H.Res. 161",
       "bill_id": "119-hres-161",
-      "one_liner": "This resolution sets the rules for House debate on H.J.Res. 20.",
+      "one_liner": "Allow House votes on canceling two federal rules and setting the federal budget",
       "vote": "No",
       "date": "2025-02-25",
       "result": "Passed",
@@ -2059,7 +2059,7 @@
     {
       "bill_number": "H.R. 788",
       "bill_id": "119-hr-788",
-      "one_liner": "This bill requires the Department of Energy and Small Business Administration to coordinate research activities.",
+      "one_liner": "Require the Department of Energy and Small Business Administration to collaborate on research projects",
       "vote": "Yea",
       "date": "2025-02-25",
       "result": "Passed",
@@ -2070,7 +2070,7 @@
     {
       "bill_number": "H.R. 804",
       "bill_id": "119-hr-804",
-      "one_liner": "This bill creates programs for rural small businesses to prepare for and recover from natural disasters.",
+      "one_liner": "Require the Small Business Administration to help rural disaster victims access federal aid",
       "vote": "Yea",
       "date": "2025-02-25",
       "result": "Passed",
@@ -2081,7 +2081,7 @@
     {
       "bill_number": "H.Con.Res. 14",
       "bill_id": "119-hconres-14",
-      "one_liner": "This resolution sets the federal budget for the budget year starting October 2024 and plans spending through 2034.",
+      "one_liner": "Set federal budget targets for 2025-2034 and order committees to write deficit-changing laws",
       "vote": "Nay",
       "date": "2025-02-25",
       "result": "Passed",
@@ -2092,7 +2092,7 @@
     {
       "bill_number": "H.R. 825",
       "bill_id": "119-hr-825",
-      "one_liner": "This bill adds new fraud checks to Small Business Administration (SBA) lending programs.",
+      "one_liner": "Stop SBA assistance to people convicted of COVID loan fraud",
       "vote": "Not Voting",
       "date": "2025-02-24",
       "result": "Passed",
@@ -2103,7 +2103,7 @@
     {
       "bill_number": "H.R. 832",
       "bill_id": "119-hr-832",
-      "one_liner": "This bill changes how the Small Business Administration's Office of Advocacy works. That office speaks up for small businesses when the federal government writes new rules.",
+      "one_liner": "Expand the Small Business Administration advocacy office to work with foreign governments",
       "vote": "Yea",
       "date": "2025-02-24",
       "result": "Passed",
@@ -2114,7 +2114,7 @@
     {
       "bill_number": "H.R. 818",
       "bill_id": "119-hr-818",
-      "one_liner": "This bill funds rural economic development through USDA programs.",
+      "one_liner": "Require agencies to track first-time federal contracts with veteran and minority-owned small businesses",
       "vote": "Yea",
       "date": "2025-02-24",
       "result": "Passed",
@@ -2125,7 +2125,7 @@
     {
       "bill_number": "H.R. 35",
       "bill_id": "119-hr-35",
-      "one_liner": "This bill is named after Border Patrol Agent Raul Gonzalez.",
+      "one_liner": "Make fleeing from Border Patrol agents near the border a federal crime",
       "vote": "Nay",
       "date": "2025-02-13",
       "result": "Passed",
@@ -2136,7 +2136,7 @@
     {
       "bill_number": "H.R. 77",
       "bill_id": "119-hr-77",
-      "one_liner": "This bill allows Congress to cancel multiple federal regulations with a single vote.",
+      "one_liner": "Let Congress reject multiple government rules at once from a President's final year",
       "vote": "Yea",
       "date": "2025-02-12",
       "result": "Failed",
@@ -2147,7 +2147,7 @@
     {
       "bill_number": "H.R. 77",
       "bill_id": "119-hr-77",
-      "one_liner": "This bill allows Congress to cancel multiple federal regulations with a single vote.",
+      "one_liner": "Let Congress reject multiple government rules at once from a President's final year",
       "vote": "Nay",
       "date": "2025-02-12",
       "result": "Passed",
@@ -2158,7 +2158,7 @@
     {
       "bill_number": "H.Res. 122",
       "bill_id": "119-hres-122",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 77, the Midnight Rules Relief Act.",
+      "one_liner": "Let Congress cancel multiple government regulations with a single vote",
       "vote": "Nay",
       "date": "2025-02-11",
       "result": "Passed",
@@ -2169,7 +2169,7 @@
     {
       "bill_number": "H.Res. 122",
       "bill_id": "119-hres-122",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 77, the Midnight Rules Relief Act.",
+      "one_liner": "Let Congress cancel multiple government regulations with a single vote",
       "vote": "No",
       "date": "2025-02-11",
       "result": "Passed",
@@ -2180,7 +2180,7 @@
     {
       "bill_number": "H.R. 692",
       "bill_id": "119-hr-692",
-      "one_liner": "This bill requires the Treasury Department to report on how China manages its currency exchange rate.",
+      "one_liner": "Make U.S. officials push China to be more open about currency exchange rates",
       "vote": "Yea",
       "date": "2025-02-10",
       "result": "Passed",
@@ -2191,7 +2191,7 @@
     {
       "bill_number": "H.R. 736",
       "bill_id": "119-hr-736",
-      "one_liner": "This bill reduces paperwork requirements for small businesses.",
+      "one_liner": "Extend deadline for companies to file ownership information with government",
       "vote": "Yea",
       "date": "2025-02-10",
       "result": "Passed",
@@ -2202,7 +2202,7 @@
     {
       "bill_number": "H.R. 26",
       "bill_id": "119-hr-26",
-      "one_liner": "This bill removes limits on oil and gas drilling on federal land and in ocean areas.",
+      "one_liner": "Block the President from banning fracking without Congress approval",
       "vote": "Yea",
       "date": "2025-02-07",
       "result": "Failed",
@@ -2213,7 +2213,7 @@
     {
       "bill_number": "H.R. 26",
       "bill_id": "119-hr-26",
-      "one_liner": "This bill removes limits on oil and gas drilling on federal land and in ocean areas.",
+      "one_liner": "Block the President from banning fracking without Congress approval",
       "vote": "Yea",
       "date": "2025-02-07",
       "result": "Passed",
@@ -2224,7 +2224,7 @@
     {
       "bill_number": "H.R. 27",
       "bill_id": "119-hr-27",
-      "one_liner": "This bill permanently makes all fentanyl-related chemicals illegal under the strictest drug category.",
+      "one_liner": "Make fentanyl-related substances permanently illegal under federal drug laws",
       "vote": "Yea",
       "date": "2025-02-06",
       "result": "Failed",
@@ -2235,7 +2235,7 @@
     {
       "bill_number": "H.R. 27",
       "bill_id": "119-hr-27",
-      "one_liner": "This bill permanently makes all fentanyl-related chemicals illegal under the strictest drug category.",
+      "one_liner": "Make fentanyl-related substances permanently illegal under federal drug laws",
       "vote": "Yea",
       "date": "2025-02-06",
       "result": "Passed",
@@ -2246,7 +2246,7 @@
     {
       "bill_number": "H.Res. 93",
       "bill_id": "119-hres-93",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 27, the HALT Fentanyl Act.",
+      "one_liner": "Providing for consideration of the bill (H.R. 27) to amend the Controlled Substances Act with respect to the scheduling of fentanyl-related substances, and for other purposes.",
       "vote": "Nay",
       "date": "2025-02-05",
       "result": "Passed",
@@ -2257,7 +2257,7 @@
     {
       "bill_number": "H.Res. 93",
       "bill_id": "119-hres-93",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 27, the HALT Fentanyl Act.",
+      "one_liner": "Providing for consideration of the bill (H.R. 27) to amend the Controlled Substances Act with respect to the scheduling of fentanyl-related substances, and for other purposes.",
       "vote": "No",
       "date": "2025-02-05",
       "result": "Passed",
@@ -2268,7 +2268,7 @@
     {
       "bill_number": "H.R. 43",
       "bill_id": "119-hr-43",
-      "one_liner": "This bill restores land to Alaska Native villages that was taken when villages incorporated as municipalities.",
+      "one_liner": "Let Alaska Native corporations keep land instead of giving it to Alaska",
       "vote": "Yea",
       "date": "2025-02-04",
       "result": "Passed",
@@ -2279,7 +2279,7 @@
     {
       "bill_number": "H.R. 776",
       "bill_id": "119-hr-776",
-      "one_liner": "This bill renews funding for a program to control and eliminate nutria, an invasive rodent species.",
+      "one_liner": "Extend federal funding for states to kill nutria and fix damaged marshlands through 2030",
       "vote": "Yea",
       "date": "2025-02-04",
       "result": "Passed",
@@ -2290,7 +2290,7 @@
     {
       "bill_number": "H.R. 375",
       "bill_id": "119-hr-375",
-      "one_liner": "This bill renews funding for a program to fight Rapid Ohia Death, a disease killing ohia trees in Hawaii.",
+      "one_liner": "Fund research and control efforts for a tree disease killing Hawaiian forests",
       "vote": "Yea",
       "date": "2025-01-23",
       "result": "Passed",
@@ -2301,7 +2301,7 @@
     {
       "bill_number": "H.R. 471",
       "bill_id": "119-hr-471",
-      "one_liner": "This bill shortens the review timeline for forest management projects under the National Environmental Policy Act.",
+      "one_liner": "Speed up forest management on federal land to prevent wildfires",
       "vote": "Nay",
       "date": "2025-01-23",
       "result": "Passed",
@@ -2312,7 +2312,7 @@
     {
       "bill_number": "H.R. 21",
       "bill_id": "119-hr-21",
-      "one_liner": "This bill requires doctors and nurses to provide medical care to any baby born alive during an attempted abortion.",
+      "one_liner": "Require medical care for babies born alive after abortions",
       "vote": "Yea",
       "date": "2025-01-23",
       "result": "Failed",
@@ -2323,7 +2323,7 @@
     {
       "bill_number": "H.R. 21",
       "bill_id": "119-hr-21",
-      "one_liner": "This bill requires doctors and nurses to provide medical care to any baby born alive during an attempted abortion.",
+      "one_liner": "Require medical care for babies born alive after abortions",
       "vote": "Nay",
       "date": "2025-01-23",
       "result": "Passed",
@@ -2334,7 +2334,7 @@
     {
       "bill_number": "H.Res. 53",
       "bill_id": "119-hres-53",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 471, the Fix Our Forests Act.",
+      "one_liner": "Allow House votes on a forest management bill and an immigration enforcement bill",
       "vote": "Nay",
       "date": "2025-01-22",
       "result": "Passed",
@@ -2345,7 +2345,7 @@
     {
       "bill_number": "H.Res. 53",
       "bill_id": "119-hres-53",
-      "one_liner": "This resolution sets the rules for House debate on H.R. 471, the Fix Our Forests Act.",
+      "one_liner": "Allow House votes on a forest management bill and an immigration enforcement bill",
       "vote": "No",
       "date": "2025-01-22",
       "result": "Passed",
@@ -2356,7 +2356,7 @@
     {
       "bill_number": "H.R. 165",
       "bill_id": "119-hr-165",
-      "one_liner": "This bill designates the site of the 1890 Wounded Knee Massacre in South Dakota as a national memorial.",
+      "one_liner": "Place 40 acres in South Dakota into special tribal ownership for two Sioux tribes",
       "vote": "Yea",
       "date": "2025-01-22",
       "result": "Passed",
@@ -2367,7 +2367,7 @@
     {
       "bill_number": "S. 5",
       "bill_id": "119-s-5",
-      "one_liner": "This bill requires the Department of Homeland Security to arrest and hold non-citizens who are charged with or found guilty of break-ins, theft, or shoplifting.",
+      "one_liner": "Require detention of non-citizens charged with stealing and let states sue over immigration decisions",
       "vote": "Nay",
       "date": "2025-01-22",
       "result": "Passed",
@@ -2378,7 +2378,7 @@
     {
       "bill_number": "H.R. 186",
       "bill_id": "119-hr-186",
-      "one_liner": "This bill designates a location for a monument honoring Medal of Honor recipient Hershel Woody Williams.",
+      "one_liner": "Require the Medal of Honor monument to be built in the main National Mall area",
       "vote": "Yea",
       "date": "2025-01-21",
       "result": "Passed",
@@ -2389,7 +2389,7 @@
     {
       "bill_number": "H.R. 187",
       "bill_id": "119-hr-187",
-      "one_liner": "This bill updates programs for mapping and monitoring U.S. waterways.",
+      "one_liner": "Create online maps showing where people can fish and boat on federal waters",
       "vote": "Yea",
       "date": "2025-01-21",
       "result": "Passed",
@@ -2400,7 +2400,7 @@
     {
       "bill_number": "H.R. 30",
       "bill_id": "119-hr-30",
-      "one_liner": "This bill increases criminal penalties for non-citizens who commit violent crimes against women.",
+      "one_liner": "Expand the crimes that can block non-citizens from entering or get them deported",
       "vote": "Yea",
       "date": "2025-01-16",
       "result": "Failed",
@@ -2411,7 +2411,7 @@
     {
       "bill_number": "H.R. 30",
       "bill_id": "119-hr-30",
-      "one_liner": "This bill increases criminal penalties for non-citizens who commit violent crimes against women.",
+      "one_liner": "Expand the crimes that can block non-citizens from entering or get them deported",
       "vote": "Yea",
       "date": "2025-01-16",
       "result": "Passed",
@@ -2422,7 +2422,7 @@
     {
       "bill_number": "H.R. 164",
       "bill_id": "119-hr-164",
-      "one_liner": "This bill provides funding for electrical grid improvements and clean energy projects.",
+      "one_liner": "Let electric companies do disaster prevention work when getting federal emergency help to restore power",
       "vote": "Yea",
       "date": "2025-01-15",
       "result": "Passed",
@@ -2433,7 +2433,7 @@
     {
       "bill_number": "H.R. 144",
       "bill_id": "119-hr-144",
-      "one_liner": "This bill requires the Tennessee Valley Authority to publicly report salary and bonus information for its executives.",
+      "one_liner": "Require the Tennessee Valley Authority to report finances and high salaries to Congress",
       "vote": "Yea",
       "date": "2025-01-15",
       "result": "Passed",
@@ -2444,7 +2444,7 @@
     {
       "bill_number": "H.R. 33",
       "bill_id": "119-hr-33",
-      "one_liner": "This bill changes tax rules for tips earned by workers in service industries.",
+      "one_liner": "Change tax rules for Taiwan residents who earn money from US sources",
       "vote": "Yea",
       "date": "2025-01-15",
       "result": "Passed",
@@ -2455,7 +2455,7 @@
     {
       "bill_number": "H.R. 153",
       "bill_id": "119-hr-153",
-      "one_liner": "This bill requires FEMA to create an online dashboard showing how federal disaster assistance money is being spent.",
+      "one_liner": "Require federal agencies to publish quarterly reports on disaster assistance spending",
       "vote": "Yea",
       "date": "2025-01-14",
       "result": "Passed",
@@ -2466,7 +2466,7 @@
     {
       "bill_number": "H.R. 28",
       "bill_id": "119-hr-28",
-      "one_liner": "This bill prohibits schools that receive federal funding from allowing athletes born male to play on women's or girls' sports teams.",
+      "one_liner": "Ban students born male from competing in women's and girls' sports at federally funded schools",
       "vote": "Yea",
       "date": "2025-01-14",
       "result": "Failed",
@@ -2477,7 +2477,7 @@
     {
       "bill_number": "H.R. 28",
       "bill_id": "119-hr-28",
-      "one_liner": "This bill prohibits schools that receive federal funding from allowing athletes born male to play on women's or girls' sports teams.",
+      "one_liner": "Ban students born male from competing in women's and girls' sports at federally funded schools",
       "vote": "Nay",
       "date": "2025-01-14",
       "result": "Passed",
@@ -2488,7 +2488,7 @@
     {
       "bill_number": "H.R. 192",
       "bill_id": "119-hr-192",
-      "one_liner": "This bill requires Amtrak to publicly disclose bonuses paid to its executives.",
+      "one_liner": "Require Amtrak to publicly report executive pay and bonus amounts",
       "vote": "Not Voting",
       "date": "2025-01-13",
       "result": "Passed",
@@ -2499,7 +2499,7 @@
     {
       "bill_number": "H.R. 152",
       "bill_id": "119-hr-152",
-      "one_liner": "This bill requires federal agencies to coordinate disaster response assistance.",
+      "one_liner": "Require FEMA to make disaster aid applications easier and study damage assessments",
       "vote": "Yea",
       "date": "2025-01-13",
       "result": "Passed",
@@ -2510,7 +2510,7 @@
     {
       "bill_number": "H.R. 23",
       "bill_id": "119-hr-23",
-      "one_liner": "This bill puts sanctions on any foreign person who helps the International Criminal Court (ICC) investigate, arrest, or put on trial people the bill covers.",
+      "one_liner": "Punish anyone helping International Criminal Court prosecute Americans and allies",
       "vote": "Nay",
       "date": "2025-01-09",
       "result": "Passed",
@@ -2521,7 +2521,7 @@
     {
       "bill_number": "H.R. 29",
       "bill_id": "119-hr-29",
-      "one_liner": "This bill requires the Department of Homeland Security to hold non-citizens charged with or found guilty of theft, break-ins, or shoplifting.",
+      "one_liner": "Require detention of non-citizens charged or convicted of theft and break-ins",
       "vote": "Nay",
       "date": "2025-01-07",
       "result": "Passed",
@@ -2554,7 +2554,7 @@
     {
       "bill_number": "H.Res. 5",
       "bill_id": "119-hres-5",
-      "one_liner": "This resolution adopts the rules for how the House of Representatives operates during the 119th Congress.",
+      "one_liner": "Set operating rules for the House of Representatives for the 119th Congress",
       "vote": "Nay",
       "date": "2025-01-03",
       "result": "Passed",
@@ -2565,7 +2565,7 @@
     {
       "bill_number": "H.Res. 5",
       "bill_id": "119-hres-5",
-      "one_liner": "This resolution adopts the rules for how the House of Representatives operates during the 119th Congress.",
+      "one_liner": "Set operating rules for the House of Representatives for the 119th Congress",
       "vote": "Yea",
       "date": "2025-01-03",
       "result": "Failed",
@@ -2576,7 +2576,7 @@
     {
       "bill_number": "H.Res. 5",
       "bill_id": "119-hres-5",
-      "one_liner": "This resolution adopts the rules for how the House of Representatives operates during the 119th Congress.",
+      "one_liner": "Set operating rules for the House of Representatives for the 119th Congress",
       "vote": "Nay",
       "date": "2025-01-03",
       "result": "Passed",

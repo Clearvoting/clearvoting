@@ -3411,10 +3411,63 @@
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hconres/30/subjects?format=json"
       },
-      "textVersions": {
-        "count": 3,
-        "url": "https://api.congress.gov/v3/bill/119/hconres/30/text?format=json"
-      },
+      "textVersions": [
+        {
+          "date": "2025-05-14T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hconres30/BILLS-119hconres30rfs.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hconres30/BILLS-119hconres30rfs.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hconres30/BILLS-119hconres30rfs.xml"
+            }
+          ],
+          "type": "Referred in Senate",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H. Con. Res. 30 Referred in Senate (RFS)] &lt;DOC&gt; 119th CONGRESS 1st Session H. CON. RES. 30 _______________________________________________________________________ IN THE SENATE OF THE UNITED STATES May 14, 2025 Received; referred to the Committee on the Judiciary _______________________________________________________________________ CONCURRENT RESOLUTION Expressing support for local law enforcement officers. Whereas the brave men and women in local law enforcement work tirelessly to protect the communities they serve; Whereas local law enforcement officers are tasked with upholding the rule of law and ensuring public safety; Whereas local law enforcement officers selflessly put themselves in harm's way to fight crime, get drugs off the streets, and protect the innocent; Whereas local law enforcement officers take an oath to never betray the public trust; Whereas the local law enforcement community protects our streets, acknowledges the rights of all Americans, and keeps citizens safe from harm; Whereas local law enforcement officers are recognized for their public service to all, knowing they face extremely dangerous situations while carrying out their duties; Whereas a healthy and collaborative relationship between local law enforcement officers and the communities they serve is essential to creating mutually respectful dialogue; and Whereas local law enforcement officers and their families deserve respect, appreciation, and support for their sacrifices and commitment to public service: Now, therefore, be it Resolved by the House of Representatives (the Senate concurring), That Congress-- (1) recognizes and appreciates the dedication and devotion demonstrated by the men and women of local law enforcement who keep the Nation's communities safe; (2) extends its gratitude to all local law enforcement officers and their families for their sacrifice and service; (3) honors the memory of those local law enforcement officers who have fallen in the line of duty; and (4) encourages continued collaboration between local law enforcement agencies and the communities they serve to strengthen public safety and trust. Passed the House of Representatives May 13, 2025. Attest: KEVIN F. MCCUMBER, Clerk."
+        },
+        {
+          "date": "2025-05-13T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hconres30/BILLS-119hconres30eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hconres30/BILLS-119hconres30eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hconres30/BILLS-119hconres30eh.xml"
+            }
+          ],
+          "type": "Engrossed in House"
+        },
+        {
+          "date": "2025-05-06T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hconres30/BILLS-119hconres30ih.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hconres30/BILLS-119hconres30ih.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hconres30/BILLS-119hconres30ih.xml"
+            }
+          ],
+          "type": "Introduced in House"
+        }
+      ],
       "title": "Expressing support for local law enforcement officers.",
       "titles": {
         "count": 2,
@@ -7837,10 +7890,63 @@
         "count": 19,
         "url": "https://api.congress.gov/v3/bill/119/hr/33/subjects?format=json"
       },
-      "textVersions": {
-        "count": 3,
-        "url": "https://api.congress.gov/v3/bill/119/hr/33/text?format=json"
-      },
+      "textVersions": [
+        {
+          "date": "2025-01-16T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr33/BILLS-119hr33rfs.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr33/BILLS-119hr33rfs.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr33/BILLS-119hr33rfs.xml"
+            }
+          ],
+          "type": "Referred in Senate",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H.R. 33 Referred in Senate (RFS)] &lt;DOC&gt; 119th CONGRESS 1st Session H. R. 33 _______________________________________________________________________ IN THE SENATE OF THE UNITED STATES January 16, 2025 Received; read twice and referred to the Committee on Finance _______________________________________________________________________ AN ACT To amend the Internal Revenue Code of 1986 to provide special rules for the taxation of certain residents of Taiwan with income from sources within the United States. Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, TITLE I--UNITED STATES-TAIWAN EXPEDITED DOUBLE-TAX RELIEF ACT SEC. 101. SHORT TITLE. This title may be cited as the ``United States-Taiwan Expedited Double-Tax Relief Act''. SEC. 102. SPECIAL RULES FOR TAXATION OF CERTAIN RESIDENTS OF TAIWAN. (a) In General.--Subpart D of part II of subchapter N of chapter 1 of the Internal Revenue Code of 1986 is amended by inserting after section 894 the following new section: ``SEC. 894A. SPECIAL RULES FOR QUALIFIED RESIDENTS OF TAIWAN. ``(a) Certain Income From United States Sources.-- ``(1) Interest, dividends, and royalties, etc.-- ``(A) In general.--In the case of interest (other than original issue discount), dividends, royalties, amounts described in section 871(a)(1)(C), and gains described in section 871(a)(1)(D) received by or paid to a qualified resident of Taiwan-- ``(i) sections 871(a), 881(a), 1441(a), 1441(c)(5), and 1442(a) shall each be applied by substituting `the applicable percentage (as defined in section 894A(a)(1)(C))' for `30 percent' each place it appears, and ``(ii) sections 871(a), 881(a), and 1441(c)(1) shall each be applied by substituting `a United States permanent establishment of a qualified resident of Taiwan' for `a trade or business within the United States' each place it appears. ``(B) Exceptions.-- ``(i) In general.--Subparagraph (A) shall not apply to-- ``(I) any dividend received from or paid by a real estate investment trust which is not a qualified REIT dividend, ``(II) any amount subject to section 897, ``(III) any amount received from or paid by an expatriated entity (as defined in section 7874(a)(2)) to a foreign related person (as defined in section 7874(d)(3)), and ``(IV) any amount which is included in income under section 860C to the extent that such amount does not exceed an excess inclusion with respect to a REMIC. ``(ii) Qualified reit dividend.--For purposes of clause (i)(I), the term `qualified REIT dividend' means any dividend received from or paid by a real estate investment trust if such dividend is paid with respect to a class of shares that is publicly traded and the recipient of the dividend is a person who holds an interest in any class of shares of the real estate investment trust of not more than 5 percent. ``(C) Applicable percentage.--For purposes of applying subparagraph (A)(i)-- ``(i) In general.--Except as provided in clause (ii), the term `applicable percentage' means 10 percent. ``(ii) Special rules for dividends.-- In the case of any dividend in respect of stock received by or paid to a qualified resident of Taiwan, the applicable percentage shall be 15 percent (10 percent in the case of a dividend which meets the requirements of subparagraph (D) and is received by or paid to an entity taxed as a corporation in Taiwan). ``(D) Requirements for lower dividend rate.-- ``(i) In general.--The requirements of this subparagraph are met with respect to any dividend in respect of stock in a corporation if, at all times during the 12-month period ending on the date such stock becomes ex- dividend with respect to such dividend-- ``(I) the dividend is derived by a qualified resident of Taiwan, and ``(II) such qualified resident of Taiwan has held directly at least 10 percent (by vote and value) of the total outstanding shares of stock in such corporation. For purposes of subclause (II), a person shall be treated as directly holding a share of stock during any period described in the preceding sentence if the share was held by a corporation from which such person later acquired that share and such corporation was, at the time the share was acquired, both a connected person to such person and a qualified resident of Taiwan. ``(ii) Exception for rics and reits.-- Notwithstanding clause (i), the requirements of this subparagraph shall not be treated as met with respect to any dividend paid by a regulated investment company or a real estate investment trust. ``(2) Qualified wages.-- ``(A) In general.--No tax shall be imposed under this chapter (and no amount shall be withheld under section 1441(a) or chapter 24) with respect to qualified wages paid to a qualified resident of Taiwan who-- ``(i) is not a resident of the United States (determined without regard to subsection (c)(3)(E)), or ``(ii) is employed as a member of the "
+        },
+        {
+          "date": "2025-01-15T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr33/BILLS-119hr33eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr33/BILLS-119hr33eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr33/BILLS-119hr33eh.xml"
+            }
+          ],
+          "type": "Engrossed in House"
+        },
+        {
+          "date": "2025-01-03T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr33/BILLS-119hr33ih.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr33/BILLS-119hr33ih.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr33/BILLS-119hr33ih.xml"
+            }
+          ],
+          "type": "Introduced in House"
+        }
+      ],
       "title": "To amend the Internal Revenue Code of 1986 to provide special rules for the taxation of certain residents of Taiwan with income from sources within the United States.",
       "titles": {
         "count": 8,
@@ -8794,10 +8900,81 @@
         "count": 80,
         "url": "https://api.congress.gov/v3/bill/119/hr/4275/subjects?format=json"
       },
-      "textVersions": {
-        "count": 4,
-        "url": "https://api.congress.gov/v3/bill/119/hr/4275/text?format=json"
-      },
+      "textVersions": [
+        {
+          "date": "2025-07-23T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr4275/BILLS-119hr4275eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr4275/BILLS-119hr4275eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr4275/BILLS-119hr4275eh.xml"
+            }
+          ],
+          "type": "Engrossed in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H.R. 4275 Engrossed in House (EH)] &lt;DOC&gt; 119th CONGRESS 1st Session H. R. 4275 _______________________________________________________________________ AN ACT To authorize appropriations for the Coast Guard, to establish the Secretary of the Coast Guard, and for other purposes. Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, SECTION 1. SHORT TITLE; TABLE OF CONTENTS. (a) Short Title.--This Act may be cited as the ``Coast Guard Authorization Act of 2025''. (b) Table of Contents.--The table of contents for this Act is as follows: Sec. 1. Short title; table of contents. Sec. 2. Commandant defined. TITLE I--COAST GUARD Subtitle A--Authorization of Appropriations Sec. 101. Authorization of appropriations. Sec. 102. Authorized levels of military strength and training. Subtitle B--Accountability Sec. 111. Annual report on progress of certain homeporting projects. Sec. 112. Major acquisitions. Sec. 113. Quarterly acquisition brief requirements. Sec. 114. Overdue reports. Sec. 115. Requirement for Coast Guard to provide analysis of alternatives for aircraft. Sec. 116. Oversight of funds provided pursuant to Public Law 119-21. Sec. 117. Regular polar security cutter updates. Sec. 118. Annual plan for Coast Guard operations in the Pacific. TITLE II--ORGANIZATION, AUTHORITIES, ACQUISITION, AND PERSONNEL OF THE COAST GUARD Subtitle A--Organization Sec. 201. Secretary of the Coast Guard. Sec. 202. Reappointment of Commandant. Sec. 203. Special Advisor to Commandant for Tribal and Native Hawaiian Affairs. Sec. 204. Reinstatement of training course on workings of Congress. Sec. 205. Services and use of funds for, and leasing of, the National Coast Guard Museum. Subtitle B--Authorities Sec. 211. Public availability of information. Sec. 212. Cyber coordination and support in foreign territories. Sec. 213. Modification of treatment of minor construction and improvement project management. Sec. 214. Preparedness plans for Coast Guard properties located in tsunami inundation zones. Sec. 215. Additional Pribilof Island transition completion actions. Sec. 216. Scientific mission for USCGC Storis. Sec. 217. Coast Guard access to Department of the Treasury fund. Subtitle C--Acquisition Sec. 231. Modification of prohibition on use of lead systems integrators. Sec. 232. Acquisition improvements. Sec. 233. Restriction on acquisition, procurement, or construction of vessels in foreign shipyards. Sec. 234. Great Lakes icebreaking. Sec. 235. Entity other than the Coast Guard. Subtitle D--Personnel Sec. 241. Family leave policies for Coast Guard. Sec. 242. Modifications to career flexibility program. Sec. 243. Direct hire authority for certain personnel. Sec. 244. Command sponsorship for dependents of members of Coast Guard assigned to Unalaska, Alaska. Sec. 245. Authorization for maternity uniform allowance for officers. Sec. 246. Consolidation of authorities for college student precommissioning initiative. Sec. 247. Additional available guidance and considerations for reserve selection boards. Sec. 248. Behavioral health. Sec. 249. Travel allowance for members of Coast Guard assigned to Alaska. Sec. 250. Tuition Assistance and Advanced Education Assistance Pilot Program. Sec. 251. Recruitment, relocation, and retention incentive program for civilian firefighters employed by Coast Guard in remote locations. Sec. 252. Notification. Subtitle E--Coast Guard Academy Sec. 261. Modification of Board of Visitors. Sec. 262. Study on Coast Guard Academy oversight. Sec. 263. Electronic locking mechanisms to ensure Coast Guard Academy cadet room security. Sec. 264. Report on existing behavioral health and wellness support services facilities at Coast Guard Academy. Sec. 265. Required posting of information. Sec. 266. Installation of multipurpose medical privacy rooms. Sec. 267. Coast Guard Academy room reassignment. Sec. 268. Authorization for use of Coast Guard Academy facilities and equipment by covered foundations. Sec. 269. Concurrent jurisdiction at Coast Guard Academy. Subtitle F--Reports and Policies Sec. 271. Policy and briefing on availability of naloxone to treat opioid, including fentanyl, overdoses. Sec. 272. Policy on methods to reduce incentives for illicit maritime drug trafficking. Sec. 273. Report on condition of aids to navigation. Sec. 274. Feasibility study on supporting additional port visits and deployments in support of Operation Blue Pacific. Sec. 275. Study and gap analysis with respect to Coast Guard Air Station Corpus Christi aviation hangar. Sec. 276. Report on impacts of joint travel regulations on members of Coast Guard who rely on ferry systems. Sec. 277. Report on Junior Reserve Officers' Training Corps program. Sec. 278. Report and briefings on implementing section 564 of title 14. Sec. 279. Report on role of Coast Guard. Sec. 280. Report on Coast Guard personnel ski"
+        },
+        {
+          "date": "2025-07-23T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr4275/BILLS-119hr4275rfs.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr4275/BILLS-119hr4275rfs.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr4275/BILLS-119hr4275rfs.xml"
+            }
+          ],
+          "type": "Referred in Senate"
+        },
+        {
+          "date": "2025-07-22T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr4275/BILLS-119hr4275rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr4275/BILLS-119hr4275rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr4275/BILLS-119hr4275rh.xml"
+            }
+          ],
+          "type": "Reported in House"
+        },
+        {
+          "date": "2025-07-02T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr4275/BILLS-119hr4275ih.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr4275/BILLS-119hr4275ih.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr4275/BILLS-119hr4275ih.xml"
+            }
+          ],
+          "type": "Introduced in House"
+        }
+      ],
       "title": "Coast Guard Authorization Act of 2025",
       "titles": {
         "count": 6,
@@ -10946,10 +11123,45 @@
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/122/subjects?format=json"
       },
-      "textVersions": {
-        "count": 2,
-        "url": "https://api.congress.gov/v3/bill/119/hres/122/text?format=json"
-      },
+      "textVersions": [
+        {
+          "date": "2025-02-11T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres122/BILLS-119hres122eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres122/BILLS-119hres122eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres122/BILLS-119hres122eh.xml"
+            }
+          ],
+          "type": "Engrossed in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H. Res. 122 Engrossed in House (EH)] &lt;DOC&gt; H. Res. 122 In the House of Representatives, U. S., February 11, 2025. Resolved, That upon adoption of this resolution it shall be in order to consider in the House the bill (H.R. 77) to amend chapter 8 of title 5, United States Code, to provide for en bloc consideration in resolutions of disapproval for ``midnight rules'', and for other purposes. All points of order against consideration of the bill are waived. The bill shall be considered as read. All points of order against provisions in the bill are waived. The previous question shall be considered as ordered on the bill and on any amendment thereto to final passage without intervening motion except: (1) one hour of debate equally divided and controlled by the chair and ranking minority member of the Committee on the Judiciary or their respective designees; and (2) one motion to recommit. Attest: Clerk."
+        },
+        {
+          "date": "2025-02-10T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres122/BILLS-119hres122rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres122/BILLS-119hres122rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres122/BILLS-119hres122rh.xml"
+            }
+          ],
+          "type": "Reported in House"
+        }
+      ],
       "title": "Providing for consideration of the bill (H.R. 77) to amend chapter 8 of title 5, United States Code, to provide for en bloc consideration in resolutions of disapproval for \"midnight rules\", and for other purposes.",
       "titles": {
         "count": 2,
@@ -11347,10 +11559,27 @@
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/282/subjects?format=json"
       },
-      "textVersions": {
-        "count": 1,
-        "url": "https://api.congress.gov/v3/bill/119/hres/282/text?format=json"
-      },
+      "textVersions": [
+        {
+          "date": "2025-04-01T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres282/BILLS-119hres282rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres282/BILLS-119hres282rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres282/BILLS-119hres282rh.xml"
+            }
+          ],
+          "type": "Reported in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H. Res. 282 Reported in House (RH)] &lt;DOC&gt; House Calendar No. 14 119th CONGRESS 1st Session H. RES. 282 [Report No. 119-49] Providing for consideration of the joint resolution (S.J. Res. 18) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to ``Overdraft Lending: Very Large Financial Institutions''; providing for consideration of the joint resolution (S.J. Res. 28) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to''Defining Larger Participants of a Market for General-Use Digital Consumer Payment Applications''; providing for consideration of the bill (H.R. 1526) to amend title 28, United States Code, to limit the authority of district courts to provide injunctive relief, and for other purposes; providing for consideration of the bill (H.R. 22) to amend the National Voter Registration Act of 1993 to require proof of United States citizenship to register an individual to vote in elections for Federal office, and for other purposes; and for other purposes.'' _______________________________________________________________________ IN THE HOUSE OF REPRESENTATIVES April 1, 2025 Mr. Griffith, from the Committee on Rules, reported the following resolution; which was referred to the House Calendar and ordered to be printed _______________________________________________________________________ RESOLUTION Providing for consideration of the joint resolution (S.J. Res. 18) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to ``Overdraft Lending: Very Large Financial Institutions''; providing for consideration of the joint resolution (S.J. Res. 28) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to''Defining Larger Participants of a Market for General-Use Digital Consumer Payment Applications''; providing for consideration of the bill (H.R. 1526) to amend title 28, United States Code, to limit the authority of district courts to provide injunctive relief, and for other purposes; providing for consideration of the bill (H.R. 22) to amend the National Voter Registration Act of 1993 to require proof of United States citizenship to register an individual to vote in elections for Federal office, and for other purposes; and for other purposes.'' Resolved, That upon adoption of this resolution it shall be in order to consider in the House the joint resolution (S.J. Res. 18) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to ``Overdraft Lending: Very Large Financial Institutions''. All points of order against consideration of the joint resolution are waived. The joint resolution shall be considered as read. All points of order against provisions in the joint resolution are waived. The previous question shall be considered as ordered on the joint resolution and on any amendment thereto to final passage without intervening motion except: (1) one hour of debate equally divided and controlled by the chair and ranking minority member of the Committee on Financial Services or their respective designees; and (2) one motion to commit. Sec. 2. Upon adoption of this resolution it shall be in order to consider in the House the joint resolution (S.J. Res. 28) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to ``Defining Larger Participants of a Market for General-Use Digital Consumer Payment Applications''. All points of order against consideration of the joint resolution are waived. The joint resolution shall be considered as read. All points of order against provisions in the joint resolution are waived. The previous question shall be considered as ordered on the joint resolution and on any amendment thereto to final passage without intervening motion except: (1) one hour of debate equally divided and controlled by the chair and ranking minority member of the Committee on Financial Services or their respective designees; and (2) one motion to commit. Sec. 3. Upon adoption of this resolution it shall be in order to consider in the House the bill (H.R. 1526) to amend title 28, United States Code, to limit the authority of district courts to provide injunctive relief, and for other purposes. All points of order against consideration of the bill are waived. The amendment in the nature of a substitute recommended by the Committee on the Judiciary now printed in the bill shall be considered as adopted. The bill, as amended, shall be considered as read. All points of order against provisions in the bill, as amended, are waived. The previous question shall be considered as ordered on the bill, as amended, and on any further amendment thereto, to final passage without intervening motion except: (1) one hour of debate equally divided and controlled by the chair and ranking minority member of the Committee on the Judiciary or the"
+        }
+      ],
       "title": "Providing for consideration of the joint resolution (S.J. Res. 18) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to \"Overdraft Lending: Very Large Financial Institutions''; providing for consideration of the joint resolution (S.J. Res. 28) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to ''Defining Larger Participants of a Market for General-Use Digital Consumer Payment Applications''; providing for consideration of the bill (H.R. 1526) to amend title 28, United States Code, to limit the authority of district courts to provide injunctive relief, and for other purposes; providing for consideration of the bill (H.R. 22) to amend the National Voter Registration Act of 1993 to require proof of United States citizenship to register an individual to vote in elections for Federal office, and for other purposes; and for other purposes.",
       "titles": {
         "count": 2,
@@ -11411,10 +11640,45 @@
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/294/subjects?format=json"
       },
-      "textVersions": {
-        "count": 2,
-        "url": "https://api.congress.gov/v3/bill/119/hres/294/text?format=json"
-      },
+      "textVersions": [
+        {
+          "date": "2025-04-08T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres294/BILLS-119hres294eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres294/BILLS-119hres294eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres294/BILLS-119hres294eh.xml"
+            }
+          ],
+          "type": "Engrossed in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H. Res. 294 Engrossed in House (EH)] &lt;DOC&gt; H. Res. 294 In the House of Representatives, U. S., April 8, 2025. Resolved, That upon adoption of this resolution it shall be in order to consider in the House the joint resolution (S.J. Res. 18) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to ``Overdraft Lending: Very Large Financial Institutions''. All points of order against consideration of the joint resolution are waived. The joint resolution shall be considered as read. All points of order against provisions in the joint resolution are waived. The previous question shall be considered as ordered on the joint resolution and on any amendment thereto to final passage without intervening motion except: (1) one hour of debate equally divided and controlled by the chair and ranking minority member of the Committee on Financial Services or their respective designees; and (2) one motion to commit. Sec. 2. Upon adoption of this resolution it shall be in order to consider in the House the joint resolution (S.J. Res. 28) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to ``Defining Larger Participants of a Market for General-Use Digital Consumer Payment Applications''. All points of order against consideration of the joint resolution are waived. The joint resolution shall be considered as read. All points of order against provisions in the joint resolution are waived. The previous question shall be considered as ordered on the joint resolution and on any amendment thereto to final passage without intervening motion except: (1) one hour of debate equally divided and controlled by the chair and ranking minority member of the Committee on Financial Services or their respective designees; and (2) one motion to commit. Sec. 3. Upon adoption of this resolution it shall be in order to consider in the House the bill (H.R. 1526) to amend title 28, United States Code, to limit the authority of district courts to provide injunctive relief, and for other purposes. All points of order against consideration of the bill are waived. The amendment in the nature of a substitute recommended by the Committee on the Judiciary now printed in the bill shall be considered as adopted. The bill, as amended, shall be considered as read. All points of order against provisions in the bill, as amended, are waived. The previous question shall be considered as ordered on the bill, as amended, and on any further amendment thereto, to final passage without intervening motion except: (1) one hour of debate equally divided and controlled by the chair and ranking minority member of the Committee on the Judiciary or their respective designees; and (2) one motion to recommit. Sec. 4. Upon adoption of this resolution it shall be in order to consider in the House the bill (H.R. 22) to amend the National Voter Registration Act of 1993 to require proof of United States citizenship to register an individual to vote in elections for Federal office, and for other purposes. All points of order against consideration of the bill are waived. The bill shall be considered as read. All points of order against provisions in the bill are waived. The previous question shall be considered as ordered on the bill and on any amendment thereto to final passage without intervening motion except: (1) one hour of debate equally divided and controlled by the chair and ranking minority member of the Committee on House Administration or their respective designees; and (2) one motion to recommit. Sec. 5. House Resolution 293 is hereby adopted. Sec. 6. House Resolution 164 is laid on the table. Attest: Clerk."
+        },
+        {
+          "date": "2025-04-07T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres294/BILLS-119hres294rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres294/BILLS-119hres294rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres294/BILLS-119hres294rh.xml"
+            }
+          ],
+          "type": "Reported in House"
+        }
+      ],
       "title": "Providing for consideration of the joint resolution (S.J. Res. 18) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to \"Overdraft Lending: Very Large Financial Institutions\"; providing for consideration of the joint resolution (S.J. Res. 28) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to \"Defining Larger Participants of a Market for General-Use Digital Consumer Payment Applications\"; providing for consideration of the bill (H.R. 1526) to amend title 28, United States Code, to limit the authority of district courts to provide injunctive relief, and for other purposes; providing for consideration of the bill (H.R. 22) to amend the National Voter Registration Act of 1993 to require proof of United States citizenship to register an individual to vote in elections for Federal office, and for other purposes; and for other purposes.",
       "titles": {
         "count": 2,
@@ -11475,10 +11739,45 @@
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/313/subjects?format=json"
       },
-      "textVersions": {
-        "count": 2,
-        "url": "https://api.congress.gov/v3/bill/119/hres/313/text?format=json"
-      },
+      "textVersions": [
+        {
+          "date": "2025-04-09T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres313/BILLS-119hres313rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres313/BILLS-119hres313rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres313/BILLS-119hres313rh.xml"
+            }
+          ],
+          "type": "Reported in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H. Res. 313 Reported in House (RH)] &lt;DOC&gt; House Calendar No. 21 119th CONGRESS 1st Session H. RES. 313 [Report No. 119-56] Providing for consideration of the Senate amendment to the concurrent resolution (H. Con. Res. 14) establishing the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034, and for other purposes. _______________________________________________________________________ IN THE HOUSE OF REPRESENTATIVES April 9, 2025 Ms. Foxx, from the Committee on Rules, reported the following resolution; which was referred to the House Calendar and ordered to be printed _______________________________________________________________________ RESOLUTION Providing for consideration of the Senate amendment to the concurrent resolution (H. Con. Res. 14) establishing the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034, and for other purposes. Resolved, That upon adoption of this resolution it shall be in order to take from the Speaker's table the concurrent resolution (H. Con. Res. 14) establishing the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034, with the Senate amendment thereto, and to consider in the House, without intervention of any point of order, a motion offered by the chair of the Committee on the Budget or his designee that the House concur in the Senate amendment. The Senate amendment and the motion shall be considered as read. The motion shall be debatable for one hour equally divided and controlled by the chair and ranking minority member of the Committee on the Budget or their respective designees. The previous question shall be considered as ordered on the motion to adoption without intervening motion. Sec. 2. Each day during the period from April 9, 2025, through September 30, 2025, shall not constitute a calendar day for purposes of section 202 of the National Emergencies Act (50 U.S.C. 1622) with respect to a joint resolution terminating a national emergency declared by the President on April 2, 2025. House Calendar No. 21 119th CONGRESS 1st Session H. RES. 313 [Report No. 119-56] _______________________________________________________________________ RESOLUTION Providing for consideration of the Senate amendment to the concurrent resolution (H. Con. Res. 14) establishing the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034, and for other purposes. _______________________________________________________________________ April 9, 2025 Referred to the House Calendar and ordered to be printed"
+        },
+        {
+          "date": "2025-04-09T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres313/BILLS-119hres313eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres313/BILLS-119hres313eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres313/BILLS-119hres313eh.xml"
+            }
+          ],
+          "type": "Engrossed in House"
+        }
+      ],
       "title": "Providing for consideration of the Senate amendment to the concurrent resolution (H. Con. Res. 14) establishing the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034, and for other purposes.",
       "titles": {
         "count": 2,
@@ -11863,10 +12162,45 @@
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/436/subjects?format=json"
       },
-      "textVersions": {
-        "count": 2,
-        "url": "https://api.congress.gov/v3/bill/119/hres/436/text?format=json"
-      },
+      "textVersions": [
+        {
+          "date": "2025-05-22T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres436/BILLS-119hres436eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres436/BILLS-119hres436eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres436/BILLS-119hres436eh.xml"
+            }
+          ],
+          "type": "Engrossed in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H. Res. 436 Engrossed in House (EH)] &lt;DOC&gt; H. Res. 436 In the House of Representatives, U. S., May 22 (legislative day, May 21), 2025. Resolved, That upon adoption of this resolution it shall be in order to consider in the House the bill (H.R. 1) to provide for reconciliation pursuant to title II of H. Con. Res. 14. All points of order against consideration of the bill are waived. An amendment in the nature of a substitute consisting of the text of Rules Committee Print 119-3, modified by the amendment printed in the report of the Committee on Rules accompanying this resolution, shall be considered as adopted. The bill, as amended, shall be considered as read. All points of order against provisions in the bill, as amended, are waived. The previous question shall be considered as ordered on the bill, as amended, and on any further amendment thereto, to final passage without intervening motion except: (1) two hours of debate equally divided among and controlled by the chair and ranking minority member of the Committee on the Budget or their respective designees and the chair and ranking minority member of the Committee on Ways and Means or their respective designees; and (2) one motion to recommit. Clause 5(b) of rule XXI shall not apply to the bill or amendments thereto. Attest: Clerk."
+        },
+        {
+          "date": "2025-05-21T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres436/BILLS-119hres436rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres436/BILLS-119hres436rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres436/BILLS-119hres436rh.xml"
+            }
+          ],
+          "type": "Reported in House"
+        }
+      ],
       "title": "Providing for consideration of the bill (H.R. 1) to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
       "titles": {
         "count": 2,
@@ -12723,10 +13057,45 @@
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/566/subjects?format=json"
       },
-      "textVersions": {
-        "count": 2,
-        "url": "https://api.congress.gov/v3/bill/119/hres/566/text?format=json"
-      },
+      "textVersions": [
+        {
+          "date": "2025-07-03T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres566/BILLS-119hres566eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres566/BILLS-119hres566eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres566/BILLS-119hres566eh.xml"
+            }
+          ],
+          "type": "Engrossed in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H. Res. 566 Engrossed in House (EH)] &lt;DOC&gt; H. Res. 566 In the House of Representatives, U. S., July 3 (legislative day, July 2), 2025. Resolved, That upon adoption of this resolution it shall be in order to take from the Speaker's table the bill (H.R. 1) to provide for reconciliation pursuant to title II of H. Con. Res. 14, with the Senate amendment thereto, and to consider in the House, without intervention of any point of order, a motion offered by the chair of the Committee on the Budget or his designee that the House concur in the Senate amendment. The Senate amendment and the motion shall be considered as read. The motion shall be debatable for one hour equally divided among and controlled by the chair and ranking minority member of the Committee on the Budget or their respective designees and the chair and ranking minority member of the Committee on Ways and Means or their respective designees. The previous question shall be considered as ordered on the motion to its adoption without intervening motion. Attest: Clerk."
+        },
+        {
+          "date": "2025-07-02T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres566/BILLS-119hres566rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres566/BILLS-119hres566rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres566/BILLS-119hres566rh.xml"
+            }
+          ],
+          "type": "Reported in House"
+        }
+      ],
       "title": "Providing for consideration of the Senate amendment to the bill (H.R. 1) to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
       "titles": {
         "count": 2,
@@ -12847,10 +13216,45 @@
         "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hres/590/subjects?format=json"
       },
-      "textVersions": {
-        "count": 2,
-        "url": "https://api.congress.gov/v3/bill/119/hres/590/text?format=json"
-      },
+      "textVersions": [
+        {
+          "date": "2025-07-18T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres590/BILLS-119hres590eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres590/BILLS-119hres590eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres590/BILLS-119hres590eh.xml"
+            }
+          ],
+          "type": "Engrossed in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H. Res. 590 Engrossed in House (EH)] &lt;DOC&gt; H. Res. 590 In the House of Representatives, U. S., July 18 (legislative day, July 17), 2025. Resolved, That upon adoption of this resolution, the House shall be considered to have taken from the Speaker's table the bill (H.R. 4) to rescind certain budget authority proposed to be rescinded in special messages transmitted to the Congress by the President on June 3, 2025, in accordance with section 1012(a) of the Congressional Budget and Impoundment Control Act of 1974, with the Senate amendment thereto, and to have concurred in the Senate amendment. Attest: Clerk."
+        },
+        {
+          "date": "2025-07-17T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres590/BILLS-119hres590rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres590/BILLS-119hres590rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres590/BILLS-119hres590rh.xml"
+            }
+          ],
+          "type": "Reported in House"
+        }
+      ],
       "title": "Relating to consideration of the Senate amendment to the bill (H.R. 4) to rescind certain budget authority proposed to be rescinded in special messages transmitted to the Congress by the President on June 3, 2025, in accordance with section 1012(a) of the Congressional Budget and Impoundment Control Act of 1974.",
       "titles": {
         "count": 2,
@@ -12977,10 +13381,45 @@
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/93/subjects?format=json"
       },
-      "textVersions": {
-        "count": 2,
-        "url": "https://api.congress.gov/v3/bill/119/hres/93/text?format=json"
-      },
+      "textVersions": [
+        {
+          "date": "2025-02-05T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres93/BILLS-119hres93eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres93/BILLS-119hres93eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres93/BILLS-119hres93eh.xml"
+            }
+          ],
+          "type": "Engrossed in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H. Res. 93 Engrossed in House (EH)] &lt;DOC&gt; H. Res. 93 In the House of Representatives, U. S., February 5, 2025. Resolved, That upon adoption of this resolution it shall be in order to consider in the House the bill (H.R. 27) to amend the Controlled Substances Act with respect to the scheduling of fentanyl-related substances, and for other purposes. All points of order against consideration of the bill are waived. The amendment printed in part A of the report of the Committee on Rules accompanying this resolution shall be considered as adopted. The bill, as amended, shall be considered as read. All points of order against provisions in the bill, as amended, are waived. The previous question shall be considered as ordered on the bill, as amended, and on any further amendment thereto, to final passage without intervening motion except: (1) one hour of debate equally divided and controlled by the chair and ranking minority member of the Committee on Energy and Commerce or their respective designees; (2) the further amendment printed in part B of the report of the Committee on Rules, if offered by the Member designated in the report, which shall be in order without intervention of any point of order, shall be considered as read, shall be separately debatable for the time specified in the report equally divided and controlled by the proponent and an opponent, and shall not be subject to a demand for division of the question; and (3) one motion to recommit. Attest: Clerk."
+        },
+        {
+          "date": "2025-02-04T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres93/BILLS-119hres93rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres93/BILLS-119hres93rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres93/BILLS-119hres93rh.xml"
+            }
+          ],
+          "type": "Reported in House"
+        }
+      ],
       "title": "Providing for consideration of the bill (H.R. 27) to amend the Controlled Substances Act with respect to the scheduling of fentanyl-related substances, and for other purposes.",
       "titles": {
         "count": 2,
