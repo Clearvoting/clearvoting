@@ -42,6 +42,14 @@ US_STATES = [
     "DC", "AS", "GU", "MP", "PR", "VI",
 ]
 
+# Congress/session pairs to sync — add older congresses to expand history
+# Each congress has 2 sessions (odd year = session 1, even year = session 2)
+CONGRESSES = [
+    (117, 1), (117, 2),
+    (118, 1), (118, 2),
+    (119, 1), (119, 2),
+]
+
 
 def _atomic_write_json(path: Path, data: dict | list) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -936,38 +944,49 @@ async def main() -> None:
     print()
 
     # Step 1: Members
-    print("[1/7] Syncing members...")
+    print("[1/9] Syncing members...")
     members_count = await sync_members(client, SYNC_DIR, states=states, rate_limit=0.5)
 
-    # Step 2: Senate votes
+    # Step 2: Senate votes (all congresses)
     print()
     senate_service = SenateVoteService(cache=cache)
-    print("[2/7] Syncing Senate votes...")
-    senate_count = await sync_senate_votes(senate_service, SYNC_DIR, rate_limit=0.3)
+    print("[2/9] Syncing Senate votes...")
+    senate_count = 0
+    for congress, session in CONGRESSES:
+        print(f"  Congress {congress}, Session {session}...")
+        count = await sync_senate_votes(senate_service, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+        senate_count += count
 
-    # Step 3: House votes
+    # Step 3: House votes (all congresses)
     print()
-    print("[3/7] Syncing House votes...")
-    house_count = await sync_house_votes(client, SYNC_DIR, rate_limit=0.3)
+    print("[3/9] Syncing House votes...")
+    house_count = 0
+    for congress, session in CONGRESSES:
+        print(f"  Congress {congress}, Session {session}...")
+        count = await sync_house_votes(client, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+        house_count += count
 
     # Step 4: Bills (only those referenced in votes from both chambers)
     print()
-    print("[4/7] Syncing voted-on bills...")
+    print("[4/9] Syncing voted-on bills...")
     bills_count = await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
 
     # Step 5: AI bill summaries (writer-grader loop)
     print()
-    print(f"[5/7] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
+    print(f"[5/9] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
     summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
 
     # Step 6: Member voting records (both chambers)
     print()
-    print("[6/7] Building member voting records...")
+    print("[6/9] Building member voting records...")
     member_votes_count = await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
 
-    # Step 7: Grader report
+    # Step 7: Member summaries (placeholder — not yet implemented)
+    # Step 8: Member summary grading (placeholder — not yet implemented)
+
+    # Step 9: Sync summary
     print()
-    print("[7/7] Sync summary")
+    print("[9/9] Sync summary")
 
     # Write metadata
     metadata = {
