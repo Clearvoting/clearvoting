@@ -1019,6 +1019,8 @@ async def main() -> None:
                         help="Grade existing summaries and only regenerate failures.")
     parser.add_argument("--backfill-direction", action="store_true",
                         help="Backfill direction field for AI summaries missing it.")
+    parser.add_argument("--regenerate-member-summaries", action="store_true",
+                        help="Force regeneration of all AI member summaries.")
     args = parser.parse_args()
 
     raw_key = os.getenv("ANTHROPIC_API_KEY", "")
@@ -1038,6 +1040,22 @@ async def main() -> None:
         await backfill_bill_directions(SYNC_DIR, api_key=anthropic_key or None)
         print()
         print("=== Backfill complete ===")
+        return
+
+    # --- Regenerate member summaries mode ---
+    if args.regenerate_member_summaries:
+        SYNC_DIR.mkdir(parents=True, exist_ok=True)
+        print("=== ClearVote Member Summary Regeneration ===")
+        print(f"  Mode: {'API' if anthropic_key else 'Claude CLI (Max plan)'}")
+        print()
+        # Clear existing summaries to force regeneration
+        summaries_path = SYNC_DIR / "member_summaries.json"
+        if summaries_path.exists():
+            _atomic_write_json(summaries_path, {})
+            print("  Cleared existing member summaries")
+        await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
+        print()
+        print("=== Regeneration complete ===")
         return
 
     # --- Re-grade mode ---
