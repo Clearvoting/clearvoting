@@ -23,7 +23,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "neutral",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 84
     },
     {
       "bill_number": "H.Con.Res. 38",
@@ -36,7 +38,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 85
     },
     {
       "bill_number": "H.R. 7744",
@@ -49,7 +53,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 86
     },
     {
       "bill_number": "H.R. 7744",
@@ -62,7 +68,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 87
     },
     {
       "bill_number": "H.Res. 1095",
@@ -75,7 +83,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 79
     },
     {
       "bill_number": "H.Res. 1095",
@@ -88,7 +98,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 80
     },
     {
       "bill_number": "S. 723",
@@ -101,7 +113,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 81
     },
     {
       "bill_number": "H.R. 6472",
@@ -114,7 +128,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 82
     },
     {
       "bill_number": "H.Res. 1100",
@@ -127,7 +143,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 83
     },
     {
       "bill_number": "H.R. 4758",
@@ -140,7 +158,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 77
     },
     {
       "bill_number": "H.R. 4758",
@@ -153,7 +173,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 78
     },
     {
       "bill_number": "H.R. 6329",
@@ -166,7 +188,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 71
     },
     {
       "bill_number": "S. 2503",
@@ -179,7 +203,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 72
     },
     {
       "bill_number": "H.Res. 1075",
@@ -192,7 +218,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 73
     },
     {
       "bill_number": "H.Res. 1075",
@@ -205,7 +233,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 74
     },
     {
       "bill_number": "H.R. 4626",
@@ -218,7 +248,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 75
     },
     {
       "bill_number": "H.R. 4626",
@@ -231,7 +263,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 76
     },
     {
       "bill_number": "H.R. 2189",
@@ -244,7 +278,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 70
     },
     {
       "bill_number": "H.Res. 1057",
@@ -257,7 +293,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "neutral",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 61
     },
     {
       "bill_number": "H.Res. 1057",
@@ -270,7 +308,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "neutral",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 62
     },
     {
       "bill_number": "H.R. 3617",
@@ -283,7 +323,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 63
     },
     {
       "bill_number": "H.R. 3617",
@@ -296,7 +338,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 64
     },
     {
       "bill_number": "H.J.Res. 72",
@@ -309,7 +353,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "neutral",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 65
     },
     {
       "bill_number": "H.R. 261",
@@ -322,7 +368,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 66
     },
     {
       "bill_number": "H.R. 261",
@@ -335,7 +383,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 67
     },
     {
       "bill_number": "S. 1383",
@@ -348,7 +398,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 68
     },
     {
       "bill_number": "S. 1383",
@@ -361,7 +413,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 69
     },
     {
       "bill_number": "H.Res. 1042",
@@ -374,7 +428,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "neutral",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 59
     },
     {
       "bill_number": "H.Res. 1042",
@@ -387,7 +443,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "neutral",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 60
     },
     {
       "bill_number": "H.R. 6644",
@@ -400,7 +458,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 57
     },
     {
       "bill_number": "H.R. 1531",
@@ -413,7 +473,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 58
     },
     {
       "bill_number": "H.R. 4090",
@@ -426,7 +488,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 54
     },
     {
       "bill_number": "H.R. 4090",
@@ -439,7 +503,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 55
     },
     {
       "bill_number": "H.J.Res. 142",
@@ -452,7 +518,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 56
     },
     {
       "bill_number": "H.Res. 1032",
@@ -465,7 +533,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "neutral",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 51
     },
     {
       "bill_number": "H.Res. 1032",
@@ -478,7 +548,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "neutral",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 52
     },
     {
       "bill_number": "H.R. 7148",
@@ -491,7 +563,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 53
     },
     {
       "bill_number": "H.R. 3123",
@@ -504,7 +578,9 @@
       "chamber": "House",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 50
     }
   ],
   "policy_areas": [

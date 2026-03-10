@@ -23,7 +23,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "neutral",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 500
     },
     {
       "bill_number": "H.J.Res. 60",
@@ -36,7 +38,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 239
     },
     {
       "bill_number": "S.J.Res. 7",
@@ -49,7 +53,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 238
     },
     {
       "bill_number": "S. 1582",
@@ -62,7 +68,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 240
     },
     {
       "bill_number": "S.J.Res. 13",
@@ -75,7 +83,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 237
     },
     {
       "bill_number": "S.J.Res. 13",
@@ -88,7 +98,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 233
     },
     {
       "bill_number": "H.J.Res. 61",
@@ -101,7 +113,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 232
     },
     {
       "bill_number": "H.J.Res. 60",
@@ -114,7 +128,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 236
     },
     {
       "bill_number": "S.J.Res. 7",
@@ -127,7 +143,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 235
     },
     {
       "bill_number": "H.J.Res. 61",
@@ -140,7 +158,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 231
     },
     {
       "bill_number": "H.J.Res. 89",
@@ -153,7 +173,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 280
     },
     {
       "bill_number": "H.J.Res. 87",
@@ -166,7 +188,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 279
     },
     {
       "bill_number": "H.J.Res. 87",
@@ -179,7 +203,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 278
     },
     {
       "bill_number": "H.J.Res. 88",
@@ -192,7 +218,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 277
     },
     {
       "bill_number": "H.J.Res. 89",
@@ -205,7 +233,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 281
     },
     {
       "bill_number": "S.J.Res. 55",
@@ -218,7 +248,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 264
     },
     {
       "bill_number": "S. 1582",
@@ -231,7 +263,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 263
     },
     {
       "bill_number": "H.J.Res. 88",
@@ -244,7 +278,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 276
     },
     {
       "bill_number": "S.J.Res. 55",
@@ -257,7 +293,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 275
     },
     {
       "bill_number": "S.J.Res. 55",
@@ -270,7 +308,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 274
     },
     {
       "bill_number": "S.J.Res. 55",
@@ -283,7 +323,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 273
     },
     {
       "bill_number": "S.J.Res. 55",
@@ -296,7 +338,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 272
     },
     {
       "bill_number": "S.J.Res. 55",
@@ -309,7 +353,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 271
     },
     {
       "bill_number": "S.J.Res. 55",
@@ -322,7 +368,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 270
     },
     {
       "bill_number": "S.J.Res. 55",
@@ -335,7 +383,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 269
     },
     {
       "bill_number": "S.J.Res. 55",
@@ -348,7 +398,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 268
     },
     {
       "bill_number": "S.J.Res. 55",
@@ -361,7 +413,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 267
     },
     {
       "bill_number": "S.J.Res. 55",
@@ -374,7 +428,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 266
     },
     {
       "bill_number": "S.J.Res. 55",
@@ -387,7 +443,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 265
     },
     {
       "bill_number": "S. 1582",
@@ -400,7 +458,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 262
     },
     {
       "bill_number": "S.Res. 195",
@@ -413,7 +473,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "neutral",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 259
     },
     {
       "bill_number": "S.J.Res. 31",
@@ -426,7 +488,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 229
     },
     {
       "bill_number": "H.J.Res. 75",
@@ -439,7 +503,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 228
     },
     {
       "bill_number": "S. 331",
@@ -452,7 +518,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 110
     },
     {
       "bill_number": "H.R. 7147",
@@ -465,7 +533,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 47
     },
     {
       "bill_number": "S.J.Res. 28",
@@ -478,7 +548,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 106
     },
     {
       "bill_number": "H.R. 6644",
@@ -491,7 +563,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 45
     },
     {
       "bill_number": "S.J.Res. 104",
@@ -504,7 +578,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 46
     },
     {
       "bill_number": "S.J.Res. 3",
@@ -517,7 +593,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 101
     },
     {
       "bill_number": "S.J.Res. 28",
@@ -530,7 +608,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 103
     },
     {
       "bill_number": "S.J.Res. 3",
@@ -543,7 +623,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 102
     },
     {
       "bill_number": "S. 9",
@@ -556,7 +638,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 100
     },
     {
       "bill_number": "S.J.Res. 18",
@@ -569,7 +653,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 153
     },
     {
       "bill_number": "S.J.Res. 18",
@@ -582,7 +668,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 152
     },
     {
       "bill_number": "H.J.Res. 25",
@@ -595,7 +683,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 151
     },
     {
       "bill_number": "H.J.Res. 25",
@@ -608,7 +698,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 150
     },
     {
       "bill_number": "H.R. 6644",
@@ -621,7 +713,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 44
     },
     {
       "bill_number": "H.R. 1968",
@@ -634,7 +728,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 133
     },
     {
       "bill_number": "To reduce the amount appropriated for the United States Agency for International Development.",
@@ -647,7 +743,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 132
     },
     {
       "bill_number": "To prohibit the use of appropriated amounts by DOGE.",
@@ -660,7 +758,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 131
     },
     {
       "bill_number": "To make veteran Federal employees who were involuntarily dismissed without cause eligible for reinstatement and to require reports from Executive agencies on the number of veteran employees fired from such agencies.",
@@ -673,7 +773,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 130
     },
     {
       "bill_number": "To except the application of certain rescissions.",
@@ -686,7 +788,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 129
     },
     {
       "bill_number": "H.R. 1968",
@@ -699,7 +803,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 128
     },
     {
       "bill_number": "S. 331",
@@ -712,7 +818,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 127
     },
     {
       "bill_number": "S. 331",
@@ -725,7 +833,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 124
     },
     {
       "bill_number": "H.R. 1",
@@ -738,7 +848,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 337
     },
     {
       "bill_number": "H.R. 1",
@@ -751,7 +863,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 336
     },
     {
       "bill_number": "H.R. 1",
@@ -764,7 +878,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 335
     },
     {
       "bill_number": "H.R. 1",
@@ -777,7 +893,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 334
     },
     {
       "bill_number": "H.R. 1",
@@ -790,7 +908,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 353
     },
     {
       "bill_number": "H.R. 1",
@@ -803,7 +923,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 333
     },
     {
       "bill_number": "H.R. 1",
@@ -816,7 +938,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 332
     },
     {
       "bill_number": "To prohibit the use of Defense Production Act of 1950 funds without the approval of Congress.",
@@ -829,7 +953,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 352
     },
     {
       "bill_number": "H.R. 1",
@@ -842,7 +968,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 331
     },
     {
       "bill_number": "H.R. 1",
@@ -855,7 +983,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 351
     },
     {
       "bill_number": "H.R. 1",
@@ -868,7 +998,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 350
     },
     {
       "bill_number": "In the nature of a substitute.",
@@ -881,7 +1013,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 330
     },
     {
       "bill_number": "H.R. 1",
@@ -894,7 +1028,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 349
     },
     {
       "bill_number": "H.R. 1",
@@ -907,7 +1043,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 348
     },
     {
       "bill_number": "H.R. 1",
@@ -920,7 +1058,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 347
     },
     {
       "bill_number": "H.R. 1",
@@ -933,7 +1073,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 346
     },
     {
       "bill_number": "To prohibit Federal financial participation under Medicaid and CHIP for individuals without verified citizenship, nationality, or satisfactory immigration status.",
@@ -946,7 +1088,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 345
     },
     {
       "bill_number": "No Statement of Purpose on File.",
@@ -959,7 +1103,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 344
     },
     {
       "bill_number": "To prevent cryptocurrency corruption.",
@@ -972,7 +1118,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 343
     },
     {
       "bill_number": "To reduce the FMAP for the Medicaid expansion to 80 percent in expansion States that provide State-funded coverage to aliens who are not qualified aliens and who are have been charged with or convicted of certain acts.",
@@ -985,7 +1133,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 342
     },
     {
       "bill_number": "To strike the reduction in the funding cap for the Bureau of Consumer Financial Protection.",
@@ -998,7 +1148,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 341
     },
     {
       "bill_number": "H.R. 1",
@@ -1011,7 +1163,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 340
     },
     {
       "bill_number": "To amend the Internal Revenue Code of 1986 to extend the enhanced premium tax credits and increase the individual tax rate for taxpayers with income of $10,000,000.",
@@ -1024,7 +1178,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 339
     },
     {
       "bill_number": "H.R. 1",
@@ -1037,7 +1193,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 338
     },
     {
       "bill_number": "H.R. 1",
@@ -1050,7 +1208,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 329
     },
     {
       "bill_number": "S.J.Res. 59",
@@ -1063,7 +1223,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 328
     },
     {
       "bill_number": "S. 1582",
@@ -1076,7 +1238,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 318
     },
     {
       "bill_number": "S. 1582",
@@ -1089,7 +1253,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 312
     },
     {
       "bill_number": "In the nature of a substitute.",
@@ -1102,7 +1268,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 311
     },
     {
       "bill_number": "In the nature of a substitute.",
@@ -1115,7 +1283,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 310
     },
     {
       "bill_number": "To improve the bill.",
@@ -1128,7 +1298,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 309
     },
     {
       "bill_number": "S.J.Res. 54",
@@ -1141,7 +1313,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 307
     },
     {
       "bill_number": "S.J.Res. 53",
@@ -1154,7 +1328,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 306
     },
     {
       "bill_number": "S. 1582",
@@ -1167,7 +1343,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 305
     },
     {
       "bill_number": "S.J.Res. 34",
@@ -1180,7 +1358,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 455
     },
     {
       "bill_number": "S.J.Res. 41",
@@ -1193,7 +1373,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 454
     },
     {
       "bill_number": "H.R. 3944",
@@ -1206,7 +1388,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 428
     },
     {
       "bill_number": "H.R. 3944",
@@ -1219,7 +1403,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 423
     },
     {
       "bill_number": "H.R. 3944",
@@ -1232,7 +1418,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 422
     },
     {
       "bill_number": "In the nature of a substitute.",
@@ -1245,7 +1433,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 405
     },
     {
       "bill_number": "H.R. 4",
@@ -1258,7 +1448,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 411
     },
     {
       "bill_number": "In the nature of a substitute.",
@@ -1271,7 +1463,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 410
     },
     {
       "bill_number": "To strike the paragraph of the bill that rescinds $15,000,000 that had been appropriated for the United States Institute of Peace.",
@@ -1284,7 +1478,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 409
     },
     {
       "bill_number": "To reduce the amount rescinded from International Organizations and Programs and to ensure that UNICEF receives all of the funding previously appropriated to it by Congress.",
@@ -1297,7 +1493,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 408
     },
     {
       "bill_number": "To reduce the amount rescinded from Assistance to Europe, Eurasia, and Central Asia.",
@@ -1310,7 +1508,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 407
     },
     {
       "bill_number": "To improve the bill.",
@@ -1323,7 +1523,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 406
     },
     {
       "bill_number": "To strike the rescission of funds appropriated for the Feed the Future Program to improve global food security and agricultural resiliency and support agriculture research that benefits United States agribusinesses and universities.",
@@ -1336,7 +1538,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 404
     },
     {
       "bill_number": "H.R. 4",
@@ -1349,7 +1553,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 403
     },
     {
       "bill_number": "To strike the rescission of funds appropriated for Global Health programs, including family planning and reproductive health.",
@@ -1362,7 +1568,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 402
     },
     {
       "bill_number": "H.R. 4",
@@ -1375,7 +1583,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 401
     },
     {
       "bill_number": "To reduce the amount rescinded from Global Health programs to preserve funding for programs addressing diseases.",
@@ -1388,7 +1598,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 400
     },
     {
       "bill_number": "H.R. 4",
@@ -1401,7 +1613,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 399
     },
     {
       "bill_number": "H.R. 4",
@@ -1414,7 +1628,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 398
     },
     {
       "bill_number": "To strike the rescissions of funding for the Corporation for Public Broadcasting.",
@@ -1427,7 +1643,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 397
     },
     {
       "bill_number": "H.R. 4",
@@ -1440,7 +1658,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 396
     },
     {
       "bill_number": "H.R. 4",
@@ -1453,7 +1673,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 395
     },
     {
       "bill_number": "H.R. 4",
@@ -1466,7 +1688,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 394
     },
     {
       "bill_number": "To strike the recession of amounts made available for international disaster assistance, to ensure the United States can compete with China and maintain our long tradition of providing lifesaving aid.",
@@ -1479,7 +1703,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 393
     },
     {
       "bill_number": "H.R. 4",
@@ -1492,7 +1718,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 392
     },
     {
       "bill_number": "H.R. 4",
@@ -1505,7 +1733,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 391
     },
     {
       "bill_number": "To amend the Internal Revenue Code of 1986 to apply a 39.6 percent individual income tax rate, and to provide additional funding and specify eligible providers under the Rural Health Transformation Program.",
@@ -1518,7 +1748,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 355
     },
     {
       "bill_number": "H.R. 1",
@@ -1531,7 +1763,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 372
     },
     {
       "bill_number": "H.R. 1",
@@ -1544,7 +1778,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 354
     },
     {
       "bill_number": "In the nature of a substitute.",
@@ -1557,7 +1793,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 371
     },
     {
       "bill_number": "To improve the bill.",
@@ -1570,7 +1808,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 370
     },
     {
       "bill_number": "To strike a provision relating to delayed implementation of the supplemental nutrition assistance program matching funds requirements.",
@@ -1583,7 +1823,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 369
     },
     {
       "bill_number": "To strike the appropriations for the Office of Management and Budget.",
@@ -1596,7 +1838,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 368
     },
     {
       "bill_number": "Use of revenues from lease payments from Metropolitan Washington Airports for aviation safety improvements and other purposes.",
@@ -1609,7 +1853,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 367
     },
     {
       "bill_number": "To repeal amendments that terminate certain clean energy credits, and for other purposes.",
@@ -1622,7 +1868,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 366
     },
     {
       "bill_number": "To modify the provision terminating the residential clean energy credit, and for other purposes.",
@@ -1635,7 +1883,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 365
     },
     {
       "bill_number": "To maintain parity for wind and solar facilities under the Internal Revenue Code of 1986.",
@@ -1648,7 +1898,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 364
     },
     {
       "bill_number": "To strike the section relating to support for artificial intelligence.",
@@ -1661,7 +1913,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 363
     },
     {
       "bill_number": "To strike a provision relating to limitations on certain Medicaid payments.",
@@ -1674,7 +1928,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 361
     },
     {
       "bill_number": "To cut the price of prescription drugs under Medicare in half and expand Medicare to cover dental, vision, and hearing.",
@@ -1687,7 +1943,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 362
     },
     {
       "bill_number": "To terminate wind and solar credits.",
@@ -1700,7 +1958,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 360
     },
     {
       "bill_number": "H.R. 1",
@@ -1713,7 +1973,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 359
     },
     {
       "bill_number": "To eliminate a program of qualified elementary and secondary education scholarships for public, private, or religious schools.",
@@ -1726,7 +1988,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 358
     },
     {
       "bill_number": "H.R. 1",
@@ -1739,7 +2003,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 357
     },
     {
       "bill_number": "To amend the Internal Revenue Code of 1986 to provide a deduction for expenses of home educators.",
@@ -1752,7 +2018,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 356
     },
     {
       "bill_number": "S.J.Res. 98",
@@ -1765,7 +2033,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 5
     },
     {
       "bill_number": "S.J.Res. 86",
@@ -1778,7 +2048,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 4
     },
     {
       "bill_number": "H.R. 7148",
@@ -1791,7 +2063,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 20
     },
     {
       "bill_number": "To prevent the deferral or rescission of appropriations within 90 days of their expiration.",
@@ -1804,7 +2078,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 19
     },
     {
       "bill_number": "To rescind certain amounts appropriated for U.S. Immigration and Customs Enforcement and certain changes to Medicaid.",
@@ -1817,7 +2093,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 18
     },
     {
       "bill_number": "To eliminate funding for the United States African Development Foundation.",
@@ -1830,7 +2108,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 17
     },
     {
       "bill_number": "To strike the earmark for the Community and Training Center by the New Immigrant Community Empowerment.",
@@ -1843,7 +2123,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 16
     },
     {
       "bill_number": "To strike all earmarks.",
@@ -1856,7 +2138,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 15
     },
     {
       "bill_number": "To eliminate funding for refugee and entrant assistance.",
@@ -1869,7 +2153,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 14
     },
     {
       "bill_number": "H.R. 7148",
@@ -1882,7 +2168,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 13
     },
     {
       "bill_number": "H.R. 23",
@@ -1895,7 +2183,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 22
     },
     {
       "bill_number": "S. 3627",
@@ -1908,7 +2198,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 12
     },
     {
       "bill_number": "S. 6",
@@ -1921,7 +2213,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 11
     },
     {
       "bill_number": "H.R. 6938",
@@ -1934,7 +2228,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 10
     },
     {
       "bill_number": "H.R. 6938",
@@ -1947,7 +2243,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 11
     },
     {
       "bill_number": "S.J.Res. 98",
@@ -1960,7 +2258,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 9
     },
     {
       "bill_number": "S.J.Res. 84",
@@ -1973,7 +2273,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 8
     },
     {
       "bill_number": "H.R. 6938",
@@ -1986,7 +2288,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 7
     },
     {
       "bill_number": "H.J.Res. 35",
@@ -1999,7 +2303,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 97
     },
     {
       "bill_number": "S.J.Res. 12",
@@ -2012,7 +2318,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 96
     },
     {
       "bill_number": "S.J.Res. 10",
@@ -2025,7 +2333,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 95
     },
     {
       "bill_number": "S.J.Res. 11",
@@ -2038,7 +2348,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 91
     },
     {
       "bill_number": "S.J.Res. 11",
@@ -2051,7 +2363,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 92
     },
     {
       "bill_number": "H.R. 7147",
@@ -2064,7 +2378,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 39
     },
     {
       "bill_number": "To require an adequate amount of deficit reduction as part of reconciliation.",
@@ -2077,7 +2393,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 77
     },
     {
       "bill_number": "To ensure continued United States support for the Government of Ukraine to stand firm against aggression by the Government of Russia in Europe.",
@@ -2090,7 +2408,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 76
     },
     {
       "bill_number": "To create a point of order against legislation that would reduce Medicare and Medicaid benefits for Americans.",
@@ -2103,7 +2423,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 75
     },
     {
       "bill_number": "S.Con.Res. 7",
@@ -2116,7 +2438,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 87
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to ending price gouging on prescription drugs.",
@@ -2129,7 +2453,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 86
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to Congress continuing its work to rein in the administrative state by supporting legislation that prevents Federal agencies from finalizing major rules without congressional approval, strengthens the Article 1 law-making powers of Congress, cuts spending resulting from costly regulations, reduces inflation, and unleashes economic growth.",
@@ -2142,7 +2468,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 85
     },
     {
       "bill_number": "To strike reconciliation instructions requiring damaging cuts to programs critical to rural Americans and food assistance for American families.",
@@ -2155,7 +2483,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 84
     },
     {
       "bill_number": "To ensure full and uninterrupted funding for Department of Veterans Affairs health care and benefits provided by the Sergeant First Class Heath Robinson Honoring our Promise to Address Comprehensive Toxics Act of 2022 (Public Law 117-168), also known as the \"PACT Act\", preventing any cuts or delays.",
@@ -2168,7 +2498,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 83
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to protecting access to fertility services, and eliminating barriers for families in need of high-quality, affordable fertility services by expanding nationwide coverage for in vitro fertilization.",
@@ -2181,7 +2513,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 82
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to supporting police, which may include initiatives that provide funding directly to law enforcement agencies to hire or rehire additional career law enforcement officers in an effort to increase their community policing capacity and crime prevention efforts.",
@@ -2194,7 +2528,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 81
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to preserving and extending vital tax credits enacted under the Patient Protection and Affordable Care Act, which make heath care accessible and affordable and that have led to the lowest uninsured rate in our Nation's history.",
@@ -2207,7 +2543,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 80
     },
     {
       "bill_number": "To create a point of order against legislation that would cut funding from the school lunch or school breakfast programs.",
@@ -2220,7 +2558,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 79
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to preventing reductions in funding and staffing necessary to respond to, control, and prevent avian flu.",
@@ -2233,7 +2573,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 78
     },
     {
       "bill_number": "To create a point of order against legislation that would take away health care from seniors, including those receiving care in nursing homes, through cuts to the Medicaid program.",
@@ -2246,7 +2588,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 74
     },
     {
       "bill_number": "To prevent millions of Americans from being kicked off their health coverage, suffering needlessly, getting sicker, and dying sooner.",
@@ -2259,7 +2603,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 73
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to protecting access to maternal and pediatric health care through Medicaid.",
@@ -2272,7 +2618,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 72
     },
     {
       "bill_number": "To prevent tax cuts for the wealthy if a single dollar of Medicaid funding is cut.",
@@ -2285,7 +2633,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 71
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to protecting Medicare and Medicaid.",
@@ -2298,7 +2648,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 70
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to supporting Federal wildland firefighters and associated personnel.",
@@ -2311,7 +2663,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 69
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to reinstating the fired Federal employees at the Forest Service, National Park Service, United States Fish and Wildlife Service, and Bureau of Land Management.",
@@ -2324,7 +2678,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 68
     },
     {
       "bill_number": "To create a point of order against legislation that would raise energy costs for Americans, including higher monthly electricity bills, building material expenses, and transportation costs.",
@@ -2337,7 +2693,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 67
     },
     {
       "bill_number": "To strike the reconciliation instructions and create a reserve fund to implement a bipartisan, multi-year agreement to provide up to $171,000,000,000 in discretionary funding for defense and up to $171,000,000,000 in discretionary funding for other programs, accounts, and activities to address border, veterans, farmers, food and nutrition, disaster relief, and other needs.",
@@ -2350,7 +2708,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 66
     },
     {
       "bill_number": "To create a point of order against any reconciliation bill that would not decrease the cost of housing for American families.",
@@ -2363,7 +2723,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 65
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to the impacts of hedge fund ownership of single-family homes and rent prices.",
@@ -2376,7 +2738,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 64
     },
     {
       "bill_number": "To stop tax cuts for the ultra-rich while families struggle to put food on the table.",
@@ -2389,7 +2753,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 63
     },
     {
       "bill_number": "To prevent unwarranted tax cuts for the ultra-rich.",
@@ -2402,7 +2768,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 62
     },
     {
       "bill_number": "S.Con.Res. 7",
@@ -2415,7 +2783,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 58
     },
     {
       "bill_number": "H.J.Res. 142",
@@ -2428,7 +2798,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 37
     },
     {
       "bill_number": "H.R. 7147",
@@ -2441,7 +2813,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 38
     },
     {
       "bill_number": "H.J.Res. 142",
@@ -2454,7 +2828,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 36
     },
     {
       "bill_number": "S.J.Res. 95",
@@ -2467,7 +2843,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 2,
+      "vote_number": 35
     },
     {
       "bill_number": "To improve the bill.",
@@ -2480,7 +2858,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 481
     },
     {
       "bill_number": "H.R. 3944",
@@ -2493,7 +2873,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "strengthens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 480
     },
     {
       "bill_number": "In the nature of a substitute.",
@@ -2506,7 +2888,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 479
     },
     {
       "bill_number": "To limit disclosures regarding earmarks.",
@@ -2519,7 +2903,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 478
     },
     {
       "bill_number": "To reduce funding for certain programs under the division making appropriations for Agriculture, Rural Development, Food and Drug Administration, and Related Agencies.",
@@ -2532,7 +2918,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 477
     },
     {
       "bill_number": "To reduce the Agriculture discretionary appropriations by 2 percent across the board.",
@@ -2545,7 +2933,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 476
     },
     {
       "bill_number": "To require the Secretary of Veterans Affairs to submit to Congress a report on the plan of the Secretary for Department of Veterans Affairs workforce reduction in fiscal year 2026.",
@@ -2558,7 +2948,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 475
     },
     {
       "bill_number": "To prohibit funds from being used for reorganization of the Department of Agriculture and to require a benefit-cost analysis on that reorganization, a public comment period, and a report.",
@@ -2571,7 +2963,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 474
     },
     {
       "bill_number": "To require a report on veterans who would have been reported to the national instant criminal background check system and who die by suicide with a firearm.",
@@ -2584,7 +2978,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 473
     },
     {
       "bill_number": "To limit recissions of funding.",
@@ -2597,7 +2993,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 472
     },
     {
       "bill_number": "H.J.Res. 20",
@@ -2610,7 +3008,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 206
     },
     {
       "bill_number": "To make sure the Senate can increase the Federal minimum wage to $17 an hour by a simple majority vote.",
@@ -2623,7 +3023,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 184
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund to prevent increased barriers to American caregivers, including individuals caring for seniors, children, home care workers, and individuals engaged in the care economy.",
@@ -2636,7 +3038,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 183
     },
     {
       "bill_number": "To prevent DOGE from closing Social Security offices, preserving access to benefits for seniors and people with disabilities.",
@@ -2649,7 +3053,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 182
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to preventing the use of proceeds from public land sales to reduce the Federal deficit.",
@@ -2662,7 +3068,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 181
     },
     {
       "bill_number": "H.Con.Res. 14",
@@ -2675,7 +3083,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "neutral",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 191
     },
     {
       "bill_number": "To provide tax relief for the middle class.",
@@ -2688,7 +3098,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 190
     },
     {
       "bill_number": "To strike section 2001(b)(4) relating to reconciliation instructions to the Committee on Energy and Commerce of the House of Representatives to cut $880,000,000,000 from Medicaid.",
@@ -2701,7 +3113,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 189
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to access to health care, which may include legislation preventing reductions in funding for Medicaid that could lead to benefit cuts, coverage loss, or slashed provide payments.",
@@ -2714,7 +3128,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 188
     },
     {
       "bill_number": "To preserve access to Social Security's phone service.",
@@ -2727,7 +3143,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 187
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to preventing a reduction in Medicaid funding that could lead to rural hospital closures, cost increases for individuals with other kinds of insurance, or higher rates of uncompensated care.",
@@ -2740,7 +3158,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 186
     },
     {
       "bill_number": "To create a point of order against legislation that would increase drug costs for seniors and people with disabilities on Medicare.",
@@ -2753,7 +3173,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 185
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to reversing cuts to the Social Security Administration, which may include cuts ordered by the Department of Government Efficiency or any other cuts to seniors' services.",
@@ -2766,7 +3188,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 180
     },
     {
       "bill_number": "To modify the debt limit instruction for the House of Representatives and the Senate.",
@@ -2779,7 +3203,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 179
     },
     {
       "bill_number": "To prevent any disruption in security assistance to Ukraine.",
@@ -2792,7 +3218,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 178
     },
     {
       "bill_number": "Reiterating the importance of the Federal Emergency Management Agency and its continued role in providing nonpartisan and long-term disaster relief to disaster survivors.",
@@ -2805,7 +3233,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 177
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to preventing Trump's tariffs from increasing the cost of groceries and everyday goods for families.",
@@ -2818,7 +3248,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 176
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to prohibiting attacks on Federal employees by protecting legally binding collective bargaining agreements and the right to organize.",
@@ -2831,7 +3263,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 175
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to strengthening protections for members of the Armed Forces by prohibiting the use of any commercial messaging application to transmit information revealing the timing, sequencing, or weapons to be used during impending United States military operations in foreign countries that may endanger the lives of members of the Armed Forces.",
@@ -2844,7 +3278,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 174
     },
     {
       "bill_number": "To strike the provision relating to instructions to the Committee on Agriculture.",
@@ -2857,7 +3293,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 173
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to preventing reduction in enrollment or benefits for individuals enrolled in Medicaid, including seniors, children, families, individuals with disabilities, veterans, and military families.",
@@ -2870,7 +3308,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 172
     },
     {
       "bill_number": "To create a point of order against legislation that would create more debt over a 30-year period than has accumulated over the past 249 years.",
@@ -2883,7 +3323,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 171
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to protecting Medicare and Medicaid.",
@@ -2896,7 +3338,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": null,
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 170
     },
     {
       "bill_number": "H.J.Res. 75",
@@ -2909,7 +3353,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 224
     },
     {
       "bill_number": "H.J.Res. 42",
@@ -2922,7 +3368,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 223
     },
     {
       "bill_number": "S.J.Res. 31",
@@ -2935,7 +3383,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 227
     },
     {
       "bill_number": "S.J.Res. 49",
@@ -2948,7 +3398,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 226
     },
     {
       "bill_number": "S.J.Res. 49",
@@ -2961,7 +3413,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 225
     },
     {
       "bill_number": "H.J.Res. 24",
@@ -2974,7 +3428,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 162
     },
     {
       "bill_number": "H.Con.Res. 14",
@@ -2987,7 +3443,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "neutral",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 169
     },
     {
       "bill_number": "S.J.Res. 26",
@@ -3000,7 +3458,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 166
     },
     {
       "bill_number": "S.J.Res. 33",
@@ -3013,7 +3473,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 165
     },
     {
       "bill_number": "H.J.Res. 42",
@@ -3026,7 +3488,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 222
     },
     {
       "bill_number": "H.J.Res. 24",
@@ -3039,7 +3503,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 161
     },
     {
       "bill_number": "S.J.Res. 37",
@@ -3052,7 +3518,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 160
     },
     {
       "bill_number": "H.J.Res. 20",
@@ -3065,7 +3533,9 @@
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "weakens",
-      "congress": 119
+      "congress": 119,
+      "session": 1,
+      "vote_number": 207
     }
   ],
   "policy_areas": [
