@@ -47,7 +47,7 @@
             <section class="about-section">
                 <h2>Help Us Improve</h2>
                 <p>ClearVoting is a work in progress and your feedback makes it better. Tell us what's working, what's confusing, or what you wish this tool could do.</p>
-                <button class="btn btn-primary about-cta" onclick="document.getElementById('feedback-open').click()">Share Your Feedback</button>
+                <button class="btn btn-primary about-cta" id="about-feedback-cta">Share Your Feedback</button>
             </section>
         </article>
     </main>
@@ -76,13 +76,6 @@
         </form>
     </div>
 
-    <script>
-        document.querySelector('.hamburger').addEventListener('click', () => {
-            const nav = document.querySelector('nav');
-            nav.classList.toggle('open');
-            document.querySelector('.hamburger').setAttribute('aria-expanded', nav.classList.contains('open'));
-        });
-    </script>
-    <script src="/static/js/feedback.js?v=2"></script>
+    <script src="/static/js/feedback.js?v=3"></script>
 </body>
 </html>
