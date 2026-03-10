@@ -2,19 +2,9 @@ import json
 import logging
 from dataclasses import dataclass, field
 import anthropic
+from app.services.grader_common import strip_code_fences
 
 logger = logging.getLogger(__name__)
-
-
-def _strip_code_fences(text: str) -> str:
-    """Remove markdown code fences (```json ... ```) from LLM output."""
-    text = text.strip()
-    if text.startswith("```"):
-        first_newline = text.index("\n") if "\n" in text else len(text)
-        text = text[first_newline + 1:]
-    if text.endswith("```"):
-        text = text[:-3]
-    return text.strip()
 
 
 @dataclass
@@ -103,7 +93,7 @@ Compare the narrative against the data sections. Are there contradictions? Retur
 
         try:
             raw_text = await self._call_llm(self._build_system_prompt(), user_prompt)
-            raw_text = _strip_code_fences(raw_text)
+            raw_text = strip_code_fences(raw_text)
             result = json.loads(raw_text)
 
             return CoherenceResult(
