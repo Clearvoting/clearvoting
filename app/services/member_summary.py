@@ -28,9 +28,48 @@ STRICT RULES:
 7. Include specific numbers (vote counts, percentages)
 8. The narrative MUST be 3-5 sentences. Facts only. No opinions. No framing.
 9. top_areas should list 2-5 policy area names the member voted on most, ordered by total votes
+10. Your narrative MUST reflect the dominant direction shown in DATA CONSTRAINTS. Do NOT highlight exceptions as if they represent the overall pattern.
 
 Output valid JSON only: {"narrative": "...", "top_areas": ["...", "..."]}
 No markdown, no commentary."""
+
+
+def _compute_data_brief(top_areas: list[dict]) -> str:
+    """Compute a plain-text data brief showing direction patterns for each area.
+
+    Classification thresholds:
+    - >=75% one direction = "mostly X"
+    - 55-74% = "leans X"
+    - else "mixed"
+    """
+    if not top_areas:
+        return ""
+
+    lines = ["DATA CONSTRAINTS (your narrative MUST align with these patterns):"]
+    for area in top_areas:
+        strengthen = area.get("strengthen", 0)
+        weaken = area.get("weaken", 0)
+        directional = strengthen + weaken
+        if directional == 0:
+            classification = "no clear direction"
+        else:
+            s_pct = strengthen / directional
+            w_pct = weaken / directional
+            if s_pct >= 0.75:
+                classification = "mostly strengthening"
+            elif s_pct >= 0.55:
+                classification = "leans strengthening"
+            elif w_pct >= 0.75:
+                classification = "mostly weakening"
+            elif w_pct >= 0.55:
+                classification = "leans weakening"
+            else:
+                classification = "mixed"
+        lines.append(
+            f"- {area['name']}: {strengthen} strengthening, "
+            f"{weaken} weakening — {classification}"
+        )
+    return "\n".join(lines)
 
 
 class MemberSummaryService:
@@ -78,6 +117,9 @@ class MemberSummaryService:
         supported_block = "\n".join(f"  - {s}" for s in top_supported[:8]) if top_supported else "  (none)"
         opposed_block = "\n".join(f"  - {s}" for s in top_opposed[:6]) if top_opposed else "  (none)"
 
+        data_brief = _compute_data_brief(top_areas)
+        data_brief_block = f"\n\n{data_brief}" if data_brief else ""
+
         prompt = f"""Summarize this member's voting record.
 
 Member: {member_name}
@@ -92,7 +134,7 @@ Vote Stats:
   Participation rate: {stats['participation_rate']}%
 
 Top Policy Areas (by vote count):
-{areas_block}
+{areas_block}{data_brief_block}
 
 Bills they voted YES on (sample):
 {supported_block}
