@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-03-08T16:04:03.946724+00:00",
+  "last_sync": "2026-03-10T07:13:27.541050+00:00",
   "states_synced": [
     "NY",
     "FL",
@@ -7,8 +7,26 @@
     "TX"
   ],
   "members_count": 80,
-  "bills_count": 177,
-  "senate_votes_count": 500,
-  "house_votes_count": 234,
-  "member_votes_count": 80
+  "bills_count": 636,
+  "senate_votes_count": 2159,
+  "house_votes_count": 1023,
+  "member_votes_count": 80,
+  "member_summary_count": 80,
+  "summary_stats": {
+    "total": 459,
+    "passed": 449,
+    "failed": 10,
+    "needs_review": [
+      "118-hr-2670",
+      "118-hres-241",
+      "118-hres-957",
+      "118-s-4554",
+      "119-hjres-117",
+      "119-hjres-72",
+      "119-hr-1834",
+      "119-hr-5214",
+      "119-hr-6703",
+      "119-hres-888"
+    ]
+  }
 }

@@ -1,0 +1,34 @@
+{
+  "learnings": [
+    "Excellent summary. Clear, accessible language that accurately describes this as a technical correction to the official enrollment of H.J. Res. 100. Appropriate neutral direction for a procedural fix. All criteria met effectively.",
+    "Excellent summary that meets all quality standards. Clear, factual language with appropriate reading level. Good inclusion of specific dollar amounts and timeframe. All provisions accurately reflect the bill's content without bias or jargon.",
+    "Excellent summary that clearly explains the bill's purpose and provisions in simple language. Good use of plain English alternatives like 'legal deals' for deferred prosecution agreements and inclusion of specific percentage changes (60% to 75%). All provisions are accurately captured and appropriately simplified for general readers."
+  ],
+  "batch_history": [
+    {
+      "timestamp": "2026-03-10T06:53:43.376341+00:00",
+      "total": 459,
+      "passed": 449,
+      "failed": 10,
+      "grade_distribution": {
+        "A": 422,
+        "B": 27,
+        "C": 3,
+        "D": 1,
+        "F": 6
+      },
+      "needs_review_ids": [
+        "118-hr-2670",
+        "118-hres-241",
+        "118-hres-957",
+        "118-s-4554",
+        "119-hjres-117",
+        "119-hjres-72",
+        "119-hr-1834",
+        "119-hr-5214",
+        "119-hr-6703",
+        "119-hres-888"
+      ]
+    }
+  ]
+}

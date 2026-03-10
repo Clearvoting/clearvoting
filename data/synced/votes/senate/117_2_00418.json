@@ -1,0 +1,818 @@
+{
+  "congress": 117,
+  "session": 2,
+  "vote_number": 418,
+  "vote_date": "December 22, 2022,  01:08 PM",
+  "question": "On the Amendment S.Amdt. 6597 to S.Amdt. 6552 to H.R. 2617 (Performance Enhancement Reform Act)",
+  "document": "To improve the bill.",
+  "result": "Amendment Agreed to (88-8, 3/5 majority required)",
+  "title": "Klobuchar Amendment No. 6597",
+  "counts": {
+    "yeas": 88,
+    "nays": 8,
+    "present": 0,
+    "absent": 4
+  },
+  "members": [
+    {
+      "first_name": "Tammy",
+      "last_name": "Baldwin",
+      "party": "D",
+      "state": "WI",
+      "vote": "Yea",
+      "lis_member_id": "S354"
+    },
+    {
+      "first_name": "John",
+      "last_name": "Barrasso",
+      "party": "R",
+      "state": "WY",
+      "vote": "Not Voting",
+      "lis_member_id": "S317"
+    },
+    {
+      "first_name": "Michael",
+      "last_name": "Bennet",
+      "party": "D",
+      "state": "CO",
+      "vote": "Yea",
+      "lis_member_id": "S330"
+    },
+    {
+      "first_name": "Marsha",
+      "last_name": "Blackburn",
+      "party": "R",
+      "state": "TN",
+      "vote": "Not Voting",
+      "lis_member_id": "S396"
+    },
+    {
+      "first_name": "Richard",
+      "last_name": "Blumenthal",
+      "party": "D",
+      "state": "CT",
+      "vote": "Yea",
+      "lis_member_id": "S341"
+    },
+    {
+      "first_name": "Roy",
+      "last_name": "Blunt",
+      "party": "R",
+      "state": "MO",
+      "vote": "Yea",
+      "lis_member_id": "S342"
+    },
+    {
+      "first_name": "Cory",
+      "last_name": "Booker",
+      "party": "D",
+      "state": "NJ",
+      "vote": "Yea",
+      "lis_member_id": "S370"
+    },
+    {
+      "first_name": "John",
+      "last_name": "Boozman",
+      "party": "R",
+      "state": "AR",
+      "vote": "Yea",
+      "lis_member_id": "S343"
+    },
+    {
+      "first_name": "Mike",
+      "last_name": "Braun",
+      "party": "R",
+      "state": "IN",
+      "vote": "Yea",
+      "lis_member_id": "S397"
+    },
+    {
+      "first_name": "Sherrod ",
+      "last_name": "Brown",
+      "party": "D",
+      "state": "OH",
+      "vote": "Yea",
+      "lis_member_id": "S307"
+    },
+    {
+      "first_name": "Richard",
+      "last_name": "Burr",
+      "party": "R",
+      "state": "NC",
+      "vote": "Not Voting",
+      "lis_member_id": "S300"
+    },
+    {
+      "first_name": "Maria",
+      "last_name": "Cantwell",
+      "party": "D",
+      "state": "WA",
+      "vote": "Yea",
+      "lis_member_id": "S275"
+    },
+    {
+      "first_name": "Shelley",
+      "last_name": "Capito",
+      "party": "R",
+      "state": "WV",
+      "vote": "Yea",
+      "lis_member_id": "S372"
+    },
+    {
+      "first_name": "Ben",
+      "last_name": "Cardin",
+      "party": "D",
+      "state": "MD",
+      "vote": "Yea",
+      "lis_member_id": "S308"
+    },
+    {
+      "first_name": "Thomas",
+      "last_name": "Carper",
+      "party": "D",
+      "state": "DE",
+      "vote": "Yea",
+      "lis_member_id": "S277"
+    },
+    {
+      "first_name": "Bob",
+      "last_name": "Casey",
+      "party": "D",
+      "state": "PA",
+      "vote": "Yea",
+      "lis_member_id": "S309"
+    },
+    {
+      "first_name": "Bill",
+      "last_name": "Cassidy",
+      "party": "R",
+      "state": "LA",
+      "vote": "Yea",
+      "lis_member_id": "S373"
+    },
+    {
+      "first_name": "Susan",
+      "last_name": "Collins",
+      "party": "R",
+      "state": "ME",
+      "vote": "Yea",
+      "lis_member_id": "S252"
+    },
+    {
+      "first_name": "Christopher",
+      "last_name": "Coons",
+      "party": "D",
+      "state": "DE",
+      "vote": "Yea",
+      "lis_member_id": "S337"
+    },
+    {
+      "first_name": "John",
+      "last_name": "Cornyn",
+      "party": "R",
+      "state": "TX",
+      "vote": "Yea",
+      "lis_member_id": "S287"
+    },
+    {
+      "first_name": "Catherine",
+      "last_name": "Cortez Masto",
+      "party": "D",
+      "state": "NV",
+      "vote": "Yea",
+      "lis_member_id": "S385"
+    },
+    {
+      "first_name": "Tom",
+      "last_name": "Cotton",
+      "party": "R",
+      "state": "AR",
+      "vote": "Yea",
+      "lis_member_id": "S374"
+    },
+    {
+      "first_name": "Kevin",
+      "last_name": "Cramer",
+      "party": "R",
+      "state": "ND",
+      "vote": "Not Voting",
+      "lis_member_id": "S398"
+    },
+    {
+      "first_name": "Mike",
+      "last_name": "Crapo",
+      "party": "R",
+      "state": "ID",
+      "vote": "Yea",
+      "lis_member_id": "S266"
+    },
+    {
+      "first_name": "Ted",
+      "last_name": "Cruz",
+      "party": "R",
+      "state": "TX",
+      "vote": "Nay",
+      "lis_member_id": "S355"
+    },
+    {
+      "first_name": "Steve",
+      "last_name": "Daines",
+      "party": "R",
+      "state": "MT",
+      "vote": "Yea",
+      "lis_member_id": "S375"
+    },
+    {
+      "first_name": "Tammy",
+      "last_name": "Duckworth",
+      "party": "D",
+      "state": "IL",
+      "vote": "Yea",
+      "lis_member_id": "S386"
+    },
+    {
+      "first_name": "Richard",
+      "last_name": "Durbin",
+      "party": "D",
+      "state": "IL",
+      "vote": "Yea",
+      "lis_member_id": "S253"
+    },
+    {
+      "first_name": "Joni",
+      "last_name": "Ernst",
+      "party": "R",
+      "state": "IA",
+      "vote": "Yea",
+      "lis_member_id": "S376"
+    },
+    {
+      "first_name": "Dianne",
+      "last_name": "Feinstein",
+      "party": "D",
+      "state": "CA",
+      "vote": "Yea",
+      "lis_member_id": "S221"
+    },
+    {
+      "first_name": "Deb",
+      "last_name": "Fischer",
+      "party": "R",
+      "state": "NE",
+      "vote": "Yea",
+      "lis_member_id": "S357"
+    },
+    {
+      "first_name": "Kirsten",
+      "last_name": "Gillibrand",
+      "party": "D",
+      "state": "NY",
+      "vote": "Yea",
+      "lis_member_id": "S331"
+    },
+    {
+      "first_name": "Lindsey",
+      "last_name": "Graham",
+      "party": "R",
+      "state": "SC",
+      "vote": "Yea",
+      "lis_member_id": "S293"
+    },
+    {
+      "first_name": "Charles",
+      "last_name": "Grassley",
+      "party": "R",
+      "state": "IA",
+      "vote": "Yea",
+      "lis_member_id": "S153"
+    },
+    {
+      "first_name": "Bill",
+      "last_name": "Hagerty",
+      "party": "R",
+      "state": "TN",
+      "vote": "Nay",
+      "lis_member_id": "S407"
+    },
+    {
+      "first_name": "Maggie",
+      "last_name": "Hassan",
+      "party": "D",
+      "state": "NH",
+      "vote": "Yea",
+      "lis_member_id": "S388"
+    },
+    {
+      "first_name": "Josh",
+      "last_name": "Hawley",
+      "party": "R",
+      "state": "MO",
+      "vote": "Yea",
+      "lis_member_id": "S399"
+    },
+    {
+      "first_name": "Martin",
+      "last_name": "Heinrich",
+      "party": "D",
+      "state": "NM",
+      "vote": "Yea",
+      "lis_member_id": "S359"
+    },
+    {
+      "first_name": "John",
+      "last_name": "Hickenlooper",
+      "party": "D",
+      "state": "CO",
+      "vote": "Yea",
+      "lis_member_id": "S408"
+    },
+    {
+      "first_name": "Mazie",
+      "last_name": "Hirono",
+      "party": "D",
+      "state": "HI",
+      "vote": "Yea",
+      "lis_member_id": "S361"
+    },
+    {
+      "first_name": "John",
+      "last_name": "Hoeven",
+      "party": "R",
+      "state": "ND",
+      "vote": "Yea",
+      "lis_member_id": "S344"
+    },
+    {
+      "first_name": "Cindy",
+      "last_name": "Hyde-Smith",
+      "party": "R",
+      "state": "MS",
+      "vote": "Yea",
+      "lis_member_id": "S395"
+    },
+    {
+      "first_name": "Jim",
+      "last_name": "Inhofe",
+      "party": "R",
+      "state": "OK",
+      "vote": "Yea",
+      "lis_member_id": "S236"
+    },
+    {
+      "first_name": "Ron",
+      "last_name": "Johnson",
+      "party": "R",
+      "state": "WI",
+      "vote": "Nay",
+      "lis_member_id": "S345"
+    },
+    {
+      "first_name": "Timothy",
+      "last_name": "Kaine",
+      "party": "D",
+      "state": "VA",
+      "vote": "Yea",
+      "lis_member_id": "S362"
+    },
+    {
+      "first_name": "Mark",
+      "last_name": "Kelly",
+      "party": "D",
+      "state": "AZ",
+      "vote": "Yea",
+      "lis_member_id": "S406"
+    },
+    {
+      "first_name": "John",
+      "last_name": "Kennedy",
+      "party": "R",
+      "state": "LA",
+      "vote": "Yea",
+      "lis_member_id": "S389"
+    },
+    {
+      "first_name": "Angus",
+      "last_name": "King",
+      "party": "I",
+      "state": "ME",
+      "vote": "Yea",
+      "lis_member_id": "S363"
+    },
+    {
+      "first_name": "Amy",
+      "last_name": "Klobuchar",
+      "party": "D",
+      "state": "MN",
+      "vote": "Yea",
+      "lis_member_id": "S311"
+    },
+    {
+      "first_name": "James",
+      "last_name": "Lankford",
+      "party": "R",
+      "state": "OK",
+      "vote": "Yea",
+      "lis_member_id": "S378"
+    },
+    {
+      "first_name": "Patrick",
+      "last_name": "Leahy",
+      "party": "D",
+      "state": "VT",
+      "vote": "Yea",
+      "lis_member_id": "S057"
+    },
+    {
+      "first_name": "Mike",
+      "last_name": "Lee",
+      "party": "R",
+      "state": "UT",
+      "vote": "Yea",
+      "lis_member_id": "S346"
+    },
+    {
+      "first_name": "Ben",
+      "last_name": "Lujan",
+      "party": "D",
+      "state": "NM",
+      "vote": "Yea",
+      "lis_member_id": "S409"
+    },
+    {
+      "first_name": "Cynthia",
+      "last_name": "Lummis",
+      "party": "R",
+      "state": "WY",
+      "vote": "Yea",
+      "lis_member_id": "S410"
+    },
+    {
+      "first_name": "Joseph",
+      "last_name": "Manchin",
+      "party": "D",
+      "state": "WV",
+      "vote": "Yea",
+      "lis_member_id": "S338"
+    },
+    {
+      "first_name": "Edward",
+      "last_name": "Markey",
+      "party": "D",
+      "state": "MA",
+      "vote": "Yea",
+      "lis_member_id": "S369"
+    },
+    {
+      "first_name": "Roger",
+      "last_name": "Marshall",
+      "party": "R",
+      "state": "KS",
+      "vote": "Yea",
+      "lis_member_id": "S411"
+    },
+    {
+      "first_name": "Mitch",
+      "last_name": "McConnell",
+      "party": "R",
+      "state": "KY",
+      "vote": "Nay",
+      "lis_member_id": "S174"
+    },
+    {
+      "first_name": "Robert",
+      "last_name": "Menendez",
+      "party": "D",
+      "state": "NJ",
+      "vote": "Yea",
+      "lis_member_id": "S306"
+    },
+    {
+      "first_name": "Jeff",
+      "last_name": "Merkley",
+      "party": "D",
+      "state": "OR",
+      "vote": "Yea",
+      "lis_member_id": "S322"
+    },
+    {
+      "first_name": "Jerry",
+      "last_name": "Moran",
+      "party": "R",
+      "state": "KS",
+      "vote": "Yea",
+      "lis_member_id": "S347"
+    },
+    {
+      "first_name": "Lisa",
+      "last_name": "Murkowski",
+      "party": "R",
+      "state": "AK",
+      "vote": "Yea",
+      "lis_member_id": "S288"
+    },
+    {
+      "first_name": "Christopher",
+      "last_name": "Murphy",
+      "party": "D",
+      "state": "CT",
+      "vote": "Yea",
+      "lis_member_id": "S364"
+    },
+    {
+      "first_name": "Patty",
+      "last_name": "Murray",
+      "party": "D",
+      "state": "WA",
+      "vote": "Yea",
+      "lis_member_id": "S229"
+    },
+    {
+      "first_name": "Jon",
+      "last_name": "Ossoff",
+      "party": "D",
+      "state": "GA",
+      "vote": "Yea",
+      "lis_member_id": "S414"
+    },
+    {
+      "first_name": "Alex",
+      "last_name": "Padilla",
+      "party": "D",
+      "state": "CA",
+      "vote": "Yea",
+      "lis_member_id": "S413"
+    },
+    {
+      "first_name": "Rand",
+      "last_name": "Paul",
+      "party": "R",
+      "state": "KY",
+      "vote": "Nay",
+      "lis_member_id": "S348"
+    },
+    {
+      "first_name": "Gary",
+      "last_name": "Peters",
+      "party": "D",
+      "state": "MI",
+      "vote": "Yea",
+      "lis_member_id": "S380"
+    },
+    {
+      "first_name": "Rob",
+      "last_name": "Portman",
+      "party": "R",
+      "state": "OH",
+      "vote": "Yea",
+      "lis_member_id": "S349"
+    },
+    {
+      "first_name": "John",
+      "last_name": "Reed",
+      "party": "D",
+      "state": "RI",
+      "vote": "Yea",
+      "lis_member_id": "S259"
+    },
+    {
+      "first_name": "James ",
+      "last_name": "Risch",
+      "party": "R",
+      "state": "ID",
+      "vote": "Yea",
+      "lis_member_id": "S323"
+    },
+    {
+      "first_name": "Mitt",
+      "last_name": "Romney",
+      "party": "R",
+      "state": "UT",
+      "vote": "Yea",
+      "lis_member_id": "S401"
+    },
+    {
+      "first_name": "Jacklyn",
+      "last_name": "Rosen",
+      "party": "D",
+      "state": "NV",
+      "vote": "Yea",
+      "lis_member_id": "S402"
+    },
+    {
+      "first_name": "Mike",
+      "last_name": "Rounds",
+      "party": "R",
+      "state": "SD",
+      "vote": "Yea",
+      "lis_member_id": "S381"
+    },
+    {
+      "first_name": "Marco",
+      "last_name": "Rubio",
+      "party": "R",
+      "state": "FL",
+      "vote": "Yea",
+      "lis_member_id": "S350"
+    },
+    {
+      "first_name": "Bernard",
+      "last_name": "Sanders",
+      "party": "I",
+      "state": "VT",
+      "vote": "Yea",
+      "lis_member_id": "S313"
+    },
+    {
+      "first_name": "Ben",
+      "last_name": "Sasse",
+      "party": "R",
+      "state": "NE",
+      "vote": "Yea",
+      "lis_member_id": "S382"
+    },
+    {
+      "first_name": "Brian",
+      "last_name": "Schatz",
+      "party": "D",
+      "state": "HI",
+      "vote": "Yea",
+      "lis_member_id": "S353"
+    },
+    {
+      "first_name": "Charles",
+      "last_name": "Schumer",
+      "party": "D",
+      "state": "NY",
+      "vote": "Yea",
+      "lis_member_id": "S270"
+    },
+    {
+      "first_name": "Rick",
+      "last_name": "Scott",
+      "party": "R",
+      "state": "FL",
+      "vote": "Nay",
+      "lis_member_id": "S404"
+    },
+    {
+      "first_name": "Tim",
+      "last_name": "Scott",
+      "party": "R",
+      "state": "SC",
+      "vote": "Yea",
+      "lis_member_id": "S365"
+    },
+    {
+      "first_name": "Jeanne",
+      "last_name": "Shaheen",
+      "party": "D",
+      "state": "NH",
+      "vote": "Yea",
+      "lis_member_id": "S324"
+    },
+    {
+      "first_name": "Richard",
+      "last_name": "Shelby",
+      "party": "R",
+      "state": "AL",
+      "vote": "Nay",
+      "lis_member_id": "S184"
+    },
+    {
+      "first_name": "Kyrsten",
+      "last_name": "Sinema",
+      "party": "D",
+      "state": "AZ",
+      "vote": "Yea",
+      "lis_member_id": "S403"
+    },
+    {
+      "first_name": "Tina",
+      "last_name": "Smith",
+      "party": "D",
+      "state": "MN",
+      "vote": "Yea",
+      "lis_member_id": "S394"
+    },
+    {
+      "first_name": "Debbie",
+      "last_name": "Stabenow",
+      "party": "D",
+      "state": "MI",
+      "vote": "Yea",
+      "lis_member_id": "S284"
+    },
+    {
+      "first_name": "Dan",
+      "last_name": "Sullivan",
+      "party": "R",
+      "state": "AK",
+      "vote": "Nay",
+      "lis_member_id": "S383"
+    },
+    {
+      "first_name": "Jon",
+      "last_name": "Tester",
+      "party": "D",
+      "state": "MT",
+      "vote": "Yea",
+      "lis_member_id": "S314"
+    },
+    {
+      "first_name": "John",
+      "last_name": "Thune",
+      "party": "R",
+      "state": "SD",
+      "vote": "Yea",
+      "lis_member_id": "S303"
+    },
+    {
+      "first_name": "Thomas",
+      "last_name": "Tillis",
+      "party": "R",
+      "state": "NC",
+      "vote": "Yea",
+      "lis_member_id": "S384"
+    },
+    {
+      "first_name": "Patrick",
+      "last_name": "Toomey",
+      "party": "R",
+      "state": "PA",
+      "vote": "Yea",
+      "lis_member_id": "S351"
+    },
+    {
+      "first_name": "Tommy",
+      "last_name": "Tuberville",
+      "party": "R",
+      "state": "AL",
+      "vote": "Yea",
+      "lis_member_id": "S412"
+    },
+    {
+      "first_name": "Chris",
+      "last_name": "Van Hollen",
+      "party": "D",
+      "state": "MD",
+      "vote": "Yea",
+      "lis_member_id": "S390"
+    },
+    {
+      "first_name": "Mark",
+      "last_name": "Warner",
+      "party": "D",
+      "state": "VA",
+      "vote": "Yea",
+      "lis_member_id": "S327"
+    },
+    {
+      "first_name": "Raphael",
+      "last_name": "Warnock",
+      "party": "D",
+      "state": "GA",
+      "vote": "Yea",
+      "lis_member_id": "S415"
+    },
+    {
+      "first_name": "Elizabeth",
+      "last_name": "Warren",
+      "party": "D",
+      "state": "MA",
+      "vote": "Yea",
+      "lis_member_id": "S366"
+    },
+    {
+      "first_name": "Sheldon",
+      "last_name": "Whitehouse",
+      "party": "D",
+      "state": "RI",
+      "vote": "Yea",
+      "lis_member_id": "S316"
+    },
+    {
+      "first_name": "Roger",
+      "last_name": "Wicker",
+      "party": "R",
+      "state": "MS",
+      "vote": "Yea",
+      "lis_member_id": "S318"
+    },
+    {
+      "first_name": "Ron",
+      "last_name": "Wyden",
+      "party": "D",
+      "state": "OR",
+      "vote": "Yea",
+      "lis_member_id": "S247"
+    },
+    {
+      "first_name": "Todd",
+      "last_name": "Young",
+      "party": "R",
+      "state": "IN",
+      "vote": "Yea",
+      "lis_member_id": "S391"
+    }
+  ]
+}

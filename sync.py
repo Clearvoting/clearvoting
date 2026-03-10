@@ -353,8 +353,9 @@ async def sync_bill_summaries(
             bill_id = key
             title = bill.get("title", "")
             summaries = bill.get("summaries", [])
-            official_summary = summaries[0].get("text", "") if summaries else ""
-            bill_text = bill.get("textVersions", [{}])[0].get("text", "") if bill.get("textVersions") else ""
+            official_summary = summaries[0].get("text", "") if isinstance(summaries, list) and summaries else ""
+            text_versions = bill.get("textVersions", [])
+            bill_text = text_versions[0].get("text", "") if isinstance(text_versions, list) and text_versions else ""
             policy_area = bill.get("policyArea", {}).get("name")
 
             print(f"    Grading: {title[:60]}...")

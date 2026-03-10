@@ -1,15 +1,2812 @@
 {
   "member_id": "F000483",
-  "congress": 119,
+  "congresses": [
+    119
+  ],
   "stats": {
-    "total_votes": 234,
-    "yea_count": 97,
-    "nay_count": 131,
+    "total_votes": 449,
+    "yea_count": 182,
+    "nay_count": 259,
     "not_voting_count": 4,
-    "participation_rate": 97.4
+    "participation_rate": 98.2
   },
   "scorecard": [],
   "votes": [
+    {
+      "bill_number": "H.Res. 1099",
+      "bill_id": "119-hres-1099",
+      "one_liner": "Declare Iran remains the largest state sponsor of terrorism",
+      "vote": "Yea",
+      "date": "2026-03-05",
+      "result": "Passed",
+      "policy_area": "International Affairs",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Con.Res. 38",
+      "bill_id": "119-hconres-38",
+      "one_liner": "Direct the President to remove US Armed Forces from fighting in Iran",
+      "vote": "Yea",
+      "date": "2026-03-05",
+      "result": "Failed",
+      "policy_area": "International Affairs",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 7744",
+      "bill_id": "119-hr-7744",
+      "one_liner": "Fund the Department of Homeland Security for 2026 and end the shutdown",
+      "vote": "Yea",
+      "date": "2026-03-05",
+      "result": "Failed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 7744",
+      "bill_id": "119-hr-7744",
+      "one_liner": "Fund the Department of Homeland Security for 2026 and end the shutdown",
+      "vote": "Nay",
+      "date": "2026-03-05",
+      "result": "Passed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1095",
+      "bill_id": "119-hres-1095",
+      "one_liner": "Fund Department of Homeland Security operations for 2026",
+      "vote": "Nay",
+      "date": "2026-03-04",
+      "result": "Passed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1095",
+      "bill_id": "119-hres-1095",
+      "one_liner": "Fund Department of Homeland Security operations for 2026",
+      "vote": "No",
+      "date": "2026-03-04",
+      "result": "Passed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "S. 723",
+      "bill_id": "119-s-723",
+      "one_liner": "Set deadlines for Bureau of Indian Affairs to process mortgages on tribal trust land",
+      "vote": "Yea",
+      "date": "2026-03-04",
+      "result": "Passed",
+      "policy_area": "Native Americans",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6472",
+      "bill_id": "119-hr-6472",
+      "one_liner": "Make colleges charge in-state tuition to students from US territories",
+      "vote": "Yea",
+      "date": "2026-03-04",
+      "result": "Passed",
+      "policy_area": "Education",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1100",
+      "bill_id": "119-hres-1100",
+      "one_liner": "Direct Ethics Committee to preserve and release sexual harassment investigation records",
+      "vote": "Yea",
+      "date": "2026-03-04",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4758",
+      "bill_id": "119-hr-4758",
+      "one_liner": "Cancel three Department of Energy programs for home energy upgrades and training",
+      "vote": "Yea",
+      "date": "2026-02-25",
+      "result": "Failed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4758",
+      "bill_id": "119-hr-4758",
+      "one_liner": "Cancel three Department of Energy programs for home energy upgrades and training",
+      "vote": "Nay",
+      "date": "2026-02-25",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6329",
+      "bill_id": "119-hr-6329",
+      "one_liner": "Require federal agencies to follow new rules when using information to make policies",
+      "vote": "Yea",
+      "date": "2026-02-24",
+      "result": "Passed",
+      "policy_area": "Government Operations and Politics",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "S. 2503",
+      "bill_id": "119-s-2503",
+      "one_liner": "Require more aircraft tracking equipment and expand government oversight of flight operations",
+      "vote": "Yea",
+      "date": "2026-02-24",
+      "result": "Failed",
+      "policy_area": "Transportation and Public Works",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1075",
+      "bill_id": "119-hres-1075",
+      "one_liner": "Block new energy efficiency rules and end tax credits for electric home appliances",
+      "vote": "Nay",
+      "date": "2026-02-24",
+      "result": "Passed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1075",
+      "bill_id": "119-hres-1075",
+      "one_liner": "Block new energy efficiency rules and end tax credits for electric home appliances",
+      "vote": "No",
+      "date": "2026-02-24",
+      "result": "Passed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4626",
+      "bill_id": "119-hr-4626",
+      "one_liner": "Change how the Energy Department sets energy rules for home appliances",
+      "vote": "Yea",
+      "date": "2026-02-24",
+      "result": "Failed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4626",
+      "bill_id": "119-hr-4626",
+      "one_liner": "Change how the Energy Department sets energy rules for home appliances",
+      "vote": "Nay",
+      "date": "2026-02-24",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2189",
+      "bill_id": "119-hr-2189",
+      "one_liner": "Remove TASERs and similar devices from federal gun regulations",
+      "vote": "Nay",
+      "date": "2026-02-12",
+      "result": "Passed",
+      "policy_area": "Crime and Law Enforcement",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1057",
+      "bill_id": "119-hres-1057",
+      "one_liner": "Allow House votes on veterans committee, gun law updates, undersea cables, and energy minerals bills",
+      "vote": "Nay",
+      "date": "2026-02-11",
+      "result": "Passed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1057",
+      "bill_id": "119-hres-1057",
+      "one_liner": "Allow House votes on veterans committee, gun law updates, undersea cables, and energy minerals bills",
+      "vote": "No",
+      "date": "2026-02-11",
+      "result": "Passed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3617",
+      "bill_id": "119-hr-3617",
+      "one_liner": "Require the Energy Department to secure supplies of energy materials America needs",
+      "vote": "Yea",
+      "date": "2026-02-11",
+      "result": "Failed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3617",
+      "bill_id": "119-hr-3617",
+      "one_liner": "Require the Energy Department to secure supplies of energy materials America needs",
+      "vote": "Nay",
+      "date": "2026-02-11",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.J.Res. 72",
+      "bill_id": "119-hjres-72",
+      "one_liner": "Relating to a national emergency by the President on February 1, 2025.",
+      "vote": "Yea",
+      "date": "2026-02-11",
+      "result": "Passed",
+      "policy_area": "Immigration",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 261",
+      "bill_id": "119-hr-261",
+      "one_liner": "Stop the Commerce Department from requiring extra permits for undersea internet cables in marine sanctuaries",
+      "vote": "Yea",
+      "date": "2026-02-11",
+      "result": "Failed",
+      "policy_area": "Public Lands and Natural Resources",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 261",
+      "bill_id": "119-hr-261",
+      "one_liner": "Stop the Commerce Department from requiring extra permits for undersea internet cables in marine sanctuaries",
+      "vote": "Nay",
+      "date": "2026-02-11",
+      "result": "Passed",
+      "policy_area": "Public Lands and Natural Resources",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "S. 1383",
+      "bill_id": "119-s-1383",
+      "one_liner": "Create a committee to improve VA accessibility for people with disabilities",
+      "vote": "Yea",
+      "date": "2026-02-11",
+      "result": "Failed",
+      "policy_area": "Government Operations and Politics",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "S. 1383",
+      "bill_id": "119-s-1383",
+      "one_liner": "Create a committee to improve VA accessibility for people with disabilities",
+      "vote": "Nay",
+      "date": "2026-02-11",
+      "result": "Passed",
+      "policy_area": "Government Operations and Politics",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1042",
+      "bill_id": "119-hres-1042",
+      "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+      "vote": "Nay",
+      "date": "2026-02-10",
+      "result": "Passed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1042",
+      "bill_id": "119-hres-1042",
+      "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+      "vote": "No",
+      "date": "2026-02-10",
+      "result": "Failed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6644",
+      "bill_id": "119-hr-6644",
+      "one_liner": "Expand federal housing programs and increase funding for affordable housing",
+      "vote": "Yea",
+      "date": "2026-02-09",
+      "result": "Passed",
+      "policy_area": "Housing and Community Development",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 1531",
+      "bill_id": "119-hr-1531",
+      "one_liner": "Exclude China from international finance groups if China threatens Taiwan",
+      "vote": "Yea",
+      "date": "2026-02-09",
+      "result": "Passed",
+      "policy_area": "International Affairs",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4090",
+      "bill_id": "119-hr-4090",
+      "one_liner": "Speed up mining approvals and expand mineral production on federal lands",
+      "vote": "Yea",
+      "date": "2026-02-04",
+      "result": "Failed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4090",
+      "bill_id": "119-hr-4090",
+      "one_liner": "Speed up mining approvals and expand mineral production on federal lands",
+      "vote": "Nay",
+      "date": "2026-02-04",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.J.Res. 142",
+      "bill_id": "119-hjres-142",
+      "one_liner": "Cancel a DC tax law and make DC keep federal tax cuts",
+      "vote": "Nay",
+      "date": "2026-02-04",
+      "result": "Passed",
+      "policy_area": "Government Operations and Politics",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1032",
+      "bill_id": "119-hres-1032",
+      "one_liner": "Set up House votes on spending, D.C. taxes, and mining rules",
+      "vote": "Nay",
+      "date": "2026-02-03",
+      "result": "Passed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1032",
+      "bill_id": "119-hres-1032",
+      "one_liner": "Set up House votes on spending, D.C. taxes, and mining rules",
+      "vote": "No",
+      "date": "2026-02-03",
+      "result": "Passed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 7148",
+      "bill_id": "119-hr-7148",
+      "one_liner": "Fund defense, health, education, transportation and housing agencies for 2026",
+      "vote": "Nay",
+      "date": "2026-02-03",
+      "result": "Passed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 980",
+      "bill_id": "119-hr-980",
+      "one_liner": "Let non-VA counselors help veterans with education and job planning on college campuses",
+      "vote": "Yea",
+      "date": "2026-02-02",
+      "result": "Passed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3123",
+      "bill_id": "119-hr-3123",
+      "one_liner": "Pay unpaid veteran pensions to family members after the veteran dies",
+      "vote": "Yea",
+      "date": "2026-02-02",
+      "result": "Passed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1014",
+      "bill_id": "119-hres-1014",
+      "one_liner": "Set rules for debating two government spending bills in the House",
+      "vote": "Nay",
+      "date": "2026-01-22",
+      "result": "Passed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1014",
+      "bill_id": "119-hres-1014",
+      "one_liner": "Set rules for debating two government spending bills in the House",
+      "vote": "Yea",
+      "date": "2026-01-22",
+      "result": "Agreed to",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1014",
+      "bill_id": "119-hres-1014",
+      "one_liner": "Set rules for debating two government spending bills in the House",
+      "vote": "No",
+      "date": "2026-01-22",
+      "result": "Passed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 7147",
+      "bill_id": "119-hr-7147",
+      "one_liner": "Fund the Department of Homeland Security for the year starting October 2025",
+      "vote": "Nay",
+      "date": "2026-01-22",
+      "result": "Passed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 7148",
+      "bill_id": "119-hr-7148",
+      "one_liner": "Fund defense, health, education, transportation and housing agencies for 2026",
+      "vote": "No",
+      "date": "2026-01-22",
+      "result": "Failed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 7148",
+      "bill_id": "119-hr-7148",
+      "one_liner": "Fund defense, health, education, transportation and housing agencies for 2026",
+      "vote": "No",
+      "date": "2026-01-22",
+      "result": "Failed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 7148",
+      "bill_id": "119-hr-7148",
+      "one_liner": "Fund defense, health, education, transportation and housing agencies for 2026",
+      "vote": "Nay",
+      "date": "2026-01-22",
+      "result": "Passed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6359",
+      "bill_id": "119-hr-6359",
+      "one_liner": "Require colleges to tell students about resources for pregnant students",
+      "vote": "Yea",
+      "date": "2026-01-22",
+      "result": "Failed",
+      "policy_area": "Education",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6359",
+      "bill_id": "119-hr-6359",
+      "one_liner": "Require colleges to tell students about resources for pregnant students",
+      "vote": "Nay",
+      "date": "2026-01-22",
+      "result": "Passed",
+      "policy_area": "Education",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Con.Res. 68",
+      "bill_id": "119-hconres-68",
+      "one_liner": "Remove US troops from Venezuela unless Congress declares war or approves military action",
+      "vote": "Yea",
+      "date": "2026-01-22",
+      "result": "Failed",
+      "policy_area": "International Affairs",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1009",
+      "bill_id": "119-hres-1009",
+      "one_liner": "Set House rules for voting on bills about pregnancy centers and Minnesota federal land",
+      "vote": "Nay",
+      "date": "2026-01-21",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 1009",
+      "bill_id": "119-hres-1009",
+      "one_liner": "Set House rules for voting on bills about pregnancy centers and Minnesota federal land",
+      "vote": "No",
+      "date": "2026-01-21",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6945",
+      "bill_id": "119-hr-6945",
+      "one_liner": "Let states use welfare money for pregnancy centers",
+      "vote": "Yea",
+      "date": "2026-01-21",
+      "result": "Failed",
+      "policy_area": "Families",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6945",
+      "bill_id": "119-hr-6945",
+      "one_liner": "Let states use welfare money for pregnancy centers",
+      "vote": "Nay",
+      "date": "2026-01-21",
+      "result": "Passed",
+      "policy_area": "Families",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.J.Res. 140",
+      "bill_id": "119-hjres-140",
+      "one_liner": "Cancel a land withdrawal order to allow mining and energy leasing in Minnesota",
+      "vote": "Nay",
+      "date": "2026-01-21",
+      "result": "Passed",
+      "policy_area": "Public Lands and Natural Resources",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 5763",
+      "bill_id": "119-hr-5763",
+      "one_liner": "Cut down payment requirements for Small Business Administration property loans by 5%",
+      "vote": "Yea",
+      "date": "2026-01-20",
+      "result": "Passed",
+      "policy_area": "Commerce",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 5764",
+      "bill_id": "119-hr-5764",
+      "one_liner": "Require Small Business Development Centers to help small businesses use artificial intelligence",
+      "vote": "Yea",
+      "date": "2026-01-20",
+      "result": "Passed",
+      "policy_area": "Commerce",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2988",
+      "bill_id": "119-hr-2988",
+      "one_liner": "Require retirement plan managers to focus on financial returns when investing worker savings",
+      "vote": "Yea",
+      "date": "2026-01-15",
+      "result": "Agreed to",
+      "policy_area": "Labor and Employment",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2988",
+      "bill_id": "119-hr-2988",
+      "one_liner": "Require retirement plan managers to focus on financial returns when investing worker savings",
+      "vote": "Yea",
+      "date": "2026-01-15",
+      "result": "Failed",
+      "policy_area": "Labor and Employment",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2988",
+      "bill_id": "119-hr-2988",
+      "one_liner": "Require retirement plan managers to focus on financial returns when investing worker savings",
+      "vote": "Nay",
+      "date": "2026-01-15",
+      "result": "Passed",
+      "policy_area": "Labor and Employment",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 992",
+      "bill_id": "119-hres-992",
+      "one_liner": "Set debate rules for a government spending bill covering October 2025 to September 2026",
+      "vote": "Nay",
+      "date": "2026-01-14",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 992",
+      "bill_id": "119-hres-992",
+      "one_liner": "Set debate rules for a government spending bill covering October 2025 to September 2026",
+      "vote": "Nay",
+      "date": "2026-01-14",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 7006",
+      "bill_id": "119-hr-7006",
+      "one_liner": "Fund Treasury, State Department, courts, and foreign aid programs for 2026",
+      "vote": "No",
+      "date": "2026-01-14",
+      "result": "Failed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 7006",
+      "bill_id": "119-hr-7006",
+      "one_liner": "Fund Treasury, State Department, courts, and foreign aid programs for 2026",
+      "vote": "No",
+      "date": "2026-01-14",
+      "result": "Failed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 7006",
+      "bill_id": "119-hr-7006",
+      "one_liner": "Fund Treasury, State Department, courts, and foreign aid programs for 2026",
+      "vote": "Nay",
+      "date": "2026-01-14",
+      "result": "Passed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 988",
+      "bill_id": "119-hres-988",
+      "one_liner": "Allow House votes on 5 bills about worker overtime pay and retirement investing",
+      "vote": "Nay",
+      "date": "2026-01-13",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 988",
+      "bill_id": "119-hres-988",
+      "one_liner": "Allow House votes on 5 bills about worker overtime pay and retirement investing",
+      "vote": "No",
+      "date": "2026-01-13",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2262",
+      "bill_id": "119-hr-2262",
+      "one_liner": "Change rules so voluntary training outside work hours doesn't count as paid time",
+      "vote": "Yea",
+      "date": "2026-01-13",
+      "result": "Failed",
+      "policy_area": "Labor and Employment",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2262",
+      "bill_id": "119-hr-2262",
+      "one_liner": "Change rules so voluntary training outside work hours doesn't count as paid time",
+      "vote": "Nay",
+      "date": "2026-01-13",
+      "result": "Failed",
+      "policy_area": "Labor and Employment",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2270",
+      "bill_id": "119-hr-2270",
+      "one_liner": "Exclude employer-paid childcare from overtime pay calculations",
+      "vote": "Yea",
+      "date": "2026-01-13",
+      "result": "Failed",
+      "policy_area": "Labor and Employment",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2312",
+      "bill_id": "119-hr-2312",
+      "one_liner": "Let employers pay more workers the lower tipped wage regardless of job duties",
+      "vote": "Yea",
+      "date": "2026-01-13",
+      "result": "Failed",
+      "policy_area": "Labor and Employment",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4593",
+      "bill_id": "119-hr-4593",
+      "one_liner": "Change the federal definition of showerhead for water efficiency rules",
+      "vote": "Yea",
+      "date": "2026-01-13",
+      "result": "Failed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4593",
+      "bill_id": "119-hr-4593",
+      "one_liner": "Change the federal definition of showerhead for water efficiency rules",
+      "vote": "Nay",
+      "date": "2026-01-13",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2683",
+      "bill_id": "119-hr-2683",
+      "one_liner": "Apply trade control rules to foreign remote access of U.S. technology",
+      "vote": "Yea",
+      "date": "2026-01-12",
+      "result": "Passed",
+      "policy_area": "Foreign Trade and International Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6500",
+      "bill_id": "119-hr-6500",
+      "one_liner": "Extend duty-free trade benefits for 32 African countries through December 2028",
+      "vote": "Yea",
+      "date": "2026-01-12",
+      "result": "Passed",
+      "policy_area": "Foreign Trade and International Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6504",
+      "bill_id": "119-hr-6504",
+      "one_liner": "Extend no-tariff treatment for clothes from Haiti through December 2028",
+      "vote": "Yea",
+      "date": "2026-01-12",
+      "result": "Passed",
+      "policy_area": "Foreign Trade and International Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 5184",
+      "bill_id": "119-hr-5184",
+      "one_liner": "Cancel energy efficiency rules for factory-built homes",
+      "vote": "Nay",
+      "date": "2026-01-09",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6938",
+      "bill_id": "119-hr-6938",
+      "one_liner": "Fund government departments for science, law enforcement, energy, and environment for the year starting October 2025",
+      "vote": "Yea",
+      "date": "2026-01-08",
+      "result": "Passed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6938",
+      "bill_id": "119-hr-6938",
+      "one_liner": "Fund government departments for science, law enforcement, energy, and environment for the year starting October 2025",
+      "vote": "Yea",
+      "date": "2026-01-08",
+      "result": "Passed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6938",
+      "bill_id": "119-hr-6938",
+      "one_liner": "Fund government departments for science, law enforcement, energy, and environment for the year starting October 2025",
+      "vote": "Yea",
+      "date": "2026-01-08",
+      "result": "Passed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 504",
+      "bill_id": "119-hr-504",
+      "one_liner": "Expand the Miccosukee Reserved Area to include Osceola Camp in Everglades National Park",
+      "vote": "Yea",
+      "date": "2026-01-08",
+      "result": "Failed",
+      "policy_area": "Native Americans",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 131",
+      "bill_id": "119-hr-131",
+      "one_liner": "Reduce payments for Arkansas Valley water pipeline construction in Colorado",
+      "vote": "Yea",
+      "date": "2026-01-08",
+      "result": "Failed",
+      "policy_area": "Water Resources Development",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 780",
+      "bill_id": "119-hres-780",
+      "one_liner": "Set rules for how Congress debates another bill",
+      "vote": "Yea",
+      "date": "2026-01-08",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 1834",
+      "bill_id": "119-hr-1834",
+      "one_liner": "Breaking the Gridlock Act",
+      "vote": "Yea",
+      "date": "2026-01-08",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 977",
+      "bill_id": "119-hres-977",
+      "one_liner": "Allow House debate on three bills about energy standards and government funding",
+      "vote": "Nay",
+      "date": "2026-01-07",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 977",
+      "bill_id": "119-hres-977",
+      "one_liner": "Allow House debate on three bills about energy standards and government funding",
+      "vote": "No",
+      "date": "2026-01-07",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 780",
+      "bill_id": "119-hres-780",
+      "one_liner": "Set rules for how Congress debates another bill",
+      "vote": "Yea",
+      "date": "2026-01-07",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "",
+      "bill_id": null,
+      "one_liner": "",
+      "vote": "Present",
+      "date": "2026-01-06",
+      "result": "Passed",
+      "policy_area": "",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4776",
+      "bill_id": "119-hr-4776",
+      "one_liner": "Limit environmental review requirements for federal projects",
+      "vote": "No",
+      "date": "2025-12-18",
+      "result": "Failed",
+      "policy_area": "Environmental Protection",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4776",
+      "bill_id": "119-hr-4776",
+      "one_liner": "Limit environmental review requirements for federal projects",
+      "vote": "No",
+      "date": "2025-12-18",
+      "result": "Failed",
+      "policy_area": "Environmental Protection",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4776",
+      "bill_id": "119-hr-4776",
+      "one_liner": "Limit environmental review requirements for federal projects",
+      "vote": "No",
+      "date": "2025-12-18",
+      "result": "Failed",
+      "policy_area": "Environmental Protection",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4776",
+      "bill_id": "119-hr-4776",
+      "one_liner": "Limit environmental review requirements for federal projects",
+      "vote": "Yea",
+      "date": "2025-12-18",
+      "result": "Failed",
+      "policy_area": "Environmental Protection",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4776",
+      "bill_id": "119-hr-4776",
+      "one_liner": "Limit environmental review requirements for federal projects",
+      "vote": "Nay",
+      "date": "2025-12-18",
+      "result": "Passed",
+      "policy_area": "Environmental Protection",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 1366",
+      "bill_id": "119-hr-1366",
+      "one_liner": "Let mining companies use federal lands for waste disposal and create fund for old mine cleanup",
+      "vote": "Yea",
+      "date": "2025-12-18",
+      "result": "Failed",
+      "policy_area": "Environmental Protection",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 1366",
+      "bill_id": "119-hr-1366",
+      "one_liner": "Let mining companies use federal lands for waste disposal and create fund for old mine cleanup",
+      "vote": "Nay",
+      "date": "2025-12-18",
+      "result": "Passed",
+      "policy_area": "Environmental Protection",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 845",
+      "bill_id": "119-hr-845",
+      "one_liner": "Remove gray wolves from the endangered species list",
+      "vote": "Yea",
+      "date": "2025-12-18",
+      "result": "Failed",
+      "policy_area": "Environmental Protection",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 845",
+      "bill_id": "119-hr-845",
+      "one_liner": "Remove gray wolves from the endangered species list",
+      "vote": "Nay",
+      "date": "2025-12-18",
+      "result": "Passed",
+      "policy_area": "Environmental Protection",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 498",
+      "bill_id": "119-hr-498",
+      "one_liner": "Stop Medicaid from paying for treatments that change someone's gender for people under 18",
+      "vote": "Yea",
+      "date": "2025-12-18",
+      "result": "Failed",
+      "policy_area": "Health",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 498",
+      "bill_id": "119-hr-498",
+      "one_liner": "Stop Medicaid from paying for treatments that change someone's gender for people under 18",
+      "vote": "Nay",
+      "date": "2025-12-18",
+      "result": "Passed",
+      "policy_area": "Health",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 953",
+      "bill_id": "119-hres-953",
+      "one_liner": "Set House debate rules for four bills",
+      "vote": "Nay",
+      "date": "2025-12-17",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 953",
+      "bill_id": "119-hres-953",
+      "one_liner": "Set House debate rules for four bills",
+      "vote": "No",
+      "date": "2025-12-17",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Con.Res. 61",
+      "bill_id": "119-hconres-61",
+      "one_liner": "Remove US troops from fighting terrorist groups in the Western Hemisphere without Congress approval",
+      "vote": "Yea",
+      "date": "2025-12-17",
+      "result": "Failed",
+      "policy_area": "International Affairs",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Con.Res. 64",
+      "bill_id": "119-hconres-64",
+      "one_liner": "Call on the President to remove US troops from Venezuela unless Congress approved the mission",
+      "vote": "Yea",
+      "date": "2025-12-17",
+      "result": "Failed",
+      "policy_area": "International Affairs",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3616",
+      "bill_id": "119-hr-3616",
+      "one_liner": "Give FERC power to review other agencies' rules when electricity supply is low",
+      "vote": "Nay",
+      "date": "2025-12-17",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6703",
+      "bill_id": "119-hr-6703",
+      "one_liner": "Lower Health Care Premiums for All Americans Act",
+      "vote": "Yea",
+      "date": "2025-12-17",
+      "result": "Failed",
+      "policy_area": "Health",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6703",
+      "bill_id": "119-hr-6703",
+      "one_liner": "Lower Health Care Premiums for All Americans Act",
+      "vote": "Nay",
+      "date": "2025-12-17",
+      "result": "Passed",
+      "policy_area": "Health",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3492",
+      "bill_id": "119-hr-3492",
+      "one_liner": "Make it a federal crime to provide gender-affirming medical care to minors",
+      "vote": "Yea",
+      "date": "2025-12-17",
+      "result": "Failed",
+      "policy_area": "Crime and Law Enforcement",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3492",
+      "bill_id": "119-hr-3492",
+      "one_liner": "Make it a federal crime to provide gender-affirming medical care to minors",
+      "vote": "Nay",
+      "date": "2025-12-17",
+      "result": "Passed",
+      "policy_area": "Crime and Law Enforcement",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 951",
+      "bill_id": "119-hres-951",
+      "one_liner": "Allow the House to debate and vote on six bills about environment and energy rules",
+      "vote": "Nay",
+      "date": "2025-12-16",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 951",
+      "bill_id": "119-hres-951",
+      "one_liner": "Allow the House to debate and vote on six bills about environment and energy rules",
+      "vote": "Nay",
+      "date": "2025-12-16",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4371",
+      "bill_id": "119-hr-4371",
+      "one_liner": "Require background checks and secure placement rules for non-citizen children in government custody",
+      "vote": "Yea",
+      "date": "2025-12-16",
+      "result": "Failed",
+      "policy_area": "Crime and Law Enforcement",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4371",
+      "bill_id": "119-hr-4371",
+      "one_liner": "Require background checks and secure placement rules for non-citizen children in government custody",
+      "vote": "Nay",
+      "date": "2025-12-16",
+      "result": "Passed",
+      "policy_area": "Crime and Law Enforcement",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3632",
+      "bill_id": "119-hr-3632",
+      "one_liner": "Let federal energy regulators force power plants to stay open for up to 5 years",
+      "vote": "Yea",
+      "date": "2025-12-16",
+      "result": "Failed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3632",
+      "bill_id": "119-hr-3632",
+      "one_liner": "Let federal energy regulators force power plants to stay open for up to 5 years",
+      "vote": "Nay",
+      "date": "2025-12-16",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "S. 284",
+      "bill_id": "119-s-284",
+      "one_liner": "Extend the Congressional Award Program for youth through 2028",
+      "vote": "Yea",
+      "date": "2025-12-15",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3187",
+      "bill_id": "119-hr-3187",
+      "one_liner": "Transfer one acre of Forest Service land to Perry County, Arkansas",
+      "vote": "Yea",
+      "date": "2025-12-15",
+      "result": "Passed",
+      "policy_area": "Public Lands and Natural Resources",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3668",
+      "bill_id": "119-hr-3668",
+      "one_liner": "Speed up natural gas pipeline approvals by making one federal agency lead all environmental reviews",
+      "vote": "Yea",
+      "date": "2025-12-12",
+      "result": "Failed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3668",
+      "bill_id": "119-hr-3668",
+      "one_liner": "Speed up natural gas pipeline approvals by making one federal agency lead all environmental reviews",
+      "vote": "Nay",
+      "date": "2025-12-12",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 939",
+      "bill_id": "119-hres-939",
+      "one_liner": "Begin impeachment proceedings against President Trump",
+      "vote": "Nay",
+      "date": "2025-12-11",
+      "result": "Passed",
+      "policy_area": "Government Operations and Politics",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3628",
+      "bill_id": "119-hr-3628",
+      "one_liner": "Require state regulators to consider rules for 10-year electricity planning",
+      "vote": "Nay",
+      "date": "2025-12-11",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3638",
+      "bill_id": "119-hr-3638",
+      "one_liner": "Require the Energy Department to study electricity supply chains and report to Congress",
+      "vote": "Yea",
+      "date": "2025-12-11",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3383",
+      "bill_id": "119-hr-3383",
+      "one_liner": "Stop the SEC from limiting funds that invest in private investment funds",
+      "vote": "No",
+      "date": "2025-12-11",
+      "result": "Failed",
+      "policy_area": "Finance and Financial Sector",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3383",
+      "bill_id": "119-hr-3383",
+      "one_liner": "Stop the SEC from limiting funds that invest in private investment funds",
+      "vote": "Aye",
+      "date": "2025-12-11",
+      "result": "Failed",
+      "policy_area": "Finance and Financial Sector",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3383",
+      "bill_id": "119-hr-3383",
+      "one_liner": "Stop the SEC from limiting funds that invest in private investment funds",
+      "vote": "Aye",
+      "date": "2025-12-11",
+      "result": "Failed",
+      "policy_area": "Finance and Financial Sector",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3383",
+      "bill_id": "119-hr-3383",
+      "one_liner": "Stop the SEC from limiting funds that invest in private investment funds",
+      "vote": "No",
+      "date": "2025-12-11",
+      "result": "Passed",
+      "policy_area": "Finance and Financial Sector",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3898",
+      "bill_id": "119-hr-3898",
+      "one_liner": "Remove certain water areas from Clean Water Act rules",
+      "vote": "Yea",
+      "date": "2025-12-11",
+      "result": "Failed",
+      "policy_area": "Environmental Protection",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3898",
+      "bill_id": "119-hr-3898",
+      "one_liner": "Remove certain water areas from Clean Water Act rules",
+      "vote": "Nay",
+      "date": "2025-12-11",
+      "result": "Passed",
+      "policy_area": "Environmental Protection",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 432",
+      "bill_id": "119-hres-432",
+      "one_liner": "Cancel an executive order that limited federal employee union rights",
+      "vote": "Yea",
+      "date": "2025-12-11",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2550",
+      "bill_id": "119-hr-2550",
+      "one_liner": "Cancel an executive order that stopped federal workers from group negotiations",
+      "vote": "Yea",
+      "date": "2025-12-11",
+      "result": "Passed",
+      "policy_area": "Labor and Employment",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 936",
+      "bill_id": "119-hres-936",
+      "one_liner": "Set rules for the House to debate and vote on six bills",
+      "vote": "Nay",
+      "date": "2025-12-10",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 936",
+      "bill_id": "119-hres-936",
+      "one_liner": "Set rules for the House to debate and vote on six bills",
+      "vote": "No",
+      "date": "2025-12-10",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "S. 1071",
+      "bill_id": "119-s-1071",
+      "one_liner": "Remove remains of convicted person from veterans cemetery",
+      "vote": "Yea",
+      "date": "2025-12-10",
+      "result": "Failed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "S. 1071",
+      "bill_id": "119-s-1071",
+      "one_liner": "Remove remains of convicted person from veterans cemetery",
+      "vote": "Nay",
+      "date": "2025-12-10",
+      "result": "Passed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 432",
+      "bill_id": "119-hres-432",
+      "one_liner": "Cancel an executive order that limited federal employee union rights",
+      "vote": "Yea",
+      "date": "2025-12-10",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "S. 356",
+      "bill_id": "119-s-356",
+      "one_liner": "Extend payments to rural counties with federal land through 2026",
+      "vote": "Yea",
+      "date": "2025-12-09",
+      "result": "Passed",
+      "policy_area": "Public Lands and Natural Resources",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 1676",
+      "bill_id": "119-hr-1676",
+      "one_liner": "Set a 180-day deadline for Interior to approve state wildlife plans",
+      "vote": "Yea",
+      "date": "2025-12-09",
+      "result": "Passed",
+      "policy_area": "Public Lands and Natural Resources",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 1069",
+      "bill_id": "119-hr-1069",
+      "one_liner": "Cut federal education funding to schools with Chinese government partnerships",
+      "vote": "Nay",
+      "date": "2025-12-04",
+      "result": "Passed",
+      "policy_area": "Education",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 1049",
+      "bill_id": "119-hr-1049",
+      "one_liner": "Require schools to notify parents about foreign influence information rights",
+      "vote": "Nay",
+      "date": "2025-12-04",
+      "result": "Passed",
+      "policy_area": "Education",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2965",
+      "bill_id": "119-hr-2965",
+      "one_liner": "Require the Small Business Administration to keep total rule costs on small businesses at zero each year",
+      "vote": "Nay",
+      "date": "2025-12-03",
+      "result": "Passed",
+      "policy_area": "Commerce",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4305",
+      "bill_id": "119-hr-4305",
+      "one_liner": "Require the SBA to keep running a hotline for small business regulatory complaints",
+      "vote": "Nay",
+      "date": "2025-12-03",
+      "result": "Passed",
+      "policy_area": "Commerce",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 1005",
+      "bill_id": "119-hr-1005",
+      "one_liner": "Prohibit schools from taking Chinese government money to get federal education funds",
+      "vote": "Nay",
+      "date": "2025-12-03",
+      "result": "Passed",
+      "policy_area": "Education",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 916",
+      "bill_id": "119-hres-916",
+      "one_liner": "Let the House vote on six bills: college sports, China school ties, and business rules",
+      "vote": "Nay",
+      "date": "2025-12-02",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 916",
+      "bill_id": "119-hres-916",
+      "one_liner": "Let the House vote on six bills: college sports, China school ties, and business rules",
+      "vote": "No",
+      "date": "2025-12-02",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 5348",
+      "bill_id": "119-hr-5348",
+      "one_liner": "Let Social Security give new numbers to kids whose cards got lost in the mail",
+      "vote": "Yea",
+      "date": "2025-12-01",
+      "result": "Passed",
+      "policy_area": "Social Welfare",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4423",
+      "bill_id": "119-hr-4423",
+      "one_liner": "Require the U.S. to vote to continue pausing World Bank funding to Burma",
+      "vote": "Yea",
+      "date": "2025-12-01",
+      "result": "Passed",
+      "policy_area": "International Affairs",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Con.Res. 58",
+      "bill_id": "119-hconres-58",
+      "one_liner": "Pass a Congressional resolution denouncing socialism",
+      "vote": "Nay",
+      "date": "2025-11-21",
+      "result": "Passed",
+      "policy_area": "Government Operations and Politics",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3109",
+      "bill_id": "119-hr-3109",
+      "one_liner": "Require a report on oil refineries in the United States",
+      "vote": "Nay",
+      "date": "2025-11-20",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 1949",
+      "bill_id": "119-hr-1949",
+      "one_liner": "Remove government approval requirements for natural gas exports and imports",
+      "vote": "Nay",
+      "date": "2025-11-20",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 5214",
+      "bill_id": "119-hr-5214",
+      "one_liner": "District of Columbia Cash Bail Reform Act of 2025",
+      "vote": "Nay",
+      "date": "2025-11-19",
+      "result": "Passed",
+      "policy_area": "Crime and Law Enforcement",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 5107",
+      "bill_id": "119-hr-5107",
+      "one_liner": "Cancel DC's 2022 police reform law and bring back old police rules",
+      "vote": "Nay",
+      "date": "2025-11-19",
+      "result": "Passed",
+      "policy_area": "Crime and Law Enforcement",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4058",
+      "bill_id": "119-hr-4058",
+      "one_liner": "Require FEMA to provide more help to groups applying for grants to protect against attacks",
+      "vote": "Yea",
+      "date": "2025-11-19",
+      "result": "Passed",
+      "policy_area": "Emergency Management",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 6019",
+      "bill_id": "119-hr-6019",
+      "one_liner": "Remove Senators' right to sue when their office data is shared without notice",
+      "vote": "Yea",
+      "date": "2025-11-19",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 893",
+      "bill_id": "119-hres-893",
+      "one_liner": "Censure Representative Cory Mills and remove him from two committees",
+      "vote": "Nay",
+      "date": "2025-11-19",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4405",
+      "bill_id": "119-hr-4405",
+      "one_liner": "Require the Justice Department to publish all records from the Jeffrey Epstein investigation",
+      "vote": "Aye",
+      "date": "2025-11-18",
+      "result": "Passed",
+      "policy_area": "Crime and Law Enforcement",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 879",
+      "bill_id": "119-hres-879",
+      "one_liner": "Set up House votes on bills about oil drilling, natural gas exports, and DC crime laws",
+      "vote": "Nay",
+      "date": "2025-11-18",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 879",
+      "bill_id": "119-hres-879",
+      "one_liner": "Set up House votes on bills about oil drilling, natural gas exports, and DC crime laws",
+      "vote": "No",
+      "date": "2025-11-18",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 878",
+      "bill_id": "119-hres-878",
+      "one_liner": "Express disapproval of Representative Garc\u00eda's behavior",
+      "vote": "Nay",
+      "date": "2025-11-18",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 888",
+      "bill_id": "119-hres-888",
+      "one_liner": "Remove Delegate Stacey Plaskett from the House Intelligence Committee and censure her",
+      "vote": "Yea",
+      "date": "2025-11-18",
+      "result": "Failed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.J.Res. 130",
+      "bill_id": "119-hjres-130",
+      "one_liner": "Cancel a federal rule that stopped new coal leasing in Wyoming",
+      "vote": "Nay",
+      "date": "2025-11-18",
+      "result": "Passed",
+      "policy_area": "Public Lands and Natural Resources",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.J.Res. 131",
+      "bill_id": "119-hjres-131",
+      "one_liner": "Cancel a rule limiting oil and gas leasing in Arctic refuge land",
+      "vote": "Nay",
+      "date": "2025-11-18",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "S.J.Res. 80",
+      "bill_id": "119-sjres-80",
+      "one_liner": "Cancel a 2022 rule that limits oil drilling in Alaska",
+      "vote": "Nay",
+      "date": "2025-11-18",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 888",
+      "bill_id": "119-hres-888",
+      "one_liner": "Remove Delegate Stacey Plaskett from the House Intelligence Committee and censure her",
+      "vote": "Nay",
+      "date": "2025-11-18",
+      "result": "Failed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 1608",
+      "bill_id": "119-hr-1608",
+      "one_liner": "Require DHS to study and report on preventing vehicle attacks",
+      "vote": "Yea",
+      "date": "2025-11-17",
+      "result": "Passed",
+      "policy_area": "Transportation and Public Works",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2659",
+      "bill_id": "119-hr-2659",
+      "one_liner": "Create a task force to coordinate government response to Chinese cyber threats",
+      "vote": "Yea",
+      "date": "2025-11-17",
+      "result": "Passed",
+      "policy_area": "Science, Technology, Communications",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 878",
+      "bill_id": "119-hres-878",
+      "one_liner": "Express disapproval of Representative Garc\u00eda's behavior",
+      "vote": "Yea",
+      "date": "2025-11-17",
+      "result": "Failed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 873",
+      "bill_id": "119-hres-873",
+      "one_liner": "Set rules for House vote on Senate changes to government funding bill",
+      "vote": "Nay",
+      "date": "2025-11-12",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 873",
+      "bill_id": "119-hres-873",
+      "one_liner": "Set rules for House vote on Senate changes to government funding bill",
+      "vote": "No",
+      "date": "2025-11-12",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 5371",
+      "bill_id": "119-hr-5371",
+      "one_liner": "Fund the federal government through November 21, 2025",
+      "vote": "Nay",
+      "date": "2025-11-12",
+      "result": "Passed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 5371",
+      "bill_id": "119-hr-5371",
+      "one_liner": "Fund the federal government through November 21, 2025",
+      "vote": "Yea",
+      "date": "2025-09-19",
+      "result": "Failed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 5371",
+      "bill_id": "119-hr-5371",
+      "one_liner": "Fund the federal government through November 21, 2025",
+      "vote": "Nay",
+      "date": "2025-09-19",
+      "result": "Passed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 719",
+      "bill_id": "119-hres-719",
+      "one_liner": "Honor Charlie Kirk and condemn his assassination and all political violence",
+      "vote": "Present",
+      "date": "2025-09-19",
+      "result": "Passed",
+      "policy_area": "Government Operations and Politics",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3062",
+      "bill_id": "119-hr-3062",
+      "one_liner": "Change permit process for oil, gas and power lines crossing US borders",
+      "vote": "Nay",
+      "date": "2025-09-18",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3015",
+      "bill_id": "119-hr-3015",
+      "one_liner": "Bring back the National Coal Council to give coal advice to the Energy Department",
+      "vote": "Nay",
+      "date": "2025-09-18",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 1047",
+      "bill_id": "119-hr-1047",
+      "one_liner": "Require FERC to let reliable power plants connect to the grid faster",
+      "vote": "Nay",
+      "date": "2025-09-18",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 722",
+      "bill_id": "119-hres-722",
+      "one_liner": "Allow House votes on government funding and honoring Charles Kirk",
+      "vote": "Nay",
+      "date": "2025-09-17",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 722",
+      "bill_id": "119-hres-722",
+      "one_liner": "Allow House votes on government funding and honoring Charles Kirk",
+      "vote": "No",
+      "date": "2025-09-17",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 5125",
+      "bill_id": "119-hr-5125",
+      "one_liner": "End the DC commission that recommends judges to the President",
+      "vote": "Nay",
+      "date": "2025-09-17",
+      "result": "Passed",
+      "policy_area": "Law",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 5143",
+      "bill_id": "119-hr-5143",
+      "one_liner": "Require DC police to chase fleeing suspects in vehicles",
+      "vote": "Nay",
+      "date": "2025-09-17",
+      "result": "Passed",
+      "policy_area": "Crime and Law Enforcement",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 713",
+      "bill_id": "119-hres-713",
+      "one_liner": "Formally criticize Representative Ilhan Omar and remove her from two committees",
+      "vote": "Yea",
+      "date": "2025-09-17",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 707",
+      "bill_id": "119-hres-707",
+      "one_liner": "Allow House votes on seven bills covering DC crime laws and energy projects",
+      "vote": "Nay",
+      "date": "2025-09-16",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 707",
+      "bill_id": "119-hres-707",
+      "one_liner": "Allow House votes on seven bills covering DC crime laws and energy projects",
+      "vote": "No",
+      "date": "2025-09-16",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 2721",
+      "bill_id": "119-hr-2721",
+      "one_liner": "Extend headstone benefits to veterans who died before November 1, 1990",
+      "vote": "Yea",
+      "date": "2025-09-16",
+      "result": "Passed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4922",
+      "bill_id": "119-hr-4922",
+      "one_liner": "Stop DC from changing criminal sentence laws and limit youth offender protections",
+      "vote": "Nay",
+      "date": "2025-09-16",
+      "result": "Passed",
+      "policy_area": "Crime and Law Enforcement",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "weakens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 5140",
+      "bill_id": "119-hr-5140",
+      "one_liner": "Lower the age for trying minors as adults in DC to 14",
+      "vote": "Nay",
+      "date": "2025-09-16",
+      "result": "Passed",
+      "policy_area": "Crime and Law Enforcement",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.J.Res. 117",
+      "bill_id": "119-hjres-117",
+      "one_liner": "Relating to a national emergency by the President on July 30, 2025.",
+      "vote": "Nay",
+      "date": "2025-09-15",
+      "result": "Passed",
+      "policy_area": "Emergency Management",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3400",
+      "bill_id": "119-hr-3400",
+      "one_liner": "Send VA doctors to U.S. territories to treat veterans",
+      "vote": "Yea",
+      "date": "2025-09-15",
+      "result": "Passed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3944",
+      "bill_id": "119-hr-3944",
+      "one_liner": "Fund military construction and veterans programs for the year starting October 2025",
+      "vote": "Yea",
+      "date": "2025-09-11",
+      "result": "Failed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3486",
+      "bill_id": "119-hr-3486",
+      "one_liner": "Create criminal penalties for non-citizens who illegally enter and commit felonies",
+      "vote": "Nay",
+      "date": "2025-09-11",
+      "result": "Passed",
+      "policy_area": "Immigration",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "Aye",
+      "date": "2025-09-10",
+      "result": "Agreed to",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Agreed to",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Agreed to",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Agreed to",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Agreed to",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Agreed to",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Failed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Agreed to",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Agreed to",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Agreed to",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Failed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Failed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Failed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Failed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Agreed to",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Failed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "Aye",
+      "date": "2025-09-10",
+      "result": "Agreed to",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "Yea",
+      "date": "2025-09-10",
+      "result": "Failed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3838",
+      "bill_id": "119-hr-3838",
+      "one_liner": "Fund the military and set defense policies for 2026",
+      "vote": "No",
+      "date": "2025-09-10",
+      "result": "Passed",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 682",
+      "bill_id": "119-hres-682",
+      "one_liner": "Allow House votes on 2026 military funding and immigration penalty bills",
+      "vote": "Nay",
+      "date": "2025-09-09",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.Res. 682",
+      "bill_id": "119-hres-682",
+      "one_liner": "Allow House votes on 2026 military funding and immigration penalty bills",
+      "vote": "No",
+      "date": "2025-09-09",
+      "result": "Passed",
+      "policy_area": "Congress",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "neutral",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3424",
+      "bill_id": "119-hr-3424",
+      "one_liner": "Require GSA to help federal agencies share office space in leased buildings",
+      "vote": "Yea",
+      "date": "2025-09-08",
+      "result": "Passed",
+      "policy_area": "Government Operations and Politics",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 3425",
+      "bill_id": "119-hr-3425",
+      "one_liner": "Require testing and tracking of contract security guards at federal buildings",
+      "vote": "Yea",
+      "date": "2025-09-08",
+      "result": "Passed",
+      "policy_area": "Government Operations and Politics",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4553",
+      "bill_id": "119-hr-4553",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
+      "vote": "No",
+      "date": "2025-09-04",
+      "result": "Failed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4553",
+      "bill_id": "119-hr-4553",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
+      "vote": "No",
+      "date": "2025-09-04",
+      "result": "Failed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4553",
+      "bill_id": "119-hr-4553",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
+      "vote": "No",
+      "date": "2025-09-04",
+      "result": "Failed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4553",
+      "bill_id": "119-hr-4553",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
+      "vote": "Yea",
+      "date": "2025-09-04",
+      "result": "Failed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 4553",
+      "bill_id": "119-hr-4553",
+      "one_liner": "Fund energy and water agencies for the year starting October 2025",
+      "vote": "Nay",
+      "date": "2025-09-04",
+      "result": "Passed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "strengthens",
+      "congress": 119
+    },
     {
       "bill_number": "H.Res. 672",
       "bill_id": "119-hres-672",
@@ -20,7 +2817,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 672",
@@ -32,7 +2830,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 539",
@@ -44,7 +2843,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 104",
@@ -56,7 +2856,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 106",
@@ -68,7 +2869,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 105",
@@ -80,7 +2882,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4553",
@@ -92,7 +2895,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4553",
@@ -104,7 +2908,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4553",
@@ -116,7 +2921,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4553",
@@ -128,7 +2934,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4553",
@@ -140,7 +2947,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4553",
@@ -152,7 +2960,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4553",
@@ -164,7 +2973,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4553",
@@ -176,7 +2986,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4216",
@@ -188,7 +2999,8 @@
       "policy_area": "International Affairs",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 747",
@@ -200,7 +3012,8 @@
       "policy_area": "International Affairs",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 3357",
@@ -212,7 +3025,8 @@
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4275",
@@ -224,7 +3038,8 @@
       "policy_area": "Transportation and Public Works",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 3937",
@@ -236,7 +3051,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1917",
@@ -248,7 +3064,8 @@
       "policy_area": "Environmental Protection",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 3095",
@@ -260,7 +3077,8 @@
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 3351",
@@ -272,7 +3090,8 @@
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 590",
@@ -284,7 +3103,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4016",
@@ -296,7 +3116,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4016",
@@ -308,7 +3129,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4016",
@@ -320,7 +3142,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4016",
@@ -332,7 +3155,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4016",
@@ -344,7 +3168,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4016",
@@ -356,7 +3181,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4016",
@@ -368,7 +3194,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4016",
@@ -380,7 +3207,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4016",
@@ -392,7 +3220,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 3633",
@@ -404,7 +3233,8 @@
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "S. 1582",
@@ -416,7 +3246,8 @@
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1919",
@@ -428,7 +3259,8 @@
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 590",
@@ -440,7 +3272,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 580",
@@ -452,7 +3285,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 580",
@@ -464,7 +3298,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 580",
@@ -476,7 +3311,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 580",
@@ -488,7 +3324,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1717",
@@ -500,7 +3337,8 @@
       "policy_area": "Science, Technology, Communications",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1709",
@@ -512,7 +3350,8 @@
       "policy_area": "Science, Technology, Communications",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1770",
@@ -524,7 +3363,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "S. 1596",
@@ -536,7 +3376,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 566",
@@ -548,7 +3389,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1",
@@ -560,7 +3402,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "",
@@ -572,7 +3415,8 @@
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null
+      "direction": null,
+      "congress": 119
     },
     {
       "bill_number": "",
@@ -584,7 +3428,8 @@
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null
+      "direction": null,
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 566",
@@ -596,7 +3441,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 516",
@@ -608,7 +3454,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 875",
@@ -620,7 +3467,8 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 275",
@@ -632,7 +3480,8 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 519",
@@ -644,7 +3493,8 @@
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 3944",
@@ -656,7 +3506,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 3944",
@@ -668,7 +3519,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 3944",
@@ -680,7 +3532,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 537",
@@ -692,7 +3545,8 @@
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 530",
@@ -704,7 +3558,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 530",
@@ -716,7 +3571,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "",
@@ -728,7 +3584,8 @@
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null
+      "direction": null,
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1998",
@@ -740,7 +3597,8 @@
       "policy_area": "International Affairs",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 3394",
@@ -752,7 +3610,8 @@
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 3422",
@@ -764,7 +3623,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "S. 331",
@@ -776,7 +3636,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4",
@@ -788,7 +3649,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 4",
@@ -800,7 +3662,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "",
@@ -812,7 +3675,8 @@
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null
+      "direction": null,
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2056",
@@ -824,7 +3688,8 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2056",
@@ -836,7 +3701,8 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 499",
@@ -848,7 +3714,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 499",
@@ -860,7 +3727,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 489",
@@ -872,7 +3740,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 489",
@@ -884,7 +3753,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2096",
@@ -896,7 +3766,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 884",
@@ -908,7 +3779,8 @@
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2035",
@@ -920,7 +3792,8 @@
       "policy_area": "Transportation and Public Works",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 488",
@@ -932,7 +3805,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 481",
@@ -944,7 +3818,8 @@
       "policy_area": "Civil Rights and Liberties, Minority Issues",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2966",
@@ -956,7 +3831,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2931",
@@ -968,7 +3844,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2931",
@@ -980,7 +3857,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2987",
@@ -992,7 +3870,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2987",
@@ -1004,7 +3883,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 458",
@@ -1016,7 +3896,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 458",
@@ -1028,7 +3909,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2483",
@@ -1040,7 +3922,8 @@
       "policy_area": "Health",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2483",
@@ -1052,7 +3935,8 @@
       "policy_area": "Health",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1642",
@@ -1064,7 +3948,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1804",
@@ -1076,7 +3961,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 436",
@@ -1088,7 +3974,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 436",
@@ -1100,7 +3987,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 436",
@@ -1112,7 +4000,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 436",
@@ -1124,7 +4013,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "S.J.Res. 31",
@@ -1136,7 +4026,8 @@
       "policy_area": "Environmental Protection",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1",
@@ -1148,7 +4039,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1",
@@ -1160,7 +4052,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "",
@@ -1172,7 +4065,8 @@
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null
+      "direction": null,
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 426",
@@ -1184,7 +4078,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 426",
@@ -1196,7 +4091,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1223",
@@ -1208,7 +4104,8 @@
       "policy_area": "Science, Technology, Communications",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "S.J.Res. 13",
@@ -1220,7 +4117,8 @@
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1263",
@@ -1232,7 +4130,8 @@
       "policy_area": "International Affairs",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1286",
@@ -1244,7 +4143,8 @@
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2255",
@@ -1256,7 +4156,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2240",
@@ -1268,7 +4169,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2215",
@@ -1280,7 +4182,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 405",
@@ -1292,7 +4195,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 405",
@@ -1304,7 +4208,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 2243",
@@ -1316,7 +4221,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 352",
@@ -1328,7 +4234,8 @@
       "policy_area": "Civil Rights and Liberties, Minority Issues",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Con.Res. 30",
@@ -1340,7 +4247,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 249",
@@ -1352,7 +4260,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 276",
@@ -1364,7 +4273,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 276",
@@ -1376,7 +4286,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1503",
@@ -1388,7 +4299,8 @@
       "policy_area": "International Affairs",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 881",
@@ -1400,7 +4312,8 @@
       "policy_area": "Education",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 377",
@@ -1412,7 +4325,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 377",
@@ -1424,7 +4338,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 530",
@@ -1436,7 +4351,8 @@
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 36",
@@ -1448,7 +4364,8 @@
       "policy_area": "International Affairs",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 78",
@@ -1460,7 +4377,8 @@
       "policy_area": "Animals",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 88",
@@ -1472,7 +4390,8 @@
       "policy_area": "Environmental Protection",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 87",
@@ -1484,7 +4403,8 @@
       "policy_area": "Environmental Protection",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 89",
@@ -1496,7 +4416,8 @@
       "policy_area": "Environmental Protection",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 354",
@@ -1508,7 +4429,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 354",
@@ -1520,7 +4442,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1402",
@@ -1532,7 +4455,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1442",
@@ -1544,7 +4468,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 859",
@@ -1556,7 +4481,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 60",
@@ -1568,7 +4494,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 973",
@@ -1580,7 +4507,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "S. 146",
@@ -1592,7 +4520,8 @@
       "policy_area": "Science, Technology, Communications",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Con.Res. 14",
@@ -1604,7 +4533,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 22",
@@ -1616,7 +4546,8 @@
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 22",
@@ -1628,7 +4559,8 @@
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 313",
@@ -1640,7 +4572,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 313",
@@ -1652,7 +4585,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "S.J.Res. 28",
@@ -1664,7 +4598,8 @@
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "S.J.Res. 18",
@@ -1676,7 +4611,8 @@
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1526",
@@ -1688,7 +4624,8 @@
       "policy_area": "Law",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1526",
@@ -1700,7 +4637,8 @@
       "policy_area": "Law",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1228",
@@ -1712,7 +4650,8 @@
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 294",
@@ -1724,7 +4663,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 294",
@@ -1736,7 +4676,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 586",
@@ -1748,7 +4689,8 @@
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1039",
@@ -1760,7 +4702,8 @@
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 282",
@@ -1772,7 +4715,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 282",
@@ -1784,7 +4728,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1491",
@@ -1796,7 +4741,8 @@
       "policy_area": "Taxation",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 517",
@@ -1808,7 +4754,8 @@
       "policy_area": "Taxation",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 997",
@@ -1820,7 +4767,8 @@
       "policy_area": "Taxation",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 24",
@@ -1832,7 +4780,8 @@
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 75",
@@ -1844,7 +4793,8 @@
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1048",
@@ -1856,7 +4806,8 @@
       "policy_area": "Education",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1048",
@@ -1868,7 +4819,8 @@
       "policy_area": "Education",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1048",
@@ -1880,7 +4832,8 @@
       "policy_area": "Education",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1048",
@@ -1892,7 +4845,8 @@
       "policy_area": "Education",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1048",
@@ -1904,7 +4858,8 @@
       "policy_area": "Education",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1534",
@@ -1916,7 +4871,8 @@
       "policy_area": "Science, Technology, Communications",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 242",
@@ -1928,7 +4884,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 242",
@@ -1940,7 +4897,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 359",
@@ -1952,7 +4910,8 @@
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1326",
@@ -1964,7 +4923,8 @@
       "policy_area": "Agriculture and Food",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 211",
@@ -1976,7 +4936,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 211",
@@ -1988,7 +4949,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1156",
@@ -2000,7 +4962,8 @@
       "policy_area": "Labor and Employment",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1968",
@@ -2012,7 +4975,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 1968",
@@ -2024,7 +4988,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 25",
@@ -2036,7 +5001,8 @@
       "policy_area": "Taxation",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 495",
@@ -2048,7 +5014,8 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 901",
@@ -2060,7 +5027,8 @@
       "policy_area": "Science, Technology, Communications",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 993",
@@ -2072,7 +5040,8 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "S.J.Res. 11",
@@ -2084,7 +5053,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 189",
@@ -2096,7 +5066,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 61",
@@ -2108,7 +5079,8 @@
       "policy_area": "Environmental Protection",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 42",
@@ -2120,7 +5092,8 @@
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 189",
@@ -2132,7 +5105,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 177",
@@ -2144,7 +5118,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 177",
@@ -2156,7 +5131,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 856",
@@ -2168,7 +5144,8 @@
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 758",
@@ -2180,7 +5157,8 @@
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 20",
@@ -2192,7 +5170,8 @@
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 695",
@@ -2204,7 +5183,8 @@
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.J.Res. 35",
@@ -2216,7 +5196,8 @@
       "policy_area": "Environmental Protection",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 161",
@@ -2228,7 +5209,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 161",
@@ -2240,7 +5222,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 788",
@@ -2252,7 +5235,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 804",
@@ -2264,7 +5248,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Con.Res. 14",
@@ -2276,7 +5261,8 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 825",
@@ -2288,7 +5274,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 832",
@@ -2300,7 +5287,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 818",
@@ -2312,7 +5300,8 @@
       "policy_area": "Commerce",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 35",
@@ -2324,7 +5313,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 77",
@@ -2336,7 +5326,8 @@
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 77",
@@ -2348,7 +5339,8 @@
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 122",
@@ -2360,7 +5352,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 122",
@@ -2372,7 +5365,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 692",
@@ -2384,7 +5378,8 @@
       "policy_area": "International Affairs",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 736",
@@ -2396,7 +5391,8 @@
       "policy_area": "Finance and Financial Sector",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 26",
@@ -2408,7 +5404,8 @@
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 26",
@@ -2420,7 +5417,8 @@
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 27",
@@ -2432,7 +5430,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 27",
@@ -2444,7 +5443,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 93",
@@ -2456,7 +5456,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 93",
@@ -2468,7 +5469,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 43",
@@ -2480,7 +5482,8 @@
       "policy_area": "Native Americans",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 776",
@@ -2492,7 +5495,8 @@
       "policy_area": "Animals",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 375",
@@ -2504,7 +5508,8 @@
       "policy_area": "Animals",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 471",
@@ -2516,7 +5521,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 21",
@@ -2528,7 +5534,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 21",
@@ -2540,7 +5547,8 @@
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 53",
@@ -2552,7 +5560,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 53",
@@ -2564,7 +5573,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral"
+      "direction": "neutral",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 165",
@@ -2576,7 +5586,8 @@
       "policy_area": "Native Americans",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "S. 5",
@@ -2588,7 +5599,8 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 186",
@@ -2600,7 +5612,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 187",
@@ -2612,7 +5625,8 @@
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 30",
@@ -2624,7 +5638,8 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 30",
@@ -2636,7 +5651,8 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 164",
@@ -2648,7 +5664,8 @@
       "policy_area": "Emergency Management",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 144",
@@ -2660,7 +5677,8 @@
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 33",
@@ -2672,7 +5690,8 @@
       "policy_area": "Taxation",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 153",
@@ -2684,7 +5703,8 @@
       "policy_area": "Emergency Management",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 28",
@@ -2696,7 +5716,8 @@
       "policy_area": "Civil Rights and Liberties, Minority Issues",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 28",
@@ -2708,7 +5729,8 @@
       "policy_area": "Civil Rights and Liberties, Minority Issues",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 192",
@@ -2720,7 +5742,8 @@
       "policy_area": "Transportation and Public Works",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 152",
@@ -2732,7 +5755,8 @@
       "policy_area": "Emergency Management",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 23",
@@ -2744,7 +5768,8 @@
       "policy_area": "International Affairs",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens"
+      "direction": "weakens",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 29",
@@ -2756,7 +5781,8 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "",
@@ -2768,7 +5794,8 @@
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null
+      "direction": null,
+      "congress": 119
     },
     {
       "bill_number": "",
@@ -2780,7 +5807,8 @@
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null
+      "direction": null,
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 5",
@@ -2792,7 +5820,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 5",
@@ -2804,7 +5833,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     },
     {
       "bill_number": "H.Res. 5",
@@ -2816,7 +5846,8 @@
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "strengthens",
+      "congress": 119
     }
   ],
   "policy_areas": [
@@ -2832,9 +5863,12 @@
     "Emergency Management",
     "Energy",
     "Environmental Protection",
+    "Families",
     "Finance and Financial Sector",
+    "Foreign Trade and International Finance",
     "Government Operations and Politics",
     "Health",
+    "Housing and Community Development",
     "Immigration",
     "International Affairs",
     "Labor and Employment",
@@ -2842,7 +5876,9 @@
     "Native Americans",
     "Public Lands and Natural Resources",
     "Science, Technology, Communications",
+    "Social Welfare",
     "Taxation",
-    "Transportation and Public Works"
+    "Transportation and Public Works",
+    "Water Resources Development"
   ]
 }
