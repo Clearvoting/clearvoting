@@ -629,21 +629,25 @@ async def sync_member_summaries(
     output_dir: Path,
     api_key: str | None = None,
     rate_limit: float = 1.0,
-) -> int:
-    """Generate AI narrative summaries for each member based on their voting record.
+) -> dict:
+    """Generate AI narrative summaries for each member through the writer-grader loop.
 
     Incremental — skips members who already have summaries.
-    Returns count of new summaries generated.
+    Returns stats dict with pass/fail counts.
     """
     from app.services.member_summary import MemberSummaryService
+    from app.services.member_narrative_grader import MemberNarrativeGrader
+    from app.services.writer_grader_loop import WriterGraderLoop
+    from app.services.grader_learnings import GraderLearnings
 
     members_path = output_dir / "members.json"
     member_votes_dir = output_dir / "member_votes"
     summaries_path = output_dir / "member_summaries.json"
+    learnings_path = output_dir / "grader_learnings.json"
 
     if not members_path.exists():
         print("  No members.json — skipping member summaries")
-        return 0
+        return {"total": 0, "passed": 0, "failed": 0}
 
     with open(members_path) as f:
         members = json.load(f).get("members", [])
@@ -654,8 +658,17 @@ async def sync_member_summaries(
         with open(summaries_path) as f:
             existing = json.load(f)
 
+    # Setup services
     service = MemberSummaryService(api_key=api_key)
-    count = 0
+    grader = MemberNarrativeGrader(api_key=api_key)
+
+    # Load learnings
+    learnings_store = GraderLearnings(learnings_path)
+    grader.load_learnings(learnings_store.get_learnings())
+
+    stats: dict = {"total": 0, "passed": 0, "failed": 0, "needs_review": []}
+    grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
+    all_feedback: list[str] = []
 
     for member in members:
         bioguide_id = member["bioguideId"]
@@ -680,7 +693,7 @@ async def sync_member_summaries(
         chamber = member.get("chamber", "")
         state = member.get("state", member.get("stateCode", ""))
         congresses = vote_data.get("congresses", [119])
-        stats = vote_data.get("stats", {})
+        member_stats = vote_data.get("stats", {})
 
         # Compute top areas with direction counts
         area_counts: dict[str, dict] = {}
@@ -726,23 +739,57 @@ async def sync_member_summaries(
                 seen_opposed.add(bill_id)
                 top_opposed.append(one_liner)
 
-        print(f"  Generating summary for {member_name}...")
+        print(f"  Grading narrative for {member_name}...")
 
-        try:
-            result = await service.generate_member_summary(
-                member_name=member_name,
-                chamber=chamber,
-                state=state,
-                congresses=congresses,
-                stats=stats,
-                top_areas=top_areas,
-                top_supported=top_supported[:8],
-                top_opposed=top_opposed[:6],
+        # Capture loop variables for closure
+        _member_name = member_name
+        _chamber = chamber
+        _state = state
+        _congresses = congresses
+        _stats = member_stats
+        _top_areas = top_areas
+        _top_supported = top_supported[:8]
+        _top_opposed = top_opposed[:6]
+
+        async def writer_fn(grader_feedback=None, **kwargs):
+            return await service.generate_member_summary(
+                member_name=_member_name,
+                chamber=_chamber,
+                state=_state,
+                congresses=_congresses,
+                stats=_stats,
+                top_areas=_top_areas,
+                top_supported=_top_supported,
+                top_opposed=_top_opposed,
+                grader_feedback=grader_feedback,
             )
 
-            result["generated_at"] = datetime.now(timezone.utc).isoformat()
-            existing[bioguide_id] = result
-            count += 1
+        loop = WriterGraderLoop(writer_fn=writer_fn, grader=grader)
+        try:
+            result = await loop.run(
+                summary_type="member_narrative",
+                writer_kwargs={},
+                grader_context={
+                    "top_areas": top_areas,
+                    "stats": member_stats,
+                    "top_supported": top_supported[:8],
+                    "top_opposed": top_opposed[:6],
+                },
+            )
+
+            summary_data = result.best_summary
+            if result.needs_review:
+                summary_data["needs_review"] = True
+                stats["needs_review"].append(bioguide_id)
+                stats["failed"] += 1
+            else:
+                stats["passed"] += 1
+
+            summary_data["generated_at"] = datetime.now(timezone.utc).isoformat()
+            existing[bioguide_id] = summary_data
+            stats["total"] += 1
+            grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
+            all_feedback.append(result.best_grade.feedback)
         except Exception as e:
             print(f"  WARNING: Failed to generate summary for {member_name}: {e}")
 
@@ -751,8 +798,26 @@ async def sync_member_summaries(
         # Save after each member (crash-safe)
         _atomic_write_json(summaries_path, existing)
 
-    print(f"  Generated {count} member summaries")
-    return count
+    # Extract new learnings
+    new_patterns = learnings_store.extract_patterns(all_feedback)
+    for pattern in new_patterns:
+        learnings_store.add_learning(pattern)
+
+    learnings_store.record_batch(
+        total=stats["total"],
+        passed=stats["passed"],
+        failed=stats["failed"],
+        grade_distribution=grade_dist,
+        needs_review_ids=stats["needs_review"],
+    )
+    learnings_store.save()
+
+    print(f"  Narratives: {stats['passed']} passed, {stats['failed']} flagged for review")
+    print(f"  Grades: {grade_dist}")
+    if stats["needs_review"]:
+        print(f"  Needs review: {stats['needs_review']}")
+
+    return stats
 
 
 async def backfill_bill_directions(
@@ -1057,10 +1122,15 @@ async def main() -> None:
         # Clear existing summaries to force regeneration
         summaries_path = SYNC_DIR / "member_summaries.json"
         if summaries_path.exists():
+            backup_path = SYNC_DIR / "member_summaries.backup.json"
+            shutil.copy2(summaries_path, backup_path)
+            print(f"  Backed up existing summaries to {backup_path.name}")
             _atomic_write_json(summaries_path, {})
             print("  Cleared existing member summaries")
-        await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
+        stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
         print()
+        if stats.get("total"):
+            print(f"  Narratives graded: {stats['total']} ({stats.get('passed', 0)} passed, {stats.get('failed', 0)} flagged)")
         print("=== Regeneration complete ===")
         return
 
@@ -1153,9 +1223,9 @@ async def main() -> None:
     # Step 7: Member summaries
     print()
     print(f"[7/9] Generating AI member summaries ({'API' if anthropic_key else 'Claude CLI'})...")
-    member_summary_count = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
+    member_summary_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
 
-    # Step 8: Member summary grading (placeholder — not yet implemented)
+    # Step 8: Page coherence check (placeholder — implemented in Phase 3)
 
     # Step 9: Sync summary
     print()
@@ -1170,7 +1240,7 @@ async def main() -> None:
         "senate_votes_count": senate_count,
         "house_votes_count": house_count,
         "member_votes_count": member_votes_count,
-        "member_summary_count": member_summary_count,
+        "member_summary_stats": member_summary_stats,
         "summary_stats": summary_stats,
     }
     _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
@@ -1183,6 +1253,8 @@ async def main() -> None:
     print(f"  Member vote records: {member_votes_count}")
     if summary_stats.get("total"):
         print(f"  AI summaries graded: {summary_stats['total']} ({summary_stats.get('passed', 0)} passed)")
+    if member_summary_stats.get("total"):
+        print(f"  Member narratives graded: {member_summary_stats['total']} ({member_summary_stats.get('passed', 0)} passed)")
 
 
 if __name__ == "__main__":

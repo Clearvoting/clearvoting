@@ -900,7 +900,7 @@ async def test_backfill_skips_existing_direction(tmp_path):
 
 @pytest.mark.asyncio
 async def test_sync_member_summaries_generates_narrative(tmp_path):
-    """sync_member_summaries generates narrative for each member."""
+    """sync_member_summaries generates narrative via writer-grader loop."""
     members = {"members": [
         {"bioguideId": "G000555", "name": "Gillibrand, Kirsten E.",
          "directOrderName": "Kirsten E. Gillibrand",
@@ -924,22 +924,33 @@ async def test_sync_member_summaries_generates_narrative(tmp_path):
     })
 
     import unittest.mock
-    with unittest.mock.patch("app.services.member_summary.MemberSummaryService") as MockService:
-        mock_instance = MagicMock()
-        mock_instance.generate_member_summary = AsyncMock(return_value={
+    from app.services.summary_grader import GradeResult
+
+    with unittest.mock.patch("app.services.member_summary.MemberSummaryService") as MockWriter, \
+         unittest.mock.patch("app.services.member_narrative_grader.MemberNarrativeGrader") as MockGrader:
+        mock_writer = MagicMock()
+        mock_writer.generate_member_summary = AsyncMock(return_value={
             "narrative": "Gillibrand voted 10 times with 100% participation.",
             "top_areas": ["Armed Forces and National Security"],
         })
-        MockService.return_value = mock_instance
+        MockWriter.return_value = mock_writer
 
-        count = await sync_member_summaries(tmp_path, api_key="test")
+        mock_grader = MagicMock()
+        mock_grader.load_learnings = MagicMock()
+        mock_grader.grade = AsyncMock(return_value=GradeResult(
+            grade="A", passed=True, feedback="Good.", checks={}
+        ))
+        MockGrader.return_value = mock_grader
+
+        stats = await sync_member_summaries(tmp_path, api_key="test")
 
     summaries_path = tmp_path / "member_summaries.json"
     assert summaries_path.exists()
     data = json.loads(summaries_path.read_text())
     assert "G000555" in data
     assert "narrative" in data["G000555"]
-    assert count == 1
+    assert stats["total"] == 1
+    assert stats["passed"] == 1
 
 
 @pytest.mark.asyncio
@@ -968,6 +979,6 @@ async def test_sync_member_summaries_skips_existing(tmp_path):
         "G000555": {"narrative": "Already exists.", "top_areas": []},
     })
 
-    count = await sync_member_summaries(tmp_path)
+    stats = await sync_member_summaries(tmp_path)
 
-    assert count == 0  # No new summaries generated
+    assert stats["total"] == 0  # No new summaries generated
