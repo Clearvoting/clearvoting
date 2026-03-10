@@ -773,8 +773,8 @@ async def sync_member_summaries(
                 grader_context={
                     "top_areas": top_areas,
                     "stats": member_stats,
-                    "top_supported": top_supported[:8],
-                    "top_opposed": top_opposed[:6],
+                    "top_supported": _top_supported,
+                    "top_opposed": _top_opposed,
                 },
             )
 

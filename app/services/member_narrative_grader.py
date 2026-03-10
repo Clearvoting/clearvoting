@@ -1,31 +1,9 @@
 import json
 import logging
-from dataclasses import dataclass, field
 import anthropic
+from app.services.grader_common import GradeResult, strip_code_fences
 
 logger = logging.getLogger(__name__)
-
-
-def _strip_code_fences(text: str) -> str:
-    """Remove markdown code fences (```json ... ```) from LLM output."""
-    text = text.strip()
-    if text.startswith("```"):
-        first_newline = text.index("\n") if "\n" in text else len(text)
-        text = text[first_newline + 1:]
-    if text.endswith("```"):
-        text = text[:-3]
-    return text.strip()
-
-
-GRADE_ORDER = {"A": 4, "B": 3, "C": 2, "D": 1, "F": 0}
-
-
-@dataclass
-class GradeResult:
-    grade: str
-    passed: bool
-    feedback: str
-    checks: dict = field(default_factory=dict)
 
 
 class MemberNarrativeGrader:
@@ -128,7 +106,7 @@ Evaluate against every check in your checklist. Pay special attention to DATA AL
 
         try:
             raw_text = await self._call_llm(system_prompt, user_prompt)
-            raw_text = _strip_code_fences(raw_text)
+            raw_text = strip_code_fences(raw_text)
             result = json.loads(raw_text)
 
             return GradeResult(
