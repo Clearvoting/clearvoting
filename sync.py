@@ -728,20 +728,19 @@ async def sync_member_summaries(
         top_areas = sorted(area_counts.values(), key=lambda x: x["total"], reverse=True)[:5]
 
         # Collect top supported/opposed one-liners (deduplicated by bill_id)
-        seen_supported: set[str] = set()
-        seen_opposed: set[str] = set()
+        # Use a single seen set so a bill can't appear in both lists
+        seen_bills: set[str] = set()
         top_supported: list[str] = []
         top_opposed: list[str] = []
         for v in votes:
             bill_id = v.get("bill_id")
             one_liner = v.get("one_liner", "")
-            if not one_liner or not bill_id:
+            if not one_liner or not bill_id or bill_id in seen_bills:
                 continue
-            if v.get("vote", "").lower() in ("yea", "aye") and bill_id not in seen_supported:
-                seen_supported.add(bill_id)
+            seen_bills.add(bill_id)
+            if v.get("vote", "").lower() in ("yea", "aye"):
                 top_supported.append(one_liner)
-            elif v.get("vote", "").lower() in ("nay", "no") and bill_id not in seen_opposed:
-                seen_opposed.add(bill_id)
+            elif v.get("vote", "").lower() in ("nay", "no"):
                 top_opposed.append(one_liner)
 
         print(f"  Grading narrative for {member_name}...")
@@ -915,21 +914,19 @@ async def check_page_coherence(
 
         top_areas = sorted(area_counts.values(), key=lambda x: x["total"], reverse=True)[:5]
 
-        # Collect supported/opposed
-        seen_supported: set[str] = set()
-        seen_opposed: set[str] = set()
+        # Collect supported/opposed (single seen set prevents a bill in both lists)
+        seen_bills: set[str] = set()
         top_supported: list[str] = []
         top_opposed: list[str] = []
         for v in votes:
             bill_id = v.get("bill_id")
             one_liner = v.get("one_liner", "")
-            if not one_liner or not bill_id:
+            if not one_liner or not bill_id or bill_id in seen_bills:
                 continue
-            if v.get("vote", "").lower() in ("yea", "aye") and bill_id not in seen_supported:
-                seen_supported.add(bill_id)
+            seen_bills.add(bill_id)
+            if v.get("vote", "").lower() in ("yea", "aye"):
                 top_supported.append(one_liner)
-            elif v.get("vote", "").lower() in ("nay", "no") and bill_id not in seen_opposed:
-                seen_opposed.add(bill_id)
+            elif v.get("vote", "").lower() in ("nay", "no"):
                 top_opposed.append(one_liner)
 
         member_name = member.get("directOrderName") or member.get("name", bioguide_id)
