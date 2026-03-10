@@ -1,34 +1,62 @@
 {
-  "learnings": [
-    "Excellent summary. Clear, accessible language that accurately describes this as a technical correction to the official enrollment of H.J. Res. 100. Appropriate neutral direction for a procedural fix. All criteria met effectively.",
-    "Excellent summary that meets all quality standards. Clear, factual language with appropriate reading level. Good inclusion of specific dollar amounts and timeframe. All provisions accurately reflect the bill's content without bias or jargon.",
-    "Excellent summary that clearly explains the bill's purpose and provisions in simple language. Good use of plain English alternatives like 'legal deals' for deferred prosecution agreements and inclusion of specific percentage changes (60% to 75%). All provisions are accurately captured and appropriately simplified for general readers."
-  ],
-  "batch_history": [
-    {
-      "timestamp": "2026-03-10T06:53:43.376341+00:00",
-      "total": 459,
-      "passed": 449,
-      "failed": 10,
-      "grade_distribution": {
-        "A": 422,
-        "B": 27,
-        "C": 3,
-        "D": 1,
-        "F": 6
-      },
-      "needs_review_ids": [
-        "118-hr-2670",
-        "118-hres-241",
-        "118-hres-957",
-        "118-s-4554",
-        "119-hjres-117",
-        "119-hjres-72",
-        "119-hr-1834",
-        "119-hr-5214",
-        "119-hr-6703",
-        "119-hres-888"
-      ]
-    }
-  ]
+  "bill_summary": {
+    "learnings": [
+      "Excellent summary. Clear, accessible language that accurately describes this as a technical correction to the official enrollment of H.J. Res. 100. Appropriate neutral direction for a procedural fix. All criteria met effectively.",
+      "Excellent summary that meets all quality standards. Clear, factual language with appropriate reading level. Good inclusion of specific dollar amounts and timeframe. All provisions accurately reflect the bill's content without bias or jargon.",
+      "Excellent summary that clearly explains the bill's purpose and provisions in simple language. Good use of plain English alternatives like 'legal deals' for deferred prosecution agreements and inclusion of specific percentage changes (60% to 75%). All provisions are accurately captured and appropriately simplified for general readers."
+    ],
+    "batch_history": [
+      {
+        "timestamp": "2026-03-10T06:53:43.376341+00:00",
+        "total": 459,
+        "passed": 449,
+        "failed": 10,
+        "grade_distribution": {
+          "A": 422,
+          "B": 27,
+          "C": 3,
+          "D": 1,
+          "F": 6
+        },
+        "needs_review_ids": [
+          "118-hr-2670",
+          "118-hres-241",
+          "118-hres-957",
+          "118-s-4554",
+          "119-hjres-117",
+          "119-hjres-72",
+          "119-hr-1834",
+          "119-hr-5214",
+          "119-hr-6703",
+          "119-hres-888"
+        ]
+      }
+    ]
+  },
+  "member_narrative": {
+    "learnings": [
+      "Excellent narrative that perfectly aligns with the data and maintains complete neutrality. All vote counts and ratios are accurate, language is clear and unbiased, and the structure effectively communicates the key voting patterns.",
+      "Excellent narrative that accurately represents the voting data with clear, neutral language. All vote counts match the data exactly, and the narrative correctly presents the dominant patterns in each policy area without cherry-picking exceptions.",
+      "Excellent factual accuracy and data alignment. One sentence exceeds the 25-word limit (30 words), but overall clarity is good. Consider breaking the longest sentence into two shorter ones.",
+      "Excellent narrative that accurately presents the voting data without bias. All numbers align perfectly with the source data, reading level is appropriate, and the tone is factual and neutral. Consider mentioning Energy policy (32 votes, 3rd largest area) instead of or alongside Crime policy for better completeness."
+    ],
+    "batch_history": [
+      {
+        "timestamp": "2026-03-10T22:23:37.815932+00:00",
+        "total": 80,
+        "passed": 79,
+        "failed": 1,
+        "grade_distribution": {
+          "A": 78,
+          "B": 1,
+          "C": 1,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": [
+          "P000622"
+        ]
+      }
+    ]
+  }
 }

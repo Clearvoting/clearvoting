@@ -1,6 +1,6 @@
 {
   "S000148": {
-    "narrative": "Schumer voted yes on 1384 bills and no on 755 bills out of 2159 total votes cast. He showed up to vote 99.1% of the time. He cast the most votes on economics and public finance issues with 144 votes, followed by international affairs with 40 votes. He voted yes on bills to fund federal agencies, cap insulin costs, and set military spending limits. He voted no on bills to remove environmental protections and withdraw military forces from Niger.",
+    "narrative": "Schumer voted on 863 bills with a 99.9% participation rate. He voted no on 452 bills and yes on 410 bills. His most votes were on economics and public finance (144 votes), where he voted to weaken programs 73 times and strengthen them 62 times. On defense and security issues, he voted to strengthen programs 21 times and weaken them 4 times. He voted to strengthen international affairs programs 25 times and weaken them 12 times.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -8,10 +8,10 @@
       "Transportation and Public Works",
       "Science, Technology, Communications"
     ],
-    "generated_at": "2026-03-10T06:53:56.743658+00:00"
+    "generated_at": "2026-03-10T18:27:04.065754+00:00"
   },
   "G000555": {
-    "narrative": "Senator Gillibrand cast 2159 votes across three recent Congresses, voting yes 1425 times and no 705 times. She showed up to vote 98.7% of the time. She cast the most votes on economics and public finance issues with 144 votes. She voted yes on bills to fund federal agencies, cap insulin costs, and set military spending policies. She voted no on bills to cancel environmental protection rules and remove military forces from Niger.",
+    "narrative": "Gillibrand cast 863 votes with a 99.3% participation rate, voting yes 428 times and no 429 times. She voted on economics and public finance issues 144 times, with 65 votes to strengthen and 70 votes to weaken federal involvement. In international affairs, she cast 25 votes to strengthen and 12 votes to weaken, while in armed forces and national security, she voted to strengthen 23 times and weaken only 2 times. Her votes covered transportation, science and technology issues as well.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -19,10 +19,10 @@
       "Transportation and Public Works",
       "Science, Technology, Communications"
     ],
-    "generated_at": "2026-03-10T06:54:10.142179+00:00"
+    "generated_at": "2026-03-10T18:30:03.089797+00:00"
   },
   "R000622": {
-    "narrative": "Rep. Riley cast 449 votes with a 96.7% participation rate. He voted no on 227 bills and yes on 207 bills. He voted most often on Congress-related matters with 96 votes. He also voted frequently on economics and public finance issues with 51 votes, and energy policy with 32 votes.",
+    "narrative": "Riley voted on 449 bills with a 96.7% participation rate, casting 207 yes votes and 227 no votes. He voted most often on Congress issues (96 votes), voting to weaken Congress 21 times and strengthen it 5 times. On economics and public finance (51 votes), he voted to weaken these policies 34 times and strengthen them 15 times. He voted to strengthen energy policies 18 times and weaken them 13 times across 32 energy votes.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -30,10 +30,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T06:54:24.504597+00:00"
+    "generated_at": "2026-03-10T18:30:48.818201+00:00"
   },
   "M001231": {
-    "narrative": "Mannion cast 449 votes with a 98.9% participation rate. He voted yes on 205 bills and no on 239 bills. He voted most often on Congress operations with 96 votes, followed by economics with 51 votes and energy with 32 votes. He voted on armed forces issues 31 times and crime enforcement 24 times.",
+    "narrative": "Mannion cast 449 votes in the House, voting yes 205 times and no 239 times. He showed up for 98.9% of votes. He voted most often on Congress issues (96 votes), where he voted to weaken 20 times and strengthen 6 times. On economics issues, he voted to weaken 34 times and strengthen 15 times. On crime issues, he voted to strengthen 13 times and weaken 7 times.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -41,10 +41,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T06:54:41.312358+00:00"
+    "generated_at": "2026-03-10T18:31:34.297771+00:00"
   },
   "L000606": {
-    "narrative": "Representative Latimer cast 449 votes in the 119th Congress and showed up for 96.4% of votes. He voted yes on 190 bills and voted no on 243 bills. He voted most often on bills about Congress, with 96 votes in that area. He also voted on bills about economics and public finance, energy, military and security, and crime and law enforcement.",
+    "narrative": "Representative Latimer cast 449 votes with a 96.4% participation rate. He voted no on 243 bills and yes on 190 bills. He voted most often on Congressional matters (96 votes), where he voted to weaken Congressional powers 20 times and strengthen them 6 times. On economics and finance issues (51 votes), he voted to weaken policies 34 times and strengthen them 15 times.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -52,10 +52,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T06:55:03.686240+00:00"
+    "generated_at": "2026-03-10T18:32:13.896870+00:00"
   },
   "G000602": {
-    "narrative": "Representative Gillen voted yes on 227 bills and no on 203 bills out of 449 total votes. She showed up for 95.8% of votes in Congress. She voted most often on issues about Congress itself (96 votes), economics and public finance (51 votes), and energy (32 votes). She also voted frequently on armed forces and national security (31 votes) and crime and law enforcement (24 votes).",
+    "narrative": "Laura Gillen cast 449 votes in the House of Representatives with a 95.8% attendance rate. She voted yes 227 times and no 203 times. In her most active policy area, Congress, she voted to weaken measures 19 times compared to 6 times to strengthen them. On economics issues, she voted to weaken policies 33 times and strengthen them 16 times. She voted roughly equally on energy issues, with 15 votes to strengthen and 14 to weaken energy policies.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -63,10 +63,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T06:55:18.300021+00:00"
+    "generated_at": "2026-03-10T18:32:50.846903+00:00"
   },
   "K000402": {
-    "narrative": "Kennedy cast 449 votes in the 119th Congress with a 99.1% participation rate. He voted no on 251 bills and yes on 194 bills. He voted most often on Congress-related issues with 96 votes, followed by economics and public finance with 51 votes. Kennedy voted on energy policy 32 times and defense issues 31 times.",
+    "narrative": "Kennedy voted no on 251 bills and yes on 194 bills out of 449 total votes, with a 99.1% participation rate. He voted most often on Congress issues (96 votes), where he voted to weaken Congress 20 times and strengthen it 6 times. On economics and public finance (51 votes), he voted to weaken 34 times and strengthen 15 times. He voted on energy issues 32 times, with 17 votes to strengthen and 14 to weaken. For crime and law enforcement (24 votes), he voted to strengthen 13 times and weaken 7 times.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -74,10 +74,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T06:55:34.120810+00:00"
+    "generated_at": "2026-03-10T18:33:33.788918+00:00"
   },
   "S001201": {
-    "narrative": "Suozzi cast 468 votes in the House of Representatives with a 95.7% participation rate. He voted yes on 245 bills and no on 203 bills. Most of his votes were on Congress-related matters, with 98 total votes in that area. He also voted frequently on economics and public finance issues, casting 53 votes in that area.",
+    "narrative": "Suozzi cast 468 votes with a 95.7% participation rate. He voted yes 245 times and no 203 times. His most votes were on Congress issues (98 votes), economics and public finance (53 votes), and energy (32 votes). On Congress issues, he voted to weaken existing rules 19 times and strengthen them 7 times. On crime and law enforcement, he voted to strengthen policies 12 times and weaken them 8 times.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -85,10 +85,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T06:55:48.102808+00:00"
+    "generated_at": "2026-03-10T18:34:17.621956+00:00"
   },
   "L000599": {
-    "narrative": "Representative Lawler cast 1023 votes across two congressional sessions, voting yes 652 times and no 338 times. He participated in 96.8% of votes held. He voted most often on bills about Congress (176 votes), energy policy (113 votes), and economics (100 votes). In energy policy, he voted to strengthen programs 78 times and weaken them 34 times. On economics bills, he voted to strengthen programs 36 times and weaken them 61 times.",
+    "narrative": "Lawler voted 652 times yes and 338 times no out of 1023 total votes, attending 96.8% of votes. He cast the most votes on Congress issues (176 votes), voting to strengthen Congress functions 26 times and weaken them 8 times. On energy issues, he voted 113 times total. He voted to strengthen energy policies 78 times and weaken them 34 times. On economics issues, he voted 61 times to weaken policies and 36 times to strengthen them out of 100 total votes.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -96,10 +96,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:56:03.365399+00:00"
+    "generated_at": "2026-03-10T18:37:42.089914+00:00"
   },
   "L000600": {
-    "narrative": "Rep. Nicholas A. Langworthy cast 1023 votes in the House. He voted yes on 726 bills and voted no on 252 bills. He showed up to vote 95.6% of the time. Most of his votes were on bills about Congress (176 votes), followed by energy issues (113 votes) and economics (100 votes).",
+    "narrative": "Representative Langworthy cast 1,023 votes and voted yes 726 times and no 252 times. He showed up to vote 95.6% of the time. He voted on Congress issues 176 times, with 25 votes to strengthen and 10 to weaken. On energy issues, he cast 113 votes, with 75 to strengthen and 35 to weaken. His voting pattern across the top policy areas shows more votes to strengthen than weaken.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -107,10 +107,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:56:18.657768+00:00"
+    "generated_at": "2026-03-10T18:38:18.957852+00:00"
   },
   "L000598": {
-    "narrative": "LaLota cast 1023 votes with a 97.1% participation rate. He voted yes on 679 bills and no on 314 bills. He voted most often on matters related to Congress (176 votes), energy (113 votes), and economics and public finance (100 votes). In energy policy, he voted to strengthen programs 77 times and weaken them 34 times.",
+    "narrative": "LaLota cast 1023 votes with a 97.1% participation rate. He voted yes 679 times and no 314 times. He voted most often on Congress issues (176 votes), energy issues (113 votes), and economics and public finance issues (100 votes). On Congress issues, he voted to strengthen 26 times and weaken 8 times. On energy issues, he voted to strengthen 77 times and weaken 34 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -118,10 +118,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:56:31.519128+00:00"
+    "generated_at": "2026-03-10T18:39:05.209692+00:00"
   },
   "G000599": {
-    "narrative": "Goldman cast 1023 votes during his time in Congress, voting yes on 379 bills and no on 557 bills. He participated in 91.5% of votes. He voted most often on bills about Congress operations (176 votes), followed by energy issues (113 votes) and economics (100 votes). Goldman also voted on military and security matters (86 votes) and international affairs (81 votes).",
+    "narrative": "Goldman cast 1023 votes in the House with a 91.5% participation rate. He voted yes 379 times and no 557 times. He voted most often on Congress issues (176 votes), energy (113 votes), and economics (100 votes). In each of these top areas, he voted more often to weaken than strengthen policies.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -129,10 +129,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:56:43.332604+00:00"
+    "generated_at": "2026-03-10T20:25:46.854174+00:00"
   },
   "R000579": {
-    "narrative": "Patrick Ryan cast 1023 votes during his time in Congress and showed up for 97.8% of votes. He voted against 535 bills and for 465 bills. He voted most often on issues about Congress, energy, money and budgets, defense, and world affairs. He cast 176 votes on Congress rules, 113 votes on energy policy, and 100 votes on economic issues.",
+    "narrative": "Ryan cast 1023 votes with a 97.8% participation rate. He voted no 535 times and yes 465 times. His votes often weakened government programs rather than strengthened them. In Energy, he voted to weaken 77 times and strengthen 35 times. In Economics, he voted to weaken 74 times and strengthen 24 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -140,10 +140,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:57:03.719059+00:00"
+    "generated_at": "2026-03-10T20:34:22.200700+00:00"
   },
   "T000478": {
-    "narrative": "Tenney voted on 1023 bills during her time in Congress. She voted yes on 739 bills and voted no on 256 bills. She showed up to vote 97.3% of the time. She cast the most votes on bills about Congress operations with 176 votes, followed by energy policy with 113 votes and economics with 100 votes.",
+    "narrative": "Tenney cast 1023 votes with a 97.3% participation rate. She voted yes on 739 bills and no on 256 bills. In her top five policy areas, she voted to strengthen programs more often than weaken them. She voted to strengthen Congress programs 25 times and weaken them 9 times. In energy policy, she voted to strengthen 76 times and weaken 36 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -151,10 +151,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:57:17.329137+00:00"
+    "generated_at": "2026-03-10T20:35:04.830111+00:00"
   },
   "N000002": {
-    "narrative": "Nadler cast votes on 1023 bills and attended 91.2% of voting sessions. He voted \"no\" on 561 bills and \"yes\" on 372 bills. He voted most often on bills about Congress, energy, and economics. Nadler voted on 176 bills about Congress, 113 bills about energy, and 100 bills about economics and public finance.",
+    "narrative": "Representative Nadler cast 1023 votes with a participation rate of 91.2%. He voted no 561 times and yes 372 times. He voted most often on issues related to Congress, energy, economics and public finance, armed forces and national security, and international affairs. In each of these policy areas, he voted to weaken more often than strengthen existing policies and programs.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -162,10 +162,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:57:32.423462+00:00"
+    "generated_at": "2026-03-10T20:35:41.312245+00:00"
   },
   "T000486": {
-    "narrative": "Rep. Torres cast 1,023 votes across the 118th and 119th Congresses with a 94.9% participation rate. He voted yes on 413 bills and voted no on 558 bills. Torres voted most often on matters related to Congress operations (176 votes), energy policy (113 votes), and economics and public finance (100 votes). On energy issues, he voted to strengthen programs 34 times and to weaken them 77 times. His voting record shows he voted against more bills than he supported.",
+    "narrative": "Torres cast 1023 votes with a 94.9% participation rate in the 118th and 119th Congresses. He voted yes on 413 bills and no on 558 bills. His top five voting areas were Congress, Energy, Economics and Public Finance, Armed Forces and National Security, and International Affairs. In these policy areas, he voted for 131 bills that would strengthen government programs and for 261 bills that would reduce government programs.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -173,10 +173,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:57:47.538763+00:00"
+    "generated_at": "2026-03-10T20:40:07.394542+00:00"
   },
   "M000317": {
-    "narrative": "Representative Malliotakis cast 1023 votes in the 118th and 119th Congresses, voting yes 711 times and no 274 times. She showed up to vote 96.3% of the time. She cast the most votes on Congress issues with 176 votes, followed by Energy with 113 votes and Economics and Public Finance with 100 votes. On Energy bills, she voted to strengthen programs 74 times and to weaken them 37 times.",
+    "narrative": "Malliotakis cast 1023 votes with a 96.3% participation rate, voting yes 711 times and no 274 times. She voted most often on Congress operations (176 votes), energy policy (113 votes), and economics (100 votes). On Congress operations, she voted to strengthen 28 times and weaken 7 times. For energy policy, she voted to strengthen 74 times and weaken 37 times. On military and security issues, she voted to strengthen 55 times and weaken 25 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -184,10 +184,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:57:59.073360+00:00"
+    "generated_at": "2026-03-10T20:40:53.647991+00:00"
   },
   "G000597": {
-    "narrative": "Garbarino cast 1023 votes in the House of Representatives with a 95.1% participation rate. He voted yes on 648 bills and no on 325 bills. He voted most often on Congress-related bills (176 votes), Energy bills (113 votes), and Economics and Public Finance bills (100 votes). In Energy policy, he voted to strengthen 75 bills and weaken 34 bills. In Economics and Public Finance, he voted to strengthen 38 bills and weaken 57 bills.",
+    "narrative": "Garbarino cast 1023 votes with a 95.1% participation rate. He voted yes 648 times and no 325 times. He voted most often on Congress issues (176 votes), energy (113 votes), and economics and public finance (100 votes). When voting on energy bills, he voted to strengthen 75 times and weaken 34 times. When voting on economics and public finance bills, he voted to strengthen 38 times and weaken 57 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -195,10 +195,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:58:11.009391+00:00"
+    "generated_at": "2026-03-10T20:41:43.294795+00:00"
   },
   "O000172": {
-    "narrative": "Ocasio-Cortez cast 1023 votes during her time in Congress. She voted yes on 369 bills and voted no on 615 bills. She showed up to vote 96.2% of the time. She voted most often on issues related to Congress operations, energy policy, economics and public finance, military and security matters, and international affairs.",
+    "narrative": "Ocasio-Cortez cast 1023 votes with a 96.2% participation rate. She voted no 615 times and yes 369 times. She voted most on Congress matters (176 votes), energy (113 votes), and economics (100 votes). In all five top areas, she voted to weaken policies more often than strengthen them.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -206,10 +206,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:58:22.920066+00:00"
+    "generated_at": "2026-03-10T20:43:10.744212+00:00"
   },
   "M001206": {
-    "narrative": "Representative Morelle cast 1023 votes in the House with a 95.9% participation rate. He voted yes on 426 bills and no on 555 bills. He cast the most votes on Congress-related bills (176 votes), followed by energy policy (113 votes) and economics issues (100 votes). In most policy areas, he voted to weaken existing programs more often than strengthen them.",
+    "narrative": "Morelle voted on 1023 bills and showed up for 95.9% of votes, saying yes 426 times and no 555 times. He voted on Congress issues 176 times, voting to weaken them 23 times and strengthen them 11 times. On energy policy, he voted to weaken programs 74 times and strengthen them 36 times out of 113 votes. He voted to weaken economic policies 71 times and strengthen them 27 times out of 100 votes.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -217,10 +217,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:58:38.156771+00:00"
+    "generated_at": "2026-03-10T20:43:54.318337+00:00"
   },
   "S001217": {
-    "narrative": "Senator Rick Scott voted on 2159 bills during the 117th, 118th, and 119th Congresses, showing up for 96.4% of votes. He voted no on 1215 bills and yes on 867 bills. Scott voted most often on economics and public finance issues, casting 144 votes in this area. He voted yes on bills to fund military programs and cancel some federal regulations, while voting no on bills to fund government agencies and cap insulin costs.",
+    "narrative": "Scott cast 863 votes with a 97.2% participation rate. He voted most on economics issues with 144 votes. In economics, he voted to strengthen policies 68 times and weaken them 52 times. He also voted to strengthen international affairs and defense policies more than weaken them. His votes on technology and communications leaned toward weakening existing policies.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -228,10 +228,10 @@
       "Transportation and Public Works",
       "Science, Technology, Communications"
     ],
-    "generated_at": "2026-03-10T06:58:52.121006+00:00"
+    "generated_at": "2026-03-10T20:45:07.577818+00:00"
   },
   "M001244": {
-    "narrative": "Moody cast 539 votes with a 99.6% participation rate. She voted yes 408 times and no 129 times. She voted most often on economics and public finance issues with 49 votes. She voted to cancel several federal agency rules including EPA air pollution limits and FCC school Wi-Fi programs. She voted against some military actions involving Iran and a tax cut package that would raise the debt limit.",
+    "narrative": "Senator Moody cast 235 votes with a 99.6% attendance rate in the 119th Congress. She voted yes on 105 bills and no on 129 bills. She voted on 49 economics bills, supporting 38 that would strengthen economic policies and opposing 8 that would weaken them. On environmental issues, she voted for 12 bills that would weaken environmental rules and only 1 that would strengthen them. She voted on 12 international affairs bills, supporting 9 that would strengthen policies and opposing 2.",
     "top_areas": [
       "Economics and Public Finance",
       "Environmental Protection",
@@ -239,10 +239,10 @@
       "Transportation and Public Works",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:59:06.466772+00:00"
+    "generated_at": "2026-03-10T20:45:44.630782+00:00"
   },
   "F000476": {
-    "narrative": "Maxwell Frost cast 1023 votes during his time in Congress. He voted yes 389 times and voted no 611 times. He showed up for 97.8% of all votes. He voted most often on issues related to Congress, energy, economics, armed forces, and international affairs. He voted on 176 bills about Congress, 113 bills about energy, and 100 bills about economics and public finance.",
+    "narrative": "Frost cast 1023 votes with a 97.8% participation rate. He voted no 611 times and yes 389 times. His most frequent voting areas were Congress, Energy, Economics and Public Finance, Armed Forces and National Security, and International Affairs. In all five top areas, he voted more often to weaken government functions than strengthen them. For example, in Energy he voted to weaken 75 times compared to 37 times to strengthen.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -250,10 +250,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:59:20.104348+00:00"
+    "generated_at": "2026-03-10T20:46:26.131513+00:00"
   },
   "D000628": {
-    "narrative": "Representative Dunn cast 1023 votes during his time in the 118th and 119th Congresses with a 93.0% participation rate. He voted yes 692 times and voted no 259 times. He voted most often on Congress-related matters with 176 votes, followed by energy issues with 113 votes and economics and public finance with 100 votes.",
+    "narrative": "Neal Dunn cast 1023 votes and showed up to vote 93% of the time. He voted yes 692 times and no 259 times. He voted most often on Congress issues (176 votes), energy issues (113 votes), and economics issues (100 votes). In his top voting areas, he voted to strengthen policies more often than weaken them. For example, he voted to strengthen Congress 26 times and weaken it 9 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -261,10 +261,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T06:59:45.324420+00:00"
+    "generated_at": "2026-03-10T20:47:39.850368+00:00"
   },
   "F000484": {
-    "narrative": "Randy Fine voted on 361 bills in the 119th Congress with a 99.4% participation rate. He voted yes on 270 bills and no on 89 bills. His most votes were on Congress-related issues with 75 votes, followed by economics and public finance with 48 votes. On armed forces and national security issues, he voted to strengthen policies 21 times and to weaken them 6 times out of 30 total votes. On energy issues, his votes were split between strengthening policies 12 times and weakening them 11 times out of 25 total votes.",
+    "narrative": "Randy Fine voted yes on 270 bills and no on 89 bills out of 361 total votes in the 119th Congress. He showed up to vote 99.4% of the time. He cast 75 votes on Congress issues, voting to strengthen congressional operations 9 times and weaken them 4 times. Fine voted to strengthen armed forces and national security 21 times and weaken them 6 times out of 30 total votes in this area. He voted to strengthen economics and public finance 27 times and weaken them 20 times out of 48 total votes.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -272,10 +272,10 @@
       "Energy",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T06:59:57.740395+00:00"
+    "generated_at": "2026-03-10T20:48:25.331814+00:00"
   },
   "P000622": {
-    "narrative": "Jimmy Patronis cast 361 votes in the House of Representatives with a 99.4% participation rate. He voted yes 274 times and no 85 times. He voted most often on Congress-related bills with 75 votes, followed by economics and public finance with 48 votes. He voted yes on bills to declare Iran a state sponsor of terrorism, fund homeland security, and cancel energy upgrade programs. He voted no on bills to remove US forces from Iran and require more aircraft tracking equipment.",
+    "narrative": "Representative Jimmy Patronis from Florida cast 361 votes in the 119th Congress with a 99.4% participation rate, voting yes 274 times and no 85 times. Patronis voted most often on congressional operations (75 votes), economics and public finance (48 votes), and armed forces and national security (30 votes). In congressional operations, he voted to strengthen 11 times and weaken 2 times. In economics, he voted to strengthen 27 times and weaken 20 times, while in armed forces matters he voted to strengthen 21 times and weaken 6 times. He voted yes on bills to declare Iran a state sponsor of terrorism, fund Homeland Security operations, and block energy efficiency rules, while voting no on removing US forces from Iran and expanding flight operation oversight.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -283,10 +283,11 @@
       "Energy",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T07:00:10.670169+00:00"
+    "needs_review": true,
+    "generated_at": "2026-03-10T20:50:25.171935+00:00"
   },
   "H001099": {
-    "narrative": "Mike Haridopolos cast 449 votes, voting yes on 337 bills and no on 100 bills. He voted 97.3% of the time when votes were held. He voted most often on Congress-related bills (96 votes), economics and public finance (51 votes), and energy policy (32 votes). He voted yes on bills to declare Iran a terrorism sponsor, fund homeland security operations, and cancel energy upgrade programs. He voted no on bills to remove US forces from Iran fighting and require more aircraft tracking equipment.",
+    "narrative": "Haridopolos voted on 449 bills with a 97.3% participation rate, voting yes on 337 bills and no on 100 bills. He cast the most votes on Congress-related issues (96 votes), where he voted to strengthen Congress 21 times and weaken it 5 times. On economics and public finance issues (51 votes), he voted to weaken policies 28 times and strengthen them 21 times. He voted to strengthen military and national security policies 22 times compared to 6 votes to weaken them.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -294,10 +295,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T07:00:29.545573+00:00"
+    "generated_at": "2026-03-10T20:51:06.661380+00:00"
   },
   "F000472": {
-    "narrative": "Franklin cast 1023 votes in Congress. He voted yes on 749 bills and no on 248 bills. He showed up for 97.5% of votes. He voted most often on matters related to Congress (176 votes), Energy (113 votes), and Economics and Public Finance (100 votes). In most policy areas, he voted yes more than he voted no.",
+    "narrative": "Franklin voted yes on 749 bills and no on 248 bills out of 1023 total votes. He participated in 97.5% of votes. He voted most often on Congress issues (176 votes), energy (113 votes), and economics (100 votes). Most of his Congress votes were neutral, not strengthen or weaken votes. He voted to strengthen energy, economics, armed forces, and international affairs more often than to weaken them.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -305,10 +306,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:00:45.152063+00:00"
+    "generated_at": "2026-03-10T20:52:47.135963+00:00"
   },
   "M001217": {
-    "narrative": "Moskowitz cast 1023 votes with a 93.9% participation rate. He voted yes on 458 bills and no on 503 bills. He voted most often on Congress-related matters (176 votes), energy policy (113 votes), and economics and public finance (100 votes). In energy policy, he voted to strengthen programs 35 times and to weaken programs 76 times.",
+    "narrative": "Moskowitz cast 1023 votes with a 93.9% participation rate. He voted yes 458 times and no 503 times. He voted most on Congress issues (176 votes), Energy (113 votes), and Economics (100 votes). In Congress issues, he voted to weaken 23 times and strengthen 12 times. In Energy, he voted to weaken 76 times and strengthen 35 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -316,10 +317,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:01:01.736929+00:00"
+    "generated_at": "2026-03-10T20:54:23.954819+00:00"
   },
   "M001216": {
-    "narrative": "Representative Mills voted yes on 758 bills and no on 236 bills out of 1023 total votes. He showed up to vote 97.2% of the time. He cast 176 votes on bills about Congress, 113 votes on energy bills, and 100 votes on economics bills. On energy bills, he voted to strengthen programs 75 times and to weaken them 37 times.",
+    "narrative": "Mills cast 1023 votes with a 97.2% participation rate. He voted yes 758 times and no 236 times. He voted most on Congress issues (176 votes), energy (113 votes), and economics (100 votes). He voted to strengthen these programs more than weaken them. The ratios were 24 to 10 on Congress issues, 75 to 37 on energy, and 69 to 29 on economics.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -327,10 +328,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:01:23.024536+00:00"
+    "generated_at": "2026-03-10T20:55:47.066763+00:00"
   },
   "L000596": {
-    "narrative": "Luna cast 1,023 votes in the House, voting yes on 619 bills and no on 228 bills. She participated in 82.8% of votes. She voted most often on bills about Congress (176 votes), energy (113 votes), and economics and public finance (100 votes). She voted yes on bills to declare Iran a state sponsor of terrorism and fund homeland security operations. She voted no on bills to remove US forces from Iran and preserve ethics investigation records.",
+    "narrative": "Luna cast 1023 votes during the 118th and 119th Congress, voting yes on 619 bills and no on 228 bills. She participated in 82.8% of House votes. Luna voted most often on Congress issues with 176 votes, followed by Energy with 113 votes, and Economics and Public Finance with 100 votes. In all her top policy areas, she voted more often to strengthen than to weaken existing programs and policies.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -338,10 +339,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:01:35.890443+00:00"
+    "generated_at": "2026-03-10T20:56:28.715938+00:00"
   },
   "L000597": {
-    "narrative": "Rep. Lee cast 1023 votes and attended 94.6% of votes. She voted yes 685 times and no 283 times. She voted most often on Congress issues with 176 votes, followed by Energy issues with 113 votes. On Energy bills, she voted to strengthen 75 times and to weaken 36 times. On Armed Forces issues, she voted to strengthen 54 times and to weaken 26 times.",
+    "narrative": "Lee voted on 1023 bills and voted yes on 685 of them. She cast 176 votes on Congress issues, voting to strengthen them 24 times and weaken them 9 times. On energy issues, she voted to strengthen 75 times and weaken 36 times out of 113 total votes. For economics and public finance, she voted to strengthen 52 times and weaken 43 times out of 100 votes. She showed up to vote 94.6% of the time.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -349,10 +350,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:01:51.088066+00:00"
+    "generated_at": "2026-03-10T20:57:47.162344+00:00"
   },
   "G000593": {
-    "narrative": "Carlos Gimenez cast 1023 votes in the House of Representatives. He voted yes 681 times and voted no 279 times. He showed up for 93.8% of votes. He voted most often on bills about Congress (176 votes), Energy (113 votes), and Economics and Public Finance (100 votes). He also voted frequently on Armed Forces and National Security (86 votes) and International Affairs (81 votes).",
+    "narrative": "Gimenez cast 1023 votes with a 93.8% participation rate, voting yes 681 times and no 279 times. He voted most often on Congressional matters (176 votes), energy policy (113 votes), and economics and public finance (100 votes). In Congress-related votes, he voted to strengthen 26 times and weaken 7 times. For energy policy, he voted to strengthen 74 times and weaken 33 times. On economics and public finance, he voted to weaken 55 times and strengthen 41 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -360,10 +361,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:02:07.872081+00:00"
+    "generated_at": "2026-03-10T20:58:26.396153+00:00"
   },
   "M001199": {
-    "narrative": "Mast cast 1,023 votes in Congress, voting yes on 725 bills and no on 257 bills. He participated in 96% of all votes. He voted most often on Congress issues with 176 votes, followed by Energy with 113 votes. In Energy policy, he voted to strengthen 73 times and weaken 36 times. In Armed Forces issues, he voted to strengthen 61 times and weaken 20 times.",
+    "narrative": "Mast cast 1023 votes with a 96% participation rate. He voted yes 725 times and no 257 times. He voted most on Congress (176 votes), energy (113 votes), economics (100 votes), military (86 votes), and international affairs (81 votes). In all these areas, he voted to strengthen more than weaken.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -371,10 +372,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:02:24.887320+00:00"
+    "generated_at": "2026-03-10T20:59:54.898519+00:00"
   },
   "R000609": {
-    "narrative": "Rutherford cast 1023 votes across two congressional terms with a 91.7% participation rate. He voted yes 690 times and no 248 times. He cast the most votes on Congress-related bills with 176 votes, followed by Energy issues with 113 votes. On Energy bills, he voted to strengthen programs 70 times and to weaken them 30 times. He voted yes on bills to declare Iran a state sponsor of terrorism and to fund Department of Homeland Security operations.",
+    "narrative": "Rutherford cast 1023 votes in the 118th and 119th Congresses, voting yes 690 times and no 248 times. He showed up to vote 91.7% of the time. He voted most often on Congress issues, Energy, Economics and Public Finance, Armed Forces, and International Affairs. In these areas, he voted to strengthen policies more than weaken. He voted to strengthen Congress operations 25 times but weaken only 7 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -382,10 +383,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:02:38.214238+00:00"
+    "generated_at": "2026-03-10T21:01:17.479035+00:00"
   },
   "F000462": {
-    "narrative": "Rep. Frankel cast 1023 votes across two congressional sessions with a 95.6% participation rate. She voted 'no' on 566 bills and 'yes' on 412 bills. She cast the most votes on Congress-related issues with 176 total votes, followed by Energy policy with 113 votes. Her voting activity also included 100 votes on Economics and Public Finance and 86 votes on Armed Forces and National Security issues.",
+    "narrative": "Representative Frankel cast 1023 votes with 412 yes votes and 566 no votes. She had a 95.6% participation rate. She voted most often on Congress issues (176 votes) and energy (113 votes). She also voted on economics and public finance (100 votes), armed forces and national security (86 votes), and international affairs (81 votes). In most policy areas, she voted more often to weaken than strengthen programs.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -393,10 +394,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:02:50.580703+00:00"
+    "generated_at": "2026-03-10T21:02:40.446671+00:00"
   },
   "W000797": {
-    "narrative": "Wasserman Schultz voted on 1023 bills with a 96.9% attendance rate. She voted no on 570 bills and yes on 421 bills. She cast the most votes on issues about Congress (176 votes), energy (113 votes), and money matters (100 votes). Her voting record shows she voted against more bills than she supported.",
+    "narrative": "Wasserman Schultz cast 1023 votes with a 96.9% participation rate. She voted yes on 421 bills and no on 570 bills. She voted most often on issues about Congress (176 votes), energy (113 votes), and economics and public finance (100 votes). In most policy areas, she voted more often against bills that would strengthen government programs than for them.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -404,10 +405,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:03:02.475644+00:00"
+    "generated_at": "2026-03-10T21:03:18.193852+00:00"
   },
   "D000600": {
-    "narrative": "Representative Diaz-Balart cast 1023 votes and voted yes 691 times and no 285 times. He showed up to vote 95.4% of the time. He voted most often on bills about Congress (176 votes), energy (113 votes), and economics (100 votes). He voted yes on bills to declare Iran a state sponsor of terrorism and fund homeland security. He voted no on bills to remove US forces from Iran and some energy department programs.",
+    "narrative": "Diaz-Balart cast 1023 votes, voting yes 691 times and no 285 times. He voted 95.4% of the time. His top voting areas were Congress issues (176 votes), energy (113 votes), money matters (100 votes), military (86 votes), and world affairs (81 votes). In most areas, he voted more often to strengthen than weaken. On money matters, he voted to weaken 50 times and strengthen 48 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -415,10 +416,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:03:16.023661+00:00"
+    "generated_at": "2026-03-10T21:05:58.128233+00:00"
   },
   "B001314": {
-    "narrative": "Aaron Bean cast 1023 votes over two terms in Congress. He voted yes 760 times and no 240 times. He showed up for 97.8% of all votes. He voted most often on matters related to Congress itself, with 176 total votes in that area. He voted to strengthen government functions more often than weaken them across most policy areas.",
+    "narrative": "Bean voted yes 760 times and no 240 times out of 1023 total votes. He voted most on Congress issues with 176 votes. On energy, he voted to strengthen 75 times and weaken 36 times. On economics, he voted to strengthen 74 times and weaken 24 times. He voted to strengthen military and international affairs in most of his votes.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -426,10 +427,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:03:28.718951+00:00"
+    "generated_at": "2026-03-10T21:07:11.522286+00:00"
   },
   "C001127": {
-    "narrative": "Cherfilus-McCormick voted on 1023 bills and participated in 95.4% of votes. She voted no on 570 bills and yes on 406 bills. She cast the most votes on Congress issues with 176 votes, followed by Energy with 113 votes. In Energy policy, she voted to weaken programs 76 times and strengthen them 35 times. Her voting covered five main policy areas with over 80 votes each.",
+    "narrative": "Cherfilus-McCormick cast 1023 votes with a 95.4% participation rate. She voted no 570 times and yes 406 times. She voted most often on Congress matters (176 votes), energy policy (113 votes), and economics and public finance (100 votes). In these top areas, she voted to weaken policies more often than strengthen them. For example, in energy policy, she cast 76 votes to weaken and 35 votes to strengthen.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -437,10 +438,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:03:41.124756+00:00"
+    "generated_at": "2026-03-10T21:07:52.860853+00:00"
   },
   "S001150": {
-    "narrative": "Schiff cast 570 votes in the Senate and showed up for 96.1% of votes. He voted no on 379 bills and voted yes on 169 bills. He voted most often on economics and public finance issues, casting 50 votes in this area. On environmental protection bills, he voted to strengthen rules 12 times and voted to weaken rules 0 times. On economics and finance bills, he voted to weaken rules 40 times and voted to strengthen rules 7 times.",
+    "narrative": "Schiff cast 254 votes with a 96.1% participation rate, voting yes 138 times and no 106 times. He voted most often on economics and public finance issues (50 votes), where he voted to weaken policies 40 times and strengthen them 7 times. On environmental protection (13 votes), he voted to strengthen policies 12 times with no votes to weaken them. For finance and financial sector issues (12 votes), he voted to strengthen policies 11 times and weaken them once. He also voted on transportation and international affairs issues 12 times each.",
     "top_areas": [
       "Economics and Public Finance",
       "Environmental Protection",
@@ -448,10 +449,10 @@
       "Transportation and Public Works",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:03:56.371686+00:00"
+    "generated_at": "2026-03-10T21:08:38.357822+00:00"
   },
   "P000145": {
-    "narrative": "Senator Alex Padilla cast 2,157 votes across three Congressional sessions with a 96.7% participation rate. He voted yes on 1,372 bills and voted no on 713 bills. He voted most often on economics and public finance issues, casting 144 votes in this area. He also voted on international affairs, armed forces and national security, transportation and public works, and science and technology issues.",
+    "narrative": "Padilla cast 861 votes with a 96.9% participation rate. He voted yes 402 times and no 432 times. He voted most often on economics and budget issues, with 144 votes in that area. On economic matters, he voted to weaken federal programs 79 times and strengthen them 55 times. He voted to strengthen international affairs, defense, transportation, and technology programs more often than weaken them.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -459,10 +460,10 @@
       "Transportation and Public Works",
       "Science, Technology, Communications"
     ],
-    "generated_at": "2026-03-10T07:04:12.008241+00:00"
+    "generated_at": "2026-03-10T21:09:19.305279+00:00"
   },
   "C001059": {
-    "narrative": "Costa voted on 1023 bills in the 118th and 119th Congress. He voted yes on 432 bills and no on 506 bills. He participated in 91.7% of all votes. Costa voted most often on bills about Congress, energy, economics, armed forces, and international affairs. He voted no more often than yes.",
+    "narrative": "Costa cast 1023 votes in the 118th and 119th Congresses with a 91.7% participation rate. He voted no on 506 bills and yes on 432 bills. Costa voted most often on Congress issues (176 votes), energy issues (113 votes), and economics issues (100 votes). In all his top voting areas, he cast more votes to weaken than strengthen policies.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -470,10 +471,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:04:25.729263+00:00"
+    "generated_at": "2026-03-10T21:09:57.655300+00:00"
   },
   "W000187": {
-    "narrative": "Waters cast 1023 votes across two congresses with a 94.2% participation rate. She voted yes on 380 bills and no on 584 bills. She voted most often on issues related to Congress, Energy, and Economics and Public Finance. In energy policy, she voted to weaken programs 76 times and strengthen them 34 times. Her no votes made up 57% of her total votes.",
+    "narrative": "Waters cast 1023 votes with a 94.2% participation rate. She voted yes 380 times and no 584 times. She voted most often on Congress issues (176 votes), Energy (113 votes), and Economics (100 votes). In these top areas, she voted to weaken more than strengthen. For example, she cast 76 votes to weaken Energy policies but only 34 to strengthen them.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -481,10 +482,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:04:40.172199+00:00"
+    "generated_at": "2026-03-10T21:28:43.752998+00:00"
   },
   "P000197": {
-    "narrative": "Nancy Pelosi cast 1023 votes during the 118th and 119th Congresses. She voted yes on 378 bills and voted no on 562 bills. She participated in 91.9% of all votes. She cast the most votes on matters related to Congress, with 176 votes in this area. Her next most frequent voting areas were Energy with 113 votes and Economics and Public Finance with 100 votes.",
+    "narrative": "Pelosi cast 1023 votes across the 118th and 119th Congresses with a 91.9% participation rate. She voted no on 562 bills and yes on 378 bills. Her most frequent voting areas were Congress with 176 votes, Energy with 113 votes, and Economics and Public Finance with 100 votes. In these top policy areas, she more often voted to weaken existing programs than strengthen them. For example, in Energy policy, she voted to weaken programs 77 times compared to 32 times to strengthen them.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -492,10 +493,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:04:52.731374+00:00"
+    "generated_at": "2026-03-10T21:29:25.724665+00:00"
   },
   "W000830": {
-    "narrative": "Whitesides cast 449 votes in Congress 119, voting yes on 207 bills and no on 223 bills. He participated in 95.8% of votes. He voted most often on bills about Congress operations with 96 votes, followed by economics and public finance with 51 votes. His voting covered topics like energy policy, military and security issues, and crime and law enforcement.",
+    "narrative": "George Whitesides cast 449 votes in the House with a 95.8% participation rate. He voted \"no\" on 223 bills and \"yes\" on 207 bills. His voting focused most on Congress issues (96 votes), where he voted to weaken congressional powers 20 times and strengthen them 6 times. On economics and finance issues (51 votes), he voted to weaken policies 34 times and strengthen them 15 times. He voted on energy issues 32 times, with 17 votes to strengthen and 14 to weaken energy policies.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -503,10 +504,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T07:05:07.205222+00:00"
+    "generated_at": "2026-03-10T21:30:09.284953+00:00"
   },
   "F000483": {
-    "narrative": "Friedman voted on 449 bills in the 119th Congress. She voted yes on 182 bills and no on 259 bills. She showed up to vote 98.2% of the time. She voted most often on bills about Congress, economics and public finance, and energy.",
+    "narrative": "Friedman cast 449 votes with a 98.2% participation rate. She voted \"no\" on 259 bills and \"yes\" on 182 bills. She voted most often on Congress issues (96 votes), where she voted to weaken Congress powers 20 times and strengthen them 6 times. On economics issues (51 votes), she voted to weaken economic policies 36 times and strengthen them 13 times. On energy issues (32 votes), she voted to strengthen energy policies 18 times and weaken them 13 times.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -514,10 +515,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T07:05:22.617146+00:00"
+    "generated_at": "2026-03-10T21:30:48.202019+00:00"
   },
   "F000480": {
-    "narrative": "Rep. Fong cast 449 votes in the 119th Congress, voting yes on 327 bills and no on 98 bills. He showed up to vote 94.7% of the time. He voted on Congress issues 96 times, voting to strengthen congressional powers 19 times and weaken them 5 times. On economics and finance, he cast 51 votes, with 18 votes to strengthen and 31 votes to weaken these areas. He voted 31 times on military and security issues, supporting them 20 times and opposing them 6 times.",
+    "narrative": "Fong cast 449 votes with a 94.7% participation rate. His votes covered five main policy areas. These were Congress rules (96 votes), economics and finance (51 votes), and energy (32 votes). He mostly voted to strengthen Congress rules and military security. He often voted to weaken economics and finance policies.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -525,10 +526,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T07:05:34.452768+00:00"
+    "generated_at": "2026-03-10T21:32:21.758437+00:00"
   },
   "C001123": {
-    "narrative": "Representative Cisneros cast 449 votes with a 99.1% attendance rate. He voted yes on 189 bills and no on 256 bills. He voted most often on Congress-related issues with 96 votes, followed by economics and public finance with 51 votes. His voting record shows he voted against more bills than he supported.",
+    "narrative": "Cisneros voted on 449 bills and showed up to vote 99.1% of the time. He voted No 256 times and Yes 189 times. He voted most often on Congress issues (96 votes), where he voted to weaken more than strengthen (19 to 6). On economics issues, he voted to weaken more than strengthen (35 to 14). On energy issues, he voted to strengthen more than weaken (18 to 13).",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -536,10 +537,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T07:05:50.152945+00:00"
+    "generated_at": "2026-03-10T21:32:58.988363+00:00"
   },
   "M001225": {
-    "narrative": "Rep. Mullin cast 1023 votes and showed up for 90.6% of all votes. He voted \"no\" on 557 bills and \"yes\" on 370 bills. He voted most often on matters related to Congress, energy, and economics. His votes covered areas like homeland security funding, energy efficiency rules, and military affairs.",
+    "narrative": "Mullin cast 1023 votes and showed up 90.6% of the time. He voted no on 557 bills and yes on 370 bills. He voted most often on Congress rules, energy, money issues, military matters, and foreign affairs. In these areas, he usually voted against bills that would make government programs stronger.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -547,10 +548,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:06:06.136402+00:00"
+    "generated_at": "2026-03-10T21:33:42.892073+00:00"
   },
   "K000401": {
-    "narrative": "Rep. Kiley cast 1,023 votes during his time in Congress. He voted yes 678 times and voted no 319 times. He showed up to vote 97.5% of the time. He voted most often on bills about Congress operations (176 votes), energy (113 votes), and economics and public finance (100 votes).",
+    "narrative": "Kiley cast 1023 votes with a 97.5% participation rate. He voted yes 678 times and no 319 times. He voted most often on Congress issues (176 votes), Energy (113 votes), and Economics (100 votes). His votes typically strengthened Congress, Energy, and military policies. His votes typically weakened economic and finance policies.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -558,10 +559,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:06:20.816637+00:00"
+    "generated_at": "2026-03-10T21:34:58.474352+00:00"
   },
   "K000400": {
-    "narrative": "Representative Kamlager-Dove cast 1023 votes in the House of Representatives, voting yes on 386 bills and no on 594 bills. She attended 95.8% of votes during the 118th and 119th Congresses. She voted most often on Congress-related bills (176 votes), followed by Energy issues (113 votes) and Economics and Public Finance (100 votes). In Energy votes, she voted to weaken policies 74 times and strengthen them 37 times.",
+    "narrative": "Kamlager-Dove cast 1023 votes during her time in Congress and showed up to vote 95.8% of the time. She voted \"no\" 594 times and \"yes\" 386 times. She voted most often on bills about Congress (176 votes), Energy (113 votes), and Economics and Public Finance (100 votes). In most policy areas, she voted more often to weaken than to strengthen existing programs and rules.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -569,10 +570,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:06:34.171967+00:00"
+    "generated_at": "2026-03-10T21:35:41.805372+00:00"
   },
   "G000598": {
-    "narrative": "Garcia cast 1023 votes in the House with a 94.9% attendance rate. He voted yes on 379 bills and voted no on 592 bills. Garcia cast the most votes on Congress issues (176 votes), followed by Energy (113 votes) and Economics and Public Finance (100 votes). On Energy bills, he voted to weaken programs 74 times and voted to strengthen programs 35 times.",
+    "narrative": "Garcia cast 1,023 votes with a 94.9% participation rate. He voted no on 592 bills and yes on 379 bills. In his top five policy areas, he voted to weaken government programs more often than strengthen them. In energy policy, he voted to weaken programs 74 times versus 35 times to strengthen them. He showed similar patterns in economics and finance (76 weaken vs 22 strengthen) and defense (52 weaken vs 27 strengthen).",
     "top_areas": [
       "Congress",
       "Energy",
@@ -580,10 +581,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:06:48.966674+00:00"
+    "generated_at": "2026-03-10T21:36:18.895139+00:00"
   },
   "O000019": {
-    "narrative": "Representative Obernolte cast 1023 votes across the 118th and 119th Congresses, voting yes 672 times and no 317 times, with a 96.7% participation rate. He voted yes on bills to declare Iran a state sponsor of terrorism, fund the Department of Homeland Security, and cancel Department of Energy home upgrade programs. He voted no on bills to remove US forces from Iran, require in-state tuition for territorial students, and expand aircraft tracking oversight. His votes covered 176 congressional matters, 113 energy issues, and 100 economic and finance bills.",
+    "narrative": "Rep. Obernolte cast 1023 votes with a 96.7% participation rate. He voted yes 672 times and no 317 times. He voted most often on Congress issues (176 votes), Energy issues (113 votes), and Economics issues (100 votes). On Energy issues, he voted to strengthen policies 76 times and weaken them 36 times. On Economics issues, he voted to weaken policies 55 times and strengthen them 43 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -591,10 +592,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:07:03.055425+00:00"
+    "generated_at": "2026-03-10T21:36:59.770575+00:00"
   },
   "K000397": {
-    "narrative": "Representative Kim Young voted on 1023 bills. Kim voted yes 678 times and no 312 times. Kim attended 96.8% of votes. Kim voted most often on Congress issues, Energy issues, and Economics and Public Finance issues.",
+    "narrative": "Young Kim cast 1023 votes in the House, voting yes 678 times and no 312 times. She voted in 96.8% of votes during the 118th and 119th Congresses. Kim voted most often on Congress issues (176 votes), energy policy (113 votes), and economics (100 votes). In most policy areas, she voted to strengthen government functions more often than to weaken them. In economics and public finance, she voted to weaken government functions 55 times compared to 41 times to strengthen them.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -602,10 +603,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:07:23.384401+00:00"
+    "generated_at": "2026-03-10T21:37:45.416560+00:00"
   },
   "J000305": {
-    "narrative": "Sara Jacobs cast 1023 votes in the House of Representatives with a 97.1% participation rate. She voted No on 593 bills and Yes on 400 bills. She cast the most votes on Congress-related issues (176 votes), followed by Energy issues (113 votes) and Economics and Public Finance (100 votes). She voted Yes on bills to remove US forces from Iran and fund the Department of Homeland Security, while voting No on declaring Iran a state sponsor of terrorism and blocking energy efficiency rules.",
+    "narrative": "Sara Jacobs cast 1023 votes with a 97.1% participation rate. She voted no 593 times and yes 400 times. Her top voting areas were Congress, Energy, and Economics. In all these areas, she voted to weaken more than strengthen.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -613,10 +614,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:07:38.640310+00:00"
+    "generated_at": "2026-03-10T21:39:21.562880+00:00"
   },
   "H001090": {
-    "narrative": "Josh Harder cast 1023 votes with a 97.8% participation rate. He voted yes on 472 bills and no on 529 bills. He voted most often on Congress issues (176 votes), energy policy (113 votes), and economics (100 votes). He voted to declare Iran a state sponsor of terrorism and to remove US forces from fighting in Iran. He voted against some energy efficiency rules and tax credits for electric appliances.",
+    "narrative": "Josh Harder cast 1023 votes with a 97.8% participation rate. He voted yes 472 times and no 529 times. He voted most often on Congress issues (176 votes), energy issues (113 votes), and economics issues (100 votes). In Congress policy, he voted to weaken 24 times and strengthen 11 times. In energy policy, he voted to weaken 81 times and strengthen 31 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -624,10 +625,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:07:54.862394+00:00"
+    "generated_at": "2026-03-10T21:40:00.229436+00:00"
   },
   "P000613": {
-    "narrative": "Jimmy Panetta voted on 1023 bills during his time in the 118th and 119th Congress, showing up for 97.8% of votes. He voted yes on 463 bills and no on 537 bills. He cast the most votes on issues related to Congress operations (176 votes), followed by energy policy (113 votes), and economics and public finance (100 votes). He also voted frequently on military and national security matters (86 votes) and international affairs (81 votes).",
+    "narrative": "Rep. Panetta cast 1023 votes with a 97.8% participation rate. He voted no on 537 bills and yes on 463 bills. He voted most often on Congress issues (176 votes), energy policy (113 votes), and economics (100 votes). In most policy areas, he voted more often to weaken than strengthen existing programs and rules.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -635,10 +636,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:08:10.277774+00:00"
+    "generated_at": "2026-03-10T21:40:36.623616+00:00"
   },
   "L000582": {
-    "narrative": "Ted Lieu cast 1023 votes in the 118th and 119th Congresses with a 95.8% participation rate. He voted 'no' on 572 bills and 'yes' on 408 bills. He cast the most votes on bills about Congress (176 votes), energy (113 votes), and economics and public finance (100 votes). In most policy areas, he voted against more bills than he supported.",
+    "narrative": "The member voted no more often than yes, casting 572 no votes and 408 yes votes out of 1023 total votes. He voted on Congress matters 176 times, mostly to weaken rather than strengthen (25 to weaken vs 10 to strengthen). In energy policy, he cast 113 votes with 75 votes to weaken and 35 to strengthen. He voted 100 times on economics matters, with 71 votes to weaken and 27 to strengthen. The member showed up to vote 95.8% of the time.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -646,10 +647,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:08:23.925601+00:00"
+    "generated_at": "2026-03-10T21:41:18.891134+00:00"
   },
   "A000371": {
-    "narrative": "Pete Aguilar cast 1023 votes and attended 97.5% of voting sessions. He voted \"no\" on 580 bills and \"yes\" on 417 bills. He voted most often on Congress issues (176 votes), Energy issues (113 votes), and Economics and Public Finance issues (100 votes). He also voted frequently on Armed Forces and National Security (86 votes) and International Affairs (81 votes).",
+    "narrative": "Pete Aguilar cast 1023 votes in Congress with a 97.5% participation rate. He voted yes 417 times and no 580 times. Aguilar voted most often on Congress issues (176 votes), energy policy (113 votes), and economics (100 votes). In most policy areas, he voted more often to weaken than strengthen programs.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -657,10 +658,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:08:42.931889+00:00"
+    "generated_at": "2026-03-10T21:42:36.134964+00:00"
   },
   "C001098": {
-    "narrative": "Ted Cruz cast 2159 votes in the Senate and showed up to vote 93.7% of the time. He voted \"yes\" on 865 bills and \"no\" on 1159 bills. Cruz voted most often on economics and public finance issues, with 144 votes in this area. He voted to cancel rules protecting endangered bats and prairie chickens, and voted against funding government agencies and capping insulin costs.",
+    "narrative": "Senator Cruz cast 863 votes across the 117th, 118th, and 119th Congresses with a 97% attendance rate. He voted yes 512 times and no 325 times. His most votes were on economics and finance issues, where he voted to strengthen policies 77 times and weaken them 50 times. On international affairs, he voted to strengthen policies 28 times and weaken them 8 times. He had mixed voting patterns on transportation and science issues.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -668,10 +669,10 @@
       "Transportation and Public Works",
       "Science, Technology, Communications"
     ],
-    "generated_at": "2026-03-10T07:08:56.622912+00:00"
+    "generated_at": "2026-03-10T21:43:21.685856+00:00"
   },
   "C001056": {
-    "narrative": "Senator Cornyn cast 2159 votes across three congressional sessions with a 97.3% participation rate. He voted yes 1142 times and no 958 times. He cast 144 votes on economics and public finance bills. He voted for government funding bills and insulin cost caps, but voted against campaign finance disclosure requirements and fertility treatment protections.",
+    "narrative": "Senator Cornyn cast 863 votes with a 97.8% participation rate. He voted yes 559 times and no 285 times. In Economics and Public Finance, he voted to strengthen 103 times and weaken 28 times. He voted to strengthen more than weaken in International Affairs (31 to 6) and Armed Forces (18 to 6).",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -679,21 +680,19 @@
       "Transportation and Public Works",
       "Science, Technology, Communications"
     ],
-    "generated_at": "2026-03-10T07:09:12.256957+00:00"
+    "generated_at": "2026-03-10T21:44:49.334139+00:00"
   },
   "M001245": {
-    "narrative": "Menefee, Christian D. represents Texas in the House of Representatives. They cast 38 votes with a 76.3% participation rate.",
+    "narrative": "Rep. Menefee cast 38 votes out of a possible total, giving him a 76.3% participation rate. He voted yes 13 times and no 16 times. He cast the most votes on energy issues (8 votes), voting to strengthen energy policies in 2 cases and weaken them in 1 case. He also voted 4 times on government operations and politics issues and 3 times on international affairs issues.",
     "top_areas": [
       "Energy",
       "Government Operations and Politics",
-      "International Affairs",
-      "Economics and Public Finance",
-      "Public Lands and Natural Resources"
+      "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:09:26.807025+00:00"
+    "generated_at": "2026-03-10T21:46:13.688427+00:00"
   },
   "C001120": {
-    "narrative": "Crenshaw voted yes on 657 bills and no on 273 bills out of 1,023 total votes. He showed up to vote 90.9% of the time. He voted on Congress rules 176 times, energy issues 113 times, and economics 100 times. In energy votes, he voted to strengthen policies 75 times and weaken them 33 times. In defense votes, he voted to strengthen policies 49 times and weaken them 25 times.",
+    "narrative": "Rep. Crenshaw cast 1023 votes with a 90.9% participation rate. He voted yes on 657 bills and no on 273 bills. He voted most often on Congress-related bills (176 votes), where he voted to strengthen Congress 19 times and weaken it 8 times. On energy issues (113 votes), he voted to strengthen energy policies 75 times and weaken them 33 times. On economics and public finance (100 votes), his votes were more mixed with 49 votes to strengthen and 45 to weaken.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -701,10 +700,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:09:40.400958+00:00"
+    "generated_at": "2026-03-10T22:02:31.993019+00:00"
   },
   "J000310": {
-    "narrative": "Johnson voted on 449 bills and showed up to vote 96.7% of the time. She voted \"no\" on 241 bills and \"yes\" on 193 bills. Most of her votes were about Congress rules and operations, with 96 votes in this area. She also voted often on money and budget issues, with 51 votes on economics and public finance.",
+    "narrative": "Johnson cast 449 votes in the 119th Congress with a 96.7% participation rate. She voted no on 241 bills and yes on 193 bills. On Congress-related bills, she voted to weaken 20 times and strengthen 6 times. On economics bills, she voted to weaken 34 times and strengthen 15 times. On energy bills, she voted to strengthen 16 times and weaken 11 times.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -712,10 +711,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T07:09:51.061715+00:00"
+    "generated_at": "2026-03-10T22:03:14.802369+00:00"
   },
   "G000603": {
-    "narrative": "Brandon Gill cast 449 votes with a 97.1% participation rate. He voted yes on 330 bills and no on 106 bills. He voted most often on issues related to Congress operations, economics and public finance, and energy policy. He voted yes on bills to declare Iran a state sponsor of terrorism and to fund the Department of Homeland Security. He voted no on bills to remove US forces from fighting in Iran and to make colleges charge in-state tuition to students from US territories.",
+    "narrative": "Gill cast 449 votes with a 97.1% participation rate. He voted yes 330 times and no 106 times. On Congress operations, he voted to strengthen 19 times and weaken 6 times. He voted to strengthen economics and finance policies 32 times and weaken them 17 times. On armed forces and security issues, he voted to strengthen 23 times and weaken 5 times.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -723,10 +722,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T07:10:04.597691+00:00"
+    "generated_at": "2026-03-10T22:03:55.923953+00:00"
   },
   "G000601": {
-    "narrative": "Goldman cast 449 votes with a 98.7% participation rate. He voted yes on 348 bills and no on 95 bills. He voted most often on Congress issues with 96 votes. He also voted 51 times on Economics and Public Finance and 32 times on Energy issues.",
+    "narrative": "Goldman voted yes on 348 bills and no on 95 bills out of 449 total votes during Congress 119. He showed up to vote 98.7% of the time. He voted most often on Congress rules and operations, with 96 total votes. In this area, he voted to strengthen Congress operations 21 times and weaken them 5 times. He also voted frequently on money and finance issues, voting to strengthen policies 32 times and weaken them 17 times.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -734,10 +733,10 @@
       "Armed Forces and National Security",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-10T07:10:16.966949+00:00"
+    "generated_at": "2026-03-10T22:04:39.125299+00:00"
   },
   "S001224": {
-    "narrative": "Keith Self cast 1023 votes across two congressional terms with a 96.6% participation rate. He voted yes on 710 bills and voted no on 278 bills. Self voted most often on Congress-related matters with 176 votes, followed by energy policy with 113 votes, and economics with 100 votes. In most policy areas, he voted to strengthen existing programs more often than to weaken them.",
+    "narrative": "Keith Self cast 1023 votes in the House with a 96.6% participation rate. He voted yes on 710 bills and no on 278 bills. He voted most often on Congress issues (176 votes), energy issues (113 votes), and economics issues (100 votes). In these top areas, Self voted to strengthen policies more often than weaken them.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -745,10 +744,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:10:32.198223+00:00"
+    "generated_at": "2026-03-10T22:05:15.962984+00:00"
   },
   "M001224": {
-    "narrative": "Representative Moran cast 1,023 votes with a 97% participation rate. He voted yes on 726 bills and no on 266 bills. He voted most often on matters related to Congress (176 votes), energy policy (113 votes), and economics (100 votes). In energy policy, he voted to strengthen 75 bills and weaken 36 bills. In economics, he voted to strengthen 62 bills and weaken 36 bills.",
+    "narrative": "Moran cast 1023 votes with a 97% participation rate in the House. He voted yes 726 times and no 266 times. His top voting areas were Congress with 176 votes, Energy with 113 votes, and Economics with 100 votes. In Congress votes, he supported strengthening 26 times and weakening 9 times. In Energy votes, he supported strengthening 75 times and weakening 36 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -756,10 +755,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:10:45.814096+00:00"
+    "generated_at": "2026-03-10T22:06:33.491294+00:00"
   },
   "L000603": {
-    "narrative": "Morgan Luttrell voted yes on 743 bills and no on 232 bills out of 1023 total votes. He participated in 95.3% of votes during his time in Congress. He cast the most votes on issues related to Congress operations with 176 votes. He also voted frequently on energy policy with 113 votes and economics issues with 100 votes.",
+    "narrative": "Luttrell cast 1023 votes and showed up 95.3% of the time. He voted yes 743 times and no 232 times. He voted on Congress issues most with 176 votes, where he voted to strengthen 26 times and weaken 9 times. On Energy issues, he voted to strengthen 74 times and weaken 37 times out of 113 total votes. On Economics and Public Finance, he voted to strengthen 70 times and weaken 27 times out of 100 total votes.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -767,10 +766,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:10:59.320386+00:00"
+    "generated_at": "2026-03-10T22:08:02.817410+00:00"
   },
   "H001095": {
-    "narrative": "Hunt cast 1023 votes with a 74.4% participation rate. He voted yes 625 times and no 136 times. He voted most often on Congress issues (176 votes), energy (113 votes), and economics (100 votes). On armed forces matters, he voted to strengthen policies 64 times and weaken them 10 times.",
+    "narrative": "Hunt cast 1023 votes with a 74.4% participation rate. He voted on Congress issues 176 times, voting to strengthen Congress 24 times and weaken it 9 times. On energy issues, he cast 113 votes, with 16 votes to strengthen energy policies and 25 votes to weaken them. He voted on economics and public finance 100 times, voting to strengthen these areas 52 times and weaken them 22 times. Hunt voted on armed forces and national security 86 times, with 64 votes to strengthen and 10 votes to weaken these policies.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -778,10 +777,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:11:12.044550+00:00"
+    "generated_at": "2026-03-10T22:10:03.986126+00:00"
   },
   "D000594": {
-    "narrative": "De La Cruz cast 1023 votes in the House, voting yes 704 times and no 259 times. She showed up for 94.1% of votes. She voted on Congress issues 176 times, Energy issues 113 times, and Economics issues 100 times. In most policy areas, she voted more often for bills that would strengthen programs than weaken them.",
+    "narrative": "De La Cruz cast 1023 votes with a 94.1% participation rate. She voted yes 704 times and no 259 times. Her top voting areas were Congress (176 votes), Energy (113 votes), and Economics (100 votes). In each area, she voted to strengthen more than weaken. For example, she voted to strengthen Energy 76 times versus 34 times to weaken.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -789,10 +788,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:11:26.691362+00:00"
+    "generated_at": "2026-03-10T22:11:16.472585+00:00"
   },
   "C001130": {
-    "narrative": "Representative Crockett cast 1023 votes during the 118th and 119th Congresses. She voted \"no\" on 578 bills and \"yes\" on 394 bills. She participated in 95% of votes. She voted most often on issues related to Congress (176 votes), followed by energy policy (113 votes) and economics (100 votes).",
+    "narrative": "Crockett voted on 1023 bills and attended 95% of votes. She voted yes on 394 bills and no on 578 bills. In four of her top five policy areas, she voted more often to weaken than strengthen existing policies. She voted to weaken policies in Congress (24 vs 10), Energy (73 vs 31), Economics (74 vs 24), and Armed Forces (51 vs 30). Her International Affairs votes were split between strengthening (37) and weakening (38) policies.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -800,10 +799,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:11:41.894393+00:00"
+    "generated_at": "2026-03-10T22:11:57.675885+00:00"
   },
   "C001131": {
-    "narrative": "Rep. Casar cast 1023 votes with an 88.8% participation rate. He voted 'no' 560 times and 'yes' 348 times. He voted most often on Congress issues (176 votes), energy issues (113 votes), and economics issues (100 votes). In energy policy, he voted to weaken programs 72 times and strengthen them 30 times. In economics policy, he voted to weaken programs 71 times and strengthen them 24 times.",
+    "narrative": "Casar cast 1023 votes with an 88.8% participation rate across Congresses 118 and 119. He voted yes on 348 bills and no on 560 bills. He voted most often on Congress issues (176 votes), energy policy (113 votes), and economics (100 votes). In these top areas, he voted against strengthening measures more often than for them. On energy issues he voted to weaken 72 times versus strengthen 30 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -811,10 +810,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:12:00.874690+00:00"
+    "generated_at": "2026-03-10T22:17:43.873155+00:00"
   },
   "G000581": {
-    "narrative": "Gonzalez cast 1023 votes in the 118th and 119th Congresses with a 93.2% participation rate. He voted yes on 477 bills and no on 476 bills, showing an almost even split. Most of his votes were on Congress-related matters with 176 votes, followed by energy issues with 113 votes. He voted on economics and public finance 100 times and armed forces and national security 86 times.",
+    "narrative": "Representative Gonzalez voted yes on 477 bills and no on 476 bills out of 1023 total votes. He showed up to vote 93.2% of the time. In most policy areas, he voted more often to weaken government programs than strengthen them. On energy issues, he voted to weaken programs 72 times and strengthen them 38 times. On economic and budget issues, he voted to weaken programs 64 times and strengthen them 30 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -822,10 +821,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:12:12.608802+00:00"
+    "generated_at": "2026-03-10T22:18:20.176869+00:00"
   },
   "G000553": {
-    "narrative": "Al Green voted on 1023 bills with a 95.8% participation rate. He voted yes on 401 bills and no on 579 bills. Green voted most often on Congress-related bills with 176 votes, followed by energy issues with 113 votes. He voted yes on bills to remove US forces from Iran and fund homeland security, but voted no on bills declaring Iran a terrorism sponsor and blocking energy efficiency rules.",
+    "narrative": "Rep. Green voted no on 579 bills and yes on 401 bills out of 1023 total votes. He showed up for 95.8% of votes. In his top policy areas, he voted to weaken government programs more often than strengthen them. For energy policy, he voted to weaken 77 times and strengthen 34 times. In economics and public finance, he voted to weaken 70 times and strengthen 27 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -833,10 +832,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:12:25.945199+00:00"
+    "generated_at": "2026-03-10T22:18:59.980042+00:00"
   },
   "D000399": {
-    "narrative": "Lloyd Doggett cast 1,023 votes in the House of Representatives and showed up for 95.6% of votes. He voted yes on 399 bills and voted no on 579 bills. He voted most often on Congress issues with 176 votes, followed by energy issues with 113 votes. He also voted frequently on economics and public finance matters with 100 votes.",
+    "narrative": "Lloyd Doggett cast 1023 votes with a 95.6% participation rate. He voted 'no' on 579 bills and 'yes' on 399 bills. Doggett voted most often on issues related to Congress, energy, and economics. In these areas, he voted to weaken federal involvement more than strengthen it. His votes included opposing some energy efficiency rules and supporting removal of US forces from Iran.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -844,10 +843,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:12:42.385941+00:00"
+    "generated_at": "2026-03-10T22:19:41.082482+00:00"
   },
   "E000071": {
-    "narrative": "Ellzey cast 1023 votes with a 96.8% participation rate. He voted yes on 711 bills and no on 279 bills. He voted most often on Congress issues (176 votes), energy issues (113 votes), and economics and public finance (100 votes). On energy bills, he voted to strengthen 74 times and weaken 37 times.",
+    "narrative": "Jake Ellzey cast 1023 votes in the House with a 96.8% attendance rate. He voted yes 711 times and no 279 times. He voted most often on Congress issues (176 votes). He also voted frequently on Energy (113), Economics (100), Armed Forces (86), and International Affairs (81). In all these areas, he voted to strengthen more than weaken.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -855,10 +854,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:12:55.204613+00:00"
+    "generated_at": "2026-03-10T22:20:59.091819+00:00"
   },
   "V000134": {
-    "narrative": "Van Duyne cast 1023 votes in the House of Representatives. She voted yes on 753 bills and no on 245 bills. She attended 97.6% of votes. She voted most often on bills about Congress operations (176 votes), energy policy (113 votes), and economics (100 votes). She voted yes on bills to fund homeland security, require government oversight of flights, and declare Iran a state sponsor of terrorism.",
+    "narrative": "Van Duyne cast 1023 votes with a 97.6% participation rate across the 118th and 119th Congresses. She voted most often on Congress issues (176 votes), Energy policies (113 votes), and Economics and Public Finance matters (100 votes). On Congress issues, she voted to strengthen policies 25 times and weaken them 9 times. For Energy policies, she voted to strengthen 75 times and weaken 37 times. On Economics and Public Finance, she voted to strengthen 65 times and weaken 33 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -866,10 +865,10 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:13:08.861892+00:00"
+    "generated_at": "2026-03-10T22:22:14.016455+00:00"
   },
   "N000026": {
-    "narrative": "Nehls cast 1023 votes during his time in Congress and showed up to vote 92.1% of the time. He voted yes on 728 bills and voted no on 214 bills. He voted most often on bills about how Congress works, energy policy, and money matters. His votes covered topics like homeland security funding, energy programs, and military issues.",
+    "narrative": "Nehls cast 1023 votes with a 92.1% participation rate. He voted on Congress issues 176 times, Energy 113 times, Economics 100 times, Armed Forces 86 times, and International Affairs 81 times. He voted to strengthen Energy policies 75 times versus weakening them 34 times. He voted to strengthen Armed Forces policies 67 times versus weakening them 12 times.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -877,6 +876,6 @@
       "Armed Forces and National Security",
       "International Affairs"
     ],
-    "generated_at": "2026-03-10T07:13:26.533827+00:00"
+    "generated_at": "2026-03-10T22:23:36.809230+00:00"
   }
 }
