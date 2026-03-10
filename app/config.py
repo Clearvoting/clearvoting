@@ -18,3 +18,6 @@ except ValueError:
     CACHE_TTL_SECONDS: int = 3600
 
 SENATE_VOTE_BASE: str = "https://www.senate.gov/legislative/LIS/roll_call_votes"
+
+GOOGLE_SHEETS_CREDENTIALS_JSON: str = os.getenv("GOOGLE_SHEETS_CREDENTIALS_JSON", "")
+GOOGLE_SHEETS_SPREADSHEET_ID: str = os.getenv("GOOGLE_SHEETS_SPREADSHEET_ID", "")

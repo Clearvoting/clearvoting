@@ -1,18 +1,26 @@
 import json
 import pytest
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from httpx import AsyncClient, ASGITransport
 from app.main import app
 from app.limiter import limiter
 
 
+def _make_unavailable_sheets():
+    """Create a mock SheetsService that is unavailable (forces JSONL fallback)."""
+    mock = MagicMock()
+    mock.is_available = False
+    return mock
+
+
 @pytest.fixture(autouse=True)
 def _use_tmp_feedback_file(tmp_path):
-    """Redirect feedback writes to a temp file and reset rate limiter."""
+    """Redirect feedback writes to a temp file, disable Sheets, and reset rate limiter."""
     tmp_file = tmp_path / "feedback.jsonl"
     limiter.reset()
-    with patch("app.routers.feedback.FEEDBACK_FILE", tmp_file):
+    with patch("app.routers.feedback.FEEDBACK_FILE", tmp_file), \
+         patch("app.routers.feedback._sheets", _make_unavailable_sheets()):
         yield tmp_file
 
 
@@ -149,3 +157,70 @@ async def test_page_type_too_long_rejected():
     async with AsyncClient(transport=transport, base_url="http://test") as client:
         resp = await _post_feedback(client, page_type="x" * 51)
     assert resp.status_code == 422
+
+
+# --- Google Sheets integration ---
+
+@pytest.mark.asyncio
+async def test_feedback_writes_to_sheets_when_available(tmp_path):
+    """When Sheets is available, feedback goes to Sheets (not JSONL)."""
+    tmp_file = tmp_path / "feedback.jsonl"
+    mock_sheets = MagicMock()
+    mock_sheets.is_available = True
+    mock_sheets.append_row.return_value = True
+    limiter.reset()
+
+    with patch("app.routers.feedback.FEEDBACK_FILE", tmp_file), \
+         patch("app.routers.feedback._sheets", mock_sheets):
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            resp = await _post_feedback(client, message="Sheets feedback")
+
+    assert resp.status_code == 200
+    mock_sheets.append_row.assert_called_once()
+    row = mock_sheets.append_row.call_args[0][0]
+    assert row[1] == "Sheets feedback"
+    assert row[3] == "home"
+    # JSONL should NOT have been written
+    assert not tmp_file.exists()
+
+
+@pytest.mark.asyncio
+async def test_feedback_falls_back_on_sheets_failure(tmp_path):
+    """When Sheets append fails, feedback falls back to JSONL."""
+    tmp_file = tmp_path / "feedback.jsonl"
+    mock_sheets = MagicMock()
+    mock_sheets.is_available = True
+    mock_sheets.append_row.return_value = False  # simulate failure
+    limiter.reset()
+
+    with patch("app.routers.feedback.FEEDBACK_FILE", tmp_file), \
+         patch("app.routers.feedback._sheets", mock_sheets):
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            resp = await _post_feedback(client, message="Fallback feedback")
+
+    assert resp.status_code == 200
+    assert tmp_file.exists()
+    entry = json.loads(tmp_file.read_text().strip())
+    assert entry["message"] == "Fallback feedback"
+
+
+@pytest.mark.asyncio
+async def test_feedback_jsonl_fallback_when_no_credentials(tmp_path):
+    """When Sheets has no credentials, feedback goes to JSONL."""
+    tmp_file = tmp_path / "feedback.jsonl"
+    mock_sheets = MagicMock()
+    mock_sheets.is_available = False
+    limiter.reset()
+
+    with patch("app.routers.feedback.FEEDBACK_FILE", tmp_file), \
+         patch("app.routers.feedback._sheets", mock_sheets):
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            resp = await _post_feedback(client, message="No creds feedback")
+
+    assert resp.status_code == 200
+    assert tmp_file.exists()
+    entry = json.loads(tmp_file.read_text().strip())
+    assert entry["message"] == "No creds feedback"

@@ -1,19 +1,21 @@
 import json
 import logging
 from datetime import datetime, timezone
-from pathlib import Path
 
 from fastapi import APIRouter, Request
 from pydantic import BaseModel, Field
 
-from app.config import BASE_DIR
+from app.config import BASE_DIR, GOOGLE_SHEETS_CREDENTIALS_JSON, GOOGLE_SHEETS_SPREADSHEET_ID
 from app.limiter import limiter
+from app.services.sheets import SheetsService
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/feedback", tags=["feedback"])
 
 FEEDBACK_FILE = BASE_DIR / "data" / "feedback.jsonl"
+
+_sheets = SheetsService(GOOGLE_SHEETS_CREDENTIALS_JSON, GOOGLE_SHEETS_SPREADSHEET_ID)
 
 
 class FeedbackSubmission(BaseModel):
@@ -27,8 +29,9 @@ class FeedbackSubmission(BaseModel):
 @router.post("")
 @limiter.limit("5/minute")
 async def submit_feedback(feedback: FeedbackSubmission, request: Request) -> dict:
+    timestamp = datetime.now(timezone.utc).isoformat()
     entry = {
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": timestamp,
         "message": feedback.message,
         "page_url": feedback.page_url,
         "page_type": feedback.page_type,
@@ -36,9 +39,15 @@ async def submit_feedback(feedback: FeedbackSubmission, request: Request) -> dic
         "context_label": feedback.context_label,
     }
 
-    FEEDBACK_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with open(FEEDBACK_FILE, "a", encoding="utf-8") as f:
-        f.write(json.dumps(entry) + "\n")
+    row = [timestamp, feedback.message, feedback.page_url,
+           feedback.page_type, feedback.context_id, feedback.context_label]
 
-    logger.info("Feedback received: page_type=%s", feedback.page_type)
+    if _sheets.is_available and _sheets.append_row(row):
+        logger.info("Feedback saved to Google Sheets: page_type=%s", feedback.page_type)
+    else:
+        FEEDBACK_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(FEEDBACK_FILE, "a", encoding="utf-8") as f:
+            f.write(json.dumps(entry) + "\n")
+        logger.info("Feedback saved to JSONL: page_type=%s", feedback.page_type)
+
     return {"status": "ok"}
