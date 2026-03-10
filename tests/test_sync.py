@@ -249,6 +249,8 @@ async def test_build_member_votes(tmp_path):
     assert data["stats"]["yea_count"] == 1
     assert len(data["votes"]) == 1
     assert data["votes"][0]["bill_id"] == "119-hr-1"
+    assert data["votes"][0]["vote_number"] == 1
+    assert data["votes"][0]["session"] == 1
     assert count == 1
 
 
@@ -507,6 +509,8 @@ async def test_build_member_votes_house(tmp_path):
     assert data["stats"]["yea_count"] == 1
     assert data["votes"][0]["chamber"] == "House"
     assert data["votes"][0]["bill_id"] == "119-hr-153"
+    assert data["votes"][0]["vote_number"] == 10
+    assert data["votes"][0]["session"] == 1
     assert count == 1
 
 

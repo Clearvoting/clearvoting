@@ -537,6 +537,8 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                     "cbo_deficit_impact": None,
                     "direction": _get_direction(bill_ref, congress=vote_congress),
                     "congress": vote_congress,
+                    "session": vote.get("session", 1),
+                    "vote_number": vote.get("vote_number", 0),
                 })
 
         elif chamber == "House of Representatives":
@@ -568,6 +570,8 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                     "cbo_deficit_impact": None,
                     "direction": _get_direction(bill_ref, congress=vote_congress),
                     "congress": vote_congress,
+                    "session": vote.get("session", 1),
+                    "vote_number": vote.get("vote_number", 0),
                 })
 
         # Compute stats
