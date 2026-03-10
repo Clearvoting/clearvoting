@@ -820,6 +820,179 @@ async def sync_member_summaries(
     return stats
 
 
+async def check_page_coherence(
+    output_dir: Path,
+    api_key: str | None = None,
+    rate_limit: float = 1.0,
+) -> dict:
+    """Check coherence between narrative summaries and data sections.
+
+    For each member, compares the narrative against stats, direction bars,
+    and supported/opposed lists. If contradictions found, regenerates the
+    narrative with coherence feedback (max 2 rounds).
+
+    Returns stats dict with coherent/incoherent counts.
+    """
+    from app.services.page_coherence import PageCoherenceChecker
+    from app.services.member_summary import MemberSummaryService
+    from app.services.grader_learnings import GraderLearnings
+
+    members_path = output_dir / "members.json"
+    member_votes_dir = output_dir / "member_votes"
+    summaries_path = output_dir / "member_summaries.json"
+    learnings_path = output_dir / "grader_learnings.json"
+
+    if not members_path.exists() or not summaries_path.exists():
+        print("  No members or summaries — skipping coherence check")
+        return {"total": 0, "coherent": 0, "incoherent": 0}
+
+    with open(members_path) as f:
+        members = json.load(f).get("members", [])
+
+    with open(summaries_path) as f:
+        summaries = json.load(f)
+
+    checker = PageCoherenceChecker(api_key=api_key)
+    writer = MemberSummaryService(api_key=api_key)
+
+    # Load learnings
+    learnings_store = GraderLearnings(learnings_path)
+    checker.load_learnings(learnings_store.get_learnings())
+
+    stats: dict = {"total": 0, "coherent": 0, "incoherent": 0, "fixed": 0, "contradictions": []}
+
+    for member in members:
+        bioguide_id = member["bioguideId"]
+        if bioguide_id not in summaries:
+            continue
+
+        summary = summaries[bioguide_id]
+        narrative = summary.get("narrative", "")
+        if not narrative:
+            continue
+
+        # Load voting record for context
+        votes_path = member_votes_dir / f"{bioguide_id}.json"
+        if not votes_path.exists():
+            continue
+
+        with open(votes_path) as f:
+            vote_data = json.load(f)
+
+        votes = vote_data.get("votes", [])
+        member_stats = vote_data.get("stats", {})
+
+        # Compute top areas
+        area_counts: dict[str, dict] = {}
+        for v in votes:
+            area = v.get("policy_area", "")
+            if not area:
+                continue
+            if area not in area_counts:
+                area_counts[area] = {"name": area, "strengthen": 0, "weaken": 0, "neutral": 0, "total": 0}
+            area_counts[area]["total"] += 1
+            direction = v.get("direction")
+            is_yea = v.get("vote", "").lower() in ("yea", "aye")
+            is_nay = v.get("vote", "").lower() in ("nay", "no")
+            if direction == "strengthens":
+                if is_yea:
+                    area_counts[area]["strengthen"] += 1
+                elif is_nay:
+                    area_counts[area]["weaken"] += 1
+            elif direction == "weakens":
+                if is_yea:
+                    area_counts[area]["weaken"] += 1
+                elif is_nay:
+                    area_counts[area]["strengthen"] += 1
+            else:
+                area_counts[area]["neutral"] += 1
+
+        top_areas = sorted(area_counts.values(), key=lambda x: x["total"], reverse=True)[:5]
+
+        # Collect supported/opposed
+        seen_supported: set[str] = set()
+        seen_opposed: set[str] = set()
+        top_supported: list[str] = []
+        top_opposed: list[str] = []
+        for v in votes:
+            bill_id = v.get("bill_id")
+            one_liner = v.get("one_liner", "")
+            if not one_liner or not bill_id:
+                continue
+            if v.get("vote", "").lower() in ("yea", "aye") and bill_id not in seen_supported:
+                seen_supported.add(bill_id)
+                top_supported.append(one_liner)
+            elif v.get("vote", "").lower() in ("nay", "no") and bill_id not in seen_opposed:
+                seen_opposed.add(bill_id)
+                top_opposed.append(one_liner)
+
+        member_name = member.get("directOrderName") or member.get("name", bioguide_id)
+        print(f"  Checking coherence for {member_name}...")
+
+        result = await checker.check(
+            narrative=narrative,
+            stats=member_stats,
+            top_areas=top_areas,
+            top_supported=top_supported[:8],
+            top_opposed=top_opposed[:6],
+        )
+
+        stats["total"] += 1
+
+        if result.is_coherent:
+            stats["coherent"] += 1
+        else:
+            stats["incoherent"] += 1
+            stats["contradictions"].extend(result.contradictions)
+            print(f"    Contradictions: {result.contradictions}")
+
+            # Regenerate with coherence feedback (max 2 rounds)
+            chamber = member.get("chamber", "")
+            state = member.get("state", member.get("stateCode", ""))
+            congresses = vote_data.get("congresses", [119])
+
+            for regen_round in range(2):
+                new_summary = await writer.generate_member_summary(
+                    member_name=member_name,
+                    chamber=chamber,
+                    state=state,
+                    congresses=congresses,
+                    stats=member_stats,
+                    top_areas=top_areas,
+                    top_supported=top_supported[:8],
+                    top_opposed=top_opposed[:6],
+                    grader_feedback=result.guidance,
+                )
+
+                recheck = await checker.check(
+                    narrative=new_summary.get("narrative", ""),
+                    stats=member_stats,
+                    top_areas=top_areas,
+                    top_supported=top_supported[:8],
+                    top_opposed=top_opposed[:6],
+                )
+
+                if recheck.is_coherent:
+                    new_summary["generated_at"] = datetime.now(timezone.utc).isoformat()
+                    summaries[bioguide_id] = new_summary
+                    stats["fixed"] += 1
+                    print(f"    Fixed after round {regen_round + 1}")
+                    break
+
+                result = recheck
+
+                await asyncio.sleep(rate_limit)
+
+        await asyncio.sleep(rate_limit)
+
+    # Save updated summaries
+    _atomic_write_json(summaries_path, summaries)
+
+    print(f"  Coherence: {stats['coherent']} coherent, {stats['incoherent']} incoherent, {stats['fixed']} fixed")
+
+    return stats
+
+
 async def backfill_bill_directions(
     output_dir: Path,
     api_key: str | None = None,
@@ -1092,6 +1265,8 @@ async def main() -> None:
                         help="Backfill direction field for AI summaries missing it.")
     parser.add_argument("--regenerate-member-summaries", action="store_true",
                         help="Force regeneration of all AI member summaries.")
+    parser.add_argument("--check-coherence", action="store_true",
+                        help="Check page coherence between narratives and data sections.")
     args = parser.parse_args()
 
     raw_key = os.getenv("ANTHROPIC_API_KEY", "")
@@ -1132,6 +1307,22 @@ async def main() -> None:
         if stats.get("total"):
             print(f"  Narratives graded: {stats['total']} ({stats.get('passed', 0)} passed, {stats.get('failed', 0)} flagged)")
         print("=== Regeneration complete ===")
+        return
+
+    # --- Check coherence mode ---
+    if args.check_coherence:
+        SYNC_DIR.mkdir(parents=True, exist_ok=True)
+        print("=== ClearVote Page Coherence Check ===")
+        print(f"  Mode: {'API' if anthropic_key else 'Claude CLI (Max plan)'}")
+        print()
+        coherence_stats = await check_page_coherence(SYNC_DIR, api_key=anthropic_key or None)
+        print()
+        if coherence_stats.get("total"):
+            print(f"  Checked: {coherence_stats['total']} members")
+            print(f"  Coherent: {coherence_stats.get('coherent', 0)}")
+            print(f"  Incoherent: {coherence_stats.get('incoherent', 0)}")
+            print(f"  Fixed: {coherence_stats.get('fixed', 0)}")
+        print("=== Coherence check complete ===")
         return
 
     # --- Re-grade mode ---
@@ -1225,7 +1416,10 @@ async def main() -> None:
     print(f"[7/9] Generating AI member summaries ({'API' if anthropic_key else 'Claude CLI'})...")
     member_summary_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
 
-    # Step 8: Page coherence check (placeholder — implemented in Phase 3)
+    # Step 8: Page coherence check
+    print()
+    print(f"[8/9] Checking page coherence ({'API' if anthropic_key else 'Claude CLI'})...")
+    coherence_stats = await check_page_coherence(SYNC_DIR, api_key=anthropic_key or None)
 
     # Step 9: Sync summary
     print()
@@ -1241,6 +1435,7 @@ async def main() -> None:
         "house_votes_count": house_count,
         "member_votes_count": member_votes_count,
         "member_summary_stats": member_summary_stats,
+        "coherence_stats": coherence_stats,
         "summary_stats": summary_stats,
     }
     _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
