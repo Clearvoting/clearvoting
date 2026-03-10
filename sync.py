@@ -323,7 +323,7 @@ async def sync_bill_summaries(
 
     # Load learnings
     learnings_store = GraderLearnings(learnings_path)
-    grader.load_learnings(learnings_store.get_learnings())
+    grader.load_learnings(learnings_store.get_learnings(content_type="bill_summary"))
 
     # Find bills needing summaries
     to_process = []
@@ -396,9 +396,9 @@ async def sync_bill_summaries(
         _atomic_write_json(summaries_path, existing)
 
     # Extract new learnings
-    new_patterns = learnings_store.extract_patterns(all_feedback)
+    new_patterns = learnings_store.extract_patterns(all_feedback, content_type="bill_summary")
     for pattern in new_patterns:
-        learnings_store.add_learning(pattern)
+        learnings_store.add_learning(pattern, content_type="bill_summary")
 
     learnings_store.record_batch(
         total=stats["total"],
@@ -406,6 +406,7 @@ async def sync_bill_summaries(
         failed=stats["failed"],
         grade_distribution=grade_dist,
         needs_review_ids=stats["needs_review"],
+        content_type="bill_summary",
     )
     learnings_store.save()
 
@@ -664,7 +665,7 @@ async def sync_member_summaries(
 
     # Load learnings
     learnings_store = GraderLearnings(learnings_path)
-    grader.load_learnings(learnings_store.get_learnings())
+    grader.load_learnings(learnings_store.get_learnings(content_type="member_narrative"))
 
     stats: dict = {"total": 0, "passed": 0, "failed": 0, "needs_review": []}
     grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
@@ -799,9 +800,9 @@ async def sync_member_summaries(
         _atomic_write_json(summaries_path, existing)
 
     # Extract new learnings
-    new_patterns = learnings_store.extract_patterns(all_feedback)
+    new_patterns = learnings_store.extract_patterns(all_feedback, content_type="member_narrative")
     for pattern in new_patterns:
-        learnings_store.add_learning(pattern)
+        learnings_store.add_learning(pattern, content_type="member_narrative")
 
     learnings_store.record_batch(
         total=stats["total"],
@@ -809,6 +810,7 @@ async def sync_member_summaries(
         failed=stats["failed"],
         grade_distribution=grade_dist,
         needs_review_ids=stats["needs_review"],
+        content_type="member_narrative",
     )
     learnings_store.save()
 
@@ -857,7 +859,7 @@ async def check_page_coherence(
 
     # Load learnings
     learnings_store = GraderLearnings(learnings_path)
-    checker.load_learnings(learnings_store.get_learnings())
+    checker.load_learnings(learnings_store.get_learnings(content_type="page_coherence"))
 
     stats: dict = {"total": 0, "coherent": 0, "incoherent": 0, "fixed": 0, "contradictions": []}
 
@@ -1146,7 +1148,7 @@ async def _run_audit(anthropic_key: str | None) -> None:
     writer_service = AISummaryService(api_key=api_key, cache=cache)
 
     learnings_store = GraderLearnings(learnings_path)
-    grader.load_learnings(learnings_store.get_learnings())
+    grader.load_learnings(learnings_store.get_learnings(content_type="bill_summary"))
 
     grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
     failures: list[tuple[str, dict]] = []
@@ -1244,9 +1246,9 @@ async def _run_audit(anthropic_key: str | None) -> None:
     await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
 
     # Save learnings
-    new_patterns = learnings_store.extract_patterns(all_feedback)
+    new_patterns = learnings_store.extract_patterns(all_feedback, content_type="bill_summary")
     for pattern in new_patterns:
-        learnings_store.add_learning(pattern)
+        learnings_store.add_learning(pattern, content_type="bill_summary")
     learnings_store.save()
 
     print()

@@ -5,17 +5,38 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
+DEFAULT_CONTENT_TYPE = "bill_summary"
+
 
 class GraderLearnings:
     def __init__(self, path: Path):
         self.path = path
-        self._data: dict = {"learnings": [], "batch_history": []}
+        self._data: dict = {}
         self._load()
 
     def _load(self) -> None:
         if self.path.exists():
             with open(self.path, "r") as f:
-                self._data = json.load(f)
+                raw = json.load(f)
+
+            # Migration: flat format → nested content-type format
+            if "learnings" in raw and isinstance(raw.get("learnings"), list):
+                # Old flat format — migrate to bill_summary key
+                self._data = {
+                    DEFAULT_CONTENT_TYPE: {
+                        "learnings": raw["learnings"],
+                        "batch_history": raw.get("batch_history", []),
+                    }
+                }
+            else:
+                self._data = raw
+        else:
+            self._data = {}
+
+    def _ensure_section(self, content_type: str) -> dict:
+        if content_type not in self._data:
+            self._data[content_type] = {"learnings": [], "batch_history": []}
+        return self._data[content_type]
 
     def save(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
@@ -29,14 +50,19 @@ class GraderLearnings:
                 os.unlink(tmp_path)
             raise
 
-    def get_learnings(self) -> list[str]:
-        return list(self._data.get("learnings", []))
+    def get_learnings(self, content_type: str = DEFAULT_CONTENT_TYPE) -> list[str]:
+        section = self._data.get(content_type, {})
+        return list(section.get("learnings", []))
 
-    def add_learning(self, learning: str) -> None:
-        if learning not in self._data["learnings"]:
-            self._data["learnings"].append(learning)
+    def add_learning(self, learning: str, content_type: str = DEFAULT_CONTENT_TYPE) -> None:
+        section = self._ensure_section(content_type)
+        if learning not in section["learnings"]:
+            section["learnings"].append(learning)
 
-    def extract_patterns(self, feedback_list: list[str], threshold: float = 0.3) -> list[str]:
+    def extract_patterns(
+        self, feedback_list: list[str], threshold: float = 0.3,
+        content_type: str = DEFAULT_CONTENT_TYPE,
+    ) -> list[str]:
         """Extract frequently occurring words/phrases from grader feedback.
 
         Returns phrases that appear in more than threshold fraction of feedback items.
@@ -71,7 +97,9 @@ class GraderLearnings:
         failed: int,
         grade_distribution: dict[str, int],
         needs_review_ids: list[str],
+        content_type: str = DEFAULT_CONTENT_TYPE,
     ) -> None:
+        section = self._ensure_section(content_type)
         entry = {
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "total": total,
@@ -80,7 +108,8 @@ class GraderLearnings:
             "grade_distribution": grade_distribution,
             "needs_review_ids": needs_review_ids,
         }
-        self._data["batch_history"].append(entry)
+        section["batch_history"].append(entry)
 
-    def get_batch_history(self) -> list[dict]:
-        return self._data.get("batch_history", [])
+    def get_batch_history(self, content_type: str = DEFAULT_CONTENT_TYPE) -> list[dict]:
+        section = self._data.get(content_type, {})
+        return section.get("batch_history", [])
