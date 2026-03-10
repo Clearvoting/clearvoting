@@ -336,19 +336,47 @@ function renderVotingSummary(stats, votes, summaryData) {
     const topAreas = sortedAreas.slice(0, 5);
 
     // Deduplicate votes by bill — keep final (most recent) vote per bill
-    // Votes are sorted newest-first, so first occurrence per bill is the final vote
+    // Only include votes with real AI summaries (not raw bill numbers like "PN1748")
+    // Spread across policy areas to avoid recency bias
     const seenBills = new Set();
-    const uniqueYea = [];
-    const uniqueNay = [];
+    const yeaByArea = {};
+    const nayByArea = {};
     votes.forEach(v => {
         const key = v.bill_id || v.one_liner;
         if (!key || seenBills.has(key)) return;
+        // Skip votes with no real description — raw bill numbers are useless
+        if (!v.one_liner || v.one_liner === v.bill_number || v.one_liner.match(/^(PN|P\.N\.)\s*\d/)) return;
+        if (!v.policy_area) return;
         seenBills.add(key);
         const isYea = v.vote === 'Yea' || v.vote === 'Aye';
         const isNay = v.vote === 'Nay' || v.vote === 'No';
-        if (isYea) uniqueYea.push(v);
-        else if (isNay) uniqueNay.push(v);
+        const area = v.policy_area || 'Other';
+        if (isYea) {
+            if (!yeaByArea[area]) yeaByArea[area] = [];
+            yeaByArea[area].push(v);
+        } else if (isNay) {
+            if (!nayByArea[area]) nayByArea[area] = [];
+            nayByArea[area].push(v);
+        }
     });
+    // Pick votes spread across policy areas (round-robin) to show breadth
+    function spreadPick(byArea, count) {
+        const areas = Object.keys(byArea).sort((a, b) => byArea[b].length - byArea[a].length);
+        const result = [];
+        let idx = 0;
+        while (result.length < count && areas.length > 0) {
+            const area = areas[idx % areas.length];
+            const areaVotes = byArea[area];
+            const pick = areaVotes.shift();
+            if (pick) result.push(pick);
+            if (areaVotes.length === 0) areas.splice(idx % areas.length, 1);
+            else idx++;
+            if (areas.length === 0) break;
+        }
+        return result;
+    }
+    const uniqueYea = spreadPick(yeaByArea, 6);
+    const uniqueNay = spreadPick(nayByArea, 4);
 
     // Build the summary card
     const card = el('section', { className: 'voting-summary-card' });

@@ -504,6 +504,11 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
         if chamber == "Senate":
             # Match Senate votes by last name + state (Senate XML uses names, not bioguide IDs)
             for vote in senate_votes:
+                # Skip Presidential Nominations (PN) — not legislation, no useful info
+                doc_check = vote.get("document", "").strip()
+                if doc_check.startswith("PN") or doc_check.startswith("P.N."):
+                    continue
+
                 matched = None
                 for mv in vote.get("members", []):
                     if (mv.get("last_name", "").lower() == member_last
