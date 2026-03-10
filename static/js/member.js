@@ -313,6 +313,7 @@ function renderVotingSummary(stats, votes, summaryData) {
     // Count votes by area with direction-aware stance
     const areaVotes = {};
     votes.forEach(v => {
+        if (!v.policy_area) return;
         if (!areaVotes[v.policy_area]) areaVotes[v.policy_area] = { yea: 0, nay: 0, total: 0, strengthen: 0, weaken: 0, neutral: 0 };
         areaVotes[v.policy_area].total++;
         const isYea = v.vote === 'Yea' || v.vote === 'Aye';
@@ -331,8 +332,10 @@ function renderVotingSummary(stats, votes, summaryData) {
         }
     });
 
-    // Top areas by total votes
-    const sortedAreas = Object.entries(areaVotes).sort((a, b) => b[1].total - a[1].total);
+    // Top areas by total votes — exclude votes with no policy area
+    const sortedAreas = Object.entries(areaVotes)
+        .filter(([area]) => area && area !== 'undefined' && area !== 'null')
+        .sort((a, b) => b[1].total - a[1].total);
     const topAreas = sortedAreas.slice(0, 5);
 
     // Deduplicate votes by bill — keep final (most recent) vote per bill

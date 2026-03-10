@@ -2,7 +2,7 @@ import json
 import logging
 from dataclasses import dataclass, field
 from typing import Any, Callable, Awaitable
-from app.services.summary_grader import SummaryGrader, GradeResult, GRADE_ORDER
+from app.services.grader_common import Grader, GradeResult, GRADE_ORDER
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +19,7 @@ class LoopResult:
 
 
 class WriterGraderLoop:
-    def __init__(self, writer_fn: Callable[..., Awaitable[dict]], grader: SummaryGrader):
+    def __init__(self, writer_fn: Callable[..., Awaitable[dict]], grader: Grader):
         self.writer_fn = writer_fn
         self.grader = grader
 

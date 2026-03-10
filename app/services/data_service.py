@@ -63,7 +63,9 @@ class DataService:
 
         area_counts: dict[str, dict[str, int]] = {}
         for vote in data.get("votes", []):
-            area = vote.get("policy_area", "Other")
+            area = vote.get("policy_area") or ""
+            if not area:
+                continue
             if area not in area_counts:
                 area_counts[area] = {"yea": 0, "nay": 0, "total": 0, "strengthen": 0, "weaken": 0, "neutral": 0}
             position = vote.get("vote", "").lower()
