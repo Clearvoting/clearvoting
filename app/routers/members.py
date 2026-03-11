@@ -26,7 +26,7 @@ def _validate_state_code(state_code: str) -> str:
 async def get_member_votes(
     bioguide_id: str,
     congress: int = Query(119, ge=1, le=200),
-    limit: int = Query(20, ge=1, le=100),
+    limit: int = Query(20, ge=1, le=2000),
     offset: int = Query(0, ge=0),
 ):
     _validate_bioguide_id(bioguide_id)

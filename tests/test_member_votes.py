@@ -121,3 +121,18 @@ async def test_get_member_votes_stats_structure():
     assert "not_voting_count" in stats
     assert "participation_rate" in stats
     assert isinstance(stats["participation_rate"], (int, float))
+
+
+@pytest.mark.asyncio
+async def test_get_member_votes_high_limit():
+    """High limit (up to 2000) returns all votes."""
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/members/S001217/votes?limit=2000")
+
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data["votes"]) == data["total_count"]

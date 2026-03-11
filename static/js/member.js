@@ -277,7 +277,7 @@ async function loadVotingRecord(bioguideId) {
 
     try {
         const [votesResponse, summaryResponse] = await Promise.all([
-            fetch(`/api/members/${bioguideId}/votes`),
+            fetch(`/api/members/${bioguideId}/votes?limit=2000`),
             fetch(`/api/members/${bioguideId}/summary`).catch(() => null)
         ]);
         if (!votesResponse.ok) throw new Error('Failed to load votes');
@@ -293,7 +293,7 @@ async function loadVotingRecord(bioguideId) {
         if (data.scorecard && data.scorecard.length > 0) {
             renderScorecard(container, data.scorecard);
         }
-        renderVotingStats(container, data.stats);
+        renderVotingStats(container, data.stats, data.congresses);
         renderVoteFilters(container, data.policy_areas, data.votes);
         renderVoteList(container, data.votes);
     } catch (err) {
@@ -544,7 +544,7 @@ function renderScorecard(container, scorecard) {
     container.appendChild(section);
 }
 
-function renderVotingStats(container, stats) {
+function renderVotingStats(container, stats, congresses) {
     const section = el('section', { className: 'bill-section' });
     section.appendChild(el('h3', null, 'Voting Statistics'));
 
@@ -582,7 +582,12 @@ function renderVotingStats(container, stats) {
     const totalWrapper = el('div', { className: 'stat-card' });
     totalWrapper.appendChild(el('div', { className: 'stat-label' }, 'Total Votes'));
     totalWrapper.appendChild(el('div', { className: 'stat-big-number' }, String(stats.total_votes)));
-    totalWrapper.appendChild(el('div', { className: 'stat-sublabel' }, '119th Congress'));
+    const congressLabel = congresses && congresses.length > 1
+        ? `${Math.min(...congresses)}th\u2013${Math.max(...congresses)}th Congress`
+        : congresses && congresses.length === 1
+            ? `${congresses[0]}th Congress`
+            : '';
+    totalWrapper.appendChild(el('div', { className: 'stat-sublabel' }, congressLabel));
     statsGrid.appendChild(totalWrapper);
 
     section.appendChild(statsGrid);
@@ -600,7 +605,8 @@ function renderVoteFilters(container, policyAreas, votes) {
     allChip.addEventListener('click', () => filterVotes('all'));
     filterRow.appendChild(allChip);
 
-    policyAreas.forEach(area => {
+    const votesSet = new Set(votes.map(v => v.policy_area));
+    policyAreas.filter(area => votesSet.has(area)).forEach(area => {
         const chip = el('button', { className: 'category-tag', 'data-area': area }, area);
         chip.addEventListener('click', () => filterVotes(area));
         filterRow.appendChild(chip);
@@ -645,69 +651,89 @@ function getSourceUrl(vote) {
     return null;
 }
 
+function _buildVoteItem(vote) {
+    const item = el('div', { className: 'vote-item' });
+
+    const topRow = el('div', { className: 'vote-item-top' });
+    topRow.appendChild(el('span', { className: 'bill-number' }, vote.bill_number));
+    topRow.appendChild(el('span', { className: 'bill-date' }, vote.date));
+    item.appendChild(topRow);
+
+    item.appendChild(el('div', { className: 'vote-item-title' }, vote.bill_title));
+    item.appendChild(el('div', { className: 'vote-item-oneliner' }, vote.one_liner));
+
+    const bottomRow = el('div', { className: 'vote-item-bottom' });
+    const voteBadge = el('span', { className: 'vote-label ' + vote.vote.toLowerCase().replace(/\s+/g, '-') }, vote.vote);
+    bottomRow.appendChild(voteBadge);
+
+    const resultText = 'Bill ' + vote.result;
+    bottomRow.appendChild(el('span', { className: 'vote-item-result' }, resultText));
+
+    const policyTag = el('span', { className: 'impact-tag' }, vote.policy_area);
+    bottomRow.appendChild(policyTag);
+
+    if (vote.cbo_deficit_impact) {
+        const deficitClass = vote.cbo_deficit_billions > 0 ? 'deficit-increase' : 'deficit-decrease';
+        const cboTag = el('span', { className: `cbo-tag ${deficitClass}` }, `CBO: ${vote.cbo_deficit_impact}`);
+        bottomRow.appendChild(cboTag);
+    }
+
+    item.appendChild(bottomRow);
+
+    const sourceUrl = getSourceUrl(vote);
+    if (sourceUrl) {
+        const sourceLink = el('a', {
+            className: 'vote-source-link',
+            href: sourceUrl,
+            target: '_blank',
+            rel: 'noopener',
+        }, 'Roll call source \u2192');
+        sourceLink.addEventListener('click', (e) => e.stopPropagation());
+        item.appendChild(sourceLink);
+    }
+
+    if (vote.bill_type === 'HR' || vote.bill_type === 'S') {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', () => {
+            window.location.href = `/bill?congress=${vote.congress}&type=${vote.bill_type}&number=${vote.bill_number_raw}`;
+        });
+        item.setAttribute('role', 'link');
+        item.setAttribute('tabindex', '0');
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                window.location.href = `/bill?congress=${vote.congress}&type=${vote.bill_type}&number=${vote.bill_number_raw}`;
+            }
+        });
+    }
+
+    return item;
+}
+
 function _renderVoteItems(listEl, votes) {
     if (votes.length === 0) {
         listEl.appendChild(el('div', { className: 'empty-state' }, 'No votes found for this category.'));
         return;
     }
 
-    votes.forEach(vote => {
-        const item = el('div', { className: 'vote-item' });
+    const INITIAL_SHOW = 30;
+    const votesToShow = votes.length > INITIAL_SHOW ? votes.slice(0, INITIAL_SHOW) : votes;
+    const remaining = votes.length > INITIAL_SHOW ? votes.slice(INITIAL_SHOW) : [];
 
-        const topRow = el('div', { className: 'vote-item-top' });
-        topRow.appendChild(el('span', { className: 'bill-number' }, vote.bill_number));
-        topRow.appendChild(el('span', { className: 'bill-date' }, vote.date));
-        item.appendChild(topRow);
-
-        item.appendChild(el('div', { className: 'vote-item-title' }, vote.bill_title));
-        item.appendChild(el('div', { className: 'vote-item-oneliner' }, vote.one_liner));
-
-        const bottomRow = el('div', { className: 'vote-item-bottom' });
-        const voteBadge = el('span', { className: 'vote-label ' + vote.vote.toLowerCase().replace(/\s+/g, '-') }, vote.vote);
-        bottomRow.appendChild(voteBadge);
-
-        const resultText = 'Bill ' + vote.result;
-        bottomRow.appendChild(el('span', { className: 'vote-item-result' }, resultText));
-
-        const policyTag = el('span', { className: 'impact-tag' }, vote.policy_area);
-        bottomRow.appendChild(policyTag);
-
-        if (vote.cbo_deficit_impact) {
-            const deficitClass = vote.cbo_deficit_billions > 0 ? 'deficit-increase' : 'deficit-decrease';
-            const cboTag = el('span', { className: `cbo-tag ${deficitClass}` }, `CBO: ${vote.cbo_deficit_impact}`);
-            bottomRow.appendChild(cboTag);
-        }
-
-        item.appendChild(bottomRow);
-
-        const sourceUrl = getSourceUrl(vote);
-        if (sourceUrl) {
-            const sourceLink = el('a', {
-                className: 'vote-source-link',
-                href: sourceUrl,
-                target: '_blank',
-                rel: 'noopener',
-            }, 'Roll call source \u2192');
-            sourceLink.addEventListener('click', (e) => e.stopPropagation());
-            item.appendChild(sourceLink);
-        }
-
-        // Link to bill detail if it's a standard bill type
-        if (vote.bill_type === 'HR' || vote.bill_type === 'S') {
-            item.style.cursor = 'pointer';
-            item.addEventListener('click', () => {
-                window.location.href = `/bill?congress=${vote.congress}&type=${vote.bill_type}&number=${vote.bill_number_raw}`;
-            });
-            item.setAttribute('role', 'link');
-            item.setAttribute('tabindex', '0');
-            item.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    window.location.href = `/bill?congress=${vote.congress}&type=${vote.bill_type}&number=${vote.bill_number_raw}`;
-                }
-            });
-        }
-
-        listEl.appendChild(item);
+    votesToShow.forEach(vote => {
+        listEl.appendChild(_buildVoteItem(vote));
     });
+
+    if (remaining.length > 0) {
+        const showAllBtn = el('button', { className: 'show-all-votes-btn' },
+            `Show all ${votes.length} votes`);
+        showAllBtn.addEventListener('click', () => {
+            showAllBtn.remove();
+            remaining.forEach(vote => {
+                const item = _buildVoteItem(vote);
+                listEl.appendChild(item);
+            });
+        });
+        listEl.appendChild(showAllBtn);
+    }
 }

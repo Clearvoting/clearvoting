@@ -99,8 +99,31 @@ def test_build_prompt_includes_vote_data():
     assert "Gillibrand" in prompt
     assert "Environmental Protection" in prompt
     assert "Set military spending limits" in prompt
-    assert "500" in prompt  # total votes
-    assert "99.0" in prompt or "99" in prompt  # participation rate
+    assert "500" in prompt  # total votes in context line
+
+
+def test_system_prompt_no_stat_repetition_rule():
+    """System prompt tells AI not to repeat overall statistics."""
+    assert "Do NOT mention total votes cast" in MEMBER_SUMMARY_SYSTEM_PROMPT
+
+
+def test_build_prompt_no_yea_nay_lines():
+    """Prompt no longer includes separate Yea/Nay stat lines."""
+    service = MemberSummaryService(api_key=None)
+    prompt = service._build_prompt(
+        member_name="Test Member",
+        chamber="Senate",
+        state="New York",
+        congresses=[119],
+        stats={"total_votes": 100, "yea_count": 60, "nay_count": 40, "participation_rate": 95.0},
+        top_areas=[],
+        top_supported=[],
+        top_opposed=[],
+    )
+    # Yea/Nay should not appear as separate stat lines
+    assert "Yea:" not in prompt
+    assert "Nay:" not in prompt
+    assert "Participation rate:" not in prompt
 
 
 def test_build_prompt_includes_data_constraints():

@@ -55,6 +55,7 @@ STRICT RULES:
 10. Include specific numbers, dollar amounts, dates, and thresholds — but explain what they mean
 11. When a bill changes a number (fee, cap, limit, threshold, tax rate), include both the old and new values so the reader can see the difference. When a bill affects a group of people, include how many people are in that group if the number is publicly known. Apply this consistently across all bills — the goal is to give readers enough facts to form their own opinion without needing to research further.
 12. Write like you're explaining it to a neighbor, not to a lawyer
+13. When a bill repeals, cancels, or overturns a previous rule, describe the RESULT — not the chain of actions. Instead of 'Cancel a rule that ended automatic approvals for bank mergers', say 'Bring back automatic approvals for some bank mergers'. Avoid stacking negatives. The reader should immediately understand what changes.
 
 Output valid JSON only. No markdown, no commentary."""
 
