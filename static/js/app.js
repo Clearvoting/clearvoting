@@ -21,6 +21,7 @@ let showParty = false;
 let billOffset = 0;
 const BILL_LIMIT = 20;
 let expandedCardId = null;
+let currentMembers = [];
 const summaryCache = new Map();
 
 // --- Initialize ---
@@ -66,6 +67,9 @@ function setupEventListeners() {
 
         if (showParty) {
             reloadMembersWithParty();
+        } else {
+            const grid = document.getElementById('member-grid');
+            renderMembers(grid, currentMembers);
         }
     });
 
@@ -178,6 +182,7 @@ async function lookupMembers() {
             return;
         }
 
+        currentMembers = members;
         renderMembers(grid, members);
     } catch (err) {
         showError(grid, 'Unable to load representatives. Congress.gov may be temporarily unavailable.');

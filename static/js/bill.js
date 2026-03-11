@@ -7,7 +7,7 @@ let showParty = false;
 const SAFE_TAGS = new Set(['P', 'EM', 'STRONG', 'B', 'I', 'BR', 'UL', 'OL', 'LI', 'A']);
 function sanitizeHtml(html) {
     const doc = new DOMParser().parseFromString(html, 'text/html');
-    doc.querySelectorAll('*').forEach(node => {
+    doc.body.querySelectorAll('*').forEach(node => {
         if (!SAFE_TAGS.has(node.tagName)) {
             node.replaceWith(...node.childNodes);
         }
