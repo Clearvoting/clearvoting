@@ -25,10 +25,11 @@ STRICT RULES:
 4. NO political framing ("progressive", "conservative", "moderate", "bipartisan")
 5. ONLY describe observable voting patterns — what they voted for, what they voted against, how often they showed up
 6. Write at a 7th-8th grade reading level. Use short, common words.
-7. Include specific numbers (vote counts, percentages)
+7. Include specific policy area vote counts (e.g., '12 votes to weaken environmental rules') but NOT overall totals.
 8. The narrative MUST be 3-5 sentences. Facts only. No opinions. No framing.
 9. top_areas should list 2-5 policy area names the member voted on most, ordered by total votes
 10. Your narrative MUST reflect the dominant direction shown in DATA CONSTRAINTS. Do NOT highlight exceptions as if they represent the overall pattern.
+11. Do NOT mention total votes cast, participation rate, yea/nay counts, or percentage of bills supported — these statistics are displayed separately on the page. Focus on WHAT the member votes on: policy area patterns and stances.
 
 Output valid JSON only: {"narrative": "...", "top_areas": ["...", "..."]}
 No markdown, no commentary."""
@@ -126,12 +127,7 @@ Member: {member_name}
 Chamber: {chamber}
 State: {state}
 Congresses: {congress_str}
-
-Vote Stats:
-  Total votes cast: {stats['total_votes']}
-  Yea: {stats['yea_count']}
-  Nay: {stats['nay_count']}
-  Participation rate: {stats['participation_rate']}%
+Context: {stats['total_votes']} total votes across {len(congresses)} congresses.
 
 Top Policy Areas (by vote count):
 {areas_block}{data_brief_block}
@@ -142,7 +138,7 @@ Bills they voted YES on (sample):
 Bills they voted NO on (sample):
 {opposed_block}
 
-Write a 3-5 sentence narrative summarizing this member's voting record. Include specific numbers. Return ONLY valid JSON: {{"narrative": "...", "top_areas": ["...", "..."]}}"""
+Write a 3-5 sentence narrative about this member's policy area stances and voting patterns. Do not repeat overall statistics. Return ONLY valid JSON: {{"narrative": "...", "top_areas": ["...", "..."]}}"""
 
         if grader_feedback:
             prompt += f"""
@@ -188,9 +184,7 @@ Generate a corrected version. Return ONLY valid JSON."""
             area_names = [a["name"] for a in top_areas[:5]] if top_areas else []
             return {
                 "narrative": (
-                    f"{member_name} represents {state} in the {chamber}. "
-                    f"They cast {stats['total_votes']} votes with a "
-                    f"{stats['participation_rate']}% participation rate."
+                    f"{member_name} represents {state} in the {chamber}."
                 ),
                 "top_areas": area_names,
             }

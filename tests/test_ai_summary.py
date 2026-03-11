@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import AsyncMock, patch, MagicMock
-from app.services.ai_summary import AISummaryService, IMPACT_CATEGORIES
+from app.services.ai_summary import AISummaryService, IMPACT_CATEGORIES, SYSTEM_PROMPT
 
 
 def test_impact_categories_defined():
@@ -307,3 +307,9 @@ async def test_generate_summary_missing_direction_defaults_to_neutral():
         )
 
     assert result["direction"] == "neutral"
+
+
+def test_system_prompt_double_negative_rule():
+    """System prompt instructs AI to describe the RESULT, not chain of actions."""
+    assert "RESULT" in SYSTEM_PROMPT
+    assert "stacking negatives" in SYSTEM_PROMPT
