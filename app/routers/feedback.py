@@ -51,15 +51,3 @@ async def submit_feedback(feedback: FeedbackSubmission, request: Request) -> dic
         logger.info("Feedback saved to JSONL: page_type=%s", feedback.page_type)
 
     return {"status": "ok"}
-
-
-@router.get("/debug-sheets")
-async def debug_sheets(request: Request) -> dict:
-    """Temporary diagnostic — remove after confirming Sheets works."""
-    return {
-        "sheets_available": _sheets.is_available,
-        "has_credentials": bool(GOOGLE_SHEETS_CREDENTIALS_JSON),
-        "credentials_length": len(GOOGLE_SHEETS_CREDENTIALS_JSON),
-        "has_spreadsheet_id": bool(GOOGLE_SHEETS_SPREADSHEET_ID),
-        "spreadsheet_id_length": len(GOOGLE_SHEETS_SPREADSHEET_ID),
-    }
