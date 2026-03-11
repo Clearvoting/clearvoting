@@ -4,6 +4,20 @@
 
 let showParty = false;
 
+const SAFE_TAGS = new Set(['P', 'EM', 'STRONG', 'B', 'I', 'BR', 'UL', 'OL', 'LI', 'A']);
+function sanitizeHtml(html) {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    doc.querySelectorAll('*').forEach(node => {
+        if (!SAFE_TAGS.has(node.tagName)) {
+            node.replaceWith(...node.childNodes);
+        }
+        for (const attr of [...node.attributes]) {
+            if (attr.name !== 'href') node.removeAttribute(attr.name);
+        }
+    });
+    return doc.body.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const congress = params.get('congress');
@@ -127,7 +141,9 @@ function renderBill(container, bill, congress, type, number) {
     const summaries = bill.summaries || [];
     if (summaries.length > 0) {
         const summaryText = summaries[0].text || 'No summary available.';
-        officialSection.appendChild(el('div', { className: 'official-summary' }, summaryText));
+        const summaryDiv = el('div', { className: 'official-summary' });
+        summaryDiv.innerHTML = sanitizeHtml(summaryText);
+        officialSection.appendChild(summaryDiv);
     } else {
         officialSection.appendChild(el('div', { className: 'empty-state' }, 'Official summary not yet available for this bill.'));
     }

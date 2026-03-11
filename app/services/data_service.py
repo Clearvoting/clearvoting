@@ -110,6 +110,23 @@ class DataService:
         bioguide_id = bioguide_id.upper()
         return self._member_summaries.get(bioguide_id)
 
+    def get_bills_by_sponsor(self, bioguide_id: str) -> list[dict]:
+        results = []
+        for b in self._bills:
+            for s in b.get("sponsors", []):
+                if s.get("bioguideId") == bioguide_id:
+                    results.append({
+                        "congress": b.get("congress"),
+                        "type": b.get("type", ""),
+                        "number": b.get("number"),
+                        "title": b.get("title", ""),
+                        "introduced_date": b.get("introducedDate", ""),
+                        "latest_action": b.get("latestAction", {}).get("text", ""),
+                        "policy_area": b.get("policyArea", {}).get("name", "") if b.get("policyArea") else "",
+                    })
+                    break
+        return results
+
     def get_bills(self, offset: int = 0, limit: int = 20) -> dict:
         paginated = self._bills[offset:offset + limit]
         return {"bills": paginated}

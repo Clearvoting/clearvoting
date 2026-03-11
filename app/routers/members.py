@@ -22,6 +22,14 @@ def _validate_state_code(state_code: str) -> str:
     return state_code.upper()
 
 
+@router.get("/{bioguide_id}/sponsored")
+async def get_member_sponsored_bills(bioguide_id: str):
+    _validate_bioguide_id(bioguide_id)
+    data_service = get_data_service()
+    bills = data_service.get_bills_by_sponsor(bioguide_id)
+    return {"bills": bills, "count": len(bills)}
+
+
 @router.get("/{bioguide_id}/votes")
 async def get_member_votes(
     bioguide_id: str,

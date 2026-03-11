@@ -200,12 +200,11 @@ function renderMember(container, member, bioguideId) {
         container.appendChild(serviceSection);
     }
 
-    // Sponsored legislation (compact)
-    const sponsoredSection = el('section', { className: 'service-compact', id: 'sponsored-section' });
-    const sponsoredHeader = el('div', { className: 'service-compact-header' });
-    sponsoredHeader.appendChild(el('h3', null, 'Sponsored Legislation'));
-    sponsoredHeader.appendChild(el('span', { className: 'service-compact-summary', id: 'sponsored-count' }, 'Loading...'));
-    sponsoredSection.appendChild(sponsoredHeader);
+    // Sponsored legislation
+    const sponsoredSection = el('section', { className: 'bill-section', id: 'sponsored-section' });
+    sponsoredSection.appendChild(el('h3', null, 'Sponsored Legislation'));
+    sponsoredSection.appendChild(el('div', { className: 'loading', id: 'sponsored-loading' },
+        el('span', { className: 'spinner' }), ' Loading sponsored bills...'));
     container.appendChild(sponsoredSection);
 
     loadSponsoredLegislation(bioguideId);
@@ -232,31 +231,65 @@ function renderMember(container, member, bioguideId) {
 }
 
 async function loadSponsoredLegislation(bioguideId) {
-    const countEl = document.getElementById('sponsored-count');
     const section = document.getElementById('sponsored-section');
-    if (!countEl || !section) return;
+    const loading = document.getElementById('sponsored-loading');
+    if (!section) return;
 
     try {
-        const response = await fetch(`/api/members/detail/${bioguideId}`);
+        const response = await fetch(`/api/members/${bioguideId}/sponsored`);
         if (!response.ok) throw new Error('Failed');
         const data = await response.json();
-        const member = data.member || data;
+        if (loading) loading.remove();
 
-        const count = member.sponsoredLegislation?.count || 0;
-        const cosponsored = member.cosponsoredLegislation?.count || 0;
-        countEl.textContent = `${count} bills sponsored · ${cosponsored} cosponsored`;
+        const bills = data.bills || [];
+        if (bills.length === 0) {
+            section.appendChild(el('div', { className: 'empty-state' }, 'No sponsored bills found in synced data.'));
+            return;
+        }
 
-        const rawName = member.directOrderName || `${member.firstName || ''} ${member.lastName || ''}`.trim() || '';
-        const slug = rawName.toLowerCase().replace(/[^a-z\s-]/g, '').trim().replace(/\s+/g, '-');
-        const detailsLink = el('a', {
-            href: `https://www.congress.gov/member/${slug}/${bioguideId}?q=%7B%22sponsorship%22%3A%22sponsored%22%7D`,
-            target: '_blank',
-            rel: 'noopener',
-            className: 'service-expand-btn',
-        }, 'Details →');
-        section.querySelector('.service-compact-header').appendChild(detailsLink);
+        const countLabel = el('div', { className: 'vote-section-desc' }, `${bills.length} bill${bills.length !== 1 ? 's' : ''} sponsored in synced data`);
+        section.appendChild(countLabel);
+
+        const list = el('div', { className: 'vote-list' });
+        bills.forEach(bill => {
+            const item = el('div', { className: 'vote-item' });
+
+            const topRow = el('div', { className: 'vote-item-top' });
+            topRow.appendChild(el('span', { className: 'bill-number' }, `${bill.type}.${bill.number}`));
+            topRow.appendChild(el('span', { className: 'bill-date' }, bill.introduced_date));
+            item.appendChild(topRow);
+
+            item.appendChild(el('div', { className: 'vote-item-title' }, bill.title));
+
+            const bottomRow = el('div', { className: 'vote-item-bottom' });
+            if (bill.latest_action) {
+                bottomRow.appendChild(el('span', { className: 'vote-item-result' }, bill.latest_action));
+            }
+            if (bill.policy_area) {
+                bottomRow.appendChild(el('span', { className: 'impact-tag' }, bill.policy_area));
+            }
+            item.appendChild(bottomRow);
+
+            const billType = (bill.type || '').toUpperCase();
+            item.style.cursor = 'pointer';
+            item.addEventListener('click', () => {
+                window.location.href = `/bill?congress=${bill.congress}&type=${billType}&number=${bill.number}`;
+            });
+            item.setAttribute('role', 'link');
+            item.setAttribute('tabindex', '0');
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.location.href = `/bill?congress=${bill.congress}&type=${billType}&number=${bill.number}`;
+                }
+            });
+
+            list.appendChild(item);
+        });
+        section.appendChild(list);
     } catch {
-        countEl.textContent = 'Unavailable';
+        if (loading) loading.remove();
+        section.appendChild(el('div', { className: 'empty-state' }, 'Could not load sponsored legislation.'));
     }
 }
 
@@ -651,7 +684,22 @@ function getSourceUrl(vote) {
     return null;
 }
 
+function _parseBillId(billId) {
+    if (!billId) return { type: null, number: null };
+    const parts = billId.split('-');
+    if (parts.length >= 3) {
+        return { type: parts[1].toUpperCase(), number: parts.slice(2).join('-') };
+    }
+    return { type: null, number: null };
+}
+
 function _buildVoteItem(vote) {
+    if (!vote._parsed) {
+        const parsed = _parseBillId(vote.bill_id);
+        vote.bill_type = parsed.type;
+        vote.bill_number_raw = parsed.number;
+        vote._parsed = true;
+    }
     const item = el('div', { className: 'vote-item' });
 
     const topRow = el('div', { className: 'vote-item-top' });
@@ -692,7 +740,8 @@ function _buildVoteItem(vote) {
         item.appendChild(sourceLink);
     }
 
-    if (vote.bill_type === 'HR' || vote.bill_type === 'S') {
+    const clickableTypes = ['HR', 'S', 'HJRES', 'SJRES'];
+    if (clickableTypes.includes(vote.bill_type)) {
         item.style.cursor = 'pointer';
         item.addEventListener('click', () => {
             window.location.href = `/bill?congress=${vote.congress}&type=${vote.bill_type}&number=${vote.bill_number_raw}`;
@@ -705,20 +754,18 @@ function _buildVoteItem(vote) {
                 window.location.href = `/bill?congress=${vote.congress}&type=${vote.bill_type}&number=${vote.bill_number_raw}`;
             }
         });
+    } else {
+        item.classList.add('vote-item-resolution');
+        const resLabel = el('div', { className: 'resolution-label' }, 'Resolution — no details available');
+        item.appendChild(resLabel);
     }
 
     return item;
 }
 
-function _renderVoteItems(listEl, votes) {
-    if (votes.length === 0) {
-        listEl.appendChild(el('div', { className: 'empty-state' }, 'No votes found for this category.'));
-        return;
-    }
-
-    const INITIAL_SHOW = 30;
-    const votesToShow = votes.length > INITIAL_SHOW ? votes.slice(0, INITIAL_SHOW) : votes;
-    const remaining = votes.length > INITIAL_SHOW ? votes.slice(INITIAL_SHOW) : [];
+function _renderVoteSection(listEl, votes, initialLimit) {
+    const votesToShow = votes.length > initialLimit ? votes.slice(0, initialLimit) : votes;
+    const remaining = votes.length > initialLimit ? votes.slice(initialLimit) : [];
 
     votesToShow.forEach(vote => {
         listEl.appendChild(_buildVoteItem(vote));
@@ -730,10 +777,40 @@ function _renderVoteItems(listEl, votes) {
         showAllBtn.addEventListener('click', () => {
             showAllBtn.remove();
             remaining.forEach(vote => {
-                const item = _buildVoteItem(vote);
-                listEl.appendChild(item);
+                listEl.appendChild(_buildVoteItem(vote));
             });
         });
         listEl.appendChild(showAllBtn);
+    }
+}
+
+function _renderVoteItems(listEl, votes) {
+    if (votes.length === 0) {
+        listEl.appendChild(el('div', { className: 'empty-state' }, 'No votes found for this category.'));
+        return;
+    }
+
+    const clickableTypes = ['HR', 'S', 'HJRES', 'SJRES'];
+    votes.forEach(v => {
+        if (!v._parsed) {
+            const parsed = _parseBillId(v.bill_id);
+            v.bill_type = parsed.type;
+            v.bill_number_raw = parsed.number;
+            v._parsed = true;
+        }
+    });
+    const bills = votes.filter(v => clickableTypes.includes(v.bill_type));
+    const resolutions = votes.filter(v => !clickableTypes.includes(v.bill_type));
+
+    if (bills.length > 0) {
+        listEl.appendChild(el('div', { className: 'vote-section-header' }, `Bills & Joint Resolutions (${bills.length})`));
+        listEl.appendChild(el('div', { className: 'vote-section-desc' }, 'Legislation that was signed into law or requires the President\u2019s signature.'));
+        _renderVoteSection(listEl, bills, 20);
+    }
+
+    if (resolutions.length > 0) {
+        listEl.appendChild(el('div', { className: 'vote-section-header' }, `Resolutions (${resolutions.length})`));
+        listEl.appendChild(el('div', { className: 'vote-section-desc' }, 'Formal expressions by one or both chambers used for procedural matters, recognitions, and internal rules. These do not become law.'));
+        _renderVoteSection(listEl, resolutions, 10);
     }
 }
