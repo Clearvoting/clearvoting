@@ -51,8 +51,6 @@ function setupEventListeners() {
     const searchBtn = document.getElementById('search-btn');
     const billSearch = document.getElementById('bill-search');
     const loadMoreBtn = document.getElementById('load-more-btn');
-    const hamburger = document.querySelector('.hamburger');
-
     stateSelect.addEventListener('change', () => {
         lookupBtn.disabled = !stateSelect.value;
     });
@@ -83,11 +81,7 @@ function setupEventListeners() {
         loadRecentBills(true);
     });
 
-    hamburger.addEventListener('click', () => {
-        const nav = document.querySelector('nav');
-        nav.classList.toggle('open');
-        hamburger.setAttribute('aria-expanded', nav.classList.contains('open'));
-    });
+    // Hamburger menu handled by feedback.js (loaded on all pages)
 }
 
 // --- State Dropdown ---

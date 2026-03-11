@@ -15,17 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     loadMember(bioguideId);
-    setupHamburger();
+    // Hamburger menu handled by feedback.js (loaded on all pages)
 });
-
-function setupHamburger() {
-    const hamburger = document.querySelector('.hamburger');
-    hamburger.addEventListener('click', () => {
-        const nav = document.querySelector('nav');
-        nav.classList.toggle('open');
-        hamburger.setAttribute('aria-expanded', nav.classList.contains('open'));
-    });
-}
 
 // --- DOM Helpers ---
 function el(tag, attrs, ...children) {
