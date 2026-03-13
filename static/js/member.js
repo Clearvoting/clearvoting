@@ -314,9 +314,6 @@ async function loadVotingRecord(bioguideId) {
 
         clearEl(container);
         renderVotingSummary(data.stats, data.votes, summaryData);
-        if (data.scorecard && data.scorecard.length > 0) {
-            renderScorecard(container, data.scorecard);
-        }
         renderVotingStats(container, data.stats, data.congresses);
         renderVoteFilters(container, data.policy_areas, data.votes);
         renderVoteList(container, data.votes);
@@ -433,7 +430,6 @@ function renderVotingSummary(stats, votes, summaryData) {
             const inFavor = item.in_favor || 0;
             const against = item.against || 0;
             const total = item.total || 0;
-            const favorPct = total > 0 ? Math.round((inFavor / total) * 100) : 0;
             const isMostlyFavor = inFavor >= against;
             const colorClass = isMostlyFavor ? 'scorecard-favor' : 'scorecard-against';
             const ratio = isMostlyFavor ? `${inFavor} / ${total}` : `${against} / ${total}`;
@@ -529,79 +525,6 @@ function renderVotingSummary(stats, votes, summaryData) {
     summaryEl.appendChild(card);
 }
 
-function renderScorecard(container, scorecard) {
-    const section = el('section', { className: 'scorecard-section' });
-    section.appendChild(el('h3', null, 'Issues You Care About'));
-    section.appendChild(el('p', { className: 'scorecard-subtitle' },
-        'How they voted on the issues most Americans agree on — based on Pew Research and Gallup polling.'));
-
-    const grid = el('div', { className: 'scorecard-grid' });
-
-    scorecard.forEach(issue => {
-        const card = el('div', { className: 'scorecard-card' });
-
-        const header = el('div', { className: 'scorecard-card-header' });
-        header.appendChild(el('h4', null, issue.issue));
-        header.appendChild(el('span', { className: 'scorecard-card-subtitle' }, issue.subtitle));
-        card.appendChild(header);
-
-        if (issue.votes.length === 0) {
-            card.appendChild(el('p', { className: 'scorecard-empty' }, 'No tracked votes on this issue yet.'));
-        } else if (issue.issue === 'National Debt') {
-            // Special rendering for national debt — show net + itemized
-            const deficitVotes = issue.votes.filter(v => v.deficit);
-            if (deficitVotes.length > 0) {
-                const netBillions = deficitVotes.reduce((sum, v) => {
-                    const match = v.deficit.match(/([+-])\$?([\d.]+)\s*(trillion|billion)/i);
-                    if (!match) return sum;
-                    const sign = match[1] === '+' ? 1 : -1;
-                    const num = parseFloat(match[2]);
-                    const multiplier = match[3].toLowerCase() === 'trillion' ? 1000 : 1;
-                    return sum + sign * num * multiplier;
-                }, 0);
-
-                const netFormatted = formatDeficitAmount(netBillions);
-                const direction = netBillions > 0 ? 'added to' : 'reduced';
-                const netClass = netBillions > 0 ? 'deficit-increase' : 'deficit-decrease';
-
-                card.appendChild(el('div', { className: `scorecard-net ${netClass}` },
-                    `Net: ${netFormatted} ${direction} the deficit`));
-            }
-
-            const list = el('ul', { className: 'scorecard-vote-list' });
-            issue.votes.forEach(v => {
-                const li = el('li', { className: 'scorecard-vote-item' });
-                const badge = el('span', { className: 'scorecard-vote-badge vote-' + v.vote.toLowerCase() }, v.vote);
-                li.appendChild(badge);
-                const text = el('span', { className: 'scorecard-vote-text' });
-                text.appendChild(document.createTextNode(v.summary));
-                if (v.deficit && v.deficit !== '$0') {
-                    const deficitClass = v.deficit.startsWith('+') ? 'deficit-increase' : 'deficit-decrease';
-                    text.appendChild(el('span', { className: `scorecard-deficit-tag ${deficitClass}` }, ` ${v.deficit}`));
-                }
-                li.appendChild(text);
-                list.appendChild(li);
-            });
-            card.appendChild(list);
-        } else {
-            // Standard rendering — show vote list
-            const list = el('ul', { className: 'scorecard-vote-list' });
-            issue.votes.forEach(v => {
-                const li = el('li', { className: 'scorecard-vote-item' });
-                const badge = el('span', { className: 'scorecard-vote-badge vote-' + v.vote.toLowerCase() }, v.vote);
-                li.appendChild(badge);
-                li.appendChild(el('span', { className: 'scorecard-vote-text' }, v.summary));
-                list.appendChild(li);
-            });
-            card.appendChild(list);
-        }
-
-        grid.appendChild(card);
-    });
-
-    section.appendChild(grid);
-    container.appendChild(section);
-}
 
 function renderVotingStats(container, stats, congresses) {
     const section = el('section', { className: 'bill-section' });

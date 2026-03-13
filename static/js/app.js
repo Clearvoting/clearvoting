@@ -314,7 +314,6 @@ function renderCardSnapshot(container, data, bioguideId) {
             const total = item.total || 0;
             const inFavor = item.in_favor || 0;
             const against = item.against || 0;
-            const favorPct = total > 0 ? Math.round((inFavor / total) * 100) : 0;
             const label = inFavor >= against ? 'in favor' : 'against';
             const ratio = inFavor >= against ? `${inFavor}/${total}` : `${against}/${total}`;
             const colorClass = inFavor >= against ? 'scorecard-favor' : 'scorecard-against';

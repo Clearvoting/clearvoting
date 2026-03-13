@@ -1476,15 +1476,19 @@ async def main() -> None:
             print("  Cleared existing member summaries")
 
         print()
-        print("[1/3] Regenerating AI bill summaries...")
+        print("[1/4] Regenerating AI bill summaries...")
         summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
 
         print()
-        print("[2/3] Rebuilding member voting records...")
+        print("[2/4] Rebuilding member voting records...")
         await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
 
         print()
-        print("[3/3] Regenerating member narratives...")
+        print("[3/4] Generating issue scorecard verdicts...")
+        await generate_scorecard_verdicts(SYNC_DIR, api_key=anthropic_key or None)
+
+        print()
+        print("[4/4] Regenerating member narratives...")
         member_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
 
         print()
