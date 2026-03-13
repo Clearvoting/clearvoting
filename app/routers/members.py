@@ -69,6 +69,11 @@ async def get_member_summary(bioguide_id: str):
         summary["narrative"] = narrative.get("narrative", "")
         summary["narrative_top_areas"] = narrative.get("top_areas", [])
 
+    # Include issue scorecard from member votes
+    votes_data = data_service.get_member_votes(bioguide_id)
+    if votes_data:
+        summary["issue_scorecard"] = votes_data.get("scorecard", [])
+
     return summary
 
 
