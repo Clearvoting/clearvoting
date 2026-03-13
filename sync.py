@@ -365,7 +365,7 @@ async def sync_bill_summaries(
                     bill_id=_bill_id,
                     title=_title,
                     official_summary=_official_summary,
-                    bill_text_excerpt=_bill_text[:2000],
+                    bill_text_excerpt=_bill_text[:6000],
                     grader_feedback=grader_feedback,
                     policy_area=_policy_area,
                 )
@@ -603,6 +603,142 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
         count += 1
 
     print(f"  Built voting records for {count} members")
+    return count
+
+
+async def generate_scorecard_verdicts(
+    output_dir: Path,
+    api_key: str | None = None,
+    rate_limit: float = 0.5,
+) -> int:
+    """Generate per-category scorecard verdicts for each member.
+
+    Groups each member's votes by issue_categories (from AI summaries),
+    computes in_favor/against ratios, and calls a lightweight LLM prompt
+    for a one-line verdict per category. Stores scorecard in member vote JSON.
+
+    Returns count of members processed.
+    """
+    from app.services.ai_summary import AISummaryService, ISSUE_CATEGORIES
+
+    member_votes_dir = output_dir / "member_votes"
+    if not member_votes_dir.exists():
+        print("  No member_votes dir — skipping scorecard generation")
+        return 0
+
+    # Load AI summaries to get issue_categories per bill
+    ai_summaries: dict[str, dict] = {}
+    ai_summaries_path = output_dir / "ai_summaries.json"
+    if ai_summaries_path.exists():
+        with open(ai_summaries_path) as f:
+            ai_summaries = json.load(f)
+
+    # Setup LLM service for verdict generation
+    cache = CacheService(cache_dir=CACHE_DIR, ttl_seconds=86400)
+    service = AISummaryService(api_key=api_key, cache=cache)
+
+    verdict_system = """You are a nonpartisan legislative analyst. Write a single sentence (max 20 words) describing how this member voted on this issue. Be specific and factual. No adjectives. No opinions. Use "in favor" and "against" language. Example: "Voted against 48 of 50 bills to cap prices and raise wages"."""
+
+    count = 0
+    for member_file in sorted(member_votes_dir.glob("*.json")):
+        with open(member_file) as f:
+            member_data = json.load(f)
+
+        votes = member_data.get("votes", [])
+        if not votes:
+            continue
+
+        # Group votes by issue_categories
+        category_votes: dict[str, list[dict]] = {}
+        for v in votes:
+            bill_id = v.get("bill_id")
+            if not bill_id:
+                continue
+            summary = ai_summaries.get(bill_id, {})
+            categories = summary.get("issue_categories", [])
+            direction = v.get("direction")
+            vote_position = v.get("vote", "").lower()
+            is_yea = vote_position in ("yea", "aye")
+            is_nay = vote_position in ("nay", "no")
+
+            # Compute effective stance
+            if direction == "in_favor":
+                effective = "in_favor" if is_yea else ("against" if is_nay else None)
+            elif direction == "against":
+                effective = "against" if is_yea else ("in_favor" if is_nay else None)
+            else:
+                effective = None
+
+            for cat in categories:
+                if cat not in category_votes:
+                    category_votes[cat] = []
+                category_votes[cat].append({
+                    "bill_id": bill_id,
+                    "one_liner": v.get("one_liner", ""),
+                    "vote": v.get("vote", ""),
+                    "direction": effective or "neutral",
+                })
+
+        # Build scorecard entries
+        scorecard = []
+        for cat in ISSUE_CATEGORIES:
+            if cat not in category_votes:
+                continue
+            cat_votes = category_votes[cat]
+            in_favor = sum(1 for cv in cat_votes if cv["direction"] == "in_favor")
+            against = sum(1 for cv in cat_votes if cv["direction"] == "against")
+            total = len(cat_votes)
+
+            # Generate verdict via LLM
+            bills_sample = "\n".join(
+                f"  - {cv['vote']}: {cv['one_liner']}" for cv in cat_votes[:10]
+            )
+            verdict_prompt = f"""Category: {cat}
+Votes: {in_favor} in favor, {against} against, {total} total
+Sample bills:
+{bills_sample}
+
+Write ONE sentence describing this voting pattern. Return only the sentence, no JSON."""
+
+            try:
+                verdict = await service._call_llm(verdict_system, verdict_prompt)
+                verdict = verdict.strip().strip('"')
+            except Exception:
+                if against > in_favor:
+                    verdict = f"Voted against {against} of {total} {cat.lower()} measures"
+                else:
+                    verdict = f"Voted in favor of {in_favor} of {total} {cat.lower()} measures"
+
+            # Build bill list for expandable detail
+            bills_list = [
+                {
+                    "bill_id": cv["bill_id"],
+                    "one_liner": cv["one_liner"],
+                    "vote": cv["vote"],
+                    "direction": cv["direction"],
+                }
+                for cv in cat_votes
+            ]
+
+            scorecard.append({
+                "category": cat,
+                "in_favor": in_favor,
+                "against": against,
+                "total": total,
+                "verdict": verdict,
+                "bills": bills_list,
+            })
+
+        # Sort by total votes descending
+        scorecard.sort(key=lambda x: x["total"], reverse=True)
+        member_data["scorecard"] = scorecard
+        _atomic_write_json(member_file, member_data)
+        count += 1
+
+        if scorecard:
+            await asyncio.sleep(rate_limit)
+
+    print(f"  Generated scorecards for {count} members")
     return count
 
 
@@ -1207,7 +1343,7 @@ async def _run_audit(anthropic_key: str | None) -> None:
                     bill_id=_key,
                     title=_title,
                     official_summary=_official,
-                    bill_text_excerpt=_bill_text[:2000],
+                    bill_text_excerpt=_bill_text[:6000],
                     grader_feedback=grader_feedback,
                     policy_area=_policy_area,
                 )
@@ -1270,6 +1406,8 @@ async def main() -> None:
                         help="Force regeneration of all AI member summaries.")
     parser.add_argument("--check-coherence", action="store_true",
                         help="Check page coherence between narratives and data sections.")
+    parser.add_argument("--regenerate-all-summaries", action="store_true",
+                        help="Clear and regenerate ALL AI bill summaries and member summaries.")
     args = parser.parse_args()
 
     raw_key = os.getenv("ANTHROPIC_API_KEY", "")
@@ -1310,6 +1448,51 @@ async def main() -> None:
         if stats.get("total"):
             print(f"  Narratives graded: {stats['total']} ({stats.get('passed', 0)} passed, {stats.get('failed', 0)} flagged)")
         print("=== Regeneration complete ===")
+        return
+
+    # --- Regenerate all summaries mode ---
+    if args.regenerate_all_summaries:
+        SYNC_DIR.mkdir(parents=True, exist_ok=True)
+        print("=== ClearVote Full Summary Regeneration ===")
+        print(f"  Mode: {'API' if anthropic_key else 'Claude CLI (Max plan)'}")
+        print()
+
+        # Back up and clear AI summaries
+        ai_summaries_path = SYNC_DIR / "ai_summaries.json"
+        if ai_summaries_path.exists():
+            backup_path = SYNC_DIR / "ai_summaries.backup.json"
+            shutil.copy2(ai_summaries_path, backup_path)
+            print(f"  Backed up AI summaries to {backup_path.name}")
+            _atomic_write_json(ai_summaries_path, {})
+            print("  Cleared existing AI bill summaries")
+
+        # Back up and clear member summaries
+        member_summaries_path = SYNC_DIR / "member_summaries.json"
+        if member_summaries_path.exists():
+            backup_path = SYNC_DIR / "member_summaries.backup.json"
+            shutil.copy2(member_summaries_path, backup_path)
+            print(f"  Backed up member summaries to {backup_path.name}")
+            _atomic_write_json(member_summaries_path, {})
+            print("  Cleared existing member summaries")
+
+        print()
+        print("[1/3] Regenerating AI bill summaries...")
+        summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
+
+        print()
+        print("[2/3] Rebuilding member voting records...")
+        await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
+
+        print()
+        print("[3/3] Regenerating member narratives...")
+        member_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
+
+        print()
+        print("=== Full regeneration complete ===")
+        if summary_stats.get("total"):
+            print(f"  Bill summaries: {summary_stats['total']} ({summary_stats.get('passed', 0)} passed)")
+        if member_stats.get("total"):
+            print(f"  Member narratives: {member_stats['total']} ({member_stats.get('passed', 0)} passed)")
         return
 
     # --- Check coherence mode ---
@@ -1377,13 +1560,13 @@ async def main() -> None:
     print()
 
     # Step 1: Members
-    print("[1/9] Syncing members...")
+    print("[1/10] Syncing members...")
     members_count = await sync_members(client, SYNC_DIR, states=states, rate_limit=0.5)
 
     # Step 2: Senate votes (all congresses)
     print()
     senate_service = SenateVoteService(cache=cache)
-    print("[2/9] Syncing Senate votes...")
+    print("[2/10] Syncing Senate votes...")
     senate_count = 0
     for congress, session in CONGRESSES:
         print(f"  Congress {congress}, Session {session}...")
@@ -1392,7 +1575,7 @@ async def main() -> None:
 
     # Step 3: House votes (all congresses)
     print()
-    print("[3/9] Syncing House votes...")
+    print("[3/10] Syncing House votes...")
     house_count = 0
     for congress, session in CONGRESSES:
         print(f"  Congress {congress}, Session {session}...")
@@ -1401,32 +1584,37 @@ async def main() -> None:
 
     # Step 4: Bills (only those referenced in votes from both chambers)
     print()
-    print("[4/9] Syncing voted-on bills...")
+    print("[4/10] Syncing voted-on bills...")
     bills_count = await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
 
     # Step 5: AI bill summaries (writer-grader loop)
     print()
-    print(f"[5/9] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
+    print(f"[5/10] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
     summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
 
     # Step 6: Member voting records (both chambers)
     print()
-    print("[6/9] Building member voting records...")
+    print("[6/10] Building member voting records...")
     member_votes_count = await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
 
-    # Step 7: Member summaries
+    # Step 7: Issue scorecard verdicts
     print()
-    print(f"[7/9] Generating AI member summaries ({'API' if anthropic_key else 'Claude CLI'})...")
+    print(f"[7/10] Generating issue scorecard verdicts ({'API' if anthropic_key else 'Claude CLI'})...")
+    await generate_scorecard_verdicts(SYNC_DIR, api_key=anthropic_key or None)
+
+    # Step 8: Member summaries
+    print()
+    print(f"[8/10] Generating AI member summaries ({'API' if anthropic_key else 'Claude CLI'})...")
     member_summary_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
 
-    # Step 8: Page coherence check
+    # Step 9: Page coherence check
     print()
-    print(f"[8/9] Checking page coherence ({'API' if anthropic_key else 'Claude CLI'})...")
+    print(f"[9/10] Checking page coherence ({'API' if anthropic_key else 'Claude CLI'})...")
     coherence_stats = await check_page_coherence(SYNC_DIR, api_key=anthropic_key or None)
 
-    # Step 9: Sync summary
+    # Step 10: Sync summary
     print()
-    print("[9/9] Sync summary")
+    print("[10/10] Sync summary")
 
     # Write metadata
     metadata = {
