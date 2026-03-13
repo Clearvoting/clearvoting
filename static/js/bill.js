@@ -202,14 +202,14 @@ async function loadAISummary(congress, type, number) {
             summaryContent.appendChild(list);
         }
 
-        // AI-generated impact categories
-        const categories = data.impact_categories || [];
+        // AI-generated issue categories
+        const categories = data.issue_categories || [];
         if (categories.length > 0) {
             const tagsDiv = el('div', { className: 'impact-tags' });
             categories.forEach(cat => {
                 tagsDiv.appendChild(el('span', { className: 'impact-tag' }, cat));
             });
-            summaryContent.appendChild(el('h4', { style: 'margin-top:1rem;font-size:0.85rem;color:var(--text-secondary);' }, 'Impact Areas'));
+            summaryContent.appendChild(el('h4', { style: 'margin-top:1rem;font-size:0.85rem;color:var(--text-secondary);' }, 'Issue Areas'));
             summaryContent.appendChild(tagsDiv);
         }
     } catch {

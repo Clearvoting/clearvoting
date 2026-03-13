@@ -9,12 +9,11 @@ const STATES = [
     { code: 'TX', name: 'Texas' },
 ];
 
-const IMPACT_CATEGORIES = [
-    'Wages & Income', 'Healthcare', 'Small Business', 'Housing', 'Education',
-    'Taxes', 'Military & Veterans', 'Agriculture', 'Environment', 'Immigration',
-    'Criminal Justice', 'Technology', 'Infrastructure', 'Social Security & Medicare',
-    'Government Operations', 'Energy', 'Foreign Affairs', 'Civil Rights',
-    'Economy', 'Defense', 'Labor',
+const ISSUE_CATEGORIES = [
+    'Cost of Living', 'Healthcare', 'Jobs & Workers', 'Taxes',
+    'Safety & Crime', 'Education', 'Money in Politics', 'Housing',
+    'Immigration', 'Environment & Energy', 'Veterans & Military',
+    'Social Security & Retirement',
 ];
 
 let showParty = false;
@@ -98,7 +97,7 @@ function populateStates() {
 // --- Category Grid ---
 function populateCategories() {
     const grid = document.getElementById('category-grid');
-    IMPACT_CATEGORIES.forEach(cat => {
+    ISSUE_CATEGORIES.forEach(cat => {
         const tag = document.createElement('button');
         tag.className = 'category-tag';
         tag.textContent = cat;
@@ -305,42 +304,56 @@ function renderCardSnapshot(container, data, bioguideId) {
     );
     container.appendChild(statsRow);
 
-    const areas = data.top_policy_areas || [];
-    if (areas.length > 0) {
-        const areaHeader = el('div', { className: 'snapshot-area-header' }, 'Top Policy Areas');
-        container.appendChild(areaHeader);
+    // Show compact scorecard preview from issue_scorecard
+    const scorecard = data.issue_scorecard || [];
+    if (scorecard.length > 0) {
+        const scHeader = el('div', { className: 'snapshot-area-header' }, 'Issue Scorecard');
+        container.appendChild(scHeader);
 
-        areas.forEach(area => {
-            const hasDirection = (area.strengthen || 0) + (area.weaken || 0) > 0;
-            let countLabel, barClass, barWidth, barBg;
-
-            if (hasDirection) {
-                const parts = [];
-                if (area.strengthen > 0) parts.push(`${area.strengthen} str`);
-                if (area.weaken > 0) parts.push(`${area.weaken} wkn`);
-                countLabel = parts.join('·') || `${area.total}`;
-                const stanceTotal = (area.strengthen || 0) + (area.weaken || 0) + (area.neutral || 0);
-                barWidth = stanceTotal > 0 ? Math.round(((area.strengthen || 0) / stanceTotal) * 100) : 0;
-                barClass = 'summary-mini-bar-strengthen';
-                barBg = 'var(--vote-weaken)';
-            } else {
-                countLabel = `${area.yea}/${area.total}`;
-                barWidth = area.total ? Math.round((area.yea / area.total) * 100) : 0;
-                barClass = 'summary-mini-bar-yea';
-                barBg = null;
-            }
-
-            const bar = el('div', { className: 'summary-mini-bar' });
-            if (barBg) bar.style.background = barBg;
-            bar.appendChild(el('div', { className: barClass, style: `width:${barWidth}%` }));
+        scorecard.slice(0, 4).forEach(item => {
+            const total = item.total || 0;
+            const inFavor = item.in_favor || 0;
+            const against = item.against || 0;
+            const favorPct = total > 0 ? Math.round((inFavor / total) * 100) : 0;
+            const label = inFavor >= against ? 'in favor' : 'against';
+            const ratio = inFavor >= against ? `${inFavor}/${total}` : `${against}/${total}`;
+            const colorClass = inFavor >= against ? 'scorecard-favor' : 'scorecard-against';
 
             const row = el('div', { className: 'summary-issue-row' },
-                el('span', { className: 'summary-issue-name' }, area.name),
-                el('span', { className: 'summary-issue-count' }, countLabel),
-                bar
+                el('span', { className: 'summary-issue-name' }, item.category),
+                el('span', { className: `summary-issue-count ${colorClass}` }, `${ratio} ${label}`)
             );
             container.appendChild(row);
         });
+    } else {
+        // Fallback to top_policy_areas if no scorecard
+        const areas = data.top_policy_areas || [];
+        if (areas.length > 0) {
+            const areaHeader = el('div', { className: 'snapshot-area-header' }, 'Top Issue Areas');
+            container.appendChild(areaHeader);
+
+            areas.forEach(area => {
+                const inFavor = area.in_favor || 0;
+                const against = area.against || 0;
+                const hasDirection = inFavor + against > 0;
+                let countLabel;
+
+                if (hasDirection) {
+                    const parts = [];
+                    if (inFavor > 0) parts.push(`${inFavor} for`);
+                    if (against > 0) parts.push(`${against} against`);
+                    countLabel = parts.join(' · ') || `${area.total}`;
+                } else {
+                    countLabel = `${area.yea}/${area.total}`;
+                }
+
+                const row = el('div', { className: 'summary-issue-row' },
+                    el('span', { className: 'summary-issue-name' }, area.name),
+                    el('span', { className: 'summary-issue-count' }, countLabel)
+                );
+                container.appendChild(row);
+            });
+        }
     }
 
     const profileLink = el('a', {

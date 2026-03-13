@@ -338,19 +338,19 @@ function renderVotingSummary(stats, votes, summaryData) {
     const areaVotes = {};
     votes.forEach(v => {
         if (!v.policy_area) return;
-        if (!areaVotes[v.policy_area]) areaVotes[v.policy_area] = { yea: 0, nay: 0, total: 0, strengthen: 0, weaken: 0, neutral: 0 };
+        if (!areaVotes[v.policy_area]) areaVotes[v.policy_area] = { yea: 0, nay: 0, total: 0, in_favor: 0, against: 0, neutral: 0 };
         areaVotes[v.policy_area].total++;
         const isYea = v.vote === 'Yea' || v.vote === 'Aye';
         const isNay = v.vote === 'Nay' || v.vote === 'No';
         if (isYea) areaVotes[v.policy_area].yea++;
         else if (isNay) areaVotes[v.policy_area].nay++;
 
-        if (v.direction === 'strengthens') {
-            if (isYea) areaVotes[v.policy_area].strengthen++;
-            else if (isNay) areaVotes[v.policy_area].weaken++;
-        } else if (v.direction === 'weakens') {
-            if (isYea) areaVotes[v.policy_area].weaken++;
-            else if (isNay) areaVotes[v.policy_area].strengthen++;
+        if (v.direction === 'in_favor') {
+            if (isYea) areaVotes[v.policy_area].in_favor++;
+            else if (isNay) areaVotes[v.policy_area].against++;
+        } else if (v.direction === 'against') {
+            if (isYea) areaVotes[v.policy_area].against++;
+            else if (isNay) areaVotes[v.policy_area].in_favor++;
         } else {
             if (isYea || isNay) areaVotes[v.policy_area].neutral++;
         }
@@ -423,49 +423,84 @@ function renderVotingSummary(stats, votes, summaryData) {
     );
     card.appendChild(overview);
 
-    // Top issues with mini bars
-    const issuesSection = el('div', { className: 'summary-issues' });
-    issuesSection.appendChild(el('h4', null, 'Where They Focus'));
-    topAreas.forEach(([area, data]) => {
-        const row = el('div', { className: 'summary-issue-row' });
-        row.appendChild(el('span', { className: 'summary-issue-name' }, area));
+    // Issue Scorecards — from summaryData.issue_scorecard or computed from votes
+    const issueScorecardData = (summaryData && summaryData.issue_scorecard) || [];
+    if (issueScorecardData.length > 0) {
+        const issuesSection = el('div', { className: 'issue-scorecard' });
+        issuesSection.appendChild(el('h4', null, 'Issue Scorecard'));
 
-        const hasDirection = (data.strengthen + data.weaken) > 0;
+        issueScorecardData.forEach(item => {
+            const inFavor = item.in_favor || 0;
+            const against = item.against || 0;
+            const total = item.total || 0;
+            const favorPct = total > 0 ? Math.round((inFavor / total) * 100) : 0;
+            const isMostlyFavor = inFavor >= against;
+            const colorClass = isMostlyFavor ? 'scorecard-favor' : 'scorecard-against';
+            const ratio = isMostlyFavor ? `${inFavor} / ${total}` : `${against} / ${total}`;
+            const label = isMostlyFavor ? 'in favor' : 'against';
 
-        if (hasDirection) {
-            // Direction-aware: show strengthening/weakening counts
-            const parts = [];
-            if (data.strengthen > 0) parts.push(`${data.strengthen} strengthening`);
-            if (data.weaken > 0) parts.push(`${data.weaken} weakening`);
-            if (data.neutral > 0) parts.push(`${data.neutral} neutral`);
-            const label = parts.join(' · ') || `${data.total} votes`;
-            row.appendChild(el('span', { className: 'summary-issue-count' }, label));
+            const scItem = el('div', { className: 'issue-scorecard-item' });
+            scItem.appendChild(el('div', { className: 'issue-scorecard-header' },
+                el('span', { className: 'issue-scorecard-category' }, item.category),
+                el('span', { className: `issue-scorecard-ratio ${colorClass}` }, `${ratio} ${label}`)
+            ));
+            if (item.verdict) {
+                scItem.appendChild(el('div', { className: 'issue-scorecard-verdict' }, item.verdict));
+            }
 
-            // Blue (strengthen) / orange (weaken) bar
-            const stanceTotal = data.strengthen + data.weaken + data.neutral;
-            const strengthenPct = stanceTotal > 0 ? Math.round((data.strengthen / stanceTotal) * 100) : 0;
-            const bar = el('div', { className: 'summary-mini-bar' });
-            bar.style.background = 'var(--vote-weaken)';
-            const strengthenSeg = el('div', { className: 'summary-mini-bar-strengthen' });
-            strengthenSeg.style.width = strengthenPct + '%';
-            bar.appendChild(strengthenSeg);
-            row.appendChild(bar);
-        } else {
-            // Fallback: yea/nay when no direction data
-            const yeaPctArea = data.total > 0 ? Math.round((data.yea / data.total) * 100) : 0;
-            const label = data.nay > 0 ? `${data.yea} for · ${data.nay} against` : `${data.yea} for`;
-            row.appendChild(el('span', { className: 'summary-issue-count' }, label));
+            // Expandable bill list
+            if (item.bills && item.bills.length > 0) {
+                const details = document.createElement('details');
+                details.className = 'issue-scorecard-bills';
+                const summary = document.createElement('summary');
+                summary.textContent = `See all ${item.bills.length} votes`;
+                details.appendChild(summary);
+                const billList = el('ul', { className: 'scorecard-bill-list' });
+                item.bills.forEach(b => {
+                    const voteClass = (b.vote === 'Yea' || b.vote === 'Aye') ? 'vote-yea' : 'vote-nay';
+                    const dirLabel = b.direction === 'in_favor' ? 'in favor' : (b.direction === 'against' ? 'against' : '');
+                    const li = el('li', null,
+                        el('span', { className: `scorecard-vote-badge ${voteClass}` }, b.vote),
+                        el('span', null, ` ${b.one_liner}`),
+                        dirLabel ? el('span', { className: `scorecard-dir-label ${b.direction === 'in_favor' ? 'scorecard-favor' : 'scorecard-against'}` }, ` (${dirLabel})`) : null
+                    );
+                    billList.appendChild(li);
+                });
+                details.appendChild(billList);
+                scItem.appendChild(details);
+            }
 
-            const bar = el('div', { className: 'summary-mini-bar' });
-            const yeaSeg = el('div', { className: 'summary-mini-bar-yea' });
-            yeaSeg.style.width = yeaPctArea + '%';
-            bar.appendChild(yeaSeg);
-            row.appendChild(bar);
-        }
+            issuesSection.appendChild(scItem);
+        });
 
-        issuesSection.appendChild(row);
-    });
-    card.appendChild(issuesSection);
+        card.appendChild(issuesSection);
+    } else if (topAreas.length > 0) {
+        // Fallback: show top policy areas if no scorecard data
+        const issuesSection = el('div', { className: 'summary-issues' });
+        issuesSection.appendChild(el('h4', null, 'Top Issue Areas'));
+        topAreas.forEach(([area, data]) => {
+            const row = el('div', { className: 'summary-issue-row' });
+            row.appendChild(el('span', { className: 'summary-issue-name' }, area));
+
+            const inFavor = data.in_favor || 0;
+            const against = data.against || 0;
+            const hasDirection = (inFavor + against) > 0;
+            let countLabel;
+
+            if (hasDirection) {
+                const parts = [];
+                if (inFavor > 0) parts.push(`${inFavor} in favor`);
+                if (against > 0) parts.push(`${against} against`);
+                countLabel = parts.join(' · ') || `${data.total} votes`;
+            } else {
+                countLabel = data.nay > 0 ? `${data.yea} for · ${data.nay} against` : `${data.yea} for`;
+            }
+
+            row.appendChild(el('span', { className: 'summary-issue-count' }, countLabel));
+            issuesSection.appendChild(row);
+        });
+        card.appendChild(issuesSection);
+    }
 
     // What they voted for — deduplicated, plain language
     if (uniqueYea.length > 0) {
