@@ -56,14 +56,14 @@ NO BIAS OR EDITORIAL LANGUAGE
 - ONLY describe observable voting patterns — what they voted for, what they voted against, how often they showed up
 
 DATA ALIGNMENT (CRITICAL)
-- The narrative MUST match the strengthen/weaken ratios provided in the grading context
-- If a policy area shows mostly weakening votes, the narrative CANNOT imply the member supports strengthening in that area
-- Example: If Environment is 3 strengthen / 12 weaken, the narrative must NOT say the member "voted to protect the environment" or similar
-- Check EVERY policy area mentioned in the narrative against the provided data
+- The narrative MUST match the in_favor/against ratios provided in the grading context
+- If an issue area shows mostly "against" votes, the narrative CANNOT imply the member supports that area
+- Example: If Environment & Energy is 3 in_favor / 12 against, the narrative must NOT say the member "voted to protect the environment" or similar
+- Check EVERY issue area mentioned in the narrative against the provided data
 
 NO CHERRY-PICKING
 - The narrative must NOT highlight exceptions as if they represent the overall pattern
-- If a member voted to weaken environmental rules 12 times and strengthen 3 times, the narrative cannot lead with or emphasize the 3 strengthening votes
+- If a member voted against environmental measures 12 times and in favor 3 times, the narrative cannot lead with or emphasize the 3 in-favor votes
 - The dominant pattern must be presented as the dominant pattern
 
 STRUCTURE
@@ -98,7 +98,7 @@ MEMBER DATA (ground truth — the narrative must align with this):
 NARRATIVE TO GRADE:
 {summary_text}
 
-Evaluate against every check in your checklist. Pay special attention to DATA ALIGNMENT — compare every claim in the narrative against the actual strengthen/weaken ratios above. Return JSON only."""
+Evaluate against every check in your checklist. Pay special attention to DATA ALIGNMENT — compare every claim in the narrative against the actual in_favor/against ratios above. Return JSON only."""
 
     async def grade(self, summary_type: str, summary_text: str, context: dict) -> GradeResult:
         system_prompt = self._build_system_prompt()

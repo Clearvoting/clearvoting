@@ -22,7 +22,7 @@
       "policy_area": "Taxation",
       "chamber": "Senate",
       "cbo_deficit_impact": "+$2.3 trillion over 10 years",
-      "direction": "weakens"
+      "direction": "against"
     },
     {
       "bill_number": "S. 100",
@@ -34,7 +34,7 @@
       "policy_area": "Armed Forces and National Security",
       "chamber": "Senate",
       "cbo_deficit_impact": null,
-      "direction": "strengthens"
+      "direction": "in_favor"
     }
   ],
   "policy_areas": ["Taxation", "Armed Forces and National Security"]

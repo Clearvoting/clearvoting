@@ -16,28 +16,19 @@ def _strip_code_fences(text: str) -> str:
         text = text[:-3]
     return text.strip()
 
-IMPACT_CATEGORIES = [
-    "Wages & Income",
+ISSUE_CATEGORIES = [
+    "Cost of Living",
     "Healthcare",
-    "Small Business",
-    "Housing",
-    "Education",
+    "Jobs & Workers",
     "Taxes",
-    "Military & Veterans",
-    "Agriculture",
-    "Environment",
+    "Safety & Crime",
+    "Education",
+    "Money in Politics",
+    "Housing",
     "Immigration",
-    "Criminal Justice",
-    "Technology",
-    "Infrastructure",
-    "Social Security & Medicare",
-    "Government Operations",
-    "Energy",
-    "Foreign Affairs",
-    "Civil Rights",
-    "Economy",
-    "Defense",
-    "Labor",
+    "Environment & Energy",
+    "Veterans & Military",
+    "Social Security & Retirement",
 ]
 
 SYSTEM_PROMPT = """You are a nonpartisan legislative analyst. Your job is to explain what bills do in everyday English that any American can understand — written at a 7th-8th grade reading level.
@@ -72,7 +63,7 @@ class AISummaryService:
         if self.client:
             response = await self.client.messages.create(
                 model="claude-sonnet-4-20250514",
-                max_tokens=1024,
+                max_tokens=1536,
                 system=system,
                 messages=[{"role": "user", "content": user_prompt}],
             )
@@ -82,7 +73,7 @@ class AISummaryService:
             return await call_claude_cli(system, user_prompt)
 
     def _build_prompt(self, title: str, official_summary: str, bill_text_excerpt: str, grader_feedback: str | None = None, policy_area: str | None = None) -> str:
-        categories_str = ", ".join(IMPACT_CATEGORIES)
+        categories_str = ", ".join(ISSUE_CATEGORIES)
         policy_area_line = f'\nPolicy Area (from Congress.gov): {policy_area}' if policy_area else ''
         prompt = f"""Analyze this bill and return JSON with four fields:
 
@@ -90,9 +81,9 @@ class AISummaryService:
 
 2. "provisions": An array of 3-7 strings. Each string is one short, everyday-English sentence describing what this bill does. Use words a middle schooler would know. Focus on: dollar amounts, timelines, and what changes for real people. No adjectives. No opinions. No jargon.
 
-3. "impact_categories": An array of strings from this list — Impact Categories: [{categories_str}]. Only include categories that directly apply.
+3. "issue_categories": An array of 1-2 strings from this list — Issue Categories: [{categories_str}]. Pick the 1-2 categories that best describe what this bill is about from the perspective of an everyday voter. Only include categories that directly apply.
 
-4. "direction": One of "strengthens", "weakens", or "neutral". Does this bill create, fund, expand, or tighten rules within its policy area ("strengthens"), or cancel, block, repeal, defund, or loosen them ("weakens")? Use "neutral" if unclear or procedural. Example: A Congressional Review Act (CRA) disapproval resolution that cancels an EPA rule = "weakens" Environmental Protection.
+4. "direction": One of "in_favor", "against", or "neutral". Does this bill create, fund, expand, or tighten rules within its issue area ("in_favor"), or cancel, block, repeal, defund, or loosen them ("against")? Use "neutral" if unclear or procedural. Example: A Congressional Review Act (CRA) disapproval resolution that cancels an EPA rule = "against" Environment & Energy.
 
 Bill Title: {title}
 
@@ -101,7 +92,7 @@ Official Summary: {official_summary}
 Bill Text (excerpt): {bill_text_excerpt}{policy_area_line}
 
 Return ONLY valid JSON. Example format:
-{{"one_liner": "Raise the federal minimum wage to $15 per hour", "provisions": ["Raises the minimum wage from $7.25 to $15.00 per hour over 5 years", "Gives veterans a raise to keep up with the rising cost of living"], "impact_categories": ["Wages & Income"], "direction": "strengthens"}}"""
+{{"one_liner": "Raise the federal minimum wage to $15 per hour", "provisions": ["Raises the minimum wage from $7.25 to $15.00 per hour over 5 years", "Gives veterans a raise to keep up with the rising cost of living"], "issue_categories": ["Jobs & Workers"], "direction": "in_favor"}}"""
 
         if grader_feedback:
             prompt += f"""
@@ -129,12 +120,12 @@ Generate a corrected version. Return ONLY valid JSON."""
             result = json.loads(raw_text)
         except json.JSONDecodeError:
             logger.error("AI response was not valid JSON: %s", raw_text[:200])
-            return {"provisions": ["AI summary temporarily unavailable"], "impact_categories": [], "one_liner": title, "direction": "neutral"}
+            return {"provisions": ["AI summary temporarily unavailable"], "issue_categories": [], "one_liner": title, "direction": "neutral"}
 
-        valid_categories = [c for c in result.get("impact_categories", []) if c in IMPACT_CATEGORIES]
-        result["impact_categories"] = valid_categories
+        valid_categories = [c for c in result.get("issue_categories", []) if c in ISSUE_CATEGORIES]
+        result["issue_categories"] = valid_categories
 
-        valid_directions = ["strengthens", "weakens", "neutral"]
+        valid_directions = ["in_favor", "against", "neutral"]
         if result.get("direction") not in valid_directions:
             result["direction"] = "neutral"
 

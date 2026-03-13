@@ -1,14 +1,14 @@
 import pytest
 from unittest.mock import AsyncMock, patch, MagicMock
-from app.services.ai_summary import AISummaryService, IMPACT_CATEGORIES, SYSTEM_PROMPT
+from app.services.ai_summary import AISummaryService, ISSUE_CATEGORIES, SYSTEM_PROMPT
 
 
-def test_impact_categories_defined():
-    assert "Wages & Income" in IMPACT_CATEGORIES
-    assert "Healthcare" in IMPACT_CATEGORIES
-    assert "Housing" in IMPACT_CATEGORIES
-    assert "Small Business" in IMPACT_CATEGORIES
-    assert "Taxes" in IMPACT_CATEGORIES
+def test_issue_categories_defined():
+    assert "Cost of Living" in ISSUE_CATEGORIES
+    assert "Healthcare" in ISSUE_CATEGORIES
+    assert "Housing" in ISSUE_CATEGORIES
+    assert "Jobs & Workers" in ISSUE_CATEGORIES
+    assert "Taxes" in ISSUE_CATEGORIES
 
 
 def test_build_prompt_contains_no_bias_instructions():
@@ -20,7 +20,7 @@ def test_build_prompt_contains_no_bias_instructions():
     )
     assert "Test Bill" in prompt
     assert "adjective" in prompt.lower()
-    assert "Impact Categories" in prompt or "impact_categories" in prompt
+    assert "Issue Categories" in prompt or "issue_categories" in prompt
 
 
 def test_build_prompt_includes_bill_content():
@@ -43,7 +43,7 @@ async def test_generate_summary_returns_expected_structure():
 
     mock_response = MagicMock()
     mock_response.content = [MagicMock(
-        text='{"provisions": ["Raises the federal minimum wage from $7.25 to $15.00 per hour"], "impact_categories": ["Wages & Income", "Small Business"]}'
+        text='{"provisions": ["Raises the federal minimum wage from $7.25 to $15.00 per hour"], "issue_categories": ["Jobs & Workers", "Cost of Living"]}'
     )]
 
     with patch.object(service, "client") as mock_client:
@@ -56,9 +56,9 @@ async def test_generate_summary_returns_expected_structure():
         )
 
     assert "provisions" in result
-    assert "impact_categories" in result
+    assert "issue_categories" in result
     assert len(result["provisions"]) > 0
-    assert "Wages & Income" in result["impact_categories"]
+    assert "Jobs & Workers" in result["issue_categories"]
 
 
 @pytest.mark.asyncio
@@ -69,7 +69,7 @@ async def test_generate_summary_filters_invalid_categories():
 
     mock_response = MagicMock()
     mock_response.content = [MagicMock(
-        text='{"provisions": ["Test provision"], "impact_categories": ["Healthcare", "Fake Category", "Taxes"]}'
+        text='{"provisions": ["Test provision"], "issue_categories": ["Healthcare", "Fake Category", "Taxes"]}'
     )]
 
     with patch.object(service, "client") as mock_client:
@@ -81,14 +81,14 @@ async def test_generate_summary_filters_invalid_categories():
             bill_text_excerpt="Test"
         )
 
-    assert "Fake Category" not in result["impact_categories"]
-    assert "Healthcare" in result["impact_categories"]
-    assert "Taxes" in result["impact_categories"]
+    assert "Fake Category" not in result["issue_categories"]
+    assert "Healthcare" in result["issue_categories"]
+    assert "Taxes" in result["issue_categories"]
 
 
 @pytest.mark.asyncio
 async def test_generate_summary_uses_cache():
-    cached = {"provisions": ["Cached provision"], "impact_categories": ["Housing"]}
+    cached = {"provisions": ["Cached provision"], "issue_categories": ["Housing"]}
     mock_cache = MagicMock()
     mock_cache.get.return_value = cached
     service = AISummaryService(api_key="test", cache=mock_cache)
@@ -120,7 +120,7 @@ async def test_generate_summary_includes_one_liner():
 
     mock_response = MagicMock()
     mock_response.content = [MagicMock(
-        text='{"provisions": ["Raises the minimum wage to $15"], "impact_categories": ["Wages & Income"], "one_liner": "Raise the federal minimum wage to $15 per hour"}'
+        text='{"provisions": ["Raises the minimum wage to $15"], "issue_categories": ["Jobs & Workers"], "one_liner": "Raise the federal minimum wage to $15 per hour"}'
     )]
 
     with patch.object(service, "client") as mock_client:
@@ -144,7 +144,7 @@ async def test_generate_summary_fallback_when_no_one_liner():
 
     mock_response = MagicMock()
     mock_response.content = [MagicMock(
-        text='{"provisions": ["Does something"], "impact_categories": ["Taxes"]}'
+        text='{"provisions": ["Does something"], "issue_categories": ["Taxes"]}'
     )]
 
     with patch.object(service, "client") as mock_client:
@@ -213,8 +213,8 @@ def test_build_prompt_includes_direction_field():
         bill_text_excerpt="Section 1.",
     )
     assert "direction" in prompt
-    assert "strengthens" in prompt
-    assert "weakens" in prompt
+    assert "in_favor" in prompt
+    assert "against" in prompt
     assert "neutral" in prompt
 
 
@@ -248,7 +248,7 @@ async def test_generate_summary_valid_direction_passes_through():
 
     mock_response = MagicMock()
     mock_response.content = [MagicMock(
-        text='{"provisions": ["Cancels an EPA rule"], "impact_categories": ["Environment"], "one_liner": "Cancel an EPA rule", "direction": "weakens"}'
+        text='{"provisions": ["Cancels an EPA rule"], "issue_categories": ["Environment & Energy"], "one_liner": "Cancel an EPA rule", "direction": "against"}'
     )]
 
     with patch.object(service, "client") as mock_client:
@@ -260,7 +260,7 @@ async def test_generate_summary_valid_direction_passes_through():
             bill_text_excerpt="This joint resolution...",
         )
 
-    assert result["direction"] == "weakens"
+    assert result["direction"] == "against"
 
 
 @pytest.mark.asyncio
@@ -271,7 +271,7 @@ async def test_generate_summary_invalid_direction_defaults_to_neutral():
 
     mock_response = MagicMock()
     mock_response.content = [MagicMock(
-        text='{"provisions": ["Does something"], "impact_categories": ["Taxes"], "one_liner": "Do something", "direction": "bogus_value"}'
+        text='{"provisions": ["Does something"], "issue_categories": ["Taxes"], "one_liner": "Do something", "direction": "bogus_value"}'
     )]
 
     with patch.object(service, "client") as mock_client:
@@ -294,7 +294,7 @@ async def test_generate_summary_missing_direction_defaults_to_neutral():
 
     mock_response = MagicMock()
     mock_response.content = [MagicMock(
-        text='{"provisions": ["Does something"], "impact_categories": ["Taxes"], "one_liner": "Do something"}'
+        text='{"provisions": ["Does something"], "issue_categories": ["Taxes"], "one_liner": "Do something"}'
     )]
 
     with patch.object(service, "client") as mock_client:

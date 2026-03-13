@@ -17,49 +17,51 @@ def test_system_prompt_includes_data_constraint_rule():
     """System prompt instructs writer to follow DATA CONSTRAINTS."""
     assert "DATA CONSTRAINTS" in MEMBER_SUMMARY_SYSTEM_PROMPT
     assert "highlight exceptions" in MEMBER_SUMMARY_SYSTEM_PROMPT
+    assert "in favor" in MEMBER_SUMMARY_SYSTEM_PROMPT
+    assert "against" in MEMBER_SUMMARY_SYSTEM_PROMPT
 
 
 # --- _compute_data_brief tests ---
 
 
-def test_compute_data_brief_mostly_strengthening():
-    areas = [{"name": "Environment", "strengthen": 12, "weaken": 3, "total": 15}]
+def test_compute_data_brief_mostly_in_favor():
+    areas = [{"name": "Environment & Energy", "in_favor": 12, "against": 3, "total": 15}]
     brief = _compute_data_brief(areas)
     assert "DATA CONSTRAINTS" in brief
-    assert "mostly strengthening" in brief
-    assert "12 strengthening" in brief
-    assert "3 weakening" in brief
+    assert "mostly in favor" in brief
+    assert "12 in favor" in brief
+    assert "3 against" in brief
 
 
-def test_compute_data_brief_mostly_weakening():
-    areas = [{"name": "Environment", "strengthen": 3, "weaken": 12, "total": 15}]
+def test_compute_data_brief_mostly_against():
+    areas = [{"name": "Environment & Energy", "in_favor": 3, "against": 12, "total": 15}]
     brief = _compute_data_brief(areas)
-    assert "mostly weakening" in brief
+    assert "mostly against" in brief
 
 
-def test_compute_data_brief_leans_strengthening():
+def test_compute_data_brief_leans_in_favor():
     """55-74% should be classified as 'leans'."""
-    areas = [{"name": "Economics", "strengthen": 7, "weaken": 3, "total": 10}]
+    areas = [{"name": "Cost of Living", "in_favor": 7, "against": 3, "total": 10}]
     brief = _compute_data_brief(areas)
-    assert "leans strengthening" in brief
+    assert "leans in favor" in brief
 
 
-def test_compute_data_brief_leans_weakening():
-    areas = [{"name": "Economics", "strengthen": 3, "weaken": 7, "total": 10}]
+def test_compute_data_brief_leans_against():
+    areas = [{"name": "Cost of Living", "in_favor": 3, "against": 7, "total": 10}]
     brief = _compute_data_brief(areas)
-    assert "leans weakening" in brief
+    assert "leans against" in brief
 
 
 def test_compute_data_brief_mixed():
     """~50/50 should be classified as 'mixed'."""
-    areas = [{"name": "Economics", "strengthen": 5, "weaken": 5, "total": 10}]
+    areas = [{"name": "Cost of Living", "in_favor": 5, "against": 5, "total": 10}]
     brief = _compute_data_brief(areas)
     assert "mixed" in brief
 
 
 def test_compute_data_brief_no_directional():
     """All neutral votes = no clear direction."""
-    areas = [{"name": "Procedural", "strengthen": 0, "weaken": 0, "total": 10}]
+    areas = [{"name": "Procedural", "in_favor": 0, "against": 0, "total": 10}]
     brief = _compute_data_brief(areas)
     assert "no clear direction" in brief
 
@@ -70,14 +72,14 @@ def test_compute_data_brief_empty():
 
 def test_compute_data_brief_multiple_areas():
     areas = [
-        {"name": "Environment", "strengthen": 3, "weaken": 12, "total": 15},
-        {"name": "Economics", "strengthen": 80, "weaken": 64, "total": 144},
+        {"name": "Environment & Energy", "in_favor": 3, "against": 12, "total": 15},
+        {"name": "Cost of Living", "in_favor": 80, "against": 64, "total": 144},
     ]
     brief = _compute_data_brief(areas)
-    assert "Environment" in brief
-    assert "Economics" in brief
-    assert "mostly weakening" in brief
-    assert "leans strengthening" in brief
+    assert "Environment & Energy" in brief
+    assert "Cost of Living" in brief
+    assert "mostly against" in brief
+    assert "leans in favor" in brief
 
 
 def test_build_prompt_includes_vote_data():
@@ -90,14 +92,14 @@ def test_build_prompt_includes_vote_data():
         congresses=[117, 118, 119],
         stats={"total_votes": 500, "yea_count": 200, "nay_count": 295, "participation_rate": 99.0},
         top_areas=[
-            {"name": "Environmental Protection", "strengthen": 8, "weaken": 0, "total": 8},
-            {"name": "Finance and Financial Sector", "strengthen": 3, "weaken": 1, "total": 4},
+            {"name": "Environment & Energy", "in_favor": 8, "against": 0, "total": 8},
+            {"name": "Cost of Living", "in_favor": 3, "against": 1, "total": 4},
         ],
         top_supported=["Set military spending limits for 2026", "Fund clean energy research"],
         top_opposed=["Cancel an EPA rule on methane fees"],
     )
     assert "Gillibrand" in prompt
-    assert "Environmental Protection" in prompt
+    assert "Environment & Energy" in prompt
     assert "Set military spending limits" in prompt
     assert "500" in prompt  # total votes in context line
 
@@ -136,15 +138,15 @@ def test_build_prompt_includes_data_constraints():
         congresses=[119],
         stats={"total_votes": 100, "yea_count": 60, "nay_count": 40, "participation_rate": 95.0},
         top_areas=[
-            {"name": "Environment", "strengthen": 3, "weaken": 12, "total": 15},
-            {"name": "Economics", "strengthen": 80, "weaken": 64, "total": 144},
+            {"name": "Environment & Energy", "in_favor": 3, "against": 12, "total": 15},
+            {"name": "Cost of Living", "in_favor": 80, "against": 64, "total": 144},
         ],
         top_supported=["Test bill 1"],
         top_opposed=["Test bill 2"],
     )
     assert "DATA CONSTRAINTS" in prompt
-    assert "mostly weakening" in prompt
-    assert "leans strengthening" in prompt
+    assert "mostly against" in prompt
+    assert "leans in favor" in prompt
 
 
 @pytest.mark.asyncio
@@ -164,7 +166,7 @@ async def test_generate_member_summary_returns_narrative():
         state="New York",
         congresses=[117, 118, 119],
         stats={"total_votes": 500, "yea_count": 200, "nay_count": 295, "participation_rate": 99.0},
-        top_areas=[{"name": "Environmental Protection", "strengthen": 8, "weaken": 0, "total": 8}],
+        top_areas=[{"name": "Environment & Energy", "in_favor": 8, "against": 0, "total": 8}],
         top_supported=["Set military spending limits for 2026"],
         top_opposed=["Cancel an EPA rule on methane fees"],
     )

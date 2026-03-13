@@ -5,12 +5,12 @@
     "top_areas": [
       {
         "area": "Taxation",
-        "stance": "Voted to weaken existing tax regulations",
+        "stance": "Voted against existing tax regulations",
         "vote_count": 1
       },
       {
         "area": "Armed Forces and National Security",
-        "stance": "Voted against strengthening defense measures",
+        "stance": "Voted against defense measures",
         "vote_count": 1
       }
     ],

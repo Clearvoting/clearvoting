@@ -41,7 +41,7 @@ def test_grader_build_prompt_for_bill_summary():
         summary_text=json.dumps({
             "one_liner": "Raise the minimum wage to $15",
             "provisions": ["Raises the minimum wage from $7.25 to $15 over 5 years"],
-            "impact_categories": ["Wages & Income"]
+            "issue_categories": ["Jobs & Workers"]
         }),
         context={"title": "Raise the Wage Act", "official_summary": "A bill to raise the minimum wage."}
     )
@@ -100,7 +100,7 @@ async def test_grade_summary_returns_grade_result():
 
     result = await grader.grade(
         summary_type="bill_summary",
-        summary_text='{"one_liner": "Raise minimum wage to $15", "provisions": ["Raises wage from $7.25 to $15"], "impact_categories": ["Wages & Income"]}',
+        summary_text='{"one_liner": "Raise minimum wage to $15", "provisions": ["Raises wage from $7.25 to $15"], "issue_categories": ["Jobs & Workers"]}',
         context={"title": "Wage Act"}
     )
 
@@ -121,7 +121,7 @@ async def test_grade_summary_handles_malformed_response():
 
     result = await grader.grade(
         summary_type="bill_summary",
-        summary_text='{"one_liner": "Test", "provisions": ["Test"], "impact_categories": []}',
+        summary_text='{"one_liner": "Test", "provisions": ["Test"], "issue_categories": []}',
         context={"title": "Test"}
     )
 

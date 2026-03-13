@@ -69,7 +69,7 @@ def test_get_ai_summary(data_service):
     result = data_service.get_ai_summary(119, "hr", 1)
     assert result is not None
     assert len(result["provisions"]) == 2
-    assert "Taxes" in result["impact_categories"]
+    assert "Taxes" in result["issue_categories"]
 
 
 def test_get_ai_summary_not_found(data_service):
@@ -122,17 +122,17 @@ def test_get_member_vote_summary(data_service):
 
 
 def test_get_member_vote_summary_direction_stance(data_service):
-    """Verify effective stance: Yea on 'weakens' = weaken, Nay on 'strengthens' = weaken."""
+    """Verify effective stance: Yea on 'against' = against, Nay on 'in_favor' = against."""
     result = data_service.get_member_vote_summary("S001217")
     areas = result["top_policy_areas"]
-    # HR 1 has direction=weakens, vote=Yea → weaken Taxation
+    # HR 1 has direction=against, vote=Yea → against Taxation
     tax_area = next(a for a in areas if a["name"] == "Taxation")
-    assert tax_area["weaken"] == 1
-    assert tax_area["strengthen"] == 0
-    # S 100 has direction=strengthens, vote=Nay → weaken Armed Forces
+    assert tax_area["against"] == 1
+    assert tax_area["in_favor"] == 0
+    # S 100 has direction=in_favor, vote=Nay → against Armed Forces
     armed_area = next(a for a in areas if a["name"] == "Armed Forces and National Security")
-    assert armed_area["weaken"] == 1
-    assert armed_area["strengthen"] == 0
+    assert armed_area["against"] == 1
+    assert armed_area["in_favor"] == 0
 
 
 def test_get_member_vote_summary_not_found(data_service):

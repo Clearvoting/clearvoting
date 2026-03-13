@@ -67,7 +67,7 @@ class DataService:
             if not area:
                 continue
             if area not in area_counts:
-                area_counts[area] = {"yea": 0, "nay": 0, "total": 0, "strengthen": 0, "weaken": 0, "neutral": 0}
+                area_counts[area] = {"yea": 0, "nay": 0, "total": 0, "in_favor": 0, "against": 0, "neutral": 0}
             position = vote.get("vote", "").lower()
             direction = vote.get("direction")
             is_yea = position in ("yea", "aye")
@@ -78,25 +78,25 @@ class DataService:
                 area_counts[area]["nay"] += 1
             area_counts[area]["total"] += 1
 
-            # Compute effective stance: Yea on "strengthens" or Nay on "weakens" = strengthen
-            if direction == "strengthens":
+            # Compute effective stance: Yea on "in_favor" or Nay on "against" = in_favor
+            if direction == "in_favor":
                 if is_yea:
-                    area_counts[area]["strengthen"] += 1
+                    area_counts[area]["in_favor"] += 1
                 elif is_nay:
-                    area_counts[area]["weaken"] += 1
-            elif direction == "weakens":
+                    area_counts[area]["against"] += 1
+            elif direction == "against":
                 if is_yea:
-                    area_counts[area]["weaken"] += 1
+                    area_counts[area]["against"] += 1
                 elif is_nay:
-                    area_counts[area]["strengthen"] += 1
+                    area_counts[area]["in_favor"] += 1
             elif direction == "neutral" or direction is None:
                 if is_yea or is_nay:
                     area_counts[area]["neutral"] += 1
 
-        top_areas = sorted(area_counts.items(), key=lambda x: x[1]["total"], reverse=True)[:3]
+        top_areas = sorted(area_counts.items(), key=lambda x: x[1]["total"], reverse=True)[:6]
         top_policy_areas = [
             {"name": name, "yea": counts["yea"], "nay": counts["nay"], "total": counts["total"],
-             "strengthen": counts["strengthen"], "weaken": counts["weaken"], "neutral": counts["neutral"]}
+             "in_favor": counts["in_favor"], "against": counts["against"], "neutral": counts["neutral"]}
             for name, counts in top_areas
         ]
 

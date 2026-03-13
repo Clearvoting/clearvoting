@@ -69,14 +69,14 @@ FACTUAL CONTEXT
 - Include scale references where helpful
 
 DIRECTION ACCURACY
-- The "direction" field must be one of: "strengthens", "weakens", "neutral"
-- "strengthens" = creates, funds, expands, or tightens rules in the policy area
-- "weakens" = cancels, blocks, repeals, defunds, or loosens rules
-- Congressional Review Act (CRA) disapproval resolutions that cancel rules = "weakens"
+- The "direction" field must be one of: "in_favor", "against", "neutral"
+- "in_favor" = creates, funds, expands, or tightens rules in the issue area
+- "against" = cancels, blocks, repeals, defunds, or loosens rules
+- Congressional Review Act (CRA) disapproval resolutions that cancel rules = "against"
 - "neutral" = procedural, unclear, or genuinely mixed
 
 STRUCTURE
-- Bill summaries: one_liner (single phrase, max 15 words, starts with verb, no period), provisions (3-7 items, each a single sentence), impact_categories (from allowed list), direction (strengthens/weakens/neutral)
+- Bill summaries: one_liner (single phrase, max 15 words, starts with verb, no period), provisions (3-7 items, each a single sentence), issue_categories (from allowed list), direction (in_favor/against/neutral)
 - Vote one-liners: single sentence, under 30 words, describes what the vote means
 {learnings_block}
 

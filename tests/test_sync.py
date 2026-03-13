@@ -582,7 +582,7 @@ async def test_build_member_votes_uses_ai_one_liner(tmp_path):
         "119-hr-1": {
             "one_liner": "Cancel a tax rule on crypto trading platforms",
             "provisions": ["This cancels a rule..."],
-            "impact_categories": ["Taxation"],
+            "issue_categories": ["Taxation"],
         }
     }
     _write_json(tmp_path / "ai_summaries.json", ai_summaries)
@@ -653,7 +653,7 @@ async def test_build_member_votes_ai_file_exists_but_bill_missing(tmp_path):
 
     # AI summaries exist but for a DIFFERENT bill
     _write_json(tmp_path / "ai_summaries.json", {
-        "119-s-999": {"one_liner": "Something else", "provisions": [], "impact_categories": []}
+        "119-s-999": {"one_liner": "Something else", "provisions": [], "issue_categories": []}
     })
 
     vote_dir = tmp_path / "votes" / "senate"
@@ -721,8 +721,8 @@ async def test_build_member_votes_propagates_direction(tmp_path):
         "119-hr-1": {
             "one_liner": "Cancel an EPA methane fee rule",
             "provisions": ["Cancels a rule..."],
-            "impact_categories": ["Environment"],
-            "direction": "weakens",
+            "issue_categories": ["Environment"],
+            "direction": "against",
         }
     }
     _write_json(tmp_path / "ai_summaries.json", ai_summaries)
@@ -741,7 +741,7 @@ async def test_build_member_votes_propagates_direction(tmp_path):
     await build_member_votes(tmp_path)
 
     data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
-    assert data["votes"][0]["direction"] == "weakens"
+    assert data["votes"][0]["direction"] == "against"
 
 
 @pytest.mark.asyncio
@@ -764,7 +764,7 @@ async def test_build_member_votes_direction_none_when_missing(tmp_path):
         "119-hr-1": {
             "one_liner": "Do something",
             "provisions": ["Does something"],
-            "impact_categories": ["Taxation"],
+            "issue_categories": ["Taxation"],
         }
     }
     _write_json(tmp_path / "ai_summaries.json", ai_summaries)
@@ -805,8 +805,8 @@ async def test_build_member_votes_multi_congress(tmp_path):
     ]}
     _write_json(tmp_path / "bills.json", bills)
     _write_json(tmp_path / "ai_summaries.json", {
-        "117-hr-1": {"one_liner": "117th Congress bill", "direction": "strengthens"},
-        "119-hr-1": {"one_liner": "119th Congress bill", "direction": "weakens"},
+        "117-hr-1": {"one_liner": "117th Congress bill", "direction": "in_favor"},
+        "119-hr-1": {"one_liner": "119th Congress bill", "direction": "against"},
     })
 
     vote_dir = tmp_path / "votes" / "senate"
@@ -861,21 +861,21 @@ async def test_backfill_adds_direction_to_missing(tmp_path):
         "119-hr-1": {
             "one_liner": "Cut taxes on tips",
             "provisions": ["Cuts taxes on tips"],
-            "impact_categories": ["Taxes"],
+            "issue_categories": ["Taxes"],
         }
     })
 
     import unittest.mock
     with unittest.mock.patch("app.services.ai_summary.AISummaryService") as MockService:
         mock_instance = MagicMock()
-        mock_instance._call_llm = AsyncMock(return_value='{"direction": "weakens"}')
+        mock_instance._call_llm = AsyncMock(return_value='{"direction": "against"}')
         MockService.return_value = mock_instance
 
         stats = await backfill_bill_directions(tmp_path, api_key="test")
 
     assert stats["updated"] == 1
     data = json.loads((tmp_path / "ai_summaries.json").read_text())
-    assert data["119-hr-1"]["direction"] == "weakens"
+    assert data["119-hr-1"]["direction"] == "against"
 
 
 @pytest.mark.asyncio
@@ -887,8 +887,8 @@ async def test_backfill_skips_existing_direction(tmp_path):
         "119-hr-1": {
             "one_liner": "Test",
             "provisions": ["Test"],
-            "impact_categories": ["Taxes"],
-            "direction": "strengthens",
+            "issue_categories": ["Taxes"],
+            "direction": "in_favor",
         }
     })
 
@@ -897,7 +897,7 @@ async def test_backfill_skips_existing_direction(tmp_path):
     assert stats["updated"] == 0
     assert stats["skipped"] == 1
     data = json.loads((tmp_path / "ai_summaries.json").read_text())
-    assert data["119-hr-1"]["direction"] == "strengthens"
+    assert data["119-hr-1"]["direction"] == "in_favor"
 
 
 # --- sync_member_summaries ---
@@ -921,7 +921,7 @@ async def test_sync_member_summaries_generates_narrative(tmp_path):
                   "not_voting_count": 0, "participation_rate": 100.0},
         "votes": [
             {"bill_id": "119-hr-1", "one_liner": "Fund the military", "vote": "Yea",
-             "policy_area": "Armed Forces and National Security", "direction": "strengthens",
+             "policy_area": "Armed Forces and National Security", "direction": "in_favor",
              "congress": 119, "date": "2025-01-15", "result": "Passed", "chamber": "Senate"},
         ],
         "policy_areas": ["Armed Forces and National Security"],
@@ -973,7 +973,7 @@ async def test_sync_member_summaries_skips_existing(tmp_path):
         "stats": {"total_votes": 10, "yea_count": 7, "nay_count": 3,
                   "not_voting_count": 0, "participation_rate": 100.0},
         "votes": [{"bill_id": "119-hr-1", "one_liner": "Test", "vote": "Yea",
-                    "policy_area": "Test", "direction": "strengthens",
+                    "policy_area": "Test", "direction": "in_favor",
                     "congress": 119, "date": "2025-01-15", "result": "Passed", "chamber": "Senate"}],
         "policy_areas": ["Test"],
     })

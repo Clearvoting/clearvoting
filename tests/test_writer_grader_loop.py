@@ -7,7 +7,7 @@ from app.services.summary_grader import GradeResult
 
 def test_loop_result_structure():
     result = LoopResult(
-        best_summary={"one_liner": "Test", "provisions": ["Test"], "impact_categories": []},
+        best_summary={"one_liner": "Test", "provisions": ["Test"], "issue_categories": []},
         best_grade=GradeResult(grade="A", passed=True, feedback="Good.", checks={}),
         rounds=1,
         needs_review=False,
@@ -19,7 +19,7 @@ def test_loop_result_structure():
 
 def test_loop_result_needs_review_when_all_fail():
     result = LoopResult(
-        best_summary={"one_liner": "Bad", "provisions": ["Bad"], "impact_categories": []},
+        best_summary={"one_liner": "Bad", "provisions": ["Bad"], "issue_categories": []},
         best_grade=GradeResult(grade="D", passed=False, feedback="Bad.", checks={}),
         rounds=3,
         needs_review=True,
@@ -32,9 +32,9 @@ def test_loop_result_needs_review_when_all_fail():
 async def test_loop_runs_3_rounds_and_picks_best():
     mock_writer = AsyncMock()
     mock_writer.side_effect = [
-        {"one_liner": "v1", "provisions": ["v1"], "impact_categories": []},
-        {"one_liner": "v2", "provisions": ["v2"], "impact_categories": []},
-        {"one_liner": "v3", "provisions": ["v3"], "impact_categories": []},
+        {"one_liner": "v1", "provisions": ["v1"], "issue_categories": []},
+        {"one_liner": "v2", "provisions": ["v2"], "issue_categories": []},
+        {"one_liner": "v3", "provisions": ["v3"], "issue_categories": []},
     ]
 
     mock_grader = MagicMock()
@@ -61,7 +61,7 @@ async def test_loop_runs_3_rounds_and_picks_best():
 
 @pytest.mark.asyncio
 async def test_loop_flags_needs_review_when_all_fail():
-    mock_writer = AsyncMock(return_value={"one_liner": "Bad", "provisions": ["Bad"], "impact_categories": []})
+    mock_writer = AsyncMock(return_value={"one_liner": "Bad", "provisions": ["Bad"], "issue_categories": []})
 
     mock_grader = MagicMock()
     mock_grader.grade = AsyncMock(return_value=GradeResult(
@@ -85,7 +85,7 @@ async def test_loop_passes_grader_feedback_to_writer():
 
     async def tracking_writer(**kwargs):
         call_kwargs.append(kwargs)
-        return {"one_liner": "Test", "provisions": ["Test"], "impact_categories": []}
+        return {"one_liner": "Test", "provisions": ["Test"], "issue_categories": []}
 
     mock_grader = MagicMock()
     mock_grader.grade = AsyncMock(return_value=GradeResult(
@@ -109,7 +109,7 @@ async def test_loop_passes_grader_feedback_to_writer():
 async def test_loop_exits_early_on_a_grade():
     """When round 1 gets an A, don't waste API calls on rounds 2 and 3."""
     mock_writer = AsyncMock(
-        return_value={"one_liner": "Perfect", "provisions": ["Perfect"], "impact_categories": []}
+        return_value={"one_liner": "Perfect", "provisions": ["Perfect"], "issue_categories": []}
     )
 
     mock_grader = MagicMock()

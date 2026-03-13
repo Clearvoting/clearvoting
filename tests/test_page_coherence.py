@@ -13,7 +13,7 @@ def test_coherence_result_structure():
 
 def test_system_prompt_explains_page_sections():
     assert "NARRATIVE SUMMARY" in COHERENCE_SYSTEM_PROMPT
-    assert "WHERE THEY FOCUS" in COHERENCE_SYSTEM_PROMPT
+    assert "ISSUE SCORECARDS" in COHERENCE_SYSTEM_PROMPT
     assert "WHAT THEY SUPPORTED" in COHERENCE_SYSTEM_PROMPT
     assert "contradictions" in COHERENCE_SYSTEM_PROMPT.lower()
 
@@ -47,7 +47,7 @@ async def test_coherent_page_passes():
         narrative="Smith voted 200 times with 95% participation. Most votes were on economics.",
         stats={"total_votes": 200, "participation_rate": 95.0},
         top_areas=[
-            {"name": "Economics", "strengthen": 80, "weaken": 64, "total": 144},
+            {"name": "Cost of Living", "in_favor": 80, "against": 64, "total": 144},
         ],
         top_supported=["Fund economic research"],
         top_opposed=["Cut economic funding"],
@@ -68,10 +68,10 @@ async def test_contradictory_narrative_fails():
         text=json.dumps({
             "is_coherent": False,
             "contradictions": [
-                "Narrative says member 'voted to strengthen environmental protections' but data shows 3 strengthening vs 12 weakening votes on Environment",
+                "Narrative says member 'voted to support environmental protections' but data shows 3 in_favor vs 12 against votes on Environment & Energy",
                 "Narrative claims 500 total votes but stats show 200",
             ],
-            "guidance": "Rewrite to reflect that Environment votes were mostly weakening (12 of 15). Use the correct total vote count of 200.",
+            "guidance": "Rewrite to reflect that Environment & Energy votes were mostly against (12 of 15). Use the correct total vote count of 200.",
         })
     )]
 
@@ -79,10 +79,10 @@ async def test_contradictory_narrative_fails():
     checker.client.messages.create = AsyncMock(return_value=mock_response)
 
     result = await checker.check(
-        narrative="Smith voted 500 times and voted to strengthen environmental protections.",
+        narrative="Smith voted 500 times and voted to support environmental protections.",
         stats={"total_votes": 200, "participation_rate": 95.0},
         top_areas=[
-            {"name": "Environment", "strengthen": 3, "weaken": 12, "total": 15},
+            {"name": "Environment & Energy", "in_favor": 3, "against": 12, "total": 15},
         ],
         top_supported=["Fund economic research"],
         top_opposed=["Cancel EPA methane rule"],

@@ -23,13 +23,19 @@ STRICT RULES:
 2. NO value judgments ("beneficial", "harmful", "impressive", "disappointing")
 3. NO characterization of intent ("cares about", "fights for", "committed to", "seeks to", "aims to")
 4. NO political framing ("progressive", "conservative", "moderate", "bipartisan")
-5. ONLY describe observable voting patterns — what they voted for, what they voted against, how often they showed up
+5. ONLY describe observable voting patterns — what they voted for, what they voted against
 6. Write at a 7th-8th grade reading level. Use short, common words.
-7. Include specific policy area vote counts (e.g., '12 votes to weaken environmental rules') but NOT overall totals.
-8. The narrative MUST be 3-5 sentences. Facts only. No opinions. No framing.
-9. top_areas should list 2-5 policy area names the member voted on most, ordered by total votes
-10. Your narrative MUST reflect the dominant direction shown in DATA CONSTRAINTS. Do NOT highlight exceptions as if they represent the overall pattern.
-11. Do NOT mention total votes cast, participation rate, yea/nay counts, or percentage of bills supported — these statistics are displayed separately on the page. Focus on WHAT the member votes on: policy area patterns and stances.
+7. Use "in favor" and "against" language (not "strengthen" or "weaken").
+
+STRUCTURE:
+- Lead with the overall pattern: what issues this member votes on most, and which direction.
+- Then highlight 2-3 standout or notable votes — specific bills that show the pattern clearly. Reference them by name or description.
+- Every claim must be backed by the vote data. Write like a journalist describing a record, not a data table.
+- The narrative MUST be 3-5 sentences. Facts only. No opinions. No framing.
+
+8. top_areas should list 2-5 issue area names the member voted on most, ordered by total votes
+9. Your narrative MUST reflect the dominant direction shown in DATA CONSTRAINTS. Do NOT highlight exceptions as if they represent the overall pattern.
+10. Do NOT mention total votes cast, participation rate, yea/nay counts, or percentage of bills supported — these statistics are displayed separately on the page. Focus on WHAT the member votes on: issue area patterns and stances.
 
 Output valid JSON only: {"narrative": "...", "top_areas": ["...", "..."]}
 No markdown, no commentary."""
@@ -48,27 +54,27 @@ def _compute_data_brief(top_areas: list[dict]) -> str:
 
     lines = ["DATA CONSTRAINTS (your narrative MUST align with these patterns):"]
     for area in top_areas:
-        strengthen = area.get("strengthen", 0)
-        weaken = area.get("weaken", 0)
-        directional = strengthen + weaken
+        in_favor = area.get("in_favor", 0)
+        against = area.get("against", 0)
+        directional = in_favor + against
         if directional == 0:
             classification = "no clear direction"
         else:
-            s_pct = strengthen / directional
-            w_pct = weaken / directional
-            if s_pct >= 0.75:
-                classification = "mostly strengthening"
-            elif s_pct >= 0.55:
-                classification = "leans strengthening"
-            elif w_pct >= 0.75:
-                classification = "mostly weakening"
-            elif w_pct >= 0.55:
-                classification = "leans weakening"
+            f_pct = in_favor / directional
+            a_pct = against / directional
+            if f_pct >= 0.75:
+                classification = "mostly in favor"
+            elif f_pct >= 0.55:
+                classification = "leans in favor"
+            elif a_pct >= 0.75:
+                classification = "mostly against"
+            elif a_pct >= 0.55:
+                classification = "leans against"
             else:
                 classification = "mixed"
         lines.append(
-            f"- {area['name']}: {strengthen} strengthening, "
-            f"{weaken} weakening — {classification}"
+            f"- {area['name']}: {in_favor} in favor, "
+            f"{against} against — {classification}"
         )
     return "\n".join(lines)
 
@@ -111,12 +117,12 @@ class MemberSummaryService:
         for area in top_areas:
             areas_lines.append(
                 f"  - {area['name']}: {area['total']} votes "
-                f"({area['strengthen']} to strengthen, {area['weaken']} to weaken)"
+                f"({area['in_favor']} in favor, {area['against']} against)"
             )
-        areas_block = "\n".join(areas_lines) if areas_lines else "  (no policy area data)"
+        areas_block = "\n".join(areas_lines) if areas_lines else "  (no issue area data)"
 
-        supported_block = "\n".join(f"  - {s}" for s in top_supported[:8]) if top_supported else "  (none)"
-        opposed_block = "\n".join(f"  - {s}" for s in top_opposed[:6]) if top_opposed else "  (none)"
+        supported_block = "\n".join(f"  - {s}" for s in top_supported[:15]) if top_supported else "  (none)"
+        opposed_block = "\n".join(f"  - {s}" for s in top_opposed[:10]) if top_opposed else "  (none)"
 
         data_brief = _compute_data_brief(top_areas)
         data_brief_block = f"\n\n{data_brief}" if data_brief else ""

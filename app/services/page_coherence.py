@@ -19,14 +19,14 @@ COHERENCE_SYSTEM_PROMPT = """You are a consistency checker for a government tran
 A member's profile page has these sections:
 1. NARRATIVE SUMMARY — a 3-5 sentence AI-generated description of the member's voting record
 2. OVERVIEW STATS — total votes, yea/nay counts, participation rate
-3. WHERE THEY FOCUS — policy areas with strengthen/weaken direction bars showing vote counts
+3. ISSUE SCORECARDS — issue areas with in_favor/against ratios showing vote counts
 4. WHAT THEY SUPPORTED — list of bills the member voted YES on
 5. WHAT THEY OPPOSED — list of bills the member voted NO on
 
 Your task: compare the NARRATIVE against sections 2-5. Identify any contradictions where the narrative says something that conflicts with the actual data.
 
 Examples of contradictions:
-- Narrative says "voted to strengthen environmental rules" but direction data shows mostly weakening on environment
+- Narrative says "voted in favor of environmental rules" but direction data shows mostly against on environment
 - Narrative emphasizes healthcare but the top policy areas show it's a minor area
 - Narrative says "voted on 500 bills" but stats show 200 total votes
 - Narrative says member supported a bill that appears in their "opposed" list

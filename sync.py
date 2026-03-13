@@ -707,21 +707,21 @@ async def sync_member_summaries(
             if not area:
                 continue
             if area not in area_counts:
-                area_counts[area] = {"name": area, "strengthen": 0, "weaken": 0, "neutral": 0, "total": 0}
+                area_counts[area] = {"name": area, "in_favor": 0, "against": 0, "neutral": 0, "total": 0}
             area_counts[area]["total"] += 1
             direction = v.get("direction")
             is_yea = v.get("vote", "").lower() in ("yea", "aye")
             is_nay = v.get("vote", "").lower() in ("nay", "no")
-            if direction == "strengthens":
+            if direction == "in_favor":
                 if is_yea:
-                    area_counts[area]["strengthen"] += 1
+                    area_counts[area]["in_favor"] += 1
                 elif is_nay:
-                    area_counts[area]["weaken"] += 1
-            elif direction == "weakens":
+                    area_counts[area]["against"] += 1
+            elif direction == "against":
                 if is_yea:
-                    area_counts[area]["weaken"] += 1
+                    area_counts[area]["against"] += 1
                 elif is_nay:
-                    area_counts[area]["strengthen"] += 1
+                    area_counts[area]["in_favor"] += 1
             else:
                 area_counts[area]["neutral"] += 1
 
@@ -752,8 +752,8 @@ async def sync_member_summaries(
         _congresses = congresses
         _stats = member_stats
         _top_areas = top_areas
-        _top_supported = top_supported[:8]
-        _top_opposed = top_opposed[:6]
+        _top_supported = top_supported[:15]
+        _top_opposed = top_opposed[:10]
 
         async def writer_fn(grader_feedback=None, **kwargs):
             return await service.generate_member_summary(
@@ -894,21 +894,21 @@ async def check_page_coherence(
             if not area:
                 continue
             if area not in area_counts:
-                area_counts[area] = {"name": area, "strengthen": 0, "weaken": 0, "neutral": 0, "total": 0}
+                area_counts[area] = {"name": area, "in_favor": 0, "against": 0, "neutral": 0, "total": 0}
             area_counts[area]["total"] += 1
             direction = v.get("direction")
             is_yea = v.get("vote", "").lower() in ("yea", "aye")
             is_nay = v.get("vote", "").lower() in ("nay", "no")
-            if direction == "strengthens":
+            if direction == "in_favor":
                 if is_yea:
-                    area_counts[area]["strengthen"] += 1
+                    area_counts[area]["in_favor"] += 1
                 elif is_nay:
-                    area_counts[area]["weaken"] += 1
-            elif direction == "weakens":
+                    area_counts[area]["against"] += 1
+            elif direction == "against":
                 if is_yea:
-                    area_counts[area]["weaken"] += 1
+                    area_counts[area]["against"] += 1
                 elif is_nay:
-                    area_counts[area]["strengthen"] += 1
+                    area_counts[area]["in_favor"] += 1
             else:
                 area_counts[area]["neutral"] += 1
 
@@ -1047,10 +1047,10 @@ async def backfill_bill_directions(
     cache = CacheService(cache_dir=CACHE_DIR, ttl_seconds=86400)
     service = AISummaryService(api_key=api_key, cache=cache)
 
-    system_prompt = """You are a nonpartisan legislative analyst. Classify the direction of a bill relative to its policy area.
-Return ONLY valid JSON: {"direction": "strengthens"|"weakens"|"neutral"}
-- "strengthens": creates, funds, expands, or tightens rules in the policy area
-- "weakens": cancels, blocks, repeals, defunds, or loosens rules in the policy area
+    system_prompt = """You are a nonpartisan legislative analyst. Classify the direction of a bill relative to its issue area.
+Return ONLY valid JSON: {"direction": "in_favor"|"against"|"neutral"}
+- "in_favor": creates, funds, expands, or tightens rules in the issue area
+- "against": cancels, blocks, repeals, defunds, or loosens rules in the issue area
 - "neutral": unclear, procedural, or mixed"""
 
     stats = {"total": len(summaries), "updated": 0, "skipped": 0}
@@ -1076,7 +1076,7 @@ Return JSON only."""
             raw = _strip_code_fences(raw)
             result = json.loads(raw)
             direction = result.get("direction", "neutral")
-            if direction not in ["strengthens", "weakens", "neutral"]:
+            if direction not in ["in_favor", "against", "neutral"]:
                 direction = "neutral"
             summary["direction"] = direction
             stats["updated"] += 1
