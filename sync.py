@@ -371,24 +371,29 @@ async def sync_bill_summaries(
                 )
 
             loop = WriterGraderLoop(writer_fn=writer_fn, grader=grader)
-            result = await loop.run(
-                summary_type="bill_summary",
-                writer_kwargs={},
-                grader_context={"title": title, "official_summary": official_summary},
-            )
+            try:
+                result = await loop.run(
+                    summary_type="bill_summary",
+                    writer_kwargs={},
+                    grader_context={"title": title, "official_summary": official_summary},
+                )
 
-            summary_data = result.best_summary
-            if result.needs_review:
-                summary_data["needs_review"] = True
-                stats["needs_review"].append(key)
+                summary_data = result.best_summary
+                if result.needs_review:
+                    summary_data["needs_review"] = True
+                    stats["needs_review"].append(key)
+                    stats["failed"] += 1
+                else:
+                    stats["passed"] += 1
+
+                existing[key] = summary_data
+                stats["total"] += 1
+                grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
+                all_feedback.append(result.best_grade.feedback)
+            except Exception as e:
+                print(f"    SKIPPED — {e}")
                 stats["failed"] += 1
-            else:
-                stats["passed"] += 1
-
-            existing[key] = summary_data
-            stats["total"] += 1
-            grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
-            all_feedback.append(result.best_grade.feedback)
+                stats["total"] += 1
 
             await asyncio.sleep(rate_limit)
 
