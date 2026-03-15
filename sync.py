@@ -345,57 +345,58 @@ async def sync_bill_summaries(
     grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
     all_feedback: list[str] = []
 
+    async def _process_one_bill(key: str, bill: dict) -> None:
+        """Process a single bill through the writer-grader loop."""
+        title = bill.get("title", "")
+        summaries_list = bill.get("summaries", [])
+        official_summary = summaries_list[0].get("text", "") if isinstance(summaries_list, list) and summaries_list else ""
+        text_versions = bill.get("textVersions", [])
+        bill_text = text_versions[0].get("text", "") if isinstance(text_versions, list) and text_versions else ""
+        policy_area = bill.get("policyArea", {}).get("name")
+
+        print(f"    Grading: {title[:60]}...")
+
+        async def writer_fn(grader_feedback=None, _bill_id=key, _title=title, _official_summary=official_summary, _bill_text=bill_text, _policy_area=policy_area, **kwargs):
+            return await writer_service.generate_summary(
+                bill_id=_bill_id,
+                title=_title,
+                official_summary=_official_summary,
+                bill_text_excerpt=_bill_text[:6000],
+                grader_feedback=grader_feedback,
+                policy_area=_policy_area,
+            )
+
+        loop = WriterGraderLoop(writer_fn=writer_fn, grader=grader)
+        try:
+            result = await loop.run(
+                summary_type="bill_summary",
+                writer_kwargs={},
+                grader_context={"title": title, "official_summary": official_summary},
+            )
+
+            summary_data = result.best_summary
+            if result.needs_review:
+                summary_data["needs_review"] = True
+                stats["needs_review"].append(key)
+                stats["failed"] += 1
+            else:
+                stats["passed"] += 1
+
+            existing[key] = summary_data
+            stats["total"] += 1
+            grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
+            all_feedback.append(result.best_grade.feedback)
+        except Exception as e:
+            print(f"    SKIPPED — {e}")
+            stats["failed"] += 1
+            stats["total"] += 1
+
     for batch_start in range(0, len(to_process), batch_size):
         batch = to_process[batch_start:batch_start + batch_size]
         print(f"  Batch {batch_start // batch_size + 1}/{(len(to_process) + batch_size - 1) // batch_size}")
 
-        for key, bill in batch:
-            bill_id = key
-            title = bill.get("title", "")
-            summaries = bill.get("summaries", [])
-            official_summary = summaries[0].get("text", "") if isinstance(summaries, list) and summaries else ""
-            text_versions = bill.get("textVersions", [])
-            bill_text = text_versions[0].get("text", "") if isinstance(text_versions, list) and text_versions else ""
-            policy_area = bill.get("policyArea", {}).get("name")
-
-            print(f"    Grading: {title[:60]}...")
-
-            async def writer_fn(grader_feedback=None, _bill_id=bill_id, _title=title, _official_summary=official_summary, _bill_text=bill_text, _policy_area=policy_area, **kwargs):
-                return await writer_service.generate_summary(
-                    bill_id=_bill_id,
-                    title=_title,
-                    official_summary=_official_summary,
-                    bill_text_excerpt=_bill_text[:6000],
-                    grader_feedback=grader_feedback,
-                    policy_area=_policy_area,
-                )
-
-            loop = WriterGraderLoop(writer_fn=writer_fn, grader=grader)
-            try:
-                result = await loop.run(
-                    summary_type="bill_summary",
-                    writer_kwargs={},
-                    grader_context={"title": title, "official_summary": official_summary},
-                )
-
-                summary_data = result.best_summary
-                if result.needs_review:
-                    summary_data["needs_review"] = True
-                    stats["needs_review"].append(key)
-                    stats["failed"] += 1
-                else:
-                    stats["passed"] += 1
-
-                existing[key] = summary_data
-                stats["total"] += 1
-                grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
-                all_feedback.append(result.best_grade.feedback)
-            except Exception as e:
-                print(f"    SKIPPED — {e}")
-                stats["failed"] += 1
-                stats["total"] += 1
-
-            await asyncio.sleep(rate_limit)
+        # Process bills in parallel within each batch
+        await asyncio.gather(*[_process_one_bill(key, bill) for key, bill in batch])
 
         # Save after each batch (crash-safe)
         _atomic_write_json(summaries_path, existing)
