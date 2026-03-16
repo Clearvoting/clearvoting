@@ -54,7 +54,7 @@ async def get_ai_summary(request: Request, congress: int = Path(ge=1, le=200), b
     result = data_service.get_ai_summary(congress, bill_type, bill_number)
     if result:
         return result
-    return {"provisions": ["Summary pending — will be available after the next sync."], "issue_categories": []}
+    return {"provisions": ["Plain-language summary is not available for this bill. Some procedural votes and resolutions don't have enough detail for AI analysis."], "issue_categories": []}
 
 
 @router.get("/{congress}/{bill_type}/{bill_number}/votes")

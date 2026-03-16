@@ -216,7 +216,7 @@ async function loadAISummary(congress, type, number) {
         clearEl(summaryContent);
         summaryContent.className = '';
         summaryContent.appendChild(el('div', { className: 'empty-state' },
-            'Plain-language summary is not available for this bill. See the official summary below.'
+            'Plain-language summary is not available for this bill. Some procedural votes and resolutions don\u2019t have enough detail for AI analysis. See the official summary below.'
         ));
     }
 }
