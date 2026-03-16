@@ -645,14 +645,18 @@ async def generate_scorecard_verdicts(
 
     verdict_system = """You are a nonpartisan legislative analyst. Write a single sentence (max 20 words) describing how this member voted on this issue. Be specific and factual. No adjectives. No opinions. Use "in favor" and "against" language. Example: "Voted against 48 of 50 bills to cap prices and raise wages"."""
 
-    count = 0
-    for member_file in sorted(member_votes_dir.glob("*.json")):
+    async def _process_member_scorecard(member_file: Path) -> bool:
+        """Process one member's scorecard. Returns True if scorecard generated."""
         with open(member_file) as f:
             member_data = json.load(f)
 
         votes = member_data.get("votes", [])
         if not votes:
-            continue
+            return False
+
+        # Skip if already has non-empty scorecard
+        if member_data.get("scorecard") and len(member_data["scorecard"]) > 0:
+            return True
 
         # Group votes by issue_categories
         category_votes: dict[str, list[dict]] = {}
@@ -667,7 +671,6 @@ async def generate_scorecard_verdicts(
             is_yea = vote_position in ("yea", "aye")
             is_nay = vote_position in ("nay", "no")
 
-            # Compute effective stance
             if direction == "in_favor":
                 effective = "in_favor" if is_yea else ("against" if is_nay else None)
             elif direction == "against":
@@ -685,17 +688,12 @@ async def generate_scorecard_verdicts(
                     "direction": effective or "neutral",
                 })
 
-        # Build scorecard entries
-        scorecard = []
-        for cat in ISSUE_CATEGORIES:
-            if cat not in category_votes:
-                continue
-            cat_votes = category_votes[cat]
+        # Generate all verdicts in parallel
+        async def _get_verdict(cat: str, cat_votes: list[dict]) -> dict:
             in_favor = sum(1 for cv in cat_votes if cv["direction"] == "in_favor")
             against = sum(1 for cv in cat_votes if cv["direction"] == "against")
             total = len(cat_votes)
 
-            # Generate verdict via LLM
             bills_sample = "\n".join(
                 f"  - {cv['vote']}: {cv['one_liner']}" for cv in cat_votes[:10]
             )
@@ -715,34 +713,37 @@ Write ONE sentence describing this voting pattern. Return only the sentence, no 
                 else:
                     verdict = f"Voted in favor of {in_favor} of {total} {cat.lower()} measures"
 
-            # Build bill list for expandable detail
             bills_list = [
-                {
-                    "bill_id": cv["bill_id"],
-                    "one_liner": cv["one_liner"],
-                    "vote": cv["vote"],
-                    "direction": cv["direction"],
-                }
+                {"bill_id": cv["bill_id"], "one_liner": cv["one_liner"],
+                 "vote": cv["vote"], "direction": cv["direction"]}
                 for cv in cat_votes
             ]
+            return {
+                "category": cat, "in_favor": in_favor, "against": against,
+                "total": total, "verdict": verdict, "bills": bills_list,
+            }
 
-            scorecard.append({
-                "category": cat,
-                "in_favor": in_favor,
-                "against": against,
-                "total": total,
-                "verdict": verdict,
-                "bills": bills_list,
-            })
+        # Build verdicts for all categories in parallel
+        tasks = []
+        for cat in ISSUE_CATEGORIES:
+            if cat in category_votes:
+                tasks.append(_get_verdict(cat, category_votes[cat]))
 
-        # Sort by total votes descending
-        scorecard.sort(key=lambda x: x["total"], reverse=True)
+        scorecard = await asyncio.gather(*tasks)
+        scorecard = sorted(scorecard, key=lambda x: x["total"], reverse=True)
         member_data["scorecard"] = scorecard
         _atomic_write_json(member_file, member_data)
-        count += 1
+        return True
 
-        if scorecard:
-            await asyncio.sleep(rate_limit)
+    # Process members in parallel batches of 5
+    member_files = sorted(member_votes_dir.glob("*.json"))
+    count = 0
+    batch_size_members = 5
+    for i in range(0, len(member_files), batch_size_members):
+        batch = member_files[i:i + batch_size_members]
+        results = await asyncio.gather(*[_process_member_scorecard(f) for f in batch])
+        count += sum(1 for r in results if r)
+        print(f"  Scorecards: {count}/{len(member_files)} members...")
 
     print(f"  Generated scorecards for {count} members")
     return count
@@ -817,24 +818,23 @@ async def sync_member_summaries(
     grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
     all_feedback: list[str] = []
 
-    for member in members:
+    async def _process_one_member(member: dict) -> None:
+        """Process a single member through the writer-grader loop."""
         bioguide_id = member["bioguideId"]
 
-        # Skip if already has summary
         if bioguide_id in existing:
-            continue
+            return
 
-        # Load member's voting record
         votes_path = member_votes_dir / f"{bioguide_id}.json"
         if not votes_path.exists():
-            continue
+            return
 
         with open(votes_path) as f:
             vote_data = json.load(f)
 
         votes = vote_data.get("votes", [])
         if not votes:
-            continue
+            return
 
         member_name = member.get("directOrderName") or member.get("name", bioguide_id)
         chamber = member.get("chamber", "")
@@ -842,7 +842,6 @@ async def sync_member_summaries(
         congresses = vote_data.get("congresses", [119])
         member_stats = vote_data.get("stats", {})
 
-        # Compute top areas with direction counts
         area_counts: dict[str, dict] = {}
         for v in votes:
             area = v.get("policy_area", "")
@@ -869,8 +868,6 @@ async def sync_member_summaries(
 
         top_areas = sorted(area_counts.values(), key=lambda x: x["total"], reverse=True)[:5]
 
-        # Collect top supported/opposed one-liners (deduplicated by bill_id)
-        # Use a single seen set so a bill can't appear in both lists
         seen_bills: set[str] = set()
         top_supported: list[str] = []
         top_opposed: list[str] = []
@@ -887,26 +884,13 @@ async def sync_member_summaries(
 
         print(f"  Grading narrative for {member_name}...")
 
-        # Capture loop variables for closure
-        _member_name = member_name
-        _chamber = chamber
-        _state = state
-        _congresses = congresses
-        _stats = member_stats
-        _top_areas = top_areas
         _top_supported = top_supported[:15]
         _top_opposed = top_opposed[:10]
 
-        async def writer_fn(grader_feedback=None, **kwargs):
+        async def writer_fn(grader_feedback=None, _mn=member_name, _ch=chamber, _st=state, _co=congresses, _ms=member_stats, _ta=top_areas, _ts=_top_supported, _to=_top_opposed, **kwargs):
             return await service.generate_member_summary(
-                member_name=_member_name,
-                chamber=_chamber,
-                state=_state,
-                congresses=_congresses,
-                stats=_stats,
-                top_areas=_top_areas,
-                top_supported=_top_supported,
-                top_opposed=_top_opposed,
+                member_name=_mn, chamber=_ch, state=_st, congresses=_co,
+                stats=_ms, top_areas=_ta, top_supported=_ts, top_opposed=_to,
                 grader_feedback=grader_feedback,
             )
 
@@ -916,10 +900,8 @@ async def sync_member_summaries(
                 summary_type="member_narrative",
                 writer_kwargs={},
                 grader_context={
-                    "top_areas": top_areas,
-                    "stats": member_stats,
-                    "top_supported": _top_supported,
-                    "top_opposed": _top_opposed,
+                    "top_areas": top_areas, "stats": member_stats,
+                    "top_supported": _top_supported, "top_opposed": _top_opposed,
                 },
             )
 
@@ -939,10 +921,14 @@ async def sync_member_summaries(
         except Exception as e:
             print(f"  WARNING: Failed to generate summary for {member_name}: {e}")
 
-        await asyncio.sleep(rate_limit)
-
-        # Save after each member (crash-safe)
+    # Process members in parallel batches of 5
+    to_process = [m for m in members if m["bioguideId"] not in existing]
+    batch_size_members = 5
+    for i in range(0, len(to_process), batch_size_members):
+        batch = to_process[i:i + batch_size_members]
+        await asyncio.gather(*[_process_one_member(m) for m in batch])
         _atomic_write_json(summaries_path, existing)
+        print(f"  Narratives: {stats['total']}/{len(to_process)} processed...")
 
     # Extract new learnings
     new_patterns = learnings_store.extract_patterns(all_feedback, content_type="member_narrative")
