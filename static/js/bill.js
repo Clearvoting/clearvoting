@@ -126,15 +126,31 @@ function renderBill(container, bill, congress, type, number) {
     ));
     container.appendChild(aiSection);
 
-    // Official Summary
+    // Official Summary (collapsible if long)
     const officialSection = el('section', { className: 'bill-section' });
     officialSection.appendChild(el('h3', null, 'Official Summary'));
     const summaries = bill.summaries || [];
     if (summaries.length > 0) {
-        const summaryText = summaries[0].text || 'No summary available.';
+        const latestSummary = summaries[0].text || 'No summary available.';
         const summaryDiv = el('div', { className: 'official-summary' });
-        summaryDiv.innerHTML = sanitizeHtml(summaryText);
+        summaryDiv.textContent = '';
+        // Content is sanitized — only safe tags (P, EM, STRONG, B, I, BR, UL, OL, LI, A) remain
+        const sanitized = sanitizeHtml(latestSummary);
+        summaryDiv.insertAdjacentHTML('afterbegin', sanitized);
         officialSection.appendChild(summaryDiv);
+
+        // Measure at natural height (double-RAF ensures layout), then collapse if tall
+        requestAnimationFrame(() => { requestAnimationFrame(() => {
+            if (summaryDiv.scrollHeight > 150) {
+                summaryDiv.classList.add('summary-collapsed');
+                const expandBtn = el('button', { className: 'btn btn-secondary btn-small summary-expand-btn' }, 'Show full summary');
+                expandBtn.addEventListener('click', () => {
+                    const collapsed = summaryDiv.classList.toggle('summary-collapsed');
+                    expandBtn.textContent = collapsed ? 'Show full summary' : 'Collapse summary';
+                });
+                officialSection.appendChild(expandBtn);
+            }
+        }); });
     } else {
         officialSection.appendChild(el('div', { className: 'empty-state' }, 'Official summary not yet available for this bill.'));
     }
@@ -211,6 +227,31 @@ async function loadAISummary(congress, type, number) {
             });
             summaryContent.appendChild(el('h4', { style: 'margin-top:1rem;font-size:0.85rem;color:var(--text-secondary);' }, 'Issue Areas'));
             summaryContent.appendChild(tagsDiv);
+        }
+
+        // Both-sides arguments
+        const args = data.arguments;
+        if (args && (args.supporters?.length > 0 || args.critics?.length > 0)) {
+            const argsSection = el('div', { className: 'bill-arguments' });
+            argsSection.appendChild(el('h4', null, 'What People Are Saying'));
+
+            if (args.supporters && args.supporters.length > 0) {
+                const supportSide = el('div', { className: 'arguments-side arguments-support' });
+                const supportList = el('ul');
+                args.supporters.forEach(s => supportList.appendChild(el('li', null, s)));
+                supportSide.appendChild(supportList);
+                argsSection.appendChild(supportSide);
+            }
+
+            if (args.critics && args.critics.length > 0) {
+                const criticsSide = el('div', { className: 'arguments-side arguments-critics' });
+                const criticsList = el('ul');
+                args.critics.forEach(c => criticsList.appendChild(el('li', null, c)));
+                criticsSide.appendChild(criticsList);
+                argsSection.appendChild(criticsSide);
+            }
+
+            summaryContent.appendChild(argsSection);
         }
     } catch {
         clearEl(summaryContent);

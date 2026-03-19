@@ -191,24 +191,93 @@ function renderMember(container, member, bioguideId) {
         container.appendChild(serviceSection);
     }
 
-    // Sponsored legislation
-    const sponsoredSection = el('section', { className: 'bill-section', id: 'sponsored-section' });
-    sponsoredSection.appendChild(el('h3', null, 'Sponsored Legislation'));
-    sponsoredSection.appendChild(el('div', { className: 'loading', id: 'sponsored-loading' },
-        el('span', { className: 'spinner' }), ' Loading sponsored bills...'));
-    container.appendChild(sponsoredSection);
+    // --- Tabbed Content ---
+    const tabIds = ['voting-record', 'sponsored-section', 'finance-section'];
+    const tabLabels = ['Voting Record', 'Sponsored Bills', 'Campaign Finance'];
 
-    loadSponsoredLegislation(bioguideId);
+    // Tab bar
+    const tabBar = el('div', { className: 'member-tab-bar', role: 'tablist', 'aria-label': 'Member sections' });
+    const tabPanels = [];
 
-    // Voting record (loaded async)
+    tabIds.forEach((id, i) => {
+        const isActive = i === 0;
+        const tab = el('button', {
+            className: 'member-tab' + (isActive ? ' active' : ''),
+            role: 'tab',
+            id: `tab-${id}`,
+            'aria-selected': String(isActive),
+            'aria-controls': `panel-${id}`,
+        }, tabLabels[i]);
+
+        tab.addEventListener('click', () => {
+            tabBar.querySelectorAll('.member-tab').forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-selected', 'false');
+            });
+            tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
+            tabPanels.forEach(p => p.hidden = true);
+            document.getElementById(`panel-${id}`).hidden = false;
+        });
+        tabBar.appendChild(tab);
+
+        const panel = el('div', {
+            className: 'member-tab-panel',
+            role: 'tabpanel',
+            id: `panel-${id}`,
+            'aria-labelledby': `tab-${id}`,
+        });
+        panel.hidden = !isActive;
+        tabPanels.push(panel);
+    });
+
+    container.appendChild(tabBar);
+
+    // Position tab bar sticky offset below site header + sticky bar
+    const siteHeaderForTabs = document.querySelector('.site-header');
+    if (siteHeaderForTabs) {
+        const tabTop = siteHeaderForTabs.offsetHeight + stickyBar.offsetHeight;
+        tabBar.style.top = tabTop + 'px';
+    }
+
+    // Voting Record panel (default active)
+    const votingPanel = tabPanels[0];
     const votingSection = el('div', { id: 'voting-record' });
     votingSection.appendChild(el('div', { className: 'loading' },
         el('span', { className: 'spinner' }),
         ' Loading voting record...'
     ));
-    container.appendChild(votingSection);
+    votingPanel.appendChild(votingSection);
+    container.appendChild(votingPanel);
 
-    loadVotingRecord(bioguideId);
+    loadVotingRecord(bioguideId).then(() => {
+        const tab = document.getElementById('tab-voting-record');
+        if (tab && allVotes.length > 0) {
+            tab.textContent = `Voting Record (${allVotes.length})`;
+        }
+    });
+
+    // Sponsored Bills panel
+    const sponsoredPanel = tabPanels[1];
+    const sponsoredSection = el('section', { className: 'bill-section', id: 'sponsored-section' });
+    sponsoredSection.appendChild(el('h3', null, 'Sponsored Legislation'));
+    sponsoredSection.appendChild(el('div', { className: 'loading', id: 'sponsored-loading' },
+        el('span', { className: 'spinner' }), ' Loading sponsored bills...'));
+    sponsoredPanel.appendChild(sponsoredSection);
+    container.appendChild(sponsoredPanel);
+
+    loadSponsoredLegislation(bioguideId);
+
+    // Campaign Finance panel
+    const financePanel = tabPanels[2];
+    const financeSection = el('section', { className: 'bill-section', id: 'finance-section' });
+    financeSection.appendChild(el('h3', null, 'Campaign Finance'));
+    financeSection.appendChild(el('div', { className: 'loading', id: 'finance-loading' },
+        el('span', { className: 'spinner' }), ' Loading campaign finance data...'));
+    financePanel.appendChild(financeSection);
+    container.appendChild(financePanel);
+
+    loadDonations(bioguideId);
 
     // Source link — Congress.gov requires /member/{name-slug}/{bioguideId}
     const nameSlug = name.toLowerCase().replace(/[^a-z\s-]/g, '').trim().replace(/\s+/g, '-');
@@ -233,6 +302,11 @@ async function loadSponsoredLegislation(bioguideId) {
         if (loading) loading.remove();
 
         const bills = data.bills || [];
+
+        // Update tab count
+        const sponsoredTab = document.getElementById('tab-sponsored-section');
+        if (sponsoredTab) sponsoredTab.textContent = `Sponsored Bills (${bills.length})`;
+
         if (bills.length === 0) {
             section.appendChild(el('div', { className: 'empty-state' }, 'No sponsored bills found in synced data.'));
             return;
@@ -294,6 +368,11 @@ function formatDeficitAmount(billions) {
 }
 
 let allVotes = [];
+let allCategories = [];
+let activePolicyArea = 'all';
+let activeVoteType = 'all';
+let currentPage = 1;
+const VOTES_PER_PAGE = 15;
 
 async function loadVotingRecord(bioguideId) {
     const container = document.getElementById('voting-record');
@@ -314,9 +393,7 @@ async function loadVotingRecord(bioguideId) {
 
         clearEl(container);
         renderVotingSummary(data.stats, data.votes, summaryData);
-        renderVotingStats(container, data.stats, data.congresses);
-        renderVoteFilters(container, data.policy_areas, data.votes);
-        renderVoteList(container, data.votes);
+        renderVotingStats(container, data.stats, data.congresses, data.categories || data.policy_areas, data.votes);
     } catch (err) {
         clearEl(container);
         container.appendChild(el('div', { className: 'empty-state' }, 'Voting record unavailable.'));
@@ -330,34 +407,6 @@ function renderVotingSummary(stats, votes, summaryData) {
 
     // Analyze voting patterns
     const yeaPct = Math.round((stats.yea_count / (stats.yea_count + stats.nay_count)) * 100);
-
-    // Count votes by area with direction-aware stance
-    const areaVotes = {};
-    votes.forEach(v => {
-        if (!v.policy_area) return;
-        if (!areaVotes[v.policy_area]) areaVotes[v.policy_area] = { yea: 0, nay: 0, total: 0, in_favor: 0, against: 0, neutral: 0 };
-        areaVotes[v.policy_area].total++;
-        const isYea = v.vote === 'Yea' || v.vote === 'Aye';
-        const isNay = v.vote === 'Nay' || v.vote === 'No';
-        if (isYea) areaVotes[v.policy_area].yea++;
-        else if (isNay) areaVotes[v.policy_area].nay++;
-
-        if (v.direction === 'in_favor') {
-            if (isYea) areaVotes[v.policy_area].in_favor++;
-            else if (isNay) areaVotes[v.policy_area].against++;
-        } else if (v.direction === 'against') {
-            if (isYea) areaVotes[v.policy_area].against++;
-            else if (isNay) areaVotes[v.policy_area].in_favor++;
-        } else {
-            if (isYea || isNay) areaVotes[v.policy_area].neutral++;
-        }
-    });
-
-    // Top areas by total votes — exclude votes with no policy area
-    const sortedAreas = Object.entries(areaVotes)
-        .filter(([area]) => area && area !== 'undefined' && area !== 'null')
-        .sort((a, b) => b[1].total - a[1].total);
-    const topAreas = sortedAreas.slice(0, 5);
 
     // Deduplicate votes by bill — keep final (most recent) vote per bill
     // Only include votes with real AI summaries (not raw bill numbers like "PN1748")
@@ -420,84 +469,6 @@ function renderVotingSummary(stats, votes, summaryData) {
     );
     card.appendChild(overview);
 
-    // Issue Scorecards — from summaryData.issue_scorecard or computed from votes
-    const issueScorecardData = (summaryData && summaryData.issue_scorecard) || [];
-    if (issueScorecardData.length > 0) {
-        const issuesSection = el('div', { className: 'issue-scorecard' });
-        issuesSection.appendChild(el('h4', null, 'Issue Scorecard'));
-
-        issueScorecardData.forEach(item => {
-            const inFavor = item.in_favor || 0;
-            const against = item.against || 0;
-            const total = item.total || 0;
-            const isMostlyFavor = inFavor >= against;
-            const colorClass = isMostlyFavor ? 'scorecard-favor' : 'scorecard-against';
-            const ratio = isMostlyFavor ? `${inFavor} / ${total}` : `${against} / ${total}`;
-            const label = isMostlyFavor ? 'in favor' : 'against';
-
-            const scItem = el('div', { className: 'issue-scorecard-item' });
-            scItem.appendChild(el('div', { className: 'issue-scorecard-header' },
-                el('span', { className: 'issue-scorecard-category' }, item.category),
-                el('span', { className: `issue-scorecard-ratio ${colorClass}` }, `${ratio} ${label}`)
-            ));
-            if (item.verdict) {
-                scItem.appendChild(el('div', { className: 'issue-scorecard-verdict' }, item.verdict));
-            }
-
-            // Expandable bill list
-            if (item.bills && item.bills.length > 0) {
-                const details = document.createElement('details');
-                details.className = 'issue-scorecard-bills';
-                const summary = document.createElement('summary');
-                summary.textContent = `See all ${item.bills.length} votes`;
-                details.appendChild(summary);
-                const billList = el('ul', { className: 'scorecard-bill-list' });
-                item.bills.forEach(b => {
-                    const voteClass = (b.vote === 'Yea' || b.vote === 'Aye') ? 'vote-yea' : 'vote-nay';
-                    const dirLabel = b.direction === 'in_favor' ? 'in favor' : (b.direction === 'against' ? 'against' : '');
-                    const li = el('li', null,
-                        el('span', { className: `scorecard-vote-badge ${voteClass}` }, b.vote),
-                        el('span', null, ` ${b.one_liner}`),
-                        dirLabel ? el('span', { className: `scorecard-dir-label ${b.direction === 'in_favor' ? 'scorecard-favor' : 'scorecard-against'}` }, ` (${dirLabel})`) : null
-                    );
-                    billList.appendChild(li);
-                });
-                details.appendChild(billList);
-                scItem.appendChild(details);
-            }
-
-            issuesSection.appendChild(scItem);
-        });
-
-        card.appendChild(issuesSection);
-    } else if (topAreas.length > 0) {
-        // Fallback: show top policy areas if no scorecard data
-        const issuesSection = el('div', { className: 'summary-issues' });
-        issuesSection.appendChild(el('h4', null, 'Top Issue Areas'));
-        topAreas.forEach(([area, data]) => {
-            const row = el('div', { className: 'summary-issue-row' });
-            row.appendChild(el('span', { className: 'summary-issue-name' }, area));
-
-            const inFavor = data.in_favor || 0;
-            const against = data.against || 0;
-            const hasDirection = (inFavor + against) > 0;
-            let countLabel;
-
-            if (hasDirection) {
-                const parts = [];
-                if (inFavor > 0) parts.push(`${inFavor} in favor`);
-                if (against > 0) parts.push(`${against} against`);
-                countLabel = parts.join(' · ') || `${data.total} votes`;
-            } else {
-                countLabel = data.nay > 0 ? `${data.yea} for · ${data.nay} against` : `${data.yea} for`;
-            }
-
-            row.appendChild(el('span', { className: 'summary-issue-count' }, countLabel));
-            issuesSection.appendChild(row);
-        });
-        card.appendChild(issuesSection);
-    }
-
     // What they voted for — deduplicated, plain language
     if (uniqueYea.length > 0) {
         const forSection = el('div', { className: 'summary-voted-section summary-for' });
@@ -526,84 +497,135 @@ function renderVotingSummary(stats, votes, summaryData) {
 }
 
 
-function renderVotingStats(container, stats, congresses) {
-    const section = el('section', { className: 'bill-section' });
-    section.appendChild(el('h3', null, 'Voting Statistics'));
+function renderVotingStats(container, stats, congresses, categories, votes) {
+    allVotes = votes;
+    allCategories = categories;
 
-    const statsGrid = el('div', { className: 'stats-grid' });
-
-    // Participation donut
-    const participationWrapper = el('div', { className: 'stat-card' });
-    participationWrapper.appendChild(el('div', { className: 'stat-label' }, 'Participation'));
-    const participationChart = window.ClearVotingUI.renderVotePieChart({
-        yeas: Math.round(stats.participation_rate),
-        nays: Math.round(100 - stats.participation_rate),
-    }, 100);
-    if (participationChart) participationWrapper.appendChild(participationChart);
-    participationWrapper.appendChild(el('div', { className: 'stat-value' }, `${stats.participation_rate}%`));
-    statsGrid.appendChild(participationWrapper);
-
-    // Yea/Nay donut
-    const voteWrapper = el('div', { className: 'stat-card' });
-    voteWrapper.appendChild(el('div', { className: 'stat-label' }, 'Vote Breakdown'));
-    const voteChart = window.ClearVotingUI.renderVotePieChart({
-        yeas: stats.yea_count,
-        nays: stats.nay_count,
-        absent: stats.not_voting_count,
-    }, 100);
-    if (voteChart) voteWrapper.appendChild(voteChart);
-    const legend = el('div', { className: 'stat-legend' },
-        el('span', null, `Yea: ${stats.yea_count}`),
-        el('span', null, ` · Nay: ${stats.nay_count}`),
-        el('span', null, ` · Missed: ${stats.not_voting_count}`)
-    );
-    voteWrapper.appendChild(legend);
-    statsGrid.appendChild(voteWrapper);
-
-    // Total votes
-    const totalWrapper = el('div', { className: 'stat-card' });
-    totalWrapper.appendChild(el('div', { className: 'stat-label' }, 'Total Votes'));
-    totalWrapper.appendChild(el('div', { className: 'stat-big-number' }, String(stats.total_votes)));
     const congressLabel = congresses && congresses.length > 1
         ? `${Math.min(...congresses)}th\u2013${Math.max(...congresses)}th Congress`
         : congresses && congresses.length === 1
             ? `${congresses[0]}th Congress`
             : '';
-    totalWrapper.appendChild(el('div', { className: 'stat-sublabel' }, congressLabel));
-    statsGrid.appendChild(totalWrapper);
 
-    section.appendChild(statsGrid);
-    container.appendChild(section);
-}
+    // Compact stats bar with inline pie charts
+    const statsBar = el('div', { className: 'stats-bar' });
+    const total = stats.yea_count + stats.nay_count + stats.not_voting_count;
 
-function renderVoteFilters(container, policyAreas, votes) {
-    allVotes = votes;
-    const section = el('section', { className: 'bill-section' });
-    section.appendChild(el('h3', null, 'Voting Record'));
+    // Participation segment with pie chart
+    const participationItem = el('div', { className: 'stats-bar-item' });
+    const partRow = el('div', { className: 'stats-bar-row' });
+    const participationChart = window.ClearVotingUI.renderVotePieChart({
+        yeas: Math.round(stats.participation_rate),
+        nays: Math.round(100 - stats.participation_rate),
+    }, 48);
+    if (participationChart) partRow.appendChild(participationChart);
+    partRow.appendChild(el('span', { className: 'stats-bar-label' },
+        el('strong', null, `${stats.participation_rate}%`), ' participation'
+    ));
+    participationItem.appendChild(partRow);
+    statsBar.appendChild(participationItem);
 
+    // Vote breakdown segment with pie chart
+    const breakdownItem = el('div', { className: 'stats-bar-item' });
+    const breakRow = el('div', { className: 'stats-bar-row' });
+    const voteChart = window.ClearVotingUI.renderVotePieChart({
+        yeas: stats.yea_count,
+        nays: stats.nay_count,
+        absent: stats.not_voting_count,
+    }, 48);
+    if (voteChart) breakRow.appendChild(voteChart);
+    breakRow.appendChild(el('span', { className: 'stats-bar-label' },
+        el('span', { className: 'stats-bar-yea' }, `${stats.yea_count} Yea`),
+        ' \u00b7 ',
+        el('span', { className: 'stats-bar-nay' }, `${stats.nay_count} Nay`),
+        ' \u00b7 ',
+        el('span', { className: 'stats-bar-absent' }, `${stats.not_voting_count} Missed`)
+    ));
+    breakdownItem.appendChild(breakRow);
+    statsBar.appendChild(breakdownItem);
+
+    // Total + congress
+    const totalItem = el('div', { className: 'stats-bar-item' });
+    totalItem.appendChild(el('span', { className: 'stats-bar-label stats-bar-label-total' },
+        el('strong', null, `${stats.total_votes} votes`),
+        congressLabel ? ` \u00b7 ${congressLabel}` : ''
+    ));
+    statsBar.appendChild(totalItem);
+
+    container.appendChild(statsBar);
+
+    // Vote-type filter buttons (outside the stats bar)
+    const voteTypeFilters = el('div', { className: 'vote-type-filters' });
+    const voteTypes = [
+        { key: 'all', label: 'All', color: null, count: total },
+        { key: 'yea', label: 'Yea', color: '#2E8540', count: stats.yea_count },
+        { key: 'nay', label: 'Nay', color: '#CD2026', count: stats.nay_count },
+        { key: 'absent', label: 'Missed', color: '#AEB0B5', count: stats.not_voting_count },
+    ];
+    voteTypes.forEach(vt => {
+        const btn = el('button', {
+            className: 'vote-type-btn' + (vt.key === 'all' ? ' active' : ''),
+            'data-vote-type': vt.key,
+            'aria-label': `Filter votes: ${vt.label}`,
+        });
+        if (vt.color) {
+            const dot = el('span', { className: 'vote-type-dot' });
+            dot.style.background = vt.color;
+            btn.appendChild(dot);
+        }
+        btn.appendChild(document.createTextNode(`${vt.label}: ${vt.count}`));
+        btn.addEventListener('click', () => {
+            activeVoteType = vt.key;
+            document.querySelectorAll('.vote-type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentPage = 1;
+            applyFilters();
+        });
+        voteTypeFilters.appendChild(btn);
+    });
+    container.appendChild(voteTypeFilters);
+
+    // Category filter chips
     const filterRow = el('div', { className: 'issue-filters' });
-
     const allChip = el('button', { className: 'category-tag active', 'data-area': 'all' }, 'All');
     allChip.addEventListener('click', () => filterVotes('all'));
     filterRow.appendChild(allChip);
 
-    const votesSet = new Set(votes.map(v => v.policy_area));
-    policyAreas.filter(area => votesSet.has(area)).forEach(area => {
-        const chip = el('button', { className: 'category-tag', 'data-area': area }, area);
-        chip.addEventListener('click', () => filterVotes(area));
+    const votesCategories = new Set(votes.flatMap(v => v.issue_categories || []));
+    categories.filter(cat => votesCategories.has(cat)).forEach(cat => {
+        const chip = el('button', { className: 'category-tag', 'data-area': cat }, cat);
+        chip.addEventListener('click', () => filterVotes(cat));
         filterRow.appendChild(chip);
     });
+    container.appendChild(filterRow);
 
-    section.appendChild(filterRow);
-    container.appendChild(section);
+    // Vote list
+    const listEl = el('div', { id: 'vote-list', className: 'bill-list' });
+    _renderVoteItems(listEl, votes);
+    container.appendChild(listEl);
+}
+
+function matchesVoteType(vote, type) {
+    const v = (vote.vote || '').toLowerCase();
+    if (type === 'yea') return v === 'yea' || v === 'aye';
+    if (type === 'nay') return v === 'nay' || v === 'no';
+    if (type === 'absent') return v === 'not voting' || v === 'present';
+    return true;
 }
 
 function filterVotes(area) {
+    activePolicyArea = area;
+    currentPage = 1;
     document.querySelectorAll('.issue-filters .category-tag').forEach(c => c.classList.remove('active'));
     const active = document.querySelector(`.issue-filters .category-tag[data-area="${CSS.escape(area)}"]`);
     if (active) active.classList.add('active');
+    applyFilters();
+}
 
-    const filtered = area === 'all' ? allVotes : allVotes.filter(v => v.policy_area === area);
+function applyFilters() {
+    const filtered = allVotes
+        .filter(v => activePolicyArea === 'all' || (v.issue_categories || []).includes(activePolicyArea))
+        .filter(v => activeVoteType === 'all' || matchesVoteType(v, activeVoteType));
     const listEl = document.getElementById('vote-list');
     if (listEl) {
         clearEl(listEl);
@@ -611,11 +633,6 @@ function filterVotes(area) {
     }
 }
 
-function renderVoteList(container, votes) {
-    const listEl = el('div', { id: 'vote-list', className: 'bill-list' });
-    _renderVoteItems(listEl, votes);
-    container.appendChild(listEl);
-}
 
 function getSourceUrl(vote) {
     if (!vote.vote_number || !vote.session) return null;
@@ -712,25 +729,47 @@ function _buildVoteItem(vote) {
     return item;
 }
 
-function _renderVoteSection(listEl, votes, initialLimit) {
-    const votesToShow = votes.length > initialLimit ? votes.slice(0, initialLimit) : votes;
-    const remaining = votes.length > initialLimit ? votes.slice(initialLimit) : [];
+function _buildPaginationControls(totalItems, scrollTarget) {
+    const totalPages = Math.ceil(totalItems / VOTES_PER_PAGE);
+    if (totalPages <= 1) return null;
 
-    votesToShow.forEach(vote => {
-        listEl.appendChild(_buildVoteItem(vote));
+    const start = (currentPage - 1) * VOTES_PER_PAGE + 1;
+    const end = Math.min(currentPage * VOTES_PER_PAGE, totalItems);
+
+    const controls = el('div', { className: 'vote-pagination' });
+
+    const prevBtn = el('button', {
+        className: 'vote-pagination-btn',
+        'aria-label': 'Previous page',
+    }, '\u2039 Prev');
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            applyFilters();
+            if (scrollTarget) scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     });
 
-    if (remaining.length > 0) {
-        const showAllBtn = el('button', { className: 'show-all-votes-btn' },
-            `Show all ${votes.length} votes`);
-        showAllBtn.addEventListener('click', () => {
-            showAllBtn.remove();
-            remaining.forEach(vote => {
-                listEl.appendChild(_buildVoteItem(vote));
-            });
-        });
-        listEl.appendChild(showAllBtn);
-    }
+    const nextBtn = el('button', {
+        className: 'vote-pagination-btn',
+        'aria-label': 'Next page',
+    }, 'Next \u203a');
+    nextBtn.disabled = currentPage === totalPages;
+    nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            applyFilters();
+            if (scrollTarget) scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+
+    controls.appendChild(prevBtn);
+    controls.appendChild(el('span', { className: 'vote-pagination-info' },
+        `Showing ${start}\u2013${end} of ${totalItems}`));
+    controls.appendChild(nextBtn);
+
+    return controls;
 }
 
 function _renderVoteItems(listEl, votes) {
@@ -739,7 +778,7 @@ function _renderVoteItems(listEl, votes) {
         return;
     }
 
-    const clickableTypes = ['HR', 'S', 'HJRES', 'SJRES'];
+    // Parse all votes
     votes.forEach(v => {
         if (!v._parsed) {
             const parsed = _parseBillId(v.bill_id);
@@ -748,18 +787,136 @@ function _renderVoteItems(listEl, votes) {
             v._parsed = true;
         }
     });
-    const bills = votes.filter(v => clickableTypes.includes(v.bill_type));
-    const resolutions = votes.filter(v => !clickableTypes.includes(v.bill_type));
 
-    if (bills.length > 0) {
-        listEl.appendChild(el('div', { className: 'vote-section-header' }, `Bills & Joint Resolutions (${bills.length})`));
-        listEl.appendChild(el('div', { className: 'vote-section-desc' }, 'Legislation that was signed into law or requires the President\u2019s signature.'));
-        _renderVoteSection(listEl, bills, 20);
-    }
+    // Paginate the combined list
+    const totalPages = Math.ceil(votes.length / VOTES_PER_PAGE);
+    if (currentPage > totalPages) currentPage = totalPages;
 
-    if (resolutions.length > 0) {
-        listEl.appendChild(el('div', { className: 'vote-section-header' }, `Resolutions (${resolutions.length})`));
-        listEl.appendChild(el('div', { className: 'vote-section-desc' }, 'Formal expressions by one or both chambers used for procedural matters, recognitions, and internal rules. These do not become law.'));
-        _renderVoteSection(listEl, resolutions, 10);
+    const start = (currentPage - 1) * VOTES_PER_PAGE;
+    const pageVotes = votes.slice(start, start + VOTES_PER_PAGE);
+
+    // Top pagination
+    const topControls = _buildPaginationControls(votes.length, listEl);
+    if (topControls) listEl.appendChild(topControls);
+
+    // Render page of votes
+    pageVotes.forEach(vote => {
+        listEl.appendChild(_buildVoteItem(vote));
+    });
+
+    // Bottom pagination
+    const bottomControls = _buildPaginationControls(votes.length, listEl);
+    if (bottomControls) listEl.appendChild(bottomControls);
+}
+
+// --- Campaign Finance ---
+
+function formatDollars(amount) {
+    if (amount >= 1000000) return `$${(amount / 1000000).toFixed(1)}M`;
+    if (amount >= 1000) return `$${(amount / 1000).toFixed(0)}K`;
+    return `$${amount.toLocaleString()}`;
+}
+
+async function loadDonations(bioguideId) {
+    const section = document.getElementById('finance-section');
+    const loading = document.getElementById('finance-loading');
+    if (!section) return;
+
+    try {
+        const response = await fetch(`/api/members/${bioguideId}/donations`);
+        if (!response.ok) throw new Error('No donation data');
+        const data = await response.json();
+        if (loading) loading.remove();
+
+        const contributors = data.top_contributors || [];
+        const industries = data.top_industries || [];
+
+        if (contributors.length === 0 && industries.length === 0) {
+            section.appendChild(el('div', { className: 'empty-state' }, 'No campaign finance data available.'));
+            return;
+        }
+
+        const grid = el('div', { className: 'finance-grid' });
+
+        // Top Contributors column
+        if (contributors.length > 0) {
+            const contribCol = el('div', { className: 'finance-column' });
+            contribCol.appendChild(el('h4', { className: 'finance-heading' }, 'Top Contributors'));
+
+            const maxTotal = Math.max(...contributors.map(c => c.total));
+            contributors.slice(0, 10).forEach(c => {
+                const row = el('div', { className: 'finance-row' });
+                const info = el('div', { className: 'finance-info' });
+                info.appendChild(el('span', { className: 'finance-name' }, c.org_name));
+                info.appendChild(el('span', { className: 'finance-amount' }, formatDollars(c.total)));
+                row.appendChild(info);
+
+                const barTrack = el('div', { className: 'bar-track' });
+                const pct = maxTotal > 0 ? (c.total / maxTotal) * 100 : 0;
+                const barFill = el('div', { className: 'bar-fill' });
+                barFill.style.width = `${pct}%`;
+
+                // Split bar into PACs (darker) and individuals (lighter)
+                if (c.total > 0) {
+                    const pacPct = (c.pacs / c.total) * 100;
+                    const indivPct = (c.individuals / c.total) * 100;
+                    const pacSegment = el('div', { className: 'bar-segment bar-pacs' });
+                    pacSegment.style.width = `${pacPct}%`;
+                    const indivSegment = el('div', { className: 'bar-segment bar-indivs' });
+                    indivSegment.style.width = `${indivPct}%`;
+                    barFill.appendChild(pacSegment);
+                    barFill.appendChild(indivSegment);
+                }
+
+                barTrack.appendChild(barFill);
+                row.appendChild(barTrack);
+                contribCol.appendChild(row);
+            });
+
+            grid.appendChild(contribCol);
+        }
+
+        // Top Industries column
+        if (industries.length > 0) {
+            const industryCol = el('div', { className: 'finance-column' });
+            industryCol.appendChild(el('h4', { className: 'finance-heading' }, 'Top Industries'));
+
+            const maxIndustry = Math.max(...industries.map(i => i.total));
+            industries.slice(0, 10).forEach(i => {
+                const row = el('div', { className: 'finance-row' });
+                const info = el('div', { className: 'finance-info' });
+                info.appendChild(el('span', { className: 'finance-name' }, i.industry_name));
+                info.appendChild(el('span', { className: 'finance-amount' }, formatDollars(i.total)));
+                row.appendChild(info);
+
+                const barTrack = el('div', { className: 'bar-track' });
+                const pct = maxIndustry > 0 ? (i.total / maxIndustry) * 100 : 0;
+                const barFill = el('div', { className: 'bar-fill bar-fill-industry' });
+                barFill.style.width = `${pct}%`;
+                barTrack.appendChild(barFill);
+                row.appendChild(barTrack);
+                industryCol.appendChild(row);
+            });
+
+            grid.appendChild(industryCol);
+        }
+
+        section.appendChild(grid);
+
+        // Bar legend
+        const legend = el('div', { className: 'finance-legend' });
+        legend.appendChild(el('span', { className: 'finance-legend-item' },
+            el('span', { className: 'legend-dot legend-pacs' }), ' PACs'));
+        legend.appendChild(el('span', { className: 'finance-legend-item' },
+            el('span', { className: 'legend-dot legend-indivs' }), ' Individuals'));
+        section.appendChild(legend);
+
+        // Attribution
+        section.appendChild(el('p', { className: 'ai-attribution' },
+            `Data from the Federal Election Commission \u00b7 ${data.cycle || '2024'} election cycle`));
+    } catch {
+        if (loading) loading.remove();
+        section.appendChild(el('div', { className: 'empty-state' },
+            'Campaign finance data not yet available for this representative.'));
     }
 }

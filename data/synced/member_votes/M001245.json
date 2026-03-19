@@ -10,12 +10,379 @@
     "not_voting_count": 9,
     "participation_rate": 76.3
   },
-  "scorecard": [],
+  "scorecard": [
+    {
+      "category": "Environment & Energy",
+      "in_favor": 3,
+      "against": 4,
+      "total": 16,
+      "verdict": "Voted in favor of 3 of 16 environment and energy bills and against 4.",
+      "bills": [
+        {
+          "bill_id": "119-hr-4758",
+          "one_liner": "Cancel federal programs that help people make homes more energy efficient",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4758",
+          "one_liner": "Cancel federal programs that help people make homes more energy efficient",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1075",
+          "one_liner": "Block new energy efficiency rules and end rebates for electric home appliances",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1075",
+          "one_liner": "Block new energy efficiency rules and end rebates for electric home appliances",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4626",
+          "one_liner": "Change how the government sets energy efficiency rules for home appliances",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4626",
+          "one_liner": "Change how the government sets energy efficiency rules for home appliances",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-3617",
+          "one_liner": "Require the Energy Department to secure America's energy resource supply chains",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3617",
+          "one_liner": "Require the Energy Department to secure America's energy resource supply chains",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-261",
+          "one_liner": "Remove Commerce Department permit rules for undersea cables in marine sanctuaries",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-261",
+          "one_liner": "Remove Commerce Department permit rules for undersea cables in marine sanctuaries",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1042",
+          "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1042",
+          "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4090",
+          "one_liner": "Speed up mining for metals and minerals on federal lands",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4090",
+          "one_liner": "Speed up mining for metals and minerals on federal lands",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1032",
+          "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1032",
+          "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
+          "vote": "No",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Safety & Crime",
+      "in_favor": 3,
+      "against": 1,
+      "total": 12,
+      "verdict": "Voted in favor of 3 and against 1 of 12 safety and crime bills.",
+      "bills": [
+        {
+          "bill_id": "119-hres-1099",
+          "one_liner": "Declare Iran sponsors more terrorism than other countries",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-7744",
+          "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7744",
+          "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1095",
+          "one_liner": "Allow the House to vote on Department of Homeland Security funding for 2026",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1095",
+          "one_liner": "Allow the House to vote on Department of Homeland Security funding for 2026",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1100",
+          "one_liner": "Require the House Ethics Committee to preserve and publicly release sexual harassment investigation records",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-2503",
+          "one_liner": "Require more aircraft to use tracking technology and increase aviation safety reviews",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-2189",
+          "one_liner": "Remove certain TASERs and similar devices from federal gun regulations",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1057",
+          "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1057",
+          "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1042",
+          "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1042",
+          "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+          "vote": "No",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "category": "Veterans & Military",
+      "in_favor": 2,
+      "against": 3,
+      "total": 7,
+      "verdict": "Voted in favor of 2 and against 3 of 7 veterans and military bills.",
+      "bills": [
+        {
+          "bill_id": "119-hconres-38",
+          "one_liner": "Stop U.S. military action against Iran without Congress approval",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1057",
+          "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1057",
+          "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3123",
+          "one_liner": "Let families collect veterans' pensions that were approved but not paid before death",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Taxes",
+      "in_favor": 1,
+      "against": 2,
+      "total": 3,
+      "verdict": "Voted in favor of 1 and against 2 of 3 tax bills.",
+      "bills": [
+        {
+          "bill_id": "119-hjres-142",
+          "one_liner": "Cancel DC's tax law to keep federal tax cuts",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1032",
+          "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1032",
+          "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
+          "vote": "No",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Housing",
+      "in_favor": 2,
+      "against": 0,
+      "total": 2,
+      "verdict": "Voted in favor of 2 of 2 bills to expand housing programs and expedite mortgage approvals.",
+      "bills": [
+        {
+          "bill_id": "119-s-723",
+          "one_liner": "Set time limits for government approval of mortgages on tribal trust land",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6644",
+          "one_liner": "Expand federal housing programs and increase government funding for housing",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Immigration",
+      "in_favor": 1,
+      "against": 1,
+      "total": 2,
+      "verdict": "Voted in favor of 1 of 2 bills to fund Department of Homeland Security.",
+      "bills": [
+        {
+          "bill_id": "119-hr-7744",
+          "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7744",
+          "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
+          "vote": "Nay",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Cost of Living",
+      "in_favor": 1,
+      "against": 0,
+      "total": 1,
+      "verdict": "Voted in favor of 1 cost of living bill to extend in-state tuition to territorial students.",
+      "bills": [
+        {
+          "bill_id": "119-hr-6472",
+          "one_liner": "Require colleges to charge in-state tuition rates to students from U.S. territories",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Healthcare",
+      "in_favor": 0,
+      "against": 1,
+      "total": 1,
+      "verdict": "Voted against 1 of 1 healthcare bills to fund defense, health, education, and housing.",
+      "bills": [
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Education",
+      "in_favor": 1,
+      "against": 0,
+      "total": 1,
+      "verdict": "Voted in favor of 1 of 1 education bill to require in-state tuition for territorial students.",
+      "bills": [
+        {
+          "bill_id": "119-hr-6472",
+          "one_liner": "Require colleges to charge in-state tuition rates to students from U.S. territories",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Money in Politics",
+      "in_favor": 1,
+      "against": 0,
+      "total": 1,
+      "verdict": "Voted in favor of 1 of 1 bill to exclude China from international financial groups.",
+      "bills": [
+        {
+          "bill_id": "119-hr-1531",
+          "one_liner": "Require federal agencies to exclude China from international financial groups if China threatens Taiwan",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    }
+  ],
   "votes": [
     {
       "bill_number": "H.Res. 1099",
       "bill_id": "119-hres-1099",
-      "one_liner": "Declare Iran remains the largest state sponsor of terrorism",
+      "one_liner": "Declare Iran sponsors more terrorism than other countries",
       "vote": "Nay",
       "date": "2026-03-05",
       "result": "Passed",
@@ -30,14 +397,14 @@
     {
       "bill_number": "H.Con.Res. 38",
       "bill_id": "119-hconres-38",
-      "one_liner": "Direct the President to remove US Armed Forces from fighting in Iran",
+      "one_liner": "Stop U.S. military action against Iran without Congress approval",
       "vote": "Yea",
       "date": "2026-03-05",
       "result": "Failed",
       "policy_area": "International Affairs",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 85
@@ -45,14 +412,14 @@
     {
       "bill_number": "H.R. 7744",
       "bill_id": "119-hr-7744",
-      "one_liner": "Fund the Department of Homeland Security for 2026 and end the shutdown",
+      "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
       "vote": "Yea",
       "date": "2026-03-05",
       "result": "Failed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 86
@@ -60,14 +427,14 @@
     {
       "bill_number": "H.R. 7744",
       "bill_id": "119-hr-7744",
-      "one_liner": "Fund the Department of Homeland Security for 2026 and end the shutdown",
+      "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
       "vote": "Nay",
       "date": "2026-03-05",
       "result": "Passed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 87
@@ -75,14 +442,14 @@
     {
       "bill_number": "H.Res. 1095",
       "bill_id": "119-hres-1095",
-      "one_liner": "Fund Department of Homeland Security operations for 2026",
+      "one_liner": "Allow the House to vote on Department of Homeland Security funding for 2026",
       "vote": "Nay",
       "date": "2026-03-04",
       "result": "Passed",
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "neutral",
       "congress": 119,
       "session": 2,
       "vote_number": 79
@@ -90,14 +457,14 @@
     {
       "bill_number": "H.Res. 1095",
       "bill_id": "119-hres-1095",
-      "one_liner": "Fund Department of Homeland Security operations for 2026",
+      "one_liner": "Allow the House to vote on Department of Homeland Security funding for 2026",
       "vote": "No",
       "date": "2026-03-04",
       "result": "Passed",
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "neutral",
       "congress": 119,
       "session": 2,
       "vote_number": 80
@@ -105,14 +472,14 @@
     {
       "bill_number": "S. 723",
       "bill_id": "119-s-723",
-      "one_liner": "Set deadlines for Bureau of Indian Affairs to process mortgages on tribal trust land",
+      "one_liner": "Set time limits for government approval of mortgages on tribal trust land",
       "vote": "Yea",
       "date": "2026-03-04",
       "result": "Passed",
       "policy_area": "Native Americans",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 81
@@ -120,14 +487,14 @@
     {
       "bill_number": "H.R. 6472",
       "bill_id": "119-hr-6472",
-      "one_liner": "Make colleges charge in-state tuition to students from US territories",
+      "one_liner": "Require colleges to charge in-state tuition rates to students from U.S. territories",
       "vote": "Yea",
       "date": "2026-03-04",
       "result": "Passed",
       "policy_area": "Education",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 82
@@ -135,14 +502,14 @@
     {
       "bill_number": "H.Res. 1100",
       "bill_id": "119-hres-1100",
-      "one_liner": "Direct Ethics Committee to preserve and release sexual harassment investigation records",
+      "one_liner": "Require the House Ethics Committee to preserve and publicly release sexual harassment investigation records",
       "vote": "Yea",
       "date": "2026-03-04",
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 83
@@ -150,14 +517,14 @@
     {
       "bill_number": "H.R. 4758",
       "bill_id": "119-hr-4758",
-      "one_liner": "Cancel three Department of Energy programs for home energy upgrades and training",
+      "one_liner": "Cancel federal programs that help people make homes more energy efficient",
       "vote": "Not Voting",
       "date": "2026-02-25",
       "result": "Failed",
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 77
@@ -165,14 +532,14 @@
     {
       "bill_number": "H.R. 4758",
       "bill_id": "119-hr-4758",
-      "one_liner": "Cancel three Department of Energy programs for home energy upgrades and training",
+      "one_liner": "Cancel federal programs that help people make homes more energy efficient",
       "vote": "Not Voting",
       "date": "2026-02-25",
       "result": "Passed",
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 78
@@ -180,14 +547,14 @@
     {
       "bill_number": "H.R. 6329",
       "bill_id": "119-hr-6329",
-      "one_liner": "Require federal agencies to follow new rules when using information to make policies",
+      "one_liner": "Require federal agencies to publish their information sources when making rules",
       "vote": "Not Voting",
       "date": "2026-02-24",
       "result": "Passed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 71
@@ -195,14 +562,14 @@
     {
       "bill_number": "S. 2503",
       "bill_id": "119-s-2503",
-      "one_liner": "Require more aircraft tracking equipment and expand government oversight of flight operations",
+      "one_liner": "Require more aircraft to use tracking technology and increase aviation safety reviews",
       "vote": "Not Voting",
       "date": "2026-02-24",
       "result": "Failed",
       "policy_area": "Transportation and Public Works",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 72
@@ -210,14 +577,14 @@
     {
       "bill_number": "H.Res. 1075",
       "bill_id": "119-hres-1075",
-      "one_liner": "Block new energy efficiency rules and end tax credits for electric home appliances",
+      "one_liner": "Block new energy efficiency rules and end rebates for electric home appliances",
       "vote": "Not Voting",
       "date": "2026-02-24",
       "result": "Passed",
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 73
@@ -225,14 +592,14 @@
     {
       "bill_number": "H.Res. 1075",
       "bill_id": "119-hres-1075",
-      "one_liner": "Block new energy efficiency rules and end tax credits for electric home appliances",
+      "one_liner": "Block new energy efficiency rules and end rebates for electric home appliances",
       "vote": "Not Voting",
       "date": "2026-02-24",
       "result": "Passed",
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 74
@@ -240,14 +607,14 @@
     {
       "bill_number": "H.R. 4626",
       "bill_id": "119-hr-4626",
-      "one_liner": "Change how the Energy Department sets energy rules for home appliances",
+      "one_liner": "Change how the government sets energy efficiency rules for home appliances",
       "vote": "Not Voting",
       "date": "2026-02-24",
       "result": "Failed",
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 75
@@ -255,14 +622,14 @@
     {
       "bill_number": "H.R. 4626",
       "bill_id": "119-hr-4626",
-      "one_liner": "Change how the Energy Department sets energy rules for home appliances",
+      "one_liner": "Change how the government sets energy efficiency rules for home appliances",
       "vote": "Not Voting",
       "date": "2026-02-24",
       "result": "Passed",
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 76
@@ -270,14 +637,14 @@
     {
       "bill_number": "H.R. 2189",
       "bill_id": "119-hr-2189",
-      "one_liner": "Remove TASERs and similar devices from federal gun regulations",
+      "one_liner": "Remove certain TASERs and similar devices from federal gun regulations",
       "vote": "Nay",
       "date": "2026-02-12",
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 70
@@ -285,7 +652,7 @@
     {
       "bill_number": "H.Res. 1057",
       "bill_id": "119-hres-1057",
-      "one_liner": "Allow House votes on veterans committee, gun law updates, undersea cables, and energy minerals bills",
+      "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
       "vote": "Nay",
       "date": "2026-02-11",
       "result": "Passed",
@@ -300,7 +667,7 @@
     {
       "bill_number": "H.Res. 1057",
       "bill_id": "119-hres-1057",
-      "one_liner": "Allow House votes on veterans committee, gun law updates, undersea cables, and energy minerals bills",
+      "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
       "vote": "No",
       "date": "2026-02-11",
       "result": "Passed",
@@ -315,14 +682,14 @@
     {
       "bill_number": "H.R. 3617",
       "bill_id": "119-hr-3617",
-      "one_liner": "Require the Energy Department to secure supplies of energy materials America needs",
+      "one_liner": "Require the Energy Department to secure America's energy resource supply chains",
       "vote": "Yea",
       "date": "2026-02-11",
       "result": "Failed",
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 63
@@ -330,14 +697,14 @@
     {
       "bill_number": "H.R. 3617",
       "bill_id": "119-hr-3617",
-      "one_liner": "Require the Energy Department to secure supplies of energy materials America needs",
+      "one_liner": "Require the Energy Department to secure America's energy resource supply chains",
       "vote": "Nay",
       "date": "2026-02-11",
       "result": "Passed",
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 64
@@ -360,14 +727,14 @@
     {
       "bill_number": "H.R. 261",
       "bill_id": "119-hr-261",
-      "one_liner": "Stop the Commerce Department from requiring extra permits for undersea internet cables in marine sanctuaries",
+      "one_liner": "Remove Commerce Department permit rules for undersea cables in marine sanctuaries",
       "vote": "Yea",
       "date": "2026-02-11",
       "result": "Failed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 66
@@ -375,14 +742,14 @@
     {
       "bill_number": "H.R. 261",
       "bill_id": "119-hr-261",
-      "one_liner": "Stop the Commerce Department from requiring extra permits for undersea internet cables in marine sanctuaries",
+      "one_liner": "Remove Commerce Department permit rules for undersea cables in marine sanctuaries",
       "vote": "Nay",
       "date": "2026-02-11",
       "result": "Passed",
       "policy_area": "Public Lands and Natural Resources",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 67
@@ -390,14 +757,14 @@
     {
       "bill_number": "S. 1383",
       "bill_id": "119-s-1383",
-      "one_liner": "Create a committee to improve VA accessibility for people with disabilities",
+      "one_liner": "Create a committee to improve VA access for veterans with disabilities",
       "vote": "Yea",
       "date": "2026-02-11",
       "result": "Failed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 68
@@ -405,14 +772,14 @@
     {
       "bill_number": "S. 1383",
       "bill_id": "119-s-1383",
-      "one_liner": "Create a committee to improve VA accessibility for people with disabilities",
+      "one_liner": "Create a committee to improve VA access for veterans with disabilities",
       "vote": "Nay",
       "date": "2026-02-11",
       "result": "Passed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 69
@@ -450,14 +817,14 @@
     {
       "bill_number": "H.R. 6644",
       "bill_id": "119-hr-6644",
-      "one_liner": "Expand federal housing programs and increase funding for affordable housing",
+      "one_liner": "Expand federal housing programs and increase government funding for housing",
       "vote": "Yea",
       "date": "2026-02-09",
       "result": "Passed",
       "policy_area": "Housing and Community Development",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 57
@@ -465,14 +832,14 @@
     {
       "bill_number": "H.R. 1531",
       "bill_id": "119-hr-1531",
-      "one_liner": "Exclude China from international finance groups if China threatens Taiwan",
+      "one_liner": "Require federal agencies to exclude China from international financial groups if China threatens Taiwan",
       "vote": "Yea",
       "date": "2026-02-09",
       "result": "Passed",
       "policy_area": "International Affairs",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 58
@@ -480,14 +847,14 @@
     {
       "bill_number": "H.R. 4090",
       "bill_id": "119-hr-4090",
-      "one_liner": "Speed up mining approvals and expand mineral production on federal lands",
+      "one_liner": "Speed up mining for metals and minerals on federal lands",
       "vote": "Yea",
       "date": "2026-02-04",
       "result": "Failed",
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 54
@@ -495,14 +862,14 @@
     {
       "bill_number": "H.R. 4090",
       "bill_id": "119-hr-4090",
-      "one_liner": "Speed up mining approvals and expand mineral production on federal lands",
+      "one_liner": "Speed up mining for metals and minerals on federal lands",
       "vote": "Not Voting",
       "date": "2026-02-04",
       "result": "Passed",
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 55
@@ -510,14 +877,14 @@
     {
       "bill_number": "H.J.Res. 142",
       "bill_id": "119-hjres-142",
-      "one_liner": "Cancel a DC tax law and make DC keep federal tax cuts",
+      "one_liner": "Cancel DC's tax law to keep federal tax cuts",
       "vote": "Nay",
       "date": "2026-02-04",
       "result": "Passed",
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "weakens",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 56
@@ -525,14 +892,14 @@
     {
       "bill_number": "H.Res. 1032",
       "bill_id": "119-hres-1032",
-      "one_liner": "Set up House votes on spending, D.C. taxes, and mining rules",
+      "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
       "vote": "Nay",
       "date": "2026-02-03",
       "result": "Passed",
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 51
@@ -540,14 +907,14 @@
     {
       "bill_number": "H.Res. 1032",
       "bill_id": "119-hres-1032",
-      "one_liner": "Set up House votes on spending, D.C. taxes, and mining rules",
+      "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
       "vote": "No",
       "date": "2026-02-03",
       "result": "Passed",
       "policy_area": "",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 52
@@ -555,14 +922,14 @@
     {
       "bill_number": "H.R. 7148",
       "bill_id": "119-hr-7148",
-      "one_liner": "Fund defense, health, education, transportation and housing agencies for 2026",
+      "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
       "vote": "Nay",
       "date": "2026-02-03",
       "result": "Passed",
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 53
@@ -570,14 +937,14 @@
     {
       "bill_number": "H.R. 3123",
       "bill_id": "119-hr-3123",
-      "one_liner": "Pay unpaid veteran pensions to family members after the veteran dies",
+      "one_liner": "Let families collect veterans' pensions that were approved but not paid before death",
       "vote": "Yea",
       "date": "2026-02-02",
       "result": "Passed",
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "strengthens",
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 50

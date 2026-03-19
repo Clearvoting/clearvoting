@@ -3,7 +3,8 @@
     "learnings": [
       "Excellent summary. Clear, accessible language that accurately describes this as a technical correction to the official enrollment of H.J. Res. 100. Appropriate neutral direction for a procedural fix. All criteria met effectively.",
       "Excellent summary that meets all quality standards. Clear, factual language with appropriate reading level. Good inclusion of specific dollar amounts and timeframe. All provisions accurately reflect the bill's content without bias or jargon.",
-      "Excellent summary that clearly explains the bill's purpose and provisions in simple language. Good use of plain English alternatives like 'legal deals' for deferred prosecution agreements and inclusion of specific percentage changes (60% to 75%). All provisions are accurately captured and appropriately simplified for general readers."
+      "Excellent summary that clearly explains the bill's purpose and provisions in simple language. Good use of plain English alternatives like 'legal deals' for deferred prosecution agreements and inclusion of specific percentage changes (60% to 75%). All provisions are accurately captured and appropriately simplified for general readers.",
+      "Excellent summary that meets all quality standards. Clear, accessible language that accurately describes this Congressional Review Act disapproval resolution. Good use of plain English like 'cancel' instead of 'nullify.' Appropriate inclusion of the October 2024 date and specific appliance types. Correct 'against' direction for a rule cancellation. All provisions accurately reflect the rule's scope without jargon."
     ],
     "batch_history": [
       {
@@ -30,6 +31,49 @@
           "119-hr-6703",
           "119-hres-888"
         ]
+      },
+      {
+        "timestamp": "2026-03-16T00:09:34.007923+00:00",
+        "total": 636,
+        "passed": 590,
+        "failed": 46,
+        "grade_distribution": {
+          "A": 537,
+          "B": 53,
+          "C": 18,
+          "D": 2,
+          "F": 8
+        },
+        "needs_review_ids": [
+          "119-s-1582",
+          "119-hr-77",
+          "119-hres-189",
+          "119-hres-566",
+          "117-hr-4373",
+          "117-s-4",
+          "117-sres-16",
+          "118-hr-140",
+          "118-hr-2670",
+          "118-hr-2793",
+          "118-hr-288",
+          "118-hres-327",
+          "118-s-4554",
+          "118-sjres-117",
+          "119-hjres-72",
+          "119-hr-1531",
+          "119-hr-1834",
+          "119-hr-3424",
+          "119-hr-5125",
+          "119-hr-5214",
+          "119-hr-6703",
+          "119-hr-7006",
+          "119-hres-878",
+          "119-hres-780",
+          "119-hres-888",
+          "119-hres-992",
+          "118-hr-5375",
+          "118-hres-1061"
+        ]
       }
     ]
   },
@@ -38,7 +82,12 @@
       "Excellent narrative that perfectly aligns with the data and maintains complete neutrality. All vote counts and ratios are accurate, language is clear and unbiased, and the structure effectively communicates the key voting patterns.",
       "Excellent narrative that accurately represents the voting data with clear, neutral language. All vote counts match the data exactly, and the narrative correctly presents the dominant patterns in each policy area without cherry-picking exceptions.",
       "Excellent factual accuracy and data alignment. One sentence exceeds the 25-word limit (30 words), but overall clarity is good. Consider breaking the longest sentence into two shorter ones.",
-      "Excellent narrative that accurately presents the voting data without bias. All numbers align perfectly with the source data, reading level is appropriate, and the tone is factual and neutral. Consider mentioning Energy policy (32 votes, 3rd largest area) instead of or alongside Crime policy for better completeness."
+      "Excellent narrative that accurately presents the voting data without bias. All numbers align perfectly with the source data, reading level is appropriate, and the tone is factual and neutral. Consider mentioning Energy policy (32 votes, 3rd largest area) instead of or alongside Crime policy for better completeness.",
+      "Excellent narrative that accurately represents the voting data with clear, neutral language. All vote counts and ratios match the data exactly, and the narrative correctly presents the dominant patterns in each policy area without cherry-picking exceptions.",
+      "Excellent data accuracy and neutral tone. Two sentences exceed the 25-word limit: break the first sentence (29 words) and second sentence (31 words) into shorter segments. Consider adding participation rate (99.9%) or total vote count (863) for better completeness.",
+      "Strong narrative with excellent data alignment and neutral tone. One sentence exceeds the 25-word limit (26 words) - consider breaking it into two shorter sentences. Missing participation rate or total vote count, which should be included for completeness.",
+      "Good narrative with accurate data alignment and neutral tone. Break the 28-word sentence about economics into two shorter sentences. Add specific vote counts (e.g., '12 of 15 times' for Congress votes) and include the 99.1% participation rate for completeness.",
+      "Good narrative with excellent data alignment and neutral tone. The voting patterns are accurately represented for all policy areas. However, the narrative lacks specific numbers (vote counts, participation rate) which are required for structure and completeness. Consider adding the 97.5% participation rate and specific vote ratios like '54 of 86 armed forces votes' to strengthen the factual foundation."
     ],
     "batch_history": [
       {
@@ -55,6 +104,70 @@
         },
         "needs_review_ids": [
           "P000622"
+        ]
+      },
+      {
+        "timestamp": "2026-03-17T00:37:24.832209+00:00",
+        "total": 79,
+        "passed": 78,
+        "failed": 1,
+        "grade_distribution": {
+          "A": 25,
+          "B": 53,
+          "C": 1,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": [
+          "C001127"
+        ]
+      },
+      {
+        "timestamp": "2026-03-17T22:42:13.486024+00:00",
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 1,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      }
+    ]
+  },
+  "bill_arguments": {
+    "learnings": [
+      "Excellent work. All arguments are properly attributed, reference specific provisions (January 21, 2025 rule, commercial refrigeration equipment, Department of Energy), mention specific affected groups (small grocery stores, restaurants, businesses), and maintain neutral tone. Both sides are balanced with 2 arguments each."
+    ],
+    "batch_history": [
+      {
+        "timestamp": "2026-03-18T20:59:38.488337+00:00",
+        "total": 618,
+        "passed": 589,
+        "failed": 29,
+        "grade_distribution": {
+          "A": 562,
+          "B": 27,
+          "C": 7,
+          "D": 0,
+          "F": 5
+        },
+        "needs_review_ids": [
+          "119-hres-177",
+          "117-hr-4346",
+          "118-hconres-25",
+          "118-hr-1640",
+          "118-hr-3672",
+          "118-hres-76",
+          "118-s-4554",
+          "119-hjres-72",
+          "119-hr-1834",
+          "119-hr-6703",
+          "119-hres-1057",
+          "119-hres-888"
         ]
       }
     ]

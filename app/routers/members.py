@@ -22,6 +22,16 @@ def _validate_state_code(state_code: str) -> str:
     return state_code.upper()
 
 
+@router.get("/{bioguide_id}/donations")
+async def get_member_donations(bioguide_id: str):
+    _validate_bioguide_id(bioguide_id)
+    data_service = get_data_service()
+    donations = data_service.get_member_donations(bioguide_id)
+    if not donations:
+        raise HTTPException(status_code=404, detail="Donation data not available for this member")
+    return donations
+
+
 @router.get("/{bioguide_id}/sponsored")
 async def get_member_sponsored_bills(bioguide_id: str):
     _validate_bioguide_id(bioguide_id)
@@ -52,6 +62,7 @@ async def get_member_votes(
         "votes": paginated,
         "total_count": len(sorted_votes),
         "policy_areas": data["policy_areas"],
+        "categories": data.get("categories", []),
     }
 
 

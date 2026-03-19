@@ -510,6 +510,18 @@ select:focus, input:focus {
     padding: 0.25rem 0;
 }
 
+/* Snapshot Narrative (homepage card) */
+.snapshot-narrative {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .snapshot-profile-link {
     display: inline-block;
     margin-top: 0.6rem;
@@ -951,6 +963,46 @@ select:focus, input:focus {
     background: var(--accent);
 }
 
+.bill-arguments {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.bill-arguments h4 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.arguments-side {
+    border-left: 3px solid var(--border);
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.arguments-side ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.arguments-side li {
+    padding: 0.35rem 0;
+    color: var(--text-primary);
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.arguments-support {
+    border-left-color: var(--vote-yea);
+}
+
+.arguments-critics {
+    border-left-color: var(--vote-nay);
+}
+
 .ai-disclaimer {
     font-size: 0.8rem;
     color: var(--text-dim);
@@ -961,6 +1013,27 @@ select:focus, input:focus {
 .official-summary {
     color: var(--text-secondary);
     line-height: 1.7;
+}
+
+.official-summary.summary-collapsed {
+    max-height: 150px;
+    overflow: hidden;
+    position: relative;
+}
+
+.official-summary.summary-collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3em;
+    background: linear-gradient(transparent, var(--bg-primary));
+    pointer-events: none;
+}
+
+.summary-expand-btn {
+    margin-top: 0.5rem;
 }
 
 .source-link {
@@ -1012,12 +1085,12 @@ select:focus, input:focus {
     font-family: var(--font-heading);
     font-size: 1rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: #fff;
 }
 
 .member-sticky-bar .sticky-meta {
     font-size: 0.8rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .member-header .member-photo,
@@ -1081,6 +1154,27 @@ select:focus, input:focus {
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
 }
+
+/* Campaign Finance */
+.finance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+@media (max-width: 768px) { .finance-grid { grid-template-columns: 1fr; } }
+.finance-column { min-width: 0; }
+.finance-heading { font-family: var(--font-heading); font-size: 0.95rem; color: var(--text-primary); margin-bottom: 0.75rem; }
+.finance-row { margin-bottom: 0.6rem; }
+.finance-info { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem; }
+.finance-name { font-size: 0.85rem; color: var(--text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; margin-right: 0.5rem; }
+.finance-amount { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+.bar-track { height: 6px; background: var(--bg-card); border-radius: 3px; overflow: hidden; border: 1px solid var(--border-light); }
+.bar-fill { height: 100%; border-radius: 3px; background: var(--accent); display: flex; transition: width 0.3s ease; }
+.bar-fill-industry { background: var(--vote-yea); }
+.bar-segment { height: 100%; }
+.bar-pacs { background: var(--accent); }
+.bar-indivs { background: #71B2C9; }
+.finance-legend { display: flex; gap: 1rem; justify-content: center; margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-secondary); }
+.finance-legend-item { display: inline-flex; align-items: center; gap: 0.3rem; }
+.legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+.legend-pacs { background: var(--accent); }
+.legend-indivs { background: #71B2C9; }
 
 .summary-overview {
     font-size: 1rem;
@@ -1560,6 +1654,94 @@ select:focus, input:focus {
 }
 
 /* ============================================
+   Member Page Tabs
+   ============================================ */
+.member-tab-bar {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 1.5rem;
+    background: var(--bg-primary);
+    position: sticky;
+    z-index: 98;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.member-tab {
+    padding: 0.7rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition);
+    white-space: nowrap;
+}
+
+.member-tab:hover {
+    color: var(--text-primary);
+}
+
+.member-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.member-tab-panel {
+    min-height: 200px;
+}
+
+/* ============================================
+   Vote Pagination
+   ============================================ */
+.vote-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+}
+
+.vote-pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--accent);
+    cursor: pointer;
+    transition: all var(--transition);
+    min-height: 44px;
+}
+
+.vote-pagination-btn:hover:not(:disabled) {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.vote-pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.vote-pagination-info {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+}
+
+/* ============================================
    Loading & Error States
    ============================================ */
 .loading {
@@ -1676,10 +1858,119 @@ select:focus, input:focus {
     color: var(--text-dim);
 }
 
+/* ============================================
+   Compact Stats Bar (member page)
+   ============================================ */
+.stats-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.stats-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+    min-width: 120px;
+}
+
+.stats-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.stats-bar-row svg {
+    flex-shrink: 0;
+}
+
+.stats-bar-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.stats-bar-label strong {
+    color: var(--text-primary);
+}
+
+.stats-bar-yea { color: var(--vote-yea); font-weight: 600; }
+.stats-bar-nay { color: var(--vote-nay); font-weight: 600; }
+.stats-bar-absent { color: var(--vote-absent); font-weight: 600; }
+
+.stats-bar-mini {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border-light);
+    display: flex;
+    overflow: hidden;
+}
+
+.stats-bar-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.stats-bar-fill-accent { background: var(--accent); }
+.stats-bar-fill-yea { background: var(--vote-yea); }
+.stats-bar-fill-nay { background: var(--vote-nay); }
+.stats-bar-fill-absent { background: var(--vote-absent); }
+
 .stat-legend {
     font-size: 0.8rem;
     color: var(--text-secondary);
     text-align: center;
+}
+
+.vote-type-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.vote-type-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    font-family: var(--font-body);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.vote-type-btn:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+.vote-type-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.vote-type-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.vote-type-btn.active .vote-type-dot {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
 
 .issue-filters {
@@ -1859,6 +2150,34 @@ select:focus, input:focus {
     .data-table { font-size: 0.85rem; }
     .data-table th, .data-table td {
         padding: 0.5rem;
+    }
+
+    /* Compact stats bar — stack on mobile */
+    .stats-bar {
+        gap: 0.5rem;
+    }
+
+    .stats-bar-item {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    /* Tabs — sticky on mobile */
+    .member-tab-bar {
+        position: sticky;
+        z-index: 98;
+        background: var(--bg-primary);
+    }
+
+    .member-tab {
+        padding: 0.6rem 0.85rem;
+        font-size: 0.82rem;
+    }
+
+    /* Pagination touch targets */
+    .vote-pagination-btn {
+        min-height: 44px;
+        min-width: 44px;
     }
 }
 

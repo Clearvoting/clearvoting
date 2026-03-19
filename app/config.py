@@ -19,5 +19,7 @@ except ValueError:
 
 SENATE_VOTE_BASE: str = "https://www.senate.gov/legislative/LIS/roll_call_votes"
 
+FEC_API_KEY: str = os.getenv("FEC_API_KEY", "")
+
 GOOGLE_SHEETS_CREDENTIALS_JSON: str = os.getenv("GOOGLE_SHEETS_CREDENTIALS_JSON", "")
 GOOGLE_SHEETS_SPREADSHEET_ID: str = os.getenv("GOOGLE_SHEETS_SPREADSHEET_ID", "")

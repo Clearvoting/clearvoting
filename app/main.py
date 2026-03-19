@@ -1,7 +1,8 @@
 import logging
+import time
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import HTMLResponse
 from pathlib import Path
 from slowapi.middleware import SlowAPIMiddleware
 
@@ -23,6 +24,16 @@ app.add_middleware(SlowAPIMiddleware)
 
 static_dir = Path(__file__).parent.parent / "static"
 app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+
+# Cache-bust version — changes on every server restart
+_asset_version = str(int(time.time()))
+
+
+def _serve_html(filename: str) -> HTMLResponse:
+    """Serve an HTML file with dynamic cache-bust versions on static assets."""
+    html = (static_dir / filename).read_text()
+    html = html.replace("?v=3", f"?v={_asset_version}")
+    return HTMLResponse(html, headers={"Cache-Control": "no-cache, no-store, must-revalidate"})
 
 app.include_router(members_router)
 app.include_router(bills_router)
@@ -56,19 +67,19 @@ async def health_check() -> dict:
 
 @app.get("/")
 async def serve_index():
-    return FileResponse(str(static_dir / "index.html"))
+    return _serve_html("index.html")
 
 
 @app.get("/member")
 async def serve_member():
-    return FileResponse(str(static_dir / "member.html"))
+    return _serve_html("member.html")
 
 
 @app.get("/bill")
 async def serve_bill():
-    return FileResponse(str(static_dir / "bill.html"))
+    return _serve_html("bill.html")
 
 
 @app.get("/about")
 async def serve_about():
-    return FileResponse(str(static_dir / "about.html"))
+    return _serve_html("about.html")

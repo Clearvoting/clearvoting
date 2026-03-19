@@ -424,6 +424,149 @@ async def sync_bill_summaries(
     return stats
 
 
+async def sync_bill_arguments(
+    output_dir: Path,
+    api_key: str | None = None,
+    batch_size: int = 5,
+    rate_limit: float = 1.0,
+) -> dict:
+    """Generate AI both-sides arguments for all bills through the writer-grader loop.
+
+    Arguments are embedded in the existing ai_summaries.json under an 'arguments' key.
+    Incremental — skips bills that already have arguments.
+    """
+    from app.services.bill_arguments import BillArgumentsService
+    from app.services.arguments_grader import ArgumentsGrader
+    from app.services.writer_grader_loop import WriterGraderLoop
+    from app.services.grader_learnings import GraderLearnings
+
+    summaries_path = output_dir / "ai_summaries.json"
+    bills_path = output_dir / "bills.json"
+    learnings_path = output_dir / "grader_learnings.json"
+
+    if not summaries_path.exists():
+        print("  No ai_summaries.json — skipping bill arguments")
+        return {"total": 0, "passed": 0, "failed": 0}
+
+    with open(summaries_path) as f:
+        summaries = json.load(f)
+
+    if not bills_path.exists():
+        print("  No bills.json — skipping bill arguments")
+        return {"total": 0, "passed": 0, "failed": 0}
+
+    with open(bills_path) as f:
+        bills_list = json.load(f).get("bills", [])
+
+    # Build bill lookup by key
+    bill_lookup: dict[str, dict] = {}
+    for bill in bills_list:
+        bill_type = bill.get("type", "").lower()
+        bill_number = bill.get("number", "")
+        congress = bill.get("congress", 119)
+        key = f"{congress}-{bill_type}-{bill_number}"
+        bill_lookup[key] = bill
+
+    # Setup services
+    cache = CacheService(cache_dir=CACHE_DIR, ttl_seconds=86400)
+    writer_service = BillArgumentsService(api_key=api_key, cache=cache)
+    grader = ArgumentsGrader(api_key=api_key)
+
+    # Load learnings
+    learnings_store = GraderLearnings(learnings_path)
+    grader.load_learnings(learnings_store.get_learnings(content_type="bill_arguments"))
+
+    # Find summaries needing arguments (incremental)
+    to_process = []
+    for key, summary in summaries.items():
+        if "arguments" not in summary and key in bill_lookup:
+            to_process.append((key, summary, bill_lookup[key]))
+
+    if not to_process:
+        print("  All bills already have arguments — skipping")
+        return {"total": 0, "passed": 0, "failed": 0}
+
+    print(f"  Generating arguments for {len(to_process)} bills (batch size: {batch_size})")
+
+    stats: dict = {"total": 0, "passed": 0, "failed": 0, "needs_review": []}
+    grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
+    all_feedback: list[str] = []
+
+    async def _process_one_bill(key: str, summary: dict, bill: dict) -> None:
+        title = bill.get("title", "")
+        summaries_list = bill.get("summaries", [])
+        official_summary = summaries_list[0].get("text", "") if isinstance(summaries_list, list) and summaries_list else ""
+        provisions = summary.get("provisions", [])
+
+        print(f"    Arguments: {title[:60]}...")
+
+        async def writer_fn(grader_feedback=None, _bill_id=key, _title=title, _official_summary=official_summary, _provisions=provisions, **kwargs):
+            return await writer_service.generate_arguments(
+                bill_id=_bill_id,
+                title=_title,
+                official_summary=_official_summary,
+                provisions=_provisions,
+                grader_feedback=grader_feedback,
+            )
+
+        loop = WriterGraderLoop(writer_fn=writer_fn, grader=grader)
+        try:
+            result = await loop.run(
+                summary_type="bill_arguments",
+                writer_kwargs={},
+                grader_context={"title": title, "official_summary": official_summary, "provisions": provisions},
+            )
+
+            arguments_data = result.best_summary
+            if result.needs_review:
+                arguments_data["needs_review"] = True
+                stats["needs_review"].append(key)
+                stats["failed"] += 1
+            else:
+                stats["passed"] += 1
+
+            # Embed arguments into existing summary
+            summaries[key]["arguments"] = arguments_data
+            stats["total"] += 1
+            grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
+            all_feedback.append(result.best_grade.feedback)
+        except Exception as e:
+            print(f"    SKIPPED — {e}")
+            stats["failed"] += 1
+            stats["total"] += 1
+
+    for batch_start in range(0, len(to_process), batch_size):
+        batch = to_process[batch_start:batch_start + batch_size]
+        print(f"  Batch {batch_start // batch_size + 1}/{(len(to_process) + batch_size - 1) // batch_size}")
+
+        await asyncio.gather(*[_process_one_bill(key, summary, bill) for key, summary, bill in batch])
+
+        # Save after each batch (crash-safe)
+        _atomic_write_json(summaries_path, summaries)
+
+    # Extract new learnings
+    new_patterns = learnings_store.extract_patterns(all_feedback, content_type="bill_arguments")
+    for pattern in new_patterns:
+        learnings_store.add_learning(pattern, content_type="bill_arguments")
+
+    learnings_store.record_batch(
+        total=stats["total"],
+        passed=stats["passed"],
+        failed=stats["failed"],
+        grade_distribution=grade_dist,
+        needs_review_ids=stats["needs_review"],
+        content_type="bill_arguments",
+    )
+    learnings_store.save()
+
+    print(f"  Arguments: {stats['passed']} passed, {stats['failed']} flagged for review")
+    print(f"  Grades: {grade_dist}")
+    if stats["needs_review"]:
+        print(f"  Needs review: {stats['needs_review']}")
+
+    return stats
+
+
 async def build_member_votes(output_dir: Path, anthropic_key: str | None = None) -> int:
     """Cross-reference votes with members to build per-member voting records.
 
@@ -1384,6 +1527,125 @@ async def _run_audit(anthropic_key: str | None) -> None:
     print("=== Audit complete ===")
 
 
+async def sync_donations(
+    sync_dir: Path,
+    states: list[str] | None = None,
+    rate_limit: float = 0.5,
+) -> dict:
+    """Sync campaign finance data from FEC API.
+
+    For each member: searches FEC by name → gets candidate ID →
+    finds principal committee → pulls top employers and occupations.
+    Saves to donations.json. Incremental — skips already-synced members.
+    """
+    from app.services.fec_api import FECClient
+
+    api_key = os.getenv("FEC_API_KEY", "")
+    if not api_key:
+        print("  FEC_API_KEY not set — skipping donation sync")
+        print("  Get a free key at https://api.data.gov/signup/")
+        return {}
+
+    client = FECClient(api_key=api_key)
+
+    # Load existing donations for incremental sync
+    donations_path = sync_dir / "donations.json"
+    if donations_path.exists():
+        with open(donations_path) as f:
+            donations = json.load(f)
+    else:
+        donations = {}
+
+    # Load members to know who to sync
+    members_path = sync_dir / "members.json"
+    if not members_path.exists():
+        print("  No members.json found — run full sync first")
+        return {}
+    with open(members_path) as f:
+        members_data = json.load(f)
+    members = members_data.get("members", [])
+
+    # Filter to members in requested states
+    if states:
+        members = [m for m in members if m.get("stateCode", "") in states]
+
+    # Skip already-synced members
+    to_sync = [m for m in members if m.get("bioguideId", "").upper() not in donations]
+    if not to_sync:
+        print(f"  All {len(members)} members already synced — skipping")
+        return {"synced": 0, "skipped": len(members), "errors": 0, "total": len(donations)}
+
+    print(f"  Syncing donations for {len(to_sync)} members ({len(members) - len(to_sync)} already done)")
+
+    synced = 0
+    skipped = 0
+    errors = 0
+
+    for member in to_sync:
+        bioguide = member.get("bioguideId", "").upper()
+        name_raw = member.get("name", "")
+        # Members data has "Last, First" format — extract last name
+        last_name = name_raw.split(",")[0].strip() if "," in name_raw else name_raw
+        state = member.get("stateCode", "")
+        chamber = member.get("chamber", "")
+        office = "S" if chamber == "Senate" else "H" if chamber == "House" else ""
+
+        try:
+            # Step 1: Find candidate in FEC
+            await asyncio.sleep(rate_limit)
+            candidate = await client.search_candidate(last_name, state, office)
+            if not candidate:
+                print(f"    {last_name} ({state}): not found in FEC — skipping")
+                skipped += 1
+                continue
+
+            # Step 2: Get principal campaign committee
+            await asyncio.sleep(rate_limit)
+            committee_id = await client.get_principal_committee(candidate["candidate_id"])
+            if not committee_id:
+                print(f"    {last_name} ({state}): no campaign committee — skipping")
+                skipped += 1
+                continue
+
+            # Step 3: Get top employers and occupations in parallel
+            await asyncio.sleep(rate_limit)
+            employers, occupations, totals = await asyncio.gather(
+                client.get_top_employers(committee_id, cycle=2024),
+                client.get_top_occupations(committee_id, cycle=2024),
+                client.get_committee_totals(committee_id, cycle=2024),
+            )
+
+            donations[bioguide] = {
+                "fec_candidate_id": candidate["candidate_id"],
+                "committee_id": committee_id,
+                "cycle": "2024",
+                "last_updated": datetime.now(timezone.utc).isoformat(),
+                "top_contributors": [
+                    {"org_name": e["org_name"], "total": e["total"], "pacs": 0, "individuals": e["total"]}
+                    for e in employers
+                ],
+                "top_industries": [
+                    {"industry_name": o["industry_name"], "total": o["total"], "pacs": 0, "individuals": o["total"]}
+                    for o in occupations
+                ],
+                "totals": totals or {},
+            }
+            synced += 1
+            print(f"    {last_name} ({state}): {len(employers)} employers, {len(occupations)} occupations")
+
+            # Save after each member (crash-safe)
+            if synced % 5 == 0:
+                _atomic_write_json(donations_path, donations)
+
+        except Exception as e:
+            print(f"    {last_name} ({state}): error — {e}")
+            errors += 1
+
+    _atomic_write_json(donations_path, donations)
+    print(f"  Donations sync: {synced} new, {skipped} skipped, {errors} errors ({len(donations)} total)")
+    return {"synced": synced, "skipped": skipped, "errors": errors, "total": len(donations)}
+
+
 async def main() -> None:
     parser = argparse.ArgumentParser(description="ClearVote Data Sync")
     parser.add_argument("--states", type=str, default=None,
@@ -1400,6 +1662,10 @@ async def main() -> None:
                         help="Check page coherence between narratives and data sections.")
     parser.add_argument("--regenerate-all-summaries", action="store_true",
                         help="Clear and regenerate ALL AI bill summaries and member summaries.")
+    parser.add_argument("--regenerate-arguments", action="store_true",
+                        help="Clear and regenerate all bill both-sides arguments.")
+    parser.add_argument("--skip-donations", action="store_true",
+                        help="Skip FEC donation sync (useful if no API key).")
     args = parser.parse_args()
 
     raw_key = os.getenv("ANTHROPIC_API_KEY", "")
@@ -1439,6 +1705,31 @@ async def main() -> None:
         print()
         if stats.get("total"):
             print(f"  Narratives graded: {stats['total']} ({stats.get('passed', 0)} passed, {stats.get('failed', 0)} flagged)")
+        print("=== Regeneration complete ===")
+        return
+
+    # --- Regenerate arguments mode ---
+    if args.regenerate_arguments:
+        SYNC_DIR.mkdir(parents=True, exist_ok=True)
+        print("=== ClearVote Bill Arguments Regeneration ===")
+        print(f"  Mode: {'API' if anthropic_key else 'Claude CLI (Max plan)'}")
+        print()
+
+        # Strip existing arguments to force regeneration
+        summaries_path = SYNC_DIR / "ai_summaries.json"
+        if summaries_path.exists():
+            with open(summaries_path) as f:
+                summaries = json.load(f)
+            for key in summaries:
+                summaries[key].pop("arguments", None)
+            _atomic_write_json(summaries_path, summaries)
+            print(f"  Cleared existing arguments from {len(summaries)} summaries")
+
+        batch = 10 if not anthropic_key else 5  # CLI is slower — use higher parallelism
+        stats = await sync_bill_arguments(SYNC_DIR, api_key=anthropic_key or None, batch_size=batch, rate_limit=1.0)
+        print()
+        if stats.get("total"):
+            print(f"  Arguments graded: {stats['total']} ({stats.get('passed', 0)} passed, {stats.get('failed', 0)} flagged)")
         print("=== Regeneration complete ===")
         return
 
@@ -1556,13 +1847,13 @@ async def main() -> None:
     print()
 
     # Step 1: Members
-    print("[1/10] Syncing members...")
+    print("[1/12] Syncing members...")
     members_count = await sync_members(client, SYNC_DIR, states=states, rate_limit=0.5)
 
     # Step 2: Senate votes (all congresses)
     print()
     senate_service = SenateVoteService(cache=cache)
-    print("[2/10] Syncing Senate votes...")
+    print("[2/12] Syncing Senate votes...")
     senate_count = 0
     for congress, session in CONGRESSES:
         print(f"  Congress {congress}, Session {session}...")
@@ -1571,7 +1862,7 @@ async def main() -> None:
 
     # Step 3: House votes (all congresses)
     print()
-    print("[3/10] Syncing House votes...")
+    print("[3/12] Syncing House votes...")
     house_count = 0
     for congress, session in CONGRESSES:
         print(f"  Congress {congress}, Session {session}...")
@@ -1580,37 +1871,53 @@ async def main() -> None:
 
     # Step 4: Bills (only those referenced in votes from both chambers)
     print()
-    print("[4/10] Syncing voted-on bills...")
+    print("[4/12] Syncing voted-on bills...")
     bills_count = await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
 
     # Step 5: AI bill summaries (writer-grader loop)
     print()
-    print(f"[5/10] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
+    print(f"[5/12] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
     summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
 
-    # Step 6: Member voting records (both chambers)
+    # Step 6: Bill arguments — both sides (writer-grader loop)
     print()
-    print("[6/10] Building member voting records...")
+    print(f"[6/12] Generating bill arguments ({'API' if anthropic_key else 'Claude CLI'})...")
+    args_batch = 10 if not anthropic_key else 5
+    arguments_stats = await sync_bill_arguments(SYNC_DIR, api_key=anthropic_key or None, batch_size=args_batch, rate_limit=1.0)
+
+    # Step 7: Member voting records (both chambers)
+    print()
+    print("[7/12] Building member voting records...")
     member_votes_count = await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
 
-    # Step 7: Issue scorecard verdicts
+    # Step 8: Issue scorecard verdicts
     print()
-    print(f"[7/10] Generating issue scorecard verdicts ({'API' if anthropic_key else 'Claude CLI'})...")
+    print(f"[8/12] Generating issue scorecard verdicts ({'API' if anthropic_key else 'Claude CLI'})...")
     await generate_scorecard_verdicts(SYNC_DIR, api_key=anthropic_key or None)
 
-    # Step 8: Member summaries
+    # Step 9: Member summaries
     print()
-    print(f"[8/10] Generating AI member summaries ({'API' if anthropic_key else 'Claude CLI'})...")
+    print(f"[9/12] Generating AI member summaries ({'API' if anthropic_key else 'Claude CLI'})...")
     member_summary_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
 
-    # Step 9: Page coherence check
+    # Step 10: Campaign finance (FEC)
+    donations_stats = {}
+    if not args.skip_donations:
+        print()
+        print("[10/12] Syncing campaign finance data (FEC)...")
+        donations_stats = await sync_donations(SYNC_DIR, states=states, rate_limit=1.0)
+    else:
+        print()
+        print("[10/12] Skipping campaign finance sync (--skip-donations)")
+
+    # Step 11: Page coherence check
     print()
-    print(f"[9/10] Checking page coherence ({'API' if anthropic_key else 'Claude CLI'})...")
+    print(f"[11/12] Checking page coherence ({'API' if anthropic_key else 'Claude CLI'})...")
     coherence_stats = await check_page_coherence(SYNC_DIR, api_key=anthropic_key or None)
 
-    # Step 10: Sync summary
+    # Step 12: Sync summary
     print()
-    print("[10/10] Sync summary")
+    print("[12/12] Sync summary")
 
     # Write metadata
     metadata = {
@@ -1624,6 +1931,8 @@ async def main() -> None:
         "member_summary_stats": member_summary_stats,
         "coherence_stats": coherence_stats,
         "summary_stats": summary_stats,
+        "arguments_stats": arguments_stats,
+        "donations_stats": donations_stats,
     }
     _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
     print()
@@ -1635,8 +1944,12 @@ async def main() -> None:
     print(f"  Member vote records: {member_votes_count}")
     if summary_stats.get("total"):
         print(f"  AI summaries graded: {summary_stats['total']} ({summary_stats.get('passed', 0)} passed)")
+    if arguments_stats.get("total"):
+        print(f"  Bill arguments graded: {arguments_stats['total']} ({arguments_stats.get('passed', 0)} passed)")
     if member_summary_stats.get("total"):
         print(f"  Member narratives graded: {member_summary_stats['total']} ({member_summary_stats.get('passed', 0)} passed)")
+    if donations_stats.get("total"):
+        print(f"  Donations: {donations_stats['total']} members ({donations_stats.get('synced', 0)} new)")
 
 
 if __name__ == "__main__":

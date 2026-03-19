@@ -18,7 +18,7 @@ async def call_claude_cli(
     model: str = "claude-sonnet-4-20250514",
 ) -> str:
     """Call Claude via the CLI. Pipes prompt via stdin to handle long inputs."""
-    full_prompt = f"INSTRUCTIONS:\n{system_prompt}\n\nTASK:\n{user_prompt}\n\nIMPORTANT: Output ONLY the requested format. No explanation, no commentary, no markdown."
+    full_prompt = f"INSTRUCTIONS:\n{system_prompt}\n\nTASK:\n{user_prompt}\n\nCRITICAL: Your entire response must be ONLY the raw JSON object. Do not write ANY text before or after the JSON. No introduction, no explanation, no commentary, no markdown code fences. Start your response with {{ and end with }}."
 
     # Remove CLAUDECODE env var to allow nested CLI invocation.
     # Run from /tmp to avoid picking up project CLAUDE.md and hooks

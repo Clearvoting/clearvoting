@@ -1,0 +1,7707 @@
+{
+  "F000476": {
+    "fec_candidate_id": "H2FL10259",
+    "committee_id": "C00786822",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:06:53.205868+00:00",
+    "top_contributors": [
+      {
+        "org_name": "VLP LAW",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "BAD ROBOT PRODUCTIONS",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "SMARTHINKING",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "AMSCOT FINANCIAL, INC.",
+        "total": 8500,
+        "pacs": 0,
+        "individuals": 8500
+      },
+      {
+        "org_name": "ADVENT HEALTH",
+        "total": 6750,
+        "pacs": 0,
+        "individuals": 6750
+      },
+      {
+        "org_name": "AMD HOMES, LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "NBC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "BETHESDA TERRACE MANAGEMENT",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "FAHR, LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "L.E.K. CONSULTING",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "STATE OF ILLINOIS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "SV ANGEL",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "TRIAD ISOTOPES INC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "DREYDEN INVESTMENTS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "BADIA SPICES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 141232,
+        "pacs": 0,
+        "individuals": 141232
+      },
+      {
+        "industry_name": "Investor",
+        "total": 40868,
+        "pacs": 0,
+        "individuals": 40868
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 30462,
+        "pacs": 0,
+        "individuals": 30462
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 29477,
+        "pacs": 0,
+        "individuals": 29477
+      },
+      {
+        "industry_name": "Producer",
+        "total": 28689,
+        "pacs": 0,
+        "individuals": 28689
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 28673,
+        "pacs": 0,
+        "individuals": 28673
+      },
+      {
+        "industry_name": "President",
+        "total": 25425,
+        "pacs": 0,
+        "individuals": 25425
+      },
+      {
+        "industry_name": "Business Owner",
+        "total": 24813,
+        "pacs": 0,
+        "individuals": 24813
+      },
+      {
+        "industry_name": "Executive",
+        "total": 21236,
+        "pacs": 0,
+        "individuals": 21236
+      },
+      {
+        "industry_name": "Manager",
+        "total": 20882,
+        "pacs": 0,
+        "individuals": 20882
+      }
+    ],
+    "totals": {
+      "total_receipts": 4065838,
+      "total_disbursements": 3308111,
+      "total_individual": 3680264,
+      "total_pac": 378351
+    }
+  },
+  "F000484": {
+    "fec_candidate_id": "H6FL06258",
+    "committee_id": "C00893271",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:06:57.743140+00:00",
+    "top_contributors": [],
+    "top_industries": [],
+    "totals": {}
+  },
+  "P000622": {
+    "fec_candidate_id": "H6FL01390",
+    "committee_id": "C00893594",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:07:00.028830+00:00",
+    "top_contributors": [],
+    "top_industries": [],
+    "totals": {}
+  },
+  "S001150": {
+    "fec_candidate_id": "S4CA00555",
+    "committee_id": "C00343871",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:06:57.091043+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 309459,
+        "pacs": 0,
+        "individuals": 309459
+      },
+      {
+        "org_name": "EDISON INTERNATIONAL",
+        "total": 54800,
+        "pacs": 0,
+        "individuals": 54800
+      },
+      {
+        "org_name": "BLACKSTONE",
+        "total": 42600,
+        "pacs": 0,
+        "individuals": 42600
+      },
+      {
+        "org_name": "PANISH SHEA BOYLE RAVIPUDI, LLP",
+        "total": 41600,
+        "pacs": 0,
+        "individuals": 41600
+      },
+      {
+        "org_name": "STATE OF CALIFORNIA",
+        "total": 34890,
+        "pacs": 0,
+        "individuals": 34890
+      },
+      {
+        "org_name": "DREYER BABICH BUCCOLA WOOD CAMPORA",
+        "total": 31700,
+        "pacs": 0,
+        "individuals": 31700
+      },
+      {
+        "org_name": "HUESTON HENNIGAN, LLP",
+        "total": 26950,
+        "pacs": 0,
+        "individuals": 26950
+      },
+      {
+        "org_name": "REFINED MANAGEMENT",
+        "total": 26400,
+        "pacs": 0,
+        "individuals": 26400
+      },
+      {
+        "org_name": "H+S VENTURES, LLC",
+        "total": 26400,
+        "pacs": 0,
+        "individuals": 26400
+      },
+      {
+        "org_name": "CORNERSTONE GOVERNMENT AFFAIRS",
+        "total": 25400,
+        "pacs": 0,
+        "individuals": 25400
+      },
+      {
+        "org_name": "AIRBNB",
+        "total": 24075,
+        "pacs": 0,
+        "individuals": 24075
+      },
+      {
+        "org_name": "MUNGER, TOLLES & OLSON LLP",
+        "total": 23900,
+        "pacs": 0,
+        "individuals": 23900
+      },
+      {
+        "org_name": "ANOTHER PLANET ENTERTAINMENT",
+        "total": 23600,
+        "pacs": 0,
+        "individuals": 23600
+      },
+      {
+        "org_name": "PAUL, WEISS, RIFKIND, WHARTON & GARRIS",
+        "total": 23300,
+        "pacs": 0,
+        "individuals": 23300
+      },
+      {
+        "org_name": "ABUNDANT VENTURE PARTNERS",
+        "total": 20800,
+        "pacs": 0,
+        "individuals": 20800
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 2639896,
+        "pacs": 0,
+        "individuals": 2639896
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 610869,
+        "pacs": 0,
+        "individuals": 610869
+      },
+      {
+        "industry_name": "Physician",
+        "total": 440036,
+        "pacs": 0,
+        "individuals": 440036
+      },
+      {
+        "industry_name": "President",
+        "total": 404218,
+        "pacs": 0,
+        "individuals": 404218
+      },
+      {
+        "industry_name": "Business Owner",
+        "total": 379570,
+        "pacs": 0,
+        "individuals": 379570
+      },
+      {
+        "industry_name": "Investor",
+        "total": 354239,
+        "pacs": 0,
+        "individuals": 354239
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 344327,
+        "pacs": 0,
+        "individuals": 344327
+      },
+      {
+        "industry_name": "Executive",
+        "total": 312492,
+        "pacs": 0,
+        "individuals": 312492
+      },
+      {
+        "industry_name": "Null",
+        "total": 309459,
+        "pacs": 0,
+        "individuals": 309459
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 224046,
+        "pacs": 0,
+        "individuals": 224046
+      }
+    ],
+    "totals": {
+      "total_receipts": 48149196,
+      "total_disbursements": 62791130,
+      "total_individual": 45110628,
+      "total_pac": 1015453
+    }
+  },
+  "P000145": {
+    "fec_candidate_id": "S2CA00955",
+    "committee_id": "C00765164",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:06:59.388875+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NOT-EMPLOYED",
+        "total": 107909,
+        "pacs": 0,
+        "individuals": 107909
+      },
+      {
+        "org_name": "NULL",
+        "total": 30000,
+        "pacs": 0,
+        "individuals": 30000
+      },
+      {
+        "org_name": "COTCHETT, PITRE, MCCARTHY LLP",
+        "total": 14600,
+        "pacs": 0,
+        "individuals": 14600
+      },
+      {
+        "org_name": "ANDREESSEN HOROWITZ",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "RANGER GLOBAL ADVISORS LLC",
+        "total": 11600,
+        "pacs": 0,
+        "individuals": 11600
+      },
+      {
+        "org_name": "ZETTA VENTURE PARTNERS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "SINGLETON SCHRIEBER LLP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "PISCES, INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "YUCAIPA COMPANIES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CITADEL SECURITIES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "GIBSON DUNN & CRUTCHER",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "THOMAS SAFRAN & ASSOCIATES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ANDREESSEEN HOROWITZ",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "APEX REALTY",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "SV ANGEL",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Not-Employed",
+        "total": 107409,
+        "pacs": 0,
+        "individuals": 107409
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 49450,
+        "pacs": 0,
+        "individuals": 49450
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 43996,
+        "pacs": 0,
+        "individuals": 43996
+      },
+      {
+        "industry_name": "Null",
+        "total": 30000,
+        "pacs": 0,
+        "individuals": 30000
+      },
+      {
+        "industry_name": "Investor",
+        "total": 14200,
+        "pacs": 0,
+        "individuals": 14200
+      },
+      {
+        "industry_name": "General Partner",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 10100,
+        "pacs": 0,
+        "individuals": 10100
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 9900,
+        "pacs": 0,
+        "individuals": 9900
+      },
+      {
+        "industry_name": "President",
+        "total": 8925,
+        "pacs": 0,
+        "individuals": 8925
+      },
+      {
+        "industry_name": "Venture Capital",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "totals": {
+      "total_receipts": 754150,
+      "total_disbursements": 1564522,
+      "total_individual": 408463,
+      "total_pac": 221050
+    }
+  },
+  "C001059": {
+    "fec_candidate_id": "H4CA20082",
+    "committee_id": "C00391029",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:07:01.751705+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 25300,
+        "pacs": 0,
+        "individuals": 25300
+      },
+      {
+        "org_name": "CALIFORNIA STRATEGIES",
+        "total": 13900,
+        "pacs": 0,
+        "individuals": 13900
+      },
+      {
+        "org_name": "FORHAN COMPANY",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "SAN JOAQUIN VALLEY COLLEGE",
+        "total": 11300,
+        "pacs": 0,
+        "individuals": 11300
+      },
+      {
+        "org_name": "CDM",
+        "total": 7300,
+        "pacs": 0,
+        "individuals": 7300
+      },
+      {
+        "org_name": "CAMPOS BROS. FARMS",
+        "total": 6700,
+        "pacs": 0,
+        "individuals": 6700
+      },
+      {
+        "org_name": "THE WONDERFUL COMPANY",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "SAN JOAQUIN DISTRIBUTORS, INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CO-FOUNDER",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "OAKTREE REALTY",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ROLL GLOBAL, LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ASSOCIATED FEED",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "HARRIS FARMS, INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "THE PENSTARGROUP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "TRICAL, INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Owner",
+        "total": 46450,
+        "pacs": 0,
+        "individuals": 46450
+      },
+      {
+        "industry_name": "Physician",
+        "total": 40350,
+        "pacs": 0,
+        "individuals": 40350
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 39500,
+        "pacs": 0,
+        "individuals": 39500
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 29050,
+        "pacs": 0,
+        "individuals": 29050
+      },
+      {
+        "industry_name": "Investor",
+        "total": 27300,
+        "pacs": 0,
+        "individuals": 27300
+      },
+      {
+        "industry_name": "Farmer",
+        "total": 26950,
+        "pacs": 0,
+        "individuals": 26950
+      },
+      {
+        "industry_name": "Attorney At Law",
+        "total": 25650,
+        "pacs": 0,
+        "individuals": 25650
+      },
+      {
+        "industry_name": "President",
+        "total": 22900,
+        "pacs": 0,
+        "individuals": 22900
+      },
+      {
+        "industry_name": "Null",
+        "total": 21000,
+        "pacs": 0,
+        "individuals": 21000
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 17900,
+        "pacs": 0,
+        "individuals": 17900
+      }
+    ],
+    "totals": {
+      "total_receipts": 1705407,
+      "total_disbursements": 1885604,
+      "total_individual": 691703,
+      "total_pac": 1010513
+    }
+  },
+  "L000582": {
+    "fec_candidate_id": "H4CA33119",
+    "committee_id": "C00556506",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:07:17.548902+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NOT-EMPLOYED",
+        "total": 255097,
+        "pacs": 0,
+        "individuals": 255097
+      },
+      {
+        "org_name": "NULL",
+        "total": 21050,
+        "pacs": 0,
+        "individuals": 21050
+      },
+      {
+        "org_name": "COTCHETT, PITRE & MCCARTHY, LLP",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "TRENDNET",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "NETFLIX",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "PAFCO",
+        "total": 10750,
+        "pacs": 0,
+        "individuals": 10750
+      },
+      {
+        "org_name": "ARK LOGISTICS",
+        "total": 10500,
+        "pacs": 0,
+        "individuals": 10500
+      },
+      {
+        "org_name": "KIRKLAND & ELLIS",
+        "total": 10100,
+        "pacs": 0,
+        "individuals": 10100
+      },
+      {
+        "org_name": "GOOGLE",
+        "total": 9900,
+        "pacs": 0,
+        "individuals": 9900
+      },
+      {
+        "org_name": "ELECTRIC ENTERTAINMENT",
+        "total": 9400,
+        "pacs": 0,
+        "individuals": 9400
+      },
+      {
+        "org_name": "MUNGER TOLLES & OLSON LLP",
+        "total": 9050,
+        "pacs": 0,
+        "individuals": 9050
+      },
+      {
+        "org_name": "RUSS AUGUST KABAT",
+        "total": 8850,
+        "pacs": 0,
+        "individuals": 8850
+      },
+      {
+        "org_name": "YU SHAN COMPANY",
+        "total": 8300,
+        "pacs": 0,
+        "individuals": 8300
+      },
+      {
+        "org_name": "CATHAY BANK",
+        "total": 8250,
+        "pacs": 0,
+        "individuals": 8250
+      },
+      {
+        "org_name": "EAST WEST BANK",
+        "total": 7800,
+        "pacs": 0,
+        "individuals": 7800
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Not-Employed",
+        "total": 253047,
+        "pacs": 0,
+        "individuals": 253047
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 146925,
+        "pacs": 0,
+        "individuals": 146925
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 141848,
+        "pacs": 0,
+        "individuals": 141848
+      },
+      {
+        "industry_name": "President",
+        "total": 71950,
+        "pacs": 0,
+        "individuals": 71950
+      },
+      {
+        "industry_name": "Executive",
+        "total": 62000,
+        "pacs": 0,
+        "individuals": 62000
+      },
+      {
+        "industry_name": "Physician",
+        "total": 35180,
+        "pacs": 0,
+        "individuals": 35180
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 31685,
+        "pacs": 0,
+        "individuals": 31685
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 31307,
+        "pacs": 0,
+        "individuals": 31307
+      },
+      {
+        "industry_name": "Owner",
+        "total": 29280,
+        "pacs": 0,
+        "individuals": 29280
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 29022,
+        "pacs": 0,
+        "individuals": 29022
+      }
+    ],
+    "totals": {
+      "total_receipts": 2587897,
+      "total_disbursements": 2707281,
+      "total_individual": 1618199,
+      "total_pac": 765125
+    }
+  },
+  "C001098": {
+    "fec_candidate_id": "S2TX00312",
+    "committee_id": "C00492785",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:06:56.534461+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 4424744,
+        "pacs": 0,
+        "individuals": 4424744
+      },
+      {
+        "org_name": "ENTREPRENEUR",
+        "total": 458096,
+        "pacs": 0,
+        "individuals": 458096
+      },
+      {
+        "org_name": "SELF",
+        "total": 196108,
+        "pacs": 0,
+        "individuals": 196108
+      },
+      {
+        "org_name": "UNEMPLOYED",
+        "total": 50065,
+        "pacs": 0,
+        "individuals": 50065
+      },
+      {
+        "org_name": "RDV CORPORATION",
+        "total": 39600,
+        "pacs": 0,
+        "individuals": 39600
+      },
+      {
+        "org_name": "AMERICAN AIRLINES",
+        "total": 29631,
+        "pacs": 0,
+        "individuals": 29631
+      },
+      {
+        "org_name": "BLACKSTONE",
+        "total": 27400,
+        "pacs": 0,
+        "individuals": 27400
+      },
+      {
+        "org_name": "AT&T",
+        "total": 26915,
+        "pacs": 0,
+        "individuals": 26915
+      },
+      {
+        "org_name": "DELTA AIR LINES",
+        "total": 22095,
+        "pacs": 0,
+        "individuals": 22095
+      },
+      {
+        "org_name": "BOEING",
+        "total": 21925,
+        "pacs": 0,
+        "individuals": 21925
+      },
+      {
+        "org_name": "TOTAL VEIN SYSTEMS",
+        "total": 20000,
+        "pacs": 0,
+        "individuals": 20000
+      },
+      {
+        "org_name": "RETRIED",
+        "total": 19528,
+        "pacs": 0,
+        "individuals": 19528
+      },
+      {
+        "org_name": "SOUTHWEST AIRLINES",
+        "total": 18955,
+        "pacs": 0,
+        "individuals": 18955
+      },
+      {
+        "org_name": "BGR GROUP",
+        "total": 18000,
+        "pacs": 0,
+        "individuals": 18000
+      },
+      {
+        "org_name": "RIO ELEVATOR CO INC",
+        "total": 17256,
+        "pacs": 0,
+        "individuals": 17256
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Null",
+        "total": 4254121,
+        "pacs": 0,
+        "individuals": 4254121
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 934564,
+        "pacs": 0,
+        "individuals": 934564
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 771035,
+        "pacs": 0,
+        "individuals": 771035
+      },
+      {
+        "industry_name": "Owner",
+        "total": 705074,
+        "pacs": 0,
+        "individuals": 705074
+      },
+      {
+        "industry_name": "President",
+        "total": 686113,
+        "pacs": 0,
+        "individuals": 686113
+      },
+      {
+        "industry_name": "Physician",
+        "total": 560225,
+        "pacs": 0,
+        "individuals": 560225
+      },
+      {
+        "industry_name": "Executive",
+        "total": 532647,
+        "pacs": 0,
+        "individuals": 532647
+      },
+      {
+        "industry_name": "Entrepreneur",
+        "total": 491397,
+        "pacs": 0,
+        "individuals": 491397
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 441298,
+        "pacs": 0,
+        "individuals": 441298
+      },
+      {
+        "industry_name": "Engineer",
+        "total": 396526,
+        "pacs": 0,
+        "individuals": 396526
+      }
+    ],
+    "totals": {
+      "total_receipts": 74050030,
+      "total_disbursements": 75643604,
+      "total_individual": 67435723,
+      "total_pac": 1262520
+    }
+  },
+  "C001056": {
+    "fec_candidate_id": "S2TX00106",
+    "committee_id": "C00369033",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:06:58.852698+00:00",
+    "top_contributors": [
+      {
+        "org_name": "CAPITAL GROUP",
+        "total": 22500,
+        "pacs": 0,
+        "individuals": 22500
+      },
+      {
+        "org_name": "ANDREESSEN HOROWITZ",
+        "total": 16500,
+        "pacs": 0,
+        "individuals": 16500
+      },
+      {
+        "org_name": "SELF",
+        "total": 14580,
+        "pacs": 0,
+        "individuals": 14580
+      },
+      {
+        "org_name": "PALANTIR TECHNOLOGIES",
+        "total": 13686,
+        "pacs": 0,
+        "individuals": 13686
+      },
+      {
+        "org_name": "WINKLEVOSS CAPITAL MANAGEMENT",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "BLACKSTONE",
+        "total": 12600,
+        "pacs": 0,
+        "individuals": 12600
+      },
+      {
+        "org_name": "FIDELITY INVESTMENTS",
+        "total": 10500,
+        "pacs": 0,
+        "individuals": 10500
+      },
+      {
+        "org_name": "THE CAPITAL GROUP",
+        "total": 10000,
+        "pacs": 0,
+        "individuals": 10000
+      },
+      {
+        "org_name": "THE CAPITAL GROUP COMPANIES",
+        "total": 10000,
+        "pacs": 0,
+        "individuals": 10000
+      },
+      {
+        "org_name": "CRESTVIEW PARTNERS",
+        "total": 9900,
+        "pacs": 0,
+        "individuals": 9900
+      },
+      {
+        "org_name": "DELL TECHNOLOGIES",
+        "total": 8800,
+        "pacs": 0,
+        "individuals": 8800
+      },
+      {
+        "org_name": "CITIZENS FIRST BANK",
+        "total": 7800,
+        "pacs": 0,
+        "individuals": 7800
+      },
+      {
+        "org_name": "LMBI LP",
+        "total": 7400,
+        "pacs": 0,
+        "individuals": 7400
+      },
+      {
+        "org_name": "ASSOCIA",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CASTLE HARLAN INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Ceo",
+        "total": 265706,
+        "pacs": 0,
+        "individuals": 265706
+      },
+      {
+        "industry_name": "President",
+        "total": 142594,
+        "pacs": 0,
+        "individuals": 142594
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 116198,
+        "pacs": 0,
+        "individuals": 116198
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 70922,
+        "pacs": 0,
+        "individuals": 70922
+      },
+      {
+        "industry_name": "Investor",
+        "total": 68900,
+        "pacs": 0,
+        "individuals": 68900
+      },
+      {
+        "industry_name": "Physician",
+        "total": 65475,
+        "pacs": 0,
+        "individuals": 65475
+      },
+      {
+        "industry_name": "Partner",
+        "total": 51017,
+        "pacs": 0,
+        "individuals": 51017
+      },
+      {
+        "industry_name": "Owner",
+        "total": 39439,
+        "pacs": 0,
+        "individuals": 39439
+      },
+      {
+        "industry_name": "Investments",
+        "total": 37580,
+        "pacs": 0,
+        "individuals": 37580
+      },
+      {
+        "industry_name": "Manager",
+        "total": 32234,
+        "pacs": 0,
+        "individuals": 32234
+      }
+    ],
+    "totals": {
+      "total_receipts": 3377426,
+      "total_disbursements": 851024,
+      "total_individual": 1270535,
+      "total_pac": 595022
+    }
+  },
+  "S000148": {
+    "fec_candidate_id": "S8NY00082",
+    "committee_id": "C00346312",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:34:34.736345+00:00",
+    "top_contributors": [
+      {
+        "org_name": "BELL INVESTMENT ADVISORS",
+        "total": 7500,
+        "pacs": 0,
+        "individuals": 7500
+      },
+      {
+        "org_name": "BARCLAYS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "SCHUSTERMAN INTERESTS LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "TRB ADVISORS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "JMA",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CUMBERLAND PACKING CORP.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "LOEWS HOTELS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "EMPIRE STATE REALTY TRUST",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "NULL",
+        "total": 6450,
+        "pacs": 0,
+        "individuals": 6450
+      },
+      {
+        "org_name": "TPAG",
+        "total": 5610,
+        "pacs": 0,
+        "individuals": 5610
+      },
+      {
+        "org_name": "LTD X LIZZIE TISCH",
+        "total": 5200,
+        "pacs": 0,
+        "individuals": 5200
+      },
+      {
+        "org_name": "PITTA BISHOP & DEL GIORNO LLC",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      },
+      {
+        "org_name": "EDISON INTERNATIONAL",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      },
+      {
+        "org_name": "MOHAWK AMBULANCE",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      },
+      {
+        "org_name": "LEPRINO FOODS",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 41025,
+        "pacs": 0,
+        "individuals": 41025
+      },
+      {
+        "industry_name": "Physician",
+        "total": 26545,
+        "pacs": 0,
+        "individuals": 26545
+      },
+      {
+        "industry_name": "Executive",
+        "total": 22139,
+        "pacs": 0,
+        "individuals": 22139
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 19287,
+        "pacs": 0,
+        "individuals": 19287
+      },
+      {
+        "industry_name": "Investor",
+        "total": 14510,
+        "pacs": 0,
+        "individuals": 14510
+      },
+      {
+        "industry_name": "Professor",
+        "total": 13975,
+        "pacs": 0,
+        "individuals": 13975
+      },
+      {
+        "industry_name": "President",
+        "total": 10724,
+        "pacs": 0,
+        "individuals": 10724
+      },
+      {
+        "industry_name": "Artist",
+        "total": 10647,
+        "pacs": 0,
+        "individuals": 10647
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 10199,
+        "pacs": 0,
+        "individuals": 10199
+      },
+      {
+        "industry_name": "Therapist",
+        "total": 8395,
+        "pacs": 0,
+        "individuals": 8395
+      }
+    ],
+    "totals": {
+      "total_receipts": 2790888,
+      "total_disbursements": 3349300,
+      "total_individual": 2345346,
+      "total_pac": 202800
+    }
+  },
+  "G000555": {
+    "fec_candidate_id": "S0NY00410",
+    "committee_id": "C00413914",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:34:39.232337+00:00",
+    "top_contributors": [
+      {
+        "org_name": "CORNING INCORPORATED",
+        "total": 95100,
+        "pacs": 0,
+        "individuals": 95100
+      },
+      {
+        "org_name": "COINBASE",
+        "total": 49100,
+        "pacs": 0,
+        "individuals": 49100
+      },
+      {
+        "org_name": "DAVIS POLK & WARDWELL LLP",
+        "total": 32100,
+        "pacs": 0,
+        "individuals": 32100
+      },
+      {
+        "org_name": "LATHAM & WATKINS LLP",
+        "total": 29950,
+        "pacs": 0,
+        "individuals": 29950
+      },
+      {
+        "org_name": "APOLLO GLOBAL MANAGEMENT",
+        "total": 24400,
+        "pacs": 0,
+        "individuals": 24400
+      },
+      {
+        "org_name": "UNISWAP LABS",
+        "total": 23400,
+        "pacs": 0,
+        "individuals": 23400
+      },
+      {
+        "org_name": "DAVIS POLK & WARDWELL",
+        "total": 22800,
+        "pacs": 0,
+        "individuals": 22800
+      },
+      {
+        "org_name": "NEW YORK LIFE",
+        "total": 19800,
+        "pacs": 0,
+        "individuals": 19800
+      },
+      {
+        "org_name": "DYDX TRADING",
+        "total": 18200,
+        "pacs": 0,
+        "individuals": 18200
+      },
+      {
+        "org_name": "DAVIS POLK",
+        "total": 17750,
+        "pacs": 0,
+        "individuals": 17750
+      },
+      {
+        "org_name": "KIRKLAND & ELLIS LLP",
+        "total": 17350,
+        "pacs": 0,
+        "individuals": 17350
+      },
+      {
+        "org_name": "NULL",
+        "total": 16850,
+        "pacs": 0,
+        "individuals": 16850
+      },
+      {
+        "org_name": "SIMPSON THACHER & BARTLETT LLP",
+        "total": 14900,
+        "pacs": 0,
+        "individuals": 14900
+      },
+      {
+        "org_name": "CRESCO LABS",
+        "total": 14450,
+        "pacs": 0,
+        "individuals": 14450
+      },
+      {
+        "org_name": "KREINDLER & KREINDLER",
+        "total": 14400,
+        "pacs": 0,
+        "individuals": 14400
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 716157,
+        "pacs": 0,
+        "individuals": 716157
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 292721,
+        "pacs": 0,
+        "individuals": 292721
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 286459,
+        "pacs": 0,
+        "individuals": 286459
+      },
+      {
+        "industry_name": "President",
+        "total": 196873,
+        "pacs": 0,
+        "individuals": 196873
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 161384,
+        "pacs": 0,
+        "individuals": 161384
+      },
+      {
+        "industry_name": "Executive",
+        "total": 156697,
+        "pacs": 0,
+        "individuals": 156697
+      },
+      {
+        "industry_name": "Finance",
+        "total": 148333,
+        "pacs": 0,
+        "individuals": 148333
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 133885,
+        "pacs": 0,
+        "individuals": 133885
+      },
+      {
+        "industry_name": "Physician",
+        "total": 122577,
+        "pacs": 0,
+        "individuals": 122577
+      },
+      {
+        "industry_name": "Investor",
+        "total": 109575,
+        "pacs": 0,
+        "individuals": 109575
+      }
+    ],
+    "totals": {
+      "total_receipts": 9798986,
+      "total_disbursements": 14135378,
+      "total_individual": 4446971,
+      "total_pac": 734947
+    }
+  },
+  "R000622": {
+    "fec_candidate_id": "H8NY22177",
+    "committee_id": "C00793760",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:34:58.479241+00:00",
+    "top_contributors": [
+      {
+        "org_name": "BOIES SCHILLER FLEXNER LLP",
+        "total": 64876,
+        "pacs": 0,
+        "individuals": 64876
+      },
+      {
+        "org_name": "CORNELL UNIVERSITY",
+        "total": 54706,
+        "pacs": 0,
+        "individuals": 54706
+      },
+      {
+        "org_name": "NULL",
+        "total": 38025,
+        "pacs": 0,
+        "individuals": 38025
+      },
+      {
+        "org_name": "JENNER & BLOCK LLP",
+        "total": 26180,
+        "pacs": 0,
+        "individuals": 26180
+      },
+      {
+        "org_name": "KING & SPALDING, LLP",
+        "total": 26000,
+        "pacs": 0,
+        "individuals": 26000
+      },
+      {
+        "org_name": "PAUL WEISS",
+        "total": 23300,
+        "pacs": 0,
+        "individuals": 23300
+      },
+      {
+        "org_name": "BESSEMER VENTURE PARTNERS",
+        "total": 19800,
+        "pacs": 0,
+        "individuals": 19800
+      },
+      {
+        "org_name": "INSIGHT PARTNERS",
+        "total": 19800,
+        "pacs": 0,
+        "individuals": 19800
+      },
+      {
+        "org_name": "JENNER & BLOCK",
+        "total": 19550,
+        "pacs": 0,
+        "individuals": 19550
+      },
+      {
+        "org_name": "BOIES SCHILLER FLEXNER",
+        "total": 18400,
+        "pacs": 0,
+        "individuals": 18400
+      },
+      {
+        "org_name": "APPLE",
+        "total": 15450,
+        "pacs": 0,
+        "individuals": 15450
+      },
+      {
+        "org_name": "BOIES SCHILLER FLEXNER, LLP",
+        "total": 14431,
+        "pacs": 0,
+        "individuals": 14431
+      },
+      {
+        "org_name": "JENNER & BLOCK, LLP",
+        "total": 13775,
+        "pacs": 0,
+        "individuals": 13775
+      },
+      {
+        "org_name": "LAUDER PARTNERS, LLC",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "CENTERVIEW PARTNERS",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 923280,
+        "pacs": 0,
+        "individuals": 923280
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 157923,
+        "pacs": 0,
+        "individuals": 157923
+      },
+      {
+        "industry_name": "Physician",
+        "total": 141317,
+        "pacs": 0,
+        "individuals": 141317
+      },
+      {
+        "industry_name": "Investor",
+        "total": 140760,
+        "pacs": 0,
+        "individuals": 140760
+      },
+      {
+        "industry_name": "Professor",
+        "total": 138966,
+        "pacs": 0,
+        "individuals": 138966
+      },
+      {
+        "industry_name": "President",
+        "total": 97563,
+        "pacs": 0,
+        "individuals": 97563
+      },
+      {
+        "industry_name": "Writer",
+        "total": 78821,
+        "pacs": 0,
+        "individuals": 78821
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 63093,
+        "pacs": 0,
+        "individuals": 63093
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 62976,
+        "pacs": 0,
+        "individuals": 62976
+      },
+      {
+        "industry_name": "Artist",
+        "total": 57672,
+        "pacs": 0,
+        "individuals": 57672
+      }
+    ],
+    "totals": {
+      "total_receipts": 9848776,
+      "total_disbursements": 9797483,
+      "total_individual": 8164381,
+      "total_pac": 632191
+    }
+  },
+  "M001231": {
+    "fec_candidate_id": "H4NY22085",
+    "committee_id": "C00845461",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:35:02.979711+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SYRACUSE UNIVERSITY",
+        "total": 36998,
+        "pacs": 0,
+        "individuals": 36998
+      },
+      {
+        "org_name": "GOOGLE",
+        "total": 18495,
+        "pacs": 0,
+        "individuals": 18495
+      },
+      {
+        "org_name": "NULL",
+        "total": 12200,
+        "pacs": 0,
+        "individuals": 12200
+      },
+      {
+        "org_name": "SUNY",
+        "total": 9619,
+        "pacs": 0,
+        "individuals": 9619
+      },
+      {
+        "org_name": "CITY OF SYRACUSE",
+        "total": 7550,
+        "pacs": 0,
+        "individuals": 7550
+      },
+      {
+        "org_name": "STAND UP AMERICA",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "LIFE YIELD",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MEDLEY PARTNERS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "LITTLE LUKES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ANALYSIS GROUP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MYERS-JDC-BROOKDALE INSTITUTE",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "WOLFJAW STUDIOS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "GFP REAL ESTATE",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "THERAPEUTIC RESEARCH CENTER",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ART ADVISORS LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 104796,
+        "pacs": 0,
+        "individuals": 104796
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 68305,
+        "pacs": 0,
+        "individuals": 68305
+      },
+      {
+        "industry_name": "Professor",
+        "total": 67762,
+        "pacs": 0,
+        "individuals": 67762
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 59836,
+        "pacs": 0,
+        "individuals": 59836
+      },
+      {
+        "industry_name": "Physician",
+        "total": 54140,
+        "pacs": 0,
+        "individuals": 54140
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 51633,
+        "pacs": 0,
+        "individuals": 51633
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 46516,
+        "pacs": 0,
+        "individuals": 46516
+      },
+      {
+        "industry_name": "Manager",
+        "total": 38535,
+        "pacs": 0,
+        "individuals": 38535
+      },
+      {
+        "industry_name": "Executive",
+        "total": 34235,
+        "pacs": 0,
+        "individuals": 34235
+      },
+      {
+        "industry_name": "Software Engineer",
+        "total": 31227,
+        "pacs": 0,
+        "individuals": 31227
+      }
+    ],
+    "totals": {
+      "total_receipts": 4161857,
+      "total_disbursements": 4033616,
+      "total_individual": 3371163,
+      "total_pac": 647987
+    }
+  },
+  "L000606": {
+    "fec_candidate_id": "H4NY16087",
+    "committee_id": "C00859041",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:35:15.290653+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 343976,
+        "pacs": 0,
+        "individuals": 343976
+      },
+      {
+        "org_name": "NULL",
+        "total": 51240,
+        "pacs": 0,
+        "individuals": 51240
+      },
+      {
+        "org_name": "PAUL WEISS",
+        "total": 22630,
+        "pacs": 0,
+        "individuals": 22630
+      },
+      {
+        "org_name": "KIRKLAND & ELLIS",
+        "total": 20250,
+        "pacs": 0,
+        "individuals": 20250
+      },
+      {
+        "org_name": "WESTCHESTER COUNTY",
+        "total": 14981,
+        "pacs": 0,
+        "individuals": 14981
+      },
+      {
+        "org_name": "FREEPOINT COMMODITIES",
+        "total": 14600,
+        "pacs": 0,
+        "individuals": 14600
+      },
+      {
+        "org_name": "KROLL",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "RETTNER BLDG MGMT CORP",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "GRANT & EISENHOFER",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "WARBY PARKER",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "STANDARD INDUSTRIES",
+        "total": 11600,
+        "pacs": 0,
+        "individuals": 11600
+      },
+      {
+        "org_name": "ELEMENT CAPITAL",
+        "total": 11500,
+        "pacs": 0,
+        "individuals": 11500
+      },
+      {
+        "org_name": "LATHAM & WATKINS LLP",
+        "total": 10900,
+        "pacs": 0,
+        "individuals": 10900
+      },
+      {
+        "org_name": "PROFESSIONAL GROUP PLANS",
+        "total": 10500,
+        "pacs": 0,
+        "individuals": 10500
+      },
+      {
+        "org_name": "QUINN EMANUEL",
+        "total": 10400,
+        "pacs": 0,
+        "individuals": 10400
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 562232,
+        "pacs": 0,
+        "individuals": 562232
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 278480,
+        "pacs": 0,
+        "individuals": 278480
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 223963,
+        "pacs": 0,
+        "individuals": 223963
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 163064,
+        "pacs": 0,
+        "individuals": 163064
+      },
+      {
+        "industry_name": "Executive",
+        "total": 146386,
+        "pacs": 0,
+        "individuals": 146386
+      },
+      {
+        "industry_name": "Physician",
+        "total": 131951,
+        "pacs": 0,
+        "individuals": 131951
+      },
+      {
+        "industry_name": "Investor",
+        "total": 112205,
+        "pacs": 0,
+        "individuals": 112205
+      },
+      {
+        "industry_name": "President",
+        "total": 103906,
+        "pacs": 0,
+        "individuals": 103906
+      },
+      {
+        "industry_name": "Finance",
+        "total": 101770,
+        "pacs": 0,
+        "individuals": 101770
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 68915,
+        "pacs": 0,
+        "individuals": 68915
+      }
+    ],
+    "totals": {
+      "total_receipts": 6679191,
+      "total_disbursements": 6486537,
+      "total_individual": 6468157,
+      "total_pac": 210216
+    }
+  },
+  "G000602": {
+    "fec_candidate_id": "H2NY04244",
+    "committee_id": "C00806547",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:35:19.692868+00:00",
+    "top_contributors": [],
+    "top_industries": [],
+    "totals": {
+      "total_receipts": 4,
+      "total_disbursements": 7351,
+      "total_individual": 0,
+      "total_pac": 0
+    }
+  },
+  "S001201": {
+    "fec_candidate_id": "H6NY03247",
+    "committee_id": "C00607200",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:35:28.498234+00:00",
+    "top_contributors": [
+      {
+        "org_name": "PAUL WEISS RIFKIND WHARTON & GARRISON",
+        "total": 100150,
+        "pacs": 0,
+        "individuals": 100150
+      },
+      {
+        "org_name": "GLOBAL INDUSTRIAL",
+        "total": 30200,
+        "pacs": 0,
+        "individuals": 30200
+      },
+      {
+        "org_name": "TEITLER & TEITLER LLP",
+        "total": 20800,
+        "pacs": 0,
+        "individuals": 20800
+      },
+      {
+        "org_name": "GEHRY PARTNERS",
+        "total": 19800,
+        "pacs": 0,
+        "individuals": 19800
+      },
+      {
+        "org_name": "CIAMPA MANAGEMENT",
+        "total": 19800,
+        "pacs": 0,
+        "individuals": 19800
+      },
+      {
+        "org_name": "HERCULES PHARMACEUTICALS",
+        "total": 19800,
+        "pacs": 0,
+        "individuals": 19800
+      },
+      {
+        "org_name": "THE WONDERFUL COMPANY",
+        "total": 19800,
+        "pacs": 0,
+        "individuals": 19800
+      },
+      {
+        "org_name": "BAIN CAPITAL",
+        "total": 19800,
+        "pacs": 0,
+        "individuals": 19800
+      },
+      {
+        "org_name": "STERLINGRISK INSURANCE",
+        "total": 16500,
+        "pacs": 0,
+        "individuals": 16500
+      },
+      {
+        "org_name": "STERLING EQUITIES",
+        "total": 16000,
+        "pacs": 0,
+        "individuals": 16000
+      },
+      {
+        "org_name": "OLIVIA TERIAN ART & DESIGN",
+        "total": 16000,
+        "pacs": 0,
+        "individuals": 16000
+      },
+      {
+        "org_name": "ALBANESE ORGANIZATION, INC.",
+        "total": 15800,
+        "pacs": 0,
+        "individuals": 15800
+      },
+      {
+        "org_name": "HENRY SCHEIN, INC.",
+        "total": 15400,
+        "pacs": 0,
+        "individuals": 15400
+      },
+      {
+        "org_name": "TOTAL ORTHOPEDICS",
+        "total": 13850,
+        "pacs": 0,
+        "individuals": 13850
+      },
+      {
+        "org_name": "RELATED COMPANIES",
+        "total": 13450,
+        "pacs": 0,
+        "individuals": 13450
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 698187,
+        "pacs": 0,
+        "individuals": 698187
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 348892,
+        "pacs": 0,
+        "individuals": 348892
+      },
+      {
+        "industry_name": "Executive",
+        "total": 243000,
+        "pacs": 0,
+        "individuals": 243000
+      },
+      {
+        "industry_name": "President",
+        "total": 218200,
+        "pacs": 0,
+        "individuals": 218200
+      },
+      {
+        "industry_name": "Business Owner",
+        "total": 212002,
+        "pacs": 0,
+        "individuals": 212002
+      },
+      {
+        "industry_name": "Physician",
+        "total": 179075,
+        "pacs": 0,
+        "individuals": 179075
+      },
+      {
+        "industry_name": "Investor",
+        "total": 173325,
+        "pacs": 0,
+        "individuals": 173325
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 132450,
+        "pacs": 0,
+        "individuals": 132450
+      },
+      {
+        "industry_name": "Partner",
+        "total": 127488,
+        "pacs": 0,
+        "individuals": 127488
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 105850,
+        "pacs": 0,
+        "individuals": 105850
+      }
+    ],
+    "totals": {
+      "total_receipts": 9646883,
+      "total_disbursements": 7675778,
+      "total_individual": 7242273,
+      "total_pac": 1863507
+    }
+  },
+  "L000599": {
+    "fec_candidate_id": "H2NY17162",
+    "committee_id": "C00815415",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:35:33.059967+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 276191,
+        "pacs": 0,
+        "individuals": 276191
+      },
+      {
+        "org_name": "UNEMPLOYED",
+        "total": 67687,
+        "pacs": 0,
+        "individuals": 67687
+      },
+      {
+        "org_name": "BLACKSTONE",
+        "total": 30316,
+        "pacs": 0,
+        "individuals": 30316
+      },
+      {
+        "org_name": "NULL",
+        "total": 21372,
+        "pacs": 0,
+        "individuals": 21372
+      },
+      {
+        "org_name": "CEO",
+        "total": 20320,
+        "pacs": 0,
+        "individuals": 20320
+      },
+      {
+        "org_name": "BRODIE GENERATIONAL CAPITAL PARTNERS",
+        "total": 16500,
+        "pacs": 0,
+        "individuals": 16500
+      },
+      {
+        "org_name": "APOLLO GLOBAL MANAGEMENT",
+        "total": 16500,
+        "pacs": 0,
+        "individuals": 16500
+      },
+      {
+        "org_name": "PRESIDENT",
+        "total": 15641,
+        "pacs": 0,
+        "individuals": 15641
+      },
+      {
+        "org_name": "APOLLO",
+        "total": 15600,
+        "pacs": 0,
+        "individuals": 15600
+      },
+      {
+        "org_name": "INVESTMENTS LIMITED",
+        "total": 14651,
+        "pacs": 0,
+        "individuals": 14651
+      },
+      {
+        "org_name": "STARKEY HEARING TECHNOLOGIES",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "NEW MOUNTAIN CAPITAL",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "HALMAR INTERNATIONAL LLC",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "SHAMAH PROPERTIES LLC",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "NYCBS",
+        "total": 12569,
+        "pacs": 0,
+        "individuals": 12569
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Ceo",
+        "total": 340448,
+        "pacs": 0,
+        "individuals": 340448
+      },
+      {
+        "industry_name": "President",
+        "total": 217678,
+        "pacs": 0,
+        "individuals": 217678
+      },
+      {
+        "industry_name": "Owner",
+        "total": 203931,
+        "pacs": 0,
+        "individuals": 203931
+      },
+      {
+        "industry_name": "Executive",
+        "total": 197493,
+        "pacs": 0,
+        "individuals": 197493
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 192696,
+        "pacs": 0,
+        "individuals": 192696
+      },
+      {
+        "industry_name": "Investor",
+        "total": 191740,
+        "pacs": 0,
+        "individuals": 191740
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 112516,
+        "pacs": 0,
+        "individuals": 112516
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 94756,
+        "pacs": 0,
+        "individuals": 94756
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 79788,
+        "pacs": 0,
+        "individuals": 79788
+      },
+      {
+        "industry_name": "Real Estate Broker",
+        "total": 75400,
+        "pacs": 0,
+        "individuals": 75400
+      }
+    ],
+    "totals": {
+      "total_receipts": 8387801,
+      "total_disbursements": 8255791,
+      "total_individual": 3863417,
+      "total_pac": 2326002
+    }
+  },
+  "L000600": {
+    "fec_candidate_id": "H2NY23228",
+    "committee_id": "C00817932",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:35:37.707066+00:00",
+    "top_contributors": [
+      {
+        "org_name": "BLACKSTONE",
+        "total": 25216,
+        "pacs": 0,
+        "individuals": 25216
+      },
+      {
+        "org_name": "CORNING",
+        "total": 15255,
+        "pacs": 0,
+        "individuals": 15255
+      },
+      {
+        "org_name": "FREY ELECTRIC CONSTRUCTION CO.",
+        "total": 13800,
+        "pacs": 0,
+        "individuals": 13800
+      },
+      {
+        "org_name": "CRYSTAL WINDOW AND DOOR SYSTEMS, LTD",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "ST. PAULY TEXTILE",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "NULL",
+        "total": 11975,
+        "pacs": 0,
+        "individuals": 11975
+      },
+      {
+        "org_name": "LIPPES MATHIAS LLP",
+        "total": 10781,
+        "pacs": 0,
+        "individuals": 10781
+      },
+      {
+        "org_name": "NYCBS",
+        "total": 10055,
+        "pacs": 0,
+        "individuals": 10055
+      },
+      {
+        "org_name": "TORREY FARMS",
+        "total": 9100,
+        "pacs": 0,
+        "individuals": 9100
+      },
+      {
+        "org_name": "REGENT",
+        "total": 9100,
+        "pacs": 0,
+        "individuals": 9100
+      },
+      {
+        "org_name": "PHILLIPS LYTLE LLP",
+        "total": 7100,
+        "pacs": 0,
+        "individuals": 7100
+      },
+      {
+        "org_name": "SEALING DEVICES, INC.",
+        "total": 7100,
+        "pacs": 0,
+        "individuals": 7100
+      },
+      {
+        "org_name": "FISCHER INVESTMENT GROUP, INC.",
+        "total": 7100,
+        "pacs": 0,
+        "individuals": 7100
+      },
+      {
+        "org_name": "OTIS EASTERN SERVICE LLC",
+        "total": 7100,
+        "pacs": 0,
+        "individuals": 7100
+      },
+      {
+        "org_name": "STEPHEN DEVELOPMENT",
+        "total": 7000,
+        "pacs": 0,
+        "individuals": 7000
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 57591,
+        "pacs": 0,
+        "individuals": 57591
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 51320,
+        "pacs": 0,
+        "individuals": 51320
+      },
+      {
+        "industry_name": "Owner",
+        "total": 48257,
+        "pacs": 0,
+        "individuals": 48257
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 46226,
+        "pacs": 0,
+        "individuals": 46226
+      },
+      {
+        "industry_name": "President",
+        "total": 33584,
+        "pacs": 0,
+        "individuals": 33584
+      },
+      {
+        "industry_name": "Partner",
+        "total": 27700,
+        "pacs": 0,
+        "individuals": 27700
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 24550,
+        "pacs": 0,
+        "individuals": 24550
+      },
+      {
+        "industry_name": "Executive",
+        "total": 24500,
+        "pacs": 0,
+        "individuals": 24500
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 24450,
+        "pacs": 0,
+        "individuals": 24450
+      },
+      {
+        "industry_name": "Physician",
+        "total": 23530,
+        "pacs": 0,
+        "individuals": 23530
+      }
+    ],
+    "totals": {
+      "total_receipts": 1931075,
+      "total_disbursements": 927737,
+      "total_individual": 889803,
+      "total_pac": 856663
+    }
+  },
+  "G000599": {
+    "fec_candidate_id": "H2NY10308",
+    "committee_id": "C00816660",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:35:46.452777+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 161997,
+        "pacs": 0,
+        "individuals": 161997
+      },
+      {
+        "org_name": "HUESTON HENNIGAN LLP",
+        "total": 24800,
+        "pacs": 0,
+        "individuals": 24800
+      },
+      {
+        "org_name": "BLACKSTONE",
+        "total": 20500,
+        "pacs": 0,
+        "individuals": 20500
+      },
+      {
+        "org_name": "APOLLO GLOBAL MANAGEMENT",
+        "total": 20300,
+        "pacs": 0,
+        "individuals": 20300
+      },
+      {
+        "org_name": "HUESTON HENNIGAN",
+        "total": 20000,
+        "pacs": 0,
+        "individuals": 20000
+      },
+      {
+        "org_name": "PAUL WEISS",
+        "total": 16000,
+        "pacs": 0,
+        "individuals": 16000
+      },
+      {
+        "org_name": "SULLIVAN & CROMWELL",
+        "total": 14000,
+        "pacs": 0,
+        "individuals": 14000
+      },
+      {
+        "org_name": "SIMPSON THACHER & BARTLETT LLP",
+        "total": 13260,
+        "pacs": 0,
+        "individuals": 13260
+      },
+      {
+        "org_name": "RELATED COMPANIES",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "SDG CAPITAL MANAGEMENT",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "OBERLIN COLLEGE",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "TD",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "EASTBANK",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "TA ASSOCIATES",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "POSTAL REALTY",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 314989,
+        "pacs": 0,
+        "individuals": 314989
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 144557,
+        "pacs": 0,
+        "individuals": 144557
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 109350,
+        "pacs": 0,
+        "individuals": 109350
+      },
+      {
+        "industry_name": "Finance",
+        "total": 103585,
+        "pacs": 0,
+        "individuals": 103585
+      },
+      {
+        "industry_name": "Investor",
+        "total": 95650,
+        "pacs": 0,
+        "individuals": 95650
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 80117,
+        "pacs": 0,
+        "individuals": 80117
+      },
+      {
+        "industry_name": "Partner",
+        "total": 72250,
+        "pacs": 0,
+        "individuals": 72250
+      },
+      {
+        "industry_name": "President",
+        "total": 63065,
+        "pacs": 0,
+        "individuals": 63065
+      },
+      {
+        "industry_name": "Executive",
+        "total": 61550,
+        "pacs": 0,
+        "individuals": 61550
+      },
+      {
+        "industry_name": "Founder",
+        "total": 42550,
+        "pacs": 0,
+        "individuals": 42550
+      }
+    ],
+    "totals": {
+      "total_receipts": 3659240,
+      "total_disbursements": 2764329,
+      "total_individual": 2912947,
+      "total_pac": 292193
+    }
+  },
+  "T000478": {
+    "fec_candidate_id": "H4NY22051",
+    "committee_id": "C00632828",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:35:55.394451+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 111905,
+        "pacs": 0,
+        "individuals": 111905
+      },
+      {
+        "org_name": "SELF",
+        "total": 29252,
+        "pacs": 0,
+        "individuals": 29252
+      },
+      {
+        "org_name": "WEXFORD CAPITAL",
+        "total": 13300,
+        "pacs": 0,
+        "individuals": 13300
+      },
+      {
+        "org_name": "HUBBARD BROADCASTING INC.",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "BLUFF POINT ASSOC.",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "POLARIS",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "COINBASE",
+        "total": 8400,
+        "pacs": 0,
+        "individuals": 8400
+      },
+      {
+        "org_name": "MINDSET",
+        "total": 7300,
+        "pacs": 0,
+        "individuals": 7300
+      },
+      {
+        "org_name": "JW CHILDS ASSOCIATES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "R L VALLEE INC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "KENT DISTRIBUTORS INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "FISHER INVESTMENTS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "VALMOR GP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MORNINGSIDE",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ST. PAULY TEXTILE INC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Null",
+        "total": 111955,
+        "pacs": 0,
+        "individuals": 111955
+      },
+      {
+        "industry_name": "President",
+        "total": 61968,
+        "pacs": 0,
+        "individuals": 61968
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 45321,
+        "pacs": 0,
+        "individuals": 45321
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 40722,
+        "pacs": 0,
+        "individuals": 40722
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 35600,
+        "pacs": 0,
+        "individuals": 35600
+      },
+      {
+        "industry_name": "Owner",
+        "total": 26333,
+        "pacs": 0,
+        "individuals": 26333
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 24768,
+        "pacs": 0,
+        "individuals": 24768
+      },
+      {
+        "industry_name": "Executive",
+        "total": 20275,
+        "pacs": 0,
+        "individuals": 20275
+      },
+      {
+        "industry_name": "Investor",
+        "total": 19579,
+        "pacs": 0,
+        "individuals": 19579
+      },
+      {
+        "industry_name": "Engineer",
+        "total": 14442,
+        "pacs": 0,
+        "individuals": 14442
+      }
+    ],
+    "totals": {
+      "total_receipts": 2995402,
+      "total_disbursements": 2700508,
+      "total_individual": 1609727,
+      "total_pac": 1202564
+    }
+  },
+  "N000002": {
+    "fec_candidate_id": "H2NY17071",
+    "committee_id": "C00290825",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:35:59.982105+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 37673,
+        "pacs": 0,
+        "individuals": 37673
+      },
+      {
+        "org_name": "NULL",
+        "total": 14900,
+        "pacs": 0,
+        "individuals": 14900
+      },
+      {
+        "org_name": "STANDARD MOTOR PRODUCTS",
+        "total": 9600,
+        "pacs": 0,
+        "individuals": 9600
+      },
+      {
+        "org_name": "WILMERHALE",
+        "total": 7500,
+        "pacs": 0,
+        "individuals": 7500
+      },
+      {
+        "org_name": "STV",
+        "total": 7000,
+        "pacs": 0,
+        "individuals": 7000
+      },
+      {
+        "org_name": "CUNY",
+        "total": 6910,
+        "pacs": 0,
+        "individuals": 6910
+      },
+      {
+        "org_name": "PROSKAUER ROSE LLP",
+        "total": 6850,
+        "pacs": 0,
+        "individuals": 6850
+      },
+      {
+        "org_name": "PARSONS & WHITTEMORE INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "BLS INVESTMENTS LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "JAY ALIX & ASSOCIATES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "GIBSON DUNN",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "THE RELATED COMPANY",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "WARLAND",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "RXR REALTY LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "NEDERLANDER ORGANIZATION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 75905,
+        "pacs": 0,
+        "individuals": 75905
+      },
+      {
+        "industry_name": "Executive",
+        "total": 28400,
+        "pacs": 0,
+        "individuals": 28400
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 26576,
+        "pacs": 0,
+        "individuals": 26576
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 23816,
+        "pacs": 0,
+        "individuals": 23816
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 22500,
+        "pacs": 0,
+        "individuals": 22500
+      },
+      {
+        "industry_name": "President",
+        "total": 19800,
+        "pacs": 0,
+        "individuals": 19800
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 15200,
+        "pacs": 0,
+        "individuals": 15200
+      },
+      {
+        "industry_name": "Chairman & Ceo",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "industry_name": "Null",
+        "total": 11600,
+        "pacs": 0,
+        "individuals": 11600
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 8200,
+        "pacs": 0,
+        "individuals": 8200
+      }
+    ],
+    "totals": {
+      "total_receipts": 1189675,
+      "total_disbursements": 1009847,
+      "total_individual": 715915,
+      "total_pac": 473380
+    }
+  },
+  "T000486": {
+    "fec_candidate_id": "H0NY15160",
+    "committee_id": "C00699744",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:36:04.750275+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 204558,
+        "pacs": 0,
+        "individuals": 204558
+      },
+      {
+        "org_name": "NULL",
+        "total": 73359,
+        "pacs": 0,
+        "individuals": 73359
+      },
+      {
+        "org_name": "BLACKSTONE",
+        "total": 57150,
+        "pacs": 0,
+        "individuals": 57150
+      },
+      {
+        "org_name": "UNION SQUARE VENTURES",
+        "total": 35400,
+        "pacs": 0,
+        "individuals": 35400
+      },
+      {
+        "org_name": "KIRKLAND & ELLIS LLP",
+        "total": 32250,
+        "pacs": 0,
+        "individuals": 32250
+      },
+      {
+        "org_name": "KKR",
+        "total": 31600,
+        "pacs": 0,
+        "individuals": 31600
+      },
+      {
+        "org_name": "SCHULTE ROTH & ZABEL LLP",
+        "total": 26150,
+        "pacs": 0,
+        "individuals": 26150
+      },
+      {
+        "org_name": "GIBSON DUNN",
+        "total": 24150,
+        "pacs": 0,
+        "individuals": 24150
+      },
+      {
+        "org_name": "CANTOR FITZGERALD",
+        "total": 22100,
+        "pacs": 0,
+        "individuals": 22100
+      },
+      {
+        "org_name": "CHESTNUT HOLDINGS",
+        "total": 21800,
+        "pacs": 0,
+        "individuals": 21800
+      },
+      {
+        "org_name": "UNISWAP LABS",
+        "total": 20600,
+        "pacs": 0,
+        "individuals": 20600
+      },
+      {
+        "org_name": "CENTERVIEW",
+        "total": 20450,
+        "pacs": 0,
+        "individuals": 20450
+      },
+      {
+        "org_name": "COINBASE",
+        "total": 20050,
+        "pacs": 0,
+        "individuals": 20050
+      },
+      {
+        "org_name": "RELATED COMPANIES",
+        "total": 19800,
+        "pacs": 0,
+        "individuals": 19800
+      },
+      {
+        "org_name": "APOLLO GLOBAL MANAGEMENT",
+        "total": 19400,
+        "pacs": 0,
+        "individuals": 19400
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 523008,
+        "pacs": 0,
+        "individuals": 523008
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 416570,
+        "pacs": 0,
+        "individuals": 416570
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 382033,
+        "pacs": 0,
+        "individuals": 382033
+      },
+      {
+        "industry_name": "Finance",
+        "total": 279940,
+        "pacs": 0,
+        "individuals": 279940
+      },
+      {
+        "industry_name": "Investor",
+        "total": 239569,
+        "pacs": 0,
+        "individuals": 239569
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 219451,
+        "pacs": 0,
+        "individuals": 219451
+      },
+      {
+        "industry_name": "Executive",
+        "total": 162850,
+        "pacs": 0,
+        "individuals": 162850
+      },
+      {
+        "industry_name": "President",
+        "total": 142840,
+        "pacs": 0,
+        "individuals": 142840
+      },
+      {
+        "industry_name": "Partner",
+        "total": 107100,
+        "pacs": 0,
+        "individuals": 107100
+      },
+      {
+        "industry_name": "Physician",
+        "total": 83205,
+        "pacs": 0,
+        "individuals": 83205
+      }
+    ],
+    "totals": {
+      "total_receipts": 9208382,
+      "total_disbursements": 1674801,
+      "total_individual": 6102405,
+      "total_pac": 842073
+    }
+  },
+  "M000317": {
+    "fec_candidate_id": "H0NY11078",
+    "committee_id": "C00694778",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:36:09.243586+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 116010,
+        "pacs": 0,
+        "individuals": 116010
+      },
+      {
+        "org_name": "WCAS",
+        "total": 20400,
+        "pacs": 0,
+        "individuals": 20400
+      },
+      {
+        "org_name": "BLACKSTONE",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "APOLLO GLOBAL MANAGEMENT",
+        "total": 11116,
+        "pacs": 0,
+        "individuals": 11116
+      },
+      {
+        "org_name": "GRUSS & CO LLC",
+        "total": 10971,
+        "pacs": 0,
+        "individuals": 10971
+      },
+      {
+        "org_name": "CADDELL DRY DOCK",
+        "total": 10300,
+        "pacs": 0,
+        "individuals": 10300
+      },
+      {
+        "org_name": "NEW MOUNTAIN CAPITAL",
+        "total": 9900,
+        "pacs": 0,
+        "individuals": 9900
+      },
+      {
+        "org_name": "DELPHI PH",
+        "total": 9100,
+        "pacs": 0,
+        "individuals": 9100
+      },
+      {
+        "org_name": "APOLLO",
+        "total": 7966,
+        "pacs": 0,
+        "individuals": 7966
+      },
+      {
+        "org_name": "RV MANAGEMENT",
+        "total": 7600,
+        "pacs": 0,
+        "individuals": 7600
+      },
+      {
+        "org_name": "PAPPAS RESTAURANTS",
+        "total": 6800,
+        "pacs": 0,
+        "individuals": 6800
+      },
+      {
+        "org_name": "TODD STRATEGY GROUP",
+        "total": 6750,
+        "pacs": 0,
+        "individuals": 6750
+      },
+      {
+        "org_name": "SCIAME CONSTRUCTION LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "GALLAGHERS STEAKHOUSE",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CITADEL LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Ceo",
+        "total": 79159,
+        "pacs": 0,
+        "individuals": 79159
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 73275,
+        "pacs": 0,
+        "individuals": 73275
+      },
+      {
+        "industry_name": "Owner",
+        "total": 68956,
+        "pacs": 0,
+        "individuals": 68956
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 59319,
+        "pacs": 0,
+        "individuals": 59319
+      },
+      {
+        "industry_name": "President",
+        "total": 52789,
+        "pacs": 0,
+        "individuals": 52789
+      },
+      {
+        "industry_name": "Executive",
+        "total": 47730,
+        "pacs": 0,
+        "individuals": 47730
+      },
+      {
+        "industry_name": "Partner",
+        "total": 32085,
+        "pacs": 0,
+        "individuals": 32085
+      },
+      {
+        "industry_name": "Investor",
+        "total": 31160,
+        "pacs": 0,
+        "individuals": 31160
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 26235,
+        "pacs": 0,
+        "individuals": 26235
+      },
+      {
+        "industry_name": "Philanthropist",
+        "total": 26185,
+        "pacs": 0,
+        "individuals": 26185
+      }
+    ],
+    "totals": {
+      "total_receipts": 3371724,
+      "total_disbursements": 2075796,
+      "total_individual": 1564360,
+      "total_pac": 1265691
+    }
+  },
+  "G000597": {
+    "fec_candidate_id": "H0NY02234",
+    "committee_id": "C00729954",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:36:13.632057+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 41675,
+        "pacs": 0,
+        "individuals": 41675
+      },
+      {
+        "org_name": "BLACKSTONE",
+        "total": 20866,
+        "pacs": 0,
+        "individuals": 20866
+      },
+      {
+        "org_name": "NULL",
+        "total": 20378,
+        "pacs": 0,
+        "individuals": 20378
+      },
+      {
+        "org_name": "HJ KALIKOW CO LLC",
+        "total": 16600,
+        "pacs": 0,
+        "individuals": 16600
+      },
+      {
+        "org_name": "NEXTERA ENERGY",
+        "total": 15500,
+        "pacs": 0,
+        "individuals": 15500
+      },
+      {
+        "org_name": "MINDSET",
+        "total": 11100,
+        "pacs": 0,
+        "individuals": 11100
+      },
+      {
+        "org_name": "NA",
+        "total": 9900,
+        "pacs": 0,
+        "individuals": 9900
+      },
+      {
+        "org_name": "NEW MOUNTAIN CAPITAL",
+        "total": 9900,
+        "pacs": 0,
+        "individuals": 9900
+      },
+      {
+        "org_name": "APOLLO GLOBAL MANAGEMENT",
+        "total": 9500,
+        "pacs": 0,
+        "individuals": 9500
+      },
+      {
+        "org_name": "S.E. MANAGEMENT CORP.",
+        "total": 9100,
+        "pacs": 0,
+        "individuals": 9100
+      },
+      {
+        "org_name": "UNEMPLOYED",
+        "total": 8050,
+        "pacs": 0,
+        "individuals": 8050
+      },
+      {
+        "org_name": "FIRST LONG ISLAND INVESTORS",
+        "total": 7800,
+        "pacs": 0,
+        "individuals": 7800
+      },
+      {
+        "org_name": "JACKSON FAMILY WINES",
+        "total": 6893,
+        "pacs": 0,
+        "individuals": 6893
+      },
+      {
+        "org_name": "FEDERAL HALL POLICY ADVISORS",
+        "total": 6700,
+        "pacs": 0,
+        "individuals": 6700
+      },
+      {
+        "org_name": "ST. FORTUNE LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Ceo",
+        "total": 130335,
+        "pacs": 0,
+        "individuals": 130335
+      },
+      {
+        "industry_name": "Executive",
+        "total": 66800,
+        "pacs": 0,
+        "individuals": 66800
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 58893,
+        "pacs": 0,
+        "individuals": 58893
+      },
+      {
+        "industry_name": "Owner",
+        "total": 57650,
+        "pacs": 0,
+        "individuals": 57650
+      },
+      {
+        "industry_name": "Partner",
+        "total": 54367,
+        "pacs": 0,
+        "individuals": 54367
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 46350,
+        "pacs": 0,
+        "individuals": 46350
+      },
+      {
+        "industry_name": "President",
+        "total": 42356,
+        "pacs": 0,
+        "individuals": 42356
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 34578,
+        "pacs": 0,
+        "individuals": 34578
+      },
+      {
+        "industry_name": "Investor",
+        "total": 29373,
+        "pacs": 0,
+        "individuals": 29373
+      },
+      {
+        "industry_name": "Finance",
+        "total": 23966,
+        "pacs": 0,
+        "individuals": 23966
+      }
+    ],
+    "totals": {
+      "total_receipts": 3863201,
+      "total_disbursements": 2614677,
+      "total_individual": 1112351,
+      "total_pac": 2110400
+    }
+  },
+  "O000172": {
+    "fec_candidate_id": "H8NY15148",
+    "committee_id": "C00639591",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:36:41.106377+00:00",
+    "top_contributors": [
+      {
+        "org_name": "GOOGLE",
+        "total": 19314,
+        "pacs": 0,
+        "individuals": 19314
+      },
+      {
+        "org_name": "LANCASTER-LEBANON INTERMEDIATE UNIT 13",
+        "total": 7500,
+        "pacs": 0,
+        "individuals": 7500
+      },
+      {
+        "org_name": "MICROSOFT",
+        "total": 6927,
+        "pacs": 0,
+        "individuals": 6927
+      },
+      {
+        "org_name": "RSTUDIO PBC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MCARTHURGLEN",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "COLUMBIA UNIVERSITY",
+        "total": 5796,
+        "pacs": 0,
+        "individuals": 5796
+      },
+      {
+        "org_name": "FACEBOOK",
+        "total": 5473,
+        "pacs": 0,
+        "individuals": 5473
+      },
+      {
+        "org_name": "JAMY PROPERTIES",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      },
+      {
+        "org_name": "CARTA",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      },
+      {
+        "org_name": "HOFSTRA UNIVERSITY",
+        "total": 4830,
+        "pacs": 0,
+        "individuals": 4830
+      },
+      {
+        "org_name": "CLEARY GOTTLIEB STERN & HAMILTON",
+        "total": 4350,
+        "pacs": 0,
+        "individuals": 4350
+      },
+      {
+        "org_name": "APPLE",
+        "total": 4251,
+        "pacs": 0,
+        "individuals": 4251
+      },
+      {
+        "org_name": "STATE OF CALIFORNIA",
+        "total": 4129,
+        "pacs": 0,
+        "individuals": 4129
+      },
+      {
+        "org_name": "INDIGENOUS MEDIA",
+        "total": 4100,
+        "pacs": 0,
+        "individuals": 4100
+      },
+      {
+        "org_name": "UNIVERSITY OF OKLAHOMA",
+        "total": 4096,
+        "pacs": 0,
+        "individuals": 4096
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 126095,
+        "pacs": 0,
+        "individuals": 126095
+      },
+      {
+        "industry_name": "Physician",
+        "total": 114729,
+        "pacs": 0,
+        "individuals": 114729
+      },
+      {
+        "industry_name": "Professor",
+        "total": 97356,
+        "pacs": 0,
+        "individuals": 97356
+      },
+      {
+        "industry_name": "Engineer",
+        "total": 71670,
+        "pacs": 0,
+        "individuals": 71670
+      },
+      {
+        "industry_name": "Software Engineer",
+        "total": 69267,
+        "pacs": 0,
+        "individuals": 69267
+      },
+      {
+        "industry_name": "Teacher",
+        "total": 63329,
+        "pacs": 0,
+        "individuals": 63329
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 46000,
+        "pacs": 0,
+        "individuals": 46000
+      },
+      {
+        "industry_name": "Owner",
+        "total": 44984,
+        "pacs": 0,
+        "individuals": 44984
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 33128,
+        "pacs": 0,
+        "individuals": 33128
+      },
+      {
+        "industry_name": "Manager",
+        "total": 31541,
+        "pacs": 0,
+        "individuals": 31541
+      }
+    ],
+    "totals": {
+      "total_receipts": 15299235,
+      "total_disbursements": 16716492,
+      "total_individual": 14866494,
+      "total_pac": 44882
+    }
+  },
+  "M001206": {
+    "fec_candidate_id": "H8NY25105",
+    "committee_id": "C00675108",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:36:45.468077+00:00",
+    "top_contributors": [
+      {
+        "org_name": "UNIVERSITY OF ROCHESTER",
+        "total": 35515,
+        "pacs": 0,
+        "individuals": 35515
+      },
+      {
+        "org_name": "L3HARRIS TECHNOLOGIES",
+        "total": 20525,
+        "pacs": 0,
+        "individuals": 20525
+      },
+      {
+        "org_name": "OSTROFF ASSOCIATES",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "ROCHESTER REGIONAL HEALTH",
+        "total": 12250,
+        "pacs": 0,
+        "individuals": 12250
+      },
+      {
+        "org_name": "CONSTELLATION BRANDS",
+        "total": 11600,
+        "pacs": 0,
+        "individuals": 11600
+      },
+      {
+        "org_name": "POPLI DESIGN GROUP",
+        "total": 10250,
+        "pacs": 0,
+        "individuals": 10250
+      },
+      {
+        "org_name": "NULL",
+        "total": 8900,
+        "pacs": 0,
+        "individuals": 8900
+      },
+      {
+        "org_name": "BLACKSTONE",
+        "total": 8400,
+        "pacs": 0,
+        "individuals": 8400
+      },
+      {
+        "org_name": "WILMORITE CONSTRUCTION",
+        "total": 8350,
+        "pacs": 0,
+        "individuals": 8350
+      },
+      {
+        "org_name": "STRATEGIC MARKETING INNOVATIONS INC",
+        "total": 7600,
+        "pacs": 0,
+        "individuals": 7600
+      },
+      {
+        "org_name": "LABELLA ASSOCIATES",
+        "total": 7500,
+        "pacs": 0,
+        "individuals": 7500
+      },
+      {
+        "org_name": "EDGEMERE DEVELOPMENT",
+        "total": 7100,
+        "pacs": 0,
+        "individuals": 7100
+      },
+      {
+        "org_name": "UNIVERSITY OF ROCHESTER MEDICAL CENTER",
+        "total": 7000,
+        "pacs": 0,
+        "individuals": 7000
+      },
+      {
+        "org_name": "UMBRELLA",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "THE ASHLEY COMPANIES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "President",
+        "total": 81450,
+        "pacs": 0,
+        "individuals": 81450
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 76941,
+        "pacs": 0,
+        "individuals": 76941
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 68650,
+        "pacs": 0,
+        "individuals": 68650
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 30025,
+        "pacs": 0,
+        "individuals": 30025
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 29600,
+        "pacs": 0,
+        "individuals": 29600
+      },
+      {
+        "industry_name": "Physician",
+        "total": 29325,
+        "pacs": 0,
+        "individuals": 29325
+      },
+      {
+        "industry_name": "Owner",
+        "total": 25250,
+        "pacs": 0,
+        "individuals": 25250
+      },
+      {
+        "industry_name": "Government Relations",
+        "total": 23650,
+        "pacs": 0,
+        "individuals": 23650
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 18950,
+        "pacs": 0,
+        "individuals": 18950
+      },
+      {
+        "industry_name": "Partner",
+        "total": 18505,
+        "pacs": 0,
+        "individuals": 18505
+      }
+    ],
+    "totals": {
+      "total_receipts": 2154064,
+      "total_disbursements": 1826735,
+      "total_individual": 507094,
+      "total_pac": 1167377
+    }
+  },
+  "G000593": {
+    "fec_candidate_id": "H0FL26036",
+    "committee_id": "C00735985",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:38:29.182731+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 40487,
+        "pacs": 0,
+        "individuals": 40487
+      },
+      {
+        "org_name": "UNIVISTA",
+        "total": 16200,
+        "pacs": 0,
+        "individuals": 16200
+      },
+      {
+        "org_name": "TRANSPORTATION AMERICA",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "AEG FUEL",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "DP REAL ESTATE HOLDINGS LLC",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "STARKEY HEARING TECHNOLOGIES",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "INSURANCE NATION",
+        "total": 10025,
+        "pacs": 0,
+        "individuals": 10025
+      },
+      {
+        "org_name": "SUNSHINE GASOLINE DISTRIBUTORS, INC.",
+        "total": 9900,
+        "pacs": 0,
+        "individuals": 9900
+      },
+      {
+        "org_name": "ALLIED UNIVERSAL",
+        "total": 7100,
+        "pacs": 0,
+        "individuals": 7100
+      },
+      {
+        "org_name": "WILLIAMSON AUTOMOTIVE GROUP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "BLUFF POINT ASSOCIATES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MBB AUTO GROUP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "FISHER INVESTMENTS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "BERKOWITZ DEVELOPMENT GROUP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "FIRST TRUST PORTFOLIOS LP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Ceo",
+        "total": 73968,
+        "pacs": 0,
+        "individuals": 73968
+      },
+      {
+        "industry_name": "Executive",
+        "total": 65594,
+        "pacs": 0,
+        "individuals": 65594
+      },
+      {
+        "industry_name": "President",
+        "total": 41171,
+        "pacs": 0,
+        "individuals": 41171
+      },
+      {
+        "industry_name": "Null",
+        "total": 40487,
+        "pacs": 0,
+        "individuals": 40487
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 39945,
+        "pacs": 0,
+        "individuals": 39945
+      },
+      {
+        "industry_name": "Owner",
+        "total": 23206,
+        "pacs": 0,
+        "individuals": 23206
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 21125,
+        "pacs": 0,
+        "individuals": 21125
+      },
+      {
+        "industry_name": "Physician",
+        "total": 18200,
+        "pacs": 0,
+        "individuals": 18200
+      },
+      {
+        "industry_name": "Real Estate Developer",
+        "total": 15600,
+        "pacs": 0,
+        "individuals": 15600
+      },
+      {
+        "industry_name": "Auto Dealer",
+        "total": 10600,
+        "pacs": 0,
+        "individuals": 10600
+      }
+    ],
+    "totals": {
+      "total_receipts": 1127145,
+      "total_disbursements": 1270923,
+      "total_individual": 345944,
+      "total_pac": 344900
+    }
+  },
+  "M001199": {
+    "fec_candidate_id": "H6FL18097",
+    "committee_id": "C00632257",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:38:33.582572+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 236074,
+        "pacs": 0,
+        "individuals": 236074
+      },
+      {
+        "org_name": "EDW C LEVY CO",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "NOBLE PROPERTIES",
+        "total": 7600,
+        "pacs": 0,
+        "individuals": 7600
+      },
+      {
+        "org_name": "EXPEDITED TRAVEL",
+        "total": 7100,
+        "pacs": 0,
+        "individuals": 7100
+      },
+      {
+        "org_name": "INVESTMENTS LIMITED",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "SILGAN HOLDINGS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "THE ROPART GROUP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ATS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MARVEL ENTERTAINMENT",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "DUTY FREE AMERICA",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "HEDRICK BROTHERS CONSTRUCTION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ADVANCED ROOFING INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "LAURA & ISAAC PERLMUTTER FOUNDATION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "EMPIRE WORKFORCE SOLUTIONS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "STREN-FLEX",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Null",
+        "total": 236074,
+        "pacs": 0,
+        "individuals": 236074
+      },
+      {
+        "industry_name": "Executive",
+        "total": 61427,
+        "pacs": 0,
+        "individuals": 61427
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 54208,
+        "pacs": 0,
+        "individuals": 54208
+      },
+      {
+        "industry_name": "Owner",
+        "total": 54150,
+        "pacs": 0,
+        "individuals": 54150
+      },
+      {
+        "industry_name": "President",
+        "total": 46906,
+        "pacs": 0,
+        "individuals": 46906
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 43881,
+        "pacs": 0,
+        "individuals": 43881
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 34408,
+        "pacs": 0,
+        "individuals": 34408
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 20625,
+        "pacs": 0,
+        "individuals": 20625
+      },
+      {
+        "industry_name": "Physician",
+        "total": 20131,
+        "pacs": 0,
+        "individuals": 20131
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 18624,
+        "pacs": 0,
+        "individuals": 18624
+      }
+    ],
+    "totals": {
+      "total_receipts": 3998823,
+      "total_disbursements": 4341119,
+      "total_individual": 3070108,
+      "total_pac": 350250
+    }
+  },
+  "R000609": {
+    "fec_candidate_id": "H6FL04105",
+    "committee_id": "C00615294",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:38:37.980743+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SCIENTIFIC RESEARCH CORPORATION",
+        "total": 7250,
+        "pacs": 0,
+        "individuals": 7250
+      },
+      {
+        "org_name": "ATS COMMUNICATIONS, INC",
+        "total": 7100,
+        "pacs": 0,
+        "individuals": 7100
+      },
+      {
+        "org_name": "RING POWER CORP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "GC LAND DEVELOPEMENT INC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "PUTZKE HORSE FARM LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ANDURIL INDUSTRIES INC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MOMENTUM TRANSPORTATION USA INC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "1A AUTO",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "FRP HOLDINGS, INC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "O'STEEN AUTOMOTIVE GROUP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "GLOBAL MARITEK SYSTEMS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CLEARPATH ACTION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CASSIDY AND ASSOCIATES",
+        "total": 6500,
+        "pacs": 0,
+        "individuals": 6500
+      },
+      {
+        "org_name": "GATE PETROLEUM COMPANY",
+        "total": 6000,
+        "pacs": 0,
+        "individuals": 6000
+      },
+      {
+        "org_name": "CROSS POTOMAC CONSULTING LLC",
+        "total": 5800,
+        "pacs": 0,
+        "individuals": 5800
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Consultant",
+        "total": 36700,
+        "pacs": 0,
+        "individuals": 36700
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 29350,
+        "pacs": 0,
+        "individuals": 29350
+      },
+      {
+        "industry_name": "President",
+        "total": 23617,
+        "pacs": 0,
+        "individuals": 23617
+      },
+      {
+        "industry_name": "Business Owner",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "industry_name": "Vice President",
+        "total": 11500,
+        "pacs": 0,
+        "individuals": 11500
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 10884,
+        "pacs": 0,
+        "individuals": 10884
+      },
+      {
+        "industry_name": "Owner",
+        "total": 9600,
+        "pacs": 0,
+        "individuals": 9600
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 9300,
+        "pacs": 0,
+        "individuals": 9300
+      },
+      {
+        "industry_name": "Government Relations",
+        "total": 8250,
+        "pacs": 0,
+        "individuals": 8250
+      },
+      {
+        "industry_name": "Chairman/President",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "totals": {
+      "total_receipts": 897299,
+      "total_disbursements": 965252,
+      "total_individual": 241077,
+      "total_pac": 588800
+    }
+  },
+  "F000462": {
+    "fec_candidate_id": "H2FL14053",
+    "committee_id": "C00494856",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:38:42.532547+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 82796,
+        "pacs": 0,
+        "individuals": 82796
+      },
+      {
+        "org_name": "RELATED COMPANIES",
+        "total": 10000,
+        "pacs": 0,
+        "individuals": 10000
+      },
+      {
+        "org_name": "SEARCY DENNEY SCAROLA BARNHART & SHIPL",
+        "total": 7600,
+        "pacs": 0,
+        "individuals": 7600
+      },
+      {
+        "org_name": "THE KESSLER GROUP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "PIVOTAL VENTURES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CAPITAL INTERNATIONAL",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "TATE DEVELOPMENT CORPORATION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "FLORIDA CRYSTALS CORPORATION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "RST DEVELOPMENT",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "SOUTHERN GLAZERS WINE & SPIRITS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "PRIVATE INVESTOR",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "GOLDMAN SACHS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "RUTGERS LAW SCHOOL",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "FLORIDA CRYSTALS - OKEELANTA",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MARC BELL CAPITAL",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 72463,
+        "pacs": 0,
+        "individuals": 72463
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 53560,
+        "pacs": 0,
+        "individuals": 53560
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 32730,
+        "pacs": 0,
+        "individuals": 32730
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 26080,
+        "pacs": 0,
+        "individuals": 26080
+      },
+      {
+        "industry_name": "Investor",
+        "total": 24700,
+        "pacs": 0,
+        "individuals": 24700
+      },
+      {
+        "industry_name": "Real Estate Developer",
+        "total": 21800,
+        "pacs": 0,
+        "individuals": 21800
+      },
+      {
+        "industry_name": "Executive",
+        "total": 21608,
+        "pacs": 0,
+        "individuals": 21608
+      },
+      {
+        "industry_name": "President",
+        "total": 21550,
+        "pacs": 0,
+        "individuals": 21550
+      },
+      {
+        "industry_name": "Owner",
+        "total": 13900,
+        "pacs": 0,
+        "individuals": 13900
+      },
+      {
+        "industry_name": "Realtor",
+        "total": 10350,
+        "pacs": 0,
+        "individuals": 10350
+      }
+    ],
+    "totals": {
+      "total_receipts": 1887170,
+      "total_disbursements": 2245556,
+      "total_individual": 1261439,
+      "total_pac": 568363
+    }
+  },
+  "W000797": {
+    "fec_candidate_id": "H4FL20023",
+    "committee_id": "C00385773",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:38:50.184561+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 130655,
+        "pacs": 0,
+        "individuals": 130655
+      },
+      {
+        "org_name": "LEON MEDICAL CENTERS",
+        "total": 21500,
+        "pacs": 0,
+        "individuals": 21500
+      },
+      {
+        "org_name": "NULL",
+        "total": 19500,
+        "pacs": 0,
+        "individuals": 19500
+      },
+      {
+        "org_name": "LEON MANAGEMENT INTERNATIONAL",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "TREMONT PARTNERS",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "THE HAGGARD LAW FIRM",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "LIBRA GROUP",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "BBX CAPITAL",
+        "total": 9900,
+        "pacs": 0,
+        "individuals": 9900
+      },
+      {
+        "org_name": "KELLEY KRONENBERG",
+        "total": 9000,
+        "pacs": 0,
+        "individuals": 9000
+      },
+      {
+        "org_name": "MILLER BARONDESS",
+        "total": 8100,
+        "pacs": 0,
+        "individuals": 8100
+      },
+      {
+        "org_name": "COZEN O'CONNOR",
+        "total": 7850,
+        "pacs": 0,
+        "individuals": 7850
+      },
+      {
+        "org_name": "BECKER",
+        "total": 7600,
+        "pacs": 0,
+        "individuals": 7600
+      },
+      {
+        "org_name": "BERGER SINGERMAN LLP",
+        "total": 7550,
+        "pacs": 0,
+        "individuals": 7550
+      },
+      {
+        "org_name": "BAG INVESTMENTS",
+        "total": 7500,
+        "pacs": 0,
+        "individuals": 7500
+      },
+      {
+        "org_name": "BLUE TIME FISHING TEAM",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 262594,
+        "pacs": 0,
+        "individuals": 262594
+      },
+      {
+        "industry_name": "Not Employed, Retired",
+        "total": 133834,
+        "pacs": 0,
+        "individuals": 133834
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 79067,
+        "pacs": 0,
+        "individuals": 79067
+      },
+      {
+        "industry_name": "President",
+        "total": 77366,
+        "pacs": 0,
+        "individuals": 77366
+      },
+      {
+        "industry_name": "Executive",
+        "total": 67435,
+        "pacs": 0,
+        "individuals": 67435
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 59175,
+        "pacs": 0,
+        "individuals": 59175
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 56100,
+        "pacs": 0,
+        "individuals": 56100
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 45190,
+        "pacs": 0,
+        "individuals": 45190
+      },
+      {
+        "industry_name": "Manager",
+        "total": 30650,
+        "pacs": 0,
+        "individuals": 30650
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 27300,
+        "pacs": 0,
+        "individuals": 27300
+      }
+    ],
+    "totals": {
+      "total_receipts": 2896300,
+      "total_disbursements": 2621370,
+      "total_individual": 2065806,
+      "total_pac": 795500
+    }
+  },
+  "B001314": {
+    "fec_candidate_id": "H2FL04211",
+    "committee_id": "C00816983",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:38:59.085810+00:00",
+    "top_contributors": [
+      {
+        "org_name": "BAPTIST HEALTH",
+        "total": 9500,
+        "pacs": 0,
+        "individuals": 9500
+      },
+      {
+        "org_name": "SHIELD PROPERTIES INC.",
+        "total": 8300,
+        "pacs": 0,
+        "individuals": 8300
+      },
+      {
+        "org_name": "APOLLO GLOBAL MANAGEMENT",
+        "total": 7800,
+        "pacs": 0,
+        "individuals": 7800
+      },
+      {
+        "org_name": "THE MAYERNICK GROUP",
+        "total": 7000,
+        "pacs": 0,
+        "individuals": 7000
+      },
+      {
+        "org_name": "CAROLYN ROWAN COLLECTION LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "AMEILA CAPITAL LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "APOLLO MANAGEMENT",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "DTW RESEARCH INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "RETTNER MANAGEMENT",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "NURSE SOLUTIONS INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "VALLENCOURT CONSTRUCTION INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MATRIX RESOURCES, INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "BLACK'S NATURAL FARMS, LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "TOP LEVEL DESIGN LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "PET PARADISE RESORT",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Owner",
+        "total": 66252,
+        "pacs": 0,
+        "individuals": 66252
+      },
+      {
+        "industry_name": "President",
+        "total": 54750,
+        "pacs": 0,
+        "individuals": 54750
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 45608,
+        "pacs": 0,
+        "individuals": 45608
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 39600,
+        "pacs": 0,
+        "individuals": 39600
+      },
+      {
+        "industry_name": "Executive",
+        "total": 30950,
+        "pacs": 0,
+        "individuals": 30950
+      },
+      {
+        "industry_name": "Vice President",
+        "total": 18450,
+        "pacs": 0,
+        "individuals": 18450
+      },
+      {
+        "industry_name": "Physician",
+        "total": 17450,
+        "pacs": 0,
+        "individuals": 17450
+      },
+      {
+        "industry_name": "Governmental Consultant",
+        "total": 15906,
+        "pacs": 0,
+        "individuals": 15906
+      },
+      {
+        "industry_name": "Government Relations",
+        "total": 13950,
+        "pacs": 0,
+        "individuals": 13950
+      },
+      {
+        "industry_name": "Director",
+        "total": 12200,
+        "pacs": 0,
+        "individuals": 12200
+      }
+    ],
+    "totals": {
+      "total_receipts": 1735978,
+      "total_disbursements": 1352635,
+      "total_individual": 720159,
+      "total_pac": 898500
+    }
+  },
+  "C001127": {
+    "fec_candidate_id": "H8FL20032",
+    "committee_id": "C00677492",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:39:03.444288+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 36025,
+        "pacs": 0,
+        "individuals": 36025
+      },
+      {
+        "org_name": "FIGGERS",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "NULL",
+        "total": 7100,
+        "pacs": 0,
+        "individuals": 7100
+      },
+      {
+        "org_name": "MSC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "HCA FLORIDA HEALTHCARE",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "COMPREHENSIVE HEALTH CENTER",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "GOLDMAN SACHS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CARNIVAL CORPORATION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "HOUSING INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "RADCO",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "KEITH",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "AMERICAN UNIV OF ANTIGUA/MEA",
+        "total": 5800,
+        "pacs": 0,
+        "individuals": 5800
+      },
+      {
+        "org_name": "KING & SPALDING",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      },
+      {
+        "org_name": "GUNSTER STRATEGIES WORLDWIDE",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      },
+      {
+        "org_name": "STIMSON CENTER",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 22589,
+        "pacs": 0,
+        "individuals": 22589
+      },
+      {
+        "industry_name": "Executive",
+        "total": 13900,
+        "pacs": 0,
+        "individuals": 13900
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 13479,
+        "pacs": 0,
+        "individuals": 13479
+      },
+      {
+        "industry_name": "Inventor",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "industry_name": "Doctor",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 12850,
+        "pacs": 0,
+        "individuals": 12850
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 11600,
+        "pacs": 0,
+        "individuals": 11600
+      },
+      {
+        "industry_name": "Physician",
+        "total": 10650,
+        "pacs": 0,
+        "individuals": 10650
+      },
+      {
+        "industry_name": "Philanthropist",
+        "total": 9900,
+        "pacs": 0,
+        "individuals": 9900
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 9150,
+        "pacs": 0,
+        "individuals": 9150
+      }
+    ],
+    "totals": {
+      "total_receipts": 639178,
+      "total_disbursements": 634440,
+      "total_individual": 336126,
+      "total_pac": 295550
+    }
+  },
+  "P000197": {
+    "fec_candidate_id": "H8CA05035",
+    "committee_id": "C00213512",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:39:12.246946+00:00",
+    "top_contributors": [
+      {
+        "org_name": "UNIVERSITY OF CALIFORNIA, SAN FRANCISC",
+        "total": 15606,
+        "pacs": 0,
+        "individuals": 15606
+      },
+      {
+        "org_name": "NULL",
+        "total": 15568,
+        "pacs": 0,
+        "individuals": 15568
+      },
+      {
+        "org_name": "LIEFF CABRASER HEIMANN & BERNSTEIN LLP",
+        "total": 10550,
+        "pacs": 0,
+        "individuals": 10550
+      },
+      {
+        "org_name": "FREEMAN WEBB COMPANY",
+        "total": 9050,
+        "pacs": 0,
+        "individuals": 9050
+      },
+      {
+        "org_name": "KAISER PERMANENTE",
+        "total": 8420,
+        "pacs": 0,
+        "individuals": 8420
+      },
+      {
+        "org_name": "INTELLIGENT COMMUNICATION SYSTEMS",
+        "total": 7025,
+        "pacs": 0,
+        "individuals": 7025
+      },
+      {
+        "org_name": "ANALYSIS GROUP, INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "PIVOTAL VENTURES LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "NEWSWEB CORPORATION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "LIFEYIELD, LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CHILDREN'S RESEARCH AND EDUCATION INST",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "KEKER & VAN NEST LLP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MARTA KAUFFMAN PRODUCTIONS INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "WILLIAMS HART BOUNDAS EASTERBY LLP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "JMB REALTY CORPORATION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 140902,
+        "pacs": 0,
+        "individuals": 140902
+      },
+      {
+        "industry_name": "Physician",
+        "total": 93474,
+        "pacs": 0,
+        "individuals": 93474
+      },
+      {
+        "industry_name": "Professor",
+        "total": 78399,
+        "pacs": 0,
+        "individuals": 78399
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 58502,
+        "pacs": 0,
+        "individuals": 58502
+      },
+      {
+        "industry_name": "Owner",
+        "total": 41260,
+        "pacs": 0,
+        "individuals": 41260
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 37841,
+        "pacs": 0,
+        "individuals": 37841
+      },
+      {
+        "industry_name": "Investor",
+        "total": 35901,
+        "pacs": 0,
+        "individuals": 35901
+      },
+      {
+        "industry_name": "Teacher",
+        "total": 33740,
+        "pacs": 0,
+        "individuals": 33740
+      },
+      {
+        "industry_name": "Engineer",
+        "total": 33448,
+        "pacs": 0,
+        "individuals": 33448
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 31480,
+        "pacs": 0,
+        "individuals": 31480
+      }
+    ],
+    "totals": {
+      "total_receipts": 10223363,
+      "total_disbursements": 11739026,
+      "total_individual": 9554439,
+      "total_pac": 251518
+    }
+  },
+  "W000830": {
+    "fec_candidate_id": "H4CA27111",
+    "committee_id": "C00834028",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:39:16.688035+00:00",
+    "top_contributors": [
+      {
+        "org_name": "HARVARD UNIVERSITY",
+        "total": 31495,
+        "pacs": 0,
+        "individuals": 31495
+      },
+      {
+        "org_name": "GOOGLE LLC",
+        "total": 27766,
+        "pacs": 0,
+        "individuals": 27766
+      },
+      {
+        "org_name": "STANFORD UNIVERSITY",
+        "total": 21437,
+        "pacs": 0,
+        "individuals": 21437
+      },
+      {
+        "org_name": "CALIFORNIA INSTITUTE OF TECHNOLOGY",
+        "total": 19733,
+        "pacs": 0,
+        "individuals": 19733
+      },
+      {
+        "org_name": "MASS GENERAL HOSPITAL",
+        "total": 16400,
+        "pacs": 0,
+        "individuals": 16400
+      },
+      {
+        "org_name": "UNIVERSITY OF CALIFORNIA LOS ANGELES",
+        "total": 16327,
+        "pacs": 0,
+        "individuals": 16327
+      },
+      {
+        "org_name": "CONVECTIVE CAPITAL",
+        "total": 14200,
+        "pacs": 0,
+        "individuals": 14200
+      },
+      {
+        "org_name": "QUINN EMANUEL URQUHART & SULLIVAN LLP",
+        "total": 13700,
+        "pacs": 0,
+        "individuals": 13700
+      },
+      {
+        "org_name": "UNIVERSITY OF CALIFORNIA BERKELEY",
+        "total": 13553,
+        "pacs": 0,
+        "individuals": 13553
+      },
+      {
+        "org_name": "CHARLESBANK CAPITAL PARTNERS",
+        "total": 13300,
+        "pacs": 0,
+        "individuals": 13300
+      },
+      {
+        "org_name": "ALSOP LOUIE PARTNERS",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "WONDER LABS LLC",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "FORESITE CAPITAL MANAGEMENT LLC",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "CHARLES AND LYNN SCHUSTERMAN FAMILY PH",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "JOHNS HOPKINS APPLIED PHYSICS LAB",
+        "total": 10900,
+        "pacs": 0,
+        "individuals": 10900
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 530587,
+        "pacs": 0,
+        "individuals": 530587
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 318401,
+        "pacs": 0,
+        "individuals": 318401
+      },
+      {
+        "industry_name": "President",
+        "total": 139166,
+        "pacs": 0,
+        "individuals": 139166
+      },
+      {
+        "industry_name": "Physician",
+        "total": 130501,
+        "pacs": 0,
+        "individuals": 130501
+      },
+      {
+        "industry_name": "Partner",
+        "total": 114875,
+        "pacs": 0,
+        "individuals": 114875
+      },
+      {
+        "industry_name": "Professor",
+        "total": 112875,
+        "pacs": 0,
+        "individuals": 112875
+      },
+      {
+        "industry_name": "Founder",
+        "total": 106325,
+        "pacs": 0,
+        "individuals": 106325
+      },
+      {
+        "industry_name": "Writer",
+        "total": 102093,
+        "pacs": 0,
+        "individuals": 102093
+      },
+      {
+        "industry_name": "Private Investor",
+        "total": 84635,
+        "pacs": 0,
+        "individuals": 84635
+      },
+      {
+        "industry_name": "Investor",
+        "total": 65210,
+        "pacs": 0,
+        "individuals": 65210
+      }
+    ],
+    "totals": {
+      "total_receipts": 10614137,
+      "total_disbursements": 10287404,
+      "total_individual": 7546688,
+      "total_pac": 692133
+    }
+  },
+  "F000483": {
+    "fec_candidate_id": "H4CA30149",
+    "committee_id": "C00831321",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:39:21.129062+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 16200,
+        "pacs": 0,
+        "individuals": 16200
+      },
+      {
+        "org_name": "CHILDREN'S HOSPITAL LOS ANGELES",
+        "total": 10424,
+        "pacs": 0,
+        "individuals": 10424
+      },
+      {
+        "org_name": "CITY OF LOS ANGELES",
+        "total": 10115,
+        "pacs": 0,
+        "individuals": 10115
+      },
+      {
+        "org_name": "DAKE WILSON ARCHITECTS",
+        "total": 7800,
+        "pacs": 0,
+        "individuals": 7800
+      },
+      {
+        "org_name": "CALIFORNIA STATE UNIVERSITY NORTHRIDGE",
+        "total": 7050,
+        "pacs": 0,
+        "individuals": 7050
+      },
+      {
+        "org_name": "ATLAS ENTERTAINMENT, LLC",
+        "total": 6900,
+        "pacs": 0,
+        "individuals": 6900
+      },
+      {
+        "org_name": "ADEPT",
+        "total": 6800,
+        "pacs": 0,
+        "individuals": 6800
+      },
+      {
+        "org_name": "NORAMAX PRODUCTIONS",
+        "total": 6700,
+        "pacs": 0,
+        "individuals": 6700
+      },
+      {
+        "org_name": "TERASAKI INNOVATION CENTER",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MEBO INTERNATIONAL",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "BUR-CAL MANAGEMENT CORP.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ART ADVISORS, LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "THE AZOFF COMPANY",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "PACIFIC BMW",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "SAFE MED TRANZ, INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 127389,
+        "pacs": 0,
+        "individuals": 127389
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 71375,
+        "pacs": 0,
+        "individuals": 71375
+      },
+      {
+        "industry_name": "Producer",
+        "total": 36233,
+        "pacs": 0,
+        "individuals": 36233
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 27350,
+        "pacs": 0,
+        "individuals": 27350
+      },
+      {
+        "industry_name": "President",
+        "total": 26575,
+        "pacs": 0,
+        "individuals": 26575
+      },
+      {
+        "industry_name": "Physician",
+        "total": 24859,
+        "pacs": 0,
+        "individuals": 24859
+      },
+      {
+        "industry_name": "Architect",
+        "total": 23358,
+        "pacs": 0,
+        "individuals": 23358
+      },
+      {
+        "industry_name": "Writer",
+        "total": 23245,
+        "pacs": 0,
+        "individuals": 23245
+      },
+      {
+        "industry_name": "Professor",
+        "total": 18634,
+        "pacs": 0,
+        "individuals": 18634
+      },
+      {
+        "industry_name": "Null",
+        "total": 16200,
+        "pacs": 0,
+        "individuals": 16200
+      }
+    ],
+    "totals": {
+      "total_receipts": 1835665,
+      "total_disbursements": 1538916,
+      "total_individual": 1519517,
+      "total_pac": 309393
+    }
+  },
+  "M001225": {
+    "fec_candidate_id": "H2CA14162",
+    "committee_id": "C00795005",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:39:34.108618+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 27140,
+        "pacs": 0,
+        "individuals": 27140
+      },
+      {
+        "org_name": "ARTICHOKE JOES",
+        "total": 16500,
+        "pacs": 0,
+        "individuals": 16500
+      },
+      {
+        "org_name": "GILEAD SCIENCES",
+        "total": 9500,
+        "pacs": 0,
+        "individuals": 9500
+      },
+      {
+        "org_name": "PETER J MANDELL MD PC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "SKYKNIGHT CAPITAL",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "FOSTER INTERSTATE MEDIA, INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "COTCHETT, PITRE & MCCARTHY",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "ARTICHOKE JOE'S",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "SUTRO BIOPHARMA, INC.",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "GIBSON DUNN",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "COTCHETT, PITRE & MCCARTHY, LLP",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "WESTBRIDGE CAPITAL",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "CROWELL & MORING LLP",
+        "total": 3153,
+        "pacs": 0,
+        "individuals": 3153
+      },
+      {
+        "org_name": "TESLA ENERGY",
+        "total": 3100,
+        "pacs": 0,
+        "individuals": 3100
+      },
+      {
+        "org_name": "GENENTECH",
+        "total": 2750,
+        "pacs": 0,
+        "individuals": 2750
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Null",
+        "total": 27140,
+        "pacs": 0,
+        "individuals": 27140
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 25055,
+        "pacs": 0,
+        "individuals": 25055
+      },
+      {
+        "industry_name": "President",
+        "total": 13450,
+        "pacs": 0,
+        "individuals": 13450
+      },
+      {
+        "industry_name": "Chief Executive Officer",
+        "total": 12650,
+        "pacs": 0,
+        "individuals": 12650
+      },
+      {
+        "industry_name": "Vice President",
+        "total": 10500,
+        "pacs": 0,
+        "individuals": 10500
+      },
+      {
+        "industry_name": "Managing Partner",
+        "total": 9982,
+        "pacs": 0,
+        "individuals": 9982
+      },
+      {
+        "industry_name": "Owner",
+        "total": 7750,
+        "pacs": 0,
+        "individuals": 7750
+      },
+      {
+        "industry_name": "Partner",
+        "total": 7600,
+        "pacs": 0,
+        "individuals": 7600
+      },
+      {
+        "industry_name": "Orthopedic Surgeon",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "industry_name": "Principal",
+        "total": 5753,
+        "pacs": 0,
+        "individuals": 5753
+      }
+    ],
+    "totals": {
+      "total_receipts": 808090,
+      "total_disbursements": 778853,
+      "total_individual": 328461,
+      "total_pac": 428005
+    }
+  },
+  "O000019": {
+    "fec_candidate_id": "H0CA08135",
+    "committee_id": "C00720078",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:39:45.635069+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 69760,
+        "pacs": 0,
+        "individuals": 69760
+      },
+      {
+        "org_name": "GOOGLE",
+        "total": 17500,
+        "pacs": 0,
+        "individuals": 17500
+      },
+      {
+        "org_name": "CHANDI GROUP USA",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "ROUTE 66 SHOOTING",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "APPLE VALLEY COMMUNICATIONS",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "ESRI",
+        "total": 12400,
+        "pacs": 0,
+        "individuals": 12400
+      },
+      {
+        "org_name": "INNOVATIVE FEDERAL STRATEGIES",
+        "total": 10100,
+        "pacs": 0,
+        "individuals": 10100
+      },
+      {
+        "org_name": "CALYPSO AI CORP",
+        "total": 9900,
+        "pacs": 0,
+        "individuals": 9900
+      },
+      {
+        "org_name": "CIRCLE GREEN INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "FIA INSURANCE SERVICES INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "GWM",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "LONGO CUSTOMS SERVICE",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MILLENNIUM BURGER, INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "101 TECH USA INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "FORGE",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Null",
+        "total": 69760,
+        "pacs": 0,
+        "individuals": 69760
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 56649,
+        "pacs": 0,
+        "individuals": 56649
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 39300,
+        "pacs": 0,
+        "individuals": 39300
+      },
+      {
+        "industry_name": "Owner",
+        "total": 34738,
+        "pacs": 0,
+        "individuals": 34738
+      },
+      {
+        "industry_name": "President",
+        "total": 33250,
+        "pacs": 0,
+        "individuals": 33250
+      },
+      {
+        "industry_name": "Partner",
+        "total": 21320,
+        "pacs": 0,
+        "individuals": 21320
+      },
+      {
+        "industry_name": "Executive",
+        "total": 16366,
+        "pacs": 0,
+        "individuals": 16366
+      },
+      {
+        "industry_name": "Lobbyist",
+        "total": 15550,
+        "pacs": 0,
+        "individuals": 15550
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 14900,
+        "pacs": 0,
+        "individuals": 14900
+      },
+      {
+        "industry_name": "Engineer",
+        "total": 9900,
+        "pacs": 0,
+        "individuals": 9900
+      }
+    ],
+    "totals": {
+      "total_receipts": 1532906,
+      "total_disbursements": 905220,
+      "total_individual": 514607,
+      "total_pac": 985223
+    }
+  },
+  "P000613": {
+    "fec_candidate_id": "H6CA20152",
+    "committee_id": "C00592154",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:40:25.711117+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 19200,
+        "pacs": 0,
+        "individuals": 19200
+      },
+      {
+        "org_name": "NFP",
+        "total": 15500,
+        "pacs": 0,
+        "individuals": 15500
+      },
+      {
+        "org_name": "SELF",
+        "total": 13755,
+        "pacs": 0,
+        "individuals": 13755
+      },
+      {
+        "org_name": "APOLLO GLOBAL MANAGEMENT",
+        "total": 13500,
+        "pacs": 0,
+        "individuals": 13500
+      },
+      {
+        "org_name": "ROCKET CENTRAL",
+        "total": 12000,
+        "pacs": 0,
+        "individuals": 12000
+      },
+      {
+        "org_name": "FOLKTALE WINERY",
+        "total": 7760,
+        "pacs": 0,
+        "individuals": 7760
+      },
+      {
+        "org_name": "FINANCIAL ARCHITECTS PARTNERS",
+        "total": 7500,
+        "pacs": 0,
+        "individuals": 7500
+      },
+      {
+        "org_name": "MORGAN STANLEY",
+        "total": 7300,
+        "pacs": 0,
+        "individuals": 7300
+      },
+      {
+        "org_name": "TARANA WIRELESS",
+        "total": 7000,
+        "pacs": 0,
+        "individuals": 7000
+      },
+      {
+        "org_name": "GREENSKY",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "HARVARD UNIVERSITY",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MALIBU CONFERENCE CENTER",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MONTEREY BAY AQUARIUM",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CORDISH COMPANIES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "PETERSON INST FOR INTERNATIONAL ECONOM",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Ceo",
+        "total": 89090,
+        "pacs": 0,
+        "individuals": 89090
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 73844,
+        "pacs": 0,
+        "individuals": 73844
+      },
+      {
+        "industry_name": "Owner",
+        "total": 65697,
+        "pacs": 0,
+        "individuals": 65697
+      },
+      {
+        "industry_name": "Real Estate Broker",
+        "total": 63100,
+        "pacs": 0,
+        "individuals": 63100
+      },
+      {
+        "industry_name": "President",
+        "total": 57367,
+        "pacs": 0,
+        "individuals": 57367
+      },
+      {
+        "industry_name": "Investor",
+        "total": 42650,
+        "pacs": 0,
+        "individuals": 42650
+      },
+      {
+        "industry_name": "Partner",
+        "total": 35350,
+        "pacs": 0,
+        "individuals": 35350
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 29600,
+        "pacs": 0,
+        "individuals": 29600
+      },
+      {
+        "industry_name": "Farmer",
+        "total": 24300,
+        "pacs": 0,
+        "individuals": 24300
+      },
+      {
+        "industry_name": "Executive",
+        "total": 23397,
+        "pacs": 0,
+        "individuals": 23397
+      }
+    ],
+    "totals": {
+      "total_receipts": 3357555,
+      "total_disbursements": 1823326,
+      "total_individual": 1583704,
+      "total_pac": 1770648
+    }
+  },
+  "A000371": {
+    "fec_candidate_id": "H2CA31125",
+    "committee_id": "C00510461",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:40:30.094946+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 128362,
+        "pacs": 0,
+        "individuals": 128362
+      },
+      {
+        "org_name": "NULL",
+        "total": 108900,
+        "pacs": 0,
+        "individuals": 108900
+      },
+      {
+        "org_name": "WELLS FARGO",
+        "total": 34700,
+        "pacs": 0,
+        "individuals": 34700
+      },
+      {
+        "org_name": "PAUL WEISS RIFKIND WHARTON & GARRISON",
+        "total": 19100,
+        "pacs": 0,
+        "individuals": 19100
+      },
+      {
+        "org_name": "THEGROUP",
+        "total": 16200,
+        "pacs": 0,
+        "individuals": 16200
+      },
+      {
+        "org_name": "GENERAL ATOMICS",
+        "total": 16100,
+        "pacs": 0,
+        "individuals": 16100
+      },
+      {
+        "org_name": "DAVITA",
+        "total": 15500,
+        "pacs": 0,
+        "individuals": 15500
+      },
+      {
+        "org_name": "THE DASCHLE GROUP",
+        "total": 14400,
+        "pacs": 0,
+        "individuals": 14400
+      },
+      {
+        "org_name": "STRATEGIC MARKETING INNOVATIONS",
+        "total": 14100,
+        "pacs": 0,
+        "individuals": 14100
+      },
+      {
+        "org_name": "ESRI",
+        "total": 13400,
+        "pacs": 0,
+        "individuals": 13400
+      },
+      {
+        "org_name": "TELACU",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "GENTEX CORP.",
+        "total": 12600,
+        "pacs": 0,
+        "individuals": 12600
+      },
+      {
+        "org_name": "GENTEX CORPORATION",
+        "total": 12300,
+        "pacs": 0,
+        "individuals": 12300
+      },
+      {
+        "org_name": "NEW WORLD MEDICAL",
+        "total": 11600,
+        "pacs": 0,
+        "individuals": 11600
+      },
+      {
+        "org_name": "GENENTECH",
+        "total": 10850,
+        "pacs": 0,
+        "individuals": 10850
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 221448,
+        "pacs": 0,
+        "individuals": 221448
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 137658,
+        "pacs": 0,
+        "individuals": 137658
+      },
+      {
+        "industry_name": "Null",
+        "total": 108900,
+        "pacs": 0,
+        "individuals": 108900
+      },
+      {
+        "industry_name": "President",
+        "total": 95430,
+        "pacs": 0,
+        "individuals": 95430
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 87501,
+        "pacs": 0,
+        "individuals": 87501
+      },
+      {
+        "industry_name": "Executive",
+        "total": 75800,
+        "pacs": 0,
+        "individuals": 75800
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 69209,
+        "pacs": 0,
+        "individuals": 69209
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 60000,
+        "pacs": 0,
+        "individuals": 60000
+      },
+      {
+        "industry_name": "Physician",
+        "total": 49045,
+        "pacs": 0,
+        "individuals": 49045
+      },
+      {
+        "industry_name": "Founder",
+        "total": 48900,
+        "pacs": 0,
+        "individuals": 48900
+      }
+    ],
+    "totals": {
+      "total_receipts": 5866371,
+      "total_disbursements": 4797056,
+      "total_individual": 2439224,
+      "total_pac": 2514457
+    }
+  },
+  "C001120": {
+    "fec_candidate_id": "H8TX02166",
+    "committee_id": "C00660795",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:40:38.786374+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 228839,
+        "pacs": 0,
+        "individuals": 228839
+      },
+      {
+        "org_name": "SELF",
+        "total": 105305,
+        "pacs": 0,
+        "individuals": 105305
+      },
+      {
+        "org_name": "CAMDEN PROPERTY TRUST",
+        "total": 19800,
+        "pacs": 0,
+        "individuals": 19800
+      },
+      {
+        "org_name": "MCCORD DEVELOPMENT",
+        "total": 16500,
+        "pacs": 0,
+        "individuals": 16500
+      },
+      {
+        "org_name": "RIDA DEVELOPMENT",
+        "total": 15700,
+        "pacs": 0,
+        "individuals": 15700
+      },
+      {
+        "org_name": "ADVANCED HEALTH CARE",
+        "total": 14241,
+        "pacs": 0,
+        "individuals": 14241
+      },
+      {
+        "org_name": "CUSMANO REAL ESTATE",
+        "total": 13350,
+        "pacs": 0,
+        "individuals": 13350
+      },
+      {
+        "org_name": "RIVER OAKS DONUTS",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "TAILWATER CAPITAL",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "TRANS TECHNOLOGY PTE LTD",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "GREAT POINT PARTNERS",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "CROW HOLDINGS DEVELOPMENT",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "MARATHON OIL CORP",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "TTS ADVISORS PTE LTD",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "COORDINATES OPERATIONS",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Null",
+        "total": 227804,
+        "pacs": 0,
+        "individuals": 227804
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 153920,
+        "pacs": 0,
+        "individuals": 153920
+      },
+      {
+        "industry_name": "President",
+        "total": 134018,
+        "pacs": 0,
+        "individuals": 134018
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 118674,
+        "pacs": 0,
+        "individuals": 118674
+      },
+      {
+        "industry_name": "Executive",
+        "total": 87959,
+        "pacs": 0,
+        "individuals": 87959
+      },
+      {
+        "industry_name": "Owner",
+        "total": 62528,
+        "pacs": 0,
+        "individuals": 62528
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 47678,
+        "pacs": 0,
+        "individuals": 47678
+      },
+      {
+        "industry_name": "Investor",
+        "total": 42970,
+        "pacs": 0,
+        "individuals": 42970
+      },
+      {
+        "industry_name": "Physician",
+        "total": 42017,
+        "pacs": 0,
+        "individuals": 42017
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 39645,
+        "pacs": 0,
+        "individuals": 39645
+      }
+    ],
+    "totals": {
+      "total_receipts": 4138444,
+      "total_disbursements": 4806581,
+      "total_individual": 2749760,
+      "total_pac": 840946
+    }
+  },
+  "J000310": {
+    "fec_candidate_id": "H4TX19334",
+    "committee_id": "C00884585",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:40:43.255642+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 161,
+        "pacs": 0,
+        "individuals": 161
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Null",
+        "total": 161,
+        "pacs": 0,
+        "individuals": 161
+      }
+    ],
+    "totals": {
+      "total_receipts": 6455,
+      "total_disbursements": 6545,
+      "total_individual": 897,
+      "total_pac": 0
+    }
+  },
+  "G000603": {
+    "fec_candidate_id": "H4TX26149",
+    "committee_id": "C00857359",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:40:51.371299+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 82288,
+        "pacs": 0,
+        "individuals": 82288
+      },
+      {
+        "org_name": "ENTREPRENEUR",
+        "total": 21308,
+        "pacs": 0,
+        "individuals": 21308
+      },
+      {
+        "org_name": "DSOUZA MEDIA",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "WESTERN COMMERCE GROUP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "STANTON LLP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CHRISTIAN UNION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "PS LOGISTICS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "JAIN CHANDRA TAX ADVISORS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CREATIVE SOLUTIONS IN HEALTHCARE",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "DELTA AIR LINES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "NOBLE PRODUCTIONS INC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "LEXINGTON MANAGEMENT",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "BENCHMARK MORTGAGE",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ASHFORD INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "BASTE RECORDS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Null",
+        "total": 82021,
+        "pacs": 0,
+        "individuals": 82021
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 44178,
+        "pacs": 0,
+        "individuals": 44178
+      },
+      {
+        "industry_name": "Executive",
+        "total": 29649,
+        "pacs": 0,
+        "individuals": 29649
+      },
+      {
+        "industry_name": "President",
+        "total": 28104,
+        "pacs": 0,
+        "individuals": 28104
+      },
+      {
+        "industry_name": "Entrepreneur",
+        "total": 21308,
+        "pacs": 0,
+        "individuals": 21308
+      },
+      {
+        "industry_name": "Partner",
+        "total": 15548,
+        "pacs": 0,
+        "individuals": 15548
+      },
+      {
+        "industry_name": "Owner",
+        "total": 12851,
+        "pacs": 0,
+        "individuals": 12851
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 12484,
+        "pacs": 0,
+        "individuals": 12484
+      },
+      {
+        "industry_name": "Investor",
+        "total": 11100,
+        "pacs": 0,
+        "individuals": 11100
+      },
+      {
+        "industry_name": "Physician",
+        "total": 10071,
+        "pacs": 0,
+        "individuals": 10071
+      }
+    ],
+    "totals": {
+      "total_receipts": 1779342,
+      "total_disbursements": 1651519,
+      "total_individual": 899780,
+      "total_pac": 268752
+    }
+  },
+  "G000601": {
+    "fec_candidate_id": "H4TX12065",
+    "committee_id": "C00855528",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:40:56.103339+00:00",
+    "top_contributors": [
+      {
+        "org_name": "LOCKHEED MARTIN",
+        "total": 33821,
+        "pacs": 0,
+        "individuals": 33821
+      },
+      {
+        "org_name": "LMBILP",
+        "total": 26400,
+        "pacs": 0,
+        "individuals": 26400
+      },
+      {
+        "org_name": "KELLY HART",
+        "total": 26100,
+        "pacs": 0,
+        "individuals": 26100
+      },
+      {
+        "org_name": "DOUBLE EAGLE ENERGY",
+        "total": 23600,
+        "pacs": 0,
+        "individuals": 23600
+      },
+      {
+        "org_name": "HILLWOOD",
+        "total": 20700,
+        "pacs": 0,
+        "individuals": 20700
+      },
+      {
+        "org_name": "WESTERN COMMERCE GROUP",
+        "total": 19800,
+        "pacs": 0,
+        "individuals": 19800
+      },
+      {
+        "org_name": "GRADE WATER AND POWER",
+        "total": 16500,
+        "pacs": 0,
+        "individuals": 16500
+      },
+      {
+        "org_name": "REPUBLIC NATIONAL DISTRIBUTION",
+        "total": 15000,
+        "pacs": 0,
+        "individuals": 15000
+      },
+      {
+        "org_name": "SCOTT CARTER",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "R&K DISTRIBUTORS",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "PEGASUS RESOURCES",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "CAPITAL GROUP",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "US GROWTH FUNDS",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "WELLTOWER",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "SILVER EAGLE BEVERAGES",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Ceo",
+        "total": 224383,
+        "pacs": 0,
+        "individuals": 224383
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 134873,
+        "pacs": 0,
+        "individuals": 134873
+      },
+      {
+        "industry_name": "President",
+        "total": 112800,
+        "pacs": 0,
+        "individuals": 112800
+      },
+      {
+        "industry_name": "Investments",
+        "total": 90100,
+        "pacs": 0,
+        "individuals": 90100
+      },
+      {
+        "industry_name": "Chairman",
+        "total": 89100,
+        "pacs": 0,
+        "individuals": 89100
+      },
+      {
+        "industry_name": "Owner",
+        "total": 80283,
+        "pacs": 0,
+        "individuals": 80283
+      },
+      {
+        "industry_name": "Partner",
+        "total": 79450,
+        "pacs": 0,
+        "individuals": 79450
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 58900,
+        "pacs": 0,
+        "individuals": 58900
+      },
+      {
+        "industry_name": "Investor",
+        "total": 38350,
+        "pacs": 0,
+        "individuals": 38350
+      },
+      {
+        "industry_name": "Engineer",
+        "total": 30750,
+        "pacs": 0,
+        "individuals": 30750
+      }
+    ],
+    "totals": {
+      "total_receipts": 3196797,
+      "total_disbursements": 2660901,
+      "total_individual": 2308291,
+      "total_pac": 615419
+    }
+  },
+  "M001224": {
+    "fec_candidate_id": "H2TX01112",
+    "committee_id": "C00796086",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:41:04.901257+00:00",
+    "top_contributors": [
+      {
+        "org_name": "NULL",
+        "total": 50200,
+        "pacs": 0,
+        "individuals": 50200
+      },
+      {
+        "org_name": "SELF",
+        "total": 28950,
+        "pacs": 0,
+        "individuals": 28950
+      },
+      {
+        "org_name": "DRAKE",
+        "total": 13200,
+        "pacs": 0,
+        "individuals": 13200
+      },
+      {
+        "org_name": "LEDWELL & SONS ENTERPRISES, INC.",
+        "total": 9900,
+        "pacs": 0,
+        "individuals": 9900
+      },
+      {
+        "org_name": "PELTIER AUTO GROUP",
+        "total": 9500,
+        "pacs": 0,
+        "individuals": 9500
+      },
+      {
+        "org_name": "CITIZENS 1ST BANK",
+        "total": 7100,
+        "pacs": 0,
+        "individuals": 7100
+      },
+      {
+        "org_name": "THE BROOK HILL SCHOOL, INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ENERGY WELD FAB",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "AE SHULL & COMPANY",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MORAN'S REFRESHMENTS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "COMMUNITY VOLUNTEER",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "PELTIER KIA",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MARTIN MIDSTREAM PARTNERS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "HRG",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "NIX CONTRUCTION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 48525,
+        "pacs": 0,
+        "individuals": 48525
+      },
+      {
+        "industry_name": "Null",
+        "total": 44700,
+        "pacs": 0,
+        "individuals": 44700
+      },
+      {
+        "industry_name": "Owner",
+        "total": 40405,
+        "pacs": 0,
+        "individuals": 40405
+      },
+      {
+        "industry_name": "President",
+        "total": 34700,
+        "pacs": 0,
+        "individuals": 34700
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 30050,
+        "pacs": 0,
+        "individuals": 30050
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 22550,
+        "pacs": 0,
+        "individuals": 22550
+      },
+      {
+        "industry_name": "Vice President",
+        "total": 13850,
+        "pacs": 0,
+        "individuals": 13850
+      },
+      {
+        "industry_name": "Self",
+        "total": 10300,
+        "pacs": 0,
+        "individuals": 10300
+      },
+      {
+        "industry_name": "Banker",
+        "total": 9750,
+        "pacs": 0,
+        "individuals": 9750
+      },
+      {
+        "industry_name": "Bank President",
+        "total": 7100,
+        "pacs": 0,
+        "individuals": 7100
+      }
+    ],
+    "totals": {
+      "total_receipts": 1084376,
+      "total_disbursements": 822175,
+      "total_individual": 323316,
+      "total_pac": 355200
+    }
+  },
+  "L000603": {
+    "fec_candidate_id": "H2TX08182",
+    "committee_id": "C00781112",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:41:09.297635+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 71958,
+        "pacs": 0,
+        "individuals": 71958
+      },
+      {
+        "org_name": "NULL",
+        "total": 63345,
+        "pacs": 0,
+        "individuals": 63345
+      },
+      {
+        "org_name": "STEELY LUMBER",
+        "total": 11600,
+        "pacs": 0,
+        "individuals": 11600
+      },
+      {
+        "org_name": "ALLIANT",
+        "total": 7600,
+        "pacs": 0,
+        "individuals": 7600
+      },
+      {
+        "org_name": "EXCELERATE ENERGY",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "DCVC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "VACATIONS TO GO INC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CASEY EQUIPMENT",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "STEELCREEK MANAGEMENT LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "COLONY RIDGE",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "STOECKER CORPORATION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CITADEL LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ANDURIL INDUSTRIES INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "BRENTWOOD PUBLIC AFFAIRS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "JOE'S PIZZA AND PASTA",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Null",
+        "total": 63345,
+        "pacs": 0,
+        "individuals": 63345
+      },
+      {
+        "industry_name": "President",
+        "total": 49341,
+        "pacs": 0,
+        "individuals": 49341
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 47351,
+        "pacs": 0,
+        "individuals": 47351
+      },
+      {
+        "industry_name": "Owner",
+        "total": 45960,
+        "pacs": 0,
+        "individuals": 45960
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 24238,
+        "pacs": 0,
+        "individuals": 24238
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 18240,
+        "pacs": 0,
+        "individuals": 18240
+      },
+      {
+        "industry_name": "Physician",
+        "total": 11465,
+        "pacs": 0,
+        "individuals": 11465
+      },
+      {
+        "industry_name": "Manager",
+        "total": 11200,
+        "pacs": 0,
+        "individuals": 11200
+      },
+      {
+        "industry_name": "Oil And Gas",
+        "total": 10900,
+        "pacs": 0,
+        "individuals": 10900
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 10590,
+        "pacs": 0,
+        "individuals": 10590
+      }
+    ],
+    "totals": {
+      "total_receipts": 1868399,
+      "total_disbursements": 1429651,
+      "total_individual": 1152415,
+      "total_pac": 356105
+    }
+  },
+  "C001130": {
+    "fec_candidate_id": "H2TX30178",
+    "committee_id": "C00795450",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:41:22.426035+00:00",
+    "top_contributors": [
+      {
+        "org_name": "DHR HEALTH",
+        "total": 14500,
+        "pacs": 0,
+        "individuals": 14500
+      },
+      {
+        "org_name": "MILLER WEISBROD OLESKY",
+        "total": 7750,
+        "pacs": 0,
+        "individuals": 7750
+      },
+      {
+        "org_name": "PIVOTAL VENTURES",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "HAMILTON WINGO LLP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "WINKLEVOSS CAPITAL MANAGEMENT",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MATTHEWS SOUTHWEST",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MED NURSE RESEARCH LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "THE PITTMAN LAW FIRM PC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "COINBASE",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "BARON & BLUE LLP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MORGAN & WEISBROD LLP",
+        "total": 4400,
+        "pacs": 0,
+        "individuals": 4400
+      },
+      {
+        "org_name": "NULL",
+        "total": 4300,
+        "pacs": 0,
+        "individuals": 4300
+      },
+      {
+        "org_name": "BROADFIN CAPITAL",
+        "total": 4300,
+        "pacs": 0,
+        "individuals": 4300
+      },
+      {
+        "org_name": "TCS INDUSTRIES",
+        "total": 4300,
+        "pacs": 0,
+        "individuals": 4300
+      },
+      {
+        "org_name": "KAI ENTERPRISES",
+        "total": 4000,
+        "pacs": 0,
+        "individuals": 4000
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 170984,
+        "pacs": 0,
+        "individuals": 170984
+      },
+      {
+        "industry_name": "Physician",
+        "total": 34576,
+        "pacs": 0,
+        "individuals": 34576
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 27825,
+        "pacs": 0,
+        "individuals": 27825
+      },
+      {
+        "industry_name": "Founder",
+        "total": 18575,
+        "pacs": 0,
+        "individuals": 18575
+      },
+      {
+        "industry_name": "President",
+        "total": 17850,
+        "pacs": 0,
+        "individuals": 17850
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 17665,
+        "pacs": 0,
+        "individuals": 17665
+      },
+      {
+        "industry_name": "Government Relations",
+        "total": 12400,
+        "pacs": 0,
+        "individuals": 12400
+      },
+      {
+        "industry_name": "Producer",
+        "total": 10630,
+        "pacs": 0,
+        "individuals": 10630
+      },
+      {
+        "industry_name": "Owner",
+        "total": 9205,
+        "pacs": 0,
+        "individuals": 9205
+      },
+      {
+        "industry_name": "Partner",
+        "total": 7800,
+        "pacs": 0,
+        "individuals": 7800
+      }
+    ],
+    "totals": {
+      "total_receipts": 3114949,
+      "total_disbursements": 1656565,
+      "total_individual": 2341746,
+      "total_pac": 719354
+    }
+  },
+  "C001131": {
+    "fec_candidate_id": "H4TX29044",
+    "committee_id": "C00859843",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:41:26.785638+00:00",
+    "top_contributors": [],
+    "top_industries": [],
+    "totals": {}
+  },
+  "G000553": {
+    "fec_candidate_id": "H4TX09095",
+    "committee_id": "C00578567",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:41:35.558688+00:00",
+    "top_contributors": [
+      {
+        "org_name": "GREATLAND LIVING",
+        "total": 6300,
+        "pacs": 0,
+        "individuals": 6300
+      },
+      {
+        "org_name": "NULL",
+        "total": 6000,
+        "pacs": 0,
+        "individuals": 6000
+      },
+      {
+        "org_name": "SOUTHERN NEWS GROUP",
+        "total": 5450,
+        "pacs": 0,
+        "individuals": 5450
+      },
+      {
+        "org_name": "TOKYO GARDENS CATERING",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      },
+      {
+        "org_name": "Y&K REAL ESTATE",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      },
+      {
+        "org_name": "YIDA INTERNATIONAL TRADING LLC",
+        "total": 4000,
+        "pacs": 0,
+        "individuals": 4000
+      },
+      {
+        "org_name": "SOUTHWEST REALTY GROUP",
+        "total": 3500,
+        "pacs": 0,
+        "individuals": 3500
+      },
+      {
+        "org_name": "UTSW",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "SEHC",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "BESTWAY OILFIELD",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "ALLIANTGROUP",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "HCA HEATHCARE",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "APEX GROUP",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "US INSURANCE FUNDINGS",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      },
+      {
+        "org_name": "HCA",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Physician",
+        "total": 24250,
+        "pacs": 0,
+        "individuals": 24250
+      },
+      {
+        "industry_name": "President",
+        "total": 19550,
+        "pacs": 0,
+        "individuals": 19550
+      },
+      {
+        "industry_name": "Owner",
+        "total": 14250,
+        "pacs": 0,
+        "individuals": 14250
+      },
+      {
+        "industry_name": "Realtor",
+        "total": 13300,
+        "pacs": 0,
+        "individuals": 13300
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 11500,
+        "pacs": 0,
+        "individuals": 11500
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 11100,
+        "pacs": 0,
+        "individuals": 11100
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 8660,
+        "pacs": 0,
+        "individuals": 8660
+      },
+      {
+        "industry_name": "Real Estate Developer",
+        "total": 6500,
+        "pacs": 0,
+        "individuals": 6500
+      },
+      {
+        "industry_name": "Null",
+        "total": 6000,
+        "pacs": 0,
+        "individuals": 6000
+      },
+      {
+        "industry_name": "Government Relations",
+        "total": 6000,
+        "pacs": 0,
+        "individuals": 6000
+      }
+    ],
+    "totals": {
+      "total_receipts": 392514,
+      "total_disbursements": 439824,
+      "total_individual": 217887,
+      "total_pac": 174514
+    }
+  },
+  "D000399": {
+    "fec_candidate_id": "H4TX10028",
+    "committee_id": "C00286500",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:41:39.990953+00:00",
+    "top_contributors": [
+      {
+        "org_name": "UT AUSTIN",
+        "total": 10690,
+        "pacs": 0,
+        "individuals": 10690
+      },
+      {
+        "org_name": "SELF",
+        "total": 9360,
+        "pacs": 0,
+        "individuals": 9360
+      },
+      {
+        "org_name": "DCP360",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "HENDLER FLORES LAW, PLLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "HEARD & SMITH, L.L.P.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "KIND LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ZYDECO DEVELOPMENT",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ANGELOUECONOMICS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CESIUMASTRO, INC.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "HILLCO PARTNERS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "BROPHY & DEVANEY, PLLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ASIAN AMERICAN CULTURAL CENTER",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "MCELROY, SULLIVAN, MILLER, & WEBER LLP",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "KING & SPALDING",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "SEIDEL LAW FIRM PC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 94315,
+        "pacs": 0,
+        "individuals": 94315
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 35037,
+        "pacs": 0,
+        "individuals": 35037
+      },
+      {
+        "industry_name": "Executive",
+        "total": 26700,
+        "pacs": 0,
+        "individuals": 26700
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 23634,
+        "pacs": 0,
+        "individuals": 23634
+      },
+      {
+        "industry_name": "Investor",
+        "total": 13100,
+        "pacs": 0,
+        "individuals": 13100
+      },
+      {
+        "industry_name": "Business Owner",
+        "total": 12900,
+        "pacs": 0,
+        "individuals": 12900
+      },
+      {
+        "industry_name": "Lawyer",
+        "total": 11150,
+        "pacs": 0,
+        "individuals": 11150
+      },
+      {
+        "industry_name": "President",
+        "total": 10450,
+        "pacs": 0,
+        "individuals": 10450
+      },
+      {
+        "industry_name": "Physician",
+        "total": 10354,
+        "pacs": 0,
+        "individuals": 10354
+      },
+      {
+        "industry_name": "Director",
+        "total": 9200,
+        "pacs": 0,
+        "individuals": 9200
+      }
+    ],
+    "totals": {
+      "total_receipts": 1541302,
+      "total_disbursements": 625765,
+      "total_individual": 677058,
+      "total_pac": 450449
+    }
+  },
+  "E000071": {
+    "fec_candidate_id": "H8TX06266",
+    "committee_id": "C00770438",
+    "cycle": "2024",
+    "last_updated": "2026-03-19T19:41:44.552403+00:00",
+    "top_contributors": [
+      {
+        "org_name": "SELF",
+        "total": 216276,
+        "pacs": 0,
+        "individuals": 216276
+      },
+      {
+        "org_name": "NULL",
+        "total": 136416,
+        "pacs": 0,
+        "individuals": 136416
+      },
+      {
+        "org_name": "SITE DEVELOPMENT",
+        "total": 11888,
+        "pacs": 0,
+        "individuals": 11888
+      },
+      {
+        "org_name": "VICTORY CHURCH",
+        "total": 6798,
+        "pacs": 0,
+        "individuals": 6798
+      },
+      {
+        "org_name": "OIL CITY IRON WORKS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "LEBOEUF CONSTRUCTION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "HOUSING INC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ANTINA CATTLE CO",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "EXIGER",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "ASSOCIA",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CHARLES SCHWAB CORPORATION",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "REAL ESTATE DEVELOPER",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CITADEL LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CUMBERLAND DEVELOPMENT",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "DANIEL W. BUNN",
+        "total": 6356,
+        "pacs": 0,
+        "individuals": 6356
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Null",
+        "total": 133464,
+        "pacs": 0,
+        "individuals": 133464
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 70929,
+        "pacs": 0,
+        "individuals": 70929
+      },
+      {
+        "industry_name": "President",
+        "total": 43969,
+        "pacs": 0,
+        "individuals": 43969
+      },
+      {
+        "industry_name": "Executive",
+        "total": 37733,
+        "pacs": 0,
+        "individuals": 37733
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 37241,
+        "pacs": 0,
+        "individuals": 37241
+      },
+      {
+        "industry_name": "Attorney",
+        "total": 36015,
+        "pacs": 0,
+        "individuals": 36015
+      },
+      {
+        "industry_name": "Physician",
+        "total": 33601,
+        "pacs": 0,
+        "individuals": 33601
+      },
+      {
+        "industry_name": "Owner",
+        "total": 29395,
+        "pacs": 0,
+        "individuals": 29395
+      },
+      {
+        "industry_name": "Real Estate",
+        "total": 26848,
+        "pacs": 0,
+        "individuals": 26848
+      },
+      {
+        "industry_name": "Sales",
+        "total": 24221,
+        "pacs": 0,
+        "individuals": 24221
+      }
+    ],
+    "totals": {
+      "total_receipts": 6899715,
+      "total_disbursements": 6401941,
+      "total_individual": 5190701,
+      "total_pac": 729414
+    }
+  }
+}

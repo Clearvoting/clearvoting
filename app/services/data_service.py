@@ -9,6 +9,7 @@ class DataService:
         self._bills: list[dict] = []
         self._ai_summaries: dict[str, dict] = {}
         self._member_summaries: dict[str, dict] = {}
+        self._donations: dict[str, dict] = {}
         self._metadata: dict = {}
         self._load()
 
@@ -17,6 +18,7 @@ class DataService:
         self._bills = self._read_json("bills.json").get("bills", [])
         self._ai_summaries = self._read_json("ai_summaries.json")
         self._member_summaries = self._read_json("member_summaries.json")
+        self._donations = self._read_json("donations.json")
         metadata_path = self.data_dir / "sync_metadata.json"
         if metadata_path.exists():
             self._metadata = self._read_json("sync_metadata.json")
@@ -54,7 +56,19 @@ class DataService:
         if not path.exists():
             return None
         with open(path, "r") as f:
-            return json.load(f)
+            data = json.load(f)
+
+        # Enrich each vote with simplified issue_categories from AI summaries
+        categories_set: set[str] = set()
+        for vote in data.get("votes", []):
+            bill_id = vote.get("bill_id", "")
+            summary = self._ai_summaries.get(bill_id, {})
+            cats = summary.get("issue_categories", [])
+            vote["issue_categories"] = cats
+            categories_set.update(cats)
+
+        data["categories"] = sorted(categories_set)
+        return data
 
     def get_member_vote_summary(self, bioguide_id: str) -> dict | None:
         data = self.get_member_votes(bioguide_id)
@@ -194,6 +208,10 @@ class DataService:
         if not senate_votes and not house_votes:
             return None
         return {"senate": senate_votes, "house": house_votes}
+
+    def get_member_donations(self, bioguide_id: str) -> dict | None:
+        bioguide_id = bioguide_id.upper()
+        return self._donations.get(bioguide_id)
 
     def get_sync_metadata(self) -> dict:
         return self._metadata
