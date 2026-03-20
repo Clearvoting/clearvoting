@@ -1584,18 +1584,25 @@ async def sync_donations(
     for member in to_sync:
         bioguide = member.get("bioguideId", "").upper()
         name_raw = member.get("name", "")
-        # Members data has "Last, First" format — extract last name
-        last_name = name_raw.split(",")[0].strip() if "," in name_raw else name_raw
+        # Members data has "Last, First M." format — extract name without middle initial
+        parts = name_raw.split(",")
+        last_name = parts[0].strip()
+        first_name_raw = parts[1].strip() if len(parts) > 1 else ""
+        first_name = first_name_raw.split()[0] if first_name_raw else ""
+        full_name = f"{last_name}, {first_name}" if first_name else last_name
         state = member.get("stateCode", "")
         chamber = member.get("chamber", "")
         office = "S" if chamber == "Senate" else "H" if chamber == "House" else ""
 
         try:
-            # Step 1: Find candidate in FEC
+            # Step 1: Find candidate in FEC (full name, fallback to last name for nicknames)
             await asyncio.sleep(rate_limit)
-            candidate = await client.search_candidate(last_name, state, office)
+            candidate = await client.search_candidate(full_name, state, office)
+            if not candidate and first_name:
+                await asyncio.sleep(rate_limit)
+                candidate = await client.search_candidate(last_name, state, office)
             if not candidate:
-                print(f"    {last_name} ({state}): not found in FEC — skipping")
+                print(f"    {full_name} ({state}): not found in FEC — skipping")
                 skipped += 1
                 continue
 
@@ -1603,17 +1610,21 @@ async def sync_donations(
             await asyncio.sleep(rate_limit)
             committee_id = await client.get_principal_committee(candidate["candidate_id"])
             if not committee_id:
-                print(f"    {last_name} ({state}): no campaign committee — skipping")
+                print(f"    {full_name} ({state}): no campaign committee — skipping")
                 skipped += 1
                 continue
 
             # Step 3: Get top employers and occupations in parallel
             await asyncio.sleep(rate_limit)
-            employers, occupations, totals = await asyncio.gather(
+            results = await asyncio.gather(
                 client.get_top_employers(committee_id, cycle=2024),
                 client.get_top_occupations(committee_id, cycle=2024),
                 client.get_committee_totals(committee_id, cycle=2024),
+                return_exceptions=True,
             )
+            employers = results[0] if not isinstance(results[0], Exception) else []
+            occupations = results[1] if not isinstance(results[1], Exception) else []
+            totals = results[2] if not isinstance(results[2], Exception) else None
 
             donations[bioguide] = {
                 "fec_candidate_id": candidate["candidate_id"],
@@ -1631,14 +1642,14 @@ async def sync_donations(
                 "totals": totals or {},
             }
             synced += 1
-            print(f"    {last_name} ({state}): {len(employers)} employers, {len(occupations)} occupations")
+            print(f"    {full_name} ({state}): {len(employers)} employers, {len(occupations)} occupations")
 
             # Save after each member (crash-safe)
             if synced % 5 == 0:
                 _atomic_write_json(donations_path, donations)
 
         except Exception as e:
-            print(f"    {last_name} ({state}): error — {e}")
+            print(f"    {full_name} ({state}): error — {e}")
             errors += 1
 
     _atomic_write_json(donations_path, donations)
@@ -1666,6 +1677,8 @@ async def main() -> None:
                         help="Clear and regenerate all bill both-sides arguments.")
     parser.add_argument("--skip-donations", action="store_true",
                         help="Skip FEC donation sync (useful if no API key).")
+    parser.add_argument("--resync-donations", action="store_true",
+                        help="Clear and re-fetch all FEC donation data (fixes bad matches).")
     args = parser.parse_args()
 
     raw_key = os.getenv("ANTHROPIC_API_KEY", "")
@@ -1903,6 +1916,14 @@ async def main() -> None:
     # Step 10: Campaign finance (FEC)
     donations_stats = {}
     if not args.skip_donations:
+        if args.resync_donations:
+            donations_path = SYNC_DIR / "donations.json"
+            if donations_path.exists():
+                backup_path = SYNC_DIR / "donations.backup.json"
+                shutil.copy2(donations_path, backup_path)
+                print(f"  Backed up existing donations to {backup_path.name}")
+                _atomic_write_json(donations_path, {})
+                print("  Cleared existing donation data for re-sync")
         print()
         print("[10/12] Syncing campaign finance data (FEC)...")
         donations_stats = await sync_donations(SYNC_DIR, states=states, rate_limit=1.0)

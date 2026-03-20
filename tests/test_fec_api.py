@@ -219,3 +219,30 @@ async def test_get_committee_totals():
     assert result["total_receipts"] == 5000000
     assert result["total_individual"] == 3000000
     assert result["total_pac"] == 500000
+
+
+@pytest.mark.asyncio
+async def test_retry_on_rate_limit():
+    """Verify _fetch retries on 429 and succeeds on subsequent attempt."""
+    client = FECClient(api_key="test")
+
+    mock_429 = MagicMock()
+    mock_429.status_code = 429
+
+    mock_ok = MagicMock()
+    mock_ok.status_code = 200
+    mock_ok.json.return_value = {"results": [{"candidate_id": "H8FL07072"}]}
+    mock_ok.raise_for_status = MagicMock()
+
+    with patch("app.services.fec_api.httpx.AsyncClient") as mock_http, \
+         patch("app.services.fec_api.asyncio.sleep", new_callable=AsyncMock) as mock_sleep:
+        mock_client_instance = AsyncMock()
+        mock_client_instance.get.side_effect = [mock_429, mock_ok]
+        mock_client_instance.__aenter__ = AsyncMock(return_value=mock_client_instance)
+        mock_client_instance.__aexit__ = AsyncMock(return_value=False)
+        mock_http.return_value = mock_client_instance
+
+        result = await client._fetch("/candidates/search/", {"name": "Scott, Rick"})
+
+    assert result["results"][0]["candidate_id"] == "H8FL07072"
+    mock_sleep.assert_called_once_with(1)  # 2^0 = 1 second backoff

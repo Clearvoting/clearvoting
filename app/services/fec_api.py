@@ -10,6 +10,7 @@ Uses the free OpenFEC API (api.open.fec.gov) to fetch:
 API key: free from api.data.gov, 1,000 calls/hour.
 """
 
+import asyncio
 import logging
 import httpx
 
@@ -28,15 +29,23 @@ class FECClient:
         self.api_key = api_key
 
     async def _fetch(self, path: str, params: dict | None = None) -> dict:
-        """Make an authenticated request to the FEC API."""
+        """Make an authenticated request to the FEC API with retry on rate limits."""
         request_params = {"api_key": self.api_key, "per_page": 20}
         if params:
             request_params.update(params)
 
-        async with httpx.AsyncClient(timeout=30.0) as client:
-            response = await client.get(f"{BASE_URL}{path}", params=request_params)
-            response.raise_for_status()
-            return response.json()
+        max_retries = 3
+        for attempt in range(max_retries + 1):
+            async with httpx.AsyncClient(timeout=30.0) as client:
+                response = await client.get(f"{BASE_URL}{path}", params=request_params)
+                if response.status_code == 429 and attempt < max_retries:
+                    wait = 2 ** attempt  # 1s, 2s, 4s
+                    logger.warning(f"FEC rate limited, retrying in {wait}s (attempt {attempt + 1}/{max_retries})")
+                    await asyncio.sleep(wait)
+                    continue
+                response.raise_for_status()
+                return response.json()
+        return {}  # unreachable, but satisfies type checker
 
     async def search_candidate(
         self, name: str, state: str, office: str = ""
