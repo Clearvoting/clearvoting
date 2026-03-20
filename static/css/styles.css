@@ -2179,6 +2179,9 @@ select:focus, input:focus {
     .member-tab {
         padding: 0.6rem 0.85rem;
         font-size: 0.82rem;
+        flex: 1 1 0;
+        text-align: center;
+        min-width: 0;
     }
 
     /* Pagination touch targets */

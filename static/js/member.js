@@ -194,6 +194,7 @@ function renderMember(container, member, bioguideId) {
     // --- Tabbed Content ---
     const tabIds = ['voting-record', 'sponsored-section', 'finance-section'];
     const tabLabels = ['Voting Record', 'Sponsored Bills', 'Campaign Finance'];
+    const tabShortLabels = ['Votes', 'Bills', 'Finance'];
 
     // Tab bar
     const tabBar = el('div', { className: 'member-tab-bar', role: 'tablist', 'aria-label': 'Member sections' });
@@ -208,6 +209,8 @@ function renderMember(container, member, bioguideId) {
             'aria-selected': String(isActive),
             'aria-controls': `panel-${id}`,
         }, tabLabels[i]);
+        tab.dataset.fullLabel = tabLabels[i];
+        tab.dataset.shortLabel = tabShortLabels[i];
 
         tab.addEventListener('click', () => {
             tabBar.querySelectorAll('.member-tab').forEach(t => {
@@ -233,6 +236,22 @@ function renderMember(container, member, bioguideId) {
 
     container.appendChild(tabBar);
 
+    // Responsive tab labels: short on mobile, full on desktop
+    function updateTabLabels() {
+        const isMobile = window.innerWidth <= 768;
+        tabBar.querySelectorAll('.member-tab').forEach(tab => {
+            const base = isMobile ? tab.dataset.shortLabel : tab.dataset.fullLabel;
+            const count = tab.dataset.count;
+            tab.textContent = count ? `${base} (${count})` : base;
+        });
+    }
+    updateTabLabels();
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateTabLabels, 150);
+    });
+
     // Position tab bar sticky offset below site header + sticky bar
     const siteHeaderForTabs = document.querySelector('.site-header');
     if (siteHeaderForTabs) {
@@ -253,7 +272,8 @@ function renderMember(container, member, bioguideId) {
     loadVotingRecord(bioguideId).then(() => {
         const tab = document.getElementById('tab-voting-record');
         if (tab && allVotes.length > 0) {
-            tab.textContent = `Voting Record (${allVotes.length})`;
+            tab.dataset.count = allVotes.length;
+            updateTabLabels();
         }
     });
 
@@ -305,7 +325,10 @@ async function loadSponsoredLegislation(bioguideId) {
 
         // Update tab count
         const sponsoredTab = document.getElementById('tab-sponsored-section');
-        if (sponsoredTab) sponsoredTab.textContent = `Sponsored Bills (${bills.length})`;
+        if (sponsoredTab) {
+            sponsoredTab.dataset.count = bills.length;
+            updateTabLabels();
+        }
 
         if (bills.length === 0) {
             section.appendChild(el('div', { className: 'empty-state' }, 'No sponsored bills found in synced data.'));
