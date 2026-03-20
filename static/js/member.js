@@ -554,49 +554,56 @@ function renderVotingStats(container, stats, congresses, categories, votes) {
 
     container.appendChild(statsBar);
 
-    // Vote-type filter buttons (outside the stats bar)
-    const voteTypeFilters = el('div', { className: 'vote-type-filters' });
+    // Filter dropdowns row
+    const filterRow = el('div', { className: 'filter-dropdowns' });
+
+    // Vote type dropdown
+    const voteTypeWrap = el('div', { className: 'filter-dropdown-wrap' });
+    const voteTypeSelect = el('select', {
+        className: 'filter-dropdown',
+        'aria-label': 'Filter by vote type',
+    });
     const voteTypes = [
-        { key: 'all', label: 'All', color: null, count: total },
-        { key: 'yea', label: 'Yea', color: '#2E8540', count: stats.yea_count },
-        { key: 'nay', label: 'Nay', color: '#CD2026', count: stats.nay_count },
-        { key: 'absent', label: 'Missed', color: '#AEB0B5', count: stats.not_voting_count },
+        { key: 'all', label: 'All Votes', count: total },
+        { key: 'yea', label: 'Yea', count: stats.yea_count },
+        { key: 'nay', label: 'Nay', count: stats.nay_count },
+        { key: 'absent', label: 'Missed', count: stats.not_voting_count },
     ];
     voteTypes.forEach(vt => {
-        const btn = el('button', {
-            className: 'vote-type-btn' + (vt.key === 'all' ? ' active' : ''),
-            'data-vote-type': vt.key,
-            'aria-label': `Filter votes: ${vt.label}`,
-        });
-        if (vt.color) {
-            const dot = el('span', { className: 'vote-type-dot' });
-            dot.style.background = vt.color;
-            btn.appendChild(dot);
-        }
-        btn.appendChild(document.createTextNode(`${vt.label}: ${vt.count}`));
-        btn.addEventListener('click', () => {
-            activeVoteType = vt.key;
-            document.querySelectorAll('.vote-type-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentPage = 1;
-            applyFilters();
-        });
-        voteTypeFilters.appendChild(btn);
+        const opt = el('option', { value: vt.key }, `${vt.label} (${vt.count})`);
+        voteTypeSelect.appendChild(opt);
     });
-    container.appendChild(voteTypeFilters);
+    voteTypeSelect.addEventListener('change', () => {
+        activeVoteType = voteTypeSelect.value;
+        currentPage = 1;
+        applyFilters();
+    });
+    voteTypeWrap.appendChild(voteTypeSelect);
+    const voteArrow = el('span', { className: 'filter-dropdown-arrow' }, '\u25BC');
+    voteTypeWrap.appendChild(voteArrow);
+    filterRow.appendChild(voteTypeWrap);
 
-    // Category filter chips
-    const filterRow = el('div', { className: 'issue-filters' });
-    const allChip = el('button', { className: 'category-tag active', 'data-area': 'all' }, 'All');
-    allChip.addEventListener('click', () => filterVotes('all'));
-    filterRow.appendChild(allChip);
-
+    // Category dropdown
+    const categoryWrap = el('div', { className: 'filter-dropdown-wrap' });
+    const categorySelect = el('select', {
+        className: 'filter-dropdown',
+        id: 'category-filter',
+        'aria-label': 'Filter by bill category',
+    });
+    const allOpt = el('option', { value: 'all' }, 'All Categories');
+    categorySelect.appendChild(allOpt);
     const votesCategories = new Set(votes.flatMap(v => v.issue_categories || []));
     categories.filter(cat => votesCategories.has(cat)).forEach(cat => {
-        const chip = el('button', { className: 'category-tag', 'data-area': cat }, cat);
-        chip.addEventListener('click', () => filterVotes(cat));
-        filterRow.appendChild(chip);
+        categorySelect.appendChild(el('option', { value: cat }, cat));
     });
+    categorySelect.addEventListener('change', () => {
+        filterVotes(categorySelect.value);
+    });
+    categoryWrap.appendChild(categorySelect);
+    const catArrow = el('span', { className: 'filter-dropdown-arrow' }, '\u25BC');
+    categoryWrap.appendChild(catArrow);
+    filterRow.appendChild(categoryWrap);
+
     container.appendChild(filterRow);
 
     // Vote list
@@ -616,9 +623,8 @@ function matchesVoteType(vote, type) {
 function filterVotes(area) {
     activePolicyArea = area;
     currentPage = 1;
-    document.querySelectorAll('.issue-filters .category-tag').forEach(c => c.classList.remove('active'));
-    const active = document.querySelector(`.issue-filters .category-tag[data-area="${CSS.escape(area)}"]`);
-    if (active) active.classList.add('active');
+    const sel = document.getElementById('category-filter');
+    if (sel) sel.value = area;
     applyFilters();
 }
 

@@ -1928,56 +1928,70 @@ select:focus, input:focus {
     text-align: center;
 }
 
-.vote-type-filters {
+.filter-dropdowns {
     display: flex;
+    gap: 0.75rem;
+    margin: 0.75rem 0 1.25rem;
     flex-wrap: wrap;
-    gap: 0.35rem;
-    justify-content: center;
-    margin-top: 0.5rem;
 }
 
-.vote-type-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.25rem 0.6rem;
-    font-size: 0.75rem;
+.filter-dropdown-wrap {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+}
+
+.filter-dropdown {
+    width: 100%;
+    padding: 0.55rem 2.5rem 0.55rem 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 500;
     font-family: var(--font-body);
     background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    color: var(--text-secondary);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
     transition: all var(--transition);
 }
 
-.vote-type-btn:hover {
-    border-color: var(--accent);
-    color: var(--text-primary);
-}
-
-.vote-type-btn.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-}
-
-.vote-type-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-}
-
-.vote-type-btn.active .vote-type-dot {
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6);
-}
-
-.issue-filters {
+.filter-dropdown-arrow {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 2.25rem;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.25rem;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    border-left: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+    transition: all var(--transition);
+}
+
+.filter-dropdown:hover {
+    border-color: var(--accent);
+    background: var(--bg-card-hover);
+}
+
+.filter-dropdown:hover + .filter-dropdown-arrow {
+    border-left-color: var(--accent);
+    color: var(--accent);
+}
+
+.filter-dropdown:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(0, 113, 188, 0.15);
+}
+
+.filter-dropdown:focus + .filter-dropdown-arrow {
+    border-left-color: var(--accent);
+    color: var(--accent);
 }
 
 .vote-item {
@@ -2134,15 +2148,8 @@ select:focus, input:focus {
         grid-template-columns: 1fr;
     }
 
-    .issue-filters {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        padding-bottom: 0.5rem;
-    }
-
-    .issue-filters .category-tag {
-        white-space: nowrap;
-        flex-shrink: 0;
+    .filter-dropdowns {
+        flex-direction: column;
     }
 
     .bill-header h2 { font-size: 1.35rem; }
