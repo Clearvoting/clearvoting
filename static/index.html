@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css?v=7">
+    <link rel="stylesheet" href="/static/css/styles.css?v=8">
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 </head>
 <body>
@@ -30,12 +30,12 @@
 
     <main id="main-content">
         <section class="hero">
-            <h2>See how your representatives vote.</h2>
-            <p>Facts only. No opinions. No spin.</p>
-            <p class="hero-mission-link"><a href="/about">Learn about our mission and how you can help &rarr;</a></p>
+            <h2 class="hero-animate">See how your representatives vote.</h2>
+            <p class="hero-animate-delay">Facts only. No opinions. No spin.</p>
+            <p class="hero-mission-link hero-animate-delay-2"><a href="/about">Learn about our mission and how you can help &rarr;</a></p>
         </section>
 
-        <section class="lookup" aria-label="Find your representatives">
+        <section class="lookup animate-scale" aria-label="Find your representatives">
             <h3>Find Your Representatives</h3>
             <div class="form-row">
                 <div class="form-group">
@@ -62,7 +62,7 @@
             <div id="member-grid" class="member-grid"></div>
         </section>
 
-        <section id="browse" class="browse" aria-label="Browse bills">
+        <section id="browse" class="browse animate-in" aria-label="Browse bills">
             <h3>Browse Bills</h3>
             <div class="search-bar">
                 <input type="search" id="bill-search" placeholder="Search bills by keyword..." aria-label="Search bills">
@@ -70,7 +70,7 @@
             </div>
 
             <h3>Browse by Topic</h3>
-            <div id="category-grid" class="category-grid"></div>
+            <div id="category-grid" class="category-grid stagger-children"></div>
 
             <h3>Recent Bills</h3>
             <div id="bill-list" class="bill-list">
@@ -82,7 +82,7 @@
         </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer animate-in">
         <p>Data sourced from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a>.</p>
         <p>ClearVoting does not express opinions on legislation or representatives.</p>
     </footer>
@@ -106,7 +106,7 @@
         </form>
     </div>
 
-    <script src="/static/js/app.js?v=7"></script>
-    <script src="/static/js/feedback.js?v=4"></script>
+    <script src="/static/js/app.js?v=8"></script>
+    <script src="/static/js/feedback.js?v=5"></script>
 </body>
 </html>

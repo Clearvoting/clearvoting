@@ -164,4 +164,31 @@
             submitBtn.textContent = 'Send';
         });
     });
+
+    // --- Scroll-triggered entrance animations ---
+    if ('IntersectionObserver' in window) {
+        var animObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    animObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe initial elements
+        document.querySelectorAll('.animate-in, .animate-scale, .stagger-children').forEach(function (el) {
+            animObserver.observe(el);
+        });
+
+        // Expose globally so dynamic content can register new animated elements
+        window.ClearVotingAnimate = function (container) {
+            if (!container) container = document;
+            container.querySelectorAll('.animate-in, .animate-scale, .stagger-children').forEach(function (el) {
+                if (!el.classList.contains('visible')) {
+                    animObserver.observe(el);
+                }
+            });
+        };
+    }
 })();

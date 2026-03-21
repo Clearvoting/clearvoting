@@ -124,13 +124,13 @@ a:hover {
     color: rgba(255, 255, 255, 0.8);
 }
 
-nav {
+.header-inner nav {
     display: flex;
     gap: 1.5rem;
     align-items: center;
 }
 
-nav a {
+.header-inner nav a {
     color: rgba(255, 255, 255, 0.75);
     font-size: 0.9rem;
     font-weight: 500;
@@ -139,11 +139,11 @@ nav a {
     transition: color var(--transition), border-color var(--transition);
 }
 
-nav a:hover {
+.header-inner nav a:hover {
     color: #fff;
 }
 
-nav a.active {
+.header-inner nav a.active {
     color: #fff;
     border-bottom-color: rgba(255, 255, 255, 0.8);
 }
@@ -2445,7 +2445,7 @@ select:focus, input:focus {
     .site-header { padding: 0.75rem 1rem; }
     .hamburger { display: block; }
 
-    nav {
+    .header-inner nav {
         display: none;
         position: absolute;
         top: 100%;
@@ -2457,7 +2457,7 @@ select:focus, input:focus {
         padding: 1rem;
     }
 
-    nav.open { display: flex; }
+    .header-inner nav.open { display: flex; }
 
     main { padding: 1rem; }
 
@@ -2602,6 +2602,15 @@ select:focus, input:focus {
         font-size: 1.2rem;
     }
 
+    .bill-toc {
+        gap: 0.5rem;
+    }
+
+    .bill-toc a {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+
     .party-toggle-section {
         flex-direction: column;
         align-items: stretch;
@@ -2718,6 +2727,98 @@ select:focus, input:focus {
 
 .feedback-success { color: var(--vote-yea); }
 .feedback-error { color: var(--vote-nay); }
+
+/* ============================================
+   Entrance Animations (scroll-triggered)
+   ============================================ */
+
+/* Base state: invisible and offset */
+.animate-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Revealed state — use 'none' to remove stacking context after animation */
+.animate-in.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Hero text — fade in on page load (no scroll trigger needed) */
+.hero-animate {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: heroFadeIn 0.8s ease forwards;
+}
+
+.hero-animate-delay {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: heroFadeIn 0.8s ease 0.15s forwards;
+}
+
+.hero-animate-delay-2 {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: heroFadeIn 0.7s ease 0.35s forwards;
+}
+
+@keyframes heroFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered children — each child delays slightly more */
+.stagger-children.visible > * {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: staggerIn 0.5s ease forwards;
+}
+
+.stagger-children.visible > *:nth-child(1) { animation-delay: 0s; }
+.stagger-children.visible > *:nth-child(2) { animation-delay: 0.06s; }
+.stagger-children.visible > *:nth-child(3) { animation-delay: 0.12s; }
+.stagger-children.visible > *:nth-child(4) { animation-delay: 0.18s; }
+.stagger-children.visible > *:nth-child(5) { animation-delay: 0.24s; }
+.stagger-children.visible > *:nth-child(6) { animation-delay: 0.30s; }
+.stagger-children.visible > *:nth-child(7) { animation-delay: 0.36s; }
+.stagger-children.visible > *:nth-child(8) { animation-delay: 0.42s; }
+.stagger-children.visible > *:nth-child(9) { animation-delay: 0.48s; }
+.stagger-children.visible > *:nth-child(10) { animation-delay: 0.54s; }
+.stagger-children.visible > *:nth-child(11) { animation-delay: 0.60s; }
+.stagger-children.visible > *:nth-child(12) { animation-delay: 0.66s; }
+
+@keyframes staggerIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card hover lift — enhanced elevation on hover */
+.hover-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color var(--transition), background var(--transition);
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Scale fade — for elements that should scale up slightly */
+.animate-scale {
+    opacity: 0;
+    transform: scale(0.95) translateY(12px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-scale.visible {
+    opacity: 1;
+    transform: none;
+}
 
 /* ============================================
    Reduced Motion

@@ -278,7 +278,7 @@ function renderMembers(grid, members) {
         const header = el('div', { className: 'card-header' }, photoEl, infoEl);
 
         const card = el('article', {
-            className: 'member-card',
+            className: 'member-card hover-lift',
             role: 'button',
             tabindex: '0',
             'aria-expanded': 'false',
@@ -448,7 +448,7 @@ async function reloadMembersWithParty() {
             const infoEl = el('div', { className: 'member-info' }, ...infoChildren);
             const header = el('div', { className: 'card-header' }, photoEl, infoEl);
             const card = el('article', {
-                className: 'member-card',
+                className: 'member-card hover-lift',
                 role: 'button',
                 tabindex: '0',
                 'aria-expanded': 'false',
@@ -562,7 +562,7 @@ function createBillItem(bill) {
         children.push(el('div', { className: 'bill-action' }, action));
     }
 
-    const item = el('article', { className: 'bill-item', tabindex: '0' }, ...children);
+    const item = el('article', { className: 'bill-item hover-lift', tabindex: '0' }, ...children);
 
     const navigate = () => {
         window.location.href = `/bill?congress=${congress}&type=${type.toLowerCase()}&number=${number}`;
