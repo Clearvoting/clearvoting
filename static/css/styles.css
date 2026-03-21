@@ -26,6 +26,9 @@
     --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
     --max-width: 1100px;
     --transition: 0.2s ease;
+    --color-finance-indiv: #71B2C9;
+    --color-deficit: #E07A5F;
+    --shimmer-peak: #e8eaed;
 }
 
 /* ============================================
@@ -131,10 +134,18 @@ nav a {
     color: rgba(255, 255, 255, 0.75);
     font-size: 0.9rem;
     font-weight: 500;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color var(--transition), border-color var(--transition);
 }
 
-nav a:hover, nav a.active {
+nav a:hover {
     color: #fff;
+}
+
+nav a.active {
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.8);
 }
 
 .hamburger {
@@ -305,6 +316,7 @@ select, input[type="number"], input[type="text"], input[type="search"] {
 select:focus, input:focus {
     outline: none;
     border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(0, 113, 188, 0.2);
 }
 
 .btn {
@@ -449,6 +461,9 @@ select:focus, input:focus {
     border-radius: 999px;
     font-weight: 600;
     margin-top: 0.3rem;
+    background: #fff;
+    color: var(--accent);
+    border: 1px solid var(--accent);
 }
 
 .show-party .party-badge {
@@ -1028,7 +1043,7 @@ select:focus, input:focus {
     left: 0;
     right: 0;
     height: 3em;
-    background: linear-gradient(transparent, var(--bg-primary));
+    background: linear-gradient(transparent, var(--bg-card));
     pointer-events: none;
 }
 
@@ -1169,12 +1184,12 @@ select:focus, input:focus {
 .bar-fill-industry { background: var(--vote-yea); }
 .bar-segment { height: 100%; }
 .bar-pacs { background: var(--accent); }
-.bar-indivs { background: #71B2C9; }
+.bar-indivs { background: var(--color-finance-indiv); }
 .finance-legend { display: flex; gap: 1rem; justify-content: center; margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-secondary); }
 .finance-legend-item { display: inline-flex; align-items: center; gap: 0.3rem; }
 .legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
 .legend-pacs { background: var(--accent); }
-.legend-indivs { background: #71B2C9; }
+.legend-indivs { background: var(--color-finance-indiv); }
 
 .summary-overview {
     font-size: 1rem;
@@ -1421,7 +1436,7 @@ select:focus, input:focus {
 }
 
 .deficit-increase {
-    color: #E07A5F;
+    color: var(--color-deficit);
 }
 
 .deficit-decrease {
@@ -1430,7 +1445,7 @@ select:focus, input:focus {
 
 .summary-deficit-net.deficit-increase {
     background: rgba(224, 122, 95, 0.1);
-    border-left: 3px solid #E07A5F;
+    border-left: 3px solid var(--color-deficit);
 }
 
 .summary-deficit-net.deficit-decrease {
@@ -1465,7 +1480,7 @@ select:focus, input:focus {
 
 .cbo-tag.deficit-increase {
     background: rgba(224, 122, 95, 0.15);
-    color: #E07A5F;
+    color: var(--color-deficit);
 }
 
 .cbo-tag.deficit-decrease {
@@ -1532,8 +1547,8 @@ select:focus, input:focus {
 
 .scorecard-net.deficit-increase {
     background: rgba(224, 122, 95, 0.1);
-    border-left: 3px solid #E07A5F;
-    color: #E07A5F;
+    border-left: 3px solid var(--color-deficit);
+    color: var(--color-deficit);
 }
 
 .scorecard-net.deficit-decrease {
@@ -1777,7 +1792,23 @@ select:focus, input:focus {
 
 .empty-state {
     text-align: center;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.empty-state-icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    opacity: 0.4;
+}
+
+.empty-state-hint {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
     color: var(--text-dim);
 }
 
@@ -2079,6 +2110,335 @@ select:focus, input:focus {
 }
 
 /* ============================================
+   Skeleton Loading (Phase 2)
+   ============================================ */
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.skeleton {
+    background: linear-gradient(90deg, var(--bg-card-hover) 25%, var(--shimmer-peak) 37%, var(--bg-card-hover) 63%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease infinite;
+    border-radius: var(--radius);
+}
+
+.skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.skeleton-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.skeleton-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.skeleton-lines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.skeleton-line {
+    height: 0.85rem;
+    border-radius: 4px;
+}
+
+.skeleton-line-short { width: 40%; }
+.skeleton-line-medium { width: 65%; }
+.skeleton-line-long { width: 90%; }
+
+.skeleton-bill {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* ============================================
+   Results Count (Phase 2)
+   ============================================ */
+.results-count {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+/* ============================================
+   Back Link (Phase 1)
+   ============================================ */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 1.25rem;
+    transition: color var(--transition);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    padding: 0;
+}
+
+.back-link:hover {
+    color: var(--accent);
+}
+
+/* ============================================
+   Party Toggle — Redesigned (Phase 3)
+   ============================================ */
+.party-toggle-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+}
+
+.party-toggle-section p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+    flex: 1;
+    min-width: 150px;
+}
+
+#party-toggle {
+    white-space: nowrap;
+}
+
+/* First-visit tooltip */
+.party-tooltip {
+    background: var(--bg-secondary);
+    color: #fff;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    position: relative;
+    animation: tooltipFadeIn 0.3s ease;
+}
+
+.party-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 2rem;
+    border: 6px solid transparent;
+    border-top-color: var(--bg-secondary);
+}
+
+.party-tooltip-close {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+}
+
+.party-tooltip-close:hover {
+    color: #fff;
+}
+
+@keyframes tooltipFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   Bill Page — Section Hierarchy (Phase 4)
+   ============================================ */
+#ai-summary-section {
+    border-left: 3px solid var(--accent);
+}
+
+#ai-summary-section h3 {
+    font-size: 1.25rem;
+}
+
+.bill-section-official h3 {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Both-sides arguments — two column on desktop */
+.bill-arguments-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .bill-arguments-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .bill-arguments-grid .arguments-side {
+        margin-bottom: 0;
+    }
+}
+
+.arguments-side-header {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+}
+
+.arguments-support .arguments-side-header {
+    color: var(--vote-yea);
+}
+
+.arguments-critics .arguments-side-header {
+    color: var(--vote-nay);
+}
+
+/* Vote table scroll wrapper */
+.vote-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+}
+
+/* Bill page mini table of contents */
+.bill-toc {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.bill-toc a {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    padding: 0.3rem 0.65rem;
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    transition: all var(--transition);
+}
+
+.bill-toc a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* SVG pie chart text — use design token */
+.vote-pie text {
+    fill: var(--text-primary);
+}
+
+/* ============================================
+   About Page — Expanded (Phase 7)
+   ============================================ */
+.about-section-highlight {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.about-section-highlight h2 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+}
+
+.about-section-highlight p {
+    color: var(--text-primary);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+}
+
+.about-data-sources {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.about-data-source {
+    background: var(--bg-card-hover);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+}
+
+.about-data-source strong {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.about-data-source span {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 480px) {
+    .about-data-sources {
+        grid-template-columns: 1fr;
+    }
+}
+
+.about-dont-list {
+    list-style: none;
+    padding: 0;
+}
+
+.about-dont-list li {
+    padding: 0.4rem 0 0.4rem 1.25rem;
+    position: relative;
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.about-dont-list li::before {
+    content: '\2717';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+}
+
+/* ============================================
    Mobile Responsive
    ============================================ */
 @media (max-width: 768px) {
@@ -2128,7 +2488,7 @@ select:focus, input:focus {
     }
 
     .member-sticky-bar {
-        padding: 0.4rem 1rem;
+        display: none !important;
     }
 
     .service-compact-header {
@@ -2188,6 +2548,64 @@ select:focus, input:focus {
     .vote-pagination-btn {
         min-height: 44px;
         min-width: 44px;
+    }
+
+    /* Vote table scroll hint */
+    .vote-table-wrap {
+        margin: 0 -0.5rem;
+        padding: 0 0.5rem;
+    }
+
+    /* Skeleton grid */
+    .skeleton-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   Small Phone Breakpoint (Phase 5)
+   ============================================ */
+@media (max-width: 480px) {
+    .hero h2 { font-size: 1.5rem; }
+    .hero p { font-size: 0.9rem; }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .member-card,
+    .vote-block {
+        padding: 1rem;
+    }
+
+    .bill-section {
+        padding: 1rem;
+    }
+
+    main { padding: 0.75rem; }
+
+    .lookup {
+        padding: 1.25rem;
+    }
+
+    .member-header .member-photo,
+    .member-header .member-photo-placeholder {
+        width: 72px;
+        height: 72px;
+    }
+
+    .member-header h2 {
+        font-size: 1.35rem;
+    }
+
+    .bill-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .party-toggle-section {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
     }
 }
 
@@ -2282,6 +2700,7 @@ select:focus, input:focus {
 .feedback-form textarea:focus {
     outline: none;
     border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(0, 113, 188, 0.2);
 }
 
 .feedback-actions {

@@ -2,7 +2,7 @@
    ClearVoting — Bill Detail Page
    ============================================ */
 
-let showParty = false;
+let showParty = localStorage.getItem('cv-show-party') === 'true';
 
 const SAFE_TAGS = new Set(['P', 'EM', 'STRONG', 'B', 'I', 'BR', 'UL', 'OL', 'LI', 'A']);
 function sanitizeHtml(html) {
@@ -114,6 +114,16 @@ function renderBill(container, bill, congress, type, number) {
         container.appendChild(tagsDiv);
     }
 
+    // Mini table of contents
+    const toc = el('nav', { className: 'bill-toc', 'aria-label': 'Jump to section' });
+    toc.appendChild(el('a', { href: '#ai-summary-section' }, 'Summary'));
+    toc.appendChild(el('a', { href: '#official-summary-section' }, 'Official Text'));
+    if (bill.sponsors && bill.sponsors.length > 0) {
+        toc.appendChild(el('a', { href: '#sponsors-section' }, 'Sponsors'));
+    }
+    toc.appendChild(el('a', { href: '#votes-section' }, 'Votes'));
+    container.appendChild(toc);
+
     // AI Summary section (placeholder — loaded async)
     const aiSection = el('section', { className: 'bill-section', id: 'ai-summary-section' });
     aiSection.appendChild(el('h3', null, 'What This Bill Does'));
@@ -126,8 +136,8 @@ function renderBill(container, bill, congress, type, number) {
     ));
     container.appendChild(aiSection);
 
-    // Official Summary (collapsible if long)
-    const officialSection = el('section', { className: 'bill-section' });
+    // Official Summary (collapsible if long — secondary visual weight)
+    const officialSection = el('section', { className: 'bill-section bill-section-official', id: 'official-summary-section' });
     officialSection.appendChild(el('h3', null, 'Official Summary'));
     const summaries = bill.summaries || [];
     if (summaries.length > 0) {
@@ -158,7 +168,7 @@ function renderBill(container, bill, congress, type, number) {
 
     // Sponsors
     if (bill.sponsors && bill.sponsors.length > 0) {
-        const sponsorSection = el('section', { className: 'bill-section' });
+        const sponsorSection = el('section', { className: 'bill-section', id: 'sponsors-section' });
         sponsorSection.appendChild(el('h3', null, 'Sponsors'));
         bill.sponsors.forEach(sponsor => {
             const name = sponsor.fullName || sponsor.firstName + ' ' + sponsor.lastName || '';
@@ -229,28 +239,33 @@ async function loadAISummary(congress, type, number) {
             summaryContent.appendChild(tagsDiv);
         }
 
-        // Both-sides arguments
+        // Both-sides arguments — side-by-side on desktop
         const args = data.arguments;
         if (args && (args.supporters?.length > 0 || args.critics?.length > 0)) {
             const argsSection = el('div', { className: 'bill-arguments' });
             argsSection.appendChild(el('h4', null, 'What People Are Saying'));
 
+            const argsGrid = el('div', { className: 'bill-arguments-grid' });
+
             if (args.supporters && args.supporters.length > 0) {
                 const supportSide = el('div', { className: 'arguments-side arguments-support' });
+                supportSide.appendChild(el('div', { className: 'arguments-side-header' }, 'Supporters say'));
                 const supportList = el('ul');
                 args.supporters.forEach(s => supportList.appendChild(el('li', null, s)));
                 supportSide.appendChild(supportList);
-                argsSection.appendChild(supportSide);
+                argsGrid.appendChild(supportSide);
             }
 
             if (args.critics && args.critics.length > 0) {
                 const criticsSide = el('div', { className: 'arguments-side arguments-critics' });
+                criticsSide.appendChild(el('div', { className: 'arguments-side-header' }, 'Critics say'));
                 const criticsList = el('ul');
                 args.critics.forEach(c => criticsList.appendChild(el('li', null, c)));
                 criticsSide.appendChild(criticsList);
-                argsSection.appendChild(criticsSide);
+                argsGrid.appendChild(criticsSide);
             }
 
+            argsSection.appendChild(argsGrid);
             summaryContent.appendChild(argsSection);
         }
     } catch {
@@ -338,18 +353,33 @@ async function loadSenateVote(container, congress, session, voteNumber) {
         toggleSection.appendChild(toggleBtn);
         voteBlock.appendChild(toggleSection);
 
-        // Table (initially without party)
+        // Table (wrapped for mobile scroll — initially without party)
         const members = data.members || [];
-        const tableContainer = el('div', { id: `vote-table-${voteNumber}` });
+        const tableContainer = el('div', { id: `vote-table-${voteNumber}`, className: 'vote-table-wrap' });
         tableContainer.appendChild(window.ClearVotingUI.renderVoteTable(members, false));
         voteBlock.appendChild(tableContainer);
 
-        let voteShowParty = false;
-        toggleBtn.addEventListener('click', async () => {
-            voteShowParty = !voteShowParty;
-            toggleBtn.textContent = voteShowParty ? 'Hide Party Affiliations' : 'Reveal Party Affiliations';
+        if (showParty) {
+            toggleBtn.textContent = 'Hide Party Affiliations';
+            // Auto-load party data from persisted state
+            fetch(`${url}?show_party=true`).then(resp => resp.ok ? resp.json() : null).then(partyData => {
+                if (partyData) {
+                    const partyMembers = partyData.members || [];
+                    clearEl(partyBreakdown);
+                    const partyCharts = window.ClearVotingUI.renderPartyVotePieCharts(partyMembers);
+                    if (partyCharts) partyBreakdown.appendChild(partyCharts);
+                    clearEl(tableContainer);
+                    tableContainer.appendChild(window.ClearVotingUI.renderVoteTable(partyMembers, true));
+                }
+            }).catch(() => {});
+        }
 
-            if (voteShowParty) {
+        toggleBtn.addEventListener('click', async () => {
+            showParty = !showParty;
+            localStorage.setItem('cv-show-party', String(showParty));
+            toggleBtn.textContent = showParty ? 'Hide Party Affiliations' : 'Reveal Party Affiliations';
+
+            if (showParty) {
                 const resp = await fetch(`${url}?show_party=true`);
                 if (resp.ok) {
                     const partyData = await resp.json();

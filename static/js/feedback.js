@@ -62,11 +62,45 @@
     }
 
     var hamburger = document.querySelector('.hamburger');
-    if (hamburger) {
+    var nav = document.querySelector('nav');
+    if (hamburger && nav) {
         hamburger.addEventListener('click', function () {
-            var nav = document.querySelector('nav');
             nav.classList.toggle('open');
             hamburger.setAttribute('aria-expanded', nav.classList.contains('open'));
+        });
+
+        // Close mobile menu when a nav link is clicked
+        nav.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                nav.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Close mobile menu on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && nav.classList.contains('open')) {
+                nav.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
+    // Set active nav link based on current path
+    var currentPath = window.location.pathname;
+    if (nav) {
+        nav.querySelectorAll('a').forEach(function (link) {
+            link.classList.remove('active');
+            var href = link.getAttribute('href');
+            if (currentPath === '/' && (href === '/' || href === '')) {
+                link.classList.add('active');
+            } else if (currentPath === '/about' && href === '/about') {
+                link.classList.add('active');
+            } else if (currentPath === '/member' && href === '/') {
+                // No active state on detail pages
+            } else if (currentPath === '/bill' && href === '/#browse') {
+                link.classList.add('active');
+            }
         });
     }
 

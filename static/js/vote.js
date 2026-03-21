@@ -128,7 +128,8 @@ function _buildPieChart(segments, total, size) {
     text.setAttribute('y', String(cy));
     text.setAttribute('text-anchor', 'middle');
     text.setAttribute('dominant-baseline', 'central');
-    text.setAttribute('fill', '#1B1B1B');
+    // Fill is set via CSS (.vote-pie text { fill: var(--text-primary) })
+    // Inline fill removed — design token in stylesheet
     text.setAttribute('font-size', String(Math.round(size * 0.18)));
     text.setAttribute('font-weight', '600');
     text.setAttribute('font-family', 'Inter, system-ui, sans-serif');

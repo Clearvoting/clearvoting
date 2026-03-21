@@ -2,7 +2,7 @@
    ClearVoting — Member Profile Page
    ============================================ */
 
-let showParty = false;
+let showParty = localStorage.getItem('cv-show-party') === 'true';
 let memberData = null;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -84,10 +84,11 @@ function renderMember(container, member, bioguideId) {
 
     const metaText = [chamber, stateText, district].filter(Boolean).join(' — ');
 
-    const toggleBtn = el('button', { className: 'party-toggle-inline', id: 'party-toggle-btn', 'aria-label': 'Reveal party affiliation' }, 'Show Party');
+    const toggleBtn = el('button', { className: 'party-toggle-inline' + (showParty ? ' active' : ''), id: 'party-toggle-btn', 'aria-label': 'Reveal party affiliation' }, showParty ? 'Hide Party' : 'Show Party');
 
     toggleBtn.addEventListener('click', async () => {
         showParty = !showParty;
+        localStorage.setItem('cv-show-party', String(showParty));
         toggleBtn.textContent = showParty ? 'Hide Party' : 'Show Party';
         toggleBtn.classList.toggle('active', showParty);
 
@@ -121,6 +122,23 @@ function renderMember(container, member, bioguideId) {
 
     const header = el('div', { className: 'member-header' }, photoEl, headerInfo);
     container.appendChild(header);
+
+    // Apply persisted party state
+    if (showParty) {
+        fetch(`/api/members/detail/${bioguideId}?show_party=true`)
+            .then(resp => resp.ok ? resp.json() : null)
+            .then(detail => {
+                if (detail) {
+                    const m = detail.member || detail;
+                    const partyDisplay = document.getElementById('party-display');
+                    if (partyDisplay && m.partyName) {
+                        clearEl(partyDisplay);
+                        partyDisplay.appendChild(document.createTextNode(m.partyName));
+                    }
+                }
+            })
+            .catch(() => {});
+    }
 
     // Sticky name bar — appears when the member header scrolls out of view
     const stickyBar = el('div', { className: 'member-sticky-bar' });
@@ -252,10 +270,11 @@ function renderMember(container, member, bioguideId) {
         resizeTimer = setTimeout(updateTabLabels, 150);
     });
 
-    // Position tab bar sticky offset below site header + sticky bar
+    // Position tab bar sticky offset below site header (+ sticky bar on desktop)
     const siteHeaderForTabs = document.querySelector('.site-header');
     if (siteHeaderForTabs) {
-        const tabTop = siteHeaderForTabs.offsetHeight + stickyBar.offsetHeight;
+        const isMobile = window.innerWidth <= 768;
+        const tabTop = siteHeaderForTabs.offsetHeight + (isMobile ? 0 : stickyBar.offsetHeight);
         tabBar.style.top = tabTop + 'px';
     }
 

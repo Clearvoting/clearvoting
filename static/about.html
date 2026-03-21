@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css?v=7">
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 </head>
 <body>
@@ -21,7 +21,7 @@
             <nav>
                 <a href="/">Home</a>
                 <a href="/#browse">Browse Bills</a>
-                <a href="/about" class="active">About</a>
+                <a href="/about">About</a>
             </nav>
         </div>
     </header>
@@ -41,6 +41,42 @@
                     <li><strong>No party bias</strong> — Party affiliations are hidden by default so you can evaluate representatives on their votes, not their label</li>
                     <li><strong>Just the facts</strong> — We show voting records and let you form your own opinion. No editorials, no ratings, no spin.</li>
                     <li><strong>Real data</strong> — Everything comes directly from Congress.gov and Senate.gov official records</li>
+                </ul>
+            </section>
+
+            <section class="about-section-highlight">
+                <h2>How We Stay Unbiased</h2>
+                <ul class="about-list">
+                    <li><strong>Official data only</strong> — Every vote, bill, and action comes directly from government sources. We never editorialize or add our own interpretation.</li>
+                    <li><strong>AI with guardrails</strong> — Our plain-language summaries follow 12 strict rules for neutrality: no loaded language, no editorial framing, no implicit judgment. Each summary presents what a bill does, not whether it's good or bad.</li>
+                    <li><strong>Party labels hidden</strong> — By default, you see representatives and their votes without party labels. This lets you evaluate their record on its merits before knowing their affiliation.</li>
+                    <li><strong>Both sides presented</strong> — When we show what people are saying about a bill, we always present both supporters and critics side by side.</li>
+                </ul>
+            </section>
+
+            <section class="about-section">
+                <h2>Our Data Sources</h2>
+                <p>ClearVoting pulls all data directly from official government sources. We don't use intermediaries, aggregators, or third-party databases.</p>
+                <div class="about-data-sources">
+                    <a href="https://congress.gov" target="_blank" rel="noopener" class="about-data-source">
+                        <strong>Congress.gov</strong>
+                        <span>Bills, summaries, sponsorship data, and House roll call votes from the official legislative database.</span>
+                    </a>
+                    <a href="https://senate.gov" target="_blank" rel="noopener" class="about-data-source">
+                        <strong>Senate.gov</strong>
+                        <span>Senate roll call votes parsed from official XML records published after each vote.</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="about-section">
+                <h2>What We Don't Do</h2>
+                <ul class="about-dont-list">
+                    <li>We don't score or rank representatives</li>
+                    <li>We don't endorse candidates or parties</li>
+                    <li>We don't add editorial opinions to any page</li>
+                    <li>We don't sell data or target you with ads</li>
+                    <li>We don't tell you how to vote — we show you how they voted</li>
                 </ul>
             </section>
 
@@ -76,6 +112,6 @@
         </form>
     </div>
 
-    <script src="/static/js/feedback.js?v=3"></script>
+    <script src="/static/js/feedback.js?v=4"></script>
 </body>
 </html>

@@ -16,7 +16,7 @@ const ISSUE_CATEGORIES = [
     'Social Security & Retirement',
 ];
 
-let showParty = false;
+let showParty = localStorage.getItem('cv-show-party') === 'true';
 let billOffset = 0;
 const BILL_LIMIT = 20;
 let expandedCardId = null;
@@ -58,6 +58,7 @@ function setupEventListeners() {
 
     partyToggle.addEventListener('click', () => {
         showParty = !showParty;
+        localStorage.setItem('cv-show-party', String(showParty));
         const container = document.getElementById('results');
         container.classList.toggle('show-party', showParty);
         partyToggle.textContent = showParty ? 'Hide Party Affiliations' : 'Reveal Party Affiliations';
@@ -81,6 +82,29 @@ function setupEventListeners() {
     });
 
     // Hamburger menu handled by feedback.js (loaded on all pages)
+
+    // First-visit tooltip for party toggle (Phase 3.1)
+    if (!localStorage.getItem('cv-party-tooltip-seen')) {
+        const resultsSection = document.getElementById('results');
+        const tooltipObserver = new MutationObserver(() => {
+            if (!resultsSection.hidden && !document.getElementById('party-tooltip')) {
+                const tooltip = el('div', { className: 'party-tooltip', id: 'party-tooltip' },
+                    'Party labels are hidden by default so you can form your own opinion. Reveal them anytime with the button below.'
+                );
+                const closeBtn = el('button', { className: 'party-tooltip-close', 'aria-label': 'Dismiss' }, '\u00D7');
+                closeBtn.addEventListener('click', () => {
+                    tooltip.remove();
+                    localStorage.setItem('cv-party-tooltip-seen', 'true');
+                });
+                tooltip.appendChild(closeBtn);
+                const toggleSection = resultsSection.querySelector('.party-toggle-section');
+                if (toggleSection) toggleSection.parentNode.insertBefore(tooltip, toggleSection);
+                localStorage.setItem('cv-party-tooltip-seen', 'true');
+                tooltipObserver.disconnect();
+            }
+        });
+        tooltipObserver.observe(resultsSection, { attributes: true, attributeFilter: ['hidden'] });
+    }
 }
 
 // --- State Dropdown ---
@@ -133,11 +157,36 @@ function clearChildren(parent) {
     while (parent.firstChild) parent.removeChild(parent.firstChild);
 }
 
-function showLoading(container, message) {
+function showLoading(container, message, type) {
     clearChildren(container);
-    const spinner = el('span', { className: 'spinner' });
-    const wrapper = el('div', { className: 'loading' }, spinner, ` ${message}`);
-    container.appendChild(wrapper);
+    if (type === 'members') {
+        // Skeleton cards for member grid
+        const grid = el('div', { className: 'skeleton-grid' });
+        for (let i = 0; i < 4; i++) {
+            grid.appendChild(el('div', { className: 'skeleton-card' },
+                el('div', { className: 'skeleton skeleton-avatar' }),
+                el('div', { className: 'skeleton-lines' },
+                    el('div', { className: 'skeleton skeleton-line skeleton-line-medium' }),
+                    el('div', { className: 'skeleton skeleton-line skeleton-line-short' }),
+                    el('div', { className: 'skeleton skeleton-line skeleton-line-short' })
+                )
+            ));
+        }
+        container.appendChild(grid);
+    } else if (type === 'bills') {
+        // Skeleton items for bill list
+        for (let i = 0; i < 5; i++) {
+            container.appendChild(el('div', { className: 'skeleton-bill' },
+                el('div', { className: 'skeleton skeleton-line skeleton-line-short' }),
+                el('div', { className: 'skeleton skeleton-line skeleton-line-long' }),
+                el('div', { className: 'skeleton skeleton-line skeleton-line-medium' })
+            ));
+        }
+    } else {
+        const spinner = el('span', { className: 'spinner' });
+        const wrapper = el('div', { className: 'loading' }, spinner, ` ${message}`);
+        container.appendChild(wrapper);
+    }
 }
 
 function showError(container, message) {
@@ -159,7 +208,7 @@ async function lookupMembers() {
     const resultsSection = document.getElementById('results');
     const grid = document.getElementById('member-grid');
     resultsSection.hidden = false;
-    showLoading(grid, 'Loading representatives...');
+    showLoading(grid, 'Loading representatives...', 'members');
 
     try {
         let url = `/api/members/${state}`;
@@ -171,12 +220,31 @@ async function lookupMembers() {
 
         const members = data.members || [];
         if (members.length === 0) {
-            showEmpty(grid, 'No representatives found for this selection.');
+            clearChildren(grid);
+            const stateName = document.getElementById('state-select').selectedOptions[0]?.text || state;
+            const emptyDiv = el('div', { className: 'empty-state' },
+                el('span', { className: 'empty-state-icon' }, '\uD83D\uDD0D'),
+                `No representatives found for ${stateName}.`,
+                el('span', { className: 'empty-state-hint' }, 'Try selecting a different state, or check your district number.')
+            );
+            grid.appendChild(emptyDiv);
             return;
         }
 
         currentMembers = members;
+        // Show results count
+        const countEl = document.getElementById('results-count');
+        if (countEl) countEl.textContent = `Showing ${members.length} representative${members.length !== 1 ? 's' : ''}`;
+
         renderMembers(grid, members);
+
+        // Apply persisted party toggle state
+        if (showParty) {
+            const container = document.getElementById('results');
+            container.classList.add('show-party');
+            document.getElementById('party-toggle').textContent = 'Hide Party Affiliations';
+            reloadMembersWithParty();
+        }
     } catch (err) {
         showError(grid, 'Unable to load representatives. Congress.gov may be temporarily unavailable.');
     }
@@ -373,7 +441,7 @@ async function reloadMembersWithParty() {
             ];
 
             if (party) {
-                const badge = el('span', { className: 'party-badge', style: 'display:inline-block;background:#fff;color:#0071BC;border:1px solid #0071BC;' }, party);
+                const badge = el('span', { className: 'party-badge', style: 'display:inline-block;' }, party);
                 infoChildren.push(badge);
             }
 
@@ -410,7 +478,7 @@ async function loadRecentBills(append = false) {
     const billList = document.getElementById('bill-list');
     const loadMoreBtn = document.getElementById('load-more-btn');
 
-    if (!append) showLoading(billList, 'Loading recent bills...');
+    if (!append) showLoading(billList, 'Loading recent bills...', 'bills');
 
     try {
         const response = await fetch(`/api/bills?offset=${billOffset}&limit=${BILL_LIMIT}`);
@@ -421,7 +489,12 @@ async function loadRecentBills(append = false) {
         if (!append) clearChildren(billList);
 
         if (bills.length === 0 && !append) {
-            showEmpty(billList, 'No bills found.');
+            clearChildren(billList);
+            billList.appendChild(el('div', { className: 'empty-state' },
+                el('span', { className: 'empty-state-icon' }, '\uD83D\uDCDC'),
+                'No bills found.',
+                el('span', { className: 'empty-state-hint' }, 'Try a different search term or browse by topic above.')
+            ));
             loadMoreBtn.hidden = true;
             return;
         }
@@ -439,7 +512,7 @@ async function searchBills() {
 
     const billList = document.getElementById('bill-list');
     const loadMoreBtn = document.getElementById('load-more-btn');
-    showLoading(billList, 'Searching...');
+    showLoading(billList, 'Searching...', 'bills');
     loadMoreBtn.hidden = true;
 
     try {
@@ -451,9 +524,18 @@ async function searchBills() {
 
         clearChildren(billList);
         if (bills.length === 0) {
-            showEmpty(billList, 'No bills found matching your search.');
+            billList.appendChild(el('div', { className: 'empty-state' },
+                el('span', { className: 'empty-state-icon' }, '\uD83D\uDD0D'),
+                `No bills found matching "${query}".`,
+                el('span', { className: 'empty-state-hint' }, 'Try a broader term or browse by category above.')
+            ));
             return;
         }
+
+        billList.insertBefore(
+            el('div', { className: 'results-count' }, `${bills.length} bill${bills.length !== 1 ? 's' : ''} found for "${query}"`),
+            billList.firstChild
+        );
 
         bills.forEach(bill => billList.appendChild(createBillItem(bill)));
     } catch {
