@@ -222,10 +222,18 @@ async function lookupMembers() {
         if (members.length === 0) {
             clearChildren(grid);
             const stateName = document.getElementById('state-select').selectedOptions[0]?.text || state;
+            let emptyMsg, emptyHint;
+            if (district) {
+                emptyMsg = `No representative found for District ${district} in ${stateName}.`;
+                emptyHint = 'Try removing the district number to see all representatives from this state.';
+            } else {
+                emptyMsg = `No representatives found for ${stateName}.`;
+                emptyHint = 'Try selecting a different state, or check your district number.';
+            }
             const emptyDiv = el('div', { className: 'empty-state' },
                 el('span', { className: 'empty-state-icon' }, '\uD83D\uDD0D'),
-                `No representatives found for ${stateName}.`,
-                el('span', { className: 'empty-state-hint' }, 'Try selecting a different state, or check your district number.')
+                emptyMsg,
+                el('span', { className: 'empty-state-hint' }, emptyHint)
             );
             grid.appendChild(emptyDiv);
             return;
@@ -325,6 +333,11 @@ async function expandCard(bioguideId, card) {
     // Trigger reflow then animate
     snapshot.offsetHeight;
     snapshot.classList.add('visible');
+
+    // Auto-scroll expanded card into view after animation
+    setTimeout(() => {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 320);
 
     if (summaryCache.has(bioguideId)) {
         renderCardSnapshot(snapshot, summaryCache.get(bioguideId), bioguideId);

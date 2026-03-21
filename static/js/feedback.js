@@ -165,6 +165,23 @@
         });
     });
 
+    // --- Data freshness indicator ---
+    var freshnessEl = document.getElementById('data-freshness');
+    if (freshnessEl) {
+        fetch('/api/health')
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                if (data.last_sync) {
+                    var date = new Date(data.last_sync);
+                    var formatted = date.toLocaleDateString('en-US', {
+                        month: 'long', day: 'numeric', year: 'numeric'
+                    });
+                    freshnessEl.textContent = 'Data last updated ' + formatted;
+                }
+            })
+            .catch(function () { /* silently fail */ });
+    }
+
     // --- Scroll-triggered entrance animations ---
     if ('IntersectionObserver' in window) {
         var animObserver = new IntersectionObserver(function (entries) {

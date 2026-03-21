@@ -89,10 +89,10 @@ function renderMember(container, member, bioguideId) {
     toggleBtn.addEventListener('click', async () => {
         showParty = !showParty;
         localStorage.setItem('cv-show-party', String(showParty));
-        toggleBtn.textContent = showParty ? 'Hide Party' : 'Show Party';
-        toggleBtn.classList.toggle('active', showParty);
 
         if (showParty) {
+            toggleBtn.textContent = 'Loading...';
+            toggleBtn.disabled = true;
             try {
                 const resp = await fetch(`/api/members/detail/${bioguideId}?show_party=true`);
                 if (resp.ok) {
@@ -105,7 +105,12 @@ function renderMember(container, member, bioguideId) {
                     }
                 }
             } catch { /* silently fail */ }
+            toggleBtn.disabled = false;
+            toggleBtn.textContent = 'Hide Party';
+            toggleBtn.classList.add('active');
         } else {
+            toggleBtn.textContent = 'Show Party';
+            toggleBtn.classList.remove('active');
             const partyDisplay = document.getElementById('party-display');
             clearEl(partyDisplay);
         }
@@ -122,6 +127,22 @@ function renderMember(container, member, bioguideId) {
 
     const header = el('div', { className: 'member-header' }, photoEl, headerInfo);
     container.appendChild(header);
+
+    // Copy Link button
+    if (navigator.clipboard) {
+        const copyBtn = el('button', { className: 'copy-link-btn', 'aria-label': 'Copy page link to clipboard' }, 'Copy Link');
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy Link';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {});
+        });
+        container.appendChild(copyBtn);
+    }
 
     // Apply persisted party state
     if (showParty) {
@@ -161,7 +182,7 @@ function renderMember(container, member, bioguideId) {
     observer.observe(header);
 
     // Voting summary (brief text at top, loaded async)
-    const summaryEl = el('div', { id: 'voting-summary', className: 'voting-summary' });
+    const summaryEl = el('div', { id: 'voting-summary', className: 'voting-summary', 'aria-live': 'polite' });
     container.appendChild(summaryEl);
 
     // Service info (collapsed)
@@ -213,6 +234,8 @@ function renderMember(container, member, bioguideId) {
     const tabIds = ['voting-record', 'sponsored-section', 'finance-section'];
     const tabLabels = ['Voting Record', 'Sponsored Bills', 'Campaign Finance'];
     const tabShortLabels = ['Votes', 'Bills', 'Finance'];
+    let sponsoredLoaded = false;
+    let financeLoaded = false;
 
     // Tab bar
     const tabBar = el('div', { className: 'member-tab-bar', role: 'tablist', 'aria-label': 'Member sections' });
@@ -239,6 +262,15 @@ function renderMember(container, member, bioguideId) {
             tab.setAttribute('aria-selected', 'true');
             tabPanels.forEach(p => p.hidden = true);
             document.getElementById(`panel-${id}`).hidden = false;
+
+            // Lazy load tab data on first click
+            if (id === 'sponsored-section' && !sponsoredLoaded) {
+                sponsoredLoaded = true;
+                loadSponsoredLegislation(bioguideId);
+            } else if (id === 'finance-section' && !financeLoaded) {
+                financeLoaded = true;
+                loadDonations(bioguideId);
+            }
         });
         tabBar.appendChild(tab);
 
@@ -305,8 +337,6 @@ function renderMember(container, member, bioguideId) {
     sponsoredPanel.appendChild(sponsoredSection);
     container.appendChild(sponsoredPanel);
 
-    loadSponsoredLegislation(bioguideId);
-
     // Campaign Finance panel
     const financePanel = tabPanels[2];
     const financeSection = el('section', { className: 'bill-section', id: 'finance-section' });
@@ -315,8 +345,6 @@ function renderMember(container, member, bioguideId) {
         el('span', { className: 'spinner' }), ' Loading campaign finance data...'));
     financePanel.appendChild(financeSection);
     container.appendChild(financePanel);
-
-    loadDonations(bioguideId);
 
     // Source link — Congress.gov requires /member/{name-slug}/{bioguideId}
     const nameSlug = name.toLowerCase().replace(/[^a-z\s-]/g, '').trim().replace(/\s+/g, '-');
@@ -342,11 +370,13 @@ async function loadSponsoredLegislation(bioguideId) {
 
         const bills = data.bills || [];
 
-        // Update tab count
+        // Update tab count — use direct text update (updateTabLabels is scoped to renderMember)
         const sponsoredTab = document.getElementById('tab-sponsored-section');
         if (sponsoredTab) {
             sponsoredTab.dataset.count = bills.length;
-            updateTabLabels();
+            const isMobile = window.innerWidth <= 768;
+            const base = isMobile ? sponsoredTab.dataset.shortLabel : sponsoredTab.dataset.fullLabel;
+            sponsoredTab.textContent = `${base} (${bills.length})`;
         }
 
         if (bills.length === 0) {
@@ -378,7 +408,6 @@ async function loadSponsoredLegislation(bioguideId) {
             item.appendChild(bottomRow);
 
             const billType = (bill.type || '').toUpperCase();
-            item.style.cursor = 'pointer';
             item.addEventListener('click', () => {
                 window.location.href = `/bill?congress=${bill.congress}&type=${billType}&number=${bill.number}`;
             });
@@ -756,7 +785,6 @@ function _buildVoteItem(vote) {
 
     const clickableTypes = ['HR', 'S', 'HJRES', 'SJRES'];
     if (clickableTypes.includes(vote.bill_type)) {
-        item.style.cursor = 'pointer';
         item.addEventListener('click', () => {
             window.location.href = `/bill?congress=${vote.congress}&type=${vote.bill_type}&number=${vote.bill_number_raw}`;
         });

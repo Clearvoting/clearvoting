@@ -1,4 +1,5 @@
 import logging
+import re
 import time
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
@@ -29,10 +30,13 @@ app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
 _asset_version = str(int(time.time()))
 
 
+_version_re = re.compile(r'\?v=\d+')
+
+
 def _serve_html(filename: str) -> HTMLResponse:
     """Serve an HTML file with dynamic cache-bust versions on static assets."""
     html = (static_dir / filename).read_text()
-    html = html.replace("?v=3", f"?v={_asset_version}")
+    html = _version_re.sub(f"?v={_asset_version}", html)
     return HTMLResponse(html, headers={"Cache-Control": "no-cache, no-store, must-revalidate"})
 
 app.include_router(members_router)
@@ -62,7 +66,13 @@ async def add_security_headers(request: Request, call_next):
 
 @app.get("/api/health")
 async def health_check() -> dict:
-    return {"status": "ok", "version": "0.1.0"}
+    from app.dependencies import get_data_service
+    metadata = get_data_service().get_sync_metadata()
+    return {
+        "status": "ok",
+        "version": "0.1.0",
+        "last_sync": metadata.get("last_sync"),
+    }
 
 
 @app.get("/")

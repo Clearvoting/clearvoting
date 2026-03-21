@@ -14,7 +14,7 @@
     --accent-red: #C5283D;
     --vote-yea: #2E8540;
     --vote-nay: #CD2026;
-    --vote-absent: #AEB0B5;
+    --vote-absent: #757575;
     --vote-present: #0071BC;
     --border: #D6D7D9;
     --border-light: #E8E8E8;
@@ -752,7 +752,7 @@ select:focus, input:focus {
 }
 
 .vote-bar-segment {
-    transition: width var(--transition);
+    transition: width 0.6s ease;
 }
 
 .vote-bar-segment.yea { background: var(--vote-yea); }
@@ -1018,6 +1018,12 @@ select:focus, input:focus {
     border-left-color: var(--vote-nay);
 }
 
+.issue-areas-heading {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
 .ai-disclaimer {
     font-size: 0.8rem;
     color: var(--text-dim);
@@ -1049,6 +1055,33 @@ select:focus, input:focus {
 
 .summary-expand-btn {
     margin-top: 0.5rem;
+}
+
+.copy-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius);
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all var(--transition);
+    margin-bottom: 1rem;
+}
+
+.copy-link-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.copy-link-btn.copied {
+    border-color: var(--vote-yea);
+    color: var(--vote-yea);
 }
 
 .source-link {
@@ -1840,6 +1873,11 @@ select:focus, input:focus {
     color: var(--text-secondary);
 }
 
+.data-freshness {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
 /* ============================================
    Member Voting Profile
    ============================================ */
@@ -2031,6 +2069,7 @@ select:focus, input:focus {
     border-radius: var(--radius);
     padding: 1rem 1.25rem;
     transition: all var(--transition);
+    cursor: pointer;
 }
 
 .vote-item:hover {
@@ -2542,6 +2581,11 @@ select:focus, input:focus {
         flex: 1 1 0;
         text-align: center;
         min-width: 0;
+        min-height: 44px;
+    }
+
+    .btn-small {
+        min-height: 44px;
     }
 
     /* Pagination touch targets */
@@ -2818,6 +2862,28 @@ select:focus, input:focus {
 .animate-scale.visible {
     opacity: 1;
     transform: none;
+}
+
+/* ============================================
+   Focus-Visible (Accessibility)
+   ============================================ */
+.member-card:focus-visible,
+.bill-item:focus-visible,
+.vote-item:focus-visible,
+.member-tab:focus-visible,
+.category-tag:focus-visible,
+.btn:focus-visible,
+.btn-small:focus-visible,
+.party-toggle-inline:focus-visible,
+.back-link:focus-visible,
+.bill-toc a:focus-visible,
+.vote-pagination-btn:focus-visible,
+.service-expand-btn:focus-visible,
+.feedback-btn:focus-visible,
+.summary-expand-btn:focus-visible,
+.copy-link-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 /* ============================================

@@ -7,7 +7,7 @@ const VOTE_COLORS = {
     yea: '#2E8540',
     nay: '#CD2026',
     present: '#0071BC',
-    absent: '#AEB0B5',
+    absent: '#757575',
 };
 
 // --- SVG Pie Chart ---
@@ -103,6 +103,7 @@ function _buildPieChart(segments, total, size) {
     const circumference = 2 * Math.PI * r;
 
     let offset = 0;
+    var circleTargets = [];
     segments.forEach(function(seg) {
         var pct = seg.count / total;
         var dashLen = pct * circumference;
@@ -114,12 +115,24 @@ function _buildPieChart(segments, total, size) {
         circle.setAttribute('fill', 'none');
         circle.setAttribute('stroke', seg.color);
         circle.setAttribute('stroke-width', String(strokeW));
-        circle.setAttribute('stroke-dasharray', dashLen + ' ' + (circumference - dashLen));
+        // Start with no visible arc
+        circle.setAttribute('stroke-dasharray', '0 ' + circumference);
         circle.setAttribute('stroke-dashoffset', String(-offset));
         circle.setAttribute('transform', 'rotate(-90 ' + cx + ' ' + cy + ')');
+        circle.style.transition = 'stroke-dasharray 0.6s ease';
         svg.appendChild(circle);
 
+        circleTargets.push({ el: circle, dashLen: dashLen });
         offset += dashLen;
+    });
+
+    // Animate pie arcs filling in
+    requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+            circleTargets.forEach(function(t) {
+                t.el.setAttribute('stroke-dasharray', t.dashLen + ' ' + (circumference - t.dashLen));
+            });
+        });
     });
 
     // Center text
@@ -155,13 +168,22 @@ function renderVoteBar(counts) {
         { cls: 'absent', count: counts.absent || 0 },
     ];
 
+    var targetWidths = [];
     segments.forEach(function(seg) {
         if (seg.count > 0) {
             var segment = document.createElement('div');
             segment.className = 'vote-bar-segment ' + seg.cls;
-            segment.style.width = ((seg.count / total) * 100) + '%';
+            segment.style.width = '0%';
             bar.appendChild(segment);
+            targetWidths.push({ el: segment, width: ((seg.count / total) * 100) + '%' });
         }
+    });
+
+    // Animate bar segments expanding from 0
+    requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+            targetWidths.forEach(function(t) { t.el.style.width = t.width; });
+        });
     });
 
     return bar;

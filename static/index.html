@@ -59,7 +59,7 @@
                 <p>You're viewing representatives without party labels.</p>
                 <button id="party-toggle" class="btn btn-secondary btn-small">Reveal Party Affiliations</button>
             </div>
-            <div id="member-grid" class="member-grid"></div>
+            <div id="member-grid" class="member-grid" aria-live="polite"></div>
         </section>
 
         <section id="browse" class="browse animate-in" aria-label="Browse bills">
@@ -85,6 +85,7 @@
     <footer class="site-footer animate-in">
         <p>Data sourced from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a>.</p>
         <p>ClearVoting does not express opinions on legislation or representatives.</p>
+        <p><span id="data-freshness" class="data-freshness"></span></p>
     </footer>
 
     <button class="feedback-btn" id="feedback-open" aria-label="Send feedback">

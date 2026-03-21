@@ -101,6 +101,22 @@ function renderBill(container, bill, congress, type, number) {
     );
     container.appendChild(header);
 
+    // Copy Link button
+    if (navigator.clipboard) {
+        const copyBtn = el('button', { className: 'copy-link-btn', 'aria-label': 'Copy page link to clipboard' }, 'Copy Link');
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy Link';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {});
+        });
+        container.appendChild(copyBtn);
+    }
+
     // Impact tags
     if (policyArea || subjects.length > 0) {
         const tagsDiv = el('div', { className: 'impact-tags' });
@@ -127,7 +143,7 @@ function renderBill(container, bill, congress, type, number) {
     // AI Summary section (placeholder — loaded async)
     const aiSection = el('section', { className: 'bill-section', id: 'ai-summary-section' });
     aiSection.appendChild(el('h3', null, 'What This Bill Does'));
-    aiSection.appendChild(el('div', { id: 'ai-summary-content', className: 'loading' },
+    aiSection.appendChild(el('div', { id: 'ai-summary-content', className: 'loading', 'aria-live': 'polite' },
         el('span', { className: 'spinner' }),
         ' Generating plain-language summary...'
     ));
@@ -184,7 +200,7 @@ function renderBill(container, bill, congress, type, number) {
     // Votes section (placeholder — loaded async)
     const votesSection = el('section', { className: 'bill-section', id: 'votes-section' });
     votesSection.appendChild(el('h3', null, 'Roll Call Votes'));
-    votesSection.appendChild(el('div', { id: 'votes-content', className: 'loading' },
+    votesSection.appendChild(el('div', { id: 'votes-content', className: 'loading', 'aria-live': 'polite' },
         el('span', { className: 'spinner' }),
         ' Loading vote data...'
     ));
@@ -235,7 +251,7 @@ async function loadAISummary(congress, type, number) {
             categories.forEach(cat => {
                 tagsDiv.appendChild(el('span', { className: 'impact-tag' }, cat));
             });
-            summaryContent.appendChild(el('h4', { style: 'margin-top:1rem;font-size:0.85rem;color:var(--text-secondary);' }, 'Issue Areas'));
+            summaryContent.appendChild(el('h4', { className: 'issue-areas-heading' }, 'Issue Areas'));
             summaryContent.appendChild(tagsDiv);
         }
 
