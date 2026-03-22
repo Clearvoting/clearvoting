@@ -209,6 +209,7 @@ async function lookupMembers() {
     const grid = document.getElementById('member-grid');
     resultsSection.hidden = false;
     showLoading(grid, 'Loading representatives...', 'members');
+    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     try {
         let url = `/api/members/${state}?include_stats=true`;
