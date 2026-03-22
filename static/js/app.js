@@ -211,8 +211,8 @@ async function lookupMembers() {
     showLoading(grid, 'Loading representatives...', 'members');
 
     try {
-        let url = `/api/members/${state}`;
-        if (district) url = `/api/members/${state}/${district}`;
+        let url = `/api/members/${state}?include_stats=true`;
+        if (district) url = `/api/members/${state}/${district}?include_stats=true`;
 
         const response = await fetch(url);
         if (!response.ok) throw new Error('Failed to load members');
@@ -245,6 +245,15 @@ async function lookupMembers() {
         if (countEl) countEl.textContent = `Showing ${members.length} representative${members.length !== 1 ? 's' : ''}`;
 
         renderMembers(grid, members);
+
+        // Add "View All Representatives" link to state overview
+        const existingOverviewLink = grid.parentElement.querySelector('.state-overview-link');
+        if (existingOverviewLink) existingOverviewLink.remove();
+        const overviewLink = el('a', {
+            className: 'state-overview-link',
+            href: `/state?code=${state}`,
+        }, 'Compare all representatives side by side \u2192');
+        grid.parentElement.appendChild(overviewLink);
 
         // Apply persisted party toggle state
         if (showParty) {
@@ -285,6 +294,43 @@ function renderMembers(grid, members) {
 
         const header = el('div', { className: 'card-header' }, photoEl, infoEl);
 
+        const cardChildren = [header];
+
+        // Add viz stats if available (from include_stats=true)
+        const stats = member.stats;
+        if (stats && window.ClearVoteViz) {
+            const participation = stats.participation_rate || 0;
+            const yea = stats.yea_count || 0;
+            const nay = stats.nay_count || 0;
+            const totalVotes = yea + nay;
+            const yeaPct = totalVotes > 0 ? Math.round((yea / totalVotes) * 100) : 0;
+            const nayPct = totalVotes > 0 ? 100 - yeaPct : 0;
+
+            const ring = window.ClearVoteViz.createParticipationRing(participation, 40);
+            const ringItem = el('div', { className: 'card-stat-item' }, ring, el('span', null, 'participation'));
+
+            const voteBarLabels = el('div', { className: 'card-vote-bar-labels' },
+                el('span', { className: 'yea-label' }, `${yeaPct}% yea`),
+                el('span', { className: 'nay-label' }, `${nayPct}% nay`)
+            );
+            const voteBar = window.ClearVoteViz.createVoteSplitBar(yeaPct, nayPct, 0);
+            const voteBarWrap = el('div', { className: 'card-vote-bar-wrap' }, voteBarLabels, voteBar);
+
+            const statsRow = el('div', { className: 'card-stats' }, ringItem, voteBarWrap);
+            cardChildren.push(statsRow);
+        }
+
+        // Narrative snippet
+        if (member.narrative_snippet) {
+            cardChildren.push(el('p', { className: 'card-narrative' }, member.narrative_snippet));
+        }
+
+        // Profile link
+        cardChildren.push(el('a', {
+            className: 'card-profile-link',
+            href: `/member?id=${bioguideId}`,
+        }, 'View Full Profile \u2192'));
+
         const card = el('article', {
             className: 'member-card hover-lift',
             role: 'button',
@@ -292,7 +338,7 @@ function renderMembers(grid, members) {
             'aria-expanded': 'false',
             'aria-label': `View voting snapshot for ${name}`,
             'data-member-id': bioguideId,
-        }, header);
+        }, ...cardChildren);
 
         card.addEventListener('click', (e) => {
             if (e.target.closest('a')) return;
@@ -407,8 +453,8 @@ async function reloadMembersWithParty() {
     if (!state) return;
 
     try {
-        let url = `/api/members/${state}`;
-        if (district) url = `/api/members/${state}/${district}`;
+        let url = `/api/members/${state}?include_stats=true`;
+        if (district) url = `/api/members/${state}/${district}?include_stats=true`;
 
         const response = await fetch(url);
         if (!response.ok) return;
@@ -421,7 +467,11 @@ async function reloadMembersWithParty() {
                     const resp = await fetch(`/api/members/detail/${m.bioguideId}?show_party=true`);
                     if (resp.ok) {
                         const detail = await resp.json();
-                        return detail.member || m;
+                        // Merge detail (which has party) with stats from original member
+                        const merged = detail.member || m;
+                        if (m.stats) merged.stats = m.stats;
+                        if (m.narrative_snippet) merged.narrative_snippet = m.narrative_snippet;
+                        return merged;
                     }
                 } catch { /* fall through */ }
                 return m;
@@ -460,6 +510,42 @@ async function reloadMembersWithParty() {
 
             const infoEl = el('div', { className: 'member-info' }, ...infoChildren);
             const header = el('div', { className: 'card-header' }, photoEl, infoEl);
+
+            const cardChildren = [header];
+
+            // Add viz stats if available
+            const stats = member.stats;
+            if (stats && window.ClearVoteViz) {
+                const participation = stats.participation_rate || 0;
+                const yea = stats.yea_count || 0;
+                const nay = stats.nay_count || 0;
+                const totalVotes = yea + nay;
+                const yeaPct = totalVotes > 0 ? Math.round((yea / totalVotes) * 100) : 0;
+                const nayPct = totalVotes > 0 ? 100 - yeaPct : 0;
+
+                const ring = window.ClearVoteViz.createParticipationRing(participation, 40);
+                const ringItem = el('div', { className: 'card-stat-item' }, ring, el('span', null, 'participation'));
+
+                const voteBarLabels = el('div', { className: 'card-vote-bar-labels' },
+                    el('span', { className: 'yea-label' }, `${yeaPct}% yea`),
+                    el('span', { className: 'nay-label' }, `${nayPct}% nay`)
+                );
+                const voteBar = window.ClearVoteViz.createVoteSplitBar(yeaPct, nayPct, 0);
+                const voteBarWrap = el('div', { className: 'card-vote-bar-wrap' }, voteBarLabels, voteBar);
+
+                const statsRow = el('div', { className: 'card-stats' }, ringItem, voteBarWrap);
+                cardChildren.push(statsRow);
+            }
+
+            if (member.narrative_snippet) {
+                cardChildren.push(el('p', { className: 'card-narrative' }, member.narrative_snippet));
+            }
+
+            cardChildren.push(el('a', {
+                className: 'card-profile-link',
+                href: `/member?id=${bioguideId}`,
+            }, 'View Full Profile \u2192'));
+
             const card = el('article', {
                 className: 'member-card hover-lift',
                 role: 'button',
@@ -467,7 +553,7 @@ async function reloadMembersWithParty() {
                 'aria-expanded': 'false',
                 'aria-label': `View voting snapshot for ${name}`,
                 'data-member-id': bioguideId,
-            }, header);
+            }, ...cardChildren);
 
             card.addEventListener('click', (e) => {
                 if (e.target.closest('a')) return;

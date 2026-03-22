@@ -88,11 +88,83 @@ async def get_member_summary(bioguide_id: str):
     return summary
 
 
+@router.get("/{state_code}/overview")
+async def get_state_overview(state_code: str):
+    state_code = _validate_state_code(state_code)
+    data_service = get_data_service()
+    members_data = data_service.get_members_by_state(state_code)
+    members = members_data.get("members", [])
+
+    enriched = []
+    total_participation = 0.0
+    total_support = 0.0
+    total_votes_all = 0
+    count_with_stats = 0
+
+    for m in members:
+        bio_id = m.get("bioguideId", "")
+        votes_data = data_service.get_member_votes(bio_id)
+        stats = votes_data.get("stats", {}) if votes_data else {}
+        narrative_data = data_service.get_member_narrative(bio_id)
+        narrative_snippet = ""
+        if narrative_data:
+            full = narrative_data.get("narrative", "")
+            narrative_snippet = full[:150] + "..." if len(full) > 150 else full
+
+        participation = stats.get("participation_rate", 0)
+        yea = stats.get("yea_count", 0)
+        nay = stats.get("nay_count", 0)
+        total_v = stats.get("total_votes", 0)
+        support_rate = round(yea / (yea + nay) * 100) if (yea + nay) > 0 else 0
+
+        enriched.append({
+            **m,
+            "participation_rate": participation,
+            "support_rate": support_rate,
+            "total_votes": total_v,
+            "yea_count": yea,
+            "nay_count": nay,
+            "narrative_snippet": narrative_snippet,
+        })
+
+        if total_v > 0:
+            total_participation += participation
+            total_support += support_rate
+            total_votes_all += total_v
+            count_with_stats += 1
+
+    avg_participation = round(total_participation / count_with_stats) if count_with_stats else 0
+    avg_support = round(total_support / count_with_stats) if count_with_stats else 0
+
+    return _strip_party({
+        "members": enriched,
+        "aggregate": {
+            "total_members": len(members),
+            "avg_participation": avg_participation,
+            "avg_support_rate": avg_support,
+            "total_votes": total_votes_all,
+        },
+    })
+
+
 @router.get("/{state_code}")
-async def get_members_by_state(state_code: str):
+async def get_members_by_state(
+    state_code: str,
+    include_stats: bool = Query(False, description="Include vote stats and narrative snippet per member"),
+):
     state_code = _validate_state_code(state_code)
     data_service = get_data_service()
     data = data_service.get_members_by_state(state_code)
+    if include_stats:
+        for m in data.get("members", []):
+            bio_id = m.get("bioguideId", "")
+            votes_data = data_service.get_member_votes(bio_id)
+            if votes_data:
+                m["stats"] = votes_data.get("stats", {})
+            narrative_data = data_service.get_member_narrative(bio_id)
+            if narrative_data:
+                full = narrative_data.get("narrative", "")
+                m["narrative_snippet"] = full[:150] + "..." if len(full) > 150 else full
     return _strip_party(data)
 
 
@@ -107,10 +179,24 @@ async def get_member_detail(bioguide_id: str, show_party: bool = False):
 
 
 @router.get("/{state_code}/{district}")
-async def get_members_by_district(state_code: str, district: int):
+async def get_members_by_district(
+    state_code: str,
+    district: int,
+    include_stats: bool = Query(False, description="Include vote stats and narrative snippet per member"),
+):
     state_code = _validate_state_code(state_code)
     data_service = get_data_service()
     data = data_service.get_members_by_district(state_code, district)
+    if include_stats:
+        for m in data.get("members", []):
+            bio_id = m.get("bioguideId", "")
+            votes_data = data_service.get_member_votes(bio_id)
+            if votes_data:
+                m["stats"] = votes_data.get("stats", {})
+            narrative_data = data_service.get_member_narrative(bio_id)
+            if narrative_data:
+                full = narrative_data.get("narrative", "")
+                m["narrative_snippet"] = full[:150] + "..." if len(full) > 150 else full
     return _strip_party(data)
 
 

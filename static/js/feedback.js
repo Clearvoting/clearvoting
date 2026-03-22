@@ -37,6 +37,15 @@
             };
         }
 
+        if (path === '/state') {
+            var stateTitle = document.querySelector('.state-header h1');
+            return {
+                page_type: 'state',
+                context_id: params.get('code') || '',
+                context_label: stateTitle ? stateTitle.textContent.trim() : ''
+            };
+        }
+
         if (path === '/about') {
             return { page_type: 'about', context_id: '', context_label: '' };
         }

@@ -7,8 +7,8 @@
     <meta name="description" content="Unbiased congressional voting records. See how your representatives vote on bills — facts only, no opinions.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css?v=8">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css?v=9">
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 </head>
 <body>
@@ -30,9 +30,9 @@
 
     <main id="main-content">
         <section class="hero">
-            <h2 class="hero-animate">See how your representatives vote.</h2>
-            <p class="hero-animate-delay">Facts only. No opinions. No spin.</p>
-            <p class="hero-mission-link hero-animate-delay-2"><a href="/about">Learn about our mission and how you can help &rarr;</a></p>
+            <h1 class="hero-animate">See how your representatives vote.</h1>
+            <p class="hero-tagline hero-animate-delay">Plain language. No spin. No party labels until you ask.</p>
+            <p class="hero-trust-line hero-animate-delay-2">Data from Congress.gov and Senate.gov</p>
         </section>
 
         <section class="lookup animate-scale" aria-label="Find your representatives">
@@ -50,6 +50,27 @@
                 </div>
             </div>
             <button id="lookup-btn" class="btn btn-primary" disabled>Find My Representatives</button>
+        </section>
+
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Pick your state</h3>
+                    <p>Select your state and optionally your district to find who represents you in Congress.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>See the record</h3>
+                    <p>View their actual voting history, issue positions, and campaign donors — all in plain English.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Form your own opinion</h3>
+                    <p>Party labels hidden by default. Evaluate your representative on what they did, not their team.</p>
+                </div>
+            </div>
         </section>
 
         <section id="results" class="results" hidden aria-label="Your representatives">
@@ -107,7 +128,8 @@
         </form>
     </div>
 
-    <script src="/static/js/app.js?v=8"></script>
+    <script src="/static/js/viz.js?v=1"></script>
+    <script src="/static/js/app.js?v=9"></script>
     <script src="/static/js/feedback.js?v=5"></script>
 </body>
 </html>

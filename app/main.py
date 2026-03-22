@@ -93,3 +93,8 @@ async def serve_bill():
 @app.get("/about")
 async def serve_about():
     return _serve_html("about.html")
+
+
+@app.get("/state")
+async def serve_state():
+    return _serve_html("state.html")

@@ -1,0 +1,51 @@
+{
+  "member_id": "D000032",
+  "congress": 119,
+  "stats": {
+    "total_votes": 3,
+    "yea_count": 2,
+    "nay_count": 1,
+    "not_voting_count": 0,
+    "participation_rate": 85.0
+  },
+  "scorecard": [],
+  "votes": [
+    {
+      "bill_number": "H.R. 1",
+      "bill_id": "119-hr-1",
+      "one_liner": "One Big Beautiful Bill Act",
+      "vote": "Yea",
+      "date": "2025-05-22",
+      "result": "Bill Passed",
+      "policy_area": "Taxation",
+      "chamber": "House",
+      "cbo_deficit_impact": "+$2.3 trillion over 10 years",
+      "direction": "against"
+    },
+    {
+      "bill_number": "H.R. 50",
+      "bill_id": "119-hr-50",
+      "one_liner": "Infrastructure Investment Act",
+      "vote": "Yea",
+      "date": "2025-04-15",
+      "result": "Bill Passed",
+      "policy_area": "Transportation and Public Works",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "in_favor"
+    },
+    {
+      "bill_number": "H.R. 75",
+      "bill_id": "119-hr-75",
+      "one_liner": "Clean Energy Standards Act",
+      "vote": "Nay",
+      "date": "2025-03-20",
+      "result": "Bill Failed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "in_favor"
+    }
+  ],
+  "policy_areas": ["Taxation", "Transportation and Public Works", "Energy"]
+}
