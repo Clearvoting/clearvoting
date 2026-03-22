@@ -208,15 +208,16 @@ function renderControls(container) {
 
 // --- Filtering & Sorting ---
 function getChamber(member) {
-    if (member.chamber) return member.chamber;
-    const terms = member.terms || { item: [] };
-    const items = Array.isArray(terms.item) ? terms.item : [terms.item].filter(Boolean);
-    const latest = items[items.length - 1];
-    if (!latest) return '';
-    const ch = latest.chamber || '';
-    if (ch.toLowerCase().includes('senate')) return 'Senate';
-    if (ch.toLowerCase().includes('house')) return 'House';
-    return ch;
+    const raw = member.chamber
+        || (() => {
+            const terms = member.terms || { item: [] };
+            const items = Array.isArray(terms.item) ? terms.item : [terms.item].filter(Boolean);
+            const latest = items[items.length - 1];
+            return latest ? latest.chamber || '' : '';
+        })();
+    if (raw.toLowerCase().includes('senate')) return 'Senate';
+    if (raw.toLowerCase().includes('house')) return 'House';
+    return raw;
 }
 
 function getMemberName(member) {
