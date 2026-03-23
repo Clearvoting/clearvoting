@@ -2663,7 +2663,7 @@ select:focus, input:focus {
     .hero p { font-size: 1rem; }
     .hero .hero-tagline { font-size: var(--text-base); }
 
-    .steps-grid { grid-template-columns: 1fr; gap: var(--space-sm); }
+    .how-it-works { display: none; }
 
     .form-row { flex-direction: column; }
 
