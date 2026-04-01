@@ -5,10 +5,23 @@ and saves everything as JSON files in data/synced/ for the
 web app to serve.
 
 Usage:
-    cd ~/Documents/Claude/Projects/clearvote
+    cd ~/Documents/Claude/2.\\ Projects/Non-Profit/ClearVote
     source .venv/bin/activate
-    python sync.py --states NY,FL
-    python sync.py                    # all states
+
+    # Full sync (all 12 steps):
+    python sync.py
+
+    # Government data only (for GitHub Actions Saturday cron):
+    python sync.py --skip-ai
+
+    # AI generation only (for Sunday /loop via Claude Code):
+    python sync.py --ai-only
+
+    # Override default states:
+    python sync.py --states NY,FL,CA,TX
+
+    # Skip campaign finance:
+    python sync.py --skip-ai --skip-donations
 """
 
 import argparse
