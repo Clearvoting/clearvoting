@@ -50,6 +50,10 @@ CONGRESSES = [
     (119, 1), (119, 2),
 ]
 
+# Default states to sync — update this list when expanding coverage
+# The --states CLI flag overrides this. Previously defaulted to all 50+ states/territories.
+SYNC_STATES = ["NY", "FL", "CA", "TX"]
+
 
 def _atomic_write_json(path: Path, data: dict | list) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1842,7 +1846,7 @@ async def main() -> None:
         return
 
     # --- Normal sync mode ---
-    states = [s.strip().upper() for s in args.states.split(",")] if args.states else None
+    states = [s.strip().upper() for s in args.states.split(",")] if args.states else SYNC_STATES
 
     api_key = os.getenv("CONGRESS_API_KEY", "")
     if not api_key:
@@ -1943,7 +1947,7 @@ async def main() -> None:
     # Write metadata
     metadata = {
         "last_sync": datetime.now(timezone.utc).isoformat(),
-        "states_synced": states or US_STATES,
+        "states_synced": states,
         "members_count": members_count,
         "bills_count": bills_count,
         "senate_votes_count": senate_count,
