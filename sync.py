@@ -1683,6 +1683,11 @@ async def main() -> None:
                         help="Skip FEC donation sync (useful if no API key).")
     parser.add_argument("--resync-donations", action="store_true",
                         help="Clear and re-fetch all FEC donation data (fixes bad matches).")
+    mode_group = parser.add_mutually_exclusive_group()
+    mode_group.add_argument("--skip-ai", action="store_true",
+                            help="Skip AI-dependent steps (5,6,8,9,11). Run government data only.")
+    mode_group.add_argument("--ai-only", action="store_true",
+                            help="Run only AI-dependent steps (5,6,8,9,11). Assumes gov data is fresh.")
     args = parser.parse_args()
 
     raw_key = os.getenv("ANTHROPIC_API_KEY", "")
@@ -1892,15 +1897,25 @@ async def main() -> None:
     bills_count = await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
 
     # Step 5: AI bill summaries (writer-grader loop)
-    print()
-    print(f"[5/12] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
-    summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
+    summary_stats = {}
+    if not args.skip_ai:
+        print()
+        print(f"[5/12] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
+        summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
+    else:
+        print()
+        print("[5/12] Skipping AI bill summaries (--skip-ai)")
 
     # Step 6: Bill arguments — both sides (writer-grader loop)
-    print()
-    print(f"[6/12] Generating bill arguments ({'API' if anthropic_key else 'Claude CLI'})...")
-    args_batch = 10 if not anthropic_key else 5
-    arguments_stats = await sync_bill_arguments(SYNC_DIR, api_key=anthropic_key or None, batch_size=args_batch, rate_limit=1.0)
+    arguments_stats = {}
+    if not args.skip_ai:
+        print()
+        print(f"[6/12] Generating bill arguments ({'API' if anthropic_key else 'Claude CLI'})...")
+        args_batch = 10 if not anthropic_key else 5
+        arguments_stats = await sync_bill_arguments(SYNC_DIR, api_key=anthropic_key or None, batch_size=args_batch, rate_limit=1.0)
+    else:
+        print()
+        print("[6/12] Skipping bill arguments (--skip-ai)")
 
     # Step 7: Member voting records (both chambers)
     print()
@@ -1908,14 +1923,23 @@ async def main() -> None:
     member_votes_count = await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
 
     # Step 8: Issue scorecard verdicts
-    print()
-    print(f"[8/12] Generating issue scorecard verdicts ({'API' if anthropic_key else 'Claude CLI'})...")
-    await generate_scorecard_verdicts(SYNC_DIR, api_key=anthropic_key or None)
+    if not args.skip_ai:
+        print()
+        print(f"[8/12] Generating issue scorecard verdicts ({'API' if anthropic_key else 'Claude CLI'})...")
+        await generate_scorecard_verdicts(SYNC_DIR, api_key=anthropic_key or None)
+    else:
+        print()
+        print("[8/12] Skipping issue scorecard verdicts (--skip-ai)")
 
     # Step 9: Member summaries
-    print()
-    print(f"[9/12] Generating AI member summaries ({'API' if anthropic_key else 'Claude CLI'})...")
-    member_summary_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
+    member_summary_stats = {}
+    if not args.skip_ai:
+        print()
+        print(f"[9/12] Generating AI member summaries ({'API' if anthropic_key else 'Claude CLI'})...")
+        member_summary_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
+    else:
+        print()
+        print("[9/12] Skipping AI member summaries (--skip-ai)")
 
     # Step 10: Campaign finance (FEC)
     donations_stats = {}
@@ -1936,9 +1960,14 @@ async def main() -> None:
         print("[10/12] Skipping campaign finance sync (--skip-donations)")
 
     # Step 11: Page coherence check
-    print()
-    print(f"[11/12] Checking page coherence ({'API' if anthropic_key else 'Claude CLI'})...")
-    coherence_stats = await check_page_coherence(SYNC_DIR, api_key=anthropic_key or None)
+    coherence_stats = {}
+    if not args.skip_ai:
+        print()
+        print(f"[11/12] Checking page coherence ({'API' if anthropic_key else 'Claude CLI'})...")
+        coherence_stats = await check_page_coherence(SYNC_DIR, api_key=anthropic_key or None)
+    else:
+        print()
+        print("[11/12] Skipping page coherence check (--skip-ai)")
 
     # Step 12: Sync summary
     print()
