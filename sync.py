@@ -1853,6 +1853,69 @@ async def main() -> None:
     # --- Normal sync mode ---
     states = [s.strip().upper() for s in args.states.split(",")] if args.states else SYNC_STATES
 
+    # --ai-only mode: skip government data steps, go straight to AI
+    if args.ai_only:
+        SYNC_DIR.mkdir(parents=True, exist_ok=True)
+        print("=== ClearVote AI-Only Sync ===")
+        print(f"  Mode: {'API' if anthropic_key else 'Claude CLI (Max plan)'}")
+        print()
+
+        # Step 5: AI bill summaries
+        print("[5/12] Generating graded AI bill summaries...")
+        summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
+
+        # Step 6: Bill arguments
+        print()
+        print("[6/12] Generating bill arguments...")
+        args_batch = 10 if not anthropic_key else 5
+        arguments_stats = await sync_bill_arguments(SYNC_DIR, api_key=anthropic_key or None, batch_size=args_batch, rate_limit=1.0)
+
+        # Step 8: Issue scorecard verdicts
+        print()
+        print("[8/12] Generating issue scorecard verdicts...")
+        await generate_scorecard_verdicts(SYNC_DIR, api_key=anthropic_key or None)
+
+        # Step 9: Member summaries
+        print()
+        print("[9/12] Generating AI member summaries...")
+        member_summary_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
+
+        # Step 11: Page coherence check
+        print()
+        print("[11/12] Checking page coherence...")
+        coherence_stats = await check_page_coherence(SYNC_DIR, api_key=anthropic_key or None)
+
+        # Step 12: Write metadata
+        # Include zero-value keys for gov fields so downstream code doesn't break
+        print()
+        print("[12/12] Writing sync metadata...")
+        metadata = {
+            "last_sync": datetime.now(timezone.utc).isoformat(),
+            "states_synced": states,
+            "ai_only": True,
+            "members_count": 0,
+            "bills_count": 0,
+            "senate_votes_count": 0,
+            "house_votes_count": 0,
+            "member_votes_count": 0,
+            "donations_stats": {},
+            "summary_stats": summary_stats,
+            "arguments_stats": arguments_stats,
+            "member_summary_stats": member_summary_stats,
+            "coherence_stats": coherence_stats,
+        }
+        _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
+
+        print()
+        print("=== AI-only sync complete ===")
+        if summary_stats.get("total"):
+            print(f"  Bill summaries: {summary_stats['total']} ({summary_stats.get('passed', 0)} passed)")
+        if arguments_stats.get("total"):
+            print(f"  Arguments: {arguments_stats['total']} ({arguments_stats.get('passed', 0)} passed)")
+        if member_summary_stats.get("total"):
+            print(f"  Member narratives: {member_summary_stats['total']} ({member_summary_stats.get('passed', 0)} passed)")
+        return
+
     api_key = os.getenv("CONGRESS_API_KEY", "")
     if not api_key:
         print("ERROR: CONGRESS_API_KEY not set in .env")
