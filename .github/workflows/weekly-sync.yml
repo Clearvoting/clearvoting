@@ -1,0 +1,49 @@
+# Automated weekly government data sync for ClearVote.
+# Runs every Saturday at 10:00 UTC (~6 AM ET summer / 5 AM ET winter).
+# Pulls members, votes, bills, and campaign finance data from public APIs.
+# AI generation is handled separately via local Claude Code /loop on Sundays.
+
+name: Weekly Government Data Sync
+
+on:
+  schedule:
+    - cron: '0 10 * * 6'  # Saturday 10:00 UTC
+  workflow_dispatch:  # Manual trigger for testing
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Run government data sync
+        env:
+          CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
+          FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
+        run: python sync.py --skip-ai
+
+      - name: Commit and push if data changed
+        run: |
+          git add data/synced/
+          if git diff --cached --quiet; then
+            echo "No data changes — nothing to commit."
+          else
+            git commit -m "data: weekly government sync [automated]"
+            git push
+          fi
