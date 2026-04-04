@@ -1696,6 +1696,14 @@ async def main() -> None:
                         help="Skip FEC donation sync (useful if no API key).")
     parser.add_argument("--resync-donations", action="store_true",
                         help="Clear and re-fetch all FEC donation data (fixes bad matches).")
+    parser.add_argument("--step", type=str, default=None,
+                        choices=["members", "senate-votes", "house-votes", "bills",
+                                 "member-votes", "metadata"],
+                        help="Run a single sync step (for CI incremental workflows).")
+    parser.add_argument("--congress", type=int, default=None,
+                        help="Specific congress number (use with --step senate-votes or house-votes).")
+    parser.add_argument("--session", type=int, default=None,
+                        help="Specific session number (use with --step senate-votes or house-votes).")
     mode_group = parser.add_mutually_exclusive_group()
     mode_group.add_argument("--skip-ai", action="store_true",
                             help="Skip AI-dependent steps (5,6,8,9,11). Run government data only.")
@@ -1705,6 +1713,54 @@ async def main() -> None:
 
     raw_key = os.getenv("ANTHROPIC_API_KEY", "")
     anthropic_key = raw_key if raw_key.startswith("sk-") else ""
+
+    # --- Single-step mode (for CI incremental workflows) ---
+    if args.step:
+        api_key = os.getenv("CONGRESS_API_KEY", "")
+        if not api_key:
+            print("ERROR: CONGRESS_API_KEY not set in .env")
+            sys.exit(1)
+
+        SYNC_DIR.mkdir(parents=True, exist_ok=True)
+        cache = CacheService(cache_dir=CACHE_DIR, ttl_seconds=86400)
+        client = CongressAPIClient(api_key=api_key, cache=cache)
+        states = [s.strip().upper() for s in args.states.split(",")] if args.states else SYNC_STATES
+
+        if args.step == "members":
+            print(f"[step] Syncing members for {', '.join(states)}...")
+            await sync_members(client, SYNC_DIR, states=states, rate_limit=0.5)
+
+        elif args.step == "senate-votes":
+            senate_service = SenateVoteService(cache=cache)
+            pairs = [(args.congress, args.session)] if args.congress and args.session else CONGRESSES
+            for congress, session in pairs:
+                print(f"[step] Syncing Senate votes — Congress {congress}, Session {session}...")
+                await sync_senate_votes(senate_service, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+
+        elif args.step == "house-votes":
+            pairs = [(args.congress, args.session)] if args.congress and args.session else CONGRESSES
+            for congress, session in pairs:
+                print(f"[step] Syncing House votes — Congress {congress}, Session {session}...")
+                await sync_house_votes(client, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+
+        elif args.step == "bills":
+            print("[step] Syncing voted-on bills...")
+            await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
+
+        elif args.step == "member-votes":
+            print("[step] Building member voting records...")
+            await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
+
+        elif args.step == "metadata":
+            print("[step] Writing sync metadata...")
+            metadata = {
+                "last_sync": datetime.now(timezone.utc).isoformat(),
+                "states_synced": states,
+                "incremental": True,
+            }
+            _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
+
+        return
 
     # --- Audit mode: grade existing, only regenerate failures ---
     if args.audit:

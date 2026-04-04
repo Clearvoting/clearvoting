@@ -2,6 +2,10 @@
 # Runs every Saturday at 10:00 UTC (~6 AM ET summer / 5 AM ET winter).
 # Pulls members, votes, bills, and campaign finance data from public APIs.
 # AI generation is handled separately via local Claude Code /loop on Sundays.
+#
+# Each step commits its progress independently. If a step times out,
+# its commit still runs (if: always), preserving partial progress.
+# The next run picks up where it left off (all sync functions are incremental).
 
 name: Weekly Government Data Sync
 
@@ -13,7 +17,10 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+
+    env:
+      CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
+      FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
 
     steps:
       - name: Check out repo
@@ -32,18 +39,61 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Run government data sync
-        env:
-          CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
-          FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
-        run: python sync.py --skip-ai
+      - name: Sync members
+        run: python sync.py --step members
 
-      - name: Commit and push if data changed
+      - name: Commit members
+        if: always()
         run: |
           git add data/synced/
-          if git diff --cached --quiet; then
-            echo "No data changes — nothing to commit."
-          else
-            git commit -m "data: weekly government sync [automated]"
-            git push
-          fi
+          git diff --cached --quiet || (git commit -m "data: sync members [automated]" && git push)
+
+      - name: Sync Senate votes
+        timeout-minutes: 15
+        run: python sync.py --step senate-votes
+
+      - name: Commit Senate votes
+        if: always()
+        run: |
+          git add data/synced/
+          git diff --cached --quiet || (git commit -m "data: sync senate votes [automated]" && git push)
+
+      - name: Sync House votes
+        timeout-minutes: 20
+        run: python sync.py --step house-votes
+
+      - name: Commit House votes
+        if: always()
+        run: |
+          git add data/synced/
+          git diff --cached --quiet || (git commit -m "data: sync house votes [automated]" && git push)
+
+      - name: Sync bills
+        timeout-minutes: 15
+        run: python sync.py --step bills
+
+      - name: Commit bills
+        if: always()
+        run: |
+          git add data/synced/
+          git diff --cached --quiet || (git commit -m "data: sync bills [automated]" && git push)
+
+      - name: Build member voting records
+        timeout-minutes: 5
+        run: python sync.py --step member-votes
+
+      - name: Commit member votes
+        if: always()
+        run: |
+          git add data/synced/
+          git diff --cached --quiet || (git commit -m "data: sync member votes [automated]" && git push)
+
+      - name: Write sync metadata
+        if: always()
+        run: python sync.py --step metadata
+
+      - name: Final commit
+        if: always()
+        run: |
+          git add data/synced/
+          git diff --cached --quiet || (git commit -m "data: weekly sync complete [automated]" && git push)
