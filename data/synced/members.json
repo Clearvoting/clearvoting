@@ -931,6 +931,29 @@
       "chamber": "House of Representatives"
     },
     {
+      "bioguideId": "K000401",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/k000401_200.jpg"
+      },
+      "district": 3,
+      "name": "Kiley, Kevin",
+      "partyName": "Independent",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2026-03-20T07:30:24Z",
+      "url": "https://api.congress.gov/v3/member/K000401?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
       "bioguideId": "S001150",
       "depiction": {
         "attribution": "Official U.S. Senate Photo",
@@ -1165,29 +1188,6 @@
       },
       "updateDate": "2025-09-24T07:40:17Z",
       "url": "https://api.congress.gov/v3/member/M001225?format=json",
-      "stateCode": "CA",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "K000401",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/k000401_200.jpg"
-      },
-      "district": 3,
-      "name": "Kiley, Kevin",
-      "partyName": "Republican",
-      "state": "California",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2023
-          }
-        ]
-      },
-      "updateDate": "2025-09-24T07:40:17Z",
-      "url": "https://api.congress.gov/v3/member/K000401?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
     },
