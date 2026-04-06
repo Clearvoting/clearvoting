@@ -65,7 +65,7 @@ jobs:
 
       - name: Sync House votes
         if: always()
-        timeout-minutes: 20
+        timeout-minutes: 25
         run: python sync.py --step house-votes
 
       - name: Commit House votes
