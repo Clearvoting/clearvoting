@@ -1399,6 +1399,29 @@
       "chamber": "House of Representatives"
     },
     {
+      "bioguideId": "C001091",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/69d7f5b07304cef7a0c977b1_200.jpg"
+      },
+      "district": 20,
+      "name": "Castro, Joaquin",
+      "partyName": "Democratic",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2013
+          }
+        ]
+      },
+      "updateDate": "2026-04-09T20:03:37Z",
+      "url": "https://api.congress.gov/v3/member/C001091?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
       "bioguideId": "C001098",
       "depiction": {
         "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
@@ -1829,29 +1852,6 @@
       },
       "updateDate": "2025-09-24T07:40:17Z",
       "url": "https://api.congress.gov/v3/member/V000134?format=json",
-      "stateCode": "TX",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "N000026",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/n000026_200.jpg"
-      },
-      "district": 22,
-      "name": "Nehls, Troy E.",
-      "partyName": "Republican",
-      "state": "Texas",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2021
-          }
-        ]
-      },
-      "updateDate": "2025-09-24T07:40:17Z",
-      "url": "https://api.congress.gov/v3/member/N000026?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
     }
