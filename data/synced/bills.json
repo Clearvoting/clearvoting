@@ -119911,6 +119911,936 @@
       "type": "S",
       "updateDate": "2025-12-05T11:13:26Z",
       "updateDateIncludingText": "2025-12-05T11:13:26Z"
+    },
+    {
+      "actions": {
+        "count": 11,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/40/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/40/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 90,
+        "countIncludingWithdrawnCosponsors": 90,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/40/cosponsors?format=json"
+      },
+      "introducedDate": "2025-06-23",
+      "latestAction": {
+        "actionDate": "2026-04-16",
+        "actionTime": "12:06:50",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/40",
+      "number": "40",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "M001137",
+          "district": 5,
+          "firstName": "Gregory",
+          "fullName": "Rep. Meeks, Gregory W. [D-NY-5]",
+          "isByRequest": "N",
+          "lastName": "Meeks",
+          "middleName": "W.",
+          "party": "D",
+          "state": "NY",
+          "url": "https://api.congress.gov/v3/member/M001137?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/40/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-06-23",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This concurrent resolution directs the President to remove U.S. Armed Forces from hostilities against Iran unless explicitly authorized by a declaration of war or a congressional authorization for use of military force against Iran.</p><p>Elements of the U.S. Armed Forces needed to defend the United States, an ally, or a partner from imminent attack are not covered by this requirement provided the President complies with a specified provision of the War Powers Resolution. (The provision generally requires the President to remove U.S. Armed Forces from hostilities no more than 60 days after their introduction unless Congress authorizes such use. For more information on the War Powers Resolution, see&nbsp;<a href=\"https://crs.gov/Reports/IF13134\">CRS In Focus 13134</a>.)</p>",
+          "updateDate": "2026-04-13T16:07:56Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/40/text?format=json"
+      },
+      "title": "Directing the President, pursuant to section 5(c) of the War Powers Resolution, to remove United States Armed Forces from hostilities with Iran.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/40/titles?format=json"
+      },
+      "type": "HCONRES",
+      "updateDate": "2026-04-17T17:28:18Z",
+      "updateDateIncludingText": "2026-04-17T17:28:18Z"
+    },
+    {
+      "actions": {
+        "count": 13,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1011/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1011/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 24 (Wednesday, February 5, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Ms. LETLOW:\nH.R. 1011.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8, Clause 1\n[Page H505]\n</pre>",
+      "cosponsors": {
+        "count": 4,
+        "countIncludingWithdrawnCosponsors": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1011/cosponsors?format=json"
+      },
+      "introducedDate": "2025-02-05",
+      "latestAction": {
+        "actionDate": "2026-04-15",
+        "text": "Received in the Senate."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/1011",
+      "number": "1011",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Agriculture and Food"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "L000595",
+          "district": 5,
+          "firstName": "Julia",
+          "fullName": "Rep. Letlow, Julia [R-LA-5]",
+          "isByRequest": "N",
+          "lastName": "Letlow",
+          "party": "R",
+          "state": "LA",
+          "url": "https://api.congress.gov/v3/member/L000595?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1011/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-02-05",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Emergency Conservation Program Improvement Act of 2025</strong></p><p>This bill revises the Emergency Conservation Program (ECP) and the Emergency Forest Restoration Program (EFRP) to expand eligibility for payments to agricultural producers and owners of forest land impacted by natural disasters. The bill also&nbsp;provides additional options to receive an advance on cost-sharing payments before carrying out emergency measures.</p><p>The bill&nbsp;expands&nbsp;advance ECP payments to include payments for the rehabilitation of farmland or to repair or replace a farmland or conservation structure. Producers may receive an advance on cost-sharing payments for 75% of the cost of the replacement&nbsp;or rehabilitation and 50% of the cost of the repair. Current law limits advanced cost-sharing payments to 25% of the cost of the repair or replacement of fencing.</p><p>The bill also expands eligibility for payments under ECP to include emergency measures to address damages caused by a wildfire that is not caused naturally (including a wildfire that is caused by the federal government), if the damage is caused by the spread of the wildfire due to natural causes.</p><p>Under EFRP, the bill allows owners of nonindustrial private forest land impacted by a natural disaster to receive an advance on cost-sharing payments for up to 75% of the cost of the emergency measures.&nbsp;Recipients must use the funds within 180 days after the funds are disbursed. Currently, advance payments are not available under the program.</p>",
+          "updateDate": "2026-01-29T15:10:01Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1011/text?format=json"
+      },
+      "title": "Emergency Conservation Program Improvement Act of 2025",
+      "titles": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1011/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-04-16T10:56:33Z",
+      "updateDateIncludingText": "2026-04-16T11:33:39Z"
+    },
+    {
+      "actions": {
+        "count": 10,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1689/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1689/amendments?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1689/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 39 (Thursday, February 27, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Ms. GILLEN:\nH.R. 1689.\nCongress has the power to enact this legislation pursuant\nto the following:\nsection 8 of article I of the Constitution.\n[Page H919]\n</pre>",
+      "cosponsors": {
+        "count": 8,
+        "countIncludingWithdrawnCosponsors": 8,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1689/cosponsors?format=json"
+      },
+      "introducedDate": "2025-02-27",
+      "latestAction": {
+        "actionDate": "2026-04-16",
+        "actionTime": "14:22:04",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/1689",
+      "number": "1689",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1689/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "G000602",
+          "district": 4,
+          "firstName": "Laura",
+          "fullName": "Rep. Gillen, Laura [D-NY-4]",
+          "isByRequest": "N",
+          "lastName": "Gillen",
+          "party": "D",
+          "state": "NY",
+          "url": "https://api.congress.gov/v3/member/G000602?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1689/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-02-27",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This bill directs the Department of Homeland Security to designate Haiti for temporary protected status (TPS) for 18 months beginning August 3, 2025. (Eligible nationals&nbsp;of a TPS-designated country&nbsp;may obtain employment authorization, may not be detained on the basis of their immigration status, and are not subject to removal while they retain TPS.)</p>",
+          "updateDate": "2025-07-10T15:28:01Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1689/text?format=json"
+      },
+      "title": "To require the Secretary of Homeland Security to designate Haiti for temporary protected status.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1689/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-04-18T08:05:49Z",
+      "updateDateIncludingText": "2026-04-18T08:05:49Z"
+    },
+    {
+      "actions": {
+        "count": 24,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6398/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-596",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/596?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6398/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 202 (Wednesday, December 3, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. JOYCE of Pennsylvania:\nH.R. 6398.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle 1, Section 8 of the U.S. Constitution\n[Page H5027]\n</pre>",
+      "introducedDate": "2025-12-03",
+      "latestAction": {
+        "actionDate": "2026-04-16",
+        "actionTime": "12:33:28",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/6398",
+      "number": "6398",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Environmental Protection"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6398/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "J000302",
+          "district": 13,
+          "firstName": "John",
+          "fullName": "Rep. Joyce, John [R-PA-13]",
+          "isByRequest": "N",
+          "lastName": "Joyce",
+          "party": "R",
+          "state": "PA",
+          "url": "https://api.congress.gov/v3/member/J000302?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6398/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-12-03",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Reducing and Eliminating Duplicative Environmental Regulations Act or the RED Tape Act</strong></p><p>This bill removes the requirement under the Clean Air Act that the Environmental Protection Agency (EPA) review and comment on newly authorized federal construction projects and other major federal agency actions that already require review under the National Environmental Policy Act (NEPA) and proposed federal regulations.</p>",
+          "updateDate": "2026-02-24T17:27:19Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6398/text?format=json"
+      },
+      "title": "RED Tape Act",
+      "titles": {
+        "count": 9,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6398/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-04-17T17:51:39Z",
+      "updateDateIncludingText": "2026-04-17T17:51:39Z"
+    },
+    {
+      "actions": {
+        "count": 26,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6409/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-594",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/594?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6409/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 202 (Wednesday, December 3, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. PFLUGER:\nH.R. 6409.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I Section 8\n[Page H5027]\n</pre>",
+      "cosponsors": {
+        "count": 2,
+        "countIncludingWithdrawnCosponsors": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6409/cosponsors?format=json"
+      },
+      "introducedDate": "2025-12-03",
+      "latestAction": {
+        "actionDate": "2026-04-16",
+        "actionTime": "12:21:04",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/6409",
+      "number": "6409",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Environmental Protection"
+      },
+      "relatedBills": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6409/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "P000048",
+          "district": 11,
+          "firstName": "August",
+          "fullName": "Rep. Pfluger, August [R-TX-11]",
+          "isByRequest": "N",
+          "lastName": "Pfluger",
+          "party": "R",
+          "state": "TX",
+          "url": "https://api.congress.gov/v3/member/P000048?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6409/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-09",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Foreign Emissions and Nonattainment Clarification for Economic Stability Act or the FENCES Act</strong></p><p>This bill modifies standards under the Clean Air Act to exempt states from penalties for emissions outside of the state\u2019s control.</p><p>The bill provides that certain&nbsp;nonattainment areas (i.e., those classified as severe or extreme for ozone or as serious for particulate matter) are not subject to sanctions for implementation plan deficiencies or for fees for failing to attain national ambient air quality standards (NAAQS)&nbsp;if the state demonstrates it would have avoided deficiencies or attained its standards but for emissions outside of its control (e.g., emissions from an exceptional event like a wildfire).&nbsp;A state must renew its demonstration at least once every five years for exemption from the sanctions or fees to continue to apply.</p><p>The bill specifies that an area within a state may not be designated as a&nbsp;nonattainment area regarding any new or revised NAAQS for a pollutant if the state demonstrates it would be in attainment but for emissions emanating from outside of the country, regardless of whether the emissions resulted from human activity.</p><p>For purposes of approving a state implementation plan or meeting certain NAAQS, current law provides that a state may demonstrate to the Environmental Protection Agency that but for emissions emanating from outside of the country, it would have attained applicable NAAQS by the attainment date for certain pollutants. The bill specifies that such emissions emanating from outside the country may include emissions that result from human activity.</p>",
+          "updateDate": "2026-04-13T20:16:22Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6409/text?format=json"
+      },
+      "title": "FENCES Act",
+      "titles": {
+        "count": 9,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6409/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-04-17T17:49:36Z",
+      "updateDateIncludingText": "2026-04-17T17:49:36Z"
+    },
+    {
+      "actions": {
+        "count": 25,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7613/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Armed Services on April 9, 2026",
+          "pubDate": "2026-04-14T12:01:00Z",
+          "title": "H.R. 7613, ALERT Act",
+          "url": "https://www.cbo.gov/publication/62318"
+        },
+        {
+          "description": "As reported by the House Committee on Transportation and Infrastructure on April 9, 2026",
+          "pubDate": "2026-04-14T16:32:00Z",
+          "title": "H.R. 7613, ALERT Act",
+          "url": "https://www.cbo.gov/publication/62336"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-608",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/608?format=json"
+        },
+        {
+          "citation": "H. Rept. 119-608",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/608?format=json"
+        }
+      ],
+      "committees": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7613/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 34 (Friday, February 20, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. GRAVES:\nH.R. 7613.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle One, Section 8\n[Page H2235]\n</pre>",
+      "cosponsors": {
+        "count": 87,
+        "countIncludingWithdrawnCosponsors": 87,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7613/cosponsors?format=json"
+      },
+      "introducedDate": "2026-02-20",
+      "latestAction": {
+        "actionDate": "2026-04-15",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/7613",
+      "number": "7613",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Transportation and Public Works"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7613/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "G000546",
+          "district": 6,
+          "firstName": "Sam",
+          "fullName": "Rep. Graves, Sam [R-MO-6]",
+          "isByRequest": "N",
+          "lastName": "Graves",
+          "party": "R",
+          "state": "MO",
+          "url": "https://api.congress.gov/v3/member/G000546?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7613/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-09",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Airspace Location and Enhanced Risk Transparency Act of 2026 or the ALERT Act</strong></p><p>This bill addresses aviation safety by increasing requirements for aircraft tracking and communication using Automatic Dependent Surveillance-Broadcast (ADS-B) technology and expanding oversight. As background, ADS-B for broadcasting (Out) and receiving (In) transmits information (e.g., location and weather) among aircraft and air traffic control (ATC).</p><p>The bill requires the Department of Defense (DOD) and the Department of Transportation (DOT) to enter into an agreement regarding the use of collision prevention technologies on DOD aircraft. The agreement must require the use of ADS-B Out as the default practice for DOD helicopters operating in the national airspace, unless such use would affect operational security. For DOD helicopters that are carrying out special missions in the Washington, DC, metropolitan area and are exempt from ADS-B Out transmission requirements, DOD must coordinate with DOT to conduct a safety risk assessment and implement appropriate mitigations.</p><p>By December 31, 2031, DOD aircraft (other than certain special mission aircraft) must be equipped with and operating integrated ADS-B In technology.</p><p>With respect to civil aircraft, by December 31, 2031, the Federal Aviation Administration (FAA) must generally require aircraft that are currently required to be equipped with ADS-B Out to also be equipped with ADS-B In.</p><p>Additionally, among other requirements, the FAA must</p><ul><li>establish time-on-position limits for supervisory ATC personnel;</li><li>establish a process to timely notify parties involved in certain near-miss incidents; and</li><li>evaluate and revise, as necessary, helicopter routes around Ronald Reagan Washington National Airport.</li></ul>",
+          "updateDate": "2026-04-10T20:30:06Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7613/text?format=json"
+      },
+      "title": "ALERT Act",
+      "titles": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7613/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-04-18T02:53:23Z",
+      "updateDateIncludingText": "2026-04-18T02:53:23Z"
+    },
+    {
+      "actions": {
+        "count": 13,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1156/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1156/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 25,
+        "countIncludingWithdrawnCosponsors": 25,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1156/cosponsors?format=json"
+      },
+      "introducedDate": "2026-04-09",
+      "latestAction": {
+        "actionDate": "2026-04-16",
+        "actionTime": "14:30:39",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1156",
+      "number": "1156",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Taxation"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1156/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "K000376",
+          "district": 16,
+          "firstName": "Mike",
+          "fullName": "Rep. Kelly, Mike [R-PA-16]",
+          "isByRequest": "N",
+          "lastName": "Kelly",
+          "party": "R",
+          "state": "PA",
+          "url": "https://api.congress.gov/v3/member/K000376?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1156/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-09",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This resolution expresses support for tax policies that support working families and recognizes the tax relief enacted as part of the&nbsp;2025 reconciliation act.</p>",
+          "updateDate": "2026-04-13T13:52:42Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1156/text?format=json"
+      },
+      "title": "Expressing support for tax policies that support working families.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1156/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-04-17T18:07:34Z",
+      "updateDateIncludingText": "2026-04-17T18:07:34Z"
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1174/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-609",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/609?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1174/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-04-15",
+      "latestAction": {
+        "actionDate": "2026-04-15",
+        "actionTime": "13:37:34",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1174",
+      "number": "1174",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "relatedBills": {
+        "count": 8,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1174/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "L000600",
+          "district": 23,
+          "firstName": "Nicholas",
+          "fullName": "Rep. Langworthy, Nicholas A. [R-NY-23]",
+          "isByRequest": "N",
+          "lastName": "Langworthy",
+          "middleName": "A.",
+          "party": "R",
+          "state": "NY",
+          "url": "https://api.congress.gov/v3/member/L000600?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1174/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-15",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 6387) to amend the Clean Air Act to require revisions to regulations governing the review and handling of air quality monitoring data influenced by exceptional events or actions to mitigate wildfire risk; providing for consideration of the bill (H.R. 6398) to amend the Clean Air Act relating to review by the Environmental Protection Agency of proposed legislation; providing for consideration of the bill (H.R. 6409) to amend the Clean Air Act to clarify standards for emissions emanating from outside of the United States, and for other purposes; and providing for consideration of the resolution (H. Res. 1156) expressing support for tax policies that support working families.",
+          "updateDate": "2026-04-16T08:19:53Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1174/text?format=json"
+      },
+      "title": "Providing for consideration of the bill (H.R. 6387) to amend the Clean Air Act to require revisions to regulations governing the review and handling of air quality monitoring data influenced by exceptional events or actions to mitigate wildfire risk; providing for consideration of the bill (H.R. 6398) to amend the Clean Air Act relating to review by the Environmental Protection Agency of proposed legislation; providing for consideration of the bill (H.R. 6409) to amend the Clean Air Act to clarify standards for emissions emanating from outside of the United States, and for other purposes; and providing for consideration of the resolution (H. Res. 1156) expressing support for tax policies that support working families.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1174/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-04-17T18:31:39Z",
+      "updateDateIncludingText": "2026-04-17T18:31:39Z"
+    },
+    {
+      "actions": {
+        "count": 9,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1175/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1175/amendments?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-610",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/610?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1175/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-04-15",
+      "latestAction": {
+        "actionDate": "2026-04-17",
+        "actionTime": "02:08:38",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1175",
+      "number": "1175",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1175/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "S001189",
+          "district": 8,
+          "firstName": "Austin",
+          "fullName": "Rep. Scott, Austin [R-GA-8]",
+          "isByRequest": "N",
+          "lastName": "Scott",
+          "party": "R",
+          "state": "GA",
+          "url": "https://api.congress.gov/v3/member/S001189?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1175/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-15",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 8035) to amend the FISA Amendments Act of 2008 to extend the authorities of title VII of the Foreign Intelligence Surveillance Act of 1978 through October 20, 2027, and for other purposes.",
+          "updateDate": "2026-04-16T08:19:50Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1175/text?format=json"
+      },
+      "title": "Providing for consideration of the bill (H.R. 8035) to amend the FISA Amendments Act of 2008 to extend the authorities of title VII of the Foreign Intelligence Surveillance Act of 1978 through October 20, 2027, and for other purposes.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1175/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-04-17T18:27:53Z",
+      "updateDateIncludingText": "2026-04-17T18:27:53Z"
+    },
+    {
+      "actions": {
+        "count": 19,
+        "url": "https://api.congress.gov/v3/bill/119/hres/965/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/965/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2025-12-18",
+      "latestAction": {
+        "actionDate": "2026-04-16",
+        "actionTime": "12:43:42",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/965",
+      "number": "965",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/965/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "P000617",
+          "district": 7,
+          "firstName": "Ayanna",
+          "fullName": "Rep. Pressley, Ayanna [D-MA-7]",
+          "isByRequest": "N",
+          "lastName": "Pressley",
+          "party": "D",
+          "state": "MA",
+          "url": "https://api.congress.gov/v3/member/P000617?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/965/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-12-18",
+          "actionDesc": "Introduced in House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 1689) to require the Secretary of Homeland Security to designate Haiti for temporary protected status.",
+          "updateDate": "2026-03-13T12:10:46Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/965/text?format=json"
+      },
+      "title": "Providing for consideration of the bill (H.R. 1689) to require the Secretary of Homeland Security to designate Haiti for temporary protected status.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/965/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-04-17T18:04:19Z",
+      "updateDateIncludingText": "2026-04-17T18:04:19Z"
+    },
+    {
+      "actions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/123/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/123/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 6,
+        "countIncludingWithdrawnCosponsors": 6,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/123/cosponsors?format=json"
+      },
+      "introducedDate": "2026-03-10",
+      "latestAction": {
+        "actionDate": "2026-04-15",
+        "text": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 47 - 52. Record Vote Number: 79."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/123",
+      "number": "123",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/123/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "D000622",
+          "firstName": "Tammy",
+          "fullName": "Sen. Duckworth, Tammy [D-IL]",
+          "isByRequest": "N",
+          "lastName": "Duckworth",
+          "party": "D",
+          "state": "IL",
+          "url": "https://api.congress.gov/v3/member/D000622?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/123/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/123/text?format=json"
+      },
+      "title": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/123/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-04-17T14:15:27Z",
+      "updateDateIncludingText": "2026-04-17T14:15:27Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/138/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/138/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 3,
+        "countIncludingWithdrawnCosponsors": 3,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/138/cosponsors?format=json"
+      },
+      "introducedDate": "2026-03-19",
+      "latestAction": {
+        "actionDate": "2026-04-15",
+        "text": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 36 - 63. Record Vote Number: 81. (consideration: CR S1779)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/138",
+      "number": "138",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "S000033",
+          "firstName": "Bernie",
+          "fullName": "Sen. Sanders, Bernard [I-VT]",
+          "isByRequest": "N",
+          "lastName": "Sanders",
+          "party": "I",
+          "state": "VT",
+          "url": "https://api.congress.gov/v3/member/S000033?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/138/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/138/text?format=json"
+      },
+      "title": "A joint resolution providing for congressional disapproval of the proposed foreign military sale to the Government of Israel of certain defense articles and services.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/138/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-04-16T15:23:18Z",
+      "updateDateIncludingText": "2026-04-16T15:23:18Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/32/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/32/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 2,
+        "countIncludingWithdrawnCosponsors": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/32/cosponsors?format=json"
+      },
+      "introducedDate": "2025-03-10",
+      "latestAction": {
+        "actionDate": "2026-04-15",
+        "text": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 40 - 59. Record Vote Number: 80. (consideration: CR S1764-1779)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/32",
+      "number": "32",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/32/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "S000033",
+          "firstName": "Bernie",
+          "fullName": "Sen. Sanders, Bernard [I-VT]",
+          "isByRequest": "N",
+          "lastName": "Sanders",
+          "party": "I",
+          "state": "VT",
+          "url": "https://api.congress.gov/v3/member/S000033?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/32/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-03-10",
+          "actionDesc": "Introduced in Senate",
+          "text": "<p>This joint resolution prohibits a proposed foreign military sale of certain defense articles and services to Israel.</p>",
+          "updateDate": "2025-05-21T19:40:13Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/32/text?format=json"
+      },
+      "title": "A joint resolution providing for congressional disapproval of the proposed foreign military sale to the Government of Israel of certain defense articles and services.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/32/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-04-16T15:21:20Z",
+      "updateDateIncludingText": "2026-04-16T15:21:20Z"
     }
   ]
 }
