@@ -6,11 +6,11 @@
     119
   ],
   "stats": {
-    "total_votes": 881,
-    "yea_count": 572,
-    "nay_count": 290,
+    "total_votes": 887,
+    "yea_count": 575,
+    "nay_count": 293,
     "not_voting_count": 18,
-    "participation_rate": 97.8
+    "participation_rate": 97.9
   },
   "scorecard": [],
   "votes": [
@@ -13140,6 +13140,21 @@
       "vote_number": 129
     },
     {
+      "bill_number": "H.J.Res. 140",
+      "bill_id": "119-hjres-140",
+      "one_liner": "Allow mineral and geothermal leasing on 225,504 acres in Minnesota",
+      "vote": "Yea",
+      "date": "April 16, 2026,  11:08 AM",
+      "result": "Joint Resolution Passed (50-49)",
+      "policy_area": "Public Lands and Natural Resources",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": "against",
+      "congress": 119,
+      "session": 2,
+      "vote_number": 84
+    },
+    {
       "bill_number": "S. 4072",
       "bill_id": "118-s-4072",
       "one_liner": "Block an EPA rule setting stricter pollution standards for cars and trucks starting in 2027",
@@ -13153,6 +13168,81 @@
       "congress": 118,
       "session": 2,
       "vote_number": 128
+    },
+    {
+      "bill_number": "H.J.Res. 140",
+      "bill_id": "119-hjres-140",
+      "one_liner": "Allow mineral and geothermal leasing on 225,504 acres in Minnesota",
+      "vote": "Yea",
+      "date": "April 15, 2026,  08:21 PM",
+      "result": "Motion to Proceed Agreed to (51-49)",
+      "policy_area": "Public Lands and Natural Resources",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": "against",
+      "congress": 119,
+      "session": 2,
+      "vote_number": 83
+    },
+    {
+      "bill_number": "H.J.Res. 140",
+      "bill_id": "119-hjres-140",
+      "one_liner": "Allow mineral and geothermal leasing on 225,504 acres in Minnesota",
+      "vote": "Yea",
+      "date": "April 15, 2026,  08:00 PM",
+      "result": "Motion to Table Agreed to (51-48)",
+      "policy_area": "Public Lands and Natural Resources",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": "against",
+      "congress": 119,
+      "session": 2,
+      "vote_number": 82
+    },
+    {
+      "bill_number": "S.J.Res. 138",
+      "bill_id": "119-sjres-138",
+      "one_liner": "A joint resolution providing for congressional disapproval of the proposed foreign military sale to the Government of Israel of certain defense articles and services.",
+      "vote": "Nay",
+      "date": "April 15, 2026,  07:08 PM",
+      "result": "Motion to Discharge Rejected (36-63)",
+      "policy_area": "International Affairs",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 81
+    },
+    {
+      "bill_number": "S.J.Res. 32",
+      "bill_id": "119-sjres-32",
+      "one_liner": "A joint resolution providing for congressional disapproval of the proposed foreign military sale to the Government of Israel of certain defense articles and services.",
+      "vote": "Nay",
+      "date": "April 15, 2026,  06:17 PM",
+      "result": "Motion to Discharge Rejected (40-59)",
+      "policy_area": "International Affairs",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 80
+    },
+    {
+      "bill_number": "S.J.Res. 123",
+      "bill_id": "119-sjres-123",
+      "one_liner": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
+      "vote": "Nay",
+      "date": "April 15, 2026,  02:02 PM",
+      "result": "Motion to Discharge Rejected (47-52)",
+      "policy_area": "International Affairs",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 79
     },
     {
       "bill_number": "S. 937",
