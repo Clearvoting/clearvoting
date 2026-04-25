@@ -120841,6 +120841,934 @@
       "type": "SJRES",
       "updateDate": "2026-04-16T15:21:20Z",
       "updateDateIncludingText": "2026-04-16T15:21:20Z"
+    },
+    {
+      "actions": {
+        "count": 27,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1681/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As ordered reported by the House Committee on Natural Resources on April 9, 2025",
+          "pubDate": "2025-08-08T18:40:00Z",
+          "title": "H.R. 1681, Expediting Federal Broadband Deployment Reviews Act",
+          "url": "https://www.cbo.gov/publication/61647"
+        },
+        {
+          "description": "As reported by the House Committee on Energy and Commerce on February 4, 2026",
+          "pubDate": "2026-02-13T17:20:00Z",
+          "title": "H.R. 1681, Expediting Federal Broadband Deployment Reviews Act",
+          "url": "https://www.cbo.gov/publication/62117"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-439,Part 1",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/439?format=json"
+        },
+        {
+          "citation": "H. Rept. 119-439,Part 2",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/439?format=json"
+        }
+      ],
+      "committees": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1681/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 39 (Thursday, February 27, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. EVANS of Colorado:\nH.R. 1681.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle 1, Section 8, Clause 17\n[Page H919]\n</pre>",
+      "cosponsors": {
+        "count": 2,
+        "countIncludingWithdrawnCosponsors": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1681/cosponsors?format=json"
+      },
+      "introducedDate": "2025-02-27",
+      "latestAction": {
+        "actionDate": "2026-04-21",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/1681",
+      "number": "1681",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Science, Technology, Communications"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "E000300",
+          "district": 8,
+          "firstName": "Gabe",
+          "fullName": "Rep. Evans, Gabe [R-CO-8]",
+          "isByRequest": "N",
+          "lastName": "Evans",
+          "party": "R",
+          "state": "CO",
+          "url": "https://api.congress.gov/v3/member/E000300?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 8,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1681/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-02-27",
+          "actionDesc": "Introduced in House",
+          "text": "<p><b>Expediting Federal Broadband Deployment Reviews Act</b></p> <p>This bill establishes an interagency strike force to support federal land management agencies' review of requests for communications use authorizations. (A <i>communications use authorization</i> is required to modify or locate communications facilities on public lands.)</p> <p>The strike force must (1) conduct periodic calls with strike force members to ensure that each agency prioritizes the review of requests for communications use authorizations, (2) establish goals for the review of the requests, and (3) monitor and facilitate agency accountability for meeting the established goals.</p><p>The bill specifies that the strike force must include the head of the National Telecommunications and Information Administration, the head of each federal land management agency, and other members designated by the Department of Agriculture and the Department of the Interior. The bill also requires the strike force to report to Congress regarding its effectiveness. <br/> </p>",
+          "updateDate": "2025-07-22T10:16:10Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1681/text?format=json"
+      },
+      "title": "Expediting Federal Broadband Deployment Reviews Act",
+      "titles": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1681/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-04-23T03:53:24Z",
+      "updateDateIncludingText": "2026-04-23T03:53:24Z"
+    },
+    {
+      "actions": {
+        "count": 20,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2493/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Energy and Commerce on October 3, 2025",
+          "pubDate": "2026-01-05T21:28:00Z",
+          "title": "H.R. 2493, Improving Care in Rural America Reauthorization Act of 2025",
+          "url": "https://www.cbo.gov/publication/61989"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-325",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/325?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2493/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 57 (Monday, March 31, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. CARTER of Georgia:\nH.R. 2493.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle 1, Section 8 of the Constitution\n[Page H1375]\n</pre>",
+      "cosponsors": {
+        "count": 5,
+        "countIncludingWithdrawnCosponsors": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2493/cosponsors?format=json"
+      },
+      "introducedDate": "2025-03-31",
+      "latestAction": {
+        "actionDate": "2026-04-22",
+        "text": "Received in the Senate. Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 377."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/2493",
+      "number": "2493",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Health"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2493/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "C001103",
+          "district": 1,
+          "firstName": "Earl",
+          "fullName": "Rep. Carter, Earl L. \"Buddy\" [R-GA-1]",
+          "isByRequest": "N",
+          "lastName": "Carter",
+          "middleName": "L. \"Buddy\"",
+          "party": "R",
+          "state": "GA",
+          "url": "https://api.congress.gov/v3/member/C001103?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2493/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-03-31",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Improving Care in Rural America Reauthorization Act of 2025</strong></p><p>This bill reauthorizes through FY2030 grant programs administered by the Health Resources and Services Administration (HRSA) that provide funding to health care service providers and related entities in rural areas. </p><p>Specifically, the bill reauthorizes grants for&nbsp;</p><ul><li>expanding the delivery of health care services in rural areas,&nbsp;</li><li>developing integrated health care networks (i.e., collaborative groups of local health care organizations) in rural areas, and&nbsp;</li><li>improving the quality of services provided by small health care providers in rural areas.</li></ul><p>Also, the bill requires HRSA to ensure that grant funds for expanding services or developing health care networks are used to (1) meet the health care needs of underserved populations, and (2) engage such populations in the planning and implementation of related activities.&nbsp;</p>",
+          "updateDate": "2026-04-15T19:27:06Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2493/text?format=json"
+      },
+      "title": "Improving Care in Rural America Reauthorization Act of 2025",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2493/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-04-23T10:56:35Z",
+      "updateDateIncludingText": "2026-04-23T11:33:39Z"
+    },
+    {
+      "actions": {
+        "count": 28,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4690/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4690/amendments?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-483",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/483?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4690/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 126 (Wednesday, July 23, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. LANGWORTHY:\nH.R. 4690.\nCongress has the power to enact this legislation pursuant\nto the following:\nClause 3 of Section 8 of Article 1 of the Constitution\n[Page H3648]\n</pre>",
+      "cosponsors": {
+        "count": 7,
+        "countIncludingWithdrawnCosponsors": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4690/cosponsors?format=json"
+      },
+      "introducedDate": "2025-07-23",
+      "latestAction": {
+        "actionDate": "2026-04-22",
+        "actionTime": "16:58:47",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/4690",
+      "number": "4690",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Energy"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4690/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "L000600",
+          "district": 23,
+          "firstName": "Nicholas",
+          "fullName": "Rep. Langworthy, Nicholas A. [R-NY-23]",
+          "isByRequest": "N",
+          "lastName": "Langworthy",
+          "middleName": "A.",
+          "party": "R",
+          "state": "NY",
+          "url": "https://api.congress.gov/v3/member/L000600?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4690/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-02-04",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Reliable Federal Infrastructure Act</strong></p><p>This bill repeals certain energy efficiency performance standards for new federal buildings and federal buildings undergoing major renovations. Specifically, the bill repeals the performance standards that phase out fossil fuel use in such buildings by FY2030.</p><p>The bill directs the Department of Energy&nbsp;to implement the standards as though such phase-out requirements had never taken effect&nbsp;until it issues regulations with revised performance standards.</p><p>The bill also specifies  that certain systems that certify green buildings&nbsp;may not prohibit federal buildings from obtaining a certification as a green building or high-performance green building solely based on direct or indirect consumption of fossil fuels.</p>",
+          "updateDate": "2026-04-17T20:14:08Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4690/text?format=json"
+      },
+      "title": "Reliable Federal Infrastructure Act",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4690/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-04-24T18:54:37Z",
+      "updateDateIncludingText": "2026-04-24T18:54:37Z"
+    },
+    {
+      "actions": {
+        "count": 18,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5200/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As ordered reported by the House Committee on Energy and Commerce on January 21, 2026",
+          "pubDate": "2026-02-24T21:59:00Z",
+          "title": "H.R. 5200, Emergency Reporting Act",
+          "url": "https://www.cbo.gov/publication/62178"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-597",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/597?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5200/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 146 (Monday, September 8, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Ms. MATSUI:\nH.R. 5200.\nCongress has the power to enact this legislation pursuant\nto the following:\nClause 3 of Section 8 of Article I of the Constitution\n[Page H3893]\n</pre>",
+      "cosponsors": {
+        "count": 2,
+        "countIncludingWithdrawnCosponsors": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5200/cosponsors?format=json"
+      },
+      "introducedDate": "2025-09-08",
+      "latestAction": {
+        "actionDate": "2026-04-21",
+        "text": "Received in the Senate. Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 375."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/5200",
+      "number": "5200",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Science, Technology, Communications"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "M001163",
+          "district": 7,
+          "firstName": "Doris",
+          "fullName": "Rep. Matsui, Doris O. [D-CA-7]",
+          "isByRequest": "N",
+          "lastName": "Matsui",
+          "middleName": "O.",
+          "party": "D",
+          "state": "CA",
+          "url": "https://api.congress.gov/v3/member/M001163?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 10,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5200/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-09",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Emergency Reporting Act</strong></p><p>This bill requires the Federal Communications Commission (FCC) to investigate and report on emergency communications outages (e.g., 9-1-1 outages).</p><p>Specifically, the FCC must publish a general report on (1) the volume and nature of 9-1-1 outages that are not required to be reported under current outage notification rules, (2) the value and practicality of including visual information in outage notifications from communications providers, and (3) recommended changes to FCC rules to address these issues.</p><p>Separately, the FCC must hold annual public hearings on events for which the Disaster Information Reporting System (DIRS) was activated for at least a week. (DIRS is a reporting system that is activated during severe weather and other events impacting communications service. It enables communications providers to report outages and other degradations to service.) After each such hearing, the FCC must issue a report that includes information about the number, duration, and nature of all associated outages, along with recommendations for improving the resiliency of affected communications services or&nbsp;networks. Such reports must generally be made public on the FCC website.</p>",
+          "updateDate": "2026-04-15T19:04:34Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5200/text?format=json"
+      },
+      "title": "Emergency Reporting Act",
+      "titles": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5200/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-04-23T03:53:24Z",
+      "updateDateIncludingText": "2026-04-23T03:53:24Z"
+    },
+    {
+      "actions": {
+        "count": 18,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5201/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As ordered reported by the House Committee on Foreign Affairs on December 3, 2025",
+          "pubDate": "2025-12-19T16:32:00Z",
+          "title": "H.R. 5021, American Decade of Sports Act",
+          "url": "https://www.cbo.gov/publication/61964"
+        },
+        {
+          "description": "As ordered reported by the House Committee on Energy and Commerce on January 21, 2026",
+          "pubDate": "2026-02-24T22:00:00Z",
+          "title": "H.R. 5201, Kari\u2019s Law Reporting Act",
+          "url": "https://www.cbo.gov/publication/62179"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-574",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/574?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5201/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 146 (Monday, September 8, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Ms. MATSUI:\nH.R. 5201.\nCongress has the power to enact this legislation pursuant\nto the following:\nClause 3 of Section 8 of Article I of the Constitution\n[Page H3893]\n</pre>",
+      "cosponsors": {
+        "count": 2,
+        "countIncludingWithdrawnCosponsors": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5201/cosponsors?format=json"
+      },
+      "introducedDate": "2025-09-08",
+      "latestAction": {
+        "actionDate": "2026-04-22",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/5201",
+      "number": "5201",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Science, Technology, Communications"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "M001163",
+          "district": 7,
+          "firstName": "Doris",
+          "fullName": "Rep. Matsui, Doris O. [D-CA-7]",
+          "isByRequest": "N",
+          "lastName": "Matsui",
+          "middleName": "O.",
+          "party": "D",
+          "state": "CA",
+          "url": "https://api.congress.gov/v3/member/M001163?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5201/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-03-26",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Kari's Law Reporting Act</strong></p><p>This bill requires the Federal Communications Commission (FCC) to publish a report on the enforcement of Kari\u2019s Law, which requires multiline telephone systems to be preconfigured to allow users to dial 9-1-1 directly from any phone without dialing any additional code or prefix.</p><p>The report must include (1) a summary of the extent to which multiline telephone system manufacturers and vendors have complied with the law, and any obstacles to their compliance; and (2) related recommendations for improvements to FCC policy or further legislation, if necessary.</p>",
+          "updateDate": "2026-04-08T18:00:32Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5201/text?format=json"
+      },
+      "title": "Kari's Law Reporting Act",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5201/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-04-23T10:56:32Z",
+      "updateDateIncludingText": "2026-04-23T11:33:40Z"
+    },
+    {
+      "actions": {
+        "count": 20,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5587/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5587/amendments?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-613",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/613?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5587/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 158 (Friday, September 26, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mrs. KIM:\nH.R. 5587.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8\n[Page H4502]\n</pre>",
+      "cosponsors": {
+        "count": 2,
+        "countIncludingWithdrawnCosponsors": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5587/cosponsors?format=json"
+      },
+      "introducedDate": "2025-09-26",
+      "latestAction": {
+        "actionDate": "2026-04-23",
+        "actionTime": "10:33:05",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/5587",
+      "number": "5587",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Energy"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5587/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "K000397",
+          "district": 40,
+          "firstName": "Young",
+          "fullName": "Rep. Kim, Young [R-CA-40]",
+          "isByRequest": "N",
+          "lastName": "Kim",
+          "party": "R",
+          "state": "CA",
+          "url": "https://api.congress.gov/v3/member/K000397?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5587/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-09-26",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Harnessing Energy At Thermal Sources Act or the HEATS Act</strong></p><p>This bill exempts certain geothermal activities on state and private lands (except Indian lands) from drilling permit requirements as well as environmental and historic preservation review requirements.</p><p>First, the bill prohibits the Department of the Interior from requiring an operator to obtain a drilling permit under the Geothermal Steam Act of 1970 for any geothermal exploration and production activity conducted on a nonfederal surface estate (i.e., the part of the estate that is above ground) if (1) the United States holds an ownership interest of less than 50% of the subsurface geothermal estate to be accessed by the proposed action, and (2) the operator submits to Interior a state permit to conduct the geothermal exploration and production activity on the nonfederal surface estate.&nbsp;</p><p>Next, the bill states that such geothermal exploration and production activity is not considered a major federal action under National Environmental Policy Act of 1969 (NEPA). Thus, such activity does not trigger NEPA's environmental review requirements.</p><p>In addition, the bill exempts such activity from the consultation requirements under the Endangered Species Act of 1973. It also exempts the activity from review under the National Historic Preservation Act unless the state in which the activity occurs does not have a state law that addresses the preservation of historic properties.</p>",
+          "updateDate": "2026-04-08T14:41:02Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5587/text?format=json"
+      },
+      "title": "HEATS Act",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5587/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-04-25T08:05:56Z",
+      "updateDateIncludingText": "2026-04-25T08:05:56Z"
+    },
+    {
+      "actions": {
+        "count": 24,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6387/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-595",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/595?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6387/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 202 (Wednesday, December 3, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. EVANS of Colorado:\nH.R. 6387.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8, Clause 3\n[Page H5026]\n</pre>",
+      "cosponsors": {
+        "count": 3,
+        "countIncludingWithdrawnCosponsors": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6387/cosponsors?format=json"
+      },
+      "introducedDate": "2025-12-03",
+      "latestAction": {
+        "actionDate": "2026-04-22",
+        "actionTime": "17:17:58",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/6387",
+      "number": "6387",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Environmental Protection"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6387/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "E000300",
+          "district": 8,
+          "firstName": "Gabe",
+          "fullName": "Rep. Evans, Gabe [R-CO-8]",
+          "isByRequest": "N",
+          "lastName": "Evans",
+          "party": "R",
+          "state": "CO",
+          "url": "https://api.congress.gov/v3/member/E000300?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 10,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6387/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-09",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Fire Improvement and Reforming Exceptional Events Act or the FIRE Act</strong></p><p>This bill modifies the definition of exceptional events under the Clean Air Act and requires the Environmental Protection Agency (EPA) to revise its regulations regarding exceptional events or actions to mitigate wildfire risk.</p><p>Generally, the EPA must exclude data from use in determinations of&nbsp;exceedances and violations of national ambient air quality standards (NAAQS) if a state  demonstrates that an exceptional event caused a specific air pollution concentration.</p><p>The bill provides that events caused by human activity that are intended to mirror the occurrence or reoccurrence of a natural event are exceptional events. Additionally, the bill no longer excludes from consideration as an exceptional event (1) meteorological events involving high temperatures or a lack of precipitation, or (2)&nbsp;stagnation of air masses that does not ordinarily occur.</p><p>The bill requires the EPA to revise regulations regarding the reviewing and handling of air quality monitoring data influenced by actions to mitigate wildfire risk.</p><p>The bill also requires the EPA to conduct regional modeling and analysis when multiple states submit petitions regarding the same exceptional event or action to mitigate wildfire risk.&nbsp;</p>",
+          "updateDate": "2026-04-14T00:06:37Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6387/text?format=json"
+      },
+      "title": "FIRE Act",
+      "titles": {
+        "count": 9,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6387/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-04-24T18:04:21Z",
+      "updateDateIncludingText": "2026-04-24T18:04:21Z"
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1182/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1182/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-04-16",
+      "latestAction": {
+        "actionDate": "2026-04-22",
+        "actionTime": "16:39:51",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1182",
+      "number": "1182",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Commerce"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1182/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "F000485",
+          "district": 14,
+          "firstName": "Clay",
+          "fullName": "Rep. Fuller, Clay [R-GA-14]",
+          "isByRequest": "N",
+          "lastName": "Fuller",
+          "party": "R",
+          "state": "GA",
+          "url": "https://api.congress.gov/v3/member/F000485?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1182/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-16",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This resolution states that the House of Representatives has demonstrated support for U.S. prosperity and economic growth, especially in rural communities, through policies related to energy, health care, manufacturing, and broadband connectivity.</p>",
+          "updateDate": "2026-04-20T14:56:23Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1182/text?format=json"
+      },
+      "title": "Expressing support for rural communities across the United States as stewards of the environment, major suppliers of United States energy resources, critical providers of food production and manufacturing capacity, and drivers of national economic stability, and recognizing the work of the House of Representatives in the 119th Congress in support of those vital communities.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1182/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-04-24T17:54:23Z",
+      "updateDateIncludingText": "2026-04-24T17:54:23Z"
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1189/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-618",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/618?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1189/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-04-20",
+      "latestAction": {
+        "actionDate": "2026-04-22",
+        "actionTime": "12:25:41",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1189",
+      "number": "1189",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "relatedBills": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1189/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "R000614",
+          "district": 21,
+          "firstName": "Chip",
+          "fullName": "Rep. Roy, Chip [R-TX-21]",
+          "isByRequest": "N",
+          "lastName": "Roy",
+          "party": "R",
+          "state": "TX",
+          "url": "https://api.congress.gov/v3/member/R000614?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1189/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-20",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 4690) to amend the Energy Conservation and Production Act to repeal certain Federal building energy efficiency performance standards, and for other purposes; providing for consideration of the resolution (H. Res. 1182) expressing support for rural communities across the United States as stewards of the environment, major suppliers of United States energy resources, critical providers of food production and manufacturing capacity, and drivers of national economic stability, and recognizing the work of the House of Representatives in the 119th Congress in support of those vital communities; providing for consideration of the bill (H.R. 1897) to amend the Endangered Species Act of 1973 to optimize conservation through resource prioritization, incentivize wildlife conservation on private lands, provide for greater incentives to recover listed species, create greater transparency and accountability in recovering listed species, streamline the permitting process, eliminate barriers to conservation, and restore congressional intent; and providing for consideration of the bill (H.R. 5587) to amend the Geothermal Steam Act of 1970 to waive the requirement for a Federal drilling permit for certain activities, to exempt certain activities from the requirements of the National Environmental Policy Act of 1969, and for other purposes.",
+          "updateDate": "2026-04-21T08:19:27Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1189/text?format=json"
+      },
+      "title": "Providing for consideration of the bill (H.R. 4690) to amend the Energy Conservation and Production Act to repeal certain Federal building energy efficiency performance standards, and for other purposes; providing for consideration of the resolution (H. Res. 1182) expressing support for rural communities across the United States as stewards of the environment, major suppliers of United States energy resources, critical providers of food production and manufacturing capacity, and drivers of national economic stability, and recognizing the work of the House of Representatives in the 119th Congress in support of those vital communities; providing for consideration of the bill (H.R. 1897) to amend the Endangered Species Act of 1973 to optimize conservation through resource prioritization, incentivize wildlife conservation on private lands, provide for greater incentives to recover listed species, create greater transparency and accountability in recovering listed species, streamline the permitting process, eliminate barriers to conservation, and restore congressional intent; and providing for consideration of the bill (H.R. 5587) to amend the Geothermal Steam Act of 1970 to waive the requirement for a Federal drilling permit for certain activities, to exempt certain activities from the requirements of the National Environmental Policy Act of 1969, and for other purposes.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1189/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-04-24T04:53:25Z",
+      "updateDateIncludingText": "2026-04-24T12:33:32Z"
+    },
+    {
+      "actions": {
+        "count": 17,
+        "url": "https://api.congress.gov/v3/bill/119/s/1020/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/1020/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 7,
+        "countIncludingWithdrawnCosponsors": 7,
+        "url": "https://api.congress.gov/v3/bill/119/s/1020/cosponsors?format=json"
+      },
+      "introducedDate": "2025-03-13",
+      "latestAction": {
+        "actionDate": "2026-04-21",
+        "actionTime": "15:54:40",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-bill/1020",
+      "number": "1020",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Energy"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/s/1020/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "D000618",
+          "firstName": "Steve",
+          "fullName": "Sen. Daines, Steve [R-MT]",
+          "isByRequest": "N",
+          "lastName": "Daines",
+          "party": "R",
+          "state": "MT",
+          "url": "https://api.congress.gov/v3/member/D000618?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/s/1020/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-07-29",
+          "actionDesc": "Passed Senate",
+          "text": "<p>This bill authorizes the Federal Energy Regulatory Commission (FERC) to extend construction deadlines for hydropower projects that were issued a license before March 13, 2020. FERC is authorized, upon the request of the licensees, to extend the deadline for beginning construction on such projects&nbsp;an additional six years beyond the eight-year extension FERC is authorized to provide under current law. The extension must&nbsp;consist of no more than three consecutive two-year periods.</p><p>The bill also provides that&nbsp;FERC may reinstate certain expired licenses for projects with construction deadlines extended under this bill, effective as of the date they expire.</p>",
+          "updateDate": "2026-04-15T14:04:48Z",
+          "versionCode": "55"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/s/1020/text?format=json"
+      },
+      "title": "A bill to require the Federal Energy Regulatory Commission to extend the time period during which licensees are required to commence construction of certain hydropower projects.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/s/1020/titles?format=json"
+      },
+      "type": "S",
+      "updateDate": "2026-04-23T08:05:55Z",
+      "updateDateIncludingText": "2026-04-23T09:18:23Z"
+    },
+    {
+      "actions": {
+        "count": 13,
+        "url": "https://api.congress.gov/v3/bill/119/sconres/33/actions?format=json"
+      },
+      "amendments": {
+        "count": 643,
+        "url": "https://api.congress.gov/v3/bill/119/sconres/33/amendments?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sconres/33/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-04-21",
+      "latestAction": {
+        "actionDate": "2026-04-23",
+        "actionTime": "11:56:22",
+        "text": "Held at the desk."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-concurrent-resolution/33",
+      "number": "33",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Economics and Public Finance"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sconres/33/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "G000359",
+          "firstName": "Lindsey",
+          "fullName": "Sen. Graham, Lindsey [R-SC]",
+          "isByRequest": "N",
+          "lastName": "Graham",
+          "party": "R",
+          "state": "SC",
+          "url": "https://api.congress.gov/v3/member/G000359?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 17,
+        "url": "https://api.congress.gov/v3/bill/119/sconres/33/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-21",
+          "actionDesc": "Introduced in Senate",
+          "text": "<p>This concurrent resolution establishes the congressional budget for the federal government for FY2026, sets forth budgetary levels for FY2027-FY2035, and provides reconciliation instructions for legislation that increases the deficit.&nbsp;</p><p>The resolution recommends levels and amounts for FY2026-FY2035 for</p><ul><li>federal revenues,</li><li>new budget authority,</li><li>budget outlays,</li><li>deficits,</li><li>public debt,</li><li>debt held by the public, and</li><li>the major functional categories of spending.</li></ul><p>It also recommends levels and amounts for Social Security and Postal Service discretionary administrative expenses for the purpose of budget enforcement in the Senate.</p><p>The resolution includes reconciliation instructions that direct the House Homeland Security Committee, the House Judiciary Committee, the Senate Homeland Security and Governmental Affairs Committee, and the Senate Judiciary Committee to submit recommendations for legislation that will increase the deficit over FY2026-FY2035 by not more than $70 billion. Each committee must submit the recommendations to the House or Senate Budget Committee by May 15, 2026.&nbsp;</p><p>(Under current law, reconciliation bills are considered by Congress using expedited legislative procedures that prevent a filibuster and restrict amendments in the Senate.)</p><p>In addition, the resolution establishes reserve funds that allow certain adjustments to committee allocations and other budgetary levels to accommodate (1) reconciliation legislation, and (2) legislation that would not increase the deficit over FY2026-FY2035 and supports changes to immigration enforcement and border security policy undertaken by the President.</p><p>Finally, the resolution sets forth budget enforcement procedures that address issues such as&nbsp;budget points of order in the Senate and emergency spending requirements in the House.&nbsp;</p>",
+          "updateDate": "2026-04-22T19:14:17Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sconres/33/text?format=json"
+      },
+      "title": "A concurrent resolution setting forth the congressional budget for the United States Government for fiscal year 2026 and setting forth the appropriate budgetary levels for fiscal years 2027 through 2035.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sconres/33/titles?format=json"
+      },
+      "type": "SCONRES",
+      "updateDate": "2026-04-24T16:04:59Z",
+      "updateDateIncludingText": "2026-04-24T16:04:59Z"
+    },
+    {
+      "actions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/114/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/114/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 11,
+        "countIncludingWithdrawnCosponsors": 11,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/114/cosponsors?format=json"
+      },
+      "introducedDate": "2026-03-05",
+      "latestAction": {
+        "actionDate": "2026-04-22",
+        "text": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 46 - 51. Record Vote Number: 88. (consideration: CR S1889-1890)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/114",
+      "number": "114",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "relatedBills": {
+        "count": 8,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/114/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "B001230",
+          "firstName": "Tammy",
+          "fullName": "Sen. Baldwin, Tammy [D-WI]",
+          "isByRequest": "N",
+          "lastName": "Baldwin",
+          "party": "D",
+          "state": "WI",
+          "url": "https://api.congress.gov/v3/member/B001230?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/114/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/114/text?format=json"
+      },
+      "title": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/114/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-04-24T15:27:31Z",
+      "updateDateIncludingText": "2026-04-24T15:27:31Z",
+      "summaries": []
     }
   ]
 }
