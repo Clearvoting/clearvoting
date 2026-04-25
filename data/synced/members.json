@@ -908,25 +908,25 @@
       "chamber": "House of Representatives"
     },
     {
-      "bioguideId": "C001127",
+      "bioguideId": "S000168",
       "depiction": {
         "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/c001127_200.jpg"
+        "imageUrl": "https://www.congress.gov/img/member/s000168_200.jpg"
       },
-      "district": 20,
-      "name": "Cherfilus-McCormick, Sheila",
-      "partyName": "Democratic",
+      "district": 27,
+      "name": "Salazar, Maria Elvira",
+      "partyName": "Republican",
       "state": "Florida",
       "terms": {
         "item": [
           {
             "chamber": "House of Representatives",
-            "startYear": 2022
+            "startYear": 2021
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:17Z",
-      "url": "https://api.congress.gov/v3/member/C001127?format=json",
+      "updateDate": "2025-09-24T07:40:16Z",
+      "url": "https://api.congress.gov/v3/member/S000168?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
     },
