@@ -4,9 +4,9 @@
     119
   ],
   "stats": {
-    "total_votes": 278,
-    "yea_count": 128,
-    "nay_count": 149,
+    "total_votes": 284,
+    "yea_count": 131,
+    "nay_count": 152,
     "not_voting_count": 1,
     "participation_rate": 99.6
   },
@@ -3613,6 +3613,36 @@
       "vote_number": 170
     },
     {
+      "bill_number": "S.Res. 690",
+      "bill_id": "119-sres-690",
+      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
+      "vote": "Yea",
+      "date": "April 30, 2026,  11:36 AM",
+      "result": "Cloture Motion Agreed to (51-46)",
+      "policy_area": "",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 112
+    },
+    {
+      "bill_number": "S.J.Res. 184",
+      "bill_id": "119-sjres-184",
+      "one_liner": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
+      "vote": "Nay",
+      "date": "April 30, 2026,  01:59 PM",
+      "result": "Motion to Discharge Rejected (47-50)",
+      "policy_area": "International Affairs",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 113
+    },
+    {
       "bill_number": "H.J.Res. 75",
       "bill_id": "119-hjres-75",
       "one_liner": "Cancel a Department of Energy rule setting energy standards for commercial refrigerators and freezers",
@@ -3748,6 +3778,36 @@
       "vote_number": 165
     },
     {
+      "bill_number": "S.J.Res. 99",
+      "bill_id": "119-sjres-99",
+      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by U.S. Citizenship and Immigration Services relating to \"Removal of the Automatic Extension of Employment Authorization Documents\".",
+      "vote": "Nay",
+      "date": "April 29, 2026,  05:37 PM",
+      "result": "Motion to Proceed Rejected (47-50)",
+      "policy_area": "Immigration",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 111
+    },
+    {
+      "bill_number": "S.J.Res. 139",
+      "bill_id": "119-sjres-139",
+      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Air Plan Disapproval; Colorado; Regional Haze Plan for the Second Implementation Period\".",
+      "vote": "Nay",
+      "date": "April 29, 2026,  04:41 PM",
+      "result": "Motion to Proceed Rejected (46-52)",
+      "policy_area": "Environmental Protection",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 110
+    },
+    {
       "bill_number": "H.J.Res. 42",
       "bill_id": "119-hjres-42",
       "one_liner": "Cancel a Department of Energy rule on appliance energy efficiency requirements",
@@ -3761,6 +3821,36 @@
       "congress": 119,
       "session": 1,
       "vote_number": 222
+    },
+    {
+      "bill_number": "S.Res. 690",
+      "bill_id": "119-sres-690",
+      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
+      "vote": "Yea",
+      "date": "April 28, 2026,  11:08 AM",
+      "result": "Motion to Proceed Agreed to (52-47)",
+      "policy_area": "",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 107
+    },
+    {
+      "bill_number": "S.J.Res. 124",
+      "bill_id": "119-sjres-124",
+      "one_liner": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Republic of Cuba that have not been authorized by Congress.",
+      "vote": "Yea",
+      "date": "April 28, 2026,  05:09 PM",
+      "result": "Point of Order Well Taken (51-47)",
+      "policy_area": "International Affairs",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 108
     },
     {
       "bill_number": "To establish a deficit-neutral reserve fund relating to extending the prohibition on Medicaid payments to abortion providers.",
@@ -4196,6 +4286,7 @@
     "Government Operations and Politics",
     "Health",
     "Housing and Community Development",
+    "Immigration",
     "International Affairs",
     "Public Lands and Natural Resources",
     "Science, Technology, Communications",
