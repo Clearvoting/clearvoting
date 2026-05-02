@@ -121769,6 +121769,753 @@
       "updateDate": "2026-04-24T15:27:31Z",
       "updateDateIncludingText": "2026-04-24T15:27:31Z",
       "summaries": []
+    },
+    {
+      "actions": {
+        "count": 17,
+        "url": "https://api.congress.gov/v3/bill/119/hr/227/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Ways and Means on January 7, 2026",
+          "pubDate": "2026-02-27T19:09:00Z",
+          "title": "H.R. 227, Clergy Act",
+          "url": "https://www.cbo.gov/publication/62189"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-425",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/425?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/227/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 3 (Tuesday, January 7, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. FONG:\nH.R. 227.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8, Clause 1\n[Page H63]\n</pre>",
+      "cosponsors": {
+        "count": 21,
+        "countIncludingWithdrawnCosponsors": 21,
+        "url": "https://api.congress.gov/v3/bill/119/hr/227/cosponsors?format=json"
+      },
+      "introducedDate": "2025-01-07",
+      "latestAction": {
+        "actionDate": "2026-04-28",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Finance."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "number": "227",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Social Welfare"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "F000480",
+          "district": 20,
+          "firstName": "Vince",
+          "fullName": "Rep. Fong, Vince [R-CA-20]",
+          "isByRequest": "N",
+          "lastName": "Fong",
+          "party": "R",
+          "state": "CA",
+          "url": "https://api.congress.gov/v3/member/F000480?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/227/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-01-07",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Clergy Act</strong></p><p>This bill establishes a two-year window for certain members of the clergy and Christian Science practitioners to revoke their exemption from Social Security and Medicare taxes on ministerial earnings. Under current law, such individuals who object to participation in public insurance programs on religious or conscientious grounds may apply to the Internal Revenue Service (IRS) for an irrevocable exemption and will not receive Social Security or Medicare benefits in retirement unless they have qualifying credits from other employment.</p><p>The IRS must develop a plan to inform members of the clergy and Christian Science practitioners of their eligibility to revoke prior exemptions, pursuant to the bill's changes.</p>",
+          "updateDate": "2025-02-20T20:14:51Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/227/text?format=json"
+      },
+      "title": "Clergy Act",
+      "titles": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/227/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-05-01T06:53:28Z",
+      "updateDateIncludingText": "2026-05-01T06:53:28Z"
+    },
+    {
+      "actions": {
+        "count": 69,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7567/actions?format=json"
+      },
+      "amendments": {
+        "count": 31,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7567/amendments?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As introduced in the House of Representatives on February 13, 2026",
+          "pubDate": "2026-02-20T22:10:00Z",
+          "title": "Estimated Changes in Direct Spending Under H.R. 7567, the Farm, Food, and National Security Act of 2026",
+          "url": "https://www.cbo.gov/publication/62160"
+        },
+        {
+          "description": "As reported by the House Committee on Agriculture on April 21, 2026",
+          "pubDate": "2026-04-24T17:48:00Z",
+          "title": "H.R. 7567, Farm, Food, and National Security Act of 2026",
+          "url": "https://www.cbo.gov/publication/62376"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-620,Book 1",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/620?format=json"
+        },
+        {
+          "citation": "H. Rept. 119-620,Book 2",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/620?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7567/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 31 (Friday, February 13, 2026)]\n[House]\n[Pages H2224-H2225]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. THOMPSON of Pennsylvania:\nH.R. 7567.\nCongress has the power to enact this legislation pursuant\nto the following:\nThe ability to regulate interstate commerce and with\nforeign Nations pursuant to\n[[Page H2225]]\nClause 3, Section 8, Article 1 includes the power to regulate\ncommodity prices, practices affecting them, and the trading\nor donation of the commodities to impoverished nations. In\naddition, the Congress has the power to provide for the\ngeneral Welfare of the United States under Clause1, Section\n8, Article which includes the power to promote the\ndevelopment of Rural America through research and extension\nof credit.\n</pre>",
+      "introducedDate": "2026-02-13",
+      "latestAction": {
+        "actionDate": "2026-04-30",
+        "actionTime": "11:15:02",
+        "text": "The Clerk was authorized to correct section numbers, punctuation, and cross references, and to make other necessary technical and conforming corrections in the engrossment of H.R. 7567."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/7567",
+      "number": "7567",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Agriculture and Food"
+      },
+      "relatedBills": {
+        "count": 56,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7567/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "T000467",
+          "district": 15,
+          "firstName": "Glenn",
+          "fullName": "Rep. Thompson, Glenn [R-PA-15]",
+          "isByRequest": "N",
+          "lastName": "Thompson",
+          "party": "R",
+          "state": "PA",
+          "url": "https://api.congress.gov/v3/member/T000467?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 137,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7567/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-02-13",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Farm, Food, and National Security Act of 2026</strong></p><p>This bill (commonly known as the farm bill) reauthorizes through FY2031 and modifies Department of Agriculture programs that address</p><ul><li>commodity support,</li><li>conservation,</li><li>trade and international food aid,</li><li>nutrition assistance,</li><li>farm credit,</li><li>rural development,</li><li>research and extension activities,</li><li>forestry,</li><li>energy,</li><li>horticulture,</li><li>crop insurance,</li><li>livestock and other animals, and</li><li>foreign investments in U.S. agricultural land.</li></ul>",
+          "updateDate": "2026-03-03T15:47:49Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7567/text?format=json"
+      },
+      "title": "Farm, Food, and National Security Act of 2026",
+      "titles": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7567/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-05-02T08:09:21Z",
+      "updateDateIncludingText": "2026-05-02T08:09:21Z"
+    },
+    {
+      "actions": {
+        "count": 17,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7959/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-606",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/606?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7959/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 48 (Tuesday, March 17, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. KELLY of Pennsylvania:\nH.R. 7959.\nCongress has the power to enact this legislation pursuant\nto the following:\nSixteenth Amendment provides Congress with the power to\n``lay and collect taxes on incomes.''\n[Page H2551]\n</pre>",
+      "cosponsors": {
+        "count": 5,
+        "countIncludingWithdrawnCosponsors": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7959/cosponsors?format=json"
+      },
+      "introducedDate": "2026-03-17",
+      "latestAction": {
+        "actionDate": "2026-04-28",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Finance."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/7959",
+      "number": "7959",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Taxation"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7959/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "K000376",
+          "district": 16,
+          "firstName": "Mike",
+          "fullName": "Rep. Kelly, Mike [R-PA-16]",
+          "isByRequest": "N",
+          "lastName": "Kelly",
+          "party": "R",
+          "state": "PA",
+          "url": "https://api.congress.gov/v3/member/K000376?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 13,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7959/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-03-17",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>IRS Whistleblower Program Improvement Act</strong></p><p>This bill modifies provisions of the Internal Revenue Code relating to whistleblower awards and protections.</p><p>Specifically, the bill</p><ul><li>revises the standard for review of whistleblower awards in the Tax Court to require a<em> de novo</em> review (rather than the current&nbsp;abuse of discretion review) based on the administrative record established at the time of the whistleblower award determination and any new or previously unavailable evidence,</li><li>allows whistleblowers anonymity in proceedings before the Tax Court&nbsp;(unless a societal interest in disclosing a whistleblower's identity outweighs potential harm to the whistleblower),</li><li>modifies the Internal Revenue Service (IRS) whistleblower report to require inclusion of a list and description of up to 10 of the top tax avoidance schemes disclosed by whistleblowers, and</li><li>requires payment of interest on mandatory whistleblower awards if the IRS fails to provide timely notice to a whistleblower of an award&nbsp;recommendation.</li></ul><p>The bill also allows payments of the attorney fees of whistleblowers to be deducted when calculating adjusted gross income for tax purposes&nbsp;regardless of whether the whistleblower award was paid through the mandatory or the discretionary whistleblower award program. (Under current law, the deduction is limited to attorney fees paid in connection with mandatory awards.)</p>",
+          "updateDate": "2026-04-22T15:51:10Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7959/text?format=json"
+      },
+      "title": "IRS Whistleblower Program Improvement Act",
+      "titles": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7959/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-05-01T06:53:28Z",
+      "updateDateIncludingText": "2026-05-01T06:53:28Z"
+    },
+    {
+      "actions": {
+        "count": 10,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1224/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-628",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/628?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1224/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-04-29",
+      "latestAction": {
+        "actionDate": "2026-04-29",
+        "actionTime": "13:25:00",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1224",
+      "number": "1224",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "relatedBills": {
+        "count": 10,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1224/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "S001189",
+          "district": 8,
+          "firstName": "Austin",
+          "fullName": "Rep. Scott, Austin [R-GA-8]",
+          "isByRequest": "N",
+          "lastName": "Scott",
+          "party": "R",
+          "state": "GA",
+          "url": "https://api.congress.gov/v3/member/S001189?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1224/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-29",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 7567) to provide for the reform and continuation of agricultural and other programs of the Department of Agriculture through fiscal year 2031, and for other purposes; providing for consideration of the bill (H.R. 2616) to require public elementary and middle schools that receive funds under the Elementary and Secondary Education Act of 1965 to obtain parental consent before changing a minor's gender markers, pronouns, or preferred name on any school form or sex-based accommodations, including locker rooms or bathrooms; providing for consideration of the concurrent resolution (S. Con. Res. 33) setting forth the congressional budget for the United States Government for fiscal year 2026 and setting forth the appropriate budgetary levels for fiscal years 2027 through 2035; providing for consideration of the bill (S. 1318) to direct the American Battle Monuments Commission to establish a program to identify American-Jewish servicemembers buried in United States military cemeteries overseas under markers that incorrectly represent their religion and heritage, and for other purposes; providing for consideration of the bill (H.R. 1346) to amend the Clean Air Act with respect to the ethanol waiver for Reid Vapor Pressure under that Act, and for other purposes; and for other purposes.",
+          "updateDate": "2026-04-30T08:19:25Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1224/text?format=json"
+      },
+      "title": "Providing for consideration of the bill (H.R. 7567) to provide for the reform and continuation of agricultural and other programs of the Department of Agriculture through fiscal year 2031, and for other purposes; providing for consideration of the bill (H.R. 2616) to require public elementary and middle schools that receive funds under the Elementary and Secondary Education Act of 1965 to obtain parental consent before changing a minor's gender markers, pronouns, or preferred name on any school form or sex-based accommodations, including locker rooms or bathrooms; providing for consideration of the concurrent resolution (S. Con. Res. 33) setting forth the congressional budget for the United States Government for fiscal year 2026 and setting forth the appropriate budgetary levels for fiscal years 2027 through 2035; providing for consideration of the bill (S. 1318) to direct the American Battle Monuments Commission to establish a program to identify American-Jewish servicemembers buried in United States military cemeteries overseas under markers that incorrectly represent their religion and heritage, and for other purposes; providing for consideration of the bill (H.R. 1346) to amend the Clean Air Act with respect to the ethanol waiver for Reid Vapor Pressure under that Act, and for other purposes; and for other purposes.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1224/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-05-01T21:41:23Z",
+      "updateDateIncludingText": "2026-05-01T21:41:23Z"
+    },
+    {
+      "actions": {
+        "count": 21,
+        "url": "https://api.congress.gov/v3/bill/119/s/1318/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/1318/amendments?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As ordered reported by the Senate Committee on Veterans\u2019 Affairs on July 30, 2025",
+          "pubDate": "2025-09-05T19:25:00Z",
+          "title": "S. 1318, Fallen Servicemembers Religious Heritage Restoration Act",
+          "url": "https://www.cbo.gov/publication/61727"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "S. Rept. 119-89",
+          "url": "https://api.congress.gov/v3/committee-report/119/SRPT/89?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/1318/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 20,
+        "countIncludingWithdrawnCosponsors": 20,
+        "url": "https://api.congress.gov/v3/bill/119/s/1318/cosponsors?format=json"
+      },
+      "introducedDate": "2025-04-07",
+      "latestAction": {
+        "actionDate": "2026-04-29",
+        "text": "Message on House action received in Senate and at desk: House amendment to Senate bill."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-bill/1318",
+      "number": "1318",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Armed Forces and National Security"
+      },
+      "relatedBills": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/s/1318/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "M000934",
+          "firstName": "Jerry",
+          "fullName": "Sen. Moran, Jerry [R-KS]",
+          "isByRequest": "N",
+          "lastName": "Moran",
+          "party": "R",
+          "state": "KS",
+          "url": "https://api.congress.gov/v3/member/M000934?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/s/1318/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-04-07",
+          "actionDesc": "Introduced in Senate",
+          "text": "<p><strong>Fallen Servicemembers Religious Heritage Restoration Act</strong></p><p>This bill requires the American Battle Monuments Commission (ABMC) to establish the Fallen Servicemembers Religious Heritage Restoration Program to identify deceased members of the Armed Forces who were Jewish and buried in a U.S. military cemetery located outside of the United States under a marker indicating the member was not Jewish. The program must&nbsp;contact survivors and descendants of such members.</p><p>The&nbsp;ABMC must seek to enter into a contract with a nonprofit organization to carry out the program during the first 10 fiscal years beginning after the date of enactment of the bill.</p>",
+          "updateDate": "2025-07-02T15:10:48Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/s/1318/text?format=json"
+      },
+      "title": "Fallen Servicemembers Religious Heritage Restoration Act",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/s/1318/titles?format=json"
+      },
+      "type": "S",
+      "updateDate": "2026-05-01T21:41:23Z",
+      "updateDateIncludingText": "2026-05-01T21:41:23Z"
+    },
+    {
+      "actions": {
+        "count": 18,
+        "url": "https://api.congress.gov/v3/bill/119/s/4465/actions?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 1,
+        "countIncludingWithdrawnCosponsors": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/4465/cosponsors?format=json"
+      },
+      "introducedDate": "2026-04-30",
+      "latestAction": {
+        "actionDate": "2026-04-30",
+        "text": "Became Public Law No: 119-87."
+      },
+      "laws": [
+        {
+          "number": "119-87",
+          "type": "Public Law"
+        }
+      ],
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-bill/4465",
+      "number": "4465",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "sponsors": [
+        {
+          "bioguideId": "C001095",
+          "firstName": "Tom",
+          "fullName": "Sen. Cotton, Tom [R-AR]",
+          "isByRequest": "N",
+          "lastName": "Cotton",
+          "party": "R",
+          "state": "AR",
+          "url": "https://api.congress.gov/v3/member/C001095?format=json"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/s/4465/text?format=json"
+      },
+      "title": "A bill to amend the FISA Amendments Act of 2008 to extend the authorities of title VII of the Foreign Intelligence Surveillance Act of 1978, and for other purposes.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/s/4465/titles?format=json"
+      },
+      "type": "S",
+      "updateDate": "2026-05-02T08:05:45Z",
+      "updateDateIncludingText": "2026-05-02T08:05:45Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/124/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/124/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 13,
+        "countIncludingWithdrawnCosponsors": 13,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/124/cosponsors?format=json"
+      },
+      "introducedDate": "2026-03-12",
+      "latestAction": {
+        "actionDate": "2026-04-28",
+        "text": "The motion to discharge fell when the point of order was well taken."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/124",
+      "number": "124",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/124/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "K000384",
+          "firstName": "Timothy",
+          "fullName": "Sen. Kaine, Tim [D-VA]",
+          "isByRequest": "N",
+          "lastName": "Kaine",
+          "middleName": "M.",
+          "party": "D",
+          "state": "VA",
+          "url": "https://api.congress.gov/v3/member/K000384?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/124/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/124/text?format=json"
+      },
+      "title": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Republic of Cuba that have not been authorized by Congress.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/124/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-04-30T00:37:57Z",
+      "updateDateIncludingText": "2026-04-30T00:37:57Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/139/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/139/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 2,
+        "countIncludingWithdrawnCosponsors": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/139/cosponsors?format=json"
+      },
+      "introducedDate": "2026-03-19",
+      "latestAction": {
+        "actionDate": "2026-04-29",
+        "text": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 46 - 52. Record Vote Number: 110. (CR S2106)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/139",
+      "number": "139",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Environmental Protection"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "B001267",
+          "firstName": "Michael",
+          "fullName": "Sen. Bennet, Michael F. [D-CO]",
+          "isByRequest": "N",
+          "lastName": "Bennet",
+          "party": "D",
+          "state": "CO",
+          "url": "https://api.congress.gov/v3/member/B001267?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/139/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/139/text?format=json"
+      },
+      "title": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Air Plan Disapproval; Colorado; Regional Haze Plan for the Second Implementation Period\".",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/139/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-04-30T20:07:50Z",
+      "updateDateIncludingText": "2026-04-30T20:07:50Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/184/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/184/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 10,
+        "countIncludingWithdrawnCosponsors": 10,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/184/cosponsors?format=json"
+      },
+      "introducedDate": "2026-04-16",
+      "latestAction": {
+        "actionDate": "2026-04-30",
+        "text": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 47 - 50. Record Vote Number: 113. (consideration: CR S2156-2158)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/184",
+      "number": "184",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "relatedBills": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/184/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "S001150",
+          "firstName": "Adam",
+          "fullName": "Sen. Schiff, Adam B. [D-CA]",
+          "isByRequest": "N",
+          "lastName": "Schiff",
+          "middleName": "B.",
+          "party": "D",
+          "state": "CA",
+          "url": "https://api.congress.gov/v3/member/S001150?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/184/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/184/text?format=json"
+      },
+      "title": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/184/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-05-01T15:10:30Z",
+      "updateDateIncludingText": "2026-05-01T15:10:30Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/99/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/99/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 11,
+        "countIncludingWithdrawnCosponsors": 11,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/99/cosponsors?format=json"
+      },
+      "introducedDate": "2025-12-10",
+      "latestAction": {
+        "actionDate": "2026-04-29",
+        "text": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 47 - 50. Record Vote Number: 111. (CR S2106)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/99",
+      "number": "99",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Immigration"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "R000608",
+          "firstName": "Jacky",
+          "fullName": "Sen. Rosen, Jacky [D-NV]",
+          "isByRequest": "N",
+          "lastName": "Rosen",
+          "party": "D",
+          "state": "NV",
+          "url": "https://api.congress.gov/v3/member/R000608?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/99/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/99/text?format=json"
+      },
+      "title": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by U.S. Citizenship and Immigration Services relating to \"Removal of the Automatic Extension of Employment Authorization Documents\".",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/99/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-04-30T20:08:11Z",
+      "updateDateIncludingText": "2026-04-30T20:08:11Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 9,
+        "url": "https://api.congress.gov/v3/bill/119/sres/690/actions?format=json"
+      },
+      "amendments": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sres/690/amendments?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-04-27",
+      "latestAction": {
+        "actionDate": "2026-04-30",
+        "text": "Considered by Senate. (consideration: CR S2148-2149)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-resolution/690",
+      "number": "690",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "sponsors": [
+        {
+          "bioguideId": "T000250",
+          "firstName": "John",
+          "fullName": "Sen. Thune, John [R-SD]",
+          "isByRequest": "N",
+          "lastName": "Thune",
+          "party": "R",
+          "state": "SD",
+          "url": "https://api.congress.gov/v3/member/T000250?format=json"
+        }
+      ],
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sres/690/text?format=json"
+      },
+      "title": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sres/690/titles?format=json"
+      },
+      "type": "SRES",
+      "updateDate": "2026-05-01T15:39:02Z",
+      "updateDateIncludingText": "2026-05-01T15:39:02Z",
+      "summaries": []
     }
   ]
 }
