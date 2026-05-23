@@ -5,11 +5,11 @@
     119
   ],
   "stats": {
-    "total_votes": 309,
-    "yea_count": 172,
+    "total_votes": 310,
+    "yea_count": 173,
     "nay_count": 126,
     "not_voting_count": 11,
-    "participation_rate": 96.4
+    "participation_rate": 96.5
   },
   "scorecard": [],
   "votes": [
@@ -447,6 +447,21 @@
       "congress": 119,
       "session": 1,
       "vote_number": 265
+    },
+    {
+      "bill_number": "S.J.Res. 185",
+      "bill_id": "119-sjres-185",
+      "one_liner": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
+      "vote": "Yea",
+      "date": "May 19, 2026,  04:47 PM",
+      "result": "Motion to Discharge Agreed to (50-47)",
+      "policy_area": "International Affairs",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 129
     },
     {
       "bill_number": "S. 1582",
