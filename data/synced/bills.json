@@ -123880,6 +123880,1011 @@
       "updateDate": "2026-05-15T16:48:03Z",
       "updateDateIncludingText": "2026-05-15T16:48:03Z",
       "summaries": []
+    },
+    {
+      "actions": {
+        "count": 22,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1041/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1041/amendments?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As ordered reported by the House Committee on Veterans\u2019 Affairs on May 6, 2025",
+          "pubDate": "2025-05-27T21:06:00Z",
+          "title": "H.R. 1041, Veterans 2nd Amendment Protection Act",
+          "url": "https://www.cbo.gov/publication/61425"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-143",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/143?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1041/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 25 (Thursday, February 6, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. BOST:\nH.R. 1041.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8 of the United States Constitution,\nwhich states ``[t]he Congress shall have power to lay and\ncollect taxes, duties, imposts and excises, to pay the debts\nand provide for the common defense and general welfare of the\nUnited States; but all duties, imposts and excises shall be\nuniform throughout the United States''\n[Page H556]\n</pre>",
+      "cosponsors": {
+        "count": 70,
+        "countIncludingWithdrawnCosponsors": 70,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1041/cosponsors?format=json"
+      },
+      "introducedDate": "2025-02-06",
+      "latestAction": {
+        "actionDate": "2026-05-21",
+        "actionTime": "18:13:35",
+        "text": "The title of the measure was amended. Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/1041",
+      "number": "1041",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Armed Forces and National Security"
+      },
+      "relatedBills": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1041/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "B001295",
+          "district": 12,
+          "firstName": "Mike",
+          "fullName": "Rep. Bost, Mike [R-IL-12]",
+          "isByRequest": "N",
+          "lastName": "Bost",
+          "party": "R",
+          "state": "IL",
+          "url": "https://api.congress.gov/v3/member/B001295?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1041/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-02-06",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Veterans 2nd Amendment Protection Act</strong></p> <p>This bill prohibits the Department of Veterans Affairs (VA) from transmitting certain information to the National Instant Criminal Background Check System (NICS) utilized by licensed importers or dealers of firearms. </p> <p>Specifically, the bill prohibits the VA from transmitting personally identifying information of a veteran or a beneficiary to the NICS solely on the basis that such veteran or beneficiary has an appointed fiduciary to manage their benefits, unless there is an order or finding of a judicial authority that such veteran or beneficiary is a danger to themselves or others.</p>",
+          "updateDate": "2025-03-20T20:16:55Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1041/text?format=json"
+      },
+      "title": "Veterans 2nd Amendment Protection Act",
+      "titles": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1041/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-05-23T08:06:09Z",
+      "updateDateIncludingText": "2026-05-23T08:06:09Z"
+    },
+    {
+      "actions": {
+        "count": 28,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1329/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1329/amendments?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-621",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/621?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1329/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 30 (Thursday, February 13, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Ms. MALLIOTAKIS:\nH.R. 1329.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I Section 8 of the United States Constitution\n[Page H711]\n</pre>",
+      "cosponsors": {
+        "count": 231,
+        "countIncludingWithdrawnCosponsors": 232,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1329/cosponsors?format=json"
+      },
+      "introducedDate": "2025-02-13",
+      "latestAction": {
+        "actionDate": "2026-05-21",
+        "actionTime": "18:00:24",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/1329",
+      "number": "1329",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Arts, Culture, Religion"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1329/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "M000317",
+          "district": 11,
+          "firstName": "Nicole",
+          "fullName": "Rep. Malliotakis, Nicole [R-NY-11]",
+          "isByRequest": "N",
+          "lastName": "Malliotakis",
+          "party": "R",
+          "state": "NY",
+          "url": "https://api.congress.gov/v3/member/M000317?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1329/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-23",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Smithsonian American Women\u2019s History Museum Act</strong></p><p>This bill authorizes the Smithsonian American Women's History Museum to be located on a particular site within the Reserve of the National Mall in Washington, DC.</p><p>Specifically, the bill designates the South Monument site as the location for the museum; however, the President may designate an alternative site within 180 days of the bill's enactment. (The site is the undeveloped land across the National Mall from the National Museum of African American History and Culture.) Administrative jurisdiction of the site must be transferred to the Smithsonian Institution.&nbsp;</p><p>The Board of Regents of the Smithsonian Institution must have the approval of specified federal entities (e.g., the Commission of Fine Arts) to plan, design, and construct a museum building. The bill (1) outlines the criteria for considering site and design proposals, and (2) requires the Smithsonian Institution to reimburse for&nbsp;costs resulting from the building approval process.</p><p>The bill directs the museum to be dedicated to preserving, researching, and presenting the history, achievements, and lived experiences of biological women in the United States. Under this bill, the museum may not identify, present, describe, or depict any biological male as a female.</p><p>In carrying out its duties, the museum's advisory council must (1) seek and utilize guidance from a broad array of knowledgeable and respected sources reflecting the diversity of the political viewpoints and authentic experiences held by women in the United States, and (2) seek guidance for the creation and substantial revision of exhibits and programs.</p>",
+          "updateDate": "2026-05-19T13:32:36Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1329/text?format=json"
+      },
+      "title": "Smithsonian American Women\u2019s History Museum Act",
+      "titles": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1329/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-05-22T16:19:10Z",
+      "updateDateIncludingText": "2026-05-22T16:19:09Z"
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1993/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1993/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 44 (Monday, March 10, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. GOLDMAN of New York:\nH.R. 1993.\nCongress has the power to enact this legislation pursuant\nto the following:\nUnder Article I, Section 8 of the Constitution, Congress\nhas the power ``to make all Laws which shall be necessary and\nproper for carrying into the Execution for the foregoing\nPowers, and all other Powers vested by this Constitution in\nthe Government of the United States, or any Department or\nOfficer thereof.\n[Page H1068]\n</pre>",
+      "cosponsors": {
+        "count": 302,
+        "countIncludingWithdrawnCosponsors": 302,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1993/cosponsors?format=json"
+      },
+      "introducedDate": "2025-03-10",
+      "latestAction": {
+        "actionDate": "2026-05-21",
+        "text": "Received in the Senate."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/1993",
+      "number": "1993",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Finance and Financial Sector"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1993/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "G000599",
+          "district": 10,
+          "firstName": "Daniel",
+          "fullName": "Rep. Goldman, Daniel S. [D-NY-10]",
+          "isByRequest": "N",
+          "lastName": "Goldman",
+          "middleName": "S.",
+          "party": "D",
+          "state": "NY",
+          "url": "https://api.congress.gov/v3/member/G000599?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1993/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-03-10",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>25th Anniversary of 9/11 Commemorative Coin Act</strong></p><p>This bill directs the Department of the Treasury to mint and issue coins to commemorate the 25th anniversary of the September 11, 2001, terrorist attacks on the United States and the establishment of the National September 11 Memorial and Museum at the World Trade Center.</p><p>The sale of all coins issued under this bill must include a surcharge to be paid to the National September 11 Memorial and Museum at the World Trade Center to support operations and maintenance. However, if the issuance of this commemorative coin exceeds certain annual limits, no surcharge may be included.</p>",
+          "updateDate": "2026-05-14T21:03:49Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1993/text?format=json"
+      },
+      "title": "25th Anniversary of 9/11 Commemorative Coin Act",
+      "titles": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1993/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-05-22T19:45:24Z",
+      "updateDateIncludingText": "2026-05-22T19:45:24Z"
+    },
+    {
+      "actions": {
+        "count": 22,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2616/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2616/amendments?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As ordered reported by the House Committee on Education and Workforce on April 9, 2025",
+          "pubDate": "2025-04-21T18:23:00Z",
+          "title": "H.R. 2616, PROTECT Kids Act",
+          "url": "https://www.cbo.gov/publication/61352"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-441",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/441?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2616/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 60 (Thursday, April 3, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. WALBERG:\nH.R. 2616.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8 of the United States Constitution\n[Page H1418]\n</pre>",
+      "cosponsors": {
+        "count": 4,
+        "countIncludingWithdrawnCosponsors": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2616/cosponsors?format=json"
+      },
+      "introducedDate": "2025-04-03",
+      "latestAction": {
+        "actionDate": "2026-05-21",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Health, Education, Labor, and Pensions."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/2616",
+      "number": "2616",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Education"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2616/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "W000798",
+          "district": 5,
+          "firstName": "Tim",
+          "fullName": "Rep. Walberg, Tim [R-MI-5]",
+          "isByRequest": "N",
+          "lastName": "Walberg",
+          "party": "R",
+          "state": "MI",
+          "url": "https://api.congress.gov/v3/member/W000798?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2616/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-04-03",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Parental Rights Over The Education and Care of Their Kids Act or the PROTECT Kids Act</strong></p><p>This bill requires public elementary and middle schools, as a condition of receiving certain federal funds for elementary and secondary education, to obtain parental consent before changing a student's gender on school forms or changing a student's sex-based accommodations.</p><p>Specifically, an elementary school or a school consisting of only grades 5-8 must obtain parental consent before changing a minor student's (1) gender markers, pronouns, or preferred name on any school form; or (2) sex-based accommodations, including locker rooms or bathrooms.</p>",
+          "updateDate": "2026-04-23T20:07:13Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2616/text?format=json"
+      },
+      "title": "Stopping Indoctrination and Protecting Kids Act",
+      "titles": {
+        "count": 9,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2616/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-05-23T06:53:30Z",
+      "updateDateIncludingText": "2026-05-23T06:53:30Z"
+    },
+    {
+      "actions": {
+        "count": 17,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3234/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-362",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/362?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3234/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 76 (Wednesday, May 7, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. EMMER:\nH.R. 3234.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle 1, Section 8 of the United States Constitution\n[Page H1910]\n</pre>",
+      "cosponsors": {
+        "count": 11,
+        "countIncludingWithdrawnCosponsors": 11,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3234/cosponsors?format=json"
+      },
+      "introducedDate": "2025-05-07",
+      "latestAction": {
+        "actionDate": "2026-05-21",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/3234",
+      "number": "3234",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Finance and Financial Sector"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3234/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "E000294",
+          "district": 6,
+          "firstName": "Tom",
+          "fullName": "Rep. Emmer, Tom [R-MN-6]",
+          "isByRequest": "N",
+          "lastName": "Emmer",
+          "party": "R",
+          "state": "MN",
+          "url": "https://api.congress.gov/v3/member/E000294?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3234/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-05-07",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This bill increases the amount insured depository&nbsp;institutions may accept as reciprocal deposits. (Reciprocal deposits are used by institutions to increase the availability of deposit insurance by splitting large deposits using a reciprocal network of institutions.) The bill creates a tiered system so that the allowable amount is based on the institution's total liabilities.</p><p>Additionally, the bill changes certain qualifications insured depository institutions may be required to have to accept reciprocal deposits. Under current law, institutions&nbsp;may qualify by having a composite rating of outstanding or good, among other requirements. The bill allows institutions with a 1, 2, or 3 rating under the CAMELS scale to qualify. (The Uniform Financial Institutions Rating System uses the characteristics of capital adequacy, asset quality, management, earnings, liquidity, and sensitivity to market risk (i.e., CAMELS ratings) to rate the health of financial institutions, with a 1 indicating the highest rating and least degree of supervisory concern and a 5  indicating the lowest rating and highest degree of supervisory concern.)</p>",
+          "updateDate": "2025-12-15T23:01:38Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3234/text?format=json"
+      },
+      "title": "Keeping Deposits Local Act",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3234/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-05-23T06:53:30Z",
+      "updateDateIncludingText": "2026-05-23T06:53:30Z"
+    },
+    {
+      "actions": {
+        "count": 18,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4544/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Financial Services on September 8, 2025",
+          "pubDate": "2026-02-06T20:41:00Z",
+          "title": "H.R. 4544, American Access to Banking Act",
+          "url": "https://www.cbo.gov/publication/62093"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-253",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/253?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4544/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 123 (Thursday, July 17, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Ms. WATERS:\nH.R. 4544.\nCongress has the power to enact this legislation pursuant\nto the following:\nClause 3 of Section 8 of Article I of the Constitution,\nwhich provides Congress with the power to ``regulate commerce\nwith foreign nations, and among the several states, and with\nthe Indian tribes.''\n[Page H3477]\n</pre>",
+      "introducedDate": "2025-07-17",
+      "latestAction": {
+        "actionDate": "2026-05-21",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/4544",
+      "number": "4544",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Finance and Financial Sector"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "W000187",
+          "district": 43,
+          "firstName": "Maxine",
+          "fullName": "Rep. Waters, Maxine [D-CA-43]",
+          "isByRequest": "N",
+          "lastName": "Waters",
+          "party": "D",
+          "state": "CA",
+          "url": "https://api.congress.gov/v3/member/W000187?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4544/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-07-17",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>American Access to Banking Act</strong></p><p>This bill requires federal financial regulators to review and streamline the application process for the formation of de novo, or new, depository institutions or credit unions.</p><p>Regulators must (1) review the application process; (2) to the extent practicable, collect necessary information from other agencies in order to minimize requests for applicant information; and (3) review how de novo financial intuitions raise capital while maintaining investor protections, including the impact of restrictions on raising capital.</p><p>At the request of an applicant, regulators must (1) designate an employee as a caseworker to assist in the application process, and (2) provide a list of similar institutions interested in serving as a mentor.</p><p>Each regulator must also develop a state and stakeholder engagement plan to assist interested parties with understanding the relevant regulatory processes.</p>",
+          "updateDate": "2026-05-14T19:36:28Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4544/text?format=json"
+      },
+      "title": "American Access to Banking Act",
+      "titles": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/4544/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-05-23T06:38:25Z",
+      "updateDateIncludingText": "2026-05-23T06:48:26Z"
+    },
+    {
+      "actions": {
+        "count": 17,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5317/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-369",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/369?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5317/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 149 (Thursday, September 11, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. HILL of Arkansas:\nH.R. 5317.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I Section 8 of the Constitution\n[Page H4265]\n</pre>",
+      "introducedDate": "2025-09-11",
+      "latestAction": {
+        "actionDate": "2026-05-21",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/5317",
+      "number": "5317",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Finance and Financial Sector"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5317/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "H001072",
+          "district": 2,
+          "firstName": "J.",
+          "fullName": "Rep. Hill, J. French [R-AR-2]",
+          "isByRequest": "N",
+          "lastName": "Hill",
+          "middleName": "French",
+          "party": "R",
+          "state": "AR",
+          "url": "https://api.congress.gov/v3/member/H001072?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5317/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-11-04",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Community Bank Deposit Access Act of 2025</strong></p><p>This bill changes the treatment of certain types of deposits so they are no longer classified as brokered deposits. Brokered deposits are funds placed by a broker on behalf of a client in a depository institution to maximize interest rates and for depository insurance purposes. Currently, institutions that accept brokered deposits may be subject to additional oversight.</p><p>In particular, under the bill, custodial deposits at insured depository institutions with less than $10 billion in total assets shall not be treated as brokered deposits if the deposits do not exceed 20% of the institution\u2019s liabilities. The institution must be well-capitalized and have a specified minimum soundness rating, or be in possession of a waiver from the Federal Deposit&nbsp;Insurance Corporation.</p><p>The bill also generally applies existing interest rate limits applicable to institutions that are not well-capitalized&nbsp;to similar institutions that accept custodial deposits.</p>",
+          "updateDate": "2025-12-05T20:45:34Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5317/text?format=json"
+      },
+      "title": "Community Bank Deposit Access Act of 2025",
+      "titles": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5317/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-05-23T06:53:30Z",
+      "updateDateIncludingText": "2026-05-23T06:53:30Z"
+    },
+    {
+      "actions": {
+        "count": 19,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6047/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6047/amendments?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As ordered reported by the House Committee on Veterans\u2019 Affairs on February 12, 2026",
+          "pubDate": "2026-03-12T17:18:00Z",
+          "title": "H.R. 6047, Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act of 2026",
+          "url": "https://www.cbo.gov/publication/62209"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-577",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/577?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6047/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 193 (Monday, November 17, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. BARRETT:\nH.R. 6047.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle 1, Section 8\n[Page H4705]\n</pre>",
+      "cosponsors": {
+        "count": 14,
+        "countIncludingWithdrawnCosponsors": 14,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6047/cosponsors?format=json"
+      },
+      "introducedDate": "2025-11-17",
+      "latestAction": {
+        "actionDate": "2026-05-21",
+        "actionTime": "18:20:49",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/6047",
+      "number": "6047",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Armed Forces and National Security"
+      },
+      "relatedBills": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6047/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "B001321",
+          "district": 7,
+          "firstName": "Tom",
+          "fullName": "Rep. Barrett, Tom [R-MI-7]",
+          "isByRequest": "N",
+          "lastName": "Barrett",
+          "party": "R",
+          "state": "MI",
+          "url": "https://api.congress.gov/v3/member/B001321?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6047/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-02",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act of 2026</strong></p><p>This bill expands specified benefits programs for veterans and their survivors and establishes a supplemental monthly allowance for certain disabled veterans.</p><p>The bill establishes a supplemental monthly allowance of $833.33 for veterans who are already eligible for a monthly aid and attendance allowance due to service-connected disabilities or traumatic brain injury.</p><p>The bill increases the rate of dependency and indemnity compensation (DIC) by an additional 1% the&nbsp;next time DIC is adjusted for cost of living and an additional 0.5% the&nbsp;following adjustment. DIC is a monthly payment made to eligible survivors of (1) certain veterans who died due to a service-connected condition; (2) service members killed in the line of duty; or (3) veterans who were totally disabled by a service-connected disability for a certain period.</p><p>The bill expands eligibility for loans under the Department of Veterans Affairs (VA) home loan program to certain members of the reserve components and National Guard by expanding what qualifies as active duty. The bill includes annual training duty as qualifying active duty and grants eligibility for VA loan guarantees after 14 days of active-duty service (with an additional fee).</p><p>Under the VA home loan program, the bill extends certain loan fee rates through September 30, 2036, and increases the fees for certain refinancing loans and loan assumptions.</p><p>The bill extends the limitation on pension amounts for certain hospitalized or institutionalized veterans through September 30, 2036.</p>",
+          "updateDate": "2026-05-18T21:52:23Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6047/text?format=json"
+      },
+      "title": "Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act of 2026",
+      "titles": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/6047/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-05-23T08:06:16Z",
+      "updateDateIncludingText": "2026-05-23T08:06:16Z"
+    },
+    {
+      "actions": {
+        "count": 10,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1299/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1299/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 1,
+        "countIncludingWithdrawnCosponsors": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1299/cosponsors?format=json"
+      },
+      "introducedDate": "2026-05-19",
+      "latestAction": {
+        "actionDate": "2026-05-20",
+        "actionTime": "13:04:39",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1299",
+      "number": "1299",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Housing and Community Development"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "H001072",
+          "district": 2,
+          "firstName": "J.",
+          "fullName": "Rep. Hill, J. French [R-AR-2]",
+          "isByRequest": "N",
+          "lastName": "Hill",
+          "middleName": "French",
+          "party": "R",
+          "state": "AR",
+          "url": "https://api.congress.gov/v3/member/H001072?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1299/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1299/text?format=json"
+      },
+      "title": "21st Century ROAD to Housing Act",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1299/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-05-21T16:07:48Z",
+      "updateDateIncludingText": "2026-05-21T16:07:48Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1300/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-653",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/653?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1300/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-05-19",
+      "latestAction": {
+        "actionDate": "2026-05-20",
+        "actionTime": "17:35:35",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1300",
+      "number": "1300",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "relatedBills": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1300/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "J000311",
+          "district": 3,
+          "firstName": "Brian",
+          "fullName": "Rep. Jack, Brian [R-GA-3]",
+          "isByRequest": "N",
+          "lastName": "Jack",
+          "party": "R",
+          "state": "GA",
+          "url": "https://api.congress.gov/v3/member/J000311?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1300/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-05-19",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 1041) to amend title 38, United States Code, to prohibit the Secretary of Veterans Affairs from transmitting certain information to the Department of Justice for use by the national instant criminal background check system; providing for consideration of the bill (H.R. 6047) to amend title 38, United States Code, to direct the Secretary of Veterans Affairs to increase the dollar amounts for the payment of certain disability compensation and dependency and indemnity compensation under the laws administered by the Secretary; providing for consideration of the bill (H.R. 1329) to permit the Smithsonian American Women's History Museum to be located within the Reserve of the National Mall, and for other purposes; and waiving a requirement of clause 6(a) of rule XIII with respect to consideration of certain resolutions reported from the Committee on Rules.",
+          "updateDate": "2026-05-20T08:21:02Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1300/text?format=json"
+      },
+      "title": "Providing for consideration of the bill (H.R. 1041) to amend title 38, United States Code, to prohibit the Secretary of Veterans Affairs from transmitting certain information to the Department of Justice for use by the national instant criminal background check system; providing for consideration of the bill (H.R. 6047) to amend title 38, United States Code, to direct the Secretary of Veterans Affairs to increase the dollar amounts for the payment of certain disability compensation and dependency and indemnity compensation under the laws administered by the Secretary; providing for consideration of the bill (H.R. 1329) to permit the Smithsonian American Women's History Museum to be located within the Reserve of the National Mall, and for other purposes; and waiving a requirement of clause 6(a) of rule XIII with respect to consideration of certain resolutions reported from the Committee on Rules.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1300/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-05-22T08:05:49Z",
+      "updateDateIncludingText": "2026-05-22T12:19:46Z"
+    },
+    {
+      "actions": {
+        "count": 19,
+        "url": "https://api.congress.gov/v3/bill/119/s/1003/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As ordered reported by the Senate Committee on Commerce, Science, and Transportation on April 30, 2025",
+          "pubDate": "2025-06-11T21:15:00Z",
+          "title": "S. 1003, Lulu\u2019s Law",
+          "url": "https://www.cbo.gov/publication/61481"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "S. Rept. 119-30",
+          "url": "https://api.congress.gov/v3/committee-report/119/SRPT/30?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/1003/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 9,
+        "countIncludingWithdrawnCosponsors": 9,
+        "url": "https://api.congress.gov/v3/bill/119/s/1003/cosponsors?format=json"
+      },
+      "introducedDate": "2025-03-12",
+      "latestAction": {
+        "actionDate": "2026-05-20",
+        "actionTime": "13:24:03",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-bill/1003",
+      "number": "1003",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Science, Technology, Communications"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/s/1003/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "B001319",
+          "firstName": "Katie",
+          "fullName": "Sen. Britt, Katie Boyd [R-AL]",
+          "isByRequest": "N",
+          "lastName": "Britt",
+          "party": "R",
+          "state": "AL",
+          "url": "https://api.congress.gov/v3/member/B001319?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/s/1003/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-03-12",
+          "actionDesc": "Introduced in Senate",
+          "text": "<p><strong>Lulu\u2019s Law</strong></p><p>This bill requires the Federal Communications Commission to issue an order explicitly permitting the transmission of wireless emergency alerts to mobile phones in the event of a shark attack.&nbsp;</p><p>(Under current regulations, authorized government authorities are permitted to send wireless emergency alerts regarding public safety emergencies, including severe weather, missing children, and other threats to life or property.)</p>",
+          "updateDate": "2025-04-28T13:39:37Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/s/1003/text?format=json"
+      },
+      "title": "Lulu\u2019s Law",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/s/1003/titles?format=json"
+      },
+      "type": "S",
+      "updateDate": "2026-05-22T10:08:30Z",
+      "updateDateIncludingText": "2026-05-22T10:18:44Z"
+    },
+    {
+      "actions": {
+        "count": 19,
+        "url": "https://api.congress.gov/v3/bill/119/s/2393/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As ordered reported by the Senate Committee on Veterans\u2019 Affairs on July 30, 2025",
+          "pubDate": "2025-09-10T18:52:00Z",
+          "title": "S. 2393, Fiscal Year 2026 Veterans Affairs Major Medical Facility Authorization Act ",
+          "url": "https://www.cbo.gov/publication/61661"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/2393/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 1,
+        "countIncludingWithdrawnCosponsors": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/2393/cosponsors?format=json"
+      },
+      "introducedDate": "2025-07-23",
+      "latestAction": {
+        "actionDate": "2026-05-20",
+        "actionTime": "13:19:28",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-bill/2393",
+      "number": "2393",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Armed Forces and National Security"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/2393/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "M000934",
+          "firstName": "Jerry",
+          "fullName": "Sen. Moran, Jerry [R-KS]",
+          "isByRequest": "N",
+          "lastName": "Moran",
+          "party": "R",
+          "state": "KS",
+          "url": "https://api.congress.gov/v3/member/M000934?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/s/2393/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-12-17",
+          "actionDesc": "Passed Senate",
+          "text": "<p><strong>Fiscal Year 2025 Veterans Affairs Major Medical Facility Authorization Act</strong></p><p>This bill authorizes the Department of Veterans Affairs to carry out a major medical facility project in St. Louis, Missouri, during FY2026.</p><p>The bill specifies the maximum amount that may be spent on the project and details that the project consists of the construction of a new bed tower, clinical building expansion, consolidated administrative building and warehouse, utility plant, and parking garages.</p>",
+          "updateDate": "2026-05-13T21:49:44Z",
+          "versionCode": "55"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/s/2393/text?format=json"
+      },
+      "title": "Fiscal Year 2025 Veterans Affairs Major Medical Facility Authorization Act",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/s/2393/titles?format=json"
+      },
+      "type": "S",
+      "updateDate": "2026-05-22T10:08:30Z",
+      "updateDateIncludingText": "2026-05-22T10:18:44Z"
+    },
+    {
+      "actions": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/185/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/185/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 9,
+        "countIncludingWithdrawnCosponsors": 9,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/185/cosponsors?format=json"
+      },
+      "introducedDate": "2026-04-27",
+      "latestAction": {
+        "actionDate": "2026-05-19",
+        "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 415."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/185",
+      "number": "185",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "relatedBills": {
+        "count": 11,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/185/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "K000384",
+          "firstName": "Timothy",
+          "fullName": "Sen. Kaine, Tim [D-VA]",
+          "isByRequest": "N",
+          "lastName": "Kaine",
+          "middleName": "M.",
+          "party": "D",
+          "state": "VA",
+          "url": "https://api.congress.gov/v3/member/K000384?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/185/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/185/text?format=json"
+      },
+      "title": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/185/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-05-20T17:51:00Z",
+      "updateDateIncludingText": "2026-05-20T23:18:24Z",
+      "summaries": []
     }
   ]
 }
