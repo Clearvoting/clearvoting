@@ -931,6 +931,29 @@
       "chamber": "House of Representatives"
     },
     {
+      "bioguideId": "F000483",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/6a0f0dcb69b12040cf77e337_200.jpg"
+      },
+      "district": 30,
+      "name": "Friedman, Laura",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2025
+          }
+        ]
+      },
+      "updateDate": "2026-05-21T15:05:48Z",
+      "url": "https://api.congress.gov/v3/member/F000483?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
       "bioguideId": "S001150",
       "depiction": {
         "attribution": "Official U.S. Senate Photo",
@@ -1091,29 +1114,6 @@
       },
       "updateDate": "2025-09-30T21:12:36Z",
       "url": "https://api.congress.gov/v3/member/W000830?format=json",
-      "stateCode": "CA",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "F000483",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/677427070b34857ecc9090a1_200.jpg"
-      },
-      "district": 30,
-      "name": "Friedman, Laura",
-      "partyName": "Democratic",
-      "state": "California",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2025
-          }
-        ]
-      },
-      "updateDate": "2025-09-24T07:40:20Z",
-      "url": "https://api.congress.gov/v3/member/F000483?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
     },
