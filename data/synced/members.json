@@ -1,60 +1,6 @@
 {
   "members": [
     {
-      "bioguideId": "S000148",
-      "depiction": {
-        "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
-        "imageUrl": "https://www.congress.gov/img/member/s000148_200.jpg"
-      },
-      "name": "Schumer, Charles E.",
-      "partyName": "Democratic",
-      "state": "New York",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "endYear": 1999,
-            "startYear": 1981
-          },
-          {
-            "chamber": "Senate",
-            "startYear": 1999
-          }
-        ]
-      },
-      "updateDate": "2026-03-08T10:32:37Z",
-      "url": "https://api.congress.gov/v3/member/S000148?format=json",
-      "stateCode": "NY",
-      "chamber": "Senate"
-    },
-    {
-      "bioguideId": "G000555",
-      "depiction": {
-        "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
-        "imageUrl": "https://www.congress.gov/img/member/g000555_200.jpg"
-      },
-      "name": "Gillibrand, Kirsten E.",
-      "partyName": "Democratic",
-      "state": "New York",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "endYear": 2009,
-            "startYear": 2007
-          },
-          {
-            "chamber": "Senate",
-            "startYear": 2009
-          }
-        ]
-      },
-      "updateDate": "2026-03-08T10:31:15Z",
-      "url": "https://api.congress.gov/v3/member/G000555?format=json",
-      "stateCode": "NY",
-      "chamber": "Senate"
-    },
-    {
       "bioguideId": "R000622",
       "depiction": {
         "attribution": "Image courtesy of the Member",
@@ -72,7 +18,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:20Z",
+      "updateDate": "2026-06-06T07:40:29Z",
       "url": "https://api.congress.gov/v3/member/R000622?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -95,7 +41,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:20Z",
+      "updateDate": "2026-06-06T07:40:29Z",
       "url": "https://api.congress.gov/v3/member/M001231?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -118,7 +64,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:20Z",
+      "updateDate": "2026-06-06T07:40:29Z",
       "url": "https://api.congress.gov/v3/member/L000606?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -141,7 +87,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:20Z",
+      "updateDate": "2026-06-06T07:40:29Z",
       "url": "https://api.congress.gov/v3/member/G000602?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -164,31 +110,8 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/K000402?format=json",
-      "stateCode": "NY",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "S001201",
-      "depiction": {
-        "attribution": "Congressional Pictorial Directory",
-        "imageUrl": "https://www.congress.gov/img/member/116_rp_ny_3_suozzi_thomas_200.jpg"
-      },
-      "district": 3,
-      "name": "Suozzi, Thomas R.",
-      "partyName": "Democratic",
-      "state": "New York",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2017
-          }
-        ]
-      },
-      "updateDate": "2025-09-24T07:40:19Z",
-      "url": "https://api.congress.gov/v3/member/S001201?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
     },
@@ -210,7 +133,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/L000599?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -233,7 +156,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/L000600?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -256,7 +179,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/L000598?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -279,7 +202,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/G000599?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -302,7 +225,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/R000579?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -330,8 +253,31 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/T000478?format=json",
+      "stateCode": "NY",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "S001201",
+      "depiction": {
+        "attribution": "Congressional Pictorial Directory",
+        "imageUrl": "https://www.congress.gov/img/member/116_rp_ny_3_suozzi_thomas_200.jpg"
+      },
+      "district": 3,
+      "name": "Suozzi, Thomas R.",
+      "partyName": "Democratic",
+      "state": "New York",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2017
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:28Z",
+      "url": "https://api.congress.gov/v3/member/S001201?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
     },
@@ -353,7 +299,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/N000002?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -376,7 +322,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:16Z",
+      "updateDate": "2026-06-06T07:40:26Z",
       "url": "https://api.congress.gov/v3/member/T000486?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -399,7 +345,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:16Z",
+      "updateDate": "2026-06-06T07:40:26Z",
       "url": "https://api.congress.gov/v3/member/M000317?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -422,7 +368,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:16Z",
+      "updateDate": "2026-06-06T07:40:26Z",
       "url": "https://api.congress.gov/v3/member/G000597?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -445,7 +391,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:15Z",
+      "updateDate": "2026-06-06T07:40:25Z",
       "url": "https://api.congress.gov/v3/member/O000172?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
@@ -468,87 +414,21 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:15Z",
+      "updateDate": "2026-06-06T07:40:25Z",
       "url": "https://api.congress.gov/v3/member/M001206?format=json",
       "stateCode": "NY",
       "chamber": "House of Representatives"
     },
     {
-      "bioguideId": "S001217",
-      "depiction": {
-        "imageUrl": "https://www.congress.gov/img/member/s001217_200.jpg"
-      },
-      "name": "Scott, Rick",
-      "partyName": "Republican",
-      "state": "Florida",
-      "terms": {
-        "item": [
-          {
-            "chamber": "Senate",
-            "startYear": 2019
-          }
-        ]
-      },
-      "updateDate": "2026-03-08T10:32:39Z",
-      "url": "https://api.congress.gov/v3/member/S001217?format=json",
-      "stateCode": "FL",
-      "chamber": "Senate"
-    },
-    {
-      "bioguideId": "M001244",
-      "depiction": {
-        "attribution": "Official U.S. Senate Photo",
-        "imageUrl": "https://www.congress.gov/img/member/https://bioguide.congress.gov/photo/695d82c8550dfb80c3063bee.jpg"
-      },
-      "name": "Moody, Ashley",
-      "partyName": "Republican",
-      "state": "Florida",
-      "terms": {
-        "item": [
-          {
-            "chamber": "Senate",
-            "startYear": 2025
-          }
-        ]
-      },
-      "updateDate": "2026-03-08T10:32:02Z",
-      "url": "https://api.congress.gov/v3/member/M001244?format=json",
-      "stateCode": "FL",
-      "chamber": "Senate"
-    },
-    {
-      "bioguideId": "F000476",
+      "bioguideId": "E000297",
       "depiction": {
         "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/69a71e9a55f11d8282dde7a0_200.jpg"
+        "imageUrl": "https://www.congress.gov/img/member/e000297_200.jpg"
       },
-      "district": 10,
-      "name": "Frost, Maxwell",
+      "district": 13,
+      "name": "Espaillat, Adriano",
       "partyName": "Democratic",
-      "state": "Florida",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2023
-          }
-        ]
-      },
-      "updateDate": "2026-03-03T17:54:08Z",
-      "url": "https://api.congress.gov/v3/member/F000476?format=json",
-      "stateCode": "FL",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "D000628",
-      "depiction": {
-        "attribution": "Congressional Pictorial Directory",
-        "imageUrl": "https://www.congress.gov/img/member/115_rp_fl_2_dunn_neal_200.jpg"
-      },
-      "district": 2,
-      "name": "Dunn, Neal P.",
-      "partyName": "Republican",
-      "state": "Florida",
+      "state": "New York",
       "terms": {
         "item": [
           {
@@ -557,8 +437,54 @@
           }
         ]
       },
-      "updateDate": "2025-12-09T08:40:20Z",
-      "url": "https://api.congress.gov/v3/member/D000628?format=json",
+      "updateDate": "2026-06-06T07:40:25Z",
+      "url": "https://api.congress.gov/v3/member/E000297?format=json",
+      "stateCode": "NY",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "S001196",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/s001196_200.jpg"
+      },
+      "district": 21,
+      "name": "Stefanik, Elise M.",
+      "partyName": "Republican",
+      "state": "New York",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2015
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:24Z",
+      "url": "https://api.congress.gov/v3/member/S001196?format=json",
+      "stateCode": "NY",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "P000622",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/67efdb991b05a5a598f7fde9_200.jpg"
+      },
+      "district": 1,
+      "name": "Patronis, Jimmy",
+      "partyName": "Republican",
+      "state": "Florida",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2025
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:29Z",
+      "url": "https://api.congress.gov/v3/member/P000622?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
     },
@@ -580,31 +506,8 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:21Z",
+      "updateDate": "2026-06-06T07:40:29Z",
       "url": "https://api.congress.gov/v3/member/F000484?format=json",
-      "stateCode": "FL",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "P000622",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/67efdb991b05a5a598f7fde9_200.jpg"
-      },
-      "district": 1,
-      "name": "Patronis, Jimmy",
-      "partyName": "Republican",
-      "state": "Florida",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2025
-          }
-        ]
-      },
-      "updateDate": "2025-09-24T07:40:20Z",
-      "url": "https://api.congress.gov/v3/member/P000622?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
     },
@@ -626,7 +529,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:29Z",
       "url": "https://api.congress.gov/v3/member/H001099?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
@@ -649,7 +552,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/F000472?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
@@ -672,7 +575,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/M001217?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
@@ -695,7 +598,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/M001216?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
@@ -718,7 +621,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/L000596?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
@@ -741,8 +644,54 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/L000597?format=json",
+      "stateCode": "FL",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "F000476",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/69a71e9a55f11d8282dde7a0_200.jpg"
+      },
+      "district": 10,
+      "name": "Frost, Maxwell",
+      "partyName": "Democratic",
+      "state": "Florida",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:27Z",
+      "url": "https://api.congress.gov/v3/member/F000476?format=json",
+      "stateCode": "FL",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "B001314",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/b001314_200.jpg"
+      },
+      "district": 4,
+      "name": "Bean, Aaron",
+      "partyName": "Republican",
+      "state": "Florida",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:27Z",
+      "url": "https://api.congress.gov/v3/member/B001314?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
     },
@@ -764,7 +713,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/G000593?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
@@ -787,7 +736,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/M001199?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
@@ -810,7 +759,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/R000609?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
@@ -833,7 +782,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/F000462?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
@@ -856,7 +805,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/W000797?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
@@ -879,31 +828,8 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:18Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/D000600?format=json",
-      "stateCode": "FL",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "B001314",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/b001314_200.jpg"
-      },
-      "district": 4,
-      "name": "Bean, Aaron",
-      "partyName": "Republican",
-      "state": "Florida",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2023
-          }
-        ]
-      },
-      "updateDate": "2025-09-24T07:40:17Z",
-      "url": "https://api.congress.gov/v3/member/B001314?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
     },
@@ -925,8 +851,77 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:16Z",
+      "updateDate": "2026-06-06T07:40:26Z",
       "url": "https://api.congress.gov/v3/member/S000168?format=json",
+      "stateCode": "FL",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "D000032",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/d000032_200.jpg"
+      },
+      "district": 19,
+      "name": "Donalds, Byron",
+      "partyName": "Republican",
+      "state": "Florida",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:26Z",
+      "url": "https://api.congress.gov/v3/member/D000032?format=json",
+      "stateCode": "FL",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "C001039",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/c001039_200.jpg"
+      },
+      "district": 3,
+      "name": "Cammack, Kat",
+      "partyName": "Republican",
+      "state": "Florida",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:26Z",
+      "url": "https://api.congress.gov/v3/member/C001039?format=json",
+      "stateCode": "FL",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "S001214",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/s001214_200.jpg"
+      },
+      "district": 17,
+      "name": "Steube, W. Gregory",
+      "partyName": "Republican",
+      "state": "Florida",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2019
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:25Z",
+      "url": "https://api.congress.gov/v3/member/S001214?format=json",
       "stateCode": "FL",
       "chamber": "House of Representatives"
     },
@@ -948,172 +943,8 @@
           }
         ]
       },
-      "updateDate": "2026-05-21T15:05:48Z",
+      "updateDate": "2026-06-06T07:40:29Z",
       "url": "https://api.congress.gov/v3/member/F000483?format=json",
-      "stateCode": "CA",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "S001150",
-      "depiction": {
-        "attribution": "Official U.S. Senate Photo",
-        "imageUrl": "https://www.congress.gov/img/member/677d870dfdb6cf36bbb649b3_200.jpg"
-      },
-      "name": "Schiff, Adam B.",
-      "partyName": "Democratic",
-      "state": "California",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "endYear": 2024,
-            "startYear": 2001
-          },
-          {
-            "chamber": "Senate",
-            "startYear": 2024
-          }
-        ]
-      },
-      "updateDate": "2026-04-28T10:32:24Z",
-      "url": "https://api.congress.gov/v3/member/S001150?format=json",
-      "stateCode": "CA",
-      "chamber": "Senate"
-    },
-    {
-      "bioguideId": "K000401",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/k000401_200.jpg"
-      },
-      "district": 3,
-      "name": "Kiley, Kevin",
-      "partyName": "Independent",
-      "state": "California",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2023
-          }
-        ]
-      },
-      "updateDate": "2026-03-20T07:30:24Z",
-      "url": "https://api.congress.gov/v3/member/K000401?format=json",
-      "stateCode": "CA",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "P000145",
-      "depiction": {
-        "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
-        "imageUrl": "https://www.congress.gov/img/member/p000145_200.jpg"
-      },
-      "name": "Padilla, Alex",
-      "partyName": "Democratic",
-      "state": "California",
-      "terms": {
-        "item": [
-          {
-            "chamber": "Senate",
-            "startYear": 2021
-          }
-        ]
-      },
-      "updateDate": "2026-03-08T10:32:16Z",
-      "url": "https://api.congress.gov/v3/member/P000145?format=json",
-      "stateCode": "CA",
-      "chamber": "Senate"
-    },
-    {
-      "bioguideId": "C001059",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/6973c909ded7781a35cc1fd7_200.jpg"
-      },
-      "district": 21,
-      "name": "Costa, Jim",
-      "partyName": "Democratic",
-      "state": "California",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2005
-          }
-        ]
-      },
-      "updateDate": "2026-01-23T19:43:13Z",
-      "url": "https://api.congress.gov/v3/member/C001059?format=json",
-      "stateCode": "CA",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "W000187",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/w000187_200.jpg"
-      },
-      "district": 43,
-      "name": "Waters, Maxine",
-      "partyName": "Democratic",
-      "state": "California",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 1991
-          }
-        ]
-      },
-      "updateDate": "2025-12-06T08:30:19Z",
-      "url": "https://api.congress.gov/v3/member/W000187?format=json",
-      "stateCode": "CA",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "P000197",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/p000197_200.jpg"
-      },
-      "district": 11,
-      "name": "Pelosi, Nancy",
-      "partyName": "Democratic",
-      "state": "California",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 1987
-          }
-        ]
-      },
-      "updateDate": "2025-12-06T08:30:18Z",
-      "url": "https://api.congress.gov/v3/member/P000197?format=json",
-      "stateCode": "CA",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "W000830",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/68dc43db199559bad714973d_200.jpg"
-      },
-      "district": 27,
-      "name": "Whitesides, George",
-      "partyName": "Democratic",
-      "state": "California",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2025
-          }
-        ]
-      },
-      "updateDate": "2025-09-30T21:12:36Z",
-      "url": "https://api.congress.gov/v3/member/W000830?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
     },
@@ -1135,7 +966,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/F000480?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
@@ -1163,31 +994,8 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/C001123?format=json",
-      "stateCode": "CA",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "M001225",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/m001225_200.jpg"
-      },
-      "district": 15,
-      "name": "Mullin, Kevin",
-      "partyName": "Democratic",
-      "state": "California",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2023
-          }
-        ]
-      },
-      "updateDate": "2025-09-24T07:40:17Z",
-      "url": "https://api.congress.gov/v3/member/M001225?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
     },
@@ -1209,7 +1017,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:17Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/K000400?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
@@ -1232,7 +1040,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:17Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/G000598?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
@@ -1255,7 +1063,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:17Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/O000019?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
@@ -1278,7 +1086,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:17Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/K000397?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
@@ -1301,31 +1109,8 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:17Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/J000305?format=json",
-      "stateCode": "CA",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "H001090",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/h001090_200.jpg"
-      },
-      "district": 9,
-      "name": "Harder, Josh",
-      "partyName": "Democratic",
-      "state": "California",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2019
-          }
-        ]
-      },
-      "updateDate": "2025-09-24T07:40:17Z",
-      "url": "https://api.congress.gov/v3/member/H001090?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
     },
@@ -1347,7 +1132,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:17Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/P000613?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
@@ -1370,7 +1155,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:17Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/L000582?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
@@ -1393,21 +1178,21 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:17Z",
+      "updateDate": "2026-06-06T07:40:27Z",
       "url": "https://api.congress.gov/v3/member/A000371?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
     },
     {
-      "bioguideId": "C001091",
+      "bioguideId": "P000608",
       "depiction": {
         "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/69d7f5b07304cef7a0c977b1_200.jpg"
+        "imageUrl": "https://www.congress.gov/img/member/p000608_200.jpg"
       },
-      "district": 20,
-      "name": "Castro, Joaquin",
+      "district": 50,
+      "name": "Peters, Scott H.",
       "partyName": "Democratic",
-      "state": "Texas",
+      "state": "California",
       "terms": {
         "item": [
           {
@@ -1416,54 +1201,204 @@
           }
         ]
       },
-      "updateDate": "2026-04-09T20:03:37Z",
-      "url": "https://api.congress.gov/v3/member/C001091?format=json",
-      "stateCode": "TX",
+      "updateDate": "2026-06-06T07:40:27Z",
+      "url": "https://api.congress.gov/v3/member/P000608?format=json",
+      "stateCode": "CA",
       "chamber": "House of Representatives"
     },
     {
-      "bioguideId": "C001098",
+      "bioguideId": "V000130",
       "depiction": {
-        "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
-        "imageUrl": "https://www.congress.gov/img/member/c001098_200.jpg"
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/v000130_200.jpg"
       },
-      "name": "Cruz, Ted",
-      "partyName": "Republican",
-      "state": "Texas",
+      "district": 52,
+      "name": "Vargas, Juan",
+      "partyName": "Democratic",
+      "state": "California",
       "terms": {
         "item": [
           {
-            "chamber": "Senate",
+            "chamber": "House of Representatives",
             "startYear": 2013
           }
         ]
       },
-      "updateDate": "2026-03-08T10:31:01Z",
-      "url": "https://api.congress.gov/v3/member/C001098?format=json",
-      "stateCode": "TX",
-      "chamber": "Senate"
+      "updateDate": "2026-06-06T07:40:27Z",
+      "url": "https://api.congress.gov/v3/member/V000130?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
     },
     {
-      "bioguideId": "C001056",
+      "bioguideId": "T000472",
       "depiction": {
-        "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
-        "imageUrl": "https://www.congress.gov/img/member/c001056_200.jpg"
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/t000472_200.jpg"
       },
-      "name": "Cornyn, John",
-      "partyName": "Republican",
-      "state": "Texas",
+      "district": 39,
+      "name": "Takano, Mark",
+      "partyName": "Democratic",
+      "state": "California",
       "terms": {
         "item": [
           {
-            "chamber": "Senate",
-            "startYear": 2002
+            "chamber": "House of Representatives",
+            "startYear": 2013
           }
         ]
       },
-      "updateDate": "2026-03-08T10:30:53Z",
-      "url": "https://api.congress.gov/v3/member/C001056?format=json",
-      "stateCode": "TX",
-      "chamber": "Senate"
+      "updateDate": "2026-06-06T07:40:27Z",
+      "url": "https://api.congress.gov/v3/member/T000472?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "R000599",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/66e1aec832c796cea99fe06f_200.jpg"
+      },
+      "district": 25,
+      "name": "Ruiz, Raul",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2013
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:27Z",
+      "url": "https://api.congress.gov/v3/member/R000599?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "V000129",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/v000129_200.jpg"
+      },
+      "district": 22,
+      "name": "Valadao, David G.",
+      "partyName": "Republican",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "endYear": 2019,
+            "startYear": 2013
+          },
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:27Z",
+      "url": "https://api.congress.gov/v3/member/V000129?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "C001080",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/c001080_200.jpg"
+      },
+      "district": 28,
+      "name": "Chu, Judy",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2009
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:27Z",
+      "url": "https://api.congress.gov/v3/member/C001080?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "S000344",
+      "depiction": {
+        "attribution": "Image, Congressional Pictorial Directory, 109th.",
+        "imageUrl": "https://www.congress.gov/img/member/s000344_200.jpg"
+      },
+      "district": 32,
+      "name": "Sherman, Brad",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 1997
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:27Z",
+      "url": "https://api.congress.gov/v3/member/S000344?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "C001059",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/6973c909ded7781a35cc1fd7_200.jpg"
+      },
+      "district": 21,
+      "name": "Costa, Jim",
+      "partyName": "Democratic",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2005
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:27Z",
+      "url": "https://api.congress.gov/v3/member/C001059?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "I000056",
+      "depiction": {
+        "attribution": "Collection of the U.S. House of Representatives <a href=\"http://history.house.gov/Collection/Detail/15032430738?ret=True\">About this object</a>",
+        "imageUrl": "https://www.congress.gov/img/member/i000056_200.jpg"
+      },
+      "district": 48,
+      "name": "Issa, Darrell",
+      "partyName": "Republican",
+      "state": "California",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "endYear": 2019,
+            "startYear": 2001
+          },
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:27Z",
+      "url": "https://api.congress.gov/v3/member/I000056?format=json",
+      "stateCode": "CA",
+      "chamber": "House of Representatives"
     },
     {
       "bioguideId": "M001245",
@@ -1483,31 +1418,8 @@
           }
         ]
       },
-      "updateDate": "2026-02-18T08:40:24Z",
+      "updateDate": "2026-06-06T07:40:30Z",
       "url": "https://api.congress.gov/v3/member/M001245?format=json",
-      "stateCode": "TX",
-      "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "C001120",
-      "depiction": {
-        "attribution": "Image courtesy of the Member",
-        "imageUrl": "https://www.congress.gov/img/member/698a13d0a7af728d4e6c2038_200.jpg"
-      },
-      "district": 2,
-      "name": "Crenshaw, Dan",
-      "partyName": "Republican",
-      "state": "Texas",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "startYear": 2019
-          }
-        ]
-      },
-      "updateDate": "2026-02-09T17:22:01Z",
-      "url": "https://api.congress.gov/v3/member/C001120?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
     },
@@ -1529,7 +1441,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:20Z",
+      "updateDate": "2026-06-06T07:40:29Z",
       "url": "https://api.congress.gov/v3/member/J000310?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1552,7 +1464,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:20Z",
+      "updateDate": "2026-06-06T07:40:29Z",
       "url": "https://api.congress.gov/v3/member/G000603?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1574,7 +1486,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:20Z",
+      "updateDate": "2026-06-06T07:40:29Z",
       "url": "https://api.congress.gov/v3/member/G000601?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1597,7 +1509,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/S001224?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1620,7 +1532,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/M001224?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1643,7 +1555,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/L000603?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1666,7 +1578,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/H001095?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1689,7 +1601,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/D000594?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1712,7 +1624,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/C001130?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1735,7 +1647,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/C001131?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1758,7 +1670,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/G000581?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1781,7 +1693,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/G000553?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1804,7 +1716,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:19Z",
+      "updateDate": "2026-06-06T07:40:28Z",
       "url": "https://api.congress.gov/v3/member/D000399?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1827,7 +1739,7 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:17Z",
+      "updateDate": "2026-06-06T07:40:26Z",
       "url": "https://api.congress.gov/v3/member/E000071?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
@@ -1850,8 +1762,100 @@
           }
         ]
       },
-      "updateDate": "2025-09-24T07:40:17Z",
+      "updateDate": "2026-06-06T07:40:26Z",
       "url": "https://api.congress.gov/v3/member/V000134?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "P000048",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/p000048_200.jpg"
+      },
+      "district": 11,
+      "name": "Pfluger, August",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:26Z",
+      "url": "https://api.congress.gov/v3/member/P000048?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "N000026",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/n000026_200.jpg"
+      },
+      "district": 22,
+      "name": "Nehls, Troy E.",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:26Z",
+      "url": "https://api.congress.gov/v3/member/N000026?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "J000304",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/j000304_200.jpg"
+      },
+      "district": 13,
+      "name": "Jackson, Ronny",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:26Z",
+      "url": "https://api.congress.gov/v3/member/J000304?format=json",
+      "stateCode": "TX",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "F000246",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/f000246_200.jpg"
+      },
+      "district": 4,
+      "name": "Fallon, Pat",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2021
+          }
+        ]
+      },
+      "updateDate": "2026-06-06T07:40:26Z",
+      "url": "https://api.congress.gov/v3/member/F000246?format=json",
       "stateCode": "TX",
       "chamber": "House of Representatives"
     }
