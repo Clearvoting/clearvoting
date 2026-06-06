@@ -124885,6 +124885,807 @@
       "updateDate": "2026-05-20T17:51:00Z",
       "updateDateIncludingText": "2026-05-20T23:18:24Z",
       "summaries": []
+    },
+    {
+      "actions": {
+        "count": 14,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/84/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/84/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 25,
+        "countIncludingWithdrawnCosponsors": 25,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/84/cosponsors?format=json"
+      },
+      "introducedDate": "2026-04-13",
+      "latestAction": {
+        "actionDate": "2026-06-04",
+        "actionTime": "16:43:55",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/84",
+      "number": "84",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "T000481",
+          "district": 12,
+          "firstName": "Rashida",
+          "fullName": "Rep. Tlaib, Rashida [D-MI-12]",
+          "isByRequest": "N",
+          "lastName": "Tlaib",
+          "party": "D",
+          "state": "MI",
+          "url": "https://api.congress.gov/v3/member/T000481?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/84/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-13",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This concurrent resolution directs the President to remove U.S. Armed Forces from Lebanon within seven days of the resolution's adoption.</p>",
+          "updateDate": "2026-05-29T19:58:14Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/84/text?format=json"
+      },
+      "title": "Directing the President pursuant to section 5(c) of the War Powers Resolution to remove United States Armed Forces from Lebanon.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/84/titles?format=json"
+      },
+      "type": "HCONRES",
+      "updateDate": "2026-06-05T08:07:48Z",
+      "updateDateIncludingText": "2026-06-05T08:07:48Z"
+    },
+    {
+      "actions": {
+        "count": 14,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/86/actions?format=json"
+      },
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/86/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 5,
+        "countIncludingWithdrawnCosponsors": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/86/cosponsors?format=json"
+      },
+      "introducedDate": "2026-04-20",
+      "latestAction": {
+        "actionDate": "2026-06-04",
+        "text": "Received in the Senate and referred to the Committee on Foreign Relations."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/86",
+      "number": "86",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "relatedBills": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/86/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "M001137",
+          "district": 5,
+          "firstName": "Gregory",
+          "fullName": "Rep. Meeks, Gregory W. [D-NY-5]",
+          "isByRequest": "N",
+          "lastName": "Meeks",
+          "middleName": "W.",
+          "party": "D",
+          "state": "NY",
+          "url": "https://api.congress.gov/v3/member/M001137?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 8,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/86/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-20",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This concurrent resolution directs the President to remove U.S. Armed Forces from hostilities against Iran unless explicitly authorized by a declaration of war or a congressional authorization for use of military force against Iran.</p><p>Elements of the U.S. Armed Forces needed to defend the United States, an ally, or a partner from imminent attack are not covered by this requirement provided the President complies with a specified provision of the War Powers Resolution. (The provision generally requires the President to remove U.S. Armed Forces from hostilities no more than 60 days after the President notifies or is required to notify Congress of such involvement, unless Congress authorizes such use. For more information on the War Powers Resolution, see&nbsp;<a href=\"https://crs.gov/Reports/IF13134\">CRS In Focus 13134</a>.)</p>",
+          "updateDate": "2026-05-18T13:26:05Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/86/text?format=json"
+      },
+      "title": "Directing the President, pursuant to section 5(c) of the War Powers Resolution, to remove United States Armed Forces from hostilities with Iran.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/86/titles?format=json"
+      },
+      "type": "HCONRES",
+      "updateDate": "2026-06-05T12:14:59Z",
+      "updateDateIncludingText": "2026-06-05T13:33:47Z"
+    },
+    {
+      "actions": {
+        "count": 20,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2860/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Natural Resources on January 12, 2026",
+          "pubDate": "2026-03-24T21:07:00Z",
+          "title": "H.R. 2860, Northwest Straits Marine Conservation Initiative Reauthorization Act of 2025",
+          "url": "https://www.cbo.gov/publication/62270"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-437",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/437?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2860/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 65 (Thursday, April 10, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. LARSEN of Washington:\nH.R. 2860.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8.\n[Page H1602]\n</pre>",
+      "cosponsors": {
+        "count": 6,
+        "countIncludingWithdrawnCosponsors": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2860/cosponsors?format=json"
+      },
+      "introducedDate": "2025-04-10",
+      "latestAction": {
+        "actionDate": "2026-06-04",
+        "text": "Received in the Senate. Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 427."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/2860",
+      "number": "2860",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Environmental Protection"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2860/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "L000560",
+          "district": 2,
+          "firstName": "Rick",
+          "fullName": "Rep. Larsen, Rick [D-WA-2]",
+          "isByRequest": "N",
+          "lastName": "Larsen",
+          "party": "D",
+          "state": "WA",
+          "url": "https://api.congress.gov/v3/member/L000560?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 14,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2860/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-01-12",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Northwest Straits Marine Conservation Initiative Reauthorization Act of 2025</strong></p><p>This bill revises and reauthorizes for seven years the Northwest Straits Marine Conservation Initiative and its Northwest Straits Advisory Commission. The initiative and the commission work to protect and restore marine waters, habitats, and species of the Northwest Straits region (i.e., the waters of the Strait of Juan de Fuca and of Puget Sound from the Canadian border to the south end of Snohomish County in Washington state).</p><p>Among other duties, the commission must provide resources and technical support for marine resources committees, develop scientifically sound restoration and protection recommendations, and serve as a public forum for informal policy discussions about the marine ecosystem of the Northwest Straits region.</p>",
+          "updateDate": "2026-05-29T15:54:15Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2860/text?format=json"
+      },
+      "title": "Northwest Straits Marine Conservation Initiative Reauthorization Act of 2025",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2860/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-05T12:15:05Z",
+      "updateDateIncludingText": "2026-06-05T13:48:45Z"
+    },
+    {
+      "actions": {
+        "count": 20,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7618/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Natural Resources on May 20, 2026",
+          "pubDate": "2026-05-26T18:23:00Z",
+          "title": "H.R. 7618, American Battlefield Protection Program Amendments Act of 2026",
+          "url": "https://www.cbo.gov/publication/62471"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-664",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/664?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7618/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 34 (Friday, February 20, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mrs. KIGGANS of Virginia:\nH.R. 7618.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle 1, Section 8\n[Page H2235]\n</pre>",
+      "cosponsors": {
+        "count": 6,
+        "countIncludingWithdrawnCosponsors": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7618/cosponsors?format=json"
+      },
+      "introducedDate": "2026-02-20",
+      "latestAction": {
+        "actionDate": "2026-06-04",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/7618",
+      "number": "7618",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Public Lands and Natural Resources"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7618/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "K000399",
+          "district": 2,
+          "firstName": "Jennifer",
+          "fullName": "Rep. Kiggans, Jennifer A. [R-VA-2]",
+          "isByRequest": "N",
+          "lastName": "Kiggans",
+          "middleName": "A.",
+          "party": "R",
+          "state": "VA",
+          "url": "https://api.congress.gov/v3/member/K000399?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7618/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-05-20",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>American Battlefield Protection Program Amendments Act of 2026</strong></p><p>This bill extends through FY2036 three National Park Service (NPS) grant programs that preserve U.S. battlefields and requires the NPS to study additional sites for potential preservation.</p><p>Specifically, the bill extends through FY2036 grant programs for the acquisition, interpretation modernization, and restoration of certain U.S. battlefields. (Under current law, the grants are authorized through FY2028.)</p><p>The bill also requires the&nbsp;NPS to prepare or certify studies of locations tied to significant events during the French and Indian War (1754-1763) and the Mexican-American War (1846-1848) for potential preservation.&nbsp;</p>",
+          "updateDate": "2026-05-29T15:43:04Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7618/text?format=json"
+      },
+      "title": "American Battlefield Protection Program Amendments Act of 2026",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7618/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-05T12:15:01Z",
+      "updateDateIncludingText": "2026-06-05T13:48:46Z"
+    },
+    {
+      "actions": {
+        "count": 22,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7726/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7726/amendments?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Education and Workforce on April 6, 2026",
+          "pubDate": "2026-05-13T19:02:00Z",
+          "title": "H.R. 7726, No Funds for Repeat Child Care Violations Act of 2026",
+          "url": "https://www.cbo.gov/publication/62437"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-592",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/592?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7726/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 38 (Thursday, February 26, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mrs. MILLER of Illinois:\nH.R. 7726.\nCongress has the power to enact this legislation pursuant\nto the following:\nNecessary and Proper Clause\nCommerce Clause\n[Page H2333]\n</pre>",
+      "introducedDate": "2026-02-26",
+      "latestAction": {
+        "actionDate": "2026-06-04",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Health, Education, Labor, and Pensions."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/7726",
+      "number": "7726",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Families"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7726/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "M001211",
+          "district": 15,
+          "firstName": "Mary",
+          "fullName": "Rep. Miller, Mary E. [R-IL-15]",
+          "isByRequest": "N",
+          "lastName": "Miller",
+          "middleName": "E.",
+          "party": "R",
+          "state": "IL",
+          "url": "https://api.congress.gov/v3/member/M001211?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7726/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-06",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>No Funds for Repeat Child Care Violations Act of 2026</strong></p><p>This bill subjects states to additional sanctions for improperly using funds under the Child Care and Development Block Grant program. The program provides grants to states to support child care programs for low-income working families.</p><p>Specifically, if the Office of the Administration for Children and&nbsp;Families (ACF) finds that a state has failed to comply substantially with the requirements of the program, the ACF must impose additional sanctions,&nbsp;which include disqualifying the state from receiving&nbsp;funds under the program.</p><p>Under current law, the ACF is permitted, but not required, to take such actions for a state's noncompliance.</p>",
+          "updateDate": "2026-06-01T15:17:09Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7726/text?format=json"
+      },
+      "title": "Stop Child Care Scams Act of 2026",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7726/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-05T23:21:23Z",
+      "updateDateIncludingText": "2026-06-05T23:21:23Z"
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1333/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-676",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/676?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1333/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-06-03",
+      "latestAction": {
+        "actionDate": "2026-06-03",
+        "actionTime": "14:32:12",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1333",
+      "number": "1333",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "relatedBills": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1333/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "H001093",
+          "district": 9,
+          "firstName": "Erin",
+          "fullName": "Rep. Houchin, Erin [R-IN-9]",
+          "isByRequest": "N",
+          "lastName": "Houchin",
+          "party": "R",
+          "state": "IN",
+          "url": "https://api.congress.gov/v3/member/H001093?format=json"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1333/text?format=json"
+      },
+      "title": "Providing for consideration of the bill (H.R. 8646) making appropriations for Agriculture, Rural Development, Food and Drug Administration, and Related Agencies programs for the fiscal year ending September 30, 2027, and for other purposes; providing for consideration of the bill (H.R. 7726) to amend the Child Care and Development Block Grant Act of 1990 to withhold funds from noncompliant States under such Act; providing for consideration of the bill (H.R. 7892) to amend the Higher Education Act of 1965 to require to the Secretary of Education to use an identity fraud detection system to review each FAFSA to determine whether the FAFSA presents a reasonable suspicion of identity fraud; and providing for consideration of the bill (H.R. 8872) to amend part A of title IV of the Social Security Act to target funds to low-income families, strengthen program integrity guardrails for State expenditure of funds, require measurement of improper payments, and establish goals for eliminating fraud and improper payments under the program of block grants to States for temporary assistance for needy families, and for other purposes.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1333/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-06-05T23:21:23Z",
+      "updateDateIncludingText": "2026-06-05T23:21:23Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1336/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-685",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/685?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1336/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-06-03",
+      "latestAction": {
+        "actionDate": "2026-06-04",
+        "actionTime": "17:50:55",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1336",
+      "number": "1336",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "F000450",
+          "district": 5,
+          "firstName": "Virginia",
+          "fullName": "Rep. Foxx, Virginia [R-NC-5]",
+          "isByRequest": "N",
+          "lastName": "Foxx",
+          "party": "R",
+          "state": "NC",
+          "url": "https://api.congress.gov/v3/member/F000450?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1336/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-06-03",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This resolution provides for the House of Representatives to consider&nbsp;on the same day without a two-thirds vote&nbsp;any resolution reported by the Committee on Rules through the legislative day of June 5, 2026, relating to a measure providing for reconciliation pursuant to title II of S.Con.Res.33. Specifically, the resolution waives a House Rule requiring a two-thirds vote to consider a report from the Committee on Rules on the same day it is presented to the House.</p>",
+          "updateDate": "2026-06-05T14:17:14Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1336/text?format=json"
+      },
+      "title": "Waiving a requirement of clause 6(a) of rule XIII with respect to consideration of certain resolutions reported from the Committee on Rules.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1336/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-06-05T14:58:28Z",
+      "updateDateIncludingText": "2026-06-05T14:58:28Z"
+    },
+    {
+      "actions": {
+        "count": 19,
+        "url": "https://api.congress.gov/v3/bill/119/hres/518/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/518/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 1,
+        "countIncludingWithdrawnCosponsors": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/518/cosponsors?format=json"
+      },
+      "introducedDate": "2025-06-17",
+      "latestAction": {
+        "actionDate": "2026-06-04",
+        "actionTime": "18:16:29",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/518",
+      "number": "518",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "M001137",
+          "district": 5,
+          "firstName": "Gregory",
+          "fullName": "Rep. Meeks, Gregory W. [D-NY-5]",
+          "isByRequest": "N",
+          "lastName": "Meeks",
+          "middleName": "W.",
+          "party": "D",
+          "state": "NY",
+          "url": "https://api.congress.gov/v3/member/M001137?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/518/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-06-17",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This resolution provides&nbsp;for the consideration of&nbsp;H.R. 2913, the Ukraine Support Act. It also provides that the Clerk of the House&nbsp;shall transmit to the Senate a message that the House has passed H.R. 2913 no later than one week after the bill's passage.</p>",
+          "updateDate": "2026-06-01T11:35:26Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/518/text?format=json"
+      },
+      "title": "Providing for consideration of the bill (H.R. 2913) to authorize support for Ukraine, and for other purposes.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/518/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-06-05T15:36:10Z",
+      "updateDateIncludingText": "2026-06-05T15:36:10Z"
+    },
+    {
+      "actions": {
+        "count": 15,
+        "url": "https://api.congress.gov/v3/bill/119/s/2/actions?format=json"
+      },
+      "amendments": {
+        "count": 369,
+        "url": "https://api.congress.gov/v3/bill/119/s/2/amendments?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the Senate Committee on the Budget on May 20, 2026",
+          "pubDate": "2026-05-20T16:00:00Z",
+          "title": "Estimated Budgetary Effects of S. 2, the Secure America Act  ",
+          "url": "https://www.cbo.gov/publication/62454"
+        },
+        {
+          "description": "As posted on the website of the Senate Amendment Tracking System on June 3, 2026",
+          "pubDate": "2026-06-03T19:07:00Z",
+          "title": "Estimated Budgetary Effects of Amendment 5453 to S. 2, the Secure America Act",
+          "url": "https://www.cbo.gov/publication/62502"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/2/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-05-20",
+      "latestAction": {
+        "actionDate": "2026-06-05",
+        "text": "Message on Senate action sent to the House."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-bill/2",
+      "number": "2",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Immigration"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "G000359",
+          "firstName": "Lindsey",
+          "fullName": "Sen. Graham, Lindsey [R-SC]",
+          "isByRequest": "N",
+          "lastName": "Graham",
+          "party": "R",
+          "state": "SC",
+          "url": "https://api.congress.gov/v3/member/G000359?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 10,
+        "url": "https://api.congress.gov/v3/bill/119/s/2/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-06-05",
+          "actionDesc": "Passed Senate",
+          "text": "<p><strong>Secure America Act</strong></p><p>This bill provides funding to the Department of Homeland Security (DHS), U.S. Customs and Border Protection (CBP), and U.S. Immigration and Customs Enforcement (ICE) through FY2029 for immigration enforcement and related activities.</p><p>It is known as a reconciliation bill and includes legislation submitted by certain congressional committees pursuant to provisions in the FY2026 congressional budget resolution (S. Con. Res. 33) that directed the committees to submit legislation to the House or Senate Budget Committee that will increase the deficit. (Reconciliation bills are considered by Congress using expedited legislative procedures that prevent a filibuster and restrict amendments in the Senate.)</p><p>Specifically, the bill provides funding to CBP for&nbsp;</p><ul><li>personnel;</li><li>border security, technology, and screening; and</li><li>immigration enforcement activities.</li></ul><p>The bill provides funding to ICE for</p><ul><li>personnel,</li><li>Homeland Security Investigations,</li><li>immigration enforcement activities,</li><li>transportation,</li><li>information technology,</li><li>facility and fleet maintenance and sustainment,</li><li>287(g) agreements (i.e., agreements that allow state and local law enforcement&nbsp;agencies to perform certain immigration enforcement functions),</li><li>the Office of the Principal Legal Advisor,&nbsp;</li><li>operation and maintenance, and</li><li>certain arrests related to immigration enforcement.</li></ul><p>The bill also provides additional funding to DHS for (1) immigration enforcement, and (2) the participation of state and local agencies in certain homeland security efforts.&nbsp;</p><p>The funding provided by this bill generally remains available through FY2029.</p>",
+          "updateDate": "2026-06-05T19:32:58Z",
+          "versionCode": "55"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/s/2/text?format=json"
+      },
+      "title": "Secure America Act",
+      "titles": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/s/2/titles?format=json"
+      },
+      "type": "S",
+      "updateDate": "2026-06-06T11:08:25Z",
+      "updateDateIncludingText": "2026-06-06T11:08:25Z"
+    },
+    {
+      "actions": {
+        "count": 19,
+        "url": "https://api.congress.gov/v3/bill/119/s/254/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As ordered reported by the Senate Committee on Commerce, Science, and Transportation on June 25, 2025",
+          "pubDate": "2025-08-15T20:02:00Z",
+          "title": "S. 254, ARTIST Act",
+          "url": "https://www.cbo.gov/publication/61684"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "S. Rept. 119-73",
+          "url": "https://api.congress.gov/v3/committee-report/119/SRPT/73?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/254/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 1,
+        "countIncludingWithdrawnCosponsors": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/254/cosponsors?format=json"
+      },
+      "introducedDate": "2025-01-24",
+      "latestAction": {
+        "actionDate": "2026-06-03",
+        "actionTime": "14:17:40",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-bill/254",
+      "number": "254",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Native Americans"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/254/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "S001198",
+          "firstName": "Dan",
+          "fullName": "Sen. Sullivan, Dan [R-AK]",
+          "isByRequest": "N",
+          "lastName": "Sullivan",
+          "party": "R",
+          "state": "AK",
+          "url": "https://api.congress.gov/v3/member/S001198?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/s/254/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-01-24",
+          "actionDesc": "Introduced in Senate",
+          "text": "<p><strong>Alaska\u2019s Right To Ivory Sales and Tradition Act or the ARTIST Act</strong></p><p>This bill prohibits states from imposing bans on marine mammal products produced by Alaska Natives.</p><p>Specifically, states may not prohibit the importation, sale, transfer, trade, barter, or possession of marine mammal ivory, marine mammal bone, or baleen legally produced by an Alaska Native as an authentic Alaska Native article of handicrafts and clothing.</p>",
+          "updateDate": "2025-06-04T18:38:56Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/s/254/text?format=json"
+      },
+      "title": "ARTIST Act",
+      "titles": {
+        "count": 10,
+        "url": "https://api.congress.gov/v3/bill/119/s/254/titles?format=json"
+      },
+      "type": "S",
+      "updateDate": "2026-06-05T05:38:26Z",
+      "updateDateIncludingText": "2026-06-05T05:38:26Z"
+    },
+    {
+      "actions": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/188/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/188/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-04-27",
+      "latestAction": {
+        "actionDate": "2026-06-03",
+        "text": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 46 - 53. Record Vote Number: 135. (CR S2509)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/188",
+      "number": "188",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Environmental Protection"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "W000802",
+          "firstName": "Sheldon",
+          "fullName": "Sen. Whitehouse, Sheldon [D-RI]",
+          "isByRequest": "N",
+          "lastName": "Whitehouse",
+          "party": "D",
+          "state": "RI",
+          "url": "https://api.congress.gov/v3/member/W000802?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/188/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/188/text?format=json"
+      },
+      "title": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"National Emission Standards for Hazardous Air Pollutants: Coal- and Oil-Fired Electric Utility Steam Generating Units: Final Repeal\".",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/188/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-06-04T17:07:39Z",
+      "updateDateIncludingText": "2026-06-04T17:07:39Z",
+      "summaries": []
     }
   ]
 }
