@@ -1,4 +1,6 @@
 import httpx
+from urllib.parse import parse_qsl, urlsplit
+
 from app.services.cache import CacheService
 
 
@@ -29,10 +31,29 @@ class CongressAPIClient:
         return data
 
     async def get_members_by_state(self, state_code: str, current_only: bool = True) -> dict:
-        params = {}
+        params = {"limit": "250"}
         if current_only:
             params["currentMember"] = "true"
-        return await self._fetch(f"/member/{state_code}", params)
+        data = await self._fetch(f"/member/{state_code}", params)
+        members = list(data.get("members", []))
+
+        # Follow pagination.next until exhausted. Only URLs under our own base
+        # URL are followed, and each page is re-issued through _fetch so the
+        # API key stays in headers instead of GETting an arbitrary URL.
+        next_url = data.get("pagination", {}).get("next")
+        pages_followed = 0
+        while next_url and next_url.startswith(f"{self.base_url}/") and pages_followed < 20:
+            parts = urlsplit(next_url)
+            path = parts.path[len(urlsplit(self.base_url).path):]
+            next_params = dict(parse_qsl(parts.query))
+            next_params.pop("format", None)
+            next_params.pop("api_key", None)
+            page = await self._fetch(path, next_params)
+            members.extend(page.get("members", []))
+            next_url = page.get("pagination", {}).get("next")
+            pages_followed += 1
+
+        return {"members": members}
 
     async def get_members_by_district(self, state_code: str, district: int, current_only: bool = True) -> dict:
         params = {}

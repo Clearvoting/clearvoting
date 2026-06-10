@@ -16,13 +16,14 @@ def _write_json(path: Path, data: dict | list) -> None:
 
 @pytest.mark.asyncio
 async def test_sync_members(tmp_path):
+    # OH/GA have no sanity floor — small mocked counts are fine
     mock_client = MagicMock()
     mock_client.get_members_by_state = AsyncMock(side_effect=[
-        {"members": [{"bioguideId": "S001217", "name": "Scott, Rick", "state": "Florida", "terms": {"item": [{"chamber": "Senate"}]}}]},
-        {"members": [{"bioguideId": "S000148", "name": "Schumer, Charles", "state": "New York", "terms": {"item": [{"chamber": "Senate"}]}}]},
+        {"members": [{"bioguideId": "H001088", "name": "Husted, Jon", "state": "Ohio", "terms": {"item": [{"chamber": "Senate"}]}}]},
+        {"members": [{"bioguideId": "O000174", "name": "Ossoff, Jon", "state": "Georgia", "terms": {"item": [{"chamber": "Senate"}]}}]},
     ])
 
-    count = await sync_members(mock_client, tmp_path, states=["FL", "NY"])
+    count = await sync_members(mock_client, tmp_path, states=["OH", "GA"])
 
     members_file = tmp_path / "members.json"
     assert members_file.exists()
@@ -30,7 +31,7 @@ async def test_sync_members(tmp_path):
     assert len(data["members"]) == 2
     assert count == 2
     # Verify stateCode and chamber were added
-    assert data["members"][0]["stateCode"] == "FL"
+    assert data["members"][0]["stateCode"] == "OH"
     assert data["members"][0]["chamber"] == "Senate"
 
 
@@ -38,11 +39,11 @@ async def test_sync_members(tmp_path):
 async def test_sync_members_handles_api_error(tmp_path):
     mock_client = MagicMock()
     mock_client.get_members_by_state = AsyncMock(side_effect=[
-        {"members": [{"bioguideId": "S001217", "name": "Scott", "terms": {"item": []}}]},
+        {"members": [{"bioguideId": "H001088", "name": "Husted", "terms": {"item": []}}]},
         Exception("API error"),
     ])
 
-    count = await sync_members(mock_client, tmp_path, states=["FL", "NY"])
+    count = await sync_members(mock_client, tmp_path, states=["OH", "GA"])
 
     data = json.loads((tmp_path / "members.json").read_text())
     assert len(data["members"]) == 1
@@ -60,9 +61,53 @@ async def test_sync_members_rate_limiting(tmp_path):
 
     import unittest.mock
     with unittest.mock.patch("sync.asyncio.sleep", new_callable=AsyncMock) as mock_sleep:
-        await sync_members(mock_client, tmp_path, states=["FL", "NY"], rate_limit=0.1)
+        await sync_members(mock_client, tmp_path, states=["OH", "GA"], rate_limit=0.1)
         assert mock_sleep.call_count == 2
         mock_sleep.assert_called_with(0.1)
+
+
+@pytest.mark.asyncio
+async def test_sync_members_below_floor_aborts(tmp_path):
+    """A floored state below its known minimum must abort without writing members.json.
+
+    Regression: pagination truncation shipped 20-member states (zero senators)
+    silently because nothing validated the counts.
+    """
+    mock_client = MagicMock()
+    mock_client.get_members_by_state = AsyncMock(return_value={
+        "members": [{"bioguideId": f"C{i:06d}", "terms": {"item": [{"chamber": "House"}]}} for i in range(20)]
+    })
+
+    with pytest.raises(RuntimeError, match="CA"):
+        await sync_members(mock_client, tmp_path, states=["CA"])
+
+    assert not (tmp_path / "members.json").exists()
+
+
+@pytest.mark.asyncio
+async def test_sync_members_at_floor_writes(tmp_path):
+    """A floored state meeting its minimum writes normally (NY floor = 28)."""
+    mock_client = MagicMock()
+    mock_client.get_members_by_state = AsyncMock(return_value={
+        "members": [{"bioguideId": f"N{i:06d}", "terms": {"item": [{"chamber": "House"}]}} for i in range(28)]
+    })
+
+    count = await sync_members(mock_client, tmp_path, states=["NY"])
+
+    assert count == 28
+    assert (tmp_path / "members.json").exists()
+
+
+@pytest.mark.asyncio
+async def test_sync_members_floor_state_fetch_failure_aborts(tmp_path):
+    """A failed fetch for a floored state counts as zero members and aborts."""
+    mock_client = MagicMock()
+    mock_client.get_members_by_state = AsyncMock(side_effect=Exception("API error"))
+
+    with pytest.raises(RuntimeError, match="FL"):
+        await sync_members(mock_client, tmp_path, states=["FL"])
+
+    assert not (tmp_path / "members.json").exists()
 
 
 # --- sync_senate_votes ---
@@ -127,6 +172,12 @@ async def test_sync_senate_votes_rate_limiting(tmp_path):
     with unittest.mock.patch("sync.asyncio.sleep", new_callable=AsyncMock) as mock_sleep:
         await sync_senate_votes(mock_service, tmp_path, congress=119, session=1, max_vote=2, rate_limit=0.3)
         assert mock_sleep.call_count >= 1
+
+
+def test_vote_sync_default_cap_covers_busy_sessions():
+    """Sessions can have 700+ roll calls — the old 500 default silently truncated them."""
+    assert inspect.signature(sync_senate_votes).parameters["max_vote"].default == 1500
+    assert inspect.signature(sync_house_votes).parameters["max_vote"].default == 1500
 
 
 # --- sync_bills_from_votes ---
