@@ -1,78 +1,70 @@
 # ClearVote (ClearVoting) — Status
 
 **What:** Unbiased congressional voting records with AI-generated plain-language bill summaries
-**State:** Deployed to Render (auto-deploys from `main`)
-**URL:** ClearVoting.org (Render)
+**State:** Deployed to Render (auto-deploys from `main` on GitHub)
+**URL:** ClearVoting.org
 **Elevated:** Co-primary project (Mar 2026) based on LinkedIn traction
 
-## Current State
-- 264 tests passing. Multi-congress sync complete (117th/118th/119th). AI member narratives live.
+## Current State (2026-06-10)
+- Full multi-agent review completed + P0 fixes implemented (this session, pending merge)
+- 285 tests passing. Stack: Python/FastAPI + vanilla HTML/CSS/JS, data as JSON in git
+- Weekly GitHub Action syncs government data (Saturdays, reliable); NEW: ai-sync.yml
+  (Sundays) automates AI generation once ANTHROPIC_API_KEY secret is added; NEW: tests.yml
+  runs pytest on every push/PR
 - Party affiliations hidden by default. "Facts only. No opinions. No spin."
-- Stack: Python/FastAPI backend + vanilla HTML/CSS/JS frontend
-- Design: Light official color scheme, Inter + Playfair Display typography
+
+## P0 Fixes Shipped (2026-06-10, pending merge)
+1. **Member pagination** — live site had only 20 members/state and ZERO senators (API
+   first-page truncation). Now 148 members incl. senators, with sanity floors that abort
+   the sync on truncated data.
+2. **Model retirement** — all 9 AI call sites pinned claude-sonnet-4-20250514 (retires
+   Jun 15). Now a shared CLAUDE_MODEL constant = claude-sonnet-4-6.
+3. **Bill-vote matching** — "H.R. 1" substring-matched H.R. 1002 etc. and ignored
+   congress; also rescanned 4,605 files per request (seconds, event-loop blocking).
+   Now an exact in-memory index: HR 1 went 268 wrong votes/12MB → 24 right votes/7KB.
+4. **Vote cap** — 500/session cap silently truncated 5 sessions; raised to 1500
+   (backfill happens via weekly sync).
+5. **Health endpoint** now reports record counts + summary coverage (was invisible).
+6. Repo reconciled: April's stranded work (no-overall-stats narratives) committed;
+   docs reorganized into docs/archive + docs/reviews.
+
+## Data (local, 2026-06-10)
+4 states (NY, FL, CA, TX), 148 members, 1,450 bills, 658 AI bill summaries (45%
+coverage), 80 member narratives (68 new members lack narratives), donations 2024
+cycle (80 members, stale)
+
+## Open Items (priority order)
+1. **Merge the fixes PR** → Render deploys; then manually dispatch weekly-sync to
+   backfill capped votes
+2. **Add ANTHROPIC_API_KEY secret** on GitHub → ai-sync.yml closes the 797-bill
+   summary gap (~$55-75 one-time backfill, ~$5-10/mo) and generates narratives for
+   the 68 new members
+3. **SEO + analytics** (P1 from review): server-side titles/meta/OG, sitemap,
+   robots.txt, Plausible — the declared #1 growth channel, zero implementation,
+   midterms Nov 2026
+4. **Coverage honesty**: 4-state note + email capture; demo banner is dead code
+5. **House votes on bill pages** (synced but never rendered; 83% of bills affected)
+6. Donations: 2026 cycle + House office-filter bug + monthly CI step
+7. Trust pages: privacy policy, who-runs-this, corrections/methodology
 
 ## API Keys
 - `CONGRESS_API_KEY` in `.env` (valid)
-- `ANTHROPIC_API_KEY` is placeholder (only needed for AI bill summaries)
-
-## Data Sources
-Congress.gov API (members, bills, House votes) + Senate.gov XML (Senate roll calls) + Claude API (summaries + narratives)
-
-## Architecture
-`sync.py` pulls all data offline → saves to `data/synced/` as JSON → `DataService` loads at startup → routers serve from memory. 9-step pipeline. `CONGRESSES` constant at top of sync.py controls which congresses to sync.
-
-## Synced Data (as of Mar 10, 2026)
-4 states (NY, FL, CA, TX), 80 members, 636 bills, 2,159 Senate votes, 1,023 House votes, 80 member vote profiles, 636 AI bill summaries, 80 AI member narratives
-
-## Sync Notes
-- `sync.py --states NY,FL,CA,TX` — MUST pass all states each run (overwrites members.json)
-- Senate votes, House votes, and bills are incremental
-- 117th Congress House votes returned 0 (API data availability)
-- 8 bill summaries still need AI regeneration (missing provisions — require ANTHROPIC_API_KEY)
-
-## Key Features
-State/district member lookup, bill browse + search, per-member voting profiles, Senate XML + House API vote parsing, AI member narratives, security hardening (rate limiting, SSRF protection, security headers, defusedxml)
-
-## AI Summary Standards (Joseph's Direction)
-- 7th-8th grade reading level. No jargon.
-- No editorial language — no characterizations of how people feel
-- DO include factual context: before/after numbers, affected population sizes, scale references
-- Principle: give readers enough facts to form their own opinion. Facts, not framing.
-- Prompt: `app/services/ai_summary.py` SYSTEM_PROMPT (12 strict rules)
-
-## AI Member Summaries
-`app/services/member_summary.py` — Sonnet generates 3-5 sentence narrative per member. Facts only. Stored in `data/synced/member_summaries.json`. `--regenerate-member-summaries` flag to re-run.
-
-## LinkedIn Traction (Mar 12, 2026)
-Launch post: 44+ reactions, 13 comments, 1 repost — 3x previous best. Validates ClearVote as lead portfolio project.
-
-## Strategic Position (Mar 13, 2026)
-Elevated to co-primary alongside Conduction AI. ClearVote leads job applications (especially Anthropic) — it's live, uses Claude API, demonstrates responsible AI, has social proof. Resume v6 puts ClearVote first. Cover letters updated.
-
-## Next Steps
-1. Publish LinkedIn follow-up posts (3-post series)
-2. Update LinkedIn profile (headline, About, Featured)
-3. Explore non-profit path (501(c)(3) vs 501(c)(4))
-4. Regenerate 8 incomplete bill summaries (need ANTHROPIC_API_KEY: 118-s-4554, 118-sjres-117, 119-hjres-72, 119-hr-1834, 119-hr-5214, 119-hr-6703, 119-hres-888, 119-hres-992)
-5. Sync more states
-
-## Known Issues
-- 117th Congress House votes returned 0 (API data availability)
-- 8 bill summaries missing provisions (need AI regeneration with valid API key)
+- `ANTHROPIC_API_KEY` placeholder locally; needed as GitHub secret for ai-sync.yml
 
 ## Key Files
-- `sync.py` — data sync pipeline
-- `app/services/ai_summary.py` — bill summary AI prompt
-- `app/services/member_summary.py` — member narrative AI
+- `sync.py` — data sync pipeline (`--step members|bills|...`, `--ai-only`, `--skip-ai`)
+- `app/services/grader_common.py` — shared CLAUDE_MODEL constant
+- `app/services/ai_summary.py` — bill summary prompt (12 neutrality rules)
+- `.github/workflows/` — weekly-sync.yml, ai-sync.yml (new), tests.yml (new)
 - `data/synced/` — all synced JSON data
-- `render.yaml` + `Dockerfile` — deployment config
 
-## Design Docs
-- `docs/plans/2026-03-04-clearvote-design.md`
-- `docs/plans/2026-03-04-clearvote.md`
+## Sync Notes
+- `sync.py --step members --states NY,FL,CA,TX` — pass all states (overwrites members.json)
+- Member count floors abort sync on truncated data (vacant seats tolerated)
+- Senate/House votes and bills are incremental; AI steps skip existing items
 
 ## Virtualenv
-`.venv` with Python 3.13 — use `source .venv/bin/activate` before running tests
+`.venv`, Python 3.13 — recreated 2026-06-10 (`python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`)
 
 ## Date Created
-2026-03-05
+2026-03-05 · Last updated 2026-06-10
