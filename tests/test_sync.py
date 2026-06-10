@@ -693,8 +693,9 @@ def test_build_member_votes_accepts_anthropic_key():
 def test_grade_flag_accepted():
     """sync.py should accept --grade flag."""
     import subprocess
+    import sys
     result = subprocess.run(
-        ["python", "sync.py", "--grade", "--help"],
+        [sys.executable, "sync.py", "--grade", "--help"],
         capture_output=True, text=True
     )
     assert "--grade" in result.stdout or result.returncode == 0

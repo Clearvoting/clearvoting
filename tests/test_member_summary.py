@@ -101,7 +101,7 @@ def test_build_prompt_includes_vote_data():
     assert "Gillibrand" in prompt
     assert "Environment & Energy" in prompt
     assert "Set military spending limits" in prompt
-    assert "500" in prompt  # total votes in context line
+    assert "3" in prompt  # congresses covered count
 
 
 def test_system_prompt_no_stat_repetition_rule():

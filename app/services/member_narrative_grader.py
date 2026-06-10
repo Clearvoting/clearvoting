@@ -66,14 +66,18 @@ NO CHERRY-PICKING
 - If a member voted against environmental measures 12 times and in favor 3 times, the narrative cannot lead with or emphasize the 3 in-favor votes
 - The dominant pattern must be presented as the dominant pattern
 
+NO OVERALL STATISTICS (CRITICAL)
+- Must NOT mention total votes cast, participation rate, or overall vote counts
+- These statistics are displayed separately on the page — the narrative must NOT repeat them
+- Per-issue-area vote counts (e.g., "voted in favor of 84 of 113 energy bills") ARE allowed
+- Phrases like "cast X votes", "X% participation", "X total votes" = automatic fail
+
 STRUCTURE
 - Must be 3-5 sentences
-- Must include specific numbers (vote counts, participation rate)
 - Must be factual and descriptive, not interpretive
 
 COMPLETENESS
 - Must mention the top 2-3 policy areas by vote count
-- Must include participation rate or total vote count
 {learnings_block}
 
 GRADING SCALE:
@@ -86,7 +90,7 @@ GRADING SCALE:
 A or B = pass. C, D, or F = fail.
 
 Return valid JSON only:
-{{"grade": "A|B|C|D|F", "passed": true|false, "feedback": "Specific actionable feedback for the writer", "checks": {{"reading_level": "pass|fail: detail", "no_bias": "pass|fail: detail", "data_alignment": "pass|fail: detail", "no_cherry_picking": "pass|fail: detail", "structure": "pass|fail: detail", "completeness": "pass|fail: detail"}}}}"""
+{{"grade": "A|B|C|D|F", "passed": true|false, "feedback": "Specific actionable feedback for the writer", "checks": {{"reading_level": "pass|fail: detail", "no_bias": "pass|fail: detail", "data_alignment": "pass|fail: detail", "no_cherry_picking": "pass|fail: detail", "no_overall_stats": "pass|fail: detail", "structure": "pass|fail: detail", "completeness": "pass|fail: detail"}}}}"""
 
     def _build_grade_prompt(self, summary_type: str, summary_text: str, context: dict) -> str:
         context_str = json.dumps(context, indent=2)
