@@ -1,6 +1,7 @@
 import json
 import logging
 import anthropic
+from app.services.grader_common import CLAUDE_MODEL
 
 logger = logging.getLogger(__name__)
 
@@ -84,7 +85,7 @@ Generate a corrected version. Return ONLY valid JSON."""
 
         try:
             response = await self.client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model=CLAUDE_MODEL,
                 max_tokens=256,
                 system=self.SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": prompt}],

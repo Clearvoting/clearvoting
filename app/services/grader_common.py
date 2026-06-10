@@ -3,6 +3,10 @@
 from dataclasses import dataclass, field
 from typing import Protocol
 
+# Single source of truth for the Claude model used by all AI services.
+# Use the undated alias — date-suffixed snapshot IDs retire and break every call site.
+CLAUDE_MODEL = "claude-sonnet-4-6"
+
 
 def strip_code_fences(text: str) -> str:
     """Remove markdown code fences (```json ... ```) from LLM output."""
