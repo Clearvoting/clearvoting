@@ -67,10 +67,11 @@ CONGRESSES = [
 # The --states CLI flag overrides this. Previously defaulted to all 50+ states/territories.
 SYNC_STATES = ["NY", "FL", "CA", "TX"]
 
-# Sanity floors for member counts (House districts + 2 senators). A synced
-# state below its floor means the API returned truncated data — abort instead
-# of publishing an incomplete members.json. States not listed are unchecked.
-MEMBER_COUNT_FLOORS = {"NY": 28, "FL": 30, "CA": 54, "TX": 40}
+# Sanity floors for member counts, set 2 below full delegation size (House
+# districts + 2 senators) so vacant seats don't abort the sync while still
+# catching truncated API responses (e.g. an unpaginated single page of 20).
+# States not listed are unchecked.
+MEMBER_COUNT_FLOORS = {"NY": 26, "FL": 28, "CA": 52, "TX": 38}
 
 
 def _atomic_write_json(path: Path, data: dict | list) -> None:
