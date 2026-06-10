@@ -1,5 +1,10 @@
 import json
+import re
 from pathlib import Path
+
+# Matches bill documents in vote files, e.g. "H.R. 1", "H.Res. 24", "S.J.Res. 10".
+# Tolerates optional spaces between abbreviation parts ("H. Res. 88").
+_BILL_DOCUMENT_RE = re.compile(r"^([A-Za-z]+(?:\.\s*[A-Za-z]+)*\.?)\s+(\d+)$")
 
 
 class DataService:
@@ -11,6 +16,9 @@ class DataService:
         self._member_summaries: dict[str, dict] = {}
         self._donations: dict[str, dict] = {}
         self._metadata: dict = {}
+        # (congress, bill_type, bill_number) -> {"senate": [...], "house": [...]},
+        # built lazily on first get_bill_votes call (one scan of the vote dirs)
+        self._bill_votes_index: dict[tuple[int, str, int], dict[str, list[dict]]] | None = None
         self._load()
 
     def _load(self) -> None:
@@ -167,47 +175,57 @@ class DataService:
             return json.load(f)
 
     @staticmethod
-    def _bill_type_to_document_pattern(bill_type: str, bill_number: int) -> str | None:
-        """Convert normalized bill type to the document field pattern used in vote files."""
-        patterns = {
-            "hr": f"H.R. {bill_number}",
-            "s": f"S. {bill_number}",
-            "hjres": f"H.J.Res. {bill_number}",
-            "sjres": f"S.J.Res. {bill_number}",
-            "hconres": f"H.Con.Res. {bill_number}",
-            "sconres": f"S.Con.Res. {bill_number}",
-            "hres": f"H.Res. {bill_number}",
-            "sres": f"S.Res. {bill_number}",
-        }
-        return patterns.get(bill_type.lower())
+    def _parse_bill_document(document: str) -> tuple[str, int] | None:
+        """Parse a vote's document field into (normalized bill type, number).
 
-    def _search_votes_in_dir(self, vote_dir: Path, pattern: str) -> list[dict]:
-        """Search a vote directory for votes matching a bill document pattern."""
-        votes = []
-        if not vote_dir.exists():
-            return votes
-        pattern_lower = pattern.lower()
-        for vote_file in vote_dir.glob("*.json"):
-            with open(vote_file, "r") as f:
-                vote = json.load(f)
-            doc = vote.get("document", "").lower()
-            if pattern_lower in doc:
-                votes.append(vote)
-        return votes
+        "H.R. 1" -> ("hr", 1), "S.J.Res. 10" -> ("sjres", 10). Returns None for
+        non-bill documents (nominations like "PN807", amendment text, empty).
+        """
+        match = _BILL_DOCUMENT_RE.match(document.strip())
+        if not match:
+            return None
+        bill_type = match.group(1).replace(".", "").replace(" ", "").lower()
+        return bill_type, int(match.group(2))
+
+    def _build_bill_votes_index(self) -> dict[tuple[int, str, int], dict[str, list[dict]]]:
+        """Scan both vote directories once, mapping each bill to its vote summaries.
+
+        Stores only summary fields (no per-member positions) — the bill page
+        fetches full vote detail separately via the votes API.
+        """
+        index: dict[tuple[int, str, int], dict[str, list[dict]]] = {}
+        for chamber in ("senate", "house"):
+            vote_dir = self.data_dir / "votes" / chamber
+            if not vote_dir.exists():
+                continue
+            # Sorted so votes list in filename (chronological) order
+            for vote_file in sorted(vote_dir.glob("*.json")):
+                with open(vote_file, "r") as f:
+                    vote = json.load(f)
+                parsed = self._parse_bill_document(vote.get("document", ""))
+                if not parsed:
+                    continue
+                bill_type, bill_number = parsed
+                key = (vote.get("congress"), bill_type, bill_number)
+                entry = index.setdefault(key, {"senate": [], "house": []})
+                entry[chamber].append({
+                    "congress": vote.get("congress"),
+                    "session": vote.get("session"),
+                    "vote_number": vote.get("vote_number"),
+                    "vote_date": vote.get("vote_date"),
+                    "question": vote.get("question"),
+                    "result": vote.get("result"),
+                    "counts": vote.get("counts"),
+                })
+        return index
 
     def get_bill_votes(self, congress: int, bill_type: str, bill_number: int) -> dict | None:
-        pattern = self._bill_type_to_document_pattern(bill_type, bill_number)
-        if not pattern:
+        if self._bill_votes_index is None:
+            self._bill_votes_index = self._build_bill_votes_index()
+        entry = self._bill_votes_index.get((congress, bill_type.lower(), bill_number))
+        if not entry:
             return None
-        senate_votes = self._search_votes_in_dir(
-            self.data_dir / "votes" / "senate", pattern
-        )
-        house_votes = self._search_votes_in_dir(
-            self.data_dir / "votes" / "house", pattern
-        )
-        if not senate_votes and not house_votes:
-            return None
-        return {"senate": senate_votes, "house": house_votes}
+        return {"senate": entry["senate"], "house": entry["house"]}
 
     def get_member_donations(self, bioguide_id: str) -> dict | None:
         bioguide_id = bioguide_id.upper()
