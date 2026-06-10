@@ -9,13 +9,15 @@ import asyncio
 import logging
 import os
 
+from app.services.grader_common import CLAUDE_MODEL
+
 logger = logging.getLogger(__name__)
 
 
 async def call_claude_cli(
     system_prompt: str,
     user_prompt: str,
-    model: str = "claude-sonnet-4-20250514",
+    model: str = CLAUDE_MODEL,
 ) -> str:
     """Call Claude via the CLI. Pipes prompt via stdin to handle long inputs."""
     full_prompt = f"INSTRUCTIONS:\n{system_prompt}\n\nTASK:\n{user_prompt}\n\nCRITICAL: Your entire response must be ONLY the raw JSON object. Do not write ANY text before or after the JSON. No introduction, no explanation, no commentary, no markdown code fences. Start your response with {{ and end with }}."

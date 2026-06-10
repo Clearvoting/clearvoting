@@ -2,7 +2,7 @@ import json
 import logging
 from dataclasses import dataclass, field
 import anthropic
-from app.services.grader_common import strip_code_fences
+from app.services.grader_common import CLAUDE_MODEL, strip_code_fences
 
 logger = logging.getLogger(__name__)
 
@@ -46,7 +46,7 @@ class PageCoherenceChecker:
     async def _call_llm(self, system: str, user_prompt: str) -> str:
         if self.client:
             response = await self.client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model=CLAUDE_MODEL,
                 max_tokens=1024,
                 system=system,
                 messages=[{"role": "user", "content": user_prompt}],
