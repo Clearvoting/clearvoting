@@ -67,11 +67,20 @@ async def add_security_headers(request: Request, call_next):
 @app.get("/api/health")
 async def health_check() -> dict:
     from app.dependencies import get_data_service
-    metadata = get_data_service().get_sync_metadata()
+    data_service = get_data_service()
+    metadata = data_service.get_sync_metadata()
+    # Record counts from the in-memory stores — a sync that wipes data shows up here
+    bills = len(data_service._bills)
+    ai_summaries = len(data_service._ai_summaries)
     return {
         "status": "ok",
         "version": "0.1.0",
         "last_sync": metadata.get("last_sync"),
+        "members": len(data_service._members),
+        "bills": bills,
+        "ai_summaries": ai_summaries,
+        "member_summaries": len(data_service._member_summaries),
+        "summary_coverage": round(ai_summaries / bills, 2) if bills else 0,
     }
 
 
