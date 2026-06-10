@@ -12,8 +12,8 @@
 
 **References:**
 - [Design doc](2026-03-08-summary-grader-design.md)
-- [Current AI summary service](../../app/services/ai_summary.py)
-- [Current sync script](../../sync.py)
+- [Current AI summary service](ai_summary.py)
+- [Current sync script](sync.py)
 
 ---
 

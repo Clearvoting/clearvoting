@@ -309,7 +309,7 @@ Run full test suite. Verify no regressions.
 
 ### v1.1 (March 7, 2026) — Staff Engineer review corrections
 
-Addresses items from [security hardening plan review](../development/reviews/2026-03-07-security-hardening-plan-review.md):
+Addresses items from [security hardening plan review](2026-03-07-security-hardening-plan-review.md):
 
 **P0 blockers resolved:**
 - **`slowapi` requires `Request` param**: Added `request: Request` to the rate-limited endpoint signature in Phase 1.3
