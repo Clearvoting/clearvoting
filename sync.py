@@ -5,7 +5,7 @@ and saves everything as JSON files in data/synced/ for the
 web app to serve.
 
 Usage:
-    cd ~/Documents/Claude/2.\\ Projects/Non-Profit/ClearVote
+    cd ~/Claude/Projects/Non-Profit/ClearVote
     source .venv/bin/activate
 
     # Full sync (all 12 steps):

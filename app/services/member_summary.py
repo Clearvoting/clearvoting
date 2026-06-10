@@ -133,7 +133,7 @@ Member: {member_name}
 Chamber: {chamber}
 State: {state}
 Congresses: {congress_str}
-Context: {stats['total_votes']} total votes across {len(congresses)} congresses.
+Congresses covered: {len(congresses)} (use for internal context only — do NOT mention in narrative).
 
 Top Policy Areas (by vote count):
 {areas_block}{data_brief_block}
