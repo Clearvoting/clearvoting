@@ -5,3 +5,6 @@ data/cache/
 .venv/
 .firecrawl/
 .worktrees/
+*.backup.json
+.playwright-mcp/
+.superpowers/
