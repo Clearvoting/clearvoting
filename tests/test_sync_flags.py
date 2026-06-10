@@ -37,21 +37,27 @@ def test_ai_only_flag_accepted():
     assert "--ai-only" in result.stdout, "--ai-only should appear in help text"
 
 
-def test_ai_only_skips_congress_key_check():
-    """--ai-only should not require CONGRESS_API_KEY.
+async def test_ai_only_skips_congress_key_check(monkeypatch, tmp_path):
+    """--ai-only must run to completion without CONGRESS_API_KEY.
 
-    We verify this by checking the code structure: the --ai-only block
-    must return before the CONGRESS_API_KEY check.
+    AI steps are mocked and SYNC_DIR redirected to tmp_path so main() exercises
+    only the --ai-only control flow. SystemExit(1) here would mean the
+    CONGRESS_API_KEY check ran.
     """
-    content = (PROJECT_ROOT / "sync.py").read_text()
-    ai_only_return = content.find("if args.ai_only:")
-    congress_key_check = content.find('CONGRESS_API_KEY not set')
-    assert ai_only_return != -1, "--ai-only block should exist"
-    assert congress_key_check != -1, "CONGRESS_API_KEY check should exist"
-    assert ai_only_return < congress_key_check, \
-        "--ai-only block should come before CONGRESS_API_KEY check"
-    between = content[ai_only_return:congress_key_check]
-    assert "return" in between, "--ai-only block should return before CONGRESS_API_KEY check"
+    from unittest.mock import AsyncMock
+    import sync as sync_module
+
+    monkeypatch.delenv("CONGRESS_API_KEY", raising=False)
+    monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
+    for step in ("sync_bill_summaries", "sync_bill_arguments", "generate_scorecard_verdicts",
+                 "sync_member_summaries", "check_page_coherence"):
+        monkeypatch.setattr(sync_module, step, AsyncMock(return_value={}))
+    monkeypatch.setattr(sys, "argv", ["sync.py", "--ai-only"])
+
+    await sync_module.main()
+
+    assert sync_module.sync_member_summaries.await_count == 1
+    assert (tmp_path / "sync_metadata.json").exists()
 
 
 def test_sync_states_constant_exists():

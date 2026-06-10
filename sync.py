@@ -67,6 +67,11 @@ CONGRESSES = [
 # The --states CLI flag overrides this. Previously defaulted to all 50+ states/territories.
 SYNC_STATES = ["NY", "FL", "CA", "TX"]
 
+# Sanity floors for member counts (House districts + 2 senators). A synced
+# state below its floor means the API returned truncated data — abort instead
+# of publishing an incomplete members.json. States not listed are unchecked.
+MEMBER_COUNT_FLOORS = {"NY": 28, "FL": 30, "CA": 54, "TX": 40}
+
 
 def _atomic_write_json(path: Path, data: dict | list) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -85,26 +90,40 @@ async def sync_members(client: CongressAPIClient, output_dir: Path, states: list
     """Fetch current members of Congress for given states and save to members.json."""
     states = states or US_STATES
     all_members = []
+    state_counts: dict[str, int] = {}
     for i, state in enumerate(states):
         print(f"  Fetching members for {state}... ({i + 1}/{len(states)})")
         try:
             data = await client.get_members_by_state(state)
-            for member in data.get("members", []):
+            members = data.get("members", [])
+            for member in members:
                 member["stateCode"] = state
                 terms = member.get("terms", {}).get("item", [])
                 if terms:
                     member["chamber"] = terms[-1].get("chamber", "Unknown")
                 all_members.append(member)
+            state_counts[state] = len(members)
         except Exception as e:
             print(f"  WARNING: Failed to fetch {state}: {e}")
         await asyncio.sleep(rate_limit)
+
+    # Sanity check before writing — a floored state below its minimum means
+    # the API returned truncated data (this is what shipped 20-member states).
+    for state in states:
+        floor = MEMBER_COUNT_FLOORS.get(state)
+        if floor is not None and state_counts.get(state, 0) < floor:
+            raise RuntimeError(
+                f"Member sync sanity check failed: {state} returned "
+                f"{state_counts.get(state, 0)} members, expected at least {floor}. "
+                "Not writing members.json."
+            )
 
     _atomic_write_json(output_dir / "members.json", {"members": all_members})
     print(f"  Saved {len(all_members)} members")
     return len(all_members)
 
 
-async def sync_senate_votes(senate_service: SenateVoteService, output_dir: Path, congress: int = 119, session: int = 1, max_vote: int = 500, rate_limit: float = 0.0) -> int:
+async def sync_senate_votes(senate_service: SenateVoteService, output_dir: Path, congress: int = 119, session: int = 1, max_vote: int = 1500, rate_limit: float = 0.0) -> int:
     """Fetch Senate roll call votes. Incremental — skips already-downloaded votes."""
     vote_dir = output_dir / "votes" / "senate"
     vote_dir.mkdir(parents=True, exist_ok=True)
@@ -154,7 +173,7 @@ def _house_leg_to_document(leg_type: str | None, leg_number: str | None) -> str:
     return mapping.get(leg_type.upper(), f"{leg_type} {leg_number}")
 
 
-async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress: int = 119, session: int = 1, max_vote: int = 500, rate_limit: float = 0.0) -> int:
+async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress: int = 119, session: int = 1, max_vote: int = 1500, rate_limit: float = 0.0) -> int:
     """Fetch House roll call votes from Congress.gov API. Incremental — skips existing files."""
     vote_dir = output_dir / "votes" / "house"
     vote_dir.mkdir(parents=True, exist_ok=True)
