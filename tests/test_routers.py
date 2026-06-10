@@ -152,6 +152,24 @@ async def test_get_bill_votes_includes_house():
     data = response.json()
     assert len(data["senate"]) == 1
     assert len(data["house"]) == 1
+    # Vote refs are summary-only — member positions come from /api/votes/senate
+    for vote in data["senate"] + data["house"]:
+        assert "members" not in vote
+
+
+@pytest.mark.asyncio
+async def test_get_bill_votes_wrong_congress_returns_empty():
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/bills/117/hjres/20/votes")
+
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    data = response.json()
+    assert data["senate"] == []
+    assert data["house"] == []
 
 
 # --- Votes Router ---

@@ -144,7 +144,9 @@ def test_get_bill_votes(data_service):
     result = data_service.get_bill_votes(119, "hr", 1)
     assert result is not None
     assert len(result["senate"]) == 1
-    assert "house" in result
+    assert result["senate"][0]["vote_number"] == 372
+    assert len(result["house"]) == 1
+    assert result["house"][0]["vote_number"] == 99
 
 
 def test_get_bill_votes_hjres(data_service):
@@ -157,6 +159,56 @@ def test_get_bill_votes_hjres(data_service):
 def test_get_bill_votes_not_found(data_service):
     result = data_service.get_bill_votes(119, "hr", 9999)
     assert result is None
+
+
+def test_get_bill_votes_exact_number_match(data_service):
+    # H.R. 1 must not match H.R. 1002 (substring collision)
+    result = data_service.get_bill_votes(119, "hr", 1)
+    senate_numbers = [v["vote_number"] for v in result["senate"]]
+    assert 400 not in senate_numbers
+    # And H.R. 1002 resolves to only its own vote
+    result = data_service.get_bill_votes(119, "hr", 1002)
+    assert [v["vote_number"] for v in result["senate"]] == [400]
+    assert result["house"] == []
+
+
+def test_get_bill_votes_filters_by_congress(data_service):
+    # 119th H.R. 1 must exclude the 118th congress's H.R. 1 vote
+    result = data_service.get_bill_votes(119, "hr", 1)
+    for vote in result["senate"]:
+        assert vote["congress"] == 119
+    # 118th H.R. 1 returns only its own vote
+    result = data_service.get_bill_votes(118, "hr", 1)
+    assert [v["vote_number"] for v in result["senate"]] == [100]
+    assert result["house"] == []
+
+
+def test_get_bill_votes_returns_summary_fields_only(data_service):
+    # Bill page only needs vote refs; member positions come from the votes API
+    result = data_service.get_bill_votes(119, "hr", 1)
+    vote = result["senate"][0]
+    assert "members" not in vote
+    assert set(vote.keys()) == {
+        "congress", "session", "vote_number", "vote_date", "question", "result", "counts"
+    }
+
+
+def test_get_bill_votes_scans_directories_once(data_service, monkeypatch):
+    # The bill->votes index is built once; later calls must not rescan the directories
+    calls = {"count": 0}
+    real_glob = Path.glob
+
+    def counting_glob(self, pattern):
+        calls["count"] += 1
+        return real_glob(self, pattern)
+
+    monkeypatch.setattr(Path, "glob", counting_glob)
+    data_service.get_bill_votes(119, "hr", 1)
+    scans_after_first = calls["count"]
+    assert scans_after_first > 0
+    data_service.get_bill_votes(119, "hjres", 20)
+    data_service.get_bill_votes(119, "hr", 9999)
+    assert calls["count"] == scans_after_first
 
 
 def test_get_member_narrative(data_service):

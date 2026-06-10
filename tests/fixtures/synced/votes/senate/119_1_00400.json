@@ -1,0 +1,14 @@
+{
+  "congress": 119,
+  "session": 1,
+  "vote_number": 400,
+  "vote_date": "2025-06-15",
+  "question": "On Passage of the Bill",
+  "document": "H.R. 1002",
+  "result": "Bill Passed",
+  "title": "An unrelated bill whose number starts with 1",
+  "counts": {"yeas": 60, "nays": 40, "present": 0, "absent": 0},
+  "members": [
+    {"first_name": "Rick", "last_name": "Scott", "party": "R", "state": "FL", "vote": "Yea", "lis_member_id": "S001217"}
+  ]
+}

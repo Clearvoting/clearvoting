@@ -1,0 +1,14 @@
+{
+  "congress": 118,
+  "session": 2,
+  "vote_number": 100,
+  "vote_date": "2024-04-01",
+  "question": "On Passage of the Bill",
+  "document": "H.R. 1",
+  "result": "Bill Defeated",
+  "title": "A prior congress's H.R. 1",
+  "counts": {"yeas": 45, "nays": 55, "present": 0, "absent": 0},
+  "members": [
+    {"first_name": "Charles", "last_name": "Schumer", "party": "D", "state": "NY", "vote": "Nay", "lis_member_id": "S000148"}
+  ]
+}
