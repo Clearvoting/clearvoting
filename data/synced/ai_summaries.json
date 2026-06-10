@@ -444,7 +444,7 @@
       "Cost of Living"
     ],
     "direction": "in_favor",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say requiring only banks and government-approved companies to issue stablecoins will make these digital coins safer for regular people to use.",
@@ -3133,7 +3133,7 @@
       "Money in Politics"
     ],
     "direction": "against",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this bill saves Congress time by allowing one vote to cancel multiple rules instead of requiring separate votes for each rule made in the final year of a president's term.",
@@ -3468,7 +3468,7 @@
       "Money in Politics"
     ],
     "direction": "neutral",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say the formal vote holds Representative Green accountable for his actions through official House criticism.",
@@ -3981,7 +3981,7 @@
       "Taxes"
     ],
     "direction": "neutral",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this prevents delay tactics and ensures the House gets to vote on the Senate amendment to H.R. 1.",
@@ -4816,10 +4816,11 @@
       "Supports democracy and human rights programs in other countries"
     ],
     "issue_categories": [
-      "Veterans & Military"
+      "Veterans & Military",
+      "Taxes"
     ],
     "direction": "in_favor",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this funds State Department embassies and operations that protect American citizens traveling and working overseas.",
@@ -5415,7 +5416,7 @@
       "Money in Politics"
     ],
     "direction": "in_favor",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this would stop states with 15 or more voting violations from changing voting rules without federal approval for 10 years.",
@@ -5929,7 +5930,7 @@
       "Money in Politics"
     ],
     "direction": "neutral",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this resolution provides clear deadlines for lawyers to file trial documents so the impeachment process can proceed in an orderly way.",
@@ -6946,7 +6947,7 @@
       "Money in Politics"
     ],
     "direction": "against",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this would stop government workers from telling social media companies to remove posts or add warning labels.",
@@ -7433,7 +7434,7 @@
       "Veterans & Military"
     ],
     "direction": "in_favor",
-    "needs_review": true
+    "needs_review": false
   },
   "118-hr-2795": {
     "one_liner": "Require companies to reveal voting power of executives and major shareholders",
@@ -7544,7 +7545,7 @@
       "Jobs & Workers"
     ],
     "direction": "in_favor",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this gives all companies the same tools that smaller emerging growth companies already have, making the rules fair for everyone.",
@@ -7665,10 +7666,10 @@
       "Makes it easier for people and businesses to challenge agency decisions in court"
     ],
     "issue_categories": [
-      "Environment & Energy"
+      "Taxes"
     ],
     "direction": "against",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say courts should decide constitutional and statutory questions themselves instead of accepting agency interpretations.",
@@ -9365,10 +9366,11 @@
       "Sets the rules for how the House will debate a resolution to cancel a Commerce Department rule about trade duties"
     ],
     "issue_categories": [
-      "Money in Politics"
+      "Taxes",
+      "Cost of Living"
     ],
     "direction": "neutral",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this rule allows the House to vote on the debt ceiling increase bill and the resolution about Commerce Department trade duties.",
@@ -11709,7 +11711,7 @@
       "Money in Politics"
     ],
     "direction": "in_favor",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this bill gives the US a way to pressure China by removing them from six important financial groups like the Group of Twenty and Bank for International Settlements when China threatens Taiwan's security or economic system.",
@@ -12325,7 +12327,7 @@
       "Taxes"
     ],
     "direction": "in_favor",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this would save taxpayer money by having GSA work with agencies to share office space instead of renting separate federal buildings.",
@@ -12958,7 +12960,7 @@
       "Safety & Crime"
     ],
     "direction": "against",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this removes the extra step of the commission and lets the President directly choose judges for DC's Superior Court and Court of Appeals.",
@@ -13413,7 +13415,7 @@
       "Money in Politics"
     ],
     "direction": "in_favor",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this funds Treasury Department operations that collect taxes and manage government finances for 2026.",
@@ -13822,7 +13824,7 @@
       "Money in Politics"
     ],
     "direction": "neutral",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say the House has a duty to formally disapprove of Representative Garc\u00eda's behavior when it falls short of expected standards.",
@@ -13845,7 +13847,7 @@
       "Money in Politics"
     ],
     "direction": "neutral",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say the rule creates an orderly process for the House to debate and vote on H.R. 1834.",
@@ -14716,10 +14718,10 @@
       "The plan must include increasing trade and business ties"
     ],
     "issue_categories": [
-      "Jobs & Workers"
+      "Veterans & Military"
     ],
     "direction": "in_favor",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say creating a working group with Japan, Australia, and India would help the US prepare for the next pandemic by sharing information and resources with key allies.",
@@ -14890,7 +14892,7 @@
       "Taxes"
     ],
     "direction": "neutral",
-    "needs_review": true,
+    "needs_review": false,
     "arguments": {
       "supporters": [
         "Supporters say this ensures continued funding for government operations through 2024 by advancing the Consolidated Appropriations Act.",
@@ -14966,7 +14968,7 @@
       "Healthcare"
     ],
     "direction": "in_favor",
-    "needs_review": true
+    "needs_review": false
   },
   "117-s-5355": {
     "one_liner": "Give extra money to federal agencies for disaster relief in 2023",
@@ -15352,6 +15354,75 @@
     ],
     "issue_categories": [
       "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-6655": {
+    "one_liner": "Extend funding for job training programs through 2030",
+    "provisions": [
+      "Extends the Job Corps program for low-income youth ages 16 to 24 through 2030",
+      "Extends grant programs that help states provide job training services through 2030",
+      "Extends adult education and literacy programs through 2030",
+      "Requires states to use current job market data when making their training plans",
+      "Requires states to study gaps in services for youth",
+      "Combines career services from different government programs into one system"
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-7023": {
+    "one_liner": "Loosen water pollution permit rules and extend permit terms",
+    "provisions": [
+      "Changes water pollution permit reviews to only look at dumping effects, not other environmental impacts",
+      "Makes water pollution permits last 10 years instead of 5 years",
+      "Requires permits for oil and gas pipeline projects affecting less than half an acre of water",
+      "Reduces review steps when renewing water pollution permits",
+      "Blocks certain changes to existing water pollution permits"
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "against"
+  },
+  "118-hr-6603": {
+    "one_liner": "Require licenses to export items made with U.S. technology to Iran",
+    "provisions": [
+      "Requires companies to get licenses before sending certain items to Iran",
+      "Covers items made in other countries using U.S. technology",
+      "Applies to exports, re-exports, and transfers of these items"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-6408": {
+    "one_liner": "Remove tax-exempt status from organizations that support terrorist groups",
+    "provisions": [
+      "Takes away tax-exempt status from organizations that help terrorist groups",
+      "The Treasury Department decides which organizations lose their tax-exempt status",
+      "Only affects organizations that gave more than a small amount of help to terrorists in the past three years",
+      "Treasury must warn organizations before taking away their status and give them a chance to fix the problem",
+      "Treasury must restore tax-exempt status if it made a mistake or forgot to tell the organization"
+    ],
+    "issue_categories": [
+      "Taxes",
+      "Safety & Crime"
+    ],
+    "direction": "against"
+  },
+  "118-hr-6276": {
+    "one_liner": "Require federal buildings to be at least 60% occupied each year",
+    "provisions": [
+      "Requires federal agencies to install sensors in buildings to track how many people are inside",
+      "Sets a rule that federal buildings must be at least 60% occupied on average each year",
+      "Makes agencies report how much their office space is actually being used",
+      "Requires a plan to combine federal agency headquarters in Washington DC to use space better"
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
     ],
     "direction": "in_favor"
   }

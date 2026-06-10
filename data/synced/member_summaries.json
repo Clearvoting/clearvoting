@@ -1,6 +1,6 @@
 {
   "G000555": {
-    "narrative": "Gillibrand cast 863 votes with 99.3% participation, voting most on economics and public finance with a 58-50 split between in favor and against. She voted in favor of funding the government and capping insulin costs at $35 monthly, but voted against budget plans and removing endangered species protections. On defense and international issues, she voted in favor more often, supporting military funding bills and backing Israel against Hamas. Her voting shows mixed stances on economic issues but leans in favor on defense, international affairs, and transportation matters.",
+    "narrative": "Gillibrand votes most on economics and public finance with a 58-50 split between in favor and against. She voted in favor of funding the government and capping insulin costs at $35 monthly, but voted against budget plans and removing endangered species protections. On defense and international issues, she voted in favor more often, supporting military funding bills and backing Israel against Hamas. Her voting shows mixed stances on economic issues but leans in favor on defense, international affairs, and transportation matters.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -11,7 +11,7 @@
     "generated_at": "2026-03-16T21:01:34.370558+00:00"
   },
   "M001231": {
-    "narrative": "Rep. Mannion participated in 98.9% of votes. He voted most often on Congress-related issues. On those bills, he voted in favor 12 times and against 3 times. He voted against more economics and finance bills than he supported. His energy votes split evenly between in favor and against.",
+    "narrative": "He voted most often on Congress-related issues. On those bills, he voted in favor 12 times and against 3 times. He voted against more economics and finance bills than he supported. His energy votes split evenly between in favor and against.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -44,7 +44,7 @@
     "generated_at": "2026-03-16T21:02:13.230873+00:00"
   },
   "L000606": {
-    "narrative": "Latimer cast 449 votes across Congress matters, Economics and Public Finance, Energy, Armed Forces and National Security, and Crime and Law Enforcement. He voted most on Congress matters with 96 votes, voting in favor 12 times and against 3 times. On Economics and Public Finance issues, he voted in favor 13 times and against 33 times across 51 votes. He voted on Energy issues 32 times and Armed Forces and National Security issues 31 times, with mixed voting patterns in both areas.",
+    "narrative": "Latimer votes most on Congress matters with 96 votes, voting in favor 12 times and against 3 times. On Economics and Public Finance issues, he voted in favor 13 times and against 33 times across 51 votes. He voted on Energy issues 32 times and Armed Forces and National Security issues 31 times, with mixed voting patterns in both areas.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -55,7 +55,7 @@
     "generated_at": "2026-03-16T21:02:45.525756+00:00"
   },
   "L000600": {
-    "narrative": "Langworthy cast votes on 176 Congress-related bills (13 in favor, 22 against) and 113 energy bills (29 in favor, 82 against), showing opposition to most measures in these areas. He voted in favor of 56 out of 100 economics and public finance bills and supported 58 of 86 defense bills. In international affairs, he voted in favor of 62 out of 81 bills. His participation rate was 95.6% across 1023 total votes.",
+    "narrative": "Langworthy voted on 176 Congress-related bills (13 in favor, 22 against) and 113 energy bills (29 in favor, 82 against), showing opposition to most measures in these areas. He voted in favor of 56 out of 100 economics and public finance bills and supported 58 of 86 defense bills. In international affairs, he voted in favor of 62 out of 81 bills.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -66,7 +66,7 @@
     "generated_at": "2026-03-16T21:05:00.855818+00:00"
   },
   "S001201": {
-    "narrative": "Suozzi voted most often on Congress issues, casting 98 votes and supporting most bills in this area. He voted against more economics and public finance bills than he supported, opposing 21 out of 53 total votes. On energy matters, his 32 votes split almost evenly between support and opposition. He voted in favor of most armed forces and crime bills, supporting 18 of 31 defense votes and 13 of 24 crime votes. He participated in 95.7% of all votes across both congresses.",
+    "narrative": "Suozzi voted most often on Congress issues, supporting most bills in this area. He voted against more economics and public finance bills than he supported, opposing 21 out of 53 votes. On energy matters, his 32 votes split almost evenly between support and opposition. He voted in favor of most armed forces and crime bills, supporting 18 of 31 defense votes and 13 of 24 crime votes.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -110,7 +110,7 @@
     "generated_at": "2026-03-16T21:05:31.013587+00:00"
   },
   "N000002": {
-    "narrative": "Representative Nadler cast 1,023 votes and focused most on congressional procedures (176 votes), energy policy (113 votes), and economic issues (100 votes). On energy matters, he voted in favor 81 times and against 20 times. On economic and budget bills, he voted in favor 20 times and against 70 times. He voted against defense and military measures more often than in favor, with 29 yes votes and 51 no votes.",
+    "narrative": "Representative Nadler focused most on congressional procedures (176 votes), energy policy (113 votes), and economic issues (100 votes). On energy matters, he voted in favor 81 times and against 20 times. On economic and budget bills, he voted in favor 20 times and against 70 times. He voted against defense and military measures more often than in favor, with 29 yes votes and 51 no votes.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -165,7 +165,7 @@
     "generated_at": "2026-03-16T21:13:25.871689+00:00"
   },
   "T000486": {
-    "narrative": "Torres votes most often on Congressional matters, with 176 votes where he voted in favor of 23 proposals and against 11. On energy issues, he cast 113 votes, voting in favor of 84 measures and against 28. For economics and public finance, he voted against 70 of 100 proposals while voting in favor of 23. On military and security topics, he voted against 51 of 86 measures and in favor of 30. He maintained a 94.9% participation rate across all votes.",
+    "narrative": "Torres votes most often on Congressional matters, where he voted in favor of 23 proposals and against 11. On energy issues, he voted in favor of 84 measures and against 28. For economics and public finance, he voted against 70 of 100 proposals while voting in favor of 23. On military and security topics, he voted against 51 of 86 measures and in favor of 30.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -220,7 +220,7 @@
     "generated_at": "2026-03-16T21:15:46.052823+00:00"
   },
   "M001244": {
-    "narrative": "Moody cast 235 total votes, with most focusing on economics and public finance issues. She votes in favor of defense spending and homeland security funding, but votes against environmental protection rules including EPA pollution limits and California emission standards. On international affairs, she votes in favor of most measures but votes against blocking weapons sales to other countries. She also votes in favor of finance and transportation projects.",
+    "narrative": "Moody votes most on economics and public finance issues. She votes in favor of defense spending and homeland security funding, but votes against environmental protection rules including EPA pollution limits and California emission standards. On international affairs, she votes in favor of most measures but votes against blocking weapons sales to other countries. She also votes in favor of finance and transportation projects.",
     "top_areas": [
       "Economics and Public Finance",
       "Environmental Protection",
@@ -253,7 +253,7 @@
     "generated_at": "2026-03-16T21:18:04.463183+00:00"
   },
   "D000628": {
-    "narrative": "Dunn cast 1,023 votes across the 118th and 119th Congresses, with most activity on Congress issues (176 votes), energy policy (113 votes), and economics (100 votes). On Congress matters, he voted against 23 bills and in favor of 13, including voting against funding the Department of Homeland Security. On energy issues, he voted against 82 bills and in favor of 27, such as voting against requiring the Energy Department to secure America's energy supply chains. He voted in favor of most international affairs bills (57 in favor, 14 against) and armed forces measures (54 in favor, 25 against), including supporting bills that declare Iran sponsors terrorism and fund defense programs.",
+    "narrative": "Dunn's most active areas are Congress issues (176 votes), energy policy (113 votes), and economics (100 votes). On Congress matters, he voted against 23 bills and in favor of 13, including voting against funding the Department of Homeland Security. On energy issues, he voted against 82 bills and in favor of 27, such as voting against requiring the Energy Department to secure America's energy supply chains. He voted in favor of most international affairs bills (57 in favor, 14 against) and armed forces measures (54 in favor, 25 against), including supporting bills that declare Iran sponsors terrorism and fund defense programs.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -308,7 +308,7 @@
     "generated_at": "2026-03-16T21:20:35.170462+00:00"
   },
   "P000622": {
-    "narrative": "Patronis cast 361 votes across one congress. He voted in favor on economics issues 26 times against 18 times. He voted for defense bills 23 times against 7 times. On energy issues, he voted in favor 14 times and against 11 times. He voted against congress-related bills 8 times versus 5 times in favor.",
+    "narrative": "Patronis votes most on economics and defense issues. He voted in favor on economics issues 26 times against 18 times. He voted for defense bills 23 times against 7 times. On energy issues, he voted in favor 14 times and against 11 times. He voted against congress-related bills 8 times versus 5 times in favor.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -319,7 +319,7 @@
     "generated_at": "2026-03-16T21:20:38.623131+00:00"
   },
   "H001099": {
-    "narrative": "Haridopolos cast 449 votes and focuses most on Congress issues (96 votes), where he typically votes against bills (4 in favor, 11 against). He also votes frequently on economics and public finance matters (51 votes), leaning against those bills as well (20 in favor, 26 against). On armed forces and national security issues (31 votes), he votes in favor most of the time (24 in favor, 7 against). His energy votes (32 votes) are evenly split between supporting and opposing bills (15 in favor, 15 against).",
+    "narrative": "Haridopolos focuses most on Congress issues (96 votes), where he typically votes against bills (4 in favor, 11 against). He also votes frequently on economics and public finance matters (51 votes), leaning against those bills as well (20 in favor, 26 against). On armed forces and national security issues (31 votes), he votes in favor most of the time (24 in favor, 7 against). His energy votes (32 votes) are evenly split between supporting and opposing bills (15 in favor, 15 against).",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -330,7 +330,7 @@
     "generated_at": "2026-03-16T21:20:40.968880+00:00"
   },
   "M001199": {
-    "narrative": "Mast votes most often on Congress procedural matters, energy policy, economics, defense, and international affairs across 1023 total votes. He votes against most Congress procedural measures and energy bills. He votes in favor of most economics and finance bills, defense measures, and international affairs legislation. His yes votes include Iran terrorism declarations, defense funding, and housing programs. His no votes include energy efficiency rules and Iran military restrictions.",
+    "narrative": "Mast votes most often on Congress procedural matters, energy policy, economics, defense, and international affairs. He votes against most Congress procedural measures and energy bills. He votes in favor of most economics and finance bills, defense measures, and international affairs legislation. His yes votes include Iran terrorism declarations, defense funding, and housing programs. His no votes include energy efficiency rules and Iran military restrictions.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -441,7 +441,7 @@
     "generated_at": "2026-03-16T21:26:08.122421+00:00"
   },
   "P000145": {
-    "narrative": "Senator Padilla cast 144 votes on economics and public finance, voting against 59 measures and in favor of 48. He voted in favor of 23 international affairs measures while voting against 10. On defense and military issues, he voted in favor of 20 bills and against 8. He also voted in favor of most transportation and science technology measures. Padilla participated in 96.9% of votes during his time in Congress.",
+    "narrative": "Senator Padilla voted on economics and public finance, voting against 59 measures and in favor of 48. He voted in favor of 23 international affairs measures while voting against 10. On defense and military issues, he voted in favor of 20 bills and against 8. He also voted in favor of most transportation and science technology measures.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -452,7 +452,7 @@
     "generated_at": "2026-03-16T21:28:11.082472+00:00"
   },
   "P000197": {
-    "narrative": "Pelosi votes most often on congressional procedures, energy, economics, defense, and international affairs with a 91.9% participation rate. On energy issues, she voted in favor of 84 bills and against 26 bills out of 113 total energy votes. For economics and finance, she voted against 70 bills and in favor of 22 bills out of 100 total votes. She voted against 52 defense bills and in favor of 29 out of 86 total defense votes.",
+    "narrative": "Pelosi votes most often on congressional procedures, energy, economics, defense, and international affairs. On energy issues, she voted in favor of 84 bills and against 26 bills out of 113 energy votes. For economics and finance, she voted against 70 bills and in favor of 22 bills out of 100 votes. She voted against 52 defense bills and in favor of 29 out of 86 defense votes.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -463,7 +463,7 @@
     "generated_at": "2026-03-16T21:43:38.944439+00:00"
   },
   "S001150": {
-    "narrative": "Schiff votes most often on economics and public finance issues with 50 votes, voting in favor 3 times and against 21 times. On environmental protection, he voted in favor 12 times and against 0 times across 13 votes. He voted in favor of bills to expand federal housing programs and remove U.S. troops from Iran without Congress approval, while voting against bills to cancel EPA pollution limits for factories and California's car pollution rules. With 254 total votes cast, he votes in favor of environmental protection and financial sector bills but against most economics proposals.",
+    "narrative": "Schiff votes most often on economics and public finance issues with 50 votes, voting in favor 3 times and against 21 times. On environmental protection, he voted in favor 12 times and against 0 times across 13 votes. He voted in favor of bills to expand federal housing programs and remove U.S. troops from Iran without Congress approval, while voting against bills to cancel EPA pollution limits for factories and California's car pollution rules. He votes in favor of environmental protection and financial sector bills but against most economics proposals.",
     "top_areas": [
       "Economics and Public Finance",
       "Environmental Protection",
@@ -485,7 +485,7 @@
     "generated_at": "2026-03-16T21:48:03.697953+00:00"
   },
   "W000187": {
-    "narrative": "Waters cast 1,023 votes across both congresses, with most activity in congressional procedures (176 votes), energy policy (113 votes), and economic matters (100 votes). She voted in favor of 84 of 113 energy bills, supporting efficiency standards and resource security measures. She voted against 71 of 100 economics and public finance bills, opposing most government spending and tax legislation. She also voted against 55 of 86 defense bills and 42 of 81 international affairs bills.",
+    "narrative": "Waters votes most on congressional procedures (176 votes), energy policy (113 votes), and economic matters (100 votes). She voted in favor of 84 of 113 energy bills, supporting efficiency standards and resource security measures. She voted against 71 of 100 economics and public finance bills, opposing most government spending and tax legislation. She also voted against 55 of 86 defense bills and 42 of 81 international affairs bills.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -496,7 +496,7 @@
     "generated_at": "2026-03-16T21:48:06.144567+00:00"
   },
   "M001225": {
-    "narrative": "Mullin cast 1023 votes across issues related to Congress operations, energy policy, government spending, defense, and foreign affairs. On energy issues, he voted in favor 83 times and against 24 times out of 113 total votes. For economics and government spending matters, he voted against 70 times and in favor 23 times out of 100 votes. On defense and military issues, he voted against 53 times and in favor 27 times out of 86 votes.",
+    "narrative": "Mullin votes most on Congress operations and energy policy. On energy issues, he voted in favor 83 times and against 24 times out of 113 votes. For economics and government spending matters, he voted against 70 times and in favor 23 times out of 100 votes. On defense and military issues, he voted against 53 times and in favor 27 times out of 86 votes.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -518,7 +518,7 @@
     "generated_at": "2026-03-16T22:42:34.586816+00:00"
   },
   "W000830": {
-    "narrative": "Whitesides cast 449 votes across Congress, Economics and Public Finance, Energy, Armed Forces, and Crime and Law Enforcement issues. On Congress issues, which made up 96 of his votes, he voted in favor 12 times and against 3 times. On Economics and Public Finance matters, his second-most voted area with 51 votes, he voted against 33 bills and in favor of 13. He showed mixed positions on Energy and Armed Forces issues, voting roughly equally in favor and against bills in both areas.",
+    "narrative": "Whitesides votes most on Congress issues, where out of 96 votes he voted in favor 12 times and against 3 times. On Economics and Public Finance matters, his second-most voted area with 51 votes, he voted against 33 bills and in favor of 13. He showed mixed positions on Energy and Armed Forces issues, voting roughly equally in favor and against bills in both areas.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -540,7 +540,7 @@
     "generated_at": "2026-03-16T22:46:16.587405+00:00"
   },
   "F000480": {
-    "narrative": "Fong cast 449 votes with a 94.7% participation rate, focusing most on congressional procedures (96 votes), economics and public finance (51 votes), and energy policy (32 votes). In congressional matters, he voted against 11 measures and in favor of 4, including voting against funding the Department of Homeland Security for 2026. On economics and public finance, he voted against 29 bills and in favor of 17, such as supporting expanded federal housing programs. For defense issues (31 votes), he voted in favor 22 times and against 7, including supporting declarations that Iran sponsors terrorism.",
+    "narrative": "Fong focuses most on congressional procedures (96 votes), economics and public finance (51 votes), and energy policy (32 votes). In congressional matters, he voted against 11 measures and in favor of 4, including voting against funding the Department of Homeland Security for 2026. On economics and public finance, he voted against 29 bills and in favor of 17, such as supporting expanded federal housing programs. For defense issues (31 votes), he voted in favor 22 times and against 7, including supporting declarations that Iran sponsors terrorism.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -562,7 +562,7 @@
     "generated_at": "2026-03-16T23:24:20.118511+00:00"
   },
   "G000598": {
-    "narrative": "Garcia participated in 94.9% of votes, casting 1,023 total votes across two congresses. He votes most often on Congress and Energy issues, voting in favor of 84 of 113 energy bills where he took a position. Garcia votes against most Economics and Public Finance bills, opposing 74 of 100 bills in this area. He also votes against more Armed Forces and International Affairs bills than he supports.",
+    "narrative": "Garcia votes most often on Congress and Energy issues, voting in favor of 84 of 113 energy bills where he took a position. Garcia votes against most Economics and Public Finance bills, opposing 74 of 100 bills in this area. He also votes against more Armed Forces and International Affairs bills than he supports.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -595,7 +595,7 @@
     "generated_at": "2026-03-16T23:25:21.501838+00:00"
   },
   "P000613": {
-    "narrative": "Panetta cast 1,023 total votes across two congresses, with most activity on congressional operations (176 votes, 26 in favor and 11 against) and energy policy (113 votes, 80 in favor and 33 against). He voted against most economics and public finance measures (70 against, 23 in favor out of 100 votes) and leaned against armed forces proposals (53 against, 31 in favor out of 86 votes). He voted in favor of requiring colleges to charge in-state tuition to students from U.S. territories and against blocking new energy efficiency rules for home appliances.",
+    "narrative": "Panetta's most active areas are congressional operations (176 votes, 26 in favor and 11 against) and energy policy (113 votes, 80 in favor and 33 against). He voted against most economics and public finance measures (70 against, 23 in favor out of 100 votes) and leaned against armed forces proposals (53 against, 31 in favor out of 86 votes). He voted in favor of requiring colleges to charge in-state tuition to students from U.S. territories and against blocking new energy efficiency rules for home appliances.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -639,7 +639,7 @@
     "generated_at": "2026-03-16T23:27:35.152424+00:00"
   },
   "A000371": {
-    "narrative": "Aguilar votes most often on congressional procedures, where he leans in favor of bills like House Ethics Committee record requirements. He votes in favor of most energy bills, including those changing home appliance efficiency rules. He votes against most economics and public finance bills, including government funding bills for defense, health, and education. He leans against armed forces and international affairs legislation across 1,023 votes.",
+    "narrative": "Aguilar votes most often on congressional procedures, where he leans in favor of bills like House Ethics Committee record requirements. He votes in favor of most energy bills, including those changing home appliance efficiency rules. He votes against most economics and public finance bills, including government funding bills for defense, health, and education. He leans against armed forces and international affairs legislation.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -650,7 +650,7 @@
     "generated_at": "2026-03-16T23:28:49.708303+00:00"
   },
   "C001098": {
-    "narrative": "Cruz voted on 863 total measures with 97% participation across five main policy areas. He voted most often on economics issues, with mixed support for spending bills. Cruz voted in favor of most international affairs measures, including support for Israel and military funding. He showed mixed voting on transportation policy, the fourth largest area with 28 votes.",
+    "narrative": "Cruz voted most often on economics issues, with mixed support for spending bills. Cruz voted in favor of most international affairs measures, including support for Israel and military funding. He showed mixed voting on transportation policy, the fourth largest area with 28 votes.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -661,7 +661,7 @@
     "generated_at": "2026-03-16T23:30:37.465267+00:00"
   },
   "C001056": {
-    "narrative": "Cornyn voted on 863 bills with 97.8% participation, focusing most on economics and public finance with 144 votes (82 in favor, 23 against). He voted in favor of international affairs measures 30 times against 7, and supported armed forces and national security bills 21 times against 6. He voted in favor of funding the federal government through November 2023 and setting a $35 monthly cap on insulin costs for Medicare and private insurance. He voted against creating a federal right to IVF treatments and removing U.S. troops from Niger within 30 days.",
+    "narrative": "Cornyn votes most on economics and public finance with 144 votes (82 in favor, 23 against). He voted in favor of international affairs measures 30 times against 7, and supported armed forces and national security bills 21 times against 6. He voted in favor of funding the federal government through November 2023 and setting a $35 monthly cap on insulin costs for Medicare and private insurance. He voted against creating a federal right to IVF treatments and removing U.S. troops from Niger within 30 days.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -705,7 +705,7 @@
     "generated_at": "2026-03-16T23:31:36.719476+00:00"
   },
   "S001224": {
-    "narrative": "Self cast 1,023 votes across two congresses, with Congress-related issues making up his largest voting area at 176 votes, though he voted against 24 and in favor of only 12 of these bills. He voted against 86 of 113 energy bills while supporting just 27, showing opposition to most energy policy measures. Self voted in favor of 66 of 100 economics and public finance bills, demonstrating support for most fiscal policy measures. He strongly supported defense and international affairs, voting in favor of 68 of 86 armed forces bills and 64 of 81 international affairs bills.",
+    "narrative": "Self votes most on Congress-related issues with 176 votes, though he voted against 24 and in favor of only 12 of these bills. He voted against 86 of 113 energy bills while supporting just 27, showing opposition to most energy policy measures. Self voted in favor of 66 of 100 economics and public finance bills, demonstrating support for most fiscal policy measures. He strongly supported defense and international affairs, voting in favor of 68 of 86 armed forces bills and 64 of 81 international affairs bills.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -749,7 +749,7 @@
     "generated_at": "2026-03-16T23:33:58.761900+00:00"
   },
   "G000603": {
-    "narrative": "Gill cast 449 votes with 97.1% participation across five main policy areas. He voted on Congress issues 96 times, mostly against proposals. On Economics and Public Finance with 51 votes, he leaned in favor. Energy votes split evenly at 16 for and 16 against out of 32 total. He supported Armed Forces bills 25 out of 31 times.",
+    "narrative": "Gill voted on Congress issues 96 times, mostly against proposals. On Economics and Public Finance with 51 votes, he leaned in favor. Energy votes split evenly at 16 for and 16 against out of 32 total. He supported Armed Forces bills 25 out of 31 times.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -760,7 +760,7 @@
     "generated_at": "2026-03-16T23:34:06.883829+00:00"
   },
   "C001130": {
-    "narrative": "Crockett voted on 1,023 bills with 95% participation, voting most often on Congress rules (176 votes) and Energy issues (113 votes). She voted in favor of most Energy bills (83 in favor, 22 against) but against most Economics and Public Finance bills (20 in favor, 73 against). She voted in favor of requiring the Energy Department to secure America's energy supply chains and expanding federal housing programs. She voted against funding defense, health, education, and housing for 2025 and against allowing mineral leasing on Minnesota acres.",
+    "narrative": "Crockett votes most often on Congress rules (176 votes) and Energy issues (113 votes). She voted in favor of most Energy bills (83 in favor, 22 against) but against most Economics and Public Finance bills (20 in favor, 73 against). She voted in favor of requiring the Energy Department to secure America's energy supply chains and expanding federal housing programs. She voted against funding defense, health, education, and housing for 2025 and against allowing mineral leasing on Minnesota acres.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -771,7 +771,7 @@
     "generated_at": "2026-03-16T23:35:33.286545+00:00"
   },
   "H001095": {
-    "narrative": "Hunt participated in 74% of votes across defense, economics, energy, Congress, and international affairs issues. Hunt votes in favor of most defense and military bills, including defense funding and bills declaring Iran sponsors terrorism. Hunt votes against most Congress-related and energy bills, including bills to stop military action without Congress approval and Department of Homeland Security funding. Hunt votes in favor of most economics and international affairs bills.",
+    "narrative": "Hunt votes most on defense, economics, energy, Congress, and international affairs issues. Hunt votes in favor of most defense and military bills, including defense funding and bills declaring Iran sponsors terrorism. Hunt votes against most Congress-related and energy bills, including bills to stop military action without Congress approval and Department of Homeland Security funding. Hunt votes in favor of most economics and international affairs bills.",
     "top_areas": [
       "Congress",
       "Energy",
@@ -826,7 +826,7 @@
     "generated_at": "2026-03-17T00:20:22.517564+00:00"
   },
   "V000134": {
-    "narrative": "Van Duyne votes most often on Congress, energy, economics, armed forces, and international affairs issues. She voted against 85 of 113 energy bills and against 22 Congress bills while voting in favor of only 14. She voted in favor of 63 economics bills, 67 armed forces bills, and 69 international affairs bills. With a 97.6% participation rate across 1023 votes, she typically opposes energy and Congress measures while supporting economics, defense, and foreign policy legislation.",
+    "narrative": "Van Duyne votes most often on Congress, energy, economics, armed forces, and international affairs issues. She voted against 85 of 113 energy bills and against 22 Congress bills while voting in favor of only 14. She voted in favor of 63 economics bills, 67 armed forces bills, and 69 international affairs bills.",
     "top_areas": [
       "Congress",
       "Energy",
