@@ -37,15 +37,18 @@ async def call_claude_cli(
         env=env,
         cwd="/tmp",
     )
+    # 360s: grader calls regularly exceeded the old 120s under parallel batches,
+    # which discarded the writer's (already-billed) output and burned usage
+    # windows producing nothing.
     try:
         stdout, stderr = await asyncio.wait_for(
             proc.communicate(input=full_prompt.encode("utf-8")),
-            timeout=120,
+            timeout=360,
         )
     except asyncio.TimeoutError:
         proc.kill()
         await proc.wait()
-        raise RuntimeError("claude CLI timed out after 120 seconds")
+        raise RuntimeError("claude CLI timed out after 360 seconds")
 
     if proc.returncode != 0:
         error_msg = stderr.decode("utf-8").strip()
