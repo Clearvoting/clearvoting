@@ -10,7 +10,461 @@
     "not_voting_count": 9,
     "participation_rate": 94.2
   },
-  "scorecard": [],
+  "scorecard": [
+    {
+      "category": "Environment & Energy",
+      "in_favor": 3,
+      "against": 4,
+      "total": 21,
+      "verdict": "Voted against 4 of 21 environment & energy measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-556",
+          "one_liner": "Protecting Access for Hunters and Anglers Act",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-556",
+          "one_liner": "Protecting Access for Hunters and Anglers Act",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4294",
+          "one_liner": "MAWS Act of 2026",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1115",
+          "one_liner": "Providing for consideration of the bill (H.R. 556) to prohibit the Secretary of the Interior and the Secretary of Agriculture from prohibiting the use of lead ammunition or tackle on certain Federal land or water under the jurisdiction of the Secretary of the Interior and the Secretary of Agriculture, and for other purposes; providing for consideration of the bill (H.R. 1958) to amend the Immigration and Nationality Act to clarify that aliens who have been convicted of defrauding the United States Government or the unlawful receipt of public benefits are inadmissible and deportable; providing for consideration of the bill (H.R. 4638) to amend the Immigration and Nationality Act to provide that an alien who has been convicted of harming animals used in law enforcement is inadmissible and deportable, and for other purposes; and relating to consideration of motions to suspend the rules.",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1115",
+          "one_liner": "Providing for consideration of the bill (H.R. 556) to prohibit the Secretary of the Interior and the Secretary of Agriculture from prohibiting the use of lead ammunition or tackle on certain Federal land or water under the jurisdiction of the Secretary of the Interior and the Secretary of Agriculture, and for other purposes; providing for consideration of the bill (H.R. 1958) to amend the Immigration and Nationality Act to clarify that aliens who have been convicted of defrauding the United States Government or the unlawful receipt of public benefits are inadmissible and deportable; providing for consideration of the bill (H.R. 4638) to amend the Immigration and Nationality Act to provide that an alien who has been convicted of harming animals used in law enforcement is inadmissible and deportable, and for other purposes; and relating to consideration of motions to suspend the rules.",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4758",
+          "one_liner": "Cancel federal programs that help people make homes more energy efficient",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4758",
+          "one_liner": "Cancel federal programs that help people make homes more energy efficient",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1075",
+          "one_liner": "Block new energy efficiency rules and end rebates for electric home appliances",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1075",
+          "one_liner": "Block new energy efficiency rules and end rebates for electric home appliances",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4626",
+          "one_liner": "Change how the government sets energy efficiency rules for home appliances",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4626",
+          "one_liner": "Change how the government sets energy efficiency rules for home appliances",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-3617",
+          "one_liner": "Require the Energy Department to secure America's energy resource supply chains",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3617",
+          "one_liner": "Require the Energy Department to secure America's energy resource supply chains",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-261",
+          "one_liner": "Remove Commerce Department permit rules for undersea cables in marine sanctuaries",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-261",
+          "one_liner": "Remove Commerce Department permit rules for undersea cables in marine sanctuaries",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1042",
+          "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1042",
+          "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4090",
+          "one_liner": "Speed up mining for metals and minerals on federal lands",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4090",
+          "one_liner": "Speed up mining for metals and minerals on federal lands",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1032",
+          "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1032",
+          "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
+          "vote": "No",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Safety & Crime",
+      "in_favor": 3,
+      "against": 1,
+      "total": 13,
+      "verdict": "Voted in favor of 3 of 13 safety & crime measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-1958",
+          "one_liner": "Deporting Fraudsters Act of 2026",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1099",
+          "one_liner": "Declare Iran sponsors more terrorism than other countries",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-7744",
+          "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7744",
+          "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1095",
+          "one_liner": "Allow the House to vote on Department of Homeland Security funding for 2026",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1095",
+          "one_liner": "Allow the House to vote on Department of Homeland Security funding for 2026",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1100",
+          "one_liner": "Require the House Ethics Committee to preserve and publicly release sexual harassment investigation records",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-2503",
+          "one_liner": "Require more aircraft to use tracking technology and increase aviation safety reviews",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-2189",
+          "one_liner": "Remove certain TASERs and similar devices from federal gun regulations",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1057",
+          "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1057",
+          "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1042",
+          "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1042",
+          "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+          "vote": "No",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "category": "Veterans & Military",
+      "in_favor": 2,
+      "against": 3,
+      "total": 7,
+      "verdict": "Voted against 3 of 7 veterans & military measures",
+      "bills": [
+        {
+          "bill_id": "119-hconres-38",
+          "one_liner": "Stop U.S. military action against Iran without Congress approval",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1057",
+          "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1057",
+          "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3123",
+          "one_liner": "Let families collect veterans' pensions that were approved but not paid before death",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Immigration",
+      "in_favor": 1,
+      "against": 1,
+      "total": 5,
+      "verdict": "Voted in favor of 1 of 5 immigration measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-1958",
+          "one_liner": "Deporting Fraudsters Act of 2026",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1115",
+          "one_liner": "Providing for consideration of the bill (H.R. 556) to prohibit the Secretary of the Interior and the Secretary of Agriculture from prohibiting the use of lead ammunition or tackle on certain Federal land or water under the jurisdiction of the Secretary of the Interior and the Secretary of Agriculture, and for other purposes; providing for consideration of the bill (H.R. 1958) to amend the Immigration and Nationality Act to clarify that aliens who have been convicted of defrauding the United States Government or the unlawful receipt of public benefits are inadmissible and deportable; providing for consideration of the bill (H.R. 4638) to amend the Immigration and Nationality Act to provide that an alien who has been convicted of harming animals used in law enforcement is inadmissible and deportable, and for other purposes; and relating to consideration of motions to suspend the rules.",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1115",
+          "one_liner": "Providing for consideration of the bill (H.R. 556) to prohibit the Secretary of the Interior and the Secretary of Agriculture from prohibiting the use of lead ammunition or tackle on certain Federal land or water under the jurisdiction of the Secretary of the Interior and the Secretary of Agriculture, and for other purposes; providing for consideration of the bill (H.R. 1958) to amend the Immigration and Nationality Act to clarify that aliens who have been convicted of defrauding the United States Government or the unlawful receipt of public benefits are inadmissible and deportable; providing for consideration of the bill (H.R. 4638) to amend the Immigration and Nationality Act to provide that an alien who has been convicted of harming animals used in law enforcement is inadmissible and deportable, and for other purposes; and relating to consideration of motions to suspend the rules.",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-7744",
+          "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7744",
+          "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
+          "vote": "Nay",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Taxes",
+      "in_favor": 1,
+      "against": 2,
+      "total": 4,
+      "verdict": "Voted against 2 of 4 taxes measures",
+      "bills": [
+        {
+          "bill_id": "119-hjres-139",
+          "one_liner": "Proposing an amendment to the Constitution of the United States requiring a balanced budget for the Federal Government.",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hjres-142",
+          "one_liner": "Cancel DC's tax law to keep federal tax cuts",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1032",
+          "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1032",
+          "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
+          "vote": "No",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Cost of Living",
+      "in_favor": 1,
+      "against": 0,
+      "total": 2,
+      "verdict": "Voted in favor of 1 of 2 cost of living measures",
+      "bills": [
+        {
+          "bill_id": "119-hjres-139",
+          "one_liner": "Proposing an amendment to the Constitution of the United States requiring a balanced budget for the Federal Government.",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-6472",
+          "one_liner": "Require colleges to charge in-state tuition rates to students from U.S. territories",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Jobs & Workers",
+      "in_favor": 0,
+      "against": 0,
+      "total": 2,
+      "verdict": "Voted in favor of 0 of 2 jobs & workers measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-4294",
+          "one_liner": "MAWS Act of 2026",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-3971",
+          "one_liner": "Small Business Innovation and Economic Security Act",
+          "vote": "Yea",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "category": "Housing",
+      "in_favor": 2,
+      "against": 0,
+      "total": 2,
+      "verdict": "Voted in favor of 2 of 2 housing measures",
+      "bills": [
+        {
+          "bill_id": "119-s-723",
+          "one_liner": "Set time limits for government approval of mortgages on tribal trust land",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6644",
+          "one_liner": "Expand federal housing programs and increase government funding for housing",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Healthcare",
+      "in_favor": 0,
+      "against": 1,
+      "total": 1,
+      "verdict": "Voted against 1 of 1 healthcare measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Education",
+      "in_favor": 1,
+      "against": 0,
+      "total": 1,
+      "verdict": "Voted in favor of 1 of 1 education measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-6472",
+          "one_liner": "Require colleges to charge in-state tuition rates to students from U.S. territories",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Money in Politics",
+      "in_favor": 1,
+      "against": 0,
+      "total": 1,
+      "verdict": "Voted in favor of 1 of 1 money in politics measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-1531",
+          "one_liner": "Require federal agencies to exclude China from international financial groups if China threatens Taiwan",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    }
+  ],
   "votes": [
     {
       "bill_number": "H.Con.Res. 84",

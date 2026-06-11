@@ -15425,5 +15425,901 @@
       "Jobs & Workers"
     ],
     "direction": "in_favor"
+  },
+  "118-hr-7520": {
+    "one_liner": "Stop data brokers from sharing Americans' personal data with foreign adversaries",
+    "provisions": [
+      "Makes it illegal for data brokers to sell or share personal information about Americans to China, Russia, Iran, or North Korea.",
+      "A data broker is a company that buys and sells people's data \u2014 not a company that collects it directly from you.",
+      "The personal data covered includes Social Security numbers, bank account numbers, fingerprints, DNA, location data, and private messages like texts and emails.",
+      "Companies that pass along your own data at your request are not considered data brokers under this bill.",
+      "The Federal Trade Commission (FTC), the government agency that enforces consumer protection laws, would have the power to punish companies that break this rule."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hres-1065": {
+    "one_liner": "Call on the Biden administration to use immigration authorities it has not used",
+    "provisions": [
+      "Calls on the Biden administration to restart a program that sent people seeking asylum back to Mexico while their cases were reviewed",
+      "Calls on the administration to make deals with other countries to handle asylum cases",
+      "Calls on the administration to hold non-citizens who try to enter the country without permission in detention",
+      "States that the Biden administration has refused to use these immigration powers"
+    ],
+    "issue_categories": [
+      "Immigration"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-886": {
+    "one_liner": "Update rules for how a federal ocean cleanup foundation operates",
+    "provisions": [
+      "Lets the Marine Debris Foundation spend up to 12% of its government money on running costs, like staff salaries, for the first two years after this bill passes",
+      "Lets the foundation set up its main office outside of Washington, D.C., with preference for a state with a coastline",
+      "Requires the foundation to create a plan for reaching out to Native American tribes",
+      "Requires the National Oceanic and Atmospheric Administration (NOAA) to sign off on who joins the foundation's board of directors",
+      "Lets NOAA work with partners on ocean cleanup projects through deals other than formal contracts, and contribute supplies or services instead of just money"
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hres-1071": {
+    "one_liner": "Set the House debate rules for two separate bills",
+    "provisions": [
+      "Sets the time limits and rules for the House to debate a bill that tracks how often the government uses its own buildings and office leases",
+      "Sets the time limits and rules for the House to debate a statement criticizing past immigration policies",
+      "Does not pass either bill \u2014 it only controls how each one can be debated and voted on"
+    ],
+    "issue_categories": [
+      "Immigration"
+    ],
+    "direction": "neutral"
+  },
+  "118-hr-7521": {
+    "one_liner": "Ban TikTok and similar apps owned by foreign adversaries in the US",
+    "provisions": [
+      "Makes it illegal to host, distribute, or keep running TikTok and other apps controlled by foreign adversaries like China",
+      "TikTok can avoid the ban if its owner, ByteDance, sells it to a company not controlled by a foreign country",
+      "The President can decide if other social media apps owned by foreign adversaries also fall under this ban",
+      "The Justice Department can fine companies that break this rule \u2014 the fines go up based on how many US users the app has",
+      "Before the ban takes effect, TikTok must give every user a full copy of their data \u2014 posts, photos, and videos \u2014 if they ask for it",
+      "Any legal challenge to this law must be filed within 165 days of it passing, and only in a specific federal court in Washington DC"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hres-1125": {
+    "one_liner": "Set the rules for debating four separate bills in the House",
+    "provisions": [
+      "Decides how much time the House gets to debate a bill changing surveillance rules",
+      "Sets the terms for debating a bill that extends U.S. customs waters from 12 to 24 nautical miles offshore",
+      "Sets the terms for debating a resolution about immigration policies",
+      "Sets the terms for debating a resolution about U.S. policy toward Israel and Gaza"
+    ],
+    "issue_categories": [
+      "Safety & Crime",
+      "Immigration"
+    ],
+    "direction": "neutral"
+  },
+  "118-hres-1137": {
+    "one_liner": "Set the House floor rules for debating four separate bills",
+    "provisions": [
+      "Sets the time limits and voting rules for debating a bill that changes how the government can spy on people in the U.S.",
+      "Sets the rules for a bill that would expand U.S. customs enforcement waters from 12 to 24 nautical miles offshore.",
+      "Sets the rules for a House vote on a statement about immigration policies from the previous administration.",
+      "Sets the rules for a House vote on a statement about U.S. policy toward Israel and Gaza."
+    ],
+    "issue_categories": [
+      "Safety & Crime",
+      "Immigration"
+    ],
+    "direction": "neutral"
+  },
+  "118-hres-1102": {
+    "one_liner": "Pass a $1.2 trillion bill to fund the federal government through September 2024",
+    "provisions": [
+      "Approves about $1.2 trillion in total spending to keep the federal government running through September 30, 2024",
+      "Funds the military, including money for weapons, operations, and troop pay",
+      "Funds health programs, including the National Institutes of Health and community health centers",
+      "Funds education grants, housing assistance, and other domestic programs",
+      "Completes the House's agreement with the Senate version of the bill, sending it to the President to sign"
+    ],
+    "issue_categories": [
+      "Veterans & Military",
+      "Healthcare"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hres-1149": {
+    "one_liner": "Set the House debate rules for votes on Iran sanctions and a privacy bill",
+    "provisions": [
+      "Sets the rules for how the full House will debate and vote on six separate bills",
+      "Lets the House vote on changing the rules for waiving Iran financial sanctions",
+      "Lets the House vote on requiring Congress to approve any decision to lift Iran sanctions",
+      "Lets the House vote on canceling certain permissions that loosened Iran sanctions",
+      "Lets the House vote on labeling Yemen's Houthi group as a terrorist organization and adding new penalties against them",
+      "Lets the House vote on condemning Iran's drone and missile attack on Israel",
+      "Lets the House vote on stopping police and government agencies from buying your phone or internet account records from companies"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "118-hres-1085": {
+    "one_liner": "Schedule House floor votes on six energy-related bills",
+    "provisions": [
+      "This sets the rules for how the House will debate and vote on six energy-related bills.",
+      "One bill cancels a $27 billion federal fund that pays for projects to reduce greenhouse gas emissions.",
+      "One bill stops the federal government from banning fracking, a method used to drill for oil and gas.",
+      "One bill blocks a proposed federal rule that would change how companies lease land from the government to drill for oil and gas.",
+      "One is a non-binding statement that Congress believes a new tax on carbon emissions would hurt the U.S. economy.",
+      "One states that Congress believes the current administration's energy decisions have hurt the country.",
+      "One locks current federal permit rules for digging in or filling waterways into law."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "neutral"
+  },
+  "118-hres-288": {
+    "one_liner": "Ask the European Union to label Iran's Revolutionary Guard a terrorist group",
+    "provisions": [
+      "This is a non-binding resolution \u2014 it does not change any U.S. laws or spending.",
+      "It asks the European Union to officially label Iran's Revolutionary Guard Corps (IRGC) as a terrorist organization.",
+      "The EU has existing terrorism rules it could use to make that label official.",
+      "It asks the Biden Administration to push for this EU label as a top goal in diplomatic meetings with EU leaders."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hres-149": {
+    "one_liner": "Condemn Russia for taking children from Ukraine by force",
+    "provisions": [
+      "Says the Russian government is responsible for taking children out of Ukraine without legal right",
+      "Says that forcing Ukrainian children into Russian adoptions goes against a 1948 international agreement that bans genocide",
+      "Says Russia is trying to erase a generation of Ukrainian children",
+      "Says Russia's invasion has put Ukrainian children at greater risk of trafficking, forced labor, violence, hunger, and death"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "118-hres-883": {
+    "one_liner": "Declare the slogan 'from the river to the sea, Palestine will be free' antisemitic",
+    "provisions": [
+      "The House of Representatives states that the slogan 'from the river to the sea, Palestine will be free' is antisemitic.",
+      "The resolution calls for the slogan to be condemned.",
+      "This is not a law \u2014 it is a formal statement of opinion by the House and does not create any rules or penalties."
+    ],
+    "issue_categories": [],
+    "direction": "neutral"
+  },
+  "118-hres-987": {
+    "one_liner": "Expresses Congress's opposition to Biden-era energy and land policies",
+    "provisions": [
+      "States that Congress disagrees with how the Biden administration handled energy policy",
+      "States that Congress disagrees with how the Biden administration managed federal land",
+      "Calls for more domestic energy production inside the United States"
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "neutral"
+  },
+  "118-s-2051": {
+    "one_liner": "Keep funding programs that find missing children and fight exploitation through 2028",
+    "provisions": [
+      "Keeps federal money for programs that help find missing children running through September 2028",
+      "Gives the National Center for Missing and Exploited Children (NCMEC) official legal backing to ask websites to remove child sexual abuse images \u2014 NCMEC was already doing this work without it written into law",
+      "Lets NCMEC offer counseling advice and community support to children, parents, and families after a child goes missing or is sexually exploited",
+      "Requires NCMEC to add new numbers to its yearly public report: how many children went missing from foster care or group homes, how many were found, and how many were likely sex trafficking victims",
+      "Requires NCMEC to publicly report each year on how it picks forensic experts and labs to recommend to police",
+      "Changes the legal term 'child pornography' to 'child sexual abuse material' throughout the law"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-1958": {
+    "one_liner": "Block or deport non-citizens who commit or admit to fraud or making fake IDs",
+    "provisions": [
+      "Non-citizens who are convicted of or admit to certain fraud crimes can be blocked from entering the US or removed from it.",
+      "The crimes covered include lying to get food stamps (SNAP), Social Security benefits, or any other program funded by federal money.",
+      "Making fake ID documents is also covered.",
+      "These rules apply whether a person has been found guilty in court or simply admits to doing the act.",
+      "People covered by this bill cannot get protection from deportation, even if they say they would face torture in their home country."
+    ],
+    "issue_categories": [
+      "Immigration",
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-556": {
+    "one_liner": "Stop three federal agencies from banning lead ammo and lead fishing gear on public land",
+    "provisions": [
+      "Three federal agencies cannot ban or limit lead ammo or lead fishing gear on public land or water.",
+      "Those agencies are the Fish and Wildlife Service, the Bureau of Land Management, and the Forest Service.",
+      "An agency can still limit lead if field data from that specific area shows lead is mainly causing wildlife numbers to drop.",
+      "The state where that land is located must also agree before any new lead limit can take effect.",
+      "Lead rules already in place before this bill stay in effect."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "against"
+  },
+  "119-hr-4294": {
+    "one_liner": "Create a program to buy invasive catfish from Chesapeake Bay area fishermen",
+    "provisions": [
+      "NOAA sets up a program to buy blue catfish caught in the Chesapeake Bay and the rivers that flow into it",
+      "The program connects fishermen with companies that make pet food, animal feed, or fish farm feed \u2014 those companies buy the catfish",
+      "NOAA sets a minimum price per pound for the catfish, looking at market prices and input from fishermen",
+      "Fishermen can get different prices depending on whether they sell whole fillets or leftover parts",
+      "Before the program starts, NOAA works with outside partners to count how many blue catfish are in the watershed and makes that number public"
+    ],
+    "issue_categories": [
+      "Environment & Energy",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "118-s-382": {
+    "one_liner": "Transfer about 17 acres in Washington state into trust for the Puyallup Tribe",
+    "provisions": [
+      "About 17 acres of land in Pierce County, Washington will become part of the Puyallup Tribe's reservation.",
+      "The federal government holds this land in trust \u2014 the tribe controls and benefits from it.",
+      "The federal government is not responsible for any pollution or contamination that happened on the land before the transfer.",
+      "No casino or gambling is allowed on this land."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "neutral"
+  },
+  "119-hjres-139": {
+    "one_liner": "Add a rule to the Constitution requiring the federal government to balance its budget",
+    "provisions": [
+      "Stops the federal government from spending more in a year than the average amount it collected in taxes over the previous three years",
+      "Adjusts the spending limit each year based on how much the U.S. population grows and how much prices rise",
+      "Lets Congress vote to go over the spending limit, but only if two-thirds of both the House and Senate agree",
+      "Lets Congress go over the limit during any year when the country is officially at war, with a vote",
+      "Stops any new taxes or tax rate increases from becoming law unless two-thirds of both chambers vote yes",
+      "These rules would start five years after enough states approve the amendment"
+    ],
+    "issue_categories": [
+      "Taxes",
+      "Cost of Living"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hres-1115": {
+    "one_liner": "Set floor debate rules for three bills on lead ammunition and immigration",
+    "provisions": [
+      "Stops the federal government from banning lead bullets or lead fishing weights on federal lands and waters",
+      "Makes non-citizens who were convicted of cheating the US government or illegally taking public benefits unable to enter or stay in the US",
+      "Makes non-citizens who were convicted of hurting police dogs or horses unable to enter or stay in the US",
+      "Sets the rules for how these three bills will be debated and voted on in the House"
+    ],
+    "issue_categories": [
+      "Immigration",
+      "Environment & Energy"
+    ],
+    "direction": "neutral"
+  },
+  "119-s-3971": {
+    "one_liner": "Extend and update two federal programs that give research money to small businesses",
+    "provisions": [
+      "Keeps the Small Business Innovation Research (SBIR) and Small Business Technology Transfer (STTR) programs running through 2031.",
+      "Federal agencies must check whether small businesses that apply for these awards pose security risks.",
+      "If an agency turns down a small business for security reasons, it must tell the business why.",
+      "Each agency must set a cap on how many applications one small business can submit each year.",
+      "Staff at agencies who handle these awards must get more training on how to bring new technology to market.",
+      "Creates a new pool of extra awards for small businesses working on technology in areas the government considers important \u2014 but only if the business already has working technology and can get matching money from another source."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "119-sjres-118": {
+    "one_liner": "Order U.S. troops out of military action against Iran without a vote from Congress",
+    "provisions": [
+      "Tells the President to stop U.S. military forces from fighting in or against Iran",
+      "Says Congress has not voted to allow this military action",
+      "Uses a law called the War Powers Resolution, which gives Congress the power to end military operations the President started without approval"
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "against"
+  },
+  "117-hjres-17": {
+    "one_liner": "Remove the deadline for states to approve the Equal Rights Amendment",
+    "provisions": [
+      "The Equal Rights Amendment would make it illegal to treat people differently based on their sex \u2014 it was first sent to states for approval in 1972.",
+      "Right now, there is a deadline that stops new states from counting their approval. This bill removes that deadline.",
+      "Once three-fourths of states \u2014 38 out of 50 \u2014 approve the amendment, it becomes part of the U.S. Constitution.",
+      "As of now, 38 states have voted to approve it, but some approvals came after the old deadline, so the amendment has not been added to the Constitution."
+    ],
+    "issue_categories": [],
+    "direction": "in_favor"
+  },
+  "117-hconres-11": {
+    "one_liner": "Set the U.S. government's total spending plan for 2021 through 2030",
+    "provisions": [
+      "Sets how much the federal government can spend and take in for the year starting October 2020.",
+      "Sets spending limits for each major area of government \u2014 like defense, healthcare, and housing \u2014 through 2030.",
+      "Tells 12 House committees to write laws that would add to the national deficit, each with a set dollar cap.",
+      "Those 12 committees must send their proposed laws to the House Budget Committee by February 16, 2021.",
+      "Bills written under these budget rules can skip the normal Senate filibuster vote.",
+      "Lets the House Budget Committee adjust spending limits for laws that don't add to the deficit."
+    ],
+    "issue_categories": [
+      "Taxes",
+      "Social Security & Retirement"
+    ],
+    "direction": "neutral"
+  },
+  "117-hr-1002": {
+    "one_liner": "Let the DEA block companies from getting licenses to handle controlled substances",
+    "provisions": [
+      "The DEA can block a company or person from getting a license to make, sell, or give out controlled substances.",
+      "The DEA can use this block on any company whose license has already been suspended or taken away.",
+      "The DEA can also block any company it finds unfit to handle controlled substances.",
+      "The block can be temporary or permanent, depending on the situation."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1029": {
+    "one_liner": "Drop the fee to hold veterans events at war memorials near Washington DC",
+    "provisions": [
+      "Groups that hold veterans events at war memorials in and around Washington DC no longer have to pay a fee to apply for a permit.",
+      "The fee waiver only applies when the event is entirely a veterans event \u2014 not just any event that veterans happen to attend.",
+      "The memorials covered are on land run by the National Park Service."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1065": {
+    "one_liner": "Require employers to make job changes for pregnant workers",
+    "provisions": [
+      "Employers must give pregnant workers changes to their job or schedule if asked.",
+      "Employers cannot force a pregnant worker to take time off if another solution is available.",
+      "Employers cannot deny a job to someone because they need pregnancy-related changes at work.",
+      "Employers cannot punish workers for asking for or using pregnancy-related changes.",
+      "A federal agency called the EEOC must publish examples of changes employers should offer.",
+      "States can be sued in court for breaking this law."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1085": {
+    "one_liner": "Award gold medals honoring law enforcement that protected the U.S. Capitol on January 6, 2021",
+    "provisions": [
+      "Gives three gold medals to groups that protected the U.S. Capitol on January 6, 2021",
+      "One medal goes to the U.S. Capitol Police",
+      "One medal goes to the Washington D.C. Metropolitan Police Department",
+      "One medal goes to the Smithsonian Institution to put on display, along with a plaque listing every law enforcement group that helped that day"
+    ],
+    "issue_categories": [
+      "Safety & Crime",
+      "Veterans & Military"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1": {
+    "one_liner": "Change how Americans vote, how campaigns raise money, and what federal officials must disclose",
+    "provisions": [
+      "States must register voters automatically when people apply for a driver's license or state ID, and must let people register on the same day they vote.",
+      "Any voter can ask to vote by mail, and states must offer at least 15 days of early voting before Election Day.",
+      "States cannot remove voters from the rolls only because they skipped a recent election.",
+      "States must use a panel of regular citizens \u2014 not state lawmakers \u2014 to draw the maps for U.S. House districts.",
+      "Any group that spends money on political ads must publicly name who gave them the money to pay for those ads.",
+      "Supreme Court Justices must follow a written code of conduct, and members of Congress cannot sit on the board of a for-profit company.",
+      "The President, Vice President, and people running for those offices must release their last 10 years of tax returns to the public."
+    ],
+    "issue_categories": [
+      "Money in Politics"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "117-hr-1195": {
+    "one_liner": "Require employers in health care and social services to protect workers from violence",
+    "provisions": [
+      "The Department of Labor must create a safety rule for employers in health care, social services, and similar fields.",
+      "The rule requires those employers to have plans to keep workers safe from violence.",
+      "The government must first release a temporary rule, then finalize a permanent one by a set deadline."
+    ],
+    "issue_categories": [
+      "Jobs & Workers",
+      "Healthcare"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1154": {
+    "one_liner": "Study whether the Great Dismal Swamp area should become a national heritage area",
+    "provisions": [
+      "The Department of the Interior would study cities and counties in Virginia and North Carolina to see if they qualify as a National Heritage Area.",
+      "The study would look at whether the area has natural, historic, and cultural features that stand out in American history and culture.",
+      "The study would also decide if the area is worth protecting, recognizing, and making available for public use.",
+      "This bill only starts the study process \u2014 it does not create the heritage area or set aside any money yet."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1187": {
+    "one_liner": "Require public companies to report environmental, social, and governance data to shareholders",
+    "provisions": [
+      "Companies that sell stock to the public must report data every year about their environmental impact and how they treat workers and communities.",
+      "Those reports must also explain how the company is run at the top and how those choices connect to its long-term plans.",
+      "A new group called the Sustainable Finance Advisory Committee is created.",
+      "That committee must give the SEC \u2014 the federal agency that oversees stock markets \u2014 ideas for how to direct more investment money toward environmentally friendly businesses."
+    ],
+    "issue_categories": [
+      "Environment & Energy",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1155": {
+    "one_liner": "Block imports from a Chinese region and sanction those using forced labor there",
+    "provisions": [
+      "Stops products made in China's Xinjiang region from entering the U.S. unless the government confirms they were not made with forced labor",
+      "Requires the President to publish a list of foreign companies and people who use forced labor in Xinjiang",
+      "Freezes the U.S. bank accounts and assets of anyone on that list, and blocks listed individuals from entering the U.S.",
+      "Requires companies that trade on U.S. stock markets to report if they worked with groups building prisons or surveillance systems in Xinjiang",
+      "Requires the State Department to report to Congress on whether the treatment of Muslim groups in Xinjiang counts as genocide under U.S. law"
+    ],
+    "issue_categories": [
+      "Safety & Crime",
+      "Immigration"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1192": {
+    "one_liner": "Require professionals in Puerto Rico debt cases to disclose all their connections",
+    "provisions": [
+      "Lawyers, financial advisors, and other paid professionals working on Puerto Rico's debt cases must list all their connections \u2014 professional, personal, and financial \u2014 with any party in the case.",
+      "These disclosures must be filed as sworn written statements before the professional can be paid for their work.",
+      "The rule covers any professional seeking payment for services in cases about reducing Puerto Rico's debt."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1204": {
+    "one_liner": "Let Washington DC set the pay for its own Chief Financial Officer",
+    "provisions": [
+      "Right now, the DC Chief Financial Officer's pay is set by federal rules.",
+      "This bill lets DC set that salary on its own, as long as it pays at least what the officer currently earns.",
+      "Once a salary is set under this bill, it cannot be cut while that officer is still in the job."
+    ],
+    "issue_categories": [
+      "Money in Politics"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1215": {
+    "one_liner": "Create a government group and FTC office to protect older adults from scams",
+    "provisions": [
+      "Creates a group called the Senior Scams Prevention Advisory Group to build training materials for employees at stores, banks, and wire-transfer companies so they can spot and stop scams targeting older adults.",
+      "The FTC sets up a new office inside its consumer protection division to watch for scams aimed at older adults, take complaints, and teach people how to avoid them.",
+      "Training materials from the advisory group cover mail, phone, and internet scams."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1228": {
+    "one_liner": "Place sanctions on people blocking peace in Libya and send aid to Libyans",
+    "provisions": [
+      "Blocks the money and travel of foreign people who help Russia operate militarily in Libya",
+      "Blocks the money and travel of foreign people who steal Libyan government money or natural resources",
+      "Blocks the money and travel of foreign people responsible for serious human rights abuses in Libya",
+      "These blocks on money and travel end on December 31, 2026",
+      "Calls on the U.S. foreign aid agency to send food, shelter, health care, and COVID help to people in Libya",
+      "Requires the State Department to help Libya build working government institutions and hold free elections",
+      "Requires the U.S. Treasury to push international banks to support Libya's economic recovery"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "117-hr-1280": {
+    "one_liner": "Create a national police misconduct database and restrict when officers can use force",
+    "provisions": [
+      "Makes it easier to charge a police officer with a crime for misconduct \u2014 prosecutors no longer have to prove the officer meant to break the law, only that they knew or should have known their actions were wrong",
+      "Reduces the legal protection that currently blocks people from suing police officers personally when officers violate their rights",
+      "Bans police from using chokeholds or entering a home without knocking and announcing themselves in most situations",
+      "Creates a national database that stores misconduct complaints and discipline records for individual police officers across the country",
+      "Requires police departments to report data on use of force, stops, and searches to the federal government",
+      "Requires all police officers to complete training on racial profiling, personal bias, and when to step in if another officer uses too much force"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1333": {
+    "one_liner": "Limit the President's power to ban groups of people from entering the U.S.",
+    "provisions": [
+      "The President can only block people from entering the U.S. if the Department of State finds a specific, real threat \u2014 not just a general concern.",
+      "That threat must be to U.S. interests, like national security or public safety.",
+      "Any block on entry must be as narrow as possible and only go as far as needed to address the threat.",
+      "Before blocking entry, the government must consult with Congress and send a report within 48 hours \u2014 if no report is sent, the block ends immediately.",
+      "The government cannot deny a visa based on a person's religion unless a separate law specifically allows it.",
+      "People in the U.S. who are hurt by an unlawful entry block can take the government to federal court.",
+      "The Department of Homeland Security (DHS) can block travelers on airlines that fail to check for fake travel documents."
+    ],
+    "issue_categories": [
+      "Immigration"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1374": {
+    "one_liner": "Give states federal money and help to build energy emergency plans",
+    "provisions": [
+      "The federal government can give money to states to create or update plans for keeping their energy systems running during a crisis.",
+      "Each state plan must look at the risks to its energy systems, including physical attacks and hacking.",
+      "State plans must include steps to lower those risks and keep power and fuel running if something goes wrong.",
+      "States can ask the Department of Energy for advice and technical help when building or updating their plan."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1443": {
+    "one_liner": "Require banks to report credit data for LGBTQ-owned businesses to federal regulators",
+    "provisions": [
+      "Banks must collect and send data about credit applications from businesses owned by LGBTQ people to the Consumer Financial Protection Bureau.",
+      "This data is used to check whether LGBTQ-owned businesses are being treated fairly when they apply for loans.",
+      "Right now, banks already report this same data for businesses owned by women, minorities, and small business owners.",
+      "This bill adds LGBTQ-owned businesses to that list."
+    ],
+    "issue_categories": [
+      "Cost of Living",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1446": {
+    "one_liner": "Extend the wait time before gun dealers can sell without a finished background check",
+    "provisions": [
+      "Gun dealers must now wait 10 business days \u2014 up from 3 \u2014 before selling a gun if the background check is not done yet.",
+      "If the background check is still not done after 10 days, the buyer can file a request asking for a final decision.",
+      "If another 10 days pass with no final decision, the gun dealer can go ahead and complete the sale."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1339": {
+    "one_liner": "Create a federal group to plan for flying taxis and cargo drones",
+    "provisions": [
+      "The Department of Transportation must set up a group of federal agencies to work together on new kinds of aircraft, including flying taxis and cargo drones.",
+      "The group will look at safety rules, ground infrastructure, cybersecurity, and how much money the government should put into this type of air travel.",
+      "The goal is to bring these new aircraft into the same airspace already used by regular planes.",
+      "The working group will cover flights in cities, suburbs, rural areas, and between regions."
+    ],
+    "issue_categories": [
+      "Environment & Energy",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1392": {
+    "one_liner": "Block U.S. weapons sales to Saudi Arabia and require reports on Jamal Khashoggi's death",
+    "provisions": [
+      "For 120 days after this bill becomes law, the U.S. cannot sell or ship weapons to Saudi Arabia.",
+      "After 120 days, the weapons ban stays unless the President tells Congress Saudi Arabia met three conditions.",
+      "Those three conditions are: Saudi Arabia has not silenced or killed people in other countries, has not unjustly jailed U.S. citizens or legal U.S. residents inside Saudi Arabia, and has not tortured people in its custody.",
+      "The President must tell Congress that Saudi officials in the U.S. are not using their diplomatic status to track or harass Saudi citizens here.",
+      "If the President cannot make that statement, the U.S. must close at least one Saudi embassy or consular office in the country.",
+      "Congress gets a report on whether any Saudi officials harassed people inside the United States.",
+      "Congress gets a report on whether U.S. intelligence agencies warned journalist Jamal Khashoggi about threats to his life before he was killed in 2018."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1460": {
+    "one_liner": "Fund carbon monoxide alarm installation in homes of low-income families and older adults",
+    "provisions": [
+      "The government gives money to states and Native American tribal groups to buy and install carbon monoxide alarms.",
+      "The alarms go in homes where low-income families or people 65 and older live.",
+      "The alarms also go in buildings that regularly serve children or older adults, like day care centers or senior centers.",
+      "All alarms installed through this program must meet safety standards set by the government."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-147": {
+    "one_liner": "Give veterans more information and money options for apprenticeship programs",
+    "provisions": [
+      "When service members leave the military, the Department of Labor must tell them about apprenticeship job training programs.",
+      "Veterans using the Post-9/11 GI Bill get a monthly housing payment \u2014 this bill lets them use that money for other costs too.",
+      "The Department of Veterans Affairs must build a website where veterans can search for apprenticeship programs approved for GI Bill benefits."
+    ],
+    "issue_categories": [
+      "Veterans & Military",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1482": {
+    "one_liner": "Add oversight rules for companies that help small businesses get SBA loans",
+    "provisions": [
+      "Gives a federal office the job of watching over companies that help small businesses get loans through the SBA's 504 program.",
+      "The office must review the files for each loan that closes under the program.",
+      "The office can take action \u2014 formal or informal \u2014 against a company that breaks the rules.",
+      "The office can charge each of these companies a fee.",
+      "The SBA must write new rules explaining how these companies need to follow environmental requirements."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1487": {
+    "one_liner": "Require the SBA to report data on its small business microloan program",
+    "provisions": [
+      "The Small Business Administration must report each year on its microloan program, which gives small loans under $50,000 to small businesses.",
+      "The report must show how many microloans went unpaid, the total dollar amount of those loans, and what percentage of all microloans went unpaid that year.",
+      "The report must show how many microloans went to small businesses in rural areas.",
+      "The report must include the average loan size, the interest rate charged, and the fees borrowers paid."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1490": {
+    "one_liner": "Raise the loan limit for small manufacturers and update SBA 504 loan rules",
+    "provisions": [
+      "The top loan amount for small manufacturers goes from $5.5 million to $6.5 million.",
+      "Small manufacturers can now put less of their own money toward a project to get one of these loans.",
+      "Small manufacturers must show they kept more jobs to qualify.",
+      "Companies that connect businesses to these loans can fix paperwork errors and shift up to 10% of project costs to close a deal.",
+      "These loans can now go to businesses in areas hit by disasters, or to businesses that want to cut energy use or make renewable energy.",
+      "Every SBA office must team up with a local partner to offer training for small manufacturers."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1619": {
+    "one_liner": "Add 17 acres of land in North Carolina to the Catawba Indian Nation's reservation",
+    "provisions": [
+      "Makes about 17 acres of land in Cleveland County, North Carolina, part of the Catawba Indian Nation's reservation.",
+      "The federal government will hold this land in trust for the tribe.",
+      "The tribe can run gambling and gaming on this land."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "117-hr-1620": {
+    "one_liner": "Renew and expand funding for domestic violence and sexual assault programs through 2026",
+    "provisions": [
+      "Keeps funding active through 2026 for programs that help victims of domestic violence, sexual assault, dating violence, and stalking.",
+      "Creates new programs to help victims keep their housing and stay financially stable.",
+      "Changes federal gun rules so people convicted of abusing a dating partner or stalking someone can no longer legally buy or own a gun.",
+      "Before this change, only people who abused a spouse or household member faced that restriction."
+    ],
+    "issue_categories": [
+      "Safety & Crime",
+      "Housing"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1502": {
+    "one_liner": "Update rules for the Small Business Administration's small-loan program",
+    "provisions": [
+      "Lenders in this program can now offer a line of credit \u2014 money a small business can borrow from as needed \u2014 instead of only one-time loans.",
+      "Lenders who give out bigger average loans to small businesses now qualify for a lower interest rate on the money they borrow from the SBA.",
+      "Sets a maximum time limit for borrowers to pay back their loan, and stops the SBA from cutting that time limit shorter.",
+      "The SBA must set aside 15% of new loan money for states that have not received many of these loans, and make the other 85% available to any state.",
+      "Lenders must share borrower payment records with the major credit bureaus, which affects a borrower's credit score.",
+      "Each year, the SBA must report on how loan money is being spread across different groups and states."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1573": {
+    "one_liner": "Give people stopped at the U.S. border the right to speak with a lawyer",
+    "provisions": [
+      "People with green cards, visas, or refugee status who are pulled aside for extra questioning at a U.S. border must be allowed to speak with a lawyer within 1 hour of the questioning starting.",
+      "During the extra questioning, a lawyer or a relative can speak up for the person and give information to the officer.",
+      "Green card holders cannot sign away their green card status during a border stop unless they first had a real chance to talk to a lawyer.",
+      "If a green card holder decides to skip their right to a lawyer, they must say so in writing and it must be their own free choice."
+    ],
+    "issue_categories": [
+      "Immigration"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1603": {
+    "one_liner": "Give legal work status to undocumented farm workers and change farm visa rules",
+    "provisions": [
+      "Undocumented farm workers who worked at least 1,035 hours on farms in the two years before March 2021 and have stayed in the U.S. since then can apply for a work permit that lasts 5.5 years.",
+      "While their application is being decided, the government cannot deport them and they can work legally.",
+      "Their spouse and children can also receive protected status.",
+      "After getting the permit and continuing to work in agriculture for a set number of years, they can apply for a green card.",
+      "Changes how the minimum wage for H-2A farm visa workers is calculated, and opens the program to year-round farm jobs, not just seasonal ones.",
+      "Lets H-2A workers who leave a job have 60 days to find a new farm employer before having to leave the country.",
+      "Makes a housing program permanent that provides loans and grants to build or fix housing for farm workers in rural areas."
+    ],
+    "issue_categories": [
+      "Immigration",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1664": {
+    "one_liner": "Let a private group build a Medal of Honor memorial in Washington DC",
+    "provisions": [
+      "Lets the National Medal of Honor Museum Foundation build a memorial on federal land in Washington DC",
+      "The foundation must raise and spend its own money to build the memorial",
+      "No federal tax dollars can be used to pay for the memorial"
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1667": {
+    "one_liner": "Fund mental health programs and suicide prevention training for doctors and nurses",
+    "provisions": [
+      "The federal government gives money to hospitals and health groups to train doctors, nurses, and other health workers on suicide prevention and mental health.",
+      "Some of that money goes to programs that support health workers who were involved in treating COVID-19 patients.",
+      "The Department of Health and Human Services studies what gets in the way of health workers getting mental health care and writes up suggestions for fixing it.",
+      "The CDC runs a public campaign to encourage health workers to get help when they are struggling with their mental health."
+    ],
+    "issue_categories": [
+      "Healthcare"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1693": {
+    "one_liner": "Equalize federal prison sentence thresholds for crack cocaine and powder cocaine",
+    "provisions": [
+      "Right now, getting caught with 28 grams of crack cocaine triggers the same jail time as 500 grams of powder cocaine.",
+      "This bill changes that so both drugs use the same amounts at every penalty level.",
+      "People with open cases on the day this becomes law also get the new rules.",
+      "People already in prison for a crack cocaine offense can go back to a judge and ask for a lower sentence."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "against"
+  },
+  "117-hr-1651": {
+    "one_liner": "Extend COVID-19 bankruptcy protections for people and small businesses through March 2022",
+    "provisions": [
+      "COVID-19 payments, like stimulus checks, do not count as income when a person files for bankruptcy \u2014 this rule is extended through March 27, 2022.",
+      "Small businesses can use a simpler type of bankruptcy if they owe up to $7.5 million, up from the standard $2.7 million limit \u2014 extended through March 27, 2022.",
+      "People already on a Chapter 13 repayment plan can ask to change their payment schedule if COVID hurt their finances \u2014 previously this was only an option for plans set up before March 27, 2020.",
+      "Lenders and landlords cannot turn someone down for COVID mortgage or eviction help just because that person filed for bankruptcy \u2014 extended through March 27, 2022.",
+      "Utility companies cannot shut off service to people in bankruptcy under certain conditions \u2014 extended through March 27, 2022."
+    ],
+    "issue_categories": [
+      "Cost of Living",
+      "Housing"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1629": {
+    "one_liner": "Limit which rare-disease drugs can get 7-year market protection from the FDA",
+    "provisions": [
+      "Right now, the FDA can label a drug an orphan drug if it treats a rare disease. When that happens, the maker gets 7 years where no other company can sell the same drug for the same disease.",
+      "This bill adds a new test for getting that 7-year protection. The maker must show it won't earn back its costs within the first 12 years of US sales.",
+      "This new test also applies to drugs that already have the 7-year protection before this bill passes.",
+      "When checking if a company passes the test, the FDA counts sales from all that company's drugs under the same rare disease label."
+    ],
+    "issue_categories": [
+      "Healthcare"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1762": {
+    "one_liner": "Require the FTC to study and report on scams targeting Native American tribes",
+    "provisions": [
+      "Tells the Federal Trade Commission (FTC) to talk with Native American tribes about scams and unfair business practices that target them or their members",
+      "Requires the FTC to send a written report on those scams to Congress and post it online for anyone to read",
+      "Requires the FTC to add information to its website so tribes and their members can spot and avoid scams targeting them"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1917": {
+    "one_liner": "Lets groups get federal disaster money for projects already underway",
+    "provisions": [
+      "Groups working on disaster prevention projects \u2014 like flood barriers or firebreaks \u2014 can now get federal money even if the project already started before they applied.",
+      "Before this bill, federal disaster prevention money could only go to projects that had not yet begun.",
+      "This applies to the federal Hazard Mitigation Assistance program, which helps communities reduce damage from floods, wildfires, and other natural disasters."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1899": {
+    "one_liner": "Set clear rules for when a drug distribution license ends or transfers",
+    "provisions": [
+      "Gives official legal backing to rules about changing, transferring, or ending a license to make, sell, or hand out controlled substances",
+      "A license automatically ends when the person or company dies, closes, stops doing business, or gives up the license",
+      "Sets rules for what must be reported and when a license can be passed to someone else"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-172": {
+    "one_liner": "Fund the U.S. agency that tests athletes for performance-enhancing drugs through 2030",
+    "provisions": [
+      "Gives USADA, the U.S. agency that runs drug testing for American athletes, continued funding through 2030",
+      "Before any international sports organization can drug-test amateur athletes or run competitions inside the United States, USADA must first approve that testing",
+      "USADA must spend some of its money on materials that teach kids in youth sports about sportsmanship and healthy performance",
+      "If USADA investigates or punishes someone for breaking a rule, it must follow due process \u2014 meaning the person gets a fair process before any action is taken against them",
+      "The Justice Department, Homeland Security, and the FDA must share information with USADA about performance-enhancing drugs and banned methods"
+    ],
+    "issue_categories": [
+      "Safety & Crime",
+      "Education"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hr-1975": {
+    "one_liner": "Transfer 721 acres in San Diego County to the Pala Band of Mission Indians reservation",
+    "provisions": [
+      "The federal government takes about 721 acres in San Diego County, California, and holds it in trust for the tribe.",
+      "That land becomes part of the Pala Indian Reservation.",
+      "The tribe must first sign the land over to the U.S. government before this takes effect.",
+      "No gambling is allowed on any of this land."
+    ],
+    "issue_categories": [
+      "Housing"
+    ],
+    "direction": "in_favor"
   }
 }

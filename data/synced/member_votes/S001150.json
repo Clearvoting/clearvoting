@@ -11,7 +11,1355 @@
     "not_voting_count": 11,
     "participation_rate": 96.8
   },
-  "scorecard": [],
+  "scorecard": [
+    {
+      "category": "Cost of Living",
+      "in_favor": 10,
+      "against": 5,
+      "total": 36,
+      "verdict": "Voted in favor of 10 of 36 cost of living measures",
+      "bills": [
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-28",
+          "one_liner": "Cancel a rule letting government check on large payment apps",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-28",
+          "one_liner": "Cancel a rule letting government check on large payment apps",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-18",
+          "one_liner": "Cancel a rule capping overdraft fees at $5 for large banks",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-18",
+          "one_liner": "Cancel a rule capping overdraft fees at $5 for large banks",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1968",
+          "one_liner": "Fund federal agencies through September 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1968",
+          "one_liner": "Fund federal agencies through September 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-sjres-49",
+          "one_liner": "End the national emergency that imposed 10% tariffs on most imports",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-49",
+          "one_liner": "End the national emergency that imposed 10% tariffs on most imports",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-37",
+          "one_liner": "Cancel the national emergency that adds extra fees on imports from Canada",
+          "vote": "Yea",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Environment & Energy",
+      "in_favor": 28,
+      "against": 6,
+      "total": 36,
+      "verdict": "Voted in favor of 28 of 36 environment & energy measures",
+      "bills": [
+        {
+          "bill_id": "119-hjres-60",
+          "one_liner": "Cancel a National Park Service rule limiting off-road vehicles at Glen Canyon",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-61",
+          "one_liner": "Cancel an EPA rule setting air pollution limits for rubber tire factories",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-60",
+          "one_liner": "Cancel a National Park Service rule limiting off-road vehicles at Glen Canyon",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-61",
+          "one_liner": "Cancel an EPA rule setting air pollution limits for rubber tire factories",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-89",
+          "one_liner": "Cancel an EPA rule letting California set pollution limits for trucks",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-87",
+          "one_liner": "Cancel an EPA rule letting California set its own emission standards for heavy-duty vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-87",
+          "one_liner": "Cancel an EPA rule letting California set its own emission standards for heavy-duty vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-88",
+          "one_liner": "Cancel EPA approval for California to set its own car pollution rules",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-89",
+          "one_liner": "Cancel an EPA rule letting California set pollution limits for trucks",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-88",
+          "one_liner": "Cancel EPA approval for California to set its own car pollution rules",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-31",
+          "one_liner": "Cancel an EPA rule requiring some factories to keep following stricter pollution limits",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-75",
+          "one_liner": "Cancel a Department of Energy rule setting energy standards for commercial refrigerators and freezers",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-86",
+          "one_liner": "Cancel EPA approval of South Dakota's plan to reduce haze in national parks",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-35",
+          "one_liner": "Cancel an EPA rule charging fees for methane emissions from oil and gas companies",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-12",
+          "one_liner": "Cancel an EPA rule charging oil and gas companies for methane emissions",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-10",
+          "one_liner": "End the national emergency about energy declared by the President in January 2025",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-11",
+          "one_liner": "Cancel rule requiring oil companies to report on historical artifacts before offshore drilling",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-11",
+          "one_liner": "Cancel rule requiring oil companies to report on historical artifacts before offshore drilling",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-10545",
+          "one_liner": "Keep the government funded through March 2025 and provide emergency disaster relief",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "118-hr-5009",
+          "one_liner": "Extends wildlife conservation programs through 2028",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-4367",
+          "one_liner": "Fund Army Corps projects for flood control, dam repairs, and waterway improvements",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-5009",
+          "one_liner": "Extends wildlife conservation programs through 2028",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-20",
+          "one_liner": "Cancel a Department of Energy rule on gas water heater energy use",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-75",
+          "one_liner": "Cancel a Department of Energy rule setting energy standards for commercial refrigerators and freezers",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-42",
+          "one_liner": "Cancel a Department of Energy rule on appliance energy efficiency requirements",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-31",
+          "one_liner": "Cancel an EPA rule requiring some factories to keep following stricter pollution limits",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-24",
+          "one_liner": "Cancel energy efficiency standards for walk-in coolers and freezers",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-42",
+          "one_liner": "Cancel a Department of Energy rule on appliance energy efficiency requirements",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-24",
+          "one_liner": "Cancel energy efficiency standards for walk-in coolers and freezers",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-140",
+          "one_liner": "Allow mineral and geothermal leasing on 225,504 acres in Minnesota",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-140",
+          "one_liner": "Allow mineral and geothermal leasing on 225,504 acres in Minnesota",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-140",
+          "one_liner": "Allow mineral and geothermal leasing on 225,504 acres in Minnesota",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-20",
+          "one_liner": "Cancel a Department of Energy rule on gas water heater energy use",
+          "vote": "Nay",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Taxes",
+      "in_favor": 2,
+      "against": 5,
+      "total": 32,
+      "verdict": "Voted against 5 of 32 taxes measures",
+      "bills": [
+        {
+          "bill_id": "119-sjres-3",
+          "one_liner": "Cancel an IRS rule requiring brokers to report cryptocurrency sales to the tax agency",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-3",
+          "one_liner": "Cancel an IRS rule requiring brokers to report cryptocurrency sales to the tax agency",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-25",
+          "one_liner": "Cancel an IRS rule requiring crypto brokers to report sales to the government",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-25",
+          "one_liner": "Cancel an IRS rule requiring crypto brokers to report sales to the government",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-sconres-7",
+          "one_liner": "Set spending and borrowing limits for the federal government for 10 years",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-sconres-7",
+          "one_liner": "Set spending and borrowing limits for the federal government for 10 years",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hjres-142",
+          "one_liner": "Cancel DC's tax law to keep federal tax cuts",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-142",
+          "one_liner": "Cancel DC's tax law to keep federal tax cuts",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-95",
+          "one_liner": "Block an IRS rule on corporate minimum tax for partnerships",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hconres-14",
+          "one_liner": "Set federal spending rules and tell committees to write budget bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hconres-14",
+          "one_liner": "Set federal spending rules and tell committees to write budget bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "category": "Safety & Crime",
+      "in_favor": 7,
+      "against": 20,
+      "total": 29,
+      "verdict": "Voted against 20 of 29 safety & crime measures",
+      "bills": [
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sres-195",
+          "one_liner": "Request information about human rights practices in El Salvador",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-331",
+          "one_liner": "Make fentanyl-related substances permanently illegal under federal law",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-331",
+          "one_liner": "Make fentanyl-related substances permanently illegal under federal law",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-331",
+          "one_liner": "Make fentanyl-related substances permanently illegal under federal law",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-23",
+          "one_liner": "Sanction foreign people who help the International Criminal Court prosecute Americans and allies",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-6",
+          "one_liner": "Require doctors to provide care to children born alive after abortions",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-4367",
+          "one_liner": "Fund Army Corps projects for flood control, dam repairs, and waterway improvements",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Veterans & Military",
+      "in_favor": 7,
+      "against": 14,
+      "total": 22,
+      "verdict": "Voted against 14 of 22 veterans & military measures",
+      "bills": [
+        {
+          "bill_id": "119-s-2296",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-104",
+          "one_liner": "Remove U.S. troops from fighting Iran without Congress approval",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-118",
+          "one_liner": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-59",
+          "one_liner": "End unauthorized U.S. military action against Iran",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-54",
+          "one_liner": "Block a military weapons sale to the United Arab Emirates",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-53",
+          "one_liner": "Block a weapons sale to Qatar",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-34",
+          "one_liner": "Block a planned weapons sale to Israel",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-41",
+          "one_liner": "Block weapons sales to Israel",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3944",
+          "one_liner": "Fund military construction and veterans programs for 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3944",
+          "one_liner": "Fund military construction and veterans programs for 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3944",
+          "one_liner": "Fund military construction and veterans programs for 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-98",
+          "one_liner": "Remove US military forces from Venezuela unless Congress approves the mission",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-98",
+          "one_liner": "Remove US military forces from Venezuela unless Congress approves the mission",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3944",
+          "one_liner": "Fund military construction and veterans programs for 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-26",
+          "one_liner": "Block a proposed weapons sale to Israel",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-33",
+          "one_liner": "Block a military equipment sale to Israel",
+          "vote": "Nay",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Immigration",
+      "in_favor": 3,
+      "against": 15,
+      "total": 21,
+      "verdict": "Voted against 15 of 21 immigration measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-5",
+          "one_liner": "Require detention of non-citizens arrested for theft, burglary, or shoplifting",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-5",
+          "one_liner": "Require detention of non-citizens arrested for theft, burglary, or shoplifting",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-5",
+          "one_liner": "Require detention of non-citizens arrested for theft, burglary, or shoplifting",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-5",
+          "one_liner": "Require detention of non-citizens arrested for theft, burglary, or shoplifting",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Healthcare",
+      "in_favor": 3,
+      "against": 14,
+      "total": 18,
+      "verdict": "Voted against 14 of 18 healthcare measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-6",
+          "one_liner": "Require doctors to provide care to children born alive after abortions",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-84",
+          "one_liner": "Cancel a health insurance rule about enrollment periods and coverage requirements",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-10545",
+          "one_liner": "Keep the government funded through March 2025 and provide emergency disaster relief",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "category": "Education",
+      "in_favor": 2,
+      "against": 2,
+      "total": 4,
+      "verdict": "Voted in favor of 2 of 4 education measures",
+      "bills": [
+        {
+          "bill_id": "119-sjres-7",
+          "one_liner": "Cancel a rule letting schools buy cheap Wi-Fi hotspots for students",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-7",
+          "one_liner": "Cancel a rule letting schools buy cheap Wi-Fi hotspots for students",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-9",
+          "one_liner": "Ban male-born students from women's and girls' sports teams in federally funded schools",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-3627",
+          "one_liner": "Require colleges to tell students about resources for pregnant students who want to have babies",
+          "vote": "Nay",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Housing",
+      "in_favor": 4,
+      "against": 0,
+      "total": 4,
+      "verdict": "Voted in favor of 4 of 4 housing measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-6644",
+          "one_liner": "Expand federal housing programs and increase government funding for housing",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6644",
+          "one_liner": "Expand federal housing programs and increase government funding for housing",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6644",
+          "one_liner": "Expand federal housing programs and increase government funding for housing",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6644",
+          "one_liner": "Expand federal housing programs and increase government funding for housing",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Social Security & Retirement",
+      "in_favor": 2,
+      "against": 0,
+      "total": 4,
+      "verdict": "Voted in favor of 2 of 4 social security & retirement measures",
+      "bills": [
+        {
+          "bill_id": "118-hr-82",
+          "one_liner": "Restore full Social Security benefits for people with government pensions",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "118-hr-82",
+          "one_liner": "Restore full Social Security benefits for people with government pensions",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "118-hr-82",
+          "one_liner": "Restore full Social Security benefits for people with government pensions",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-82",
+          "one_liner": "Restore full Social Security benefits for people with government pensions",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Money in Politics",
+      "in_favor": 2,
+      "against": 0,
+      "total": 2,
+      "verdict": "Voted in favor of 2 of 2 money in politics measures",
+      "bills": [
+        {
+          "bill_id": "119-sjres-13",
+          "one_liner": "Bring back automatic approvals for some bank mergers",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-13",
+          "one_liner": "Bring back automatic approvals for some bank mergers",
+          "vote": "Nay",
+          "direction": "in_favor"
+        }
+      ]
+    }
+  ],
   "votes": [
     {
       "bill_number": "S. 2296",

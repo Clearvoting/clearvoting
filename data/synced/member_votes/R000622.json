@@ -10,7 +10,3170 @@
     "not_voting_count": 12,
     "participation_rate": 97.3
   },
-  "scorecard": [],
+  "scorecard": [
+    {
+      "category": "Environment & Energy",
+      "in_favor": 62,
+      "against": 35,
+      "total": 135,
+      "verdict": "Voted in favor of 62 of 135 environment & energy measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-556",
+          "one_liner": "Protecting Access for Hunters and Anglers Act",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-556",
+          "one_liner": "Protecting Access for Hunters and Anglers Act",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4294",
+          "one_liner": "MAWS Act of 2026",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1115",
+          "one_liner": "Providing for consideration of the bill (H.R. 556) to prohibit the Secretary of the Interior and the Secretary of Agriculture from prohibiting the use of lead ammunition or tackle on certain Federal land or water under the jurisdiction of the Secretary of the Interior and the Secretary of Agriculture, and for other purposes; providing for consideration of the bill (H.R. 1958) to amend the Immigration and Nationality Act to clarify that aliens who have been convicted of defrauding the United States Government or the unlawful receipt of public benefits are inadmissible and deportable; providing for consideration of the bill (H.R. 4638) to amend the Immigration and Nationality Act to provide that an alien who has been convicted of harming animals used in law enforcement is inadmissible and deportable, and for other purposes; and relating to consideration of motions to suspend the rules.",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1115",
+          "one_liner": "Providing for consideration of the bill (H.R. 556) to prohibit the Secretary of the Interior and the Secretary of Agriculture from prohibiting the use of lead ammunition or tackle on certain Federal land or water under the jurisdiction of the Secretary of the Interior and the Secretary of Agriculture, and for other purposes; providing for consideration of the bill (H.R. 1958) to amend the Immigration and Nationality Act to clarify that aliens who have been convicted of defrauding the United States Government or the unlawful receipt of public benefits are inadmissible and deportable; providing for consideration of the bill (H.R. 4638) to amend the Immigration and Nationality Act to provide that an alien who has been convicted of harming animals used in law enforcement is inadmissible and deportable, and for other purposes; and relating to consideration of motions to suspend the rules.",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4758",
+          "one_liner": "Cancel federal programs that help people make homes more energy efficient",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4758",
+          "one_liner": "Cancel federal programs that help people make homes more energy efficient",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1075",
+          "one_liner": "Block new energy efficiency rules and end rebates for electric home appliances",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1075",
+          "one_liner": "Block new energy efficiency rules and end rebates for electric home appliances",
+          "vote": "No",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4626",
+          "one_liner": "Change how the government sets energy efficiency rules for home appliances",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4626",
+          "one_liner": "Change how the government sets energy efficiency rules for home appliances",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3617",
+          "one_liner": "Require the Energy Department to secure America's energy resource supply chains",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3617",
+          "one_liner": "Require the Energy Department to secure America's energy resource supply chains",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-261",
+          "one_liner": "Remove Commerce Department permit rules for undersea cables in marine sanctuaries",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-261",
+          "one_liner": "Remove Commerce Department permit rules for undersea cables in marine sanctuaries",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1042",
+          "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1042",
+          "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4090",
+          "one_liner": "Speed up mining for metals and minerals on federal lands",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4090",
+          "one_liner": "Speed up mining for metals and minerals on federal lands",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1032",
+          "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1032",
+          "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1009",
+          "one_liner": "Sets House rules to allow votes on pregnancy center funding, college pregnancy resources, and Minnesota land issues",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1009",
+          "one_liner": "Sets House rules to allow votes on pregnancy center funding, college pregnancy resources, and Minnesota land issues",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hjres-140",
+          "one_liner": "Allow mineral and geothermal leasing on 225,504 acres in Minnesota",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4593",
+          "one_liner": "Change how the government defines showerheads for water rules",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4593",
+          "one_liner": "Change how the government defines showerheads for water rules",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-5184",
+          "one_liner": "Cancel federal energy rules for manufactured housing",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-504",
+          "one_liner": "Expand the Miccosukee Reserved Area to include Osceola Camp in Everglades National Park",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-977",
+          "one_liner": "Allow House votes on three bills about water fixtures and government funding",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-977",
+          "one_liner": "Allow House votes on three bills about water fixtures and government funding",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4776",
+          "one_liner": "Reduce environmental reviews required for federal projects",
+          "vote": "No",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4776",
+          "one_liner": "Reduce environmental reviews required for federal projects",
+          "vote": "No",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4776",
+          "one_liner": "Reduce environmental reviews required for federal projects",
+          "vote": "No",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4776",
+          "one_liner": "Reduce environmental reviews required for federal projects",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4776",
+          "one_liner": "Reduce environmental reviews required for federal projects",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1366",
+          "one_liner": "Allow mining waste disposal on federal land without proving minerals exist",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1366",
+          "one_liner": "Allow mining waste disposal on federal land without proving minerals exist",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-845",
+          "one_liner": "Remove gray wolves from the endangered species list",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-845",
+          "one_liner": "Remove gray wolves from the endangered species list",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-953",
+          "one_liner": "Set up House votes on health insurance, medical procedures for minors, and environmental rules",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-953",
+          "one_liner": "Set up House votes on health insurance, medical procedures for minors, and environmental rules",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-3616",
+          "one_liner": "Require yearly power grid checks and federal approval before rules that could hurt electricity supply",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-951",
+          "one_liner": "Allow House votes on six bills about environmental rules and child trafficking",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-951",
+          "one_liner": "Allow House votes on six bills about environmental rules and child trafficking",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-3632",
+          "one_liner": "Let more groups ask federal regulators to keep power plants open for reliable electricity",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3632",
+          "one_liner": "Let more groups ask federal regulators to keep power plants open for reliable electricity",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3668",
+          "one_liner": "Speed up environmental reviews for natural gas pipeline projects",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3668",
+          "one_liner": "Speed up environmental reviews for natural gas pipeline projects",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3628",
+          "one_liner": "Require state regulators to consider rules for 10-year electricity planning",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3638",
+          "one_liner": "Require the Energy Department to study electricity supply chains and report to Congress",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3898",
+          "one_liner": "Remove Clean Water Act protections from waste treatment systems and several water types",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3898",
+          "one_liner": "Remove Clean Water Act protections from waste treatment systems and several water types",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-936",
+          "one_liner": "Set up House rules to vote on six different bills about energy and veterans",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-936",
+          "one_liner": "Set up House rules to vote on six different bills about energy and veterans",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-356",
+          "one_liner": "Extend federal payments to rural counties with federal land through 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1676",
+          "one_liner": "Set deadlines for federal approval of state wildlife conservation plans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3109",
+          "one_liner": "Require a study on US oil refineries and how to expand them",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1949",
+          "one_liner": "Remove government restrictions on natural gas exports to other countries",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-879",
+          "one_liner": "Allow House votes on oil drilling and crime bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-879",
+          "one_liner": "Allow House votes on oil drilling and crime bills",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hjres-130",
+          "one_liner": "Cancel a rule that stopped coal leasing in Wyoming's Buffalo Field Office",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-131",
+          "one_liner": "Cancel a rule that limited oil drilling to 400,000 acres in an Alaska wildlife refuge",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-80",
+          "one_liner": "Open more Alaska land to oil and gas drilling",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3062",
+          "one_liner": "Create a new approval process for oil, gas and electric lines crossing US borders",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3015",
+          "one_liner": "Recreate a government council that advises on coal industry matters",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1047",
+          "one_liner": "Speed up connections for reliable power plants to the electric grid",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-707",
+          "one_liner": "Set up House votes on DC crime bills and energy project bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-707",
+          "one_liner": "Set up House votes on DC crime bills and energy project bills",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-672",
+          "one_liner": "Set up votes on energy spending and canceling three federal land plans",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-672",
+          "one_liner": "Set up votes on energy spending and canceling three federal land plans",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hjres-104",
+          "one_liner": "Cancel a rule that blocks coal leasing on 1.7 million acres in Montana",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-106",
+          "one_liner": "Cancel a Bureau of Land Management rule covering 3.6 million acres in Alaska",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-105",
+          "one_liner": "Cancel a Bureau of Land Management rule limiting oil, gas, and coal development in North Dakota",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4553",
+          "one_liner": "Fund energy and water programs for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3937",
+          "one_liner": "Sell 14 acres of Wisconsin forest land to Tony's Wabeno Redi-Mix",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1917",
+          "one_liner": "Give formal authority to a fish tagging program in the Great Lakes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1596",
+          "one_liner": "Rename the Anahuac National Wildlife Refuge in Texas to the Jocelyn Nungaray National Wildlife Refuge",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-sjres-31",
+          "one_liner": "Cancel an EPA rule requiring some factories to keep following stricter pollution limits",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-426",
+          "one_liner": "Set up House votes to cancel two federal rules about bank mergers and air pollution",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-426",
+          "one_liner": "Set up House votes to cancel two federal rules about bank mergers and air pollution",
+          "vote": "No",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1223",
+          "one_liner": "Require NSF to create a plan for upgrading internet and computer security on research ships",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2215",
+          "one_liner": "Change Salem Maritime National Historic Site to a national historical park",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-249",
+          "one_liner": "Rename park facilities at Paterson Great Falls National Historical Park for Congressman Bill Pascrell Jr",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-276",
+          "one_liner": "Rename the Gulf of Mexico to the Gulf of America",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-276",
+          "one_liner": "Rename the Gulf of Mexico to the Gulf of America",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-377",
+          "one_liner": "Set up House votes on renaming the Gulf of Mexico and restricting education funding",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-377",
+          "one_liner": "Set up House votes on renaming the Gulf of Mexico and restricting education funding",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hjres-78",
+          "one_liner": "Cancel protection for longfin smelt fish in San Francisco Bay",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-88",
+          "one_liner": "Cancel EPA approval for California to set its own car pollution rules",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-87",
+          "one_liner": "Cancel an EPA rule letting California set its own emission standards for heavy-duty vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-89",
+          "one_liner": "Cancel an EPA rule letting California set pollution limits for trucks",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-354",
+          "one_liner": "Set up House votes to cancel five environmental rules",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-354",
+          "one_liner": "Set up House votes to cancel five environmental rules",
+          "vote": "No",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-60",
+          "one_liner": "Cancel a National Park Service rule limiting off-road vehicles at Glen Canyon",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-24",
+          "one_liner": "Cancel energy efficiency standards for walk-in coolers and freezers",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-75",
+          "one_liner": "Cancel a Department of Energy rule setting energy standards for commercial refrigerators and freezers",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1534",
+          "one_liner": "Create a program to develop cleaner cement, concrete, and asphalt",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-242",
+          "one_liner": "Set up House votes on energy rules and college foreign money disclosure",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-242",
+          "one_liner": "Set up House votes on energy rules and college foreign money disclosure",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-359",
+          "one_liner": "Require Energy Department to report when it reduces company contributions to federally-funded energy projects",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1326",
+          "one_liner": "Require Energy and Agriculture departments to work together on research projects",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-11",
+          "one_liner": "Cancel rule requiring oil companies to report on historical artifacts before offshore drilling",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-61",
+          "one_liner": "Cancel an EPA rule setting air pollution limits for rubber tire factories",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-42",
+          "one_liner": "Cancel a Department of Energy rule on appliance energy efficiency requirements",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-177",
+          "one_liner": "Set up House votes to cancel three federal agency rules",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-177",
+          "one_liner": "Set up House votes to cancel three federal agency rules",
+          "vote": "No",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-20",
+          "one_liner": "Cancel a Department of Energy rule on gas water heater energy use",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-35",
+          "one_liner": "Cancel an EPA rule charging fees for methane emissions from oil and gas companies",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-161",
+          "one_liner": "Allow House votes on canceling two environmental rules and setting the federal budget",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-161",
+          "one_liner": "Allow House votes on canceling two environmental rules and setting the federal budget",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-26",
+          "one_liner": "Stop the President from banning fracking without Congress approval",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-26",
+          "one_liner": "Stop the President from banning fracking without Congress approval",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-776",
+          "one_liner": "Continue funding states to control nutria and restore marshes through 2030",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-375",
+          "one_liner": "Fund research and control of a fungus killing trees in Hawaii",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-471",
+          "one_liner": "Change forest management rules to reduce wildfire risk",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-53",
+          "one_liner": "Let the House vote on two bills about forest management and immigration detention",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-53",
+          "one_liner": "Let the House vote on two bills about forest management and immigration detention",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-187",
+          "one_liner": "Require federal agencies to publish data about waterway access and fishing rules",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-164",
+          "one_liner": "Let power companies use emergency money to prevent future damage while fixing power",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-144",
+          "one_liner": "Require the Tennessee Valley Authority to report employee salaries and file annual financial statements",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Safety & Crime",
+      "in_favor": 41,
+      "against": 16,
+      "total": 84,
+      "verdict": "Voted in favor of 41 of 84 safety & crime measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-1958",
+          "one_liner": "Deporting Fraudsters Act of 2026",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1099",
+          "one_liner": "Declare Iran sponsors more terrorism than other countries",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-7744",
+          "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7744",
+          "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1095",
+          "one_liner": "Allow the House to vote on Department of Homeland Security funding for 2026",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1095",
+          "one_liner": "Allow the House to vote on Department of Homeland Security funding for 2026",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1100",
+          "one_liner": "Require the House Ethics Committee to preserve and publicly release sexual harassment investigation records",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-2503",
+          "one_liner": "Require more aircraft to use tracking technology and increase aviation safety reviews",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2189",
+          "one_liner": "Remove certain TASERs and similar devices from federal gun regulations",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1057",
+          "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1057",
+          "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1042",
+          "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1042",
+          "one_liner": "Allow House votes on three bills covering guns, undersea cables, and energy minerals",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-2683",
+          "one_liner": "Control foreign remote access to sensitive US technology through the internet",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3492",
+          "one_liner": "Make gender-affirming medical care for minors a federal crime",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3492",
+          "one_liner": "Make gender-affirming medical care for minors a federal crime",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4371",
+          "one_liner": "Add requirements for placing immigrant children without parents",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4371",
+          "one_liner": "Add requirements for placing immigrant children without parents",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-939",
+          "one_liner": "Remove President Trump from office through impeachment",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-5107",
+          "one_liner": "Cancel a 2022 DC law that limited police practices",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4058",
+          "one_liner": "Require FEMA to help groups get grants for terrorism protection",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4405",
+          "one_liner": "Require the Justice Department to publish all records about Jeffrey Epstein's case",
+          "vote": "Aye",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-879",
+          "one_liner": "Allow House votes on oil drilling and crime bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-879",
+          "one_liner": "Allow House votes on oil drilling and crime bills",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1608",
+          "one_liner": "Require DHS to write a report on preventing car and truck attacks",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2659",
+          "one_liner": "Create a government task force to fight Chinese cyber attacks",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-719",
+          "one_liner": "Honor Charlie Kirk's life and condemn his assassination",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-5125",
+          "one_liner": "End the group that picks judges for Washington DC courts",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-5143",
+          "one_liner": "Change DC police chase rules to require chasing fleeing cars in most cases",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-707",
+          "one_liner": "Set up House votes on DC crime bills and energy project bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-707",
+          "one_liner": "Set up House votes on DC crime bills and energy project bills",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4922",
+          "one_liner": "Block DC from changing criminal sentences and tighten youth crime rules",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-5140",
+          "one_liner": "Lower the age for trying minors as adults in DC to 14 years old",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-117",
+          "one_liner": "End the national emergency declared on July 30, 2025",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3425",
+          "one_liner": "Improve oversight and tracking of federal security guards at federal buildings",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-747",
+          "one_liner": "Expand sanctions to Chinese companies and officials linked to fentanyl trafficking",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-3633",
+          "one_liner": "Create rules for trading digital currencies like Bitcoin and other crypto assets",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1717",
+          "one_liner": "Create legal authority for a council that advises the FCC on network security",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1709",
+          "one_liner": "Require a government study of mobile phone network security",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1770",
+          "one_liner": "Create an AI pilot program for consumer safety and require technology reports",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-516",
+          "one_liner": "Condemn June 2025 riots in Los Angeles and thank law enforcement",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-519",
+          "one_liner": "Condemn attacks on Minnesota lawmakers and call for unity",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-537",
+          "one_liner": "Impeach President Trump for abusing presidential powers",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1998",
+          "one_liner": "Ban foreign pirates from U.S. visas and freeze their money",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-331",
+          "one_liner": "Make fentanyl-related substances permanently illegal under federal law",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-489",
+          "one_liner": "Set up House votes on four bills about DC voting, immigration, police, and fentanyl",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-489",
+          "one_liner": "Set up House votes on four bills about DC voting, immigration, police, and fentanyl",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-2096",
+          "one_liner": "Cancel stricter police discipline rules in Washington DC",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-488",
+          "one_liner": "Condemn the antisemitic terrorist attack in Boulder, Colorado",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-481",
+          "one_liner": "Condemn antisemitic attacks and reaffirm commitment to protecting religious freedom",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2255",
+          "one_liner": "Let federal law enforcement officers buy their retired work guns",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-2240",
+          "one_liner": "Require Justice Department reports on attacks against police and mental health resources",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-405",
+          "one_liner": "Allow House votes on three bills about police officer safety and weapons",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-405",
+          "one_liner": "Allow House votes on three bills about police officer safety and weapons",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-2243",
+          "one_liner": "Let qualified law enforcement officers carry guns in more places",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-352",
+          "one_liner": "Ask elected officials and community leaders to condemn antisemitism",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hconres-30",
+          "one_liner": "Express Congress's support for local police officers",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1503",
+          "one_liner": "Block money and ban entry for people who force others to give up organs",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-36",
+          "one_liner": "Require sanctions on Georgian officials who block Georgia's path to join NATO and EU",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1442",
+          "one_liner": "Ban consumer products with 10% or more sodium nitrite",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-859",
+          "one_liner": "Require companies to tell buyers about cameras and microphones in smart devices before purchase",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-973",
+          "one_liner": "Require safety rules for lithium-ion batteries in electric bikes and scooters",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-146",
+          "one_liner": "Ban posting intimate images without consent and require website removal",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1526",
+          "one_liner": "Stop courts from issuing orders that affect people beyond those in the case",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1526",
+          "one_liner": "Stop courts from issuing orders that affect people beyond those in the case",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-901",
+          "one_liner": "Require DHS to create security policies for research and report on compliance",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-856",
+          "one_liner": "Require a study on whether federal buying rules create security risks",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-758",
+          "one_liner": "Require the postal service to track and report traffic deaths involving mail trucks",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-35",
+          "one_liner": "Make it a federal crime to flee Border Patrol agents within 100 miles of the border",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-27",
+          "one_liner": "Make all substances similar to fentanyl permanently illegal with same penalties as fentanyl",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-27",
+          "one_liner": "Make all substances similar to fentanyl permanently illegal with same penalties as fentanyl",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-93",
+          "one_liner": "Set up rules for how the House will debate a bill about fentanyl substances",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-93",
+          "one_liner": "Set up rules for how the House will debate a bill about fentanyl substances",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-21",
+          "one_liner": "Require medical care for babies born alive after abortion attempts",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-21",
+          "one_liner": "Require medical care for babies born alive after abortion attempts",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-30",
+          "one_liner": "Block and deport non-citizens who commit crimes against women and children",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-30",
+          "one_liner": "Block and deport non-citizens who commit crimes against women and children",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-153",
+          "one_liner": "Require federal agencies to publish quarterly reports on disaster assistance spending",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-152",
+          "one_liner": "Require FEMA to streamline disaster aid applications and damage assessments",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-23",
+          "one_liner": "Sanction foreign people who help the International Criminal Court prosecute Americans and allies",
+          "vote": "Yea",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Veterans & Military",
+      "in_favor": 22,
+      "against": 37,
+      "total": 74,
+      "verdict": "Voted against 37 of 74 veterans & military measures",
+      "bills": [
+        {
+          "bill_id": "119-hconres-38",
+          "one_liner": "Stop U.S. military action against Iran without Congress approval",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1057",
+          "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1057",
+          "one_liner": "Allow House debate on veterans access, firearms updates, marine cables, and energy resources",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-980",
+          "one_liner": "Remove requirement that VA workers provide job and school help on college campuses",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3123",
+          "one_liner": "Let families collect veterans' pensions that were approved but not paid before death",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hconres-68",
+          "one_liner": "Remove U.S. troops from Venezuela unless Congress votes to keep them there",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hconres-61",
+          "one_liner": "Remove U.S. troops from fighting terrorist groups in the Western Hemisphere",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hconres-64",
+          "one_liner": "Remove U.S. military forces from Venezuela unless Congress declares war or authorizes force",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-936",
+          "one_liner": "Set up House rules to vote on six different bills about energy and veterans",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-936",
+          "one_liner": "Set up House rules to vote on six different bills about energy and veterans",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-1071",
+          "one_liner": "Remove remains of convicted rapist from veterans cemetery in Texas",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1071",
+          "one_liner": "Remove remains of convicted rapist from veterans cemetery in Texas",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-873",
+          "one_liner": "Allow House vote on Senate changes to temporary government funding",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-873",
+          "one_liner": "Allow House vote on Senate changes to temporary government funding",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-5371",
+          "one_liner": "Keep government funded through November 2025 and extend expiring programs",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-5371",
+          "one_liner": "Keep government funded through November 2025 and extend expiring programs",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-5371",
+          "one_liner": "Keep government funded through November 2025 and extend expiring programs",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-2721",
+          "one_liner": "Give headstones to veterans who died before November 1990",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3400",
+          "one_liner": "Let VA doctors work in US territories for up to one year",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3944",
+          "one_liner": "Fund military construction and veterans programs for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "Aye",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "Aye",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3838",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-682",
+          "one_liner": "Allow the House to vote on military funding and immigration enforcement bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-682",
+          "one_liner": "Allow the House to vote on military funding and immigration enforcement bills",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4275",
+          "one_liner": "Fund the Coast Guard and create a Secretary of the Coast Guard position",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4016",
+          "one_liner": "Fund the military for 2026",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4016",
+          "one_liner": "Fund the military for 2026",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4016",
+          "one_liner": "Fund the military for 2026",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4016",
+          "one_liner": "Fund the military for 2026",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4016",
+          "one_liner": "Fund the military for 2026",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4016",
+          "one_liner": "Fund the military for 2026",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4016",
+          "one_liner": "Fund the military for 2026",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4016",
+          "one_liner": "Fund the military for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4016",
+          "one_liner": "Fund the military for 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-580",
+          "one_liner": "Allow the House to debate and vote on defense funding and three digital currency bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-580",
+          "one_liner": "Allow the House to debate and vote on defense funding and three digital currency bills",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-580",
+          "one_liner": "Allow the House to debate and vote on defense funding and three digital currency bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-580",
+          "one_liner": "Allow the House to debate and vote on defense funding and three digital currency bills",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-3944",
+          "one_liner": "Fund military construction and veterans programs for 2026",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3944",
+          "one_liner": "Fund military construction and veterans programs for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3944",
+          "one_liner": "Fund military construction and veterans programs for 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-530",
+          "one_liner": "Allow the House to vote on military funding and immigration bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-530",
+          "one_liner": "Allow the House to vote on military funding and immigration bills",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1286",
+          "one_liner": "Require the VA to get help making veterans' forms clearer",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-530",
+          "one_liner": "Require the VA to study cancer rates in veterans who flew military aircraft",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1228",
+          "one_liner": "Move the veterans' survivors assistance office to report directly to the VA Secretary",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-586",
+          "one_liner": "Require the VA to study bile duct cancer rates in Vietnam veterans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1039",
+          "one_liner": "Require the VA to study and improve benefit notices sent to veterans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-695",
+          "one_liner": "Increase monthly pension for Medal of Honor recipients and create pension for surviving spouses",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-818",
+          "one_liner": "Require agencies to track first-time contracts to veteran-owned and minority-owned small businesses",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-186",
+          "one_liner": "Require a Medal of Honor monument be located on the National Mall",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "category": "Jobs & Workers",
+      "in_favor": 24,
+      "against": 10,
+      "total": 44,
+      "verdict": "Voted in favor of 24 of 44 jobs & workers measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-4294",
+          "one_liner": "MAWS Act of 2026",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-3971",
+          "one_liner": "Small Business Innovation and Economic Security Act",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-5763",
+          "one_liner": "Cut down payment requirements for Small Business Administration property loans by 5%",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-5764",
+          "one_liner": "Require business centers to help small businesses learn about artificial intelligence",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-988",
+          "one_liner": "Set up House votes on five bills changing workplace and retirement investing rules",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-988",
+          "one_liner": "Set up House votes on five bills changing workplace and retirement investing rules",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-2262",
+          "one_liner": "Stop counting voluntary training as paid work time",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-2262",
+          "one_liner": "Stop counting voluntary training as paid work time",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2270",
+          "one_liner": "Stop counting employer-paid childcare and eldercare when calculating overtime pay",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2312",
+          "one_liner": "Change who can be paid the lower $2.13 tipped worker wage",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-6500",
+          "one_liner": "Extend no-tax imports from 32 African countries through 2028",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3383",
+          "one_liner": "Remove SEC limits on how much investment funds can put into private funds",
+          "vote": "No",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3383",
+          "one_liner": "Remove SEC limits on how much investment funds can put into private funds",
+          "vote": "Aye",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3383",
+          "one_liner": "Remove SEC limits on how much investment funds can put into private funds",
+          "vote": "Aye",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3383",
+          "one_liner": "Remove SEC limits on how much investment funds can put into private funds",
+          "vote": "Aye",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-432",
+          "one_liner": "Cancel an executive order that limited federal workers' union rights",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2550",
+          "one_liner": "Cancel an Executive Order that removed union rights from some federal agencies",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-432",
+          "one_liner": "Cancel an executive order that limited federal workers' union rights",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2965",
+          "one_liner": "Limit costs from new rules on small businesses to zero each year",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4305",
+          "one_liner": "Keep running a hotline for small businesses to report problems with federal rules",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-916",
+          "one_liner": "Allow House votes on bills about college athlete pay, China in schools, and business rules",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-916",
+          "one_liner": "Allow House votes on bills about college athlete pay, China in schools, and business rules",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hconres-58",
+          "one_liner": "Denounce socialism and oppose socialist policies in the United States",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4216",
+          "one_liner": "Review which military equipment companies can sell directly to foreign countries",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-3351",
+          "one_liner": "Remove paperwork rules for a government office that helps small businesses get money",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3394",
+          "one_liner": "Expand who can invest in certain private investment deals to include people with professional knowledge",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3422",
+          "one_liner": "Expand an SEC office that helps small businesses raise money",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2035",
+          "one_liner": "Require all Transportation Department cargo shipped by sea to use U.S.-flagged ships",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2966",
+          "one_liner": "Limit Small Business Administration loans to US citizens and permanent residents",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2987",
+          "one_liner": "Limit for-profit lenders that can make government-backed small business loans to 16 companies",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2987",
+          "one_liner": "Limit for-profit lenders that can make government-backed small business loans to 16 companies",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1642",
+          "one_liner": "Require business centers to help small businesses hire trade school graduates",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1804",
+          "one_liner": "Require the SBA to report yearly on loan agents helping small businesses",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1263",
+          "one_liner": "Tell the State Department to work with Japan, Australia, and India on security and economic issues",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1156",
+          "one_liner": "Extend the time limit to prosecute unemployment fraud from 5 to 10 years",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-788",
+          "one_liner": "Require the Energy Department and Small Business Administration to work together on research",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-804",
+          "one_liner": "Require outreach to rural small businesses for disaster assistance",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-825",
+          "one_liner": "Block people convicted of COVID loan fraud from getting Small Business Administration help",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-832",
+          "one_liner": "Expand Small Business Administration advocacy to include international work",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-818",
+          "one_liner": "Require agencies to track first-time contracts to veteran-owned and minority-owned small businesses",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-736",
+          "one_liner": "Extend deadline for companies to file ownership information by one year",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-5",
+          "one_liner": "Set operating rules for the House of Representatives for 2025-2026",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-5",
+          "one_liner": "Set operating rules for the House of Representatives for 2025-2026",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-5",
+          "one_liner": "Set operating rules for the House of Representatives for 2025-2026",
+          "vote": "Nay",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "category": "Immigration",
+      "in_favor": 15,
+      "against": 9,
+      "total": 38,
+      "verdict": "Voted in favor of 15 of 38 immigration measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-1958",
+          "one_liner": "Deporting Fraudsters Act of 2026",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1115",
+          "one_liner": "Providing for consideration of the bill (H.R. 556) to prohibit the Secretary of the Interior and the Secretary of Agriculture from prohibiting the use of lead ammunition or tackle on certain Federal land or water under the jurisdiction of the Secretary of the Interior and the Secretary of Agriculture, and for other purposes; providing for consideration of the bill (H.R. 1958) to amend the Immigration and Nationality Act to clarify that aliens who have been convicted of defrauding the United States Government or the unlawful receipt of public benefits are inadmissible and deportable; providing for consideration of the bill (H.R. 4638) to amend the Immigration and Nationality Act to provide that an alien who has been convicted of harming animals used in law enforcement is inadmissible and deportable, and for other purposes; and relating to consideration of motions to suspend the rules.",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1115",
+          "one_liner": "Providing for consideration of the bill (H.R. 556) to prohibit the Secretary of the Interior and the Secretary of Agriculture from prohibiting the use of lead ammunition or tackle on certain Federal land or water under the jurisdiction of the Secretary of the Interior and the Secretary of Agriculture, and for other purposes; providing for consideration of the bill (H.R. 1958) to amend the Immigration and Nationality Act to clarify that aliens who have been convicted of defrauding the United States Government or the unlawful receipt of public benefits are inadmissible and deportable; providing for consideration of the bill (H.R. 4638) to amend the Immigration and Nationality Act to provide that an alien who has been convicted of harming animals used in law enforcement is inadmissible and deportable, and for other purposes; and relating to consideration of motions to suspend the rules.",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-7744",
+          "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7744",
+          "one_liner": "Fund the Department of Homeland Security and end its shutdown for 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4371",
+          "one_liner": "Add requirements for placing immigrant children without parents",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4371",
+          "one_liner": "Add requirements for placing immigrant children without parents",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3486",
+          "one_liner": "Increase prison sentences for non-citizens who enter illegally and commit crimes",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-682",
+          "one_liner": "Allow the House to vote on military funding and immigration enforcement bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-682",
+          "one_liner": "Allow the House to vote on military funding and immigration enforcement bills",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-875",
+          "one_liner": "Make drunk driving a reason to deport non-citizens or block them from entering",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-275",
+          "one_liner": "Require monthly reports on non-citizens trying to enter illegally who may pose security risks",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-530",
+          "one_liner": "Allow the House to vote on military funding and immigration bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-530",
+          "one_liner": "Allow the House to vote on military funding and immigration bills",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2056",
+          "one_liner": "Require Washington DC to cooperate with federal immigration enforcement",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2056",
+          "one_liner": "Require Washington DC to cooperate with federal immigration enforcement",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-489",
+          "one_liner": "Set up House votes on four bills about DC voting, immigration, police, and fentanyl",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-489",
+          "one_liner": "Set up House votes on four bills about DC voting, immigration, police, and fentanyl",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-884",
+          "one_liner": "Stop non-citizens from voting in Washington DC elections",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-2966",
+          "one_liner": "Limit Small Business Administration loans to US citizens and permanent residents",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2931",
+          "one_liner": "Force Small Business Administration offices out of cities that don't help immigration officials",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2931",
+          "one_liner": "Force Small Business Administration offices out of cities that don't help immigration officials",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-458",
+          "one_liner": "Allow the House to debate four bills about opioids, small business, and immigration",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-458",
+          "one_liner": "Allow the House to debate four bills about opioids, small business, and immigration",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-22",
+          "one_liner": "Require documents proving US citizenship to register to vote in federal elections",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-22",
+          "one_liner": "Require documents proving US citizenship to register to vote in federal elections",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-495",
+          "one_liner": "Require annual reports on border tunnel defense plans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-993",
+          "one_liner": "Require border patrol to plan new AI and sensor technology for border security",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-35",
+          "one_liner": "Make it a federal crime to flee Border Patrol agents within 100 miles of the border",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-53",
+          "one_liner": "Let the House vote on two bills about forest management and immigration detention",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-53",
+          "one_liner": "Let the House vote on two bills about forest management and immigration detention",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-5",
+          "one_liner": "Require detention of non-citizens arrested for theft, burglary, or shoplifting",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-30",
+          "one_liner": "Block and deport non-citizens who commit crimes against women and children",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-30",
+          "one_liner": "Block and deport non-citizens who commit crimes against women and children",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-29",
+          "one_liner": "Require holding non-citizens arrested for theft or break-ins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Money in Politics",
+      "in_favor": 9,
+      "against": 4,
+      "total": 30,
+      "verdict": "Voted in favor of 9 of 30 money in politics measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-1531",
+          "one_liner": "Require federal agencies to exclude China from international financial groups if China threatens Taiwan",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1014",
+          "one_liner": "Set rules for Congress to vote on two government spending bills for 2026",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1014",
+          "one_liner": "Set rules for Congress to vote on two government spending bills for 2026",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1014",
+          "one_liner": "Set rules for Congress to vote on two government spending bills for 2026",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-7006",
+          "one_liner": "Fund the Treasury, State Department, federal courts and foreign aid programs for 2026",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7006",
+          "one_liner": "Fund the Treasury, State Department, federal courts and foreign aid programs for 2026",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7006",
+          "one_liner": "Fund the Treasury, State Department, federal courts and foreign aid programs for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-780",
+          "one_liner": "Set rules for how Congress will debate bill H.R. 1834",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-780",
+          "one_liner": "Set rules for how Congress will debate bill H.R. 1834",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-6019",
+          "one_liner": "Cancel a rule letting Senators sue the government over data sharing without notice",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-878",
+          "one_liner": "Formally disapprove of Representative Garc\u00eda's behavior",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-878",
+          "one_liner": "Formally disapprove of Representative Garc\u00eda's behavior",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-722",
+          "one_liner": "Allow the House to vote on government funding and a tribute resolution",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-722",
+          "one_liner": "Allow the House to vote on government funding and a tribute resolution",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-713",
+          "one_liner": "Censure Representative Ilhan Omar and remove her from two committees",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-539",
+          "one_liner": "Officially condemn Representative LaMonica McIver and remove her from the Homeland Security Committee",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-3357",
+          "one_liner": "Require companies to disclose voting power of executives and major shareholders",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1919",
+          "one_liner": "Block the Federal Reserve from creating a digital dollar",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-499",
+          "one_liner": "Set up a vote on canceling government spending the President wants to cut",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-499",
+          "one_liner": "Set up a vote on canceling government spending the President wants to cut",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-sjres-13",
+          "one_liner": "Bring back automatic approvals for some bank mergers",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-294",
+          "one_liner": "Set up House votes on four bills about financial rules, courts, and voting",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-294",
+          "one_liner": "Set up House votes on four bills about financial rules, courts, and voting",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-189",
+          "one_liner": "Vote to criticize Representative Al Green",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-189",
+          "one_liner": "Vote to criticize Representative Al Green",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-77",
+          "one_liner": "Let Congress cancel multiple government rules at once instead of one at a time",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-77",
+          "one_liner": "Let Congress cancel multiple government rules at once instead of one at a time",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-122",
+          "one_liner": "Allow Congress to overturn multiple last-minute rules in a single vote",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-122",
+          "one_liner": "Allow Congress to overturn multiple last-minute rules in a single vote",
+          "vote": "No",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-192",
+          "one_liner": "Require Amtrak to reveal executive pay and bonuses to the public",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Healthcare",
+      "in_favor": 11,
+      "against": 6,
+      "total": 25,
+      "verdict": "Voted in favor of 11 of 25 healthcare measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1009",
+          "one_liner": "Sets House rules to allow votes on pregnancy center funding, college pregnancy resources, and Minnesota land issues",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-1009",
+          "one_liner": "Sets House rules to allow votes on pregnancy center funding, college pregnancy resources, and Minnesota land issues",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-6945",
+          "one_liner": "Let states use welfare funds for pregnancy centers",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6945",
+          "one_liner": "Let states use welfare funds for pregnancy centers",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-498",
+          "one_liner": "Stop Medicaid from paying for treatments that change gender for people under 18",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-498",
+          "one_liner": "Stop Medicaid from paying for treatments that change gender for people under 18",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-953",
+          "one_liner": "Set up House votes on health insurance, medical procedures for minors, and environmental rules",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-953",
+          "one_liner": "Set up House votes on health insurance, medical procedures for minors, and environmental rules",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-458",
+          "one_liner": "Allow the House to debate four bills about opioids, small business, and immigration",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-458",
+          "one_liner": "Allow the House to debate four bills about opioids, small business, and immigration",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-2483",
+          "one_liner": "Fund drug addiction and mental health programs through 2030",
+          "vote": "Aye",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2483",
+          "one_liner": "Fund drug addiction and mental health programs through 2030",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-530",
+          "one_liner": "Require the VA to study cancer rates in veterans who flew military aircraft",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-586",
+          "one_liner": "Require the VA to study bile duct cancer rates in Vietnam veterans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-21",
+          "one_liner": "Require medical care for babies born alive after abortion attempts",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-21",
+          "one_liner": "Require medical care for babies born alive after abortion attempts",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "category": "Taxes",
+      "in_favor": 5,
+      "against": 4,
+      "total": 25,
+      "verdict": "Voted in favor of 5 of 25 taxes measures",
+      "bills": [
+        {
+          "bill_id": "119-hjres-139",
+          "one_liner": "Proposing an amendment to the Constitution of the United States requiring a balanced budget for the Federal Government.",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hjres-142",
+          "one_liner": "Cancel DC's tax law to keep federal tax cuts",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-1032",
+          "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-1032",
+          "one_liner": "Allow House votes on government funding, blocking D.C. tax changes, and mining rules",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3424",
+          "one_liner": "Require GSA to expand office space sharing among federal agencies",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-566",
+          "one_liner": "Let the House accept or reject a Senate amendment to H.R. 1",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-566",
+          "one_liner": "Let the House accept or reject a Senate amendment to H.R. 1",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-436",
+          "one_liner": "Set rules for the House to vote on budget bill H.R. 1",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-436",
+          "one_liner": "Set rules for the House to vote on budget bill H.R. 1",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-436",
+          "one_liner": "Set rules for the House to vote on budget bill H.R. 1",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-436",
+          "one_liner": "Set rules for the House to vote on budget bill H.R. 1",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hconres-14",
+          "one_liner": "Set federal spending rules and tell committees to write budget bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-313",
+          "one_liner": "Set House rules to vote on Senate budget changes and pause a national emergency countdown",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-313",
+          "one_liner": "Set House rules to vote on Senate budget changes and pause a national emergency countdown",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1491",
+          "one_liner": "Count disaster-related tax deadline delays as extensions for tax refunds",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-517",
+          "one_liner": "Let the IRS postpone tax deadlines for state-declared disasters and extend automatic extensions",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-997",
+          "one_liner": "Let the office that helps taxpayers hire their own lawyers",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-211",
+          "one_liner": "Allow House votes on digital asset tax rules, unemployment fraud limits, and government funding",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-211",
+          "one_liner": "Allow House votes on digital asset tax rules, unemployment fraud limits, and government funding",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hjres-25",
+          "one_liner": "Cancel an IRS rule requiring crypto brokers to report sales to the government",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hconres-14",
+          "one_liner": "Set federal spending rules and tell committees to write budget bills",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-33",
+          "one_liner": "Cut tax rates for Taiwan residents on income from U.S. sources",
+          "vote": "Yea",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Education",
+      "in_favor": 9,
+      "against": 8,
+      "total": 24,
+      "verdict": "Voted in favor of 9 of 24 education measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-6472",
+          "one_liner": "Require colleges to charge in-state tuition rates to students from U.S. territories",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6359",
+          "one_liner": "Require colleges to give students information about pregnancy resources and help",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6359",
+          "one_liner": "Require colleges to give students information about pregnancy resources and help",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-284",
+          "one_liner": "Extend the Congressional Award Program for youth through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3187",
+          "one_liner": "Give one acre of Forest Service land to Perry County Arkansas for public use",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1069",
+          "one_liner": "Block federal funding to schools with Chinese government partnerships",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1049",
+          "one_liner": "Require schools to tell parents about foreign money and influence in their schools",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1005",
+          "one_liner": "Stop public schools from taking money from China's government",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-916",
+          "one_liner": "Allow House votes on bills about college athlete pay, China in schools, and business rules",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-916",
+          "one_liner": "Allow House votes on bills about college athlete pay, China in schools, and business rules",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1642",
+          "one_liner": "Require business centers to help small businesses hire trade school graduates",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1223",
+          "one_liner": "Require NSF to create a plan for upgrading internet and computer security on research ships",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-881",
+          "one_liner": "Stop DHS funding to colleges with ties to Chinese government programs",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-377",
+          "one_liner": "Set up House votes on renaming the Gulf of Mexico and restricting education funding",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-377",
+          "one_liner": "Set up House votes on renaming the Gulf of Mexico and restricting education funding",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1048",
+          "one_liner": "Require colleges to report foreign money and block contracts with China and Russia",
+          "vote": "Aye",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1048",
+          "one_liner": "Require colleges to report foreign money and block contracts with China and Russia",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1048",
+          "one_liner": "Require colleges to report foreign money and block contracts with China and Russia",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1048",
+          "one_liner": "Require colleges to report foreign money and block contracts with China and Russia",
+          "vote": "No",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1048",
+          "one_liner": "Require colleges to report foreign money and block contracts with China and Russia",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hres-242",
+          "one_liner": "Set up House votes on energy rules and college foreign money disclosure",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-242",
+          "one_liner": "Set up House votes on energy rules and college foreign money disclosure",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-28",
+          "one_liner": "Ban students born male from competing in women's sports at federally funded schools",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-28",
+          "one_liner": "Ban students born male from competing in women's sports at federally funded schools",
+          "vote": "Nay",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Cost of Living",
+      "in_favor": 13,
+      "against": 3,
+      "total": 22,
+      "verdict": "Voted in favor of 13 of 22 cost of living measures",
+      "bills": [
+        {
+          "bill_id": "119-hjres-139",
+          "one_liner": "Proposing an amendment to the Constitution of the United States requiring a balanced budget for the Federal Government.",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-6472",
+          "one_liner": "Require colleges to charge in-state tuition rates to students from U.S. territories",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6504",
+          "one_liner": "Extend duty-free rules for clothing imports from Haiti through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-131",
+          "one_liner": "Cut costs for Colorado communities paying for a water pipeline project",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-5371",
+          "one_liner": "Keep government funded through November 2025 and extend expiring programs",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-5371",
+          "one_liner": "Keep government funded through November 2025 and extend expiring programs",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-5371",
+          "one_liner": "Keep government funded through November 2025 and extend expiring programs",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-3095",
+          "one_liner": "Give unique ZIP codes to 74 communities across the United States",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-590",
+          "one_liner": "Approve cuts to government spending that the President requested",
+          "vote": "No",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-590",
+          "one_liner": "Approve cuts to government spending that the President requested",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1402",
+          "one_liner": "Require ticket sellers to show total prices and fees upfront",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-28",
+          "one_liner": "Cancel a rule letting government check on large payment apps",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-18",
+          "one_liner": "Cancel a rule capping overdraft fees at $5 for large banks",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hres-282",
+          "one_liner": "Schedule House votes on canceling bank rules and requiring citizenship proof to vote",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hres-282",
+          "one_liner": "Schedule House votes on canceling bank rules and requiring citizenship proof to vote",
+          "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1968",
+          "one_liner": "Fund federal agencies through September 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1968",
+          "one_liner": "Fund federal agencies through September 2025",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-692",
+          "one_liner": "Require the U.S. to pressure China on currency policies at the IMF",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Housing",
+      "in_favor": 3,
+      "against": 1,
+      "total": 4,
+      "verdict": "Voted in favor of 3 of 4 housing measures",
+      "bills": [
+        {
+          "bill_id": "119-s-723",
+          "one_liner": "Set time limits for government approval of mortgages on tribal trust land",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6644",
+          "one_liner": "Expand federal housing programs and increase government funding for housing",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-5184",
+          "one_liner": "Cancel federal energy rules for manufactured housing",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-43",
+          "one_liner": "Let Alaska Native village corporations keep their lands instead of giving them to municipalities",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Social Security & Retirement",
+      "in_favor": 3,
+      "against": 1,
+      "total": 4,
+      "verdict": "Voted in favor of 3 of 4 social security & retirement measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-2988",
+          "one_liner": "Require retirement plan managers to focus on financial returns when investing workers' money",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2988",
+          "one_liner": "Require retirement plan managers to focus on financial returns when investing workers' money",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-2988",
+          "one_liner": "Require retirement plan managers to focus on financial returns when investing workers' money",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-5348",
+          "one_liner": "Give children under 14 new Social Security numbers if their card is lost in mail",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    }
+  ],
   "votes": [
     {
       "bill_number": "H.Con.Res. 84",
