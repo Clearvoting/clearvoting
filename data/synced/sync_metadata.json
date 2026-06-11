@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-06-10T22:52:58.456305+00:00",
+  "last_sync": "2026-06-11T17:19:22.926684+00:00",
   "states_synced": [
     "NY",
     "FL",
@@ -14,15 +14,20 @@
   "member_votes_count": 0,
   "donations_stats": {},
   "summary_stats": {
-    "total": 757,
-    "passed": 0,
-    "failed": 757,
-    "needs_review": []
+    "total": 612,
+    "passed": 93,
+    "failed": 519,
+    "needs_review": [
+      "117-hres-330",
+      "117-hres-829",
+      "118-hr-4691",
+      "118-hr-4763"
+    ]
   },
   "arguments_stats": {
-    "total": 92,
+    "total": 334,
     "passed": 0,
-    "failed": 92,
+    "failed": 334,
     "needs_review": []
   },
   "member_summary_stats": {

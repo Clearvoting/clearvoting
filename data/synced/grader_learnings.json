@@ -5,9 +5,11 @@
       "Excellent summary that meets all quality standards. Clear, factual language with appropriate reading level. Good inclusion of specific dollar amounts and timeframe. All provisions accurately reflect the bill's content without bias or jargon.",
       "Excellent summary that clearly explains the bill's purpose and provisions in simple language. Good use of plain English alternatives like 'legal deals' for deferred prosecution agreements and inclusion of specific percentage changes (60% to 75%). All provisions are accurately captured and appropriately simplified for general readers.",
       "Excellent summary that meets all quality standards. Clear, accessible language that accurately describes this Congressional Review Act disapproval resolution. Good use of plain English like 'cancel' instead of 'nullify.' Appropriate inclusion of the October 2024 date and specific appliance types. Correct 'against' direction for a rule cancellation. All provisions accurately reflect the rule's scope without jargon.",
-      "Excellent summary. Clear, accessible language that accurately captures the bill's core restrictions and definitions. The data broker explanation is especially well done. One minor note: 'bank account numbers' is slightly narrower than the bill's 'financial account numbers,' which also covers investment and retirement accounts \u2014 consider 'financial account numbers like bank or investment accounts' in a future pass. Otherwise all criteria met.",
-      "Strong summary. Plain language throughout, accurate representation of a non-binding resolution, and appropriate direction for pro-enforcement immigration stance. All legislative jargon successfully simplified: MPP becomes 'a program that sent people seeking asylum back to Mexico,' cooperative agreements become 'make deals with other countries,' and 'inadmissible non-U.S. nationals' becomes 'non-citizens who try to enter the country without permission.' The fourth provision correctly captures the resolution's critical framing of the administration's inaction, which is essential to understanding the bill's purpose.",
-      "Strong summary overall \u2014 plain language, accurate provisions, and good substitutions (government money for appropriated funds, main office for principal office, supplies or services for in-kind contributions). One fix needed: Provision 1 runs 28 words, which exceeds the 25-word limit. Split it: 'Lets the Marine Debris Foundation spend up to 12% of its government money on running costs, including staff salaries.' Then add a second sentence: 'This covers the first two years after the bill passes.' All other provisions are clean and within limits."
+      "Excellent summary. Clear, plain-language description of a transparency and oversight bill. All provisions accurately reflect the official summary. Reading level is appropriate, no jargon, no bias, and direction is correctly marked as 'in_favor' since the bill creates new reporting and oversight requirements for VA COVID funds.",
+      "Strong summary. Plain language throughout, accurate representation of the bill's scope, and correct neutral direction for a study-and-report bill. The fourth provision uses 'authentication' which is slightly technical, but it's immediately contextualized ('methods used to protect calls, texts, and devices') making it accessible. The one-liner accurately distills the bill's purpose. 'Safety & Crime' as the issue category is a reasonable fit for cybersecurity, though a 'Technology' or 'National Security' category (if available) would be more precise. No legislative jargon, no bias, and all provisions accurately reflect the original without overstating the bill's effect.",
+      "Strong, readable summary overall. One minor issue: Provision 3 says teams 'connect those students with mental health support' \u2014 the source text says teams 'address associated behavioral health issues,' which is slightly broader than mental health support specifically (it could include substance use or behavioral interventions). Consider: 'The teams help those students get support for behavioral or mental health concerns.' The one-liner is right at the 15-word limit and works well. 'Best practices' in Provision 1 is mild professional jargon but widely understood and not legislative language \u2014 acceptable. All other provisions accurately reflect the bill. Direction and structure are correct.",
+      "Strong summary overall. Accurate, plain-language, and well-structured. Two minor issues: (1) The issue category 'Safety & Crime' is a weak fit \u2014 this is a congressional administrative action about committee membership, not a safety or crime matter. A 'Government & Elections' or 'Congressional Operations' category (if available in the allowed list) would be more accurate. (2) Provision 1 uses the formal name 'House Permanent Select Committee on Intelligence' while the one-liner uses the simplified 'House Intelligence Committee' \u2014 both are accurate, but the inconsistency within the same summary is worth flagging. Provision 2 adds helpful, accessible context about what the committee does, which is a good call given that most readers won't know why committee membership matters. Provision 3 correctly explains the procedural scope (House-only, no Senate or Presidential action needed). Direction 'neutral' is appropriate for an internal House administrative action with no policy effect.",
+      "Strong, accurate summary of a procedural rule. Plain language throughout, correct neutral direction, and clear descriptions of both underlying bills. One structural gap: the checklist requires 3\u20137 provisions, and this summary has only 2. For a two-bill rule, a third provision is achievable \u2014 for example, a general statement like 'Sets the overall debate framework for both bills to be handled together under one rule.' No other issues."
     ],
     "batch_history": [
       {
@@ -79,34 +81,42 @@
         ]
       },
       {
-        "timestamp": "2026-06-10T20:33:13.867537+00:00",
-        "total": 792,
-        "passed": 34,
-        "failed": 758,
+        "timestamp": "2026-06-11T14:48:22.313819+00:00",
+        "total": 707,
+        "passed": 91,
+        "failed": 616,
         "grade_distribution": {
-          "A": 14,
-          "B": 20,
-          "C": 1,
+          "A": 50,
+          "B": 41,
+          "C": 4,
           "D": 0,
           "F": 0
         },
         "needs_review_ids": [
-          "117-hr-1"
+          "117-hr-3005",
+          "117-hr-4",
+          "117-hr-4686",
+          "117-hres-166"
         ]
       },
       {
-        "timestamp": "2026-06-10T22:49:07.803432+00:00",
-        "total": 757,
-        "passed": 0,
-        "failed": 757,
+        "timestamp": "2026-06-11T17:14:37.022093+00:00",
+        "total": 612,
+        "passed": 93,
+        "failed": 519,
         "grade_distribution": {
-          "A": 0,
-          "B": 0,
-          "C": 0,
+          "A": 33,
+          "B": 60,
+          "C": 4,
           "D": 0,
           "F": 0
         },
-        "needs_review_ids": []
+        "needs_review_ids": [
+          "117-hres-330",
+          "117-hres-829",
+          "118-hr-4691",
+          "118-hr-4763"
+        ]
       }
     ]
   },
@@ -170,7 +180,7 @@
         "needs_review_ids": []
       },
       {
-        "timestamp": "2026-06-10T21:51:00.948449+00:00",
+        "timestamp": "2026-06-11T14:56:33.799536+00:00",
         "total": 0,
         "passed": 0,
         "failed": 0,
@@ -184,7 +194,7 @@
         "needs_review_ids": []
       },
       {
-        "timestamp": "2026-06-10T22:49:56.795494+00:00",
+        "timestamp": "2026-06-11T17:16:26.012352+00:00",
         "total": 0,
         "passed": 0,
         "failed": 0,
@@ -232,10 +242,10 @@
         ]
       },
       {
-        "timestamp": "2026-06-10T20:33:38.615943+00:00",
-        "total": 92,
+        "timestamp": "2026-06-11T14:49:28.556570+00:00",
+        "total": 237,
         "passed": 0,
-        "failed": 92,
+        "failed": 237,
         "grade_distribution": {
           "A": 0,
           "B": 0,
@@ -246,10 +256,10 @@
         "needs_review_ids": []
       },
       {
-        "timestamp": "2026-06-10T22:49:30.974121+00:00",
-        "total": 92,
+        "timestamp": "2026-06-11T17:16:03.129913+00:00",
+        "total": 334,
         "passed": 0,
-        "failed": 92,
+        "failed": 334,
         "grade_distribution": {
           "A": 0,
           "B": 0,

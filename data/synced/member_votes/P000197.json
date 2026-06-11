@@ -17,8 +17,8 @@
       "category": "Safety & Crime",
       "in_favor": 110,
       "against": 104,
-      "total": 287,
-      "verdict": "Voted in favor of 110 of 287 safety & crime measures",
+      "total": 293,
+      "verdict": "Voted in favor of 110 of 293 safety & crime measures",
       "bills": [
         {
           "bill_id": "119-hr-1958",
@@ -1719,6 +1719,12 @@
           "direction": "in_favor"
         },
         {
+          "bill_id": "117-hr-3325",
+          "one_liner": "To award four congressional gold medals to the United States Capitol Police and those who protected the U.S. Capitol on January 6, 2021.",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
           "bill_id": "117-hr-3237",
           "one_liner": "Give $1.9 billion to fix Capitol damage and boost security after January 6th attack",
           "vote": "Yea",
@@ -1731,8 +1737,38 @@
           "direction": "in_favor"
         },
         {
+          "bill_id": "117-hres-130",
+          "one_liner": "Condemning the continued violation of rights and freedoms of the people of Hong Kong by the People's Republic of China and the Government of the Hong Kong Special Administrative Region.",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hres-134",
+          "one_liner": "Condemning the military coup that took place on February 1, 2021, in Burma and the Burmese military detention of civilian leaders, calling for the release of all those detained and for those elected to serve in Parliament to resume their duties, and for other purposes.",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-1620",
+          "one_liner": "Violence Against Women Act Reauthorization Act of 2021",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
           "bill_id": "117-hr-1085",
           "one_liner": "To award three congressional gold medals to the United States Capitol Police and those who protected the U.S. Capitol on January 6, 2021.",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-8",
+          "one_liner": "Bipartisan Background Checks Act of 2021",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-1280",
+          "one_liner": "George Floyd Justice in Policing Act of 2021",
           "vote": "Yea",
           "direction": "neutral"
         },
@@ -3473,8 +3509,8 @@
       "category": "Veterans & Military",
       "in_favor": 49,
       "against": 85,
-      "total": 174,
-      "verdict": "Voted against 85 of 174 veterans & military measures",
+      "total": 178,
+      "verdict": "Voted against 85 of 178 veterans & military measures",
       "bills": [
         {
           "bill_id": "119-hconres-38",
@@ -3918,6 +3954,12 @@
           "bill_id": "119-hr-186",
           "one_liner": "Require a Medal of Honor monument be located on the National Mall",
           "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "118-hres-1143",
+          "one_liner": "Condemning Iran's unprecedented drone and missile attack on Israel.",
+          "vote": "Yea",
           "direction": "neutral"
         },
         {
@@ -4509,10 +4551,28 @@
           "direction": "in_favor"
         },
         {
+          "bill_id": "117-hr-5323",
+          "one_liner": "Iron Dome Supplemental Appropriations Act, 2022",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
           "bill_id": "117-hr-4373",
           "one_liner": "Fund State Department and international aid programs",
           "vote": "Yea",
           "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3005",
+          "one_liner": "To direct the Joint Committee on the Library to replace the bust of Roger Brooke Taney in the Old Supreme Court Chamber of the United States Capitol with a bust of Thurgood Marshall to be obtained by the Joint Committee on the Library and to remove certain statues from areas of the United States Capitol which are accessible to the public, to remove all statues of individuals who voluntarily served the Confederate States of America from display in the United States Capitol, and for other purposes.",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-256",
+          "one_liner": "To repeal the Authorization for Use of Military Force Against Iraq Resolution of 2002.",
+          "vote": "Yea",
+          "direction": "neutral"
         },
         {
           "bill_id": "117-hr-1085",
@@ -4526,8 +4586,8 @@
       "category": "Jobs & Workers",
       "in_favor": 57,
       "against": 61,
-      "total": 146,
-      "verdict": "Voted against 61 of 146 jobs & workers measures",
+      "total": 148,
+      "verdict": "Voted against 61 of 148 jobs & workers measures",
       "bills": [
         {
           "bill_id": "119-hr-4294",
@@ -5400,10 +5460,22 @@
           "direction": "in_favor"
         },
         {
+          "bill_id": "117-hr-842",
+          "one_liner": "Protecting the Right to Organize Act of 2021",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
           "bill_id": "117-hr-1319",
           "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
           "vote": "Yea",
           "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5",
+          "one_liner": "Equality Act",
+          "vote": "Yea",
+          "direction": "neutral"
         }
       ]
     },
@@ -5954,8 +6026,8 @@
       "category": "Immigration",
       "in_favor": 21,
       "against": 24,
-      "total": 87,
-      "verdict": "Voted against 24 of 87 immigration measures",
+      "total": 88,
+      "verdict": "Voted against 24 of 88 immigration measures",
       "bills": [
         {
           "bill_id": "119-hr-1958",
@@ -6478,6 +6550,12 @@
           "one_liner": "Uyghur Forced Labor Prevention Act",
           "vote": "Yea",
           "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-6",
+          "one_liner": "American Dream and Promise Act of 2021",
+          "vote": "Yea",
+          "direction": "neutral"
         }
       ]
     },
@@ -6485,8 +6563,8 @@
       "category": "Healthcare",
       "in_favor": 37,
       "against": 20,
-      "total": 70,
-      "verdict": "Voted in favor of 37 of 70 healthcare measures",
+      "total": 71,
+      "verdict": "Voted in favor of 37 of 71 healthcare measures",
       "bills": [
         {
           "bill_id": "119-hr-7148",
@@ -6907,6 +6985,12 @@
           "one_liner": "Block state and local laws that restrict abortion services",
           "vote": "Yea",
           "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4502",
+          "one_liner": "Labor, Health and Human Services, Education, Agriculture, Rural Development, Energy and Water Development, Financial Services and General Government, Interior, Environment, Military Construction, Veterans Affairs, Transportation, and Housing and Urban Development Appropriations Act, 2022",
+          "vote": "Yea",
+          "direction": "neutral"
         }
       ]
     },
@@ -6914,8 +6998,8 @@
       "category": "Education",
       "in_favor": 24,
       "against": 15,
-      "total": 60,
-      "verdict": "Voted in favor of 24 of 60 education measures",
+      "total": 61,
+      "verdict": "Voted in favor of 24 of 61 education measures",
       "bills": [
         {
           "bill_id": "119-hr-6472",
@@ -7276,6 +7360,12 @@
           "one_liner": "Fund education and healthcare programs while raising taxes",
           "vote": "Yea",
           "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4502",
+          "one_liner": "Labor, Health and Human Services, Education, Agriculture, Rural Development, Energy and Water Development, Financial Services and General Government, Interior, Environment, Military Construction, Veterans Affairs, Transportation, and Housing and Urban Development Appropriations Act, 2022",
+          "vote": "Yea",
+          "direction": "neutral"
         }
       ]
     },
@@ -7604,8 +7694,8 @@
       "category": "Money in Politics",
       "in_favor": 11,
       "against": 7,
-      "total": 42,
-      "verdict": "Voted in favor of 11 of 42 money in politics measures",
+      "total": 43,
+      "verdict": "Voted in favor of 11 of 43 money in politics measures",
       "bills": [
         {
           "bill_id": "119-hr-1531",
@@ -7854,6 +7944,12 @@
           "direction": "in_favor"
         },
         {
+          "bill_id": "117-hr-4",
+          "one_liner": "John R. Lewis Voting Rights Advancement Act of 2021",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
           "bill_id": "117-hr-1",
           "one_liner": "For the People Act of 2021",
           "vote": "Yea",
@@ -7865,8 +7961,8 @@
       "category": "Housing",
       "in_favor": 5,
       "against": 2,
-      "total": 10,
-      "verdict": "Voted in favor of 5 of 10 housing measures",
+      "total": 12,
+      "verdict": "Voted in favor of 5 of 12 housing measures",
       "bills": [
         {
           "bill_id": "119-s-723",
@@ -7926,6 +8022,18 @@
           "bill_id": "118-hres-524",
           "one_liner": "Set up House votes on mortgage fees, health insurance, and school shelters",
           "vote": "No",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-1620",
+          "one_liner": "Violence Against Women Act Reauthorization Act of 2021",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-5",
+          "one_liner": "Equality Act",
+          "vote": "Yea",
           "direction": "neutral"
         }
       ]

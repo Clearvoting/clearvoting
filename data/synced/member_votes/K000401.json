@@ -3358,8 +3358,8 @@
       "category": "Veterans & Military",
       "in_favor": 88,
       "against": 47,
-      "total": 168,
-      "verdict": "Voted in favor of 88 of 168 veterans & military measures",
+      "total": 169,
+      "verdict": "Voted in favor of 88 of 169 veterans & military measures",
       "bills": [
         {
           "bill_id": "119-hconres-38",
@@ -3804,6 +3804,12 @@
           "one_liner": "Require a Medal of Honor monument be located on the National Mall",
           "vote": "Yea",
           "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hres-1143",
+          "one_liner": "Condemning Iran's unprecedented drone and missile attack on Israel.",
+          "vote": "Yea",
+          "direction": "neutral"
         },
         {
           "bill_id": "118-hres-1102",
