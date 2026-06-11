@@ -1,10 +1,41 @@
 {
-  "last_sync": "2026-06-06T11:16:09.419899+00:00",
+  "last_sync": "2026-06-10T22:52:58.456305+00:00",
   "states_synced": [
     "NY",
     "FL",
     "CA",
     "TX"
   ],
-  "incremental": true
+  "ai_only": true,
+  "members_count": 0,
+  "bills_count": 0,
+  "senate_votes_count": 0,
+  "house_votes_count": 0,
+  "member_votes_count": 0,
+  "donations_stats": {},
+  "summary_stats": {
+    "total": 757,
+    "passed": 0,
+    "failed": 757,
+    "needs_review": []
+  },
+  "arguments_stats": {
+    "total": 92,
+    "passed": 0,
+    "failed": 92,
+    "needs_review": []
+  },
+  "member_summary_stats": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0,
+    "needs_review": []
+  },
+  "coherence_stats": {
+    "total": 79,
+    "coherent": 79,
+    "incoherent": 0,
+    "fixed": 0,
+    "contradictions": []
+  }
 }
