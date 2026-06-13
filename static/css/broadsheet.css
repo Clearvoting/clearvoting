@@ -436,3 +436,20 @@ body.broadsheet .about-section-highlight { border: 1px solid var(--rule); border
 body.broadsheet .about-data-source { background: var(--card); border-color: var(--rule); }
 body.broadsheet .about-data-source strong { font-family: var(--font-display); color: var(--navy); }
 body.broadsheet .about-data-source span { font-family: var(--font-serif); }
+
+/* ---- 404 / error page ---- */
+body.broadsheet .error-page { max-width: 540px; margin: 4rem auto; text-align: center; }
+body.broadsheet .error-page .kicker { color: var(--blue-dim); margin-bottom: 0.6rem; }
+body.broadsheet .error-page h1 { font-family: var(--font-display); font-weight: 700; color: var(--navy); font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.1; margin-bottom: 0.9rem; }
+body.broadsheet .error-page p { font-family: var(--font-serif); color: var(--ink-soft); margin-bottom: 1.25rem; }
+body.broadsheet .error-page .btn { width: auto; }
+
+/* ---- Visible focus for shared broadsheet chrome (WCAG) ---- */
+.masthead-nav a:focus-visible,
+.footer-links a:focus-visible,
+.arrow-link:focus-visible,
+body.broadsheet .back-link:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
