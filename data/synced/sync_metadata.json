@@ -1,83 +1,10 @@
 {
-  "last_sync": "2026-06-13T00:03:28.566339+00:00",
+  "last_sync": "2026-06-13T12:03:25.795381+00:00",
   "states_synced": [
     "NY",
     "FL",
     "CA",
     "TX"
   ],
-  "ai_only": true,
-  "members_count": 0,
-  "bills_count": 0,
-  "senate_votes_count": 0,
-  "house_votes_count": 0,
-  "member_votes_count": 0,
-  "donations_stats": {},
-  "summary_stats": {
-    "total": 445,
-    "passed": 82,
-    "failed": 363,
-    "needs_review": [
-      "117-hr-5641",
-      "117-hr-963",
-      "117-hr-735",
-      "117-hres-831",
-      "117-s-452",
-      "118-hres-901"
-    ]
-  },
-  "arguments_stats": {
-    "total": 492,
-    "passed": 0,
-    "failed": 492,
-    "needs_review": []
-  },
-  "member_summary_stats": {
-    "total": 0,
-    "passed": 0,
-    "failed": 0,
-    "needs_review": []
-  },
-  "coherence_stats": {
-    "total": 79,
-    "coherent": 68,
-    "incoherent": 11,
-    "fixed": 11,
-    "contradictions": [
-      "The narrative lists 'defense' as the first and implicitly primary issue area, suggesting it is Hunt's top focus. However, by total vote count, Congress is the most-voted issue area (258 total votes) \u2014 significantly ahead of Armed Forces/defense (151 total votes, which ranks 3rd). The narrative's ordering inverts the actual prominence of these two areas.",
-      "Narrative says Crockett votes most often on Congress rules with '176 votes', but the data shows Congress has 258 total votes \u2014 the largest issue area by total, not 176.",
-      "Narrative says Energy issues account for '113 votes', but the data shows Energy has 143 total votes.",
-      "Narrative implies Energy is the second most-voted issue area, but the data ranks it fourth \u2014 behind Congress (258), Economics and Public Finance (193), and Armed Forces and National Security (151).",
-      "Narrative states she voted '83 in favor' on Energy bills, but the data shows 85 in favor.",
-      "Narrative states she voted '22 against' on Energy bills, but the data shows 23 against.",
-      "Narrative states she voted '20 in favor' on Economics and Public Finance bills, but the data shows 21 in favor.",
-      "Narrative says she voted against 'funding defense, health, education, and housing for 2025', but the only matching bill in her opposed list is the military construction and VA appropriations bill for fiscal year ending September 30, 2027 \u2014 not 2025.",
-      "The narrative states Casar 'votes most often on congressional procedures, energy policy, and economic issues,' implying energy is a top-3 focus area. However, the 'where_they_focus' data shows Armed Forces and National Security ranks 3rd by total votes (151) while Energy ranks 4th (143). The correct top-3 areas by volume are Congress (258), Economics and Public Finance (193), and Armed Forces and National Security (151).",
-      "The narrative states 'on military and security matters, he more often votes against proposals than in favor of them,' but the Armed Forces and National Security scorecard shows in_favor=68 vs against=52 \u2014 meaning he votes IN FAVOR more often than against on military/security issues.",
-      "The narrative describes energy as a notable policy area ('on energy issues, he votes both in favor and against different proposals'), but energy does not appear anywhere in the issue scorecards. The top five areas are Congress, Armed Forces and National Security, Economics and Public Finance, International Affairs, and Government Operations and Politics. Energy is not among them.",
-      "Narrative lists 'energy policy' as one of the top 5 areas Green votes on, but the issue scorecard data does not include any energy category in the top 5. The actual 5th-ranked area is 'Government Operations and Politics' (170 votes). Energy is absent from the data entirely.",
-      "Narrative states Green 'votes against most... defense spending measures,' but the Armed Forces and National Security scorecard shows an exact tie: 61 in_favor and 61 against \u2014 not a majority opposition.",
-      "Narrative states Green votes against 'international affairs legislation,' but International Affairs shows a near-equal split of 44 in_favor vs. 45 against \u2014 not a clear majority opposition as the narrative implies.",
-      "Narrative states Green 'voted yes on... expanding federal housing programs,' but no housing-related bill appears anywhere in the what_they_supported list.",
-      "Narrative lists 'energy policy' as one of the top areas Doggett votes on, but the issue scorecard data shows the top 5 areas are Congress (422), Armed Forces and National Security (275), Economics and Public Finance (244), International Affairs (183), and Government Operations and Politics (170). Energy policy does not appear in the data at all.",
-      "Narrative states he 'votes against most defense' bills, but the Armed Forces and National Security scorecard shows more votes in favor (65) than against (58), meaning he actually votes in favor more often than against on defense \u2014 the opposite of what the narrative claims.",
-      "The narrative states Ellzey 'votes most often on Congress operations, energy policy, economics, defense, and foreign affairs,' listing energy policy as a top-5 focus area. However, the where_they_focus data does not include any energy policy category in the top 5. The actual 5th-ranked area is 'Government Operations and Politics' (155 total votes), not energy policy. Energy policy is absent from the focus data entirely.",
-      "Narrative lists 'energy' as a top issue area, but energy does not appear in the top 5 issue areas in the where_they_focus data; the actual 5th area is 'Government Operations and Politics'",
-      "Narrative claims she voted against 85 of 113 energy bills, but no energy category exists in the issue scorecard data at all",
-      "Narrative says she voted against 22 Congress bills, but the data shows against: 28",
-      "Narrative says she voted in favor of only 14 Congress bills, but the data shows in_favor: 17",
-      "Narrative says she voted in favor of 63 economics bills, but the data shows in_favor: 69",
-      "Narrative says she voted in favor of 67 armed forces bills, but the data shows in_favor: 83",
-      "Narrative says she voted in favor of 69 international affairs bills, but the data shows in_favor: 82",
-      "Narrative states he voted in favor of '68 of 86 defense bills' but the Armed Forces and National Security scorecard shows 76 in_favor and 46 against \u2014 neither the numerator (68 vs 76) nor the denominator (86 vs 122 directional votes) match.",
-      "Narrative states he voted in favor of '59 of 81 international affairs bills' but the International Affairs scorecard shows 70 in_favor and 13 against \u2014 both figures contradict the narrative (59 vs 70 in favor; 81 vs 83 directional votes).",
-      "Narrative states he voted in favor of '69 of 100' economic bills but the Economics and Public Finance scorecard shows 75 in_favor and 34 against out of 244 total \u2014 the in-favor count (69 vs 75) and denominator (100 vs 244 total) are both wrong.",
-      "Narrative gives prominent treatment to energy voting ('supporting only 28 of 113 energy bills') but Energy does not appear anywhere in the top issue areas. The five listed focus areas are Congress, Armed Forces and National Security, Economics and Public Finance, International Affairs, and Government Operations and Politics \u2014 energy is absent entirely.",
-      "Narrative lists 'Energy' as a top issue area, but Energy does not appear in the top 5 issue areas in the data. The 5th area is 'Government Operations and Politics', not Energy.",
-      "Narrative states Armed Forces and National Security vote counts as '50 votes in favor versus 26 against', but the data shows 66 in favor and 50 against.",
-      "Narrative states International Affairs vote counts as '46 yes votes and 22 no votes', but the data shows 58 in favor and 24 against.",
-      "Narrative states Congress total votes as '176 total', but the data shows 422 total votes in that issue area.",
-      "Narrative states Cornyn voted on Economics and Public Finance '144 votes (82 in favor, 23 against)' but the issue scorecard shows 150 total votes (87 in favor, 25 against) for that category \u2014 all three figures are wrong."
-    ]
-  }
+  "incremental": true
 }
