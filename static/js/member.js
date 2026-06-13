@@ -942,7 +942,11 @@ async function loadDonations(bioguideId) {
             contributors.slice(0, 10).forEach(c => {
                 const row = el('div', { className: 'finance-row' });
                 const info = el('div', { className: 'finance-info' });
-                info.appendChild(el('span', { className: 'finance-name' }, c.org_name));
+                const orgName = (c.org_name || '').trim();
+                const displayName = (!orgName || orgName.toUpperCase() === 'NULL')
+                    ? 'Not itemized / employer unknown'
+                    : orgName;
+                info.appendChild(el('span', { className: 'finance-name' }, displayName));
                 info.appendChild(el('span', { className: 'finance-amount' }, formatDollars(c.total)));
                 row.appendChild(info);
 

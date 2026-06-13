@@ -1,6 +1,7 @@
 {
   "member_id": "D000032",
   "congress": 119,
+  "congresses": [118, 119],
   "stats": {
     "total_votes": 3,
     "yea_count": 2,
@@ -20,7 +21,8 @@
       "policy_area": "Taxation",
       "chamber": "House",
       "cbo_deficit_impact": "+$2.3 trillion over 10 years",
-      "direction": "against"
+      "direction": "against",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 50",
@@ -32,7 +34,8 @@
       "policy_area": "Transportation and Public Works",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "in_favor"
+      "direction": "in_favor",
+      "congress": 119
     },
     {
       "bill_number": "H.R. 75",
@@ -44,7 +47,21 @@
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "in_favor"
+      "direction": "in_favor",
+      "congress": 119
+    },
+    {
+      "bill_number": "H.R. 7024",
+      "bill_id": "118-hr-7024",
+      "one_liner": "Tax Relief for American Families and Workers Act",
+      "vote": "Yea",
+      "date": "2024-01-31",
+      "result": "Bill Passed",
+      "policy_area": "Taxation",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "in_favor",
+      "congress": 118
     }
   ],
   "policy_areas": ["Taxation", "Transportation and Public Works", "Energy"]

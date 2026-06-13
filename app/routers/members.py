@@ -43,7 +43,7 @@ async def get_member_sponsored_bills(bioguide_id: str):
 @router.get("/{bioguide_id}/votes")
 async def get_member_votes(
     bioguide_id: str,
-    congress: int = Query(119, ge=1, le=200),
+    congress: int | None = Query(None, ge=1, le=200),
     limit: int = Query(20, ge=1, le=2000),
     offset: int = Query(0, ge=0),
 ):
@@ -52,7 +52,10 @@ async def get_member_votes(
     data = data_service.get_member_votes(bioguide_id)
     if not data:
         raise HTTPException(status_code=404, detail="Member not found")
-    sorted_votes = sorted(data["votes"], key=lambda v: v["date"], reverse=True)
+    votes = data["votes"]
+    if congress is not None:
+        votes = [v for v in votes if v.get("congress") == congress]
+    sorted_votes = sorted(votes, key=lambda v: v["date"], reverse=True)
     paginated = sorted_votes[offset:offset + limit]
     return {
         "member_id": data["member_id"],
@@ -86,6 +89,14 @@ async def get_member_summary(bioguide_id: str):
         summary["issue_scorecard"] = votes_data.get("scorecard", [])
 
     return summary
+
+
+@router.get("/counts")
+async def get_member_counts():
+    """Members synced per state — powers the homepage state cards with real
+    numbers rather than theoretical seat totals."""
+    data_service = get_data_service()
+    return {"counts": data_service.get_member_counts()}
 
 
 @router.get("/{state_code}/overview")

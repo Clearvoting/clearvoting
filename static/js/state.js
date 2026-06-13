@@ -27,7 +27,7 @@ let currentChamber = 'all';
 
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
-    const stateCode = params.get('code');
+    const stateCode = params.get('code') || params.get('state');
 
     if (!stateCode) {
         showError('No state specified. Go back to the home page and select a state.');
@@ -311,7 +311,11 @@ function createTableRow(member) {
         ? el('img', { className: 'table-photo', src: imageUrl, alt: '', loading: 'lazy' })
         : el('div', { className: 'table-photo-placeholder' }, initials);
 
-    const nameEl = el('span', { className: 'table-name' }, name);
+    const nameEl = el('a', {
+        className: 'table-name member-name-link',
+        href: `/member?id=${bioguideId}`,
+        'aria-label': `View profile for ${name}`,
+    }, name);
 
     const memberCell = el('td', null,
         el('div', { className: 'member-cell' },
@@ -358,7 +362,8 @@ function createTableRow(member) {
         memberCell, chamberCell, districtCell, participationCell, voteSplitCell, totalCell
     );
 
-    tr.addEventListener('click', () => {
+    tr.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
         window.location.href = `/member?id=${bioguideId}`;
     });
 
@@ -408,7 +413,11 @@ function createMobileCard(member) {
         el('div', { className: 'mobile-card-header' },
             photoEl,
             el('div', null,
-                el('div', { className: 'mobile-card-name' }, name),
+                el('a', {
+                    className: 'mobile-card-name member-name-link',
+                    href: `/member?id=${bioguideId}`,
+                    'aria-label': `View profile for ${name}`,
+                }, name),
                 el('div', { className: 'mobile-card-meta' }, meta)
             )
         ),
@@ -426,7 +435,8 @@ function createMobileCard(member) {
         voteBar
     );
 
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
         window.location.href = `/member?id=${bioguideId}`;
     });
 
