@@ -16,7 +16,9 @@
       "Strong summary with clear, accessible language and accurate provisions. Two issues to address: (1) The issue_category 'Environment & Energy' is a poor fit \u2014 this is a building code compliance and disaster mitigation loan program bill, not environmental or energy policy. A reader filtering by that category would be misled. A category like 'Government & Administration' or 'Housing & Infrastructure' (if available) would be accurate. (2) 'Small fixes' in Provision 3 uses the adjective 'small' to characterize scope \u2014 this is editorial, similar to 'modest' which the checklist explicitly flags. The bill's own title signals these are technical corrections; just write 'The bill makes fixes to how this loan program works.' All other elements are solid: sentences are under 25 words, plain language throughout, and direction 'in_favor' is defensible since the bill adds a new substantive requirement for building code compliance.",
       "Strong, accurate summary overall. One clear issue: Provision 5 uses 'The goal is to help these agencies prepare for terrorism...' \u2014 'The goal is to' is intent characterization, which the checklist explicitly prohibits alongside 'aims to' and 'seeks to.' Rewrite as a factual statement of what the bill does: 'This supports agencies in preparing for terrorism and other homeland security threats.' Additionally, Provision 4 says 'The focus is on departments in rural or hard-to-reach areas' \u2014 the original refers to 'rural or remote communities' and the agencies serving them, so 'agencies' or 'law enforcement in rural or hard-to-reach areas' is more precise than 'departments.' The word 'accreditation' appears in the one-liner and provisions without explanation, but it is the bill's core concept and widely understood at 8th-grade level \u2014 acceptable here. All other provisions are accurate, clearly written, and well-sequenced. Direction 'in_favor' is correct for a bill that creates new reporting obligations and research mandates. Structure is clean.",
       "Excellent summary. Plain language throughout, accurate provisions, and a well-structured narrative arc that builds from historical context to the bill's effect. The decision to explain the crack/powder cocaine disparity before introducing the legal timeline is a strong pedagogical choice that helps readers understand why this bill matters without editorializing. 'Low-level offenders' mirrors the official summary's own term and is immediately contextualized \u2014 acceptable. The one-liner is clean, starts with a verb, and accurately captures the bill's effect in 13 words. Direction 'in_favor' is correct: the bill expands the pool of people eligible for sentencing reductions, which falls under 'expands... rules in the issue area.' 'Safety & Crime' is a reasonable category fit for a criminal sentencing bill. No jargon, no bias, no sentences over 25 words. All provisions are factually accurate and map cleanly to the official summary.",
-      "Strong, clear summary with accurate plain-language descriptions of the bill's main components. Three issues to address: (1) Provision 7 truncates the oversight body's name as 'National Academies of Sciences' \u2014 the correct full name is 'National Academies of Sciences, Engineering, and Medicine.' This is a factual inaccuracy, not just a style choice. (2) The official summary includes two elements not covered: an interagency committee established to inform the agency's work, and a dedicated Treasury fund created to support its activities. At least one of these should be added as a provision. (3) The official summary notes the agency may partner with institutions of higher education and patient advocacy organizations \u2014 a secondary but substantive omission. 'FDA' is used without expansion but is a well-known agency in a short, clear sentence \u2014 acceptable per checklist. All other provisions are accurate, readable, and well-sequenced. Direction 'in_favor' is correct for a bill that creates a new federal agency."
+      "Strong, clear summary with accurate plain-language descriptions of the bill's main components. Three issues to address: (1) Provision 7 truncates the oversight body's name as 'National Academies of Sciences' \u2014 the correct full name is 'National Academies of Sciences, Engineering, and Medicine.' This is a factual inaccuracy, not just a style choice. (2) The official summary includes two elements not covered: an interagency committee established to inform the agency's work, and a dedicated Treasury fund created to support its activities. At least one of these should be added as a provision. (3) The official summary notes the agency may partner with institutions of higher education and patient advocacy organizations \u2014 a secondary but substantive omission. 'FDA' is used without expansion but is a well-known agency in a short, clear sentence \u2014 acceptable per checklist. All other provisions are accurate, readable, and well-sequenced. Direction 'in_favor' is correct for a bill that creates a new federal agency.",
+      "Excellent summary. Plain language throughout, accurate core provisions, and correct direction. All six provisions map cleanly to the bill's major components: DHS authority to grant permanent status, deportation pause during review, pre-removal veteran checks, deadline extensions, the advisory committee, and interagency citizenship coordination. Two elements from the official summary go unmentioned \u2014 (1) DHS's ability to waive certain grounds that would normally block someone from staying (except for crimes or security concerns), and (2) the requirement that veteran status be formally considered in immigration proceedings \u2014 but both are secondary to the provisions covered and omitting them in a six-provision summary is reasonable. The one-liner is clean, starts with a verb, and is 11 words. All sentences are at or under 25 words. No jargon, no bias, no editorial framing. Issue categories are an accurate fit. Direction 'in_favor' is correct for a bill that creates new legal pathways and protections.",
+      "Strong, accurate summary with clear plain-language descriptions. One clear issue: the issue_category 'Cost of Living' is the wrong fit for this bill. The Patents for Humanity program is a patent competition tied to humanitarian innovation \u2014 it has no connection to consumer prices or cost-of-living policy. A reader filtering by that category would be misled about what this bill does. A category like 'Technology & Innovation' or 'Government & Administration' (whichever is available in the allowed list) would be accurate. One minor note: the one-liner says 'reward patents' but the competition is actually for patent applications submitted by eligible entities \u2014 the certificate goes to the applicant, not to the patent itself. Consider: 'Run a contest every two years to recognize patent applications that solve humanitarian problems.' All four provisions are accurate, clearly written, and well-sequenced. Direction 'in_favor' is correct for a bill that creates new statutory authority and establishes a mandatory PTO competition. Sentence lengths are within limits throughout."
     ],
     "batch_history": [
       {
@@ -189,6 +191,26 @@
           "119-hres-1299",
           "119-hres-1336"
         ]
+      },
+      {
+        "timestamp": "2026-06-13T17:03:00.312354+00:00",
+        "total": 71,
+        "passed": 66,
+        "failed": 5,
+        "grade_distribution": {
+          "A": 15,
+          "B": 51,
+          "C": 5,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": [
+          "117-hres-1519",
+          "118-hres-757",
+          "118-hres-829",
+          "119-s-2806",
+          "119-s-3386"
+        ]
       }
     ]
   },
@@ -306,12 +328,28 @@
           "F": 0
         },
         "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-13T17:39:52.996475+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
       }
     ]
   },
   "bill_arguments": {
     "learnings": [
-      "Excellent work. All arguments are properly attributed, reference specific provisions (January 21, 2025 rule, commercial refrigeration equipment, Department of Energy), mention specific affected groups (small grocery stores, restaurants, businesses), and maintain neutral tone. Both sides are balanced with 2 arguments each."
+      "Excellent work. All arguments are properly attributed, reference specific provisions (January 21, 2025 rule, commercial refrigeration equipment, Department of Energy), mention specific affected groups (small grocery stores, restaurants, businesses), and maintain neutral tone. Both sides are balanced with 2 arguments each.",
+      "Strong work. All arguments are properly attributed, reference specific provisions from the resolution (300 drones and missiles, right to respond, U.S. sanctions and export controls, congressional authorization), and maintain neutral tone throughout. The critics' arguments are particularly strong in specificity, citing the lack of a congressional vote and the vagueness of 'full enforcement.' Both sides are well-balanced with 3 arguments each.",
+      "All arguments meet the standard. Attribution is consistent throughout. Arguments reference specific provisions (subpoena power, DOJ IG authority, nonduty status notification, nomination explanation requirement). Both sides are equally represented with 3 bullets each and neither side is framed more favorably. Tone is neutral with no editorial language. Sentences are clear and accessible."
     ],
     "batch_history": [
       {
@@ -391,6 +429,20 @@
         "grade_distribution": {
           "A": 0,
           "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-13T17:39:24.711792+00:00",
+        "total": 780,
+        "passed": 159,
+        "failed": 621,
+        "grade_distribution": {
+          "A": 145,
+          "B": 14,
           "C": 0,
           "D": 0,
           "F": 0
