@@ -1,12 +1,17 @@
 /* ============================================
-   ClearVoting homepage — "Civic Broadsheet"
+   ClearVoting — "Civic Broadsheet" design system
+   Shared across EVERY page (home, member, bill, state, about).
    Broadsheet layout on the original ClearVoting palette.
-   Reuses the design tokens from styles.css; the aliases
-   below just give them broadsheet-friendly names and are
-   scoped to the homepage so nothing leaks to other pages.
+   Reuses the design tokens from styles.css; the aliases below
+   just give them broadsheet-friendly names. Shared chrome
+   (masthead, footer, kickers, rules, vote bars) is global so it
+   renders identically on every page; homepage-only layout stays
+   scoped under body.home.
    Green = voted yes, red = voted no (always labelled).
+   Load order: styles.css → broadsheet.css (so these win on ties).
    ============================================ */
-body.home {
+
+:root {
     --paper: var(--bg-primary);
     --card: var(--bg-card);
     --card-hover: var(--bg-card-hover);
@@ -24,14 +29,17 @@ body.home {
     --font-display: var(--font-heading);
     --font-serif: var(--font-narrative);
     --font-ui: var(--font-body);
+}
 
+body.home,
+body.broadsheet {
     background: var(--paper);
     font-family: var(--font-serif);
     color: var(--ink);
     line-height: 1.65;
 }
 
-.home .visually-hidden {
+.visually-hidden {
     position: absolute;
     width: 1px; height: 1px;
     padding: 0; margin: -1px;
@@ -39,20 +47,60 @@ body.home {
     white-space: nowrap; border: 0;
 }
 
-.home .kicker { font-family: var(--font-ui); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
-.home .meta { font-family: var(--font-ui); font-size: 0.78rem; color: var(--ink-meta); letter-spacing: 0.02em; }
-.home .arrow-link { font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600; color: var(--blue); }
-.home .arrow-link:hover { color: var(--blue-dim); }
+/* ---- Shared type utilities ---- */
+.kicker { font-family: var(--font-ui); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+.meta { font-family: var(--font-ui); font-size: 0.78rem; color: var(--ink-meta); letter-spacing: 0.02em; }
+.arrow-link { font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600; color: var(--blue); text-decoration: none; }
+.arrow-link:hover { color: var(--blue-dim); }
 
-/* ---- Masthead ---- */
-.home .masthead { padding: 2rem 1.25rem 0; text-align: center; }
-.home .masthead .logo { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.9rem, 4.5vw, 2.5rem); color: var(--navy); line-height: 1; }
-.home .masthead .logo span { color: var(--blue); font-style: italic; font-weight: 600; }
-.home .masthead-tagline { font-family: var(--font-ui); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-meta); margin-top: 0.55rem; }
-.home .masthead-nav { max-width: var(--max-width); margin: 1.1rem auto 0; border-top: 3px double var(--navy); border-bottom: 1px solid var(--navy); display: flex; justify-content: center; gap: 2.25rem; padding: 0.5rem 1rem; }
-.home .masthead-nav a { font-family: var(--font-ui); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; text-decoration: none; }
-.home .masthead-nav a:hover, .home .masthead-nav a[aria-current] { color: var(--navy); border-bottom: 2px solid var(--blue); }
+/* ---- Masthead (shared header) ---- */
+.masthead { padding: 2rem 1.25rem 0; text-align: center; }
+.masthead .logo { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.9rem, 4.5vw, 2.5rem); color: var(--navy); line-height: 1; text-decoration: none; }
+.masthead .logo span { color: var(--blue); font-style: italic; font-weight: 600; }
+.masthead .logo:hover { color: var(--navy); }
+.masthead-tagline { font-family: var(--font-ui); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-meta); margin-top: 0.55rem; }
+.masthead-nav { max-width: var(--max-width); margin: 1.1rem auto 0; border-top: 3px double var(--navy); border-bottom: 1px solid var(--navy); display: flex; justify-content: center; gap: 2.25rem; padding: 0.5rem 1rem; }
+.masthead-nav a { font-family: var(--font-ui); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; text-decoration: none; padding-bottom: 1px; border-bottom: 2px solid transparent; }
+.masthead-nav a:hover, .masthead-nav a[aria-current] { color: var(--navy); border-bottom: 2px solid var(--blue); }
 
+/* ---- Section heads (shared) ---- */
+.section-head { margin-bottom: 1.5rem; }
+.section-head .kicker { color: var(--blue-dim); margin-bottom: 0.4rem; }
+.section-head h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.15; color: var(--navy); }
+.section-head .section-sub { font-size: 0.95rem; color: var(--ink-soft); margin-top: 0.3rem; }
+.section-head .section-sub a { color: var(--blue-dim); }
+
+/* ---- Law-seal status badge (shared) ---- */
+.law-seal { font-family: var(--font-ui); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--navy); padding: 0.18rem 0.55rem; border-radius: 4px; white-space: nowrap; display: inline-block; }
+.law-seal.moving { background: transparent; color: var(--blue-dim); border: 1px solid var(--blue); }
+
+/* ---- Split / tally vote bars (shared, always labelled) ---- */
+.split-labels { display: flex; justify-content: space-between; gap: 0.75rem; font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600; margin-bottom: 0.35rem; }
+.split-labels .yes { color: var(--yes); }
+.split-labels .no { color: var(--no); }
+.split-bar { display: flex; height: 7px; border-radius: 4px; overflow: hidden; background: var(--rule-soft); }
+.split-yes { background: var(--yes); }
+.split-no { background: var(--no); }
+
+.tally-bar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; background: var(--rule-soft); }
+.tally-yes { background: var(--yes); }
+.tally-no { background: var(--no); }
+.tally-labels { display: flex; justify-content: space-between; font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600; margin-top: 0.4rem; }
+.tally-labels .yes { color: var(--yes); }
+.tally-labels .no { color: var(--no); }
+
+/* ---- Footer (shared) ---- */
+.site-footer { background: var(--card); border-top: 3px double var(--navy); margin: 3rem auto 0; padding: 2rem 1.25rem 2.25rem; text-align: center; max-width: none; color: var(--ink-soft); font-size: inherit; line-height: 1.65; }
+.footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
+.footer-links a { font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; }
+.footer-links a:hover { color: var(--blue); }
+.site-footer .meta { display: block; }
+.site-footer .meta a { color: var(--ink-soft); text-decoration: underline; }
+.site-footer .credo { font-family: var(--font-serif); font-style: italic; font-size: 0.92rem; color: var(--ink-soft); margin-top: 0.85rem; }
+
+/* ============================================
+   Homepage-specific layout (scoped to body.home)
+   ============================================ */
 .home main { max-width: var(--max-width); margin: 0 auto; padding: 0 1.25rem; }
 
 /* ---- Front-page lead ---- */
@@ -70,12 +118,6 @@ body.home {
 .home .vote-card h2 a { color: inherit; text-decoration: none; }
 .home .vote-card h2 a:hover { color: var(--blue-dim); }
 .home .tally { margin-bottom: 0.4rem; }
-.home .tally-bar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; background: var(--rule-soft); }
-.home .tally-yes { background: var(--yes); }
-.home .tally-no { background: var(--no); }
-.home .tally-labels { display: flex; justify-content: space-between; font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600; margin-top: 0.4rem; }
-.home .tally-labels .yes { color: var(--yes); }
-.home .tally-labels .no { color: var(--no); }
 .home .vote-card .arrow-link { display: inline-block; margin-top: 0.9rem; }
 
 /* ---- The core action ---- */
@@ -113,13 +155,6 @@ body.home {
 .home .notify-status { font-family: var(--font-ui); font-size: 0.85rem; color: var(--yes); margin-top: 0.6rem; }
 .home .trust-line { font-family: var(--font-ui); font-size: 0.7rem; color: var(--ink-meta); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 2.25rem; }
 
-/* ---- Sections ---- */
-.home .section-head { margin-bottom: 1.5rem; }
-.home .section-head .kicker { color: var(--blue-dim); margin-bottom: 0.4rem; }
-.home .section-head h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.15; color: var(--navy); }
-.home .section-head .section-sub { font-size: 0.95rem; color: var(--ink-soft); margin-top: 0.3rem; }
-.home .section-head .section-sub a { color: var(--blue-dim); }
-
 /* ---- Delegation ---- */
 .home .delegation { padding: 2.75rem 0 0.5rem; border-top: 3px double var(--navy); margin-top: 3rem; }
 .home .party-line { display: flex; align-items: center; gap: 0.75rem; margin: 0 0 1.5rem; font-family: var(--font-ui); font-size: 0.85rem; color: var(--ink-soft); flex-wrap: wrap; }
@@ -138,12 +173,6 @@ body.home {
 .home .senator-seat { font-family: var(--font-ui); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-meta); margin: 0.2rem 0 0.4rem; }
 .home .senator-narrative { font-size: 0.96rem; color: var(--ink-soft); max-width: 34rem; }
 .home .member-stats { min-width: 200px; }
-.home .split-labels { display: flex; justify-content: space-between; gap: 0.75rem; font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600; margin-bottom: 0.35rem; }
-.home .split-labels .yes { color: var(--yes); }
-.home .split-labels .no { color: var(--no); }
-.home .split-bar { display: flex; height: 7px; border-radius: 4px; overflow: hidden; background: var(--rule-soft); }
-.home .split-yes { background: var(--yes); }
-.home .split-no { background: var(--no); }
 .home .participation { font-family: var(--font-ui); font-size: 0.75rem; color: var(--ink-meta); margin-top: 0.4rem; text-align: right; }
 .home .participation strong { color: var(--ink); }
 
@@ -169,8 +198,6 @@ body.home {
 .home .record-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 0 3rem; margin-top: 0.5rem; }
 .home .record-lead { padding-right: 3rem; border-right: 1px solid var(--rule); }
 .home .story-kicker { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
-.home .law-seal { font-family: var(--font-ui); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--navy); padding: 0.18rem 0.55rem; border-radius: 4px; white-space: nowrap; }
-.home .law-seal.moving { background: transparent; color: var(--blue-dim); border: 1px solid var(--blue); }
 .home .record-lead h3 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.18; margin-bottom: 1rem; }
 .home .record-lead h3 a { color: var(--navy); text-decoration: none; }
 .home .record-lead h3 a:hover { color: var(--blue-dim); }
@@ -212,26 +239,17 @@ body.home {
 .home .btn-load-more { font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600; color: var(--blue); background: var(--card); border: 1px solid var(--blue); border-radius: var(--radius); padding: 0.5rem 1.25rem; cursor: pointer; transition: all var(--transition); }
 .home .btn-load-more:hover { background: var(--blue); color: #fff; }
 
-/* ---- Footer ---- */
-.home .site-footer { background: var(--card); border-top: 3px double var(--navy); margin-top: 3rem; padding: 2rem 1.25rem 2.25rem; text-align: center; }
-.home .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
-.home .footer-links a { font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; }
-.home .footer-links a:hover { color: var(--blue); }
-.home .site-footer .meta { display: block; }
-.home .site-footer .meta a { color: var(--ink-soft); text-decoration: underline; }
-.home .site-footer .credo { font-family: var(--font-serif); font-style: italic; font-size: 0.92rem; color: var(--ink-soft); margin-top: 0.85rem; }
-
 /* ---- Loading / empty (reuses .spinner from styles.css) ---- */
 .home .record-grid .loading, .home .bill-list .loading { font-family: var(--font-ui); color: var(--ink-meta); padding: 1.5rem 0; }
 .home .empty-note { font-family: var(--font-ui); color: var(--ink-meta); font-size: 0.9rem; padding: 1rem 0; }
 
 /* ---- Responsive ---- */
 @media (max-width: 880px) {
+    .masthead-nav { gap: 1.1rem; flex-wrap: wrap; }
     .home .lead { grid-template-columns: 1fr; gap: 2.25rem; padding-top: 2.5rem; }
     .home .record-grid { grid-template-columns: 1fr; }
     .home .record-lead { padding-right: 0; border-right: none; border-bottom: 1px solid var(--rule); padding-bottom: 1.75rem; margin-bottom: 1.5rem; }
     .home .roster { grid-template-columns: 1fr; }
-    .home .masthead-nav { gap: 1.1rem; flex-wrap: wrap; }
     .home .senator-row { grid-template-columns: auto 1fr; }
     .home .senator-row .member-stats { grid-column: 1 / -1; min-width: 0; max-width: 320px; }
     .home .participation { text-align: left; }
