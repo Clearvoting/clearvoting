@@ -6,89 +6,3639 @@
     119
   ],
   "stats": {
-    "total_votes": 1035,
-    "yea_count": 647,
-    "nay_count": 366,
-    "not_voting_count": 21,
+    "total_votes": 949,
+    "yea_count": 591,
+    "nay_count": 338,
+    "not_voting_count": 19,
     "participation_rate": 97.9
   },
-  "scorecard": [],
+  "scorecard": [
+    {
+      "category": "Veterans & Military",
+      "in_favor": 72,
+      "against": 19,
+      "total": 100,
+      "verdict": "Voted in favor of 72 of 100 veterans & military measures",
+      "bills": [
+        {
+          "bill_id": "119-s-2296",
+          "one_liner": "Fund the military and set defense policies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-4366",
+          "one_liner": "Fund military construction and veterans programs for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-4366",
+          "one_liner": "Fund military construction and veterans programs for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-sjres-44",
+          "one_liner": "Remove U.S. troops from Niger within 30 days",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-sjres-115",
+          "one_liner": "Block a proposed license for military exports to Israel",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-sjres-113",
+          "one_liner": "Block a military sale to Israel",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-sjres-111",
+          "one_liner": "Block a proposed military sale to Israel",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4350",
+          "one_liner": "Fund the military and set troop numbers for the year starting October 2021",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2670",
+          "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "118-hr-6126",
+          "one_liner": "Fund military aid and defense systems for Israel",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-4366",
+          "one_liner": "Fund military construction and veterans programs for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-7691",
+          "one_liner": "Send $40.1 billion to help Ukraine respond to Russia's invasion",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-7691",
+          "one_liner": "Send $40.1 billion to help Ukraine respond to Russia's invasion",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-7691",
+          "one_liner": "Send $40.1 billion to help Ukraine respond to Russia's invasion",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-7691",
+          "one_liner": "Send $40.1 billion to help Ukraine respond to Russia's invasion",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-4366",
+          "one_liner": "Fund military construction and veterans programs for 2024",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-4366",
+          "one_liner": "Fund military construction and veterans programs for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-4366",
+          "one_liner": "Fund military construction and veterans programs for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-4366",
+          "one_liner": "Fund military construction and veterans programs for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-4366",
+          "one_liner": "Fund military construction and veterans programs for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-4366",
+          "one_liner": "Fund military construction and veterans programs for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-4366",
+          "one_liner": "Fund military construction and veterans programs for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-4366",
+          "one_liner": "Fund military construction and veterans programs for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-104",
+          "one_liner": "Remove U.S. troops from fighting Iran without Congress approval",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-316",
+          "one_liner": "Cancel military authorizations for using force against Iraq",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-316",
+          "one_liner": "Cancel military authorizations for using force against Iraq",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-316",
+          "one_liner": "Cancel military authorizations for using force against Iraq",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-316",
+          "one_liner": "Cancel military authorizations for using force against Iraq",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-316",
+          "one_liner": "Cancel military authorizations for using force against Iraq",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-316",
+          "one_liner": "Cancel military authorizations for using force against Iraq",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-316",
+          "one_liner": "Cancel military authorizations for using force against Iraq",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-316",
+          "one_liner": "Cancel military authorizations for using force against Iraq",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-316",
+          "one_liner": "Cancel military authorizations for using force against Iraq",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-118",
+          "one_liner": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-1383",
+          "one_liner": "Create a committee to improve VA access for veterans with disabilities",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-316",
+          "one_liner": "Cancel military authorizations for using force against Iraq",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-sjres-35",
+          "one_liner": "Block a military weapons sale to Egypt",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3967",
+          "one_liner": "Expand VA healthcare and benefits for veterans exposed to toxic substances during service",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-59",
+          "one_liner": "End unauthorized U.S. military action against Iran",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3967",
+          "one_liner": "Expand VA healthcare and benefits for veterans exposed to toxic substances during service",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3967",
+          "one_liner": "Expand VA healthcare and benefits for veterans exposed to toxic substances during service",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3967",
+          "one_liner": "Expand VA healthcare and benefits for veterans exposed to toxic substances during service",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-54",
+          "one_liner": "Block a military weapons sale to the United Arab Emirates",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-53",
+          "one_liner": "Block a weapons sale to Qatar",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-34",
+          "one_liner": "Block a planned weapons sale to Israel",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-41",
+          "one_liner": "Block weapons sales to Israel",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-2226",
+          "one_liner": "Fund the military and set troop levels for the year starting October 2023",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-3373",
+          "one_liner": "Move Iraq and Afghanistan education grants into the Pell Grant program",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-3944",
+          "one_liner": "Fund military construction and veterans programs for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3944",
+          "one_liner": "Fund military construction and veterans programs for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-3944",
+          "one_liner": "Fund military construction and veterans programs for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-2226",
+          "one_liner": "Fund the military and set troop levels for the year starting October 2023",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-89",
+          "one_liner": "Stop U.S. military from building and running a pier in Gaza",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-98",
+          "one_liner": "Remove US military forces from Venezuela unless Congress approves the mission",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-335",
+          "one_liner": "Let a military officer become Secretary of Defense after 4 years instead of 7",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sres-504",
+          "one_liner": "Request information from the State Department about Israel's human rights practices",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-sjres-98",
+          "one_liner": "Remove US military forces from Venezuela unless Congress approves the mission",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-7463",
+          "one_liner": "Keep the government running through March 2024 and change student aid rules",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-7463",
+          "one_liner": "Keep the government running through March 2024 and change student aid rules",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-7463",
+          "one_liner": "Keep the government running through March 2024 and change student aid rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-7463",
+          "one_liner": "Keep the government running through March 2024 and change student aid rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-60",
+          "one_liner": "Block a planned military equipment sale to Turkey",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-6617",
+          "one_liner": "Extend government funding through March 11, 2022 to prevent shutdown",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-6617",
+          "one_liner": "Extend government funding through March 11, 2022 to prevent shutdown",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2670",
+          "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-sjres-51",
+          "one_liner": "Remove US troops from unauthorized Syria fighting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-sjres-31",
+          "one_liner": "Block a planned military weapons sale to Saudi Arabia",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-2670",
+          "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2670",
+          "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2670",
+          "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2670",
+          "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-3373",
+          "one_liner": "Move Iraq and Afghanistan education grants into the Pell Grant program",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-s-3373",
+          "one_liner": "Move Iraq and Afghanistan education grants into the Pell Grant program",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-s-3373",
+          "one_liner": "Move Iraq and Afghanistan education grants into the Pell Grant program",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-s-3373",
+          "one_liner": "Move Iraq and Afghanistan education grants into the Pell Grant program",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-3944",
+          "one_liner": "Fund military construction and veterans programs for 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4373",
+          "one_liner": "Fund State Department and international aid programs",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-26",
+          "one_liner": "Block a proposed weapons sale to Israel",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-33",
+          "one_liner": "Block a military equipment sale to Israel",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-326",
+          "one_liner": "Require the VA to study cannabis effects on veterans with PTSD or chronic pain",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-815",
+          "one_liner": "Remove the 24-month care requirement for new veterans' emergency treatment reimbursement",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-sjres-10",
+          "one_liner": "Cancel a VA rule allowing abortion care for veterans",
+          "vote": "Yea",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Environment & Energy",
+      "in_favor": 33,
+      "against": 49,
+      "total": 84,
+      "verdict": "Voted against 49 of 84 environment & energy measures",
+      "bills": [
+        {
+          "bill_id": "118-sjres-24",
+          "one_liner": "Cancel a rule that made the northern long-eared bat an endangered species",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-9",
+          "one_liner": "Cancel government protections for lesser prairie-chickens under the Endangered Species Act",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-662",
+          "one_liner": "Give states block grants to help farmers with 2022 disaster losses",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-60",
+          "one_liner": "Cancel a National Park Service rule limiting off-road vehicles at Glen Canyon",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-61",
+          "one_liner": "Cancel an EPA rule setting air pollution limits for rubber tire factories",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-60",
+          "one_liner": "Cancel a National Park Service rule limiting off-road vehicles at Glen Canyon",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-61",
+          "one_liner": "Cancel an EPA rule setting air pollution limits for rubber tire factories",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-9",
+          "one_liner": "Cancel government protections for lesser prairie-chickens under the Endangered Species Act",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hjres-39",
+          "one_liner": "Cancel a rule that stopped tariffs on solar panels from four Asian countries",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-89",
+          "one_liner": "Cancel an EPA rule letting California set pollution limits for trucks",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-87",
+          "one_liner": "Cancel an EPA rule letting California set its own emission standards for heavy-duty vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-87",
+          "one_liner": "Cancel an EPA rule letting California set its own emission standards for heavy-duty vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-88",
+          "one_liner": "Cancel EPA approval for California to set its own car pollution rules",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-89",
+          "one_liner": "Cancel an EPA rule letting California set pollution limits for trucks",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-88",
+          "one_liner": "Cancel EPA approval for California to set its own car pollution rules",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-58",
+          "one_liner": "Cancel a Department of Energy rule setting energy efficiency standards for gas furnaces",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-24",
+          "one_liner": "Cancel a rule that made the northern long-eared bat an endangered species",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-23",
+          "one_liner": "Cancel a rule that made it easier to set aside habitat areas for endangered species",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-31",
+          "one_liner": "Cancel an EPA rule requiring some factories to keep following stricter pollution limits",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-75",
+          "one_liner": "Cancel a Department of Energy rule setting energy standards for commercial refrigerators and freezers",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hjres-27",
+          "one_liner": "Cancel a rule that expanded federal control over waterways and wetlands",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-2882",
+          "one_liner": "Fund the Udall Foundation through 2028",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-2882",
+          "one_liner": "Fund the Udall Foundation through 2028",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-2882",
+          "one_liner": "Fund the Udall Foundation through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2882",
+          "one_liner": "Fund the Udall Foundation through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2882",
+          "one_liner": "Fund the Udall Foundation through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2882",
+          "one_liner": "Fund the Udall Foundation through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2882",
+          "one_liner": "Fund the Udall Foundation through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2882",
+          "one_liner": "Fund the Udall Foundation through 2028",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-2882",
+          "one_liner": "Fund the Udall Foundation through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2882",
+          "one_liner": "Fund the Udall Foundation through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2882",
+          "one_liner": "Fund the Udall Foundation through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-1251",
+          "one_liner": "Create a USDA program to help farmers sell carbon credits",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-sjres-11",
+          "one_liner": "Cancel an EPA rule setting emissions limits for heavy-duty trucks and vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3684",
+          "one_liner": "Fund highways, bridges, and transit systems through 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-7776",
+          "one_liner": "Lets the Army Corps of Engineers build water and flood control projects",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3684",
+          "one_liner": "Fund highways, bridges, and transit systems through 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3684",
+          "one_liner": "Fund highways, bridges, and transit systems through 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-86",
+          "one_liner": "Cancel EPA approval of South Dakota's plan to reduce haze in national parks",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2872",
+          "one_liner": "Change duck stamp rules for waterfowl hunting",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-2872",
+          "one_liner": "Change duck stamp rules for waterfowl hunting",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-2872",
+          "one_liner": "Change duck stamp rules for waterfowl hunting",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-3436",
+          "one_liner": "Impose sanctions on companies involved in the Nord Stream 2 pipeline",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hjres-35",
+          "one_liner": "Cancel an EPA rule charging fees for methane emissions from oil and gas companies",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-12",
+          "one_liner": "Cancel an EPA rule charging oil and gas companies for methane emissions",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-10",
+          "one_liner": "End the national emergency about energy declared by the President in January 2025",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-11",
+          "one_liner": "Cancel rule requiring oil companies to report on historical artifacts before offshore drilling",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-11",
+          "one_liner": "Cancel rule requiring oil companies to report on historical artifacts before offshore drilling",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-10545",
+          "one_liner": "Keep the government funded through March 2025 and provide emergency disaster relief",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-5009",
+          "one_liner": "Extends wildlife conservation programs through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-4367",
+          "one_liner": "Fund Army Corps projects for flood control, dam repairs, and waterway improvements",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-5009",
+          "one_liner": "Extends wildlife conservation programs through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1437",
+          "one_liner": "Require weather agency to update rainfall predictions and create guidance",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1437",
+          "one_liner": "Require weather agency to update rainfall predictions and create guidance",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1437",
+          "one_liner": "Require weather agency to update rainfall predictions and create guidance",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-7776",
+          "one_liner": "Lets the Army Corps of Engineers build water and flood control projects",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-7776",
+          "one_liner": "Lets the Army Corps of Engineers build water and flood control projects",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-7776",
+          "one_liner": "Lets the Army Corps of Engineers build water and flood control projects",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-1437",
+          "one_liner": "Require weather agency to update rainfall predictions and create guidance",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3684",
+          "one_liner": "Fund highways, bridges, and transit systems through 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-sjres-55",
+          "one_liner": "Cancel a 2022 environmental review rule for federal projects",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-3684",
+          "one_liner": "Fund highways, bridges, and transit systems through 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-20",
+          "one_liner": "Cancel a Department of Energy rule on gas water heater energy use",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-6968",
+          "one_liner": "Stop energy imports from Russia",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-75",
+          "one_liner": "Cancel a Department of Energy rule setting energy standards for commercial refrigerators and freezers",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-42",
+          "one_liner": "Cancel a Department of Energy rule on appliance energy efficiency requirements",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-31",
+          "one_liner": "Cancel an EPA rule requiring some factories to keep following stricter pollution limits",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-24",
+          "one_liner": "Cancel energy efficiency standards for walk-in coolers and freezers",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-42",
+          "one_liner": "Cancel a Department of Energy rule on appliance energy efficiency requirements",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-914",
+          "one_liner": "Fund water infrastructure programs through 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-sjres-14",
+          "one_liner": "Cancel a 2020 EPA rule about oil and gas emissions",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-914",
+          "one_liner": "Fund water infrastructure programs through 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-sjres-11",
+          "one_liner": "Cancel an EPA rule setting emissions limits for heavy-duty trucks and vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-24",
+          "one_liner": "Cancel energy efficiency standards for walk-in coolers and freezers",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-4072",
+          "one_liner": "Block an EPA rule setting stricter pollution standards for cars and trucks starting in 2027",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-140",
+          "one_liner": "Allow mineral and geothermal leasing on 225,504 acres in Minnesota",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-4072",
+          "one_liner": "Block an EPA rule setting stricter pollution standards for cars and trucks starting in 2027",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hjres-140",
+          "one_liner": "Allow mineral and geothermal leasing on 225,504 acres in Minnesota",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-140",
+          "one_liner": "Allow mineral and geothermal leasing on 225,504 acres in Minnesota",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-20",
+          "one_liner": "Cancel a Department of Energy rule on gas water heater energy use",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-61",
+          "one_liner": "Cancel a rule requiring states to set greenhouse gas targets for transportation",
+          "vote": "Yea",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Cost of Living",
+      "in_favor": 34,
+      "against": 16,
+      "total": 72,
+      "verdict": "Voted in favor of 34 of 72 cost of living measures",
+      "bills": [
+        {
+          "bill_id": "117-hr-5305",
+          "one_liner": "Fund the government through December 2021 and suspend the debt limit",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-6833",
+          "one_liner": "Set a $35 monthly cap on insulin costs for Medicare and private insurance",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-6833",
+          "one_liner": "Set a $35 monthly cap on insulin costs for Medicare and private insurance",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5305",
+          "one_liner": "Fund the government through December 2021 and suspend the debt limit",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-9747",
+          "one_liner": "Keep the government funded and extend programs through December 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hjres-39",
+          "one_liner": "Cancel a rule that stopped tariffs on solar panels from four Asian countries",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hjres-109",
+          "one_liner": "Cancel an SEC rule requiring companies to report how they handle customer cryptocurrency",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sjres-15",
+          "one_liner": "Cancel a 2020 rule about when banks count as lenders",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-28",
+          "one_liner": "Cancel a rule letting government check on large payment apps",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-28",
+          "one_liner": "Cancel a rule letting government check on large payment apps",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-18",
+          "one_liner": "Cancel a rule capping overdraft fees at $5 for large banks",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-18",
+          "one_liner": "Cancel a rule capping overdraft fees at $5 for large banks",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-62",
+          "one_liner": "Cancel a rule allowing beef imports from Paraguay",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1968",
+          "one_liner": "Fund federal agencies through September 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1968",
+          "one_liner": "Fund federal agencies through September 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-1582",
+          "one_liner": "Create rules for companies that issue stablecoins",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-3746",
+          "one_liner": "Raise the debt limit while cutting government spending and expanding work requirements",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sconres-14",
+          "one_liner": "Set the federal budget and spending limits for 2022 through 2031",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sconres-14",
+          "one_liner": "Set the federal budget and spending limits for 2022 through 2031",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-7108",
+          "one_liner": "Remove Russia and Belarus from favored trade status and expand human rights sanctions",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-49",
+          "one_liner": "End the national emergency that imposed 10% tariffs on most imports",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-49",
+          "one_liner": "End the national emergency that imposed 10% tariffs on most imports",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-37",
+          "one_liner": "Cancel the national emergency that adds extra fees on imports from Canada",
+          "vote": "Nay",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Jobs & Workers",
+      "in_favor": 44,
+      "against": 24,
+      "total": 72,
+      "verdict": "Voted in favor of 44 of 72 jobs & workers measures",
+      "bills": [
+        {
+          "bill_id": "118-hr-5860",
+          "one_liner": "Fund the federal government through November 17, 2023",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-9747",
+          "one_liner": "Keep the government funded and extend programs through December 2024",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-sjres-42",
+          "one_liner": "Cancel a rule treating gender identity discrimination as sex discrimination in food programs",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-32",
+          "one_liner": "Cancel a Consumer Financial Protection Bureau rule on small business loan data collection",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-38",
+          "one_liner": "Cancel a rule that let companies use foreign parts in electric vehicle chargers",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-6363",
+          "one_liner": "Fund the federal government through early 2024 to prevent shutdown",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-1260",
+          "one_liner": "Create a technology research office and fund innovation programs",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-4008",
+          "one_liner": "Fund grants for restaurants and other businesses hurt by COVID-19",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sjres-13",
+          "one_liner": "Cancel an EEOC rule about sharing discrimination case details with employers",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-sjres-13",
+          "one_liner": "Cancel an EEOC rule about sharing discrimination case details with employers",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-1260",
+          "one_liner": "Create a technology research office and fund innovation programs",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3076",
+          "one_liner": "Reform postal service finances and worker benefits",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3076",
+          "one_liner": "Reform postal service finances and worker benefits",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-3853",
+          "one_liner": "Expand compensation for people who got sick from government radiation exposure",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3076",
+          "one_liner": "Reform postal service finances and worker benefits",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1319",
+          "one_liner": "Fund COVID relief programs and send $1,400 checks to Americans",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1799",
+          "one_liner": "Extend the Paycheck Protection Program for small businesses through June 30, 2021",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-1799",
+          "one_liner": "Extend the Paycheck Protection Program for small businesses through June 30, 2021",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1799",
+          "one_liner": "Extend the Paycheck Protection Program for small businesses through June 30, 2021",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-7",
+          "one_liner": "Strengthen rules against paying women less than men for the same work",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-1260",
+          "one_liner": "Create a technology research office and fund innovation programs",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3684",
+          "one_liner": "Fund highways, bridges, and transit systems through 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3684",
+          "one_liner": "Fund highways, bridges, and transit systems through 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3684",
+          "one_liner": "Fund highways, bridges, and transit systems through 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-32",
+          "one_liner": "Cancel a Consumer Financial Protection Bureau rule on small business loan data collection",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-38",
+          "one_liner": "Cancel a rule that let companies use foreign parts in electric vehicle chargers",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3076",
+          "one_liner": "Reform postal service finances and worker benefits",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sjres-29",
+          "one_liner": "Cancel a workplace rule requiring COVID-19 vaccination or weekly testing",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-2617",
+          "one_liner": "Require government agencies to include more details in performance reports",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-2617",
+          "one_liner": "Require government agencies to include more details in performance reports",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-6119",
+          "one_liner": "Keep government funding through February 18, 2022",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hjres-100",
+          "one_liner": "Require railroads and unions to accept negotiated contracts without worker votes",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hconres-119",
+          "one_liner": "Correct a law to include seven days of sick leave for railroad workers",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3684",
+          "one_liner": "Fund highways, bridges, and transit systems through 2026",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3684",
+          "one_liner": "Fund highways, bridges, and transit systems through 2026",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-sjres-4",
+          "one_liner": "Remove the deadline for ratifying the Equal Rights Amendment and declare it valid",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hjres-98",
+          "one_liner": "Cancel a labor board rule about when two companies are both employers",
+          "vote": "Yea",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Safety & Crime",
+      "in_favor": 43,
+      "against": 17,
+      "total": 65,
+      "verdict": "Voted in favor of 43 of 65 safety & crime measures",
+      "bills": [
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-2747",
+          "one_liner": "Expand voter registration and voting access while changing campaign finance rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sres-417",
+          "one_liner": "Expresses Senate support for Israel against Hamas",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3233",
+          "one_liner": "Create a commission to investigate the January 6 attack on the Capitol",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-350",
+          "one_liner": "Create new offices to track and investigate domestic terrorism",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-55",
+          "one_liner": "Cancel a safety rule for hydrogen-powered vehicles",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hjres-42",
+          "one_liner": "Cancel police reforms in Washington DC from 2022",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sres-195",
+          "one_liner": "Request information about human rights practices in El Salvador",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "118-hr-3935",
+          "one_liner": "Fund the FAA and airports through 2028",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hjres-26",
+          "one_liner": "Cancel DC's changes to criminal laws and sentencing rules",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-331",
+          "one_liner": "Make fentanyl-related substances permanently illegal under federal law",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-870",
+          "one_liner": "Fund fire departments and federal fire safety programs through 2030",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-331",
+          "one_liner": "Make fentanyl-related substances permanently illegal under federal law",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-331",
+          "one_liner": "Make fentanyl-related substances permanently illegal under federal law",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-2471",
+          "one_liner": "Update how the U.S. tracks its work in Haiti",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "118-hjres-44",
+          "one_liner": "Cancel a rule about when guns with stabilizing braces must be registered",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-2093",
+          "one_liner": "Expand voter access and add new rules for campaigns and government officials",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-870",
+          "one_liner": "Fund fire departments and federal fire safety programs through 2030",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3237",
+          "one_liner": "Give $1.9 billion to fix Capitol damage and boost security after January 6th attack",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-1652",
+          "one_liner": "Add new funding sources to the Crime Victims Fund from legal deals",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-23",
+          "one_liner": "Sanction foreign people who help the International Criminal Court prosecute Americans and allies",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sres-13",
+          "one_liner": "Designate January 2023 as National Stalking Awareness Month",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-6",
+          "one_liner": "Require doctors to provide care to children born alive after abortions",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-sres-47",
+          "one_liner": "Set rules for Donald Trump's impeachment trial in the Senate",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hres-24",
+          "one_liner": "Impeach President Trump and remove him from office for inciting insurrection",
+          "vote": "Not Guilty",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-sres-21",
+          "one_liner": "Support observing a month to raise awareness about human trafficking",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-5355",
+          "one_liner": "Give extra money to federal agencies for disaster relief in 2023",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-4367",
+          "one_liner": "Fund Army Corps projects for flood control, dam repairs, and waterway improvements",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-1605",
+          "one_liner": "Make the Pulse Memorial in Orlando a national memorial",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-1605",
+          "one_liner": "Make the Pulse Memorial in Orlando a national memorial",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-7108",
+          "one_liner": "Remove Russia and Belarus from favored trade status and expand human rights sanctions",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-937",
+          "one_liner": "Require DOJ to speed up review of COVID-19 hate crimes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-870",
+          "one_liner": "Fund fire departments and federal fire safety programs through 2030",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-7888",
+          "one_liner": "Extend FBI surveillance powers for 5 years with new rules",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-7888",
+          "one_liner": "Extend FBI surveillance powers for 5 years with new rules",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-7888",
+          "one_liner": "Extend FBI surveillance powers for 5 years with new rules",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-937",
+          "one_liner": "Require DOJ to speed up review of COVID-19 hate crimes",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-937",
+          "one_liner": "Require DOJ to speed up review of COVID-19 hate crimes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Healthcare",
+      "in_favor": 26,
+      "against": 27,
+      "total": 58,
+      "verdict": "Voted against 27 of 58 healthcare measures",
+      "bills": [
+        {
+          "bill_id": "118-hr-5860",
+          "one_liner": "Fund the federal government through November 17, 2023",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-1301",
+          "one_liner": "Require the health department to publish physical activity guidelines every 10 years",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-6833",
+          "one_liner": "Set a $35 monthly cap on insulin costs for Medicare and private insurance",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-6833",
+          "one_liner": "Set a $35 monthly cap on insulin costs for Medicare and private insurance",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-4445",
+          "one_liner": "Create a federal right to IVF and other fertility treatments",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-1301",
+          "one_liner": "Require the health department to publish physical activity guidelines every 10 years",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-1301",
+          "one_liner": "Require the health department to publish physical activity guidelines every 10 years",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-8404",
+          "one_liner": "Require recognition of same-sex and interracial marriages",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-8404",
+          "one_liner": "Require recognition of same-sex and interracial marriages",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-8404",
+          "one_liner": "Require recognition of same-sex and interracial marriages",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-8404",
+          "one_liner": "Require recognition of same-sex and interracial marriages",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-6363",
+          "one_liner": "Fund the federal government through early 2024 to prevent shutdown",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-sjres-63",
+          "one_liner": "End the COVID-19 national emergency declared in March 2020",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sjres-39",
+          "one_liner": "End vaccine and mask requirements in Head Start programs",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-57",
+          "one_liner": "Cancel a Treasury rule about COVID recovery fund spending deadlines",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-4132",
+          "one_liner": "Stop governments from blocking abortion services",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3076",
+          "one_liner": "Reform postal service finances and worker benefits",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3076",
+          "one_liner": "Reform postal service finances and worker benefits",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-3853",
+          "one_liner": "Expand compensation for people who got sick from government radiation exposure",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3076",
+          "one_liner": "Reform postal service finances and worker benefits",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sjres-38",
+          "one_liner": "End the COVID-19 national emergency declared in March 2020",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hjres-7",
+          "one_liner": "End the COVID-19 national emergency declared in March 2020",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-1868",
+          "one_liner": "Stop automatic cuts to Medicare and other health programs",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-sjres-32",
+          "one_liner": "Cancel a rule requiring COVID vaccines for healthcare workers",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sjres-37",
+          "one_liner": "End the requirement to wear masks on planes, trains, and buses",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3967",
+          "one_liner": "Expand VA healthcare and benefits for veterans exposed to toxic substances during service",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-4381",
+          "one_liner": "Create a legal right to access birth control nationwide",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3967",
+          "one_liner": "Expand VA healthcare and benefits for veterans exposed to toxic substances during service",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-3967",
+          "one_liner": "Expand VA healthcare and benefits for veterans exposed to toxic substances during service",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-s-4445",
+          "one_liner": "Create a federal right to IVF and other fertility treatments",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3967",
+          "one_liner": "Expand VA healthcare and benefits for veterans exposed to toxic substances during service",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7148",
+          "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-6",
+          "one_liner": "Require doctors to provide care to children born alive after abortions",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-sjres-84",
+          "one_liner": "Cancel a health insurance rule about enrollment periods and coverage requirements",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6938",
+          "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-3076",
+          "one_liner": "Reform postal service finances and worker benefits",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-3755",
+          "one_liner": "Block state and local laws that restrict abortion services",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-6617",
+          "one_liner": "Extend government funding through March 11, 2022 to prevent shutdown",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-6617",
+          "one_liner": "Extend government funding through March 11, 2022 to prevent shutdown",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-610",
+          "one_liner": "Give money for healthcare worker mental health programs and suicide prevention training",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-s-610",
+          "one_liner": "Give money for healthcare worker mental health programs and suicide prevention training",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "118-hr-10545",
+          "one_liner": "Keep the government funded through March 2025 and provide emergency disaster relief",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-sjres-41",
+          "one_liner": "Cancel a health department rule about abortion counseling at family planning clinics",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-326",
+          "one_liner": "Require the VA to study cannabis effects on veterans with PTSD or chronic pain",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-10",
+          "one_liner": "Cancel a VA rule allowing abortion care for veterans",
+          "vote": "Yea",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Education",
+      "in_favor": 29,
+      "against": 13,
+      "total": 47,
+      "verdict": "Voted in favor of 29 of 47 education measures",
+      "bills": [
+        {
+          "bill_id": "118-sjres-43",
+          "one_liner": "Cancel a rule creating the SAVE student loan repayment plan",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-7",
+          "one_liner": "Cancel a rule letting schools buy cheap Wi-Fi hotspots for students",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-7",
+          "one_liner": "Cancel a rule letting schools buy cheap Wi-Fi hotspots for students",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hjres-45",
+          "one_liner": "End federal student loan payment suspensions and debt forgiveness",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sjres-39",
+          "one_liner": "End vaccine and mask requirements in Head Start programs",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-9",
+          "one_liner": "Ban male-born students from women's and girls' sports teams in federally funded schools",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hjres-45",
+          "one_liner": "End federal student loan payment suspensions and debt forgiveness",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-3373",
+          "one_liner": "Move Iraq and Afghanistan education grants into the Pell Grant program",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-s-3627",
+          "one_liner": "Require colleges to tell students about resources for pregnant students who want to have babies",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-7463",
+          "one_liner": "Keep the government running through March 2024 and change student aid rules",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-7463",
+          "one_liner": "Keep the government running through March 2024 and change student aid rules",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-7463",
+          "one_liner": "Keep the government running through March 2024 and change student aid rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-7463",
+          "one_liner": "Keep the government running through March 2024 and change student aid rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sjres-60",
+          "one_liner": "Cancel a rule about how charter schools get federal grants",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-5376",
+          "one_liner": "Fund education and healthcare programs while raising taxes",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-3373",
+          "one_liner": "Move Iraq and Afghanistan education grants into the Pell Grant program",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-s-3373",
+          "one_liner": "Move Iraq and Afghanistan education grants into the Pell Grant program",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-s-3373",
+          "one_liner": "Move Iraq and Afghanistan education grants into the Pell Grant program",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-s-3373",
+          "one_liner": "Move Iraq and Afghanistan education grants into the Pell Grant program",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4521",
+          "one_liner": "Create a government research program for engineering biology",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Taxes",
+      "in_favor": 1,
+      "against": 14,
+      "total": 44,
+      "verdict": "Voted against 14 of 44 taxes measures",
+      "bills": [
+        {
+          "bill_id": "118-sconres-41",
+          "one_liner": "Set the federal budget plan for 2025 and spending targets through 2034",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-sjres-3",
+          "one_liner": "Cancel an IRS rule requiring brokers to report cryptocurrency sales to the tax agency",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-3",
+          "one_liner": "Cancel an IRS rule requiring brokers to report cryptocurrency sales to the tax agency",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-25",
+          "one_liner": "Cancel an IRS rule requiring crypto brokers to report sales to the government",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-25",
+          "one_liner": "Cancel an IRS rule requiring crypto brokers to report sales to the government",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-sconres-41",
+          "one_liner": "Set the federal government's spending goals for the years 2023 through 2032",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "118-hr-3746",
+          "one_liner": "Raise the debt limit while cutting government spending and expanding work requirements",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-sconres-43",
+          "one_liner": "Set federal spending and revenue targets for 2023 through 2032",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-1",
+          "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+          "vote": "Nay",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-sconres-5",
+          "one_liner": "Set the federal budget plan for 2021 through 2030",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sconres-7",
+          "one_liner": "Set spending and borrowing limits for the federal government for 10 years",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-sconres-5",
+          "one_liner": "Set the federal budget plan for 2021 through 2030",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sconres-7",
+          "one_liner": "Set spending and borrowing limits for the federal government for 10 years",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hjres-142",
+          "one_liner": "Cancel DC's tax law to keep federal tax cuts",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hjres-142",
+          "one_liner": "Cancel DC's tax law to keep federal tax cuts",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-95",
+          "one_liner": "Block an IRS rule on corporate minimum tax for partnerships",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-sjres-33",
+          "one_liner": "Increase the debt limit by $2.5 trillion",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sjres-33",
+          "one_liner": "Increase the debt limit by $2.5 trillion",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sconres-14",
+          "one_liner": "Set the federal budget and spending limits for 2022 through 2031",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-sconres-14",
+          "one_liner": "Set the federal budget and spending limits for 2022 through 2031",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-7024",
+          "one_liner": "Expand tax credits for families and increase business tax breaks",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hconres-14",
+          "one_liner": "Set federal spending rules and tell committees to write budget bills",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-hr-4373",
+          "one_liner": "Fund State Department and international aid programs",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hconres-14",
+          "one_liner": "Set federal spending rules and tell committees to write budget bills",
+          "vote": "Yea",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "category": "Immigration",
+      "in_favor": 18,
+      "against": 6,
+      "total": 24,
+      "verdict": "Voted in favor of 18 of 24 immigration measures",
+      "bills": [
+        {
+          "bill_id": "117-sjres-46",
+          "one_liner": "Cancel a 2022 rule that changed asylum screening procedures",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-s-4361",
+          "one_liner": "Give DHS emergency power to remove non-citizens at the Mexico border",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-sjres-18",
+          "one_liner": "Bring back a rule letting officials deny green cards to people who might need benefits",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Nay",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-hr-4",
+          "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-s-5",
+          "one_liner": "Require detention of non-citizens arrested for theft, burglary, or shoplifting",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-5",
+          "one_liner": "Require detention of non-citizens arrested for theft, burglary, or shoplifting",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-5",
+          "one_liner": "Require detention of non-citizens arrested for theft, burglary, or shoplifting",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-s-5",
+          "one_liner": "Require detention of non-citizens arrested for theft, burglary, or shoplifting",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-7147",
+          "one_liner": "Fund homeland security agencies for the year starting October 2025",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Money in Politics",
+      "in_favor": 3,
+      "against": 7,
+      "total": 11,
+      "verdict": "Voted against 7 of 11 money in politics measures",
+      "bills": [
+        {
+          "bill_id": "117-s-4822",
+          "one_liner": "Require more disclosure of campaign spending and block foreign money in elections",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-2747",
+          "one_liner": "Expand voter registration and voting access while changing campaign finance rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-4",
+          "one_liner": "Require some states to get federal approval before changing voting rules",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-13",
+          "one_liner": "Bring back automatic approvals for some bank mergers",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "119-sjres-13",
+          "one_liner": "Bring back automatic approvals for some bank mergers",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-s-2093",
+          "one_liner": "Expand voter access and add new rules for campaigns and government officials",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "117-hr-4346",
+          "one_liner": "Fund Congress and related offices for the year starting October 2021",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4346",
+          "one_liner": "Fund Congress and related offices for the year starting October 2021",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-hr-4346",
+          "one_liner": "Fund Congress and related offices for the year starting October 2021",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "117-sres-16",
+          "one_liner": "Set up rules and deadlines for Donald Trump's impeachment trial",
+          "vote": "Yea",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "117-s-1",
+          "one_liner": "Expand voter registration and voting access while adding campaign finance and ethics rules",
+          "vote": "Nay",
+          "direction": "against"
+        }
+      ]
+    },
+    {
+      "category": "Social Security & Retirement",
+      "in_favor": 3,
+      "against": 2,
+      "total": 5,
+      "verdict": "Voted in favor of 3 of 5 social security & retirement measures",
+      "bills": [
+        {
+          "bill_id": "118-hjres-30",
+          "one_liner": "Cancel a rule letting retirement plan managers consider climate factors in investments",
+          "vote": "Yea",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-82",
+          "one_liner": "Restore full Social Security benefits for people with government pensions",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-82",
+          "one_liner": "Restore full Social Security benefits for people with government pensions",
+          "vote": "Nay",
+          "direction": "against"
+        },
+        {
+          "bill_id": "118-hr-82",
+          "one_liner": "Restore full Social Security benefits for people with government pensions",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "118-hr-82",
+          "one_liner": "Restore full Social Security benefits for people with government pensions",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    },
+    {
+      "category": "Housing",
+      "in_favor": 2,
+      "against": 0,
+      "total": 4,
+      "verdict": "Voted in favor of 2 of 4 housing measures",
+      "bills": [
+        {
+          "bill_id": "119-hr-6644",
+          "one_liner": "Expand federal housing programs and increase government funding for housing",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-6644",
+          "one_liner": "Expand federal housing programs and increase government funding for housing",
+          "vote": "Not Voting",
+          "direction": "neutral"
+        },
+        {
+          "bill_id": "119-hr-6644",
+          "one_liner": "Expand federal housing programs and increase government funding for housing",
+          "vote": "Yea",
+          "direction": "in_favor"
+        },
+        {
+          "bill_id": "119-hr-6644",
+          "one_liner": "Expand federal housing programs and increase government funding for housing",
+          "vote": "Yea",
+          "direction": "in_favor"
+        }
+      ]
+    }
+  ],
   "votes": [
-    {
-      "bill_number": "S.Res. 377",
-      "bill_id": "119-sres-377",
-      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
-      "vote": "Yea",
-      "date": "September 9, 2025,  06:46 PM",
-      "result": "Motion to Proceed Agreed to (53-45)",
-      "policy_area": "Congress",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 511
-    },
-    {
-      "bill_number": "S.Res. 377",
-      "bill_id": "119-sres-377",
-      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
-      "vote": "Yea",
-      "date": "September 9, 2025,  06:13 PM",
-      "result": "Motion to Table Agreed to (53-46)",
-      "policy_area": "Congress",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 510
-    },
-    {
-      "bill_number": "S. 2296",
-      "bill_id": "119-s-2296",
-      "one_liner": "Fund the military and set defense policies for the year starting October 2025",
-      "vote": "Yea",
-      "date": "September 4, 2025,  01:33 PM",
-      "result": "Motion to Proceed Agreed to (83-13)",
-      "policy_area": "Armed Forces and National Security",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 503
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "September 30, 2025,  06:41 PM",
-      "result": "Bill Defeated (55-45, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 535
-    },
-    {
-      "bill_number": "S. 2882",
-      "bill_id": "119-s-2882",
-      "one_liner": "Continuing Appropriations and Extensions and Other Matters Act, 2026",
-      "vote": "Nay",
-      "date": "September 30, 2025,  05:46 PM",
-      "result": "Bill Defeated (47-53, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 534
-    },
     {
       "bill_number": "H.R. 5860",
       "bill_id": "118-hr-5860",
@@ -193,21 +3743,6 @@
       "congress": 117,
       "session": 1,
       "vote_number": 397
-    },
-    {
-      "bill_number": "S. 2806",
-      "bill_id": "119-s-2806",
-      "one_liner": "Eliminate Shutdowns Act",
-      "vote": "Yea",
-      "date": "September 29, 2025,  08:54 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (37-61, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 533
     },
     {
       "bill_number": "H.R. 6833",
@@ -435,36 +3970,6 @@
       "vote_number": 500
     },
     {
-      "bill_number": "S. 2882",
-      "bill_id": "119-s-2882",
-      "one_liner": "Continuing Appropriations and Extensions and Other Matters Act, 2026",
-      "vote": "Nay",
-      "date": "September 19, 2025,  12:20 PM",
-      "result": "Bill Defeated (47-45, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 527
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "September 19, 2025,  01:01 PM",
-      "result": "Bill Defeated (44-48, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 528
-    },
-    {
       "bill_number": "To rescind funds from the Department of Energy loan programs office.",
       "bill_id": null,
       "one_liner": "To rescind funds from the Department of Energy loan programs office.",
@@ -493,51 +3998,6 @@
       "congress": 118,
       "session": 2,
       "vote_number": 242
-    },
-    {
-      "bill_number": "S.Con.Res. 22",
-      "bill_id": "119-sconres-22",
-      "one_liner": "A concurrent resolution setting forth the congressional budget for the United States Government for fiscal year 2026 and setting forth the appropriate budgetary levels for fiscal years 2027 through 2035.",
-      "vote": "Yea",
-      "date": "September 16, 2025,  05:19 PM",
-      "result": "Motion to Proceed Rejected (36-62)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 521
-    },
-    {
-      "bill_number": "S.J.Res. 60",
-      "bill_id": "119-sjres-60",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Emissions Budget and Allowance Allocations for Indiana Under the Revised Cross-State Air Pollution Rule Update\".",
-      "vote": "Nay",
-      "date": "September 16, 2025,  02:32 PM",
-      "result": "Motion to Proceed Rejected (47-51)",
-      "policy_area": "Environmental Protection",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 520
-    },
-    {
-      "bill_number": "S.Res. 377",
-      "bill_id": "119-sres-377",
-      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
-      "vote": "Yea",
-      "date": "September 15, 2025,  05:30 PM",
-      "result": "Resolution Agreed to (51-44)",
-      "policy_area": "Congress",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 517
     },
     {
       "bill_number": "H.R. 4366",
@@ -570,396 +4030,6 @@
       "vote_number": 227
     },
     {
-      "bill_number": "S.Res. 377",
-      "bill_id": "119-sres-377",
-      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
-      "vote": "Yea",
-      "date": "September 11, 2025,  11:01 AM",
-      "result": "Cloture Motion Rejected (52-47, 3/5 majority required)",
-      "policy_area": "Congress",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 513
-    },
-    {
-      "bill_number": "S.Res. 377",
-      "bill_id": "119-sres-377",
-      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
-      "vote": "Yea",
-      "date": "September 11, 2025,  05:10 PM",
-      "result": "Cloture Motion Agreed to (53-43)",
-      "policy_area": "Congress",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 516
-    },
-    {
-      "bill_number": "S.Res. 377",
-      "bill_id": "119-sres-377",
-      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
-      "vote": "Nay",
-      "date": "September 11, 2025,  04:47 PM",
-      "result": "Decision of Chair Not Sustained (45-53)",
-      "policy_area": "Congress",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 515
-    },
-    {
-      "bill_number": "S.Res. 377",
-      "bill_id": "119-sres-377",
-      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
-      "vote": "Yea",
-      "date": "September 11, 2025,  04:12 PM",
-      "result": "Motion to Reconsider Agreed to (52-45)",
-      "policy_area": "Congress",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 514
-    },
-    {
-      "bill_number": "To direct the Attorney General to make publicly available documents related to Jeffrey Epstein.",
-      "bill_id": null,
-      "one_liner": "To direct the Attorney General to make publicly available documents related to Jeffrey Epstein.",
-      "vote": "Yea",
-      "date": "September 10, 2025,  05:20 PM",
-      "result": "Motion to Table Agreed to (51-49)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 512
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "October 9, 2025,  12:25 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (54-45, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 558
-    },
-    {
-      "bill_number": "S. 2882",
-      "bill_id": "119-s-2882",
-      "one_liner": "Continuing Appropriations and Extensions and Other Matters Act, 2026",
-      "vote": "Nay",
-      "date": "October 9, 2025,  11:45 AM",
-      "result": "Cloture on the Motion to Proceed Rejected (47-50, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 557
-    },
-    {
-      "bill_number": "S. 2296",
-      "bill_id": "119-s-2296",
-      "one_liner": "Fund the military and set defense policies for the year starting October 2025",
-      "vote": "Yea",
-      "date": "October 9, 2025,  08:59 PM",
-      "result": "Bill Passed (77-20, 3/5 majority required)",
-      "policy_area": "Armed Forces and National Security",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 570
-    },
-    {
-      "bill_number": "To limit the use of Federal law enforcement officers for crowd control, and for other purposes.",
-      "bill_id": null,
-      "one_liner": "To limit the use of Federal law enforcement officers for crowd control, and for other purposes.",
-      "vote": "Nay",
-      "date": "October 9, 2025,  08:42 PM",
-      "result": "Amendment Rejected (47-50, 3/5 majority required)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 569
-    },
-    {
-      "bill_number": "To reduce the bloated Pentagon budget by 10 percent and instead expand veteran dental care at the Department of Veterans Affairs.",
-      "bill_id": null,
-      "one_liner": "To reduce the bloated Pentagon budget by 10 percent and instead expand veteran dental care at the Department of Veterans Affairs.",
-      "vote": "Nay",
-      "date": "October 9, 2025,  08:26 PM",
-      "result": "Amendment Rejected (10-88, 3/5 majority required)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 568
-    },
-    {
-      "bill_number": "To limit the provision of support by the Armed Forces to civilian law enforcement activities.",
-      "bill_id": null,
-      "one_liner": "To limit the provision of support by the Armed Forces to civilian law enforcement activities.",
-      "vote": "Nay",
-      "date": "October 9, 2025,  08:08 PM",
-      "result": "Amendment Rejected (46-52, 3/5 majority required)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 567
-    },
-    {
-      "bill_number": "To amend title 32, United States Code, to clarify certain limitations on full-time National Guard duty performed in a State, Territory, or the District of Columbia.",
-      "bill_id": null,
-      "one_liner": "To amend title 32, United States Code, to clarify certain limitations on full-time National Guard duty performed in a State, Territory, or the District of Columbia.",
-      "vote": "Nay",
-      "date": "October 9, 2025,  07:52 PM",
-      "result": "Amendment Rejected (47-50, 3/5 majority required)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 566
-    },
-    {
-      "bill_number": "To prohibit the use of funds to procure or modify foreign aircraft for presidential airlift.",
-      "bill_id": null,
-      "one_liner": "To prohibit the use of funds to procure or modify foreign aircraft for presidential airlift.",
-      "vote": "Nay",
-      "date": "October 9, 2025,  07:36 PM",
-      "result": "Amendment Rejected (46-50, 3/5 majority required)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 565
-    },
-    {
-      "bill_number": "To require a review of the methodologies used to determine the amounts of locality-based comparability payments and to require the President's Pay Agent to conduct a pilot program establishing alternative models for determining the amounts of those payments.",
-      "bill_id": null,
-      "one_liner": "To require a review of the methodologies used to determine the amounts of locality-based comparability payments and to require the President's Pay Agent to conduct a pilot program establishing alternative models for determining the amounts of those payments.",
-      "vote": "Yea",
-      "date": "October 9, 2025,  06:55 PM",
-      "result": "Amendment Rejected (51-46, 3/5 majority required)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 564
-    },
-    {
-      "bill_number": "To require Presidential appointment and Senate confirmation of the Inspector General of the Board of Governors of the Federal Reserve System and the Bureau of Consumer Financial Protection.",
-      "bill_id": null,
-      "one_liner": "To require Presidential appointment and Senate confirmation of the Inspector General of the Board of Governors of the Federal Reserve System and the Bureau of Consumer Financial Protection.",
-      "vote": "Yea",
-      "date": "October 9, 2025,  06:37 PM",
-      "result": "Amendment Rejected (53-43, 3/5 majority required)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 563
-    },
-    {
-      "bill_number": "To prohibit earnings on balances maintained at a Federal Reserve bank by or on behalf of a depository institution.",
-      "bill_id": null,
-      "one_liner": "To prohibit earnings on balances maintained at a Federal Reserve bank by or on behalf of a depository institution.",
-      "vote": "Nay",
-      "date": "October 9, 2025,  06:14 PM",
-      "result": "Amendment Rejected (14-83, 3/5 majority required)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 562
-    },
-    {
-      "bill_number": "H.J.Res. 106",
-      "bill_id": "119-hjres-106",
-      "one_liner": "Cancel a Bureau of Land Management rule covering 3.6 million acres in Alaska",
-      "vote": "Yea",
-      "date": "October 9, 2025,  04:54 PM",
-      "result": "Joint Resolution Passed (50-46)",
-      "policy_area": "Public Lands and Natural Resources",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "against",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 560
-    },
-    {
-      "bill_number": "H.J.Res. 106",
-      "bill_id": "119-hjres-106",
-      "one_liner": "Cancel a Bureau of Land Management rule covering 3.6 million acres in Alaska",
-      "vote": "Yea",
-      "date": "October 9, 2025,  01:57 PM",
-      "result": "Motion to Proceed Agreed to (50-47)",
-      "policy_area": "Public Lands and Natural Resources",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "against",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 559
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "October 8, 2025,  12:52 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (54-45, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 551
-    },
-    {
-      "bill_number": "S. 2882",
-      "bill_id": "119-s-2882",
-      "one_liner": "Continuing Appropriations and Extensions and Other Matters Act, 2026",
-      "vote": "Nay",
-      "date": "October 8, 2025,  12:12 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (47-52, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 550
-    },
-    {
-      "bill_number": "H.J.Res. 104",
-      "bill_id": "119-hjres-104",
-      "one_liner": "Cancel a rule that blocks coal leasing on 1.7 million acres in Montana",
-      "vote": "Yea",
-      "date": "October 8, 2025,  11:29 AM",
-      "result": "Joint Resolution Passed (52-47)",
-      "policy_area": "Public Lands and Natural Resources",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "against",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 549
-    },
-    {
-      "bill_number": "H.J.Res. 105",
-      "bill_id": "119-hjres-105",
-      "one_liner": "Cancel a Bureau of Land Management rule limiting oil, gas, and coal development in North Dakota",
-      "vote": "Yea",
-      "date": "October 8, 2025,  08:17 PM",
-      "result": "Joint Resolution Passed (50-45)",
-      "policy_area": "Public Lands and Natural Resources",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "against",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 556
-    },
-    {
-      "bill_number": "S.J.Res. 83",
-      "bill_id": "119-sjres-83",
-      "one_liner": "A joint resolution to direct the removal of United States Armed Forces from hostilities that have not been authorized by Congress.",
-      "vote": "Nay",
-      "date": "October 8, 2025,  07:47 PM",
-      "result": "Motion to Discharge Rejected (48-51)",
-      "policy_area": "International Affairs",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 555
-    },
-    {
-      "bill_number": "S.J.Res. 71",
-      "bill_id": "119-sjres-71",
-      "one_liner": "A joint resolution terminating the national emergency declared with respect to energy.",
-      "vote": "Nay",
-      "date": "October 8, 2025,  07:05 PM",
-      "result": "Joint Resolution Defeated (47-51)",
-      "policy_area": "Emergency Management",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 554
-    },
-    {
-      "bill_number": "H.J.Res. 105",
-      "bill_id": "119-hjres-105",
-      "one_liner": "Cancel a Bureau of Land Management rule limiting oil, gas, and coal development in North Dakota",
-      "vote": "Yea",
-      "date": "October 8, 2025,  03:11 PM",
-      "result": "Motion to Proceed Agreed to (51-47)",
-      "policy_area": "Public Lands and Natural Resources",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "against",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 553
-    },
-    {
-      "bill_number": "H.J.Res. 104",
-      "bill_id": "119-hjres-104",
-      "one_liner": "Cancel a rule that blocks coal leasing on 1.7 million acres in Montana",
-      "vote": "Yea",
-      "date": "October 7, 2025,  05:49 PM",
-      "result": "Motion to Proceed Agreed to (50-47)",
-      "policy_area": "Public Lands and Natural Resources",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "against",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 548
-    },
-    {
       "bill_number": "S. 1301",
       "bill_id": "117-s-1301",
       "one_liner": "Require the health department to publish physical activity guidelines every 10 years",
@@ -988,36 +4058,6 @@
       "congress": 117,
       "session": 1,
       "vote_number": 411
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "October 6, 2025,  06:12 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (52-42, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 545
-    },
-    {
-      "bill_number": "S. 2882",
-      "bill_id": "119-s-2882",
-      "one_liner": "Continuing Appropriations and Extensions and Other Matters Act, 2026",
-      "vote": "Nay",
-      "date": "October 6, 2025,  05:31 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (45-50, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 544
     },
     {
       "bill_number": "To prohibit the use of funds to implement or enforce Executive Order 14019.",
@@ -1063,156 +4103,6 @@
       "congress": 118,
       "session": 1,
       "vote_number": 277
-    },
-    {
-      "bill_number": "S.J.Res. 88",
-      "bill_id": "119-sjres-88",
-      "one_liner": "A joint resolution terminating the national emergency declared to impose global tariffs.",
-      "vote": "Nay",
-      "date": "October 30, 2025,  12:35 PM",
-      "result": "Joint Resolution Passed (51-47)",
-      "policy_area": "Foreign Trade and International Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 600
-    },
-    {
-      "bill_number": "S.J.Res. 80",
-      "bill_id": "119-sjres-80",
-      "one_liner": "Open more Alaska land to oil and gas drilling",
-      "vote": "Yea",
-      "date": "October 30, 2025,  11:53 AM",
-      "result": "Joint Resolution Passed (52-45)",
-      "policy_area": "Energy",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "against",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 599
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "October 3, 2025,  02:39 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (54-44, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 543
-    },
-    {
-      "bill_number": "S. 2882",
-      "bill_id": "119-s-2882",
-      "one_liner": "Continuing Appropriations and Extensions and Other Matters Act, 2026",
-      "vote": "Nay",
-      "date": "October 3, 2025,  02:14 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (46-52, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 542
-    },
-    {
-      "bill_number": "S.Res. 412",
-      "bill_id": "119-sres-412",
-      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
-      "vote": "Yea",
-      "date": "October 3, 2025,  01:39 PM",
-      "result": "Resolution Agreed to (51-46)",
-      "policy_area": "Congress",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 541
-    },
-    {
-      "bill_number": "S.J.Res. 80",
-      "bill_id": "119-sjres-80",
-      "one_liner": "Open more Alaska land to oil and gas drilling",
-      "vote": "Yea",
-      "date": "October 29, 2025,  11:43 AM",
-      "result": "Motion to Proceed Agreed to (54-46)",
-      "policy_area": "Energy",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "against",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 595
-    },
-    {
-      "bill_number": "S.J.Res. 77",
-      "bill_id": "119-sjres-77",
-      "one_liner": "A joint resolution terminating the national emergency declared to impose duties on articles imported from Canada.",
-      "vote": "Nay",
-      "date": "October 29, 2025,  05:18 PM",
-      "result": "Joint Resolution Passed (50-46)",
-      "policy_area": "Foreign Trade and International Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 598
-    },
-    {
-      "bill_number": "S.J.Res. 69",
-      "bill_id": "119-sjres-69",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the United States Fish and Wildlife Service relating to \"Record of Decision for the Barred Owl Management Strategy; Washington, Oregon, and California\".",
-      "vote": "Nay",
-      "date": "October 29, 2025,  02:08 PM",
-      "result": "Motion to Proceed Rejected (25-72)",
-      "policy_area": "Environmental Protection",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 597
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "October 28, 2025,  11:34 AM",
-      "result": "Cloture on the Motion to Proceed Rejected (54-45, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 590
-    },
-    {
-      "bill_number": "S.J.Res. 81",
-      "bill_id": "119-sjres-81",
-      "one_liner": "A joint resolution terminating the national emergency declared to impose duties on articles imported from Brazil.",
-      "vote": "Nay",
-      "date": "October 28, 2025,  06:10 PM",
-      "result": "Joint Resolution Passed (52-48)",
-      "policy_area": "Foreign Trade and International Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 594
     },
     {
       "bill_number": "To prohibit earmarks.",
@@ -1320,51 +4210,6 @@
       "vote_number": 267
     },
     {
-      "bill_number": "S. 3012",
-      "bill_id": "119-s-3012",
-      "one_liner": "Shutdown Fairness Act",
-      "vote": "Yea",
-      "date": "October 23, 2025,  12:38 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (54-45, 3/5 majority required)",
-      "policy_area": "Government Operations and Politics",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 585
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "October 22, 2025,  05:15 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (54-46, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 581
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "October 20, 2025,  05:28 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (50-43, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 576
-    },
-    {
       "bill_number": "S. 2747",
       "bill_id": "117-s-2747",
       "one_liner": "Expand voter registration and voting access while changing campaign finance rules",
@@ -1410,126 +4255,6 @@
       "vote_number": 260
     },
     {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "October 16, 2025,  11:02 AM",
-      "result": "Cloture on the Motion to Proceed Rejected (51-45, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 573
-    },
-    {
-      "bill_number": "H.R. 4016",
-      "bill_id": "119-hr-4016",
-      "one_liner": "Fund the military for 2026",
-      "vote": "Not Voting",
-      "date": "October 16, 2025,  01:36 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (50-44, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 575
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "October 15, 2025,  02:16 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (51-44, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 572
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "October 14, 2025,  05:34 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (49-45, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 571
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "October 1, 2025,  11:45 AM",
-      "result": "Cloture on the Motion to Proceed Rejected (55-45, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 537
-    },
-    {
-      "bill_number": "S. 2882",
-      "bill_id": "119-s-2882",
-      "one_liner": "Continuing Appropriations and Extensions and Other Matters Act, 2026",
-      "vote": "Nay",
-      "date": "October 1, 2025,  11:02 AM",
-      "result": "Cloture on the Motion to Proceed Rejected (47-53, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 536
-    },
-    {
-      "bill_number": "S.Res. 412",
-      "bill_id": "119-sres-412",
-      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
-      "vote": "Yea",
-      "date": "October 1, 2025,  02:18 PM",
-      "result": "Cloture Motion Agreed to (53-46)",
-      "policy_area": "Congress",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 540
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "November 9, 2025,  08:27 PM",
-      "result": "Cloture on the Motion to Proceed Agreed to (60-40, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 610
-    },
-    {
       "bill_number": "S.J.Res. 38",
       "bill_id": "118-sjres-38",
       "one_liner": "Cancel a rule that let companies use foreign parts in electric vehicle chargers",
@@ -1543,51 +4268,6 @@
       "congress": 118,
       "session": 1,
       "vote_number": 303
-    },
-    {
-      "bill_number": "S. 3012",
-      "bill_id": "119-s-3012",
-      "one_liner": "Shutdown Fairness Act",
-      "vote": "Not Voting",
-      "date": "November 7, 2025,  05:32 PM",
-      "result": "Cloture on the Motion to Proceed Rejected (53-43, 3/5 majority required)",
-      "policy_area": "Government Operations and Politics",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 609
-    },
-    {
-      "bill_number": "S.J.Res. 90",
-      "bill_id": "119-sjres-90",
-      "one_liner": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against Venezuela that have not been authorized by Congress.",
-      "vote": "Nay",
-      "date": "November 6, 2025,  05:09 PM",
-      "result": "Motion to Discharge Rejected (49-51)",
-      "policy_area": "International Affairs",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 608
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "November 4, 2025,  11:25 AM",
-      "result": "Cloture on the Motion to Proceed Rejected (54-44, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 603
     },
     {
       "bill_number": "S. 4",
@@ -1695,21 +4375,6 @@
       "vote_number": 358
     },
     {
-      "bill_number": "H.J.Res. 130",
-      "bill_id": "119-hjres-130",
-      "one_liner": "Cancel a rule that stopped coal leasing in Wyoming's Buffalo Field Office",
-      "vote": "Yea",
-      "date": "November 20, 2025,  01:31 PM",
-      "result": "Joint Resolution Passed (51-43)",
-      "policy_area": "Public Lands and Natural Resources",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "against",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 623
-    },
-    {
       "bill_number": "S.J.Res. 117",
       "bill_id": "118-sjres-117",
       "one_liner": "A joint resolution relating to the disapproval of the Presidential report with respect to the indebtedness of the Government of Ukraine.",
@@ -1768,36 +4433,6 @@
       "congress": 118,
       "session": 2,
       "vote_number": 292
-    },
-    {
-      "bill_number": "S.J.Res. 76",
-      "bill_id": "119-sjres-76",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Extension of Deadlines in Standards of Performance for New, Reconstructed, and Modified Sources and Emissions Guidelines for Existing Sources: Oil and Natural Gas Sector Climate Review Final Rule\".",
-      "vote": "Nay",
-      "date": "November 19, 2025,  05:59 PM",
-      "result": "Motion to Proceed Rejected (46-51)",
-      "policy_area": "Environmental Protection",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 622
-    },
-    {
-      "bill_number": "S.J.Res. 89",
-      "bill_id": "119-sjres-89",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to \"Buffalo Field Office Record of Decision and Approved Resource Management Plan Amendment\".",
-      "vote": "Yea",
-      "date": "November 19, 2025,  02:23 PM",
-      "result": "Motion to Proceed Agreed to (51-47)",
-      "policy_area": "Public Lands and Natural Resources",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 621
     },
     {
       "bill_number": "H.R. 8404",
@@ -1933,126 +4568,6 @@
       "congress": 118,
       "session": 1,
       "vote_number": 309
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "November 10, 2025,  08:58 PM",
-      "result": "Bill Passed (60-40)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 618
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "November 10, 2025,  08:43 PM",
-      "result": "Cloture Motion Agreed to (60-40, 3/5 majority required)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 617
-    },
-    {
-      "bill_number": "In the nature of a substitute.",
-      "bill_id": null,
-      "one_liner": "In the nature of a substitute.",
-      "vote": "Yea",
-      "date": "November 10, 2025,  08:26 PM",
-      "result": "Amendment Agreed to (60-40)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 616
-    },
-    {
-      "bill_number": "In the nature of a substitute.",
-      "bill_id": null,
-      "one_liner": "In the nature of a substitute.",
-      "vote": "Yea",
-      "date": "November 10, 2025,  08:09 PM",
-      "result": "Cloture Motion Agreed to (60-40, 3/5 majority required)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 615
-    },
-    {
-      "bill_number": "To strike a provision modifying the definition of hemp for purposes of the Agricultural Marketing Act of 1946.",
-      "bill_id": null,
-      "one_liner": "To strike a provision modifying the definition of hemp for purposes of the Agricultural Marketing Act of 1946.",
-      "vote": "Yea",
-      "date": "November 10, 2025,  07:33 PM",
-      "result": "Motion to Table Agreed to (76-24)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 614
-    },
-    {
-      "bill_number": "To improve the bill.",
-      "bill_id": null,
-      "one_liner": "To improve the bill.",
-      "vote": "Nay",
-      "date": "November 10, 2025,  07:09 PM",
-      "result": "Motion to Table Failed (47-53)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 613
-    },
-    {
-      "bill_number": "To improve the bill.",
-      "bill_id": null,
-      "one_liner": "To improve the bill.",
-      "vote": "Nay",
-      "date": "November 10, 2025,  06:39 PM",
-      "result": "Motion to Table Failed (47-53)",
-      "policy_area": "",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 612
-    },
-    {
-      "bill_number": "H.R. 5371",
-      "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
-      "vote": "Yea",
-      "date": "November 10, 2025,  05:41 PM",
-      "result": "Motion to Proceed Agreed to (60-40)",
-      "policy_area": "Economics and Public Finance",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 611
     },
     {
       "bill_number": "To reduce the amounts appropriated in divisions B and C and to rescind amounts appropriated to the Internal Revenue Service.",
@@ -4832,14 +7347,14 @@
     {
       "bill_number": "S.J.Res. 103",
       "bill_id": "119-sjres-103",
-      "one_liner": "Cancel a VA rule letting veterans get reproductive health care at VA facilities",
+      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Veterans Affairs relating to \"Reproductive Health Services\".",
       "vote": "Nay",
       "date": "March 25, 2026,  06:45 PM",
       "result": "Motion to Proceed Rejected (48-50)",
       "policy_area": "Armed Forces and National Security",
       "chamber": "Senate",
       "cbo_deficit_impact": null,
-      "direction": "against",
+      "direction": null,
       "congress": 119,
       "session": 2,
       "vote_number": 72
@@ -4862,14 +7377,14 @@
     {
       "bill_number": "S.J.Res. 107",
       "bill_id": "119-sjres-107",
-      "one_liner": "Cancel an IRS rule on when wind and solar projects qualify for tax credits",
+      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Internal Revenue Service relating to \"Beginning of Construction Requirements for Purposes of the Termination of Clean Electricity Production Credits and Clean Electricity Investment Credits for Applicable Wind and Solar Facilities\".",
       "vote": "Nay",
       "date": "March 25, 2026,  02:06 PM",
       "result": "Motion to Proceed Rejected (47-53)",
       "policy_area": "Energy",
       "chamber": "Senate",
       "cbo_deficit_impact": null,
-      "direction": "against",
+      "direction": null,
       "congress": 119,
       "session": 2,
       "vote_number": 70
@@ -4967,14 +7482,14 @@
     {
       "bill_number": "S.J.Res. 116",
       "bill_id": "119-sjres-116",
-      "one_liner": "Pull US military forces out of any fighting with Iran not approved by Congress",
+      "one_liner": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
       "vote": "Nay",
       "date": "March 24, 2026,  07:02 PM",
       "result": "Motion to Discharge Rejected (47-53)",
       "policy_area": "International Affairs",
       "chamber": "Senate",
       "cbo_deficit_impact": null,
-      "direction": "against",
+      "direction": null,
       "congress": 119,
       "session": 2,
       "vote_number": 69
@@ -5402,14 +7917,14 @@
     {
       "bill_number": "S.J.Res. 118",
       "bill_id": "119-sjres-118",
-      "one_liner": "Order U.S. troops out of military action against Iran without a vote from Congress",
+      "one_liner": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
       "vote": "Nay",
       "date": "March 18, 2026,  07:07 PM",
       "result": "Motion to Discharge Rejected (47-53)",
       "policy_area": "International Affairs",
       "chamber": "Senate",
       "cbo_deficit_impact": null,
-      "direction": "against",
+      "direction": null,
       "congress": 119,
       "session": 2,
       "vote_number": 58
@@ -10905,51 +13420,6 @@
       "vote_number": 332
     },
     {
-      "bill_number": "H.J.Res. 131",
-      "bill_id": "119-hjres-131",
-      "one_liner": "Cancel a rule that limited oil drilling to 400,000 acres in an Alaska wildlife refuge",
-      "vote": "Yea",
-      "date": "December 4, 2025,  11:35 AM",
-      "result": "Joint Resolution Passed (49-45)",
-      "policy_area": "Energy",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "against",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 632
-    },
-    {
-      "bill_number": "S.Res. 520",
-      "bill_id": "119-sres-520",
-      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
-      "vote": "Yea",
-      "date": "December 4, 2025,  01:36 PM",
-      "result": "Cloture Motion Rejected (43-37, 3/5 majority required)",
-      "policy_area": "Congress",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 633
-    },
-    {
-      "bill_number": "S.J.Res. 91",
-      "bill_id": "119-sjres-91",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to \"Coastal Plain Oil and Gas Leasing Program Record of Decision\".",
-      "vote": "Yea",
-      "date": "December 3, 2025,  02:53 PM",
-      "result": "Motion to Proceed Agreed to (49-47)",
-      "policy_area": "Energy",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 630
-    },
-    {
       "bill_number": "To amend the Fair Labor Standards Act of 1938 to expand access to breastfeeding accommodations in the workplace, and for other purposes.",
       "bill_id": null,
       "one_liner": "To amend the Fair Labor Standards Act of 1938 to expand access to breastfeeding accommodations in the workplace, and for other purposes.",
@@ -11340,21 +13810,6 @@
       "vote_number": 328
     },
     {
-      "bill_number": "S.J.Res. 82",
-      "bill_id": "119-sjres-82",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Office of the Secretary of the Department of Health and Human Services relating to \"Policy on Adhering to the Text of the Administrative Procedure Act\".",
-      "vote": "Nay",
-      "date": "December 18, 2025,  12:19 PM",
-      "result": "Joint Resolution Defeated (50-50)",
-      "policy_area": "Government Operations and Politics",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 654
-    },
-    {
       "bill_number": "H.R. 5009",
       "bill_id": "118-hr-5009",
       "one_liner": "Extends wildlife conservation programs through 2028",
@@ -11400,21 +13855,6 @@
       "vote_number": 326
     },
     {
-      "bill_number": "S. 1071",
-      "bill_id": "119-s-1071",
-      "one_liner": "Remove remains of convicted rapist from veterans cemetery in Texas",
-      "vote": "Yea",
-      "date": "December 17, 2025,  11:39 AM",
-      "result": "Motion Agreed to (77-20)",
-      "policy_area": "Armed Forces and National Security",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 648
-    },
-    {
       "bill_number": "H.R. 5009",
       "bill_id": "118-hr-5009",
       "one_liner": "Extends wildlife conservation programs through 2028",
@@ -11428,21 +13868,6 @@
       "congress": 118,
       "session": 2,
       "vote_number": 324
-    },
-    {
-      "bill_number": "S. 1071",
-      "bill_id": "119-s-1071",
-      "one_liner": "Remove remains of convicted rapist from veterans cemetery in Texas",
-      "vote": "Yea",
-      "date": "December 15, 2025,  05:27 PM",
-      "result": "Cloture Motion Agreed to (76-20, 3/5 majority required)",
-      "policy_area": "Armed Forces and National Security",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 647
     },
     {
       "bill_number": "H.R. 1437",
@@ -11698,96 +14123,6 @@
       "congress": 118,
       "session": 1,
       "vote_number": 339
-    },
-    {
-      "bill_number": "S. 3385",
-      "bill_id": "119-s-3385",
-      "one_liner": "Lower Health Care Costs Act",
-      "vote": "Nay",
-      "date": "December 11, 2025,  12:29 PM",
-      "result": "Cloture Motion Rejected (51-48, 3/5 majority required)",
-      "policy_area": "Taxation",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 644
-    },
-    {
-      "bill_number": "S. 3386",
-      "bill_id": "119-s-3386",
-      "one_liner": "Health Care Freedom for Patients Act of 2025",
-      "vote": "Yea",
-      "date": "December 11, 2025,  11:45 AM",
-      "result": "Cloture Motion Rejected (51-48, 3/5 majority required)",
-      "policy_area": "Health",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 643
-    },
-    {
-      "bill_number": "S. 1071",
-      "bill_id": "119-s-1071",
-      "one_liner": "Remove remains of convicted rapist from veterans cemetery in Texas",
-      "vote": "Yea",
-      "date": "December 11, 2025,  01:39 PM",
-      "result": "Motion to Proceed Agreed to (75-22)",
-      "policy_area": "Armed Forces and National Security",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": "in_favor",
-      "congress": 119,
-      "session": 1,
-      "vote_number": 646
-    },
-    {
-      "bill_number": "S.Res. 532",
-      "bill_id": "119-sres-532",
-      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
-      "vote": "Yea",
-      "date": "December 11, 2025,  01:05 PM",
-      "result": "Resolution Agreed to (52-47)",
-      "policy_area": "Congress",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 645
-    },
-    {
-      "bill_number": "S.Res. 532",
-      "bill_id": "119-sres-532",
-      "one_liner": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
-      "vote": "Yea",
-      "date": "December 10, 2025,  12:45 PM",
-      "result": "Cloture Motion Agreed to (51-47)",
-      "policy_area": "Congress",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 642
-    },
-    {
-      "bill_number": "S.J.Res. 82",
-      "bill_id": "119-sjres-82",
-      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Office of the Secretary of the Department of Health and Human Services relating to \"Policy on Adhering to the Text of the Administrative Procedure Act\".",
-      "vote": "Nay",
-      "date": "December 10, 2025,  11:58 AM",
-      "result": "Motion to Proceed Agreed to (50-49)",
-      "policy_area": "Government Operations and Politics",
-      "chamber": "Senate",
-      "cbo_deficit_impact": null,
-      "direction": null,
-      "congress": 119,
-      "session": 1,
-      "vote_number": 641
     },
     {
       "bill_number": "H.J.Res. 100",

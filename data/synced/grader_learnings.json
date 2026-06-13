@@ -14,7 +14,9 @@
       "Strong, readable summary with accurate provisions. Two issues to address: (1) The issue_category 'Environment & Energy' is incorrect \u2014 this is a government-wide data quality and transparency bill that applies to all federal agencies equally, not an environmental bill. It should be categorized as 'Government & Administration' or equivalent. A reader filtering by category would be misled. (2) The one-liner focuses only on posting data and methods, which is one of two main requirements. The bill also requires agencies to use the best reasonably available data \u2014 a distinct data quality mandate, not just a transparency one. Consider: 'Require federal agencies to use and post the best data behind their rules' (14 words). The provisions themselves are accurate, well-sequenced, and clearly written. Sentence lengths are within limits, language is plain throughout, and direction 'in_favor' is correct for a bill creating new agency obligations.",
       "Strong, accurate summary of a technical research access bill. Plain language throughout, correct direction, and all five key components of the bill are represented. One minor note: the official summary says 'practitioners,' which is broader than 'doctors and scientists' \u2014 it could include nurse researchers or pharmacists authorized to conduct research. Consider: 'doctors, nurses, and researchers' or just 'researchers' to avoid inadvertent narrowing. DEA is used without expansion, but it is a well-known agency used in short sentences as the checklist allows. 'State-licensed dispensaries' in Provision 4 is slightly technical but widely understood and accurately conveys the concept. 'National Institute on Drug Abuse' is spelled out fully \u2014 good. All provisions map cleanly to the official summary with no omissions or distortions.",
       "Strong summary with clear, accessible language and accurate provisions. Two issues to address: (1) The issue_category 'Environment & Energy' is a poor fit \u2014 this is a building code compliance and disaster mitigation loan program bill, not environmental or energy policy. A reader filtering by that category would be misled. A category like 'Government & Administration' or 'Housing & Infrastructure' (if available) would be accurate. (2) 'Small fixes' in Provision 3 uses the adjective 'small' to characterize scope \u2014 this is editorial, similar to 'modest' which the checklist explicitly flags. The bill's own title signals these are technical corrections; just write 'The bill makes fixes to how this loan program works.' All other elements are solid: sentences are under 25 words, plain language throughout, and direction 'in_favor' is defensible since the bill adds a new substantive requirement for building code compliance.",
-      "Strong, accurate summary overall. One clear issue: Provision 5 uses 'The goal is to help these agencies prepare for terrorism...' \u2014 'The goal is to' is intent characterization, which the checklist explicitly prohibits alongside 'aims to' and 'seeks to.' Rewrite as a factual statement of what the bill does: 'This supports agencies in preparing for terrorism and other homeland security threats.' Additionally, Provision 4 says 'The focus is on departments in rural or hard-to-reach areas' \u2014 the original refers to 'rural or remote communities' and the agencies serving them, so 'agencies' or 'law enforcement in rural or hard-to-reach areas' is more precise than 'departments.' The word 'accreditation' appears in the one-liner and provisions without explanation, but it is the bill's core concept and widely understood at 8th-grade level \u2014 acceptable here. All other provisions are accurate, clearly written, and well-sequenced. Direction 'in_favor' is correct for a bill that creates new reporting obligations and research mandates. Structure is clean."
+      "Strong, accurate summary overall. One clear issue: Provision 5 uses 'The goal is to help these agencies prepare for terrorism...' \u2014 'The goal is to' is intent characterization, which the checklist explicitly prohibits alongside 'aims to' and 'seeks to.' Rewrite as a factual statement of what the bill does: 'This supports agencies in preparing for terrorism and other homeland security threats.' Additionally, Provision 4 says 'The focus is on departments in rural or hard-to-reach areas' \u2014 the original refers to 'rural or remote communities' and the agencies serving them, so 'agencies' or 'law enforcement in rural or hard-to-reach areas' is more precise than 'departments.' The word 'accreditation' appears in the one-liner and provisions without explanation, but it is the bill's core concept and widely understood at 8th-grade level \u2014 acceptable here. All other provisions are accurate, clearly written, and well-sequenced. Direction 'in_favor' is correct for a bill that creates new reporting obligations and research mandates. Structure is clean.",
+      "Excellent summary. Plain language throughout, accurate provisions, and a well-structured narrative arc that builds from historical context to the bill's effect. The decision to explain the crack/powder cocaine disparity before introducing the legal timeline is a strong pedagogical choice that helps readers understand why this bill matters without editorializing. 'Low-level offenders' mirrors the official summary's own term and is immediately contextualized \u2014 acceptable. The one-liner is clean, starts with a verb, and accurately captures the bill's effect in 13 words. Direction 'in_favor' is correct: the bill expands the pool of people eligible for sentencing reductions, which falls under 'expands... rules in the issue area.' 'Safety & Crime' is a reasonable category fit for a criminal sentencing bill. No jargon, no bias, no sentences over 25 words. All provisions are factually accurate and map cleanly to the official summary.",
+      "Strong, clear summary with accurate plain-language descriptions of the bill's main components. Three issues to address: (1) Provision 7 truncates the oversight body's name as 'National Academies of Sciences' \u2014 the correct full name is 'National Academies of Sciences, Engineering, and Medicine.' This is a factual inaccuracy, not just a style choice. (2) The official summary includes two elements not covered: an interagency committee established to inform the agency's work, and a dedicated Treasury fund created to support its activities. At least one of these should be added as a provision. (3) The official summary notes the agency may partner with institutions of higher education and patient advocacy organizations \u2014 a secondary but substantive omission. 'FDA' is used without expansion but is a well-known agency in a short, clear sentence \u2014 acceptable per checklist. All other provisions are accurate, readable, and well-sequenced. Direction 'in_favor' is correct for a bill that creates a new federal agency."
     ],
     "batch_history": [
       {
@@ -165,6 +167,27 @@
           "117-hres-831",
           "117-s-452",
           "118-hres-901"
+        ]
+      },
+      {
+        "timestamp": "2026-06-13T15:12:27.426680+00:00",
+        "total": 162,
+        "passed": 156,
+        "failed": 6,
+        "grade_distribution": {
+          "A": 54,
+          "B": 102,
+          "C": 6,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": [
+          "117-hr-8326",
+          "117-hr-8463",
+          "119-hr-1346",
+          "119-hr-5317",
+          "119-hres-1299",
+          "119-hres-1336"
         ]
       }
     ]
