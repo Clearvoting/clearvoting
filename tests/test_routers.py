@@ -71,6 +71,23 @@ async def test_get_member_detail_shows_party_when_requested():
 
 
 @pytest.mark.asyncio
+async def test_get_state_overview_party_visibility():
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            default = await client.get("/api/members/FL/overview")
+            with_party = await client.get("/api/members/FL/overview?show_party=true")
+
+    _clear_data_service_cache()
+    assert default.status_code == 200
+    assert with_party.status_code == 200
+    for member in default.json()["members"]:
+        assert "partyName" not in member
+    assert all("partyName" in member for member in with_party.json()["members"])
+
+
+@pytest.mark.asyncio
 async def test_get_member_summary():
     with _patch_data_dir():
         _clear_data_service_cache()

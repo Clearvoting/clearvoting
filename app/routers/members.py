@@ -100,7 +100,7 @@ async def get_member_counts():
 
 
 @router.get("/{state_code}/overview")
-async def get_state_overview(state_code: str):
+async def get_state_overview(state_code: str, show_party: bool = False):
     state_code = _validate_state_code(state_code)
     data_service = get_data_service()
     members_data = data_service.get_members_by_state(state_code)
@@ -147,7 +147,7 @@ async def get_state_overview(state_code: str):
     avg_participation = round(total_participation / count_with_stats) if count_with_stats else 0
     avg_support = round(total_support / count_with_stats) if count_with_stats else 0
 
-    return _strip_party({
+    result = {
         "members": enriched,
         "aggregate": {
             "total_members": len(members),
@@ -155,7 +155,8 @@ async def get_state_overview(state_code: str):
             "avg_support_rate": avg_support,
             "total_votes": total_votes_all,
         },
-    })
+    }
+    return result if show_party else _strip_party(result)
 
 
 @router.get("/{state_code}")

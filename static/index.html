@@ -7,105 +7,104 @@
     <meta name="description" content="Unbiased congressional voting records. See how your representatives vote on bills — facts only, no opinions.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/styles.css?v=9">
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="home-v4">
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <header class="site-header">
-        <div class="header-inner">
-            <a href="/" class="logo">Clear<span>Voting</span></a>
-            <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
-            <nav>
-                <a href="/">Home</a>
-                <a href="#browse">Browse Bills</a>
-                <a href="/about">About</a>
-            </nav>
-        </div>
+    <header class="cv-masthead">
+        <a href="/" class="cv-logo" aria-label="ClearVoting home">Clear<span>Voting</span></a>
+        <p class="cv-masthead-tagline">Facts only · No opinions · No spin</p>
+        <nav class="cv-masthead-nav" aria-label="Main">
+            <a href="/" aria-current="page">Home</a>
+            <a href="#record">The Record</a>
+            <a href="/about">About</a>
+        </nav>
     </header>
 
     <main id="main-content">
-        <section class="hero">
-            <h1 class="hero-animate">See how your representatives vote.</h1>
-            <p class="hero-tagline hero-animate-delay">Plain language. No spin. No party labels until you ask.</p>
-            <p class="hero-trust-line hero-animate-delay-2">Data from Congress.gov and Senate.gov</p>
+        <!-- HERO: the promise, then immediately the action -->
+        <section class="cv-hero" aria-label="ClearVoting">
+            <h1>See how your representatives vote.</h1>
+            <p class="cv-hero-deck">Every vote in Congress, translated into plain English — with party labels hidden until you ask.</p>
         </section>
 
-        <section class="lookup animate-scale" aria-label="Find your representatives">
-            <h3>Find Your Representatives</h3>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="state-select">State</label>
-                    <select id="state-select" aria-label="Select your state">
-                        <option value="">Select a state...</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="district-input">District (optional)</label>
-                    <input type="number" id="district-input" placeholder="e.g. 7" min="0" max="53" aria-label="Congressional district number">
-                </div>
+        <!-- THE CORE ACTION -->
+        <section class="cv-action" aria-labelledby="cv-action-q">
+            <h2 class="cv-action-question" id="cv-action-q">Where do you live?</h2>
+            <div class="cv-state-grid" role="group" aria-labelledby="cv-action-q">
+                <button class="cv-state-card" type="button" data-state="California" data-code="CA">California<small>54 members</small></button>
+                <button class="cv-state-card" type="button" data-state="Florida" data-code="FL">Florida<small>30 members</small></button>
+                <button class="cv-state-card" type="button" data-state="New York" data-code="NY">New York<small>28 members</small></button>
+                <button class="cv-state-card" type="button" data-state="Texas" data-code="TX">Texas<small>40 members</small></button>
             </div>
-            <button id="lookup-btn" class="btn btn-primary" disabled>Find My Representatives</button>
-            <p class="coverage-note">Currently covering California, Florida, New York, and Texas — more states coming.</p>
+            <p class="cv-more-states">
+                Somewhere else? Every state arrives before the November midterms.
+                <button type="button" id="cv-notify-reveal">Get notified</button>
+            </p>
+            <form class="cv-notify-form" id="cv-notify-form" novalidate>
+                <label for="cv-notify-email" class="cv-visually-hidden">Email address</label>
+                <input type="email" id="cv-notify-email" placeholder="you@example.com" required autocomplete="email">
+                <button type="submit" class="cv-notify-btn" id="cv-notify-btn">Notify me</button>
+            </form>
+            <p class="cv-notify-msg" id="cv-notify-msg" role="status" hidden></p>
+
+            <!-- The product, demonstrated — one quiet line -->
+            <div class="cv-ticker" id="cv-ticker" hidden>
+                <span class="cv-ticker-label">The Latest Vote</span>
+                <p id="cv-ticker-body"></p>
+            </div>
+            <p class="cv-trust-line">Data from Congress.gov and Senate.gov · Updated weekly</p>
         </section>
 
-        <section class="how-it-works">
-            <h2>How It Works</h2>
-            <div class="steps-grid">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Pick your state</h3>
-                    <p>Select your state and optionally your district to find who represents you in Congress.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>See the record</h3>
-                    <p>View their actual voting history, issue positions, and campaign donors — all in plain English.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Form your own opinion</h3>
-                    <p>Party labels hidden by default. Evaluate your representative on what they did, not their team.</p>
-                </div>
+        <!-- DELEGATION — appears after a state is chosen -->
+        <section class="cv-delegation" id="cv-delegation" aria-label="Your delegation" tabindex="-1">
+            <div class="cv-section-head">
+                <p class="cv-kicker">Your Delegation</p>
+                <h2 id="cv-delegation-heading"></h2>
+                <p class="cv-section-sub" id="cv-delegation-sub"></p>
+            </div>
+
+            <div class="cv-party-line">
+                <span>Party labels are hidden, so the record speaks first.</span>
+                <button class="cv-party-toggle" type="button" id="cv-party-toggle" aria-pressed="false">Show party labels</button>
+            </div>
+
+            <div id="cv-delegation-body" aria-live="polite"></div>
+
+            <div class="cv-roster-foot" id="cv-roster-foot" hidden>
+                <p class="cv-meta" id="cv-roster-foot-all"></p>
+                <p class="cv-meta">Not sure of your district? <a href="https://www.house.gov/representatives/find-your-representative" target="_blank" rel="noopener">Look it up by ZIP →</a></p>
             </div>
         </section>
 
-        <section id="results" class="results" hidden aria-label="Your representatives">
-            <h3>Your Representatives</h3>
-            <div id="results-count" class="results-count"></div>
-            <div class="party-toggle-section">
-                <p>You're viewing representatives without party labels.</p>
-                <button id="party-toggle" class="btn btn-secondary btn-small">Reveal Party Affiliations</button>
-            </div>
-            <div id="member-grid" class="member-grid" aria-live="polite"></div>
-        </section>
-
-        <section id="browse" class="browse animate-in" aria-label="Browse bills">
-            <h3>Browse Bills</h3>
-            <div class="search-bar">
-                <input type="search" id="bill-search" placeholder="Search bills by keyword..." aria-label="Search bills">
-                <button id="search-btn" class="btn btn-primary" style="width: auto;">Search</button>
+        <!-- THE RECORD — slim -->
+        <section class="cv-record" id="record" aria-label="Recent bills in plain English">
+            <div class="cv-section-head cv-record-head">
+                <div>
+                    <p class="cv-kicker">The Record</p>
+                    <h2>What Congress is doing, in plain English</h2>
+                </div>
+                <p class="cv-meta">Every bill translated from the official text by AI</p>
             </div>
 
-            <h3>Browse by Topic</h3>
-            <div id="category-grid" class="category-grid stagger-children"></div>
-
-            <h3>Recent Bills</h3>
-            <div id="bill-list" class="bill-list">
-                <div class="loading"><span class="spinner"></span> Loading recent bills...</div>
+            <div class="cv-record-grid" id="cv-record-grid" aria-live="polite">
+                <div class="cv-loading">Loading the latest from Congress…</div>
             </div>
-            <div class="pagination">
-                <button id="load-more-btn" class="btn btn-secondary btn-small" hidden>Load More</button>
-            </div>
+            <p class="cv-record-foot"><a class="cv-arrow-link" href="/#record" id="cv-record-browse">Browse all bills by topic →</a></p>
         </section>
     </main>
 
-    <footer class="site-footer animate-in">
-        <p>Data sourced from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a>.</p>
-        <p>ClearVoting does not express opinions on legislation or representatives.</p>
-        <p><span id="data-freshness" class="data-freshness"></span></p>
+    <footer class="cv-footer">
+        <nav class="cv-footer-links" aria-label="Footer">
+            <a href="/about">About</a>
+            <a href="/about#methodology">Methodology &amp; Corrections</a>
+            <a href="mailto:hello@clearvoting.org">Contact</a>
+        </nav>
+        <span class="cv-meta">Data from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a> · <span id="cv-data-freshness">Updated weekly</span></span>
+        <p class="cv-credo">ClearVoting does not express opinions on legislation or representatives.</p>
     </footer>
 
     <button class="feedback-btn" id="feedback-open" aria-label="Send feedback">
