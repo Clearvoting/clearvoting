@@ -10,8 +10,9 @@ logger = logging.getLogger(__name__)
 # Tolerates optional spaces between abbreviation parts ("H. Res. 88").
 _BILL_DOCUMENT_RE = re.compile(r"^([A-Za-z]+(?:\.\s*[A-Za-z]+)*\.?)\s+(\d+)$")
 
-# Vote dates look like "June 5, 2026,  04:52 AM" (note the double space before time).
-_VOTE_DATE_FORMATS = ("%B %d, %Y, %I:%M %p", "%B %d, %Y")
+# Vote dates look like "June 5, 2026,  04:52 AM" (note the double space before time);
+# also accept bare dates and ISO so synthetic/test data parses too.
+_VOTE_DATE_FORMATS = ("%B %d, %Y, %I:%M %p", "%B %d, %Y", "%Y-%m-%d")
 
 
 def _parse_vote_date(raw: str) -> datetime | None:
@@ -52,7 +53,7 @@ class DataService:
     def _load(self) -> None:
         self._members = self._read_json("members.json").get("members", [])
         self._bills = self._read_json("bills.json").get("bills", [])
-        # Newest first so every consumer (browse, search, homepage) leads with
+        # Newest first so every consumer (homepage, browse, search) leads with
         # recent activity; bills without an action date sort last.
         self._bills.sort(
             key=lambda b: (b.get("latestAction") or {}).get("actionDate") or "",
@@ -187,23 +188,37 @@ class DataService:
                     break
         return results
 
-    def get_bills(self, offset: int = 0, limit: int = 20, congress: int | None = None) -> dict:
+    def get_bills(
+        self,
+        offset: int = 0,
+        limit: int = 20,
+        congress: int | None = None,
+        summarized_only: bool = False,
+    ) -> dict:
         bills = self._bills
         if congress is not None:
             bills = [b for b in bills if b.get("congress") == congress]
+        if summarized_only:
+            # Homepage "Record" leads with plain English, so skip bills the AI
+            # hasn't summarized yet (mostly procedural resolutions).
+            bills = [b for b in bills if self._bill_summary(b).get("one_liner")]
         paginated = [self._with_plain_summary(b) for b in bills[offset:offset + limit]]
         return {"bills": paginated}
 
-    def _with_plain_summary(self, bill: dict) -> dict:
-        """Attach the AI one-liner and issue categories so lists can lead with
-        plain English instead of the official title. Returns a shallow copy so
-        the cached bill is never mutated."""
+    def _bill_summary(self, bill: dict) -> dict:
         key = f"{bill.get('congress')}-{bill.get('type', '').lower()}-{bill.get('number')}"
-        summary = self._ai_summaries.get(key, {})
+        return self._ai_summaries.get(key, {})
+
+    def _with_plain_summary(self, bill: dict) -> dict:
+        """Attach the AI one-liner, provisions, and issue categories so lists can
+        lead with plain English instead of the official title. Returns a shallow
+        copy so the cached bill is never mutated."""
+        summary = self._bill_summary(bill)
         return {
             **bill,
-            "one_liner": summary.get("one_liner", ""),
-            "issue_categories": summary.get("issue_categories", []),
+            "one_liner": summary.get("one_liner") or "",
+            "provisions": summary.get("provisions") or [],
+            "issue_categories": summary.get("issue_categories") or [],
         }
 
     def get_member_counts(self) -> dict:
@@ -253,9 +268,9 @@ class DataService:
                 result = (vote.get("result") or "").lower()
                 question = (vote.get("question") or "").lower()
                 decisive = "passage" in question or "bill passed" in result or "bill defeated" in result
-                # Newest date wins; a final-passage vote beats a procedural one the
-                # same day; higher vote number breaks any remaining tie.
-                sort_key = (date, decisive, vote.get("vote_number") or 0)
+                # Most recent calendar day wins; within that day a final-passage
+                # vote beats a procedural motion; vote number breaks any last tie.
+                sort_key = (date.date(), decisive, vote.get("vote_number") or 0)
                 if best_key is None or sort_key > best_key:
                     best_key = sort_key
                     best_payload = {
