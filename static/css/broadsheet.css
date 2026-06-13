@@ -260,3 +260,92 @@ body.broadsheet {
 @media (prefers-reduced-motion: reduce) {
     .home .state-card:hover { transform: none; }
 }
+
+/* ============================================
+   INNER-PAGE BROADSHEET TREATMENTS
+   Layered over the structural rules in styles.css and scoped to
+   body.broadsheet so the homepage (body.home) is never affected.
+   These bring member / bill / state / about into the same
+   civic-broadsheet language: navy Playfair display headings, blue
+   reserved for links + kickers, hairline & double rules, serif
+   narrative, generous whitespace.
+   ============================================ */
+
+/* ---- Shared page frame ---- */
+body.broadsheet { background: var(--paper); }
+body.broadsheet main { max-width: var(--max-width); margin: 0 auto; padding: 1.75rem 1.25rem 0; }
+
+body.broadsheet .back-link { font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; color: var(--ink-meta); }
+body.broadsheet .back-link:hover { color: var(--blue); }
+
+/* ---- Section / card headings: blue -> navy display ---- */
+body.broadsheet .glance-card h2,
+body.broadsheet .viz-section h3,
+body.broadsheet .bill-section h3,
+body.broadsheet .voting-summary-card h3,
+body.broadsheet .service-compact h3,
+body.broadsheet .vote-block h4 {
+    font-family: var(--font-display);
+    color: var(--navy);
+}
+body.broadsheet .glance-card,
+body.broadsheet .viz-section,
+body.broadsheet .vote-block { border-color: var(--rule); }
+body.broadsheet .viz-stat-card .viz-stat-number,
+body.broadsheet .viz-attendance-pct { color: var(--navy); }
+
+/* ---- Shared chips, links, tables ---- */
+body.broadsheet .impact-tag { font-family: var(--font-ui); background: var(--card); border-color: var(--rule); color: var(--blue-dim); }
+body.broadsheet .copy-link-btn { font-family: var(--font-ui); }
+body.broadsheet .copy-link-btn:hover { border-color: var(--blue); color: var(--blue); }
+body.broadsheet .source-link { font-family: var(--font-ui); font-weight: 600; color: var(--blue); }
+body.broadsheet .source-link:hover { color: var(--blue-dim); }
+body.broadsheet .data-table th { font-family: var(--font-ui); color: var(--ink-meta); }
+body.broadsheet .vote-label { font-family: var(--font-ui); }
+
+/* ---- Member: profile header ---- */
+body.broadsheet .member-header { gap: 1.75rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.75rem; }
+body.broadsheet .member-header h2 { font-family: var(--font-display); font-weight: 700; color: var(--navy); font-size: clamp(1.7rem, 3.5vw, 2.3rem); line-height: 1.12; }
+body.broadsheet .member-header .member-meta { font-family: var(--font-ui); color: var(--ink-meta); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+body.broadsheet .member-header .member-photo,
+body.broadsheet .member-header .member-photo-placeholder { border: 2px solid var(--rule); }
+
+body.broadsheet .party-toggle-inline { font-family: var(--font-ui); }
+body.broadsheet .party-toggle-inline:hover { border-color: var(--blue); color: var(--blue); }
+body.broadsheet .party-toggle-inline.active { background: var(--navy); border-color: var(--navy); }
+
+/* ---- Member: sticky name bar -> broadsheet ---- */
+body.broadsheet .member-sticky-bar { background: var(--card); border-bottom: 1px solid var(--navy); box-shadow: var(--shadow); }
+body.broadsheet .member-sticky-bar .sticky-name { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .member-sticky-bar .sticky-meta { color: var(--ink-meta); }
+
+/* ---- Member: tabs ---- */
+body.broadsheet .member-tab-bar { border-bottom: 1px solid var(--rule); }
+body.broadsheet .member-tab { font-family: var(--font-ui); letter-spacing: 0.03em; }
+body.broadsheet .member-tab:hover { color: var(--navy); }
+body.broadsheet .member-tab.active { color: var(--navy); border-bottom-color: var(--navy); }
+
+/* ---- Member: filters ---- */
+body.broadsheet .filter-row { background: var(--paper); }
+body.broadsheet .filter-select { font-family: var(--font-ui); }
+
+/* ---- Member: At a Glance attribution + finance headings ---- */
+body.broadsheet .glance-card .ai-attribution,
+body.broadsheet .ai-attribution { font-family: var(--font-ui); }
+body.broadsheet .finance-heading { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .finance-name, body.broadsheet .finance-amount { font-family: var(--font-ui); }
+
+/* ---- Member: voting record as broadsheet hairline rows ---- */
+body.broadsheet .bill-list { gap: 0; }
+body.broadsheet .vote-item {
+    background: transparent;
+    border: none;
+    border-top: 1px solid var(--rule);
+    border-radius: 0;
+    padding: 1.05rem 0.4rem;
+}
+body.broadsheet .vote-item:hover { background: var(--card-hover); border-color: var(--rule); }
+body.broadsheet .vote-item .bill-number { font-family: var(--font-ui); font-weight: 700; letter-spacing: 0.06em; color: var(--blue-dim); }
+body.broadsheet .vote-item-title { font-family: var(--font-serif); font-weight: 600; color: var(--ink); }
+body.broadsheet .vote-item-oneliner { font-family: var(--font-serif); }
+body.broadsheet .vote-section-desc { font-family: var(--font-ui); }

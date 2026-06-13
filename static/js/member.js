@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const bioguideId = params.get('id');
 
+    const backLink = document.getElementById('back-link');
+    if (backLink) backLink.addEventListener('click', () => history.back());
+
     if (!bioguideId) {
         showError('No representative ID provided. Go back to the home page and select a representative.');
         return;
@@ -170,11 +173,9 @@ function renderMember(container, member, bioguideId) {
     stickyBar.appendChild(el('span', { className: 'sticky-meta' }, metaText));
     container.appendChild(stickyBar);
 
-    // Position sticky bar just below the site header
-    const siteHeader = document.querySelector('.site-header');
-    if (siteHeader) {
-        stickyBar.style.top = siteHeader.offsetHeight + 'px';
-    }
+    // The masthead scrolls away with the page, so the sticky name bar pins
+    // to the very top of the viewport once the header scrolls out of view.
+    stickyBar.style.top = '0px';
 
     const observer = new IntersectionObserver(([entry]) => {
         stickyBar.classList.toggle('visible', !entry.isIntersecting);
@@ -306,13 +307,10 @@ function renderMember(container, member, bioguideId) {
         resizeTimer = setTimeout(updateTabLabels, 150);
     });
 
-    // Position tab bar sticky offset below site header (+ sticky bar on desktop)
-    const siteHeaderForTabs = document.querySelector('.site-header');
-    if (siteHeaderForTabs) {
-        const isMobile = window.innerWidth <= 768;
-        const tabTop = siteHeaderForTabs.offsetHeight + (isMobile ? 0 : stickyBar.offsetHeight);
-        tabBar.style.top = tabTop + 'px';
-    }
+    // Tabs stick below the sticky name bar on desktop, or at the top on mobile
+    // (the sticky name bar is hidden on mobile).
+    const isMobileTabs = window.innerWidth <= 768;
+    tabBar.style.top = (isMobileTabs ? 0 : stickyBar.offsetHeight) + 'px';
 
     // Voting Record panel (default active)
     const votingPanel = tabPanels[0];
