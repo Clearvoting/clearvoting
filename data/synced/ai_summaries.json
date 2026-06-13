@@ -22366,5 +22366,678 @@
       "Healthcare"
     ],
     "direction": "in_favor"
+  },
+  "117-hres-1023": {
+    "one_liner": "Set rules for how the House handles the January 6th Committee report",
+    "provisions": [
+      "Sets the steps the House follows to debate and vote on the January 6th Committee's report",
+      "Controls how much time members can speak and what changes can be made during the debate",
+      "Applies only to this one report from the committee that investigated the January 6th attack"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "117-hr-92": {
+    "one_liner": "Name a post office in Pickens, South Carolina after Specialist Four Charles Johnson",
+    "provisions": [
+      "A post office at 110 Johnson Street in Pickens, South Carolina will be officially named the 'Specialist Four Charles Johnson Post Office'.",
+      "The name honors Charles Johnson, who held the military rank of Specialist Four.",
+      "This is a naming-only action \u2014 no money is spent and no rules change."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "neutral"
+  },
+  "117-hr-923": {
+    "one_liner": "Impose sanctions on people who commit human rights abuses in Russian-occupied parts of Georgia",
+    "provisions": [
+      "The President must block the U.S. entry and freeze the U.S. assets of people found responsible for human rights abuses in two regions of Georgia that Russia occupies: Abkhazia and South Ossetia.",
+      "Every 180 days, the President must send Congress a list of those people.",
+      "The State Department must report to Congress on what military help the U.S. gives Georgia and how well Georgia can defend itself.",
+      "The State Department must report on cybersecurity work the U.S. and Georgia do together.",
+      "The State Department must report on a plan to help Georgia fight false information spread by Russia."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hres-1033": {
+    "one_liner": "Set the rules for debating a bill to add money to the restaurant relief fund",
+    "provisions": [
+      "This rule sets the terms for how the House will debate and vote on H.R. 3807.",
+      "H.R. 3807 would add money to the Restaurant Revitalization Fund, which was created in 2021 to help restaurants that lost money during COVID-19.",
+      "The fund was originally given $28.6 billion, but more restaurants applied than there was money available, leaving many without aid."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "neutral"
+  },
+  "117-hr-935": {
+    "one_liner": "Let certain business sale brokers skip federal registration rules",
+    "provisions": [
+      "Brokers who help sell privately owned businesses do not have to register with federal securities regulators if the company they are selling earns below a set dollar amount",
+      "This applies only to brokers helping transfer ownership of private companies \u2014 not public ones",
+      "Brokers who lend money as part of the sale do not get this pass",
+      "Brokers involved with shell companies \u2014 businesses that exist on paper but have no real operations \u2014 do not qualify",
+      "Brokers who have had their license suspended or taken away also do not qualify"
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "against"
+  },
+  "117-hres-1037": {
+    "one_liner": "Find two former White House officials in contempt of Congress for ignoring subpoenas",
+    "provisions": [
+      "Peter Navarro and Daniel Scavino refused to respond to subpoenas from the committee investigating January 6th",
+      "The House votes to hold both men in contempt of Congress",
+      "The Speaker of the House sends the contempt findings to federal prosecutors in Washington D.C.",
+      "Federal prosecutors can then decide whether to bring criminal charges against Navarro and Scavino"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hres-1097": {
+    "one_liner": "Set the rules for debating four separate bills in Congress",
+    "provisions": [
+      "This bill sets the time limits and debate rules for bringing four other bills to a vote in the House.",
+      "One of those bills would give TSA airport security workers the same job protections as other federal workers.",
+      "Another would make it easier for federal firefighters to get benefits if they get sick with certain diseases.",
+      "A third would renew a program that gives money to local groups helping people in poverty.",
+      "The fourth would send emergency money to Ukraine during the 2022 conflict."
+    ],
+    "issue_categories": [
+      "Jobs & Workers",
+      "Veterans & Military"
+    ],
+    "direction": "neutral"
+  },
+  "117-hres-1124": {
+    "one_liner": "Set the rules for debating three separate bills in the House",
+    "provisions": [
+      "This bill sets the time limits and voting rules for how the House of Representatives would debate three other bills.",
+      "The first bill would create offices inside the Department of Homeland Security, the Department of Justice, and the FBI to track and respond to domestic terrorism.",
+      "The second bill would set rules against charging too much for gas and other fuels sold to everyday consumers.",
+      "The third bill would send emergency money to fix a shortage of baby formula in the United States before September 30, 2022."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "117-hres-1119": {
+    "one_liner": "Set the rules for debating three separate bills in Congress",
+    "provisions": [
+      "Decides how long Congress can debate a bill that would send more money to low-income areas",
+      "Decides how long Congress can debate a bill that would renew job training programs around the country",
+      "Decides how long Congress can debate a bill that would rename a federal courthouse in Tallahassee, Florida after Judge Joseph Woodrow Hatchett"
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "neutral"
+  },
+  "117-hres-1065": {
+    "one_liner": "Set House debate rules for a bill to lend weapons to Ukraine",
+    "provisions": [
+      "This bill sets the rules for how the House will debate and vote on a separate bill called S. 3522.",
+      "S. 3522 would let the President sign agreements to lend or lease military equipment to Ukraine.",
+      "The military equipment would be used to protect Ukrainian civilians during the Russian invasion.",
+      "Ukraine would be expected to pay back or return the equipment after the conflict ends.",
+      "This rule does not create any programs, funding, or new laws \u2014 it only controls how Congress debates the Ukraine bill."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "neutral"
+  },
+  "117-hres-1125": {
+    "one_liner": "Call on leaders to speak out against antisemitism in the US and worldwide",
+    "provisions": [
+      "Calls on elected officials, faith leaders, and community leaders to publicly condemn antisemitism",
+      "Calls for more action to fight antisemitism in the United States, in other countries, and on the internet"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-hres-1153": {
+    "one_liner": "Set the rules for Congress to debate two gun safety bills",
+    "provisions": [
+      "Allows Congress to vote on a bill that would let courts take guns from people a judge finds dangerous.",
+      "Allows Congress to vote on a bill that would raise the gun-buying age from 18 to 21 for some firearms.",
+      "Allows Congress to vote on a bill that would make it a crime to buy a gun for someone else.",
+      "Allows Congress to vote on a bill that would require safe storage of guns at home.",
+      "Allows Congress to vote on a bill that would make guns without serial numbers illegal."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "117-hres-833": {
+    "one_liner": "State U.S. support for Moldova's independence and call on Russia to pull out its troops",
+    "provisions": [
+      "States that the U.S. backs Moldova's right to run its own government and make its own alliances",
+      "Supports the U.S.-Moldova talks as a way to build a stronger relationship between the two countries",
+      "Calls on Russia to remove its military forces and weapons from Moldova",
+      "Tells Russia to stop backing groups inside Moldova that want to break away from the country",
+      "Supports finding a peaceful solution to the conflict in the Transnistria region, a strip of land that broke away from Moldova in the 1990s and still has Russian troops in it"
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "117-hres-1191": {
+    "one_liner": "Allow the House to debate three health-related bills",
+    "provisions": [
+      "Opens floor debate on a bill that would let Americans voluntarily share their sexual orientation and gender identity in some federal surveys",
+      "Opens floor debate on a bill that would create a new federal health research agency called ARPA-H",
+      "Opens floor debate on a bill that would keep funding going for mental health and drug treatment programs",
+      "This bill sets the rules for how long each debate lasts and what changes can be proposed \u2014 it does not pass the bills itself"
+    ],
+    "issue_categories": [
+      "Healthcare"
+    ],
+    "direction": "neutral"
+  },
+  "117-hres-1170": {
+    "one_liner": "Set debate rules for three bills about the Federal Reserve, wildlife, and farming",
+    "provisions": [
+      "This bill sets the rules for how the House of Representatives will debate three separate bills.",
+      "One bill would require the Federal Reserve to collect and report data broken down by race, gender, and other groups.",
+      "That same bill would also change the official goals that guide how the Federal Reserve runs.",
+      "A second bill would send more money to states to manage animals and plants that are at risk in their area.",
+      "A third bill would create a new office inside the Department of Agriculture to look into whether large companies in farming and food are following competition rules."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "neutral"
+  },
+  "117-s-2514": {
+    "one_liner": "Rename a Utah veterans center after Col. Gail S. Halvorsen",
+    "provisions": [
+      "Changes the official name of the VA veterans center in Orem, Utah to the Col. Gail S. Halvorsen 'Candy Bomber' Veterans Center",
+      "Col. Halvorsen was a U.S. Air Force pilot who dropped candy by parachute for children in Berlin during the 1948\u20131949 Berlin Airlift, when the Soviet Union blocked food and supplies from reaching the city",
+      "The renaming is a formal act by Congress and applies to the VA-operated facility in Orem, Utah"
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "neutral"
+  },
+  "117-s-2520": {
+    "one_liner": "Expand federal help to state and local governments on cybersecurity",
+    "provisions": [
+      "The Department of Homeland Security (DHS) will give more help to state, local, tribal, and territorial governments to protect against cyberattacks.",
+      "DHS will provide grants and training to help governments understand cyber threats and how to respond when an attack happens.",
+      "A DHS center will team up with a group called the Multi-State Information Sharing and Analysis Center to run practice drills and teach cybersecurity skills.",
+      "DHS will promote cybersecurity education for government workers and the public.",
+      "DHS will start a test program that puts sensors on government networks to find and block harmful internet traffic."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-s-1872": {
+    "one_liner": "Award a Congressional Gold Medal to World War II Army Rangers",
+    "provisions": [
+      "Gives a single Congressional Gold Medal to the U.S. Army Rangers who served in World War II.",
+      "The medal is a formal thank-you from Congress for their service during the war."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor"
+  },
+  "117-s-1760": {
+    "one_liner": "Name a new VA clinic in Oahu, Hawaii after Daniel Kahikina Akaka",
+    "provisions": [
+      "Gives an official name to a new VA clinic being built in Oahu, Hawaii",
+      "The clinic will be called the Daniel Kahikina Akaka VA Clinic"
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "neutral"
+  },
+  "117-s-2102": {
+    "one_liner": "Expand VA mammogram coverage to veterans who served in listed combat zones abroad",
+    "provisions": [
+      "Female veterans who served in Iraq between August 2, 1990 and February 28, 1991, or again from March 19, 2003 onward, can get VA mammograms.",
+      "Veterans who served in Kuwait, Saudi Arabia, Oman, Qatar, or other parts of the Southwest Asia region from August 2, 1990 onward can get VA mammograms.",
+      "Veterans who served in Afghanistan, Djibouti, Syria, Jordan, Egypt, Lebanon, or Yemen from September 11, 2001 onward can get VA mammograms.",
+      "Coverage for all listed locations continues until burn pits \u2014 open-air trash fires used by the military \u2014 are no longer in use there.",
+      "The VA can add more locations and time periods based on its Airborne Hazards and Open Burn Pit Registry."
+    ],
+    "issue_categories": [
+      "Veterans & Military",
+      "Healthcare"
+    ],
+    "direction": "in_favor"
+  },
+  "117-s-2687": {
+    "one_liner": "Give the VA Inspector General power to require witnesses to testify",
+    "provisions": [
+      "The VA's watchdog office can now legally require people to show up and answer questions during investigations.",
+      "This subpoena power cannot be used to force witnesses to testify in criminal cases.",
+      "Before sending a subpoena, the VA watchdog must notify the Department of Justice and the person being called.",
+      "If the Department of Justice says the subpoena would get in the way of an ongoing investigation, the VA watchdog must cancel it."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor"
+  },
+  "117-s-2533": {
+    "one_liner": "Expand breast cancer screening and treatment options for veterans through the VA",
+    "provisions": [
+      "The VA must create a plan to improve breast imaging services for veterans.",
+      "The VA must run a three-year program to offer mammograms by video for veterans who live far from a VA facility.",
+      "The VA must upgrade all mammogram machines at VA facilities to use 3D imaging technology.",
+      "The VA must partner with at least one National Cancer Institute cancer center in each regional network, and ensure veterans in rural areas can get cancer care through telehealth if no partner center is nearby.",
+      "The VA must update its guidelines to offer more genetic testing and counseling to veterans diagnosed with breast cancer.",
+      "The VA must check that a mammogram site can physically accommodate veterans with spinal cord injuries before sending them to a non-VA provider.",
+      "The VA must work with the Department of Defense on shared breast cancer research and care programs and report on those collaborations."
+    ],
+    "issue_categories": [
+      "Veterans & Military",
+      "Healthcare"
+    ],
+    "direction": "in_favor"
+  },
+  "117-s-3527": {
+    "one_liner": "Let the VA move an official facility name to another nearby property",
+    "provisions": [
+      "The VA can move the official name of a building or facility to a different VA property in the same city or local area.",
+      "This only applies when Congress originally gave that name to the first property through a law.",
+      "The new property must be at a different address or location from the original named property.",
+      "The VA cannot use this to rename a facility to something new \u2014 only to move an existing congressional name to a new location."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor"
+  },
+  "117-s-3522": {
+    "one_liner": "Let the U.S. lend weapons and military equipment to Ukraine faster",
+    "provisions": [
+      "Lets the U.S. government lend or lease military equipment to Ukraine without the usual rules that slow the process down",
+      "Removes the normal five-year limit on how long the U.S. can lend military equipment to Ukraine",
+      "Removes the rule requiring Ukraine to pay the U.S. back for the cost of leasing the equipment",
+      "Takes away Congress's ability to block these equipment transfers while the law is active",
+      "Stays in effect until the Russia-Ukraine conflict \u2014 which started with Russia taking Crimea in 2014 \u2014 ends and Russian troops pull back to where they were before March 1, 2021",
+      "Requires the President to set up a fast-track system to get the equipment to Ukraine quickly"
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor"
+  },
+  "117-s-3580": {
+    "one_liner": "Stop ocean carriers from refusing cargo and using unfair shipping methods",
+    "provisions": [
+      "Changes the rules that govern ocean shipping to support the growth of U.S. exports.",
+      "Stops ocean carriers, marine terminal operators, and ocean transportation intermediaries from turning away cargo when space is available on their ships.",
+      "Stops those same carriers and operators from using unfair methods in ocean shipping."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "117-s-4089": {
+    "one_liner": "Protect veterans' retraining benefits if their school closes or loses approval",
+    "provisions": [
+      "If a veteran's school closed or lost approval, the VA cannot count that time against their training benefits.",
+      "This applies when the veteran could not finish because of the closure or disapproval.",
+      "The protected time equals the full amount of training time the veteran was enrolled.",
+      "Schools that close or lose approval cannot receive any more payments from this program.",
+      "Any payments a closed or disapproved school already received become money owed back to the government."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor"
+  },
+  "117-s-4160": {
+    "one_liner": "Lets Supreme Court Police protect the families of justices and court officers",
+    "provisions": [
+      "Before this bill, Supreme Court Police could only protect the justices and court officers themselves \u2014 not their families.",
+      "This bill lets the Marshal of the Supreme Court decide when to protect the immediate family members of any Supreme Court justice or court officer.",
+      "The Marshal and the Supreme Court Police can now act to protect those family members if the Marshal decides protection is needed."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "117-s-516": {
+    "one_liner": "Create a federal working group to plan for new small aircraft that carry people and cargo",
+    "provisions": [
+      "The Department of Transportation must create a group of agencies to work together on a new type of air travel called Advanced Air Mobility (AAM).",
+      "AAM includes small aircraft, like air taxis, that can take off and land in cities, rural areas, and everywhere in between.",
+      "The working group will plan for safety rules, buildings and landing pads, protection from hackers, and how much federal money to spend on this.",
+      "The group will coordinate how these new aircraft fit into the airspace already used by planes and helicopters."
+    ],
+    "issue_categories": [
+      "Jobs & Workers",
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "117-s-497": {
+    "one_liner": "Create a committee to help run grants for fishing communities",
+    "provisions": [
+      "Creates a new committee under the National Oceanic and Atmospheric Administration (NOAA) to help manage a grant program for fishing communities.",
+      "Divides the committee into six regional groups so different parts of the country are represented.",
+      "Committee members come from different parts of the fishing industry, chosen by region.",
+      "The committee finds out what fishing communities need, writes up grant proposals, reviews applications, and sends them to NOAA for final approval."
+    ],
+    "issue_categories": [
+      "Jobs & Workers",
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "117-s-3823": {
+    "one_liner": "Raise the debt limits for people and small businesses filing for bankruptcy",
+    "provisions": [
+      "Keeps the higher debt limit for small businesses filing for bankruptcy \u2014 the limit was temporarily raised to $7.5 million and this bill makes that permanent",
+      "Adjusts that $7.5 million limit over time so it keeps up with inflation",
+      "Lets a small business that is connected to a publicly traded company still use this type of bankruptcy",
+      "If a small business owner stops running their company during bankruptcy, a court-appointed trustee can take over running it",
+      "Raises the debt limit for individuals filing under Chapter 13 bankruptcy, which is a repayment plan for wage earners",
+      "Combines the two separate debt limits for individuals \u2014 one for secured debt (like a mortgage) and one for unsecured debt (like credit cards) \u2014 into one single limit"
+    ],
+    "issue_categories": [
+      "Cost of Living"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hjres-136": {
+    "one_liner": "Cancel EPA pollution rules for cars and trucks made in 2027 and later",
+    "provisions": [
+      "Cancels a rule the EPA published on April 18, 2024 about pollution from cars, trucks, and SUVs.",
+      "The cancelled rule set limits on greenhouse gas emissions for vehicles made starting in 2027.",
+      "The cancelled rule included rules about how long batteries in electric and hybrid cars must last.",
+      "The cancelled rule changed how fuel economy is measured for these vehicles."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "against"
+  },
+  "118-hr-1449": {
+    "one_liner": "Require more frequent lease sales and faster permits for geothermal energy on federal land",
+    "provisions": [
+      "The federal government must now hold lease sales for geothermal energy land at least once a year.",
+      "Before this bill, sales were required only once every two years.",
+      "If a sale is canceled or delayed, a replacement sale must happen within the same year.",
+      "When someone applies for a permit to drill for geothermal energy, the government has 30 days to say whether the application is complete.",
+      "After telling the applicant the application is complete, the government has 30 days to make a final decision on the permit."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-3012": {
+    "one_liner": "Keep funding programs that support human rights and free information in North Korea",
+    "provisions": [
+      "Funds grants to groups working on human rights and free press inside North Korea through 2028",
+      "Pays for radio and other broadcasts that send uncensored news into North Korea",
+      "Gives money to groups helping North Koreans who have left the country without government permission"
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "117-s-66": {
+    "one_liner": "Order a federal assessment and plan to address algae blooms in South Florida waters",
+    "provisions": [
+      "A group of federal agencies must study algae blooms and low-oxygen water conditions in South Florida.",
+      "The group must submit a plan for reducing and controlling those conditions in the region.",
+      "The bill covers algae events that make water toxic or starve fish of oxygen, setting the scope for the federal review."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "neutral"
+  },
+  "117-s-812": {
+    "one_liner": "Require annual reports on U.S. efforts to get Taiwan into World Health Organization meetings",
+    "provisions": [
+      "The State Department must include more detail in its yearly reports about Taiwan's efforts to join World Health Organization meetings as an observer.",
+      "China has blocked Taiwan from joining these meetings, which is why the U.S. tracks its own efforts to help.",
+      "After any meeting where Taiwan was not allowed in, the report must describe what changed or improved in the U.S. plan to get Taiwan a seat.",
+      "The report covers the World Health Assembly, which is the main decision-making meeting of the World Health Organization."
+    ],
+    "issue_categories": [],
+    "direction": "in_favor"
+  },
+  "118-hr-3208": {
+    "one_liner": "Create a cybersecurity job training program for DHS employees",
+    "provisions": [
+      "Sets up a training program inside the DHS cybersecurity agency known as CISA.",
+      "DHS workers who are not already in cybersecurity jobs can join the program to learn cybersecurity skills.",
+      "The program follows a national standard called the National Initiative for Cybersecurity Education Framework.",
+      "Each year, CISA must send Congress a report on the program.",
+      "The report shows how many people joined, what jobs they moved into, and other key details."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-390": {
+    "one_liner": "Expand the Hudson River Valley Heritage Area to cover two more counties in New York",
+    "provisions": [
+      "Adds the rest of Saratoga County and all of Washington County in New York to the Hudson River Valley Heritage Area",
+      "This area covers land along the Hudson River that has historic and cultural significance",
+      "A local organization manages this area with support and some funding from the federal government",
+      "The expansion gives these two counties access to the same recognition and resources the rest of the heritage area already has"
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-5342": {
+    "one_liner": "Change how Social Security calculates benefits for people who also get a government pension",
+    "provisions": [
+      "Some government workers \u2014 like certain teachers, firefighters, and police \u2014 pay into a pension instead of Social Security. A current rule called the WEP cuts their Social Security check when they retire.",
+      "This bill changes the math used to calculate those cuts, basing the reduction on what share of a person's career earnings went into Social Security.",
+      "People who retire between 2025 and 2067 get whichever calculation gives them the higher monthly payment.",
+      "People retiring after 2067 will only use the new formula.",
+      "Some people already affected by the current rule get an extra one-time or ongoing payment.",
+      "The Social Security Administration must add non-covered earnings to the yearly statements it sends workers."
+    ],
+    "issue_categories": [
+      "Social Security & Retirement"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-3334": {
+    "one_liner": "Ban Chinese Communist Party leaders and their families from entering the U.S.",
+    "provisions": [
+      "The top ruling body of the Chinese Communist Party, called the Central Committee, has about 376 members \u2014 this bill bans all of them from getting visas to enter the United States.",
+      "Adult family members of those Central Committee members are also banned from getting U.S. visas.",
+      "Any money or property those people have in the United States gets frozen \u2014 they cannot spend it or move it.",
+      "The President can pause these sanctions for up to 30 days at a time by notifying Congress that China has changed course on four actions.",
+      "To pause the sanctions, the President must confirm that China has stopped carrying out genocide against Uyghur Muslims, threatening Taiwan, weakening Hong Kong's self-rule, and stealing American business ideas and inventions.",
+      "Any presidential pause must be posted publicly on a U.S. government website."
+    ],
+    "issue_categories": [
+      "Immigration"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-4790": {
+    "one_liner": "Limit what information public companies must share with investors",
+    "provisions": [
+      "Companies only have to share information with investors if the company itself decides that information affects buying or voting decisions about its stock.",
+      "The SEC must post on its website a list of every disclosure companies are currently required to make that does not affect investment decisions, along with a reason for each one.",
+      "The SEC must send that list to Congress every five years.",
+      "A company cannot be sued for not sharing information that does not affect investment decisions.",
+      "Creates a new group inside the SEC, made up of public company officials and advisors, to give the SEC advice on its rules and company policies.",
+      "The SEC must study and report on how European Union sustainability rules affect U.S. companies, consumers, and investors."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "against",
+    "needs_review": true
+  },
+  "118-hr-5658": {
+    "one_liner": "Require tracking barcodes on all mail-in ballots",
+    "provisions": [
+      "Mail-in ballots must have a U.S. Postal Service barcode so voters and officials can track each ballot.",
+      "Ballot envelopes must meet postal design rules so machines can process them.",
+      "Each ballot must show the official election mail logo."
+    ],
+    "issue_categories": [
+      "Money in Politics"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-5349": {
+    "one_liner": "Fund a high school curriculum about communism and totalitarianism",
+    "provisions": [
+      "The Victims of Communism Memorial Foundation would create a curriculum for high school students about communism and totalitarianism.",
+      "The Foundation would also create oral history resources for students to learn from people who lived under these governments.",
+      "The curriculum would explain how these systems differ from U.S. democracy."
+    ],
+    "issue_categories": [
+      "Education"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-7073": {
+    "one_liner": "Fund research and testing of new materials and technology for pipelines",
+    "provisions": [
+      "The Department of Energy must run a 5-year program that gives money to test new pipeline technology at different stages of development.",
+      "The Department of Energy, the Department of Transportation, and the National Institute of Standards and Technology must work together on research into new materials for pipelines.",
+      "The Department of Energy must create a National Pipeline Modernization Center to work with companies on testing and selling new pipeline products.",
+      "The National Institute of Standards and Technology must run a research program focused on keeping pipelines safe, secure, and working well."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-6513": {
+    "one_liner": "Let Congress send official observers to watch how federal elections are run",
+    "provisions": [
+      "House committee chairs can name their employees to watch federal elections as official observers.",
+      "States must let these observers into any area where ballots are cast, counted, scanned, or certified.",
+      "Observers can watch but cannot touch ballots or election equipment.",
+      "Observers cannot campaign for any candidate or take any action that could reveal how a voter voted.",
+      "Observers cannot stop a voter from casting a ballot or an election worker from doing their job.",
+      "If an observer breaks the rules, election officials can remove them and must notify the House committee in writing."
+    ],
+    "issue_categories": [
+      "Money in Politics"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-5717": {
+    "one_liner": "Cut federal money to cities refusing to share immigration data or honor federal detention holds",
+    "provisions": [
+      "Cities and states lose federal money if they have rules stopping officials from sharing immigration status.",
+      "The money at risk is only the part they planned to spend on people living in the country without legal permission.",
+      "They also lose money if they ignore a federal request to hold an immigrant in jail.",
+      "They also lose money if they don't tell federal immigration officials before letting an immigrant out of jail.",
+      "Crime victims and witnesses are not covered \u2014 cities can keep rules that protect them from immigration checks.",
+      "This rule starts in the first full budget year after the law is passed."
+    ],
+    "issue_categories": [
+      "Immigration",
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-8057": {
+    "one_liner": "Rename a Westminster, California post office after Little Saigon Vietnam War Veterans",
+    "provisions": [
+      "Renames the post office at 9317 Bolsa Avenue in Westminster, California as the 'Little Saigon Vietnam War Veterans Memorial Post Office'",
+      "This is a ceremonial name change \u2014 no money is spent and no new programs are created",
+      "The name honors Vietnamese-American veterans who served in the Vietnam War",
+      "Once Congress passes this, only Congress can change the official name of this post office"
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "neutral"
+  },
+  "118-hr-7409": {
+    "one_liner": "Remove federal permit requirements for geothermal drilling on state and private land, not tribal lands",
+    "provisions": [
+      "Geothermal companies drilling on state or private land no longer need a federal drilling permit.",
+      "This applies when the U.S. government owns less than 50% of the underground geothermal rights and the company holds a state permit.",
+      "These rules do not apply on tribal lands.",
+      "These projects no longer need to go through the federal environmental review process.",
+      "These projects no longer need a federal check on how they may affect endangered species.",
+      "These projects do not need federal historic preservation review unless the state has no state law covering historic properties."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "against"
+  },
+  "118-hr-8205": {
+    "one_liner": "Apply federal insurance rules to cash bail and bail bond companies",
+    "provisions": [
+      "Cash bail and bail bond companies would have to follow the same federal rules that insurance companies follow.",
+      "Right now, bail bond companies are not covered by those federal insurance laws \u2014 this bill would change that.",
+      "This applies to both criminal bail bonds and immigration bail bonds."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-7673": {
+    "one_liner": "Limit the Department of Energy's power to set rules on washing machines",
+    "provisions": [
+      "The Department of Energy can only set energy rules for washing machines if the rules are technically possible to meet.",
+      "The rules cannot end up costing consumers more money overall.",
+      "The rules must save a meaningful amount of energy \u2014 not just a small amount."
+    ],
+    "issue_categories": [
+      "Cost of Living",
+      "Environment & Energy"
+    ],
+    "direction": "against"
+  },
+  "118-hr-7198": {
+    "one_liner": "Require federal agencies to study how proposed rules affect small businesses before finalizing them",
+    "provisions": [
+      "When a federal agency proposes a new rule, it must include indirect costs the rule could place on small businesses, not just direct costs.",
+      "If an agency says a rule will not significantly affect small businesses, it must tell the Office of Advocacy within 10 days.",
+      "Small businesses can file a petition asking the Office of Advocacy to review that decision.",
+      "If the Office of Advocacy reviews the petition and finds the rule does affect many small businesses, the agency must do a full cost study.",
+      "This cost study must be completed before the rule takes effect.",
+      "If the agency does not take part in that review, the rule will not apply to small businesses.",
+      "For rules that could significantly affect many small businesses, agencies must publish their policy guides and allow public comments."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
   }
 }
