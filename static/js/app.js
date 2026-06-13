@@ -345,7 +345,7 @@ function renderRosterRow(m) {
     return el('a', {
         className: 'roster-row',
         href: `/member?id=${m.bioguideId}`,
-        'aria-label': `${humanizeName(m.name)}, District ${m.district}. ${labelBits}`,
+        'aria-label': `${humanizeName(m.name)}, ${m.district ? 'District ' + m.district : 'At large'}. ${labelBits}`,
     },
         memberPhoto(m, 'roster-photo'),
         el('span', { className: 'roster-id' },
