@@ -108,68 +108,10 @@ a:hover {
 }
 
 /* ============================================
-   Header
+   Header — see broadsheet.css (.masthead is the shared site header
+   on every page; the old navy .site-header was retired in the
+   broadsheet unification).
    ============================================ */
-.site-header {
-    background: var(--bg-secondary);
-    border-bottom: none;
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.header-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    color: #fff;
-    letter-spacing: 0.02em;
-}
-
-.logo span {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.header-inner nav {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-}
-
-.header-inner nav a {
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding-bottom: 4px;
-    border-bottom: 2px solid transparent;
-    transition: color var(--transition), border-color var(--transition);
-}
-
-.header-inner nav a:hover {
-    color: #fff;
-}
-
-.header-inner nav a.active {
-    color: #fff;
-    border-bottom-color: rgba(255, 255, 255, 0.8);
-}
-
-.hamburger {
-    display: none;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
 
 /* ============================================
    Main Content
@@ -2654,23 +2596,6 @@ select:focus, input:focus {
    Mobile Responsive
    ============================================ */
 @media (max-width: 768px) {
-    .site-header { padding: 0.75rem 1rem; }
-    .hamburger { display: block; }
-
-    .header-inner nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg-secondary);
-        border-bottom: 1px solid var(--border);
-        flex-direction: column;
-        padding: 1rem;
-    }
-
-    .header-inner nav.open { display: flex; }
-
     main { padding: 1rem; }
 
     .hero h1 { font-size: var(--text-2xl); }

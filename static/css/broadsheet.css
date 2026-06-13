@@ -1,0 +1,455 @@
+/* ============================================
+   ClearVoting — "Civic Broadsheet" design system
+   Shared across EVERY page (home, member, bill, state, about).
+   Broadsheet layout on the original ClearVoting palette.
+   Reuses the design tokens from styles.css; the aliases below
+   just give them broadsheet-friendly names. Shared chrome
+   (masthead, footer, kickers, rules, vote bars) is global so it
+   renders identically on every page; homepage-only layout stays
+   scoped under body.home.
+   Green = voted yes, red = voted no (always labelled).
+   Load order: styles.css → broadsheet.css (so these win on ties).
+   ============================================ */
+
+:root {
+    --paper: var(--bg-primary);
+    --card: var(--bg-card);
+    --card-hover: var(--bg-card-hover);
+    --ink: var(--text-primary);
+    --ink-soft: var(--text-secondary);
+    --ink-meta: #6E7480; /* slightly darker than --text-dim for AA on white */
+    --navy: var(--bg-secondary);
+    --blue: var(--accent);
+    --blue-dim: var(--accent-dim);
+    --red: var(--accent-red);
+    --yes: var(--vote-yea);
+    --no: var(--vote-nay);
+    --rule: var(--border);
+    --rule-soft: var(--border-light);
+    --font-display: var(--font-heading);
+    --font-serif: var(--font-narrative);
+    --font-ui: var(--font-body);
+}
+
+body.home,
+body.broadsheet {
+    background: var(--paper);
+    font-family: var(--font-serif);
+    color: var(--ink);
+    line-height: 1.65;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0);
+    white-space: nowrap; border: 0;
+}
+
+/* ---- Shared type utilities ---- */
+.kicker { font-family: var(--font-ui); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+.meta { font-family: var(--font-ui); font-size: 0.78rem; color: var(--ink-meta); letter-spacing: 0.02em; }
+.arrow-link { font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600; color: var(--blue); text-decoration: none; }
+.arrow-link:hover { color: var(--blue-dim); }
+
+/* ---- Masthead (shared header) ---- */
+.masthead { padding: 2rem 1.25rem 0; text-align: center; }
+.masthead .logo { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.9rem, 4.5vw, 2.5rem); color: var(--navy); line-height: 1; text-decoration: none; }
+.masthead .logo span { color: var(--blue); font-style: italic; font-weight: 600; }
+.masthead .logo:hover { color: var(--navy); }
+.masthead-tagline { font-family: var(--font-ui); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-meta); margin-top: 0.55rem; }
+.masthead-nav { max-width: var(--max-width); margin: 1.1rem auto 0; border-top: 3px double var(--navy); border-bottom: 1px solid var(--navy); display: flex; justify-content: center; gap: 2.25rem; padding: 0.5rem 1rem; }
+.masthead-nav a { font-family: var(--font-ui); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; text-decoration: none; padding-bottom: 1px; border-bottom: 2px solid transparent; }
+.masthead-nav a:hover, .masthead-nav a[aria-current] { color: var(--navy); border-bottom: 2px solid var(--blue); }
+
+/* ---- Section heads (shared) ---- */
+.section-head { margin-bottom: 1.5rem; }
+.section-head .kicker { color: var(--blue-dim); margin-bottom: 0.4rem; }
+.section-head h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.15; color: var(--navy); }
+.section-head .section-sub { font-size: 0.95rem; color: var(--ink-soft); margin-top: 0.3rem; }
+.section-head .section-sub a { color: var(--blue-dim); }
+
+/* ---- Law-seal status badge (shared) ---- */
+.law-seal { font-family: var(--font-ui); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--navy); padding: 0.18rem 0.55rem; border-radius: 4px; white-space: nowrap; display: inline-block; }
+.law-seal.moving { background: transparent; color: var(--blue-dim); border: 1px solid var(--blue); }
+
+/* ---- Split / tally vote bars (shared, always labelled) ---- */
+.split-labels { display: flex; justify-content: space-between; gap: 0.75rem; font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600; margin-bottom: 0.35rem; }
+.split-labels .yes { color: var(--yes); }
+.split-labels .no { color: var(--no); }
+.split-bar { display: flex; height: 7px; border-radius: 4px; overflow: hidden; background: var(--rule-soft); }
+.split-yes { background: var(--yes); }
+.split-no { background: var(--no); }
+
+.tally-bar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; background: var(--rule-soft); }
+.tally-yes { background: var(--yes); }
+.tally-no { background: var(--no); }
+.tally-labels { display: flex; justify-content: space-between; font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600; margin-top: 0.4rem; }
+.tally-labels .yes { color: var(--yes); }
+.tally-labels .no { color: var(--no); }
+
+/* ---- Footer (shared) ---- */
+.site-footer { background: var(--card); border-top: 3px double var(--navy); margin: 3rem auto 0; padding: 2rem 1.25rem 2.25rem; text-align: center; max-width: none; color: var(--ink-soft); font-size: inherit; line-height: 1.65; }
+.footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
+.footer-links a { font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; }
+.footer-links a:hover { color: var(--blue); }
+.site-footer .meta { display: block; }
+.site-footer .meta a { color: var(--ink-soft); text-decoration: underline; }
+.site-footer .credo { font-family: var(--font-serif); font-style: italic; font-size: 0.92rem; color: var(--ink-soft); margin-top: 0.85rem; }
+
+/* ============================================
+   Homepage-specific layout (scoped to body.home)
+   ============================================ */
+.home main { max-width: var(--max-width); margin: 0 auto; padding: 0 1.25rem; }
+
+/* ---- Front-page lead ---- */
+.home .lead { display: grid; grid-template-columns: 1.45fr 1fr; gap: 3rem; padding: 3.25rem 0 2.75rem; align-items: start; }
+.home .lead-left .kicker { color: var(--blue-dim); margin-bottom: 1rem; }
+.home .lead h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.3rem, 5vw, 3.4rem); line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 1.1rem; color: var(--navy); }
+.home .lead-deck { font-size: 1.12rem; color: var(--ink-soft); max-width: 30rem; }
+
+/* Latest-vote card */
+.home .vote-card { border: 1px solid var(--rule); border-radius: var(--radius-lg); background: var(--card); padding: 1.4rem 1.5rem 1.5rem; box-shadow: var(--shadow-lg); }
+.home .vote-card .kicker { color: var(--navy); display: flex; align-items: center; gap: 0.6rem; }
+.home .vote-card .kicker::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.home .vote-card .dateline { margin: 0.7rem 0 0.5rem; }
+.home .vote-card h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.45rem; line-height: 1.25; margin-bottom: 0.9rem; color: var(--navy); }
+.home .vote-card h2 a { color: inherit; text-decoration: none; }
+.home .vote-card h2 a:hover { color: var(--blue-dim); }
+.home .tally { margin-bottom: 0.4rem; }
+.home .vote-card .arrow-link { display: inline-block; margin-top: 0.9rem; }
+
+/* ---- The core action ---- */
+.home .action { padding: 2.5rem 0 1.25rem; text-align: center; }
+.home .action-question { font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; color: var(--ink); margin-bottom: 1.4rem; }
+.home .state-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 860px; margin: 0 auto; }
+.home .state-card {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--navy);
+    background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg);
+    padding: 1.5rem 1rem 1.4rem; cursor: pointer; transition: all var(--transition);
+    box-shadow: var(--shadow); line-height: 1.2;
+}
+.home .state-card .state-count { display: block; font-family: var(--font-ui); font-weight: 500; font-size: 0.74rem; color: var(--ink-meta); letter-spacing: 0.04em; margin-top: 0.4rem; min-height: 1em; }
+.home .state-card:hover { border-color: var(--blue); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.home .state-card.active { border-color: var(--navy); background: var(--navy); color: #fff; }
+.home .state-card.active .state-count { color: rgba(255,255,255,0.78); }
+.home .more-states { margin-top: 1.4rem; font-family: var(--font-ui); font-size: 0.85rem; color: var(--ink-meta); }
+.home .more-states button { background: none; border: none; cursor: pointer; font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600; color: var(--blue); border-bottom: 1px solid var(--blue); padding: 0 0 1px; }
+.home .more-states button:hover { color: var(--blue-dim); }
+.home .notify-form { display: none; justify-content: center; gap: 0; margin-top: 0.9rem; }
+.home .notify-form.open { display: inline-flex; }
+.home .notify-form input[type="email"] {
+    font-family: var(--font-ui); font-size: 0.85rem; padding: 0.5rem 0.85rem; min-width: 220px;
+    border: 1px solid var(--rule); border-right: none; border-radius: var(--radius) 0 0 var(--radius); background: var(--card); color: var(--ink);
+}
+.home .notify-form input::placeholder { color: var(--ink-meta); }
+.home .notify-form input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 2px rgba(0,113,188,0.15); }
+.home .notify-btn {
+    font-family: var(--font-ui); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    background: var(--red); color: #fff; border: 1px solid var(--red); border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 0.5rem 1rem; cursor: pointer; transition: background var(--transition);
+}
+.home .notify-btn:hover { background: #A82235; }
+.home .notify-btn:disabled { opacity: 0.85; cursor: default; }
+.home .notify-status { font-family: var(--font-ui); font-size: 0.85rem; color: var(--yes); margin-top: 0.6rem; }
+.home .trust-line { font-family: var(--font-ui); font-size: 0.7rem; color: var(--ink-meta); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 2.25rem; }
+
+/* ---- Delegation ---- */
+.home .delegation { padding: 2.75rem 0 0.5rem; border-top: 3px double var(--navy); margin-top: 3rem; }
+.home .party-line { display: flex; align-items: center; gap: 0.75rem; margin: 0 0 1.5rem; font-family: var(--font-ui); font-size: 0.85rem; color: var(--ink-soft); flex-wrap: wrap; }
+.home .party-toggle { font-family: var(--font-ui); font-size: 0.85rem; font-weight: 700; color: var(--blue-dim); background: none; border: none; border-bottom: 2px solid var(--blue); cursor: pointer; padding: 0 0 1px; }
+.home .party-toggle:hover { color: var(--blue); }
+.home .party-tag { font-family: var(--font-ui); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-meta); margin-left: 0.45rem; }
+
+.home .roster-label { font-family: var(--font-ui); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-meta); margin: 1.75rem 0 0.6rem; }
+.home .roster-label:first-child { margin-top: 0; }
+
+.home .senator-row { display: grid; grid-template-columns: auto 1fr auto; gap: 1.4rem; align-items: center; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 0.9rem; transition: border-color var(--transition), box-shadow var(--transition); text-decoration: none; }
+.home .senator-row:hover { border-color: var(--blue-dim); box-shadow: var(--shadow); }
+.home .senator-row:hover .senator-name { color: var(--blue-dim); }
+.home .senator-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid var(--rule); }
+.home .senator-name { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; line-height: 1.2; color: var(--navy); transition: color var(--transition); }
+.home .senator-seat { font-family: var(--font-ui); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-meta); margin: 0.2rem 0 0.4rem; }
+.home .senator-narrative { font-size: 0.96rem; color: var(--ink-soft); max-width: 34rem; }
+.home .member-stats { min-width: 200px; }
+.home .participation { font-family: var(--font-ui); font-size: 0.75rem; color: var(--ink-meta); margin-top: 0.4rem; text-align: right; }
+.home .participation strong { color: var(--ink); }
+
+.home .roster { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem 1rem; }
+.home .roster-row { display: grid; grid-template-columns: auto 1fr auto; gap: 0.9rem; align-items: center; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.7rem 0.9rem; transition: border-color var(--transition), background var(--transition); text-decoration: none; }
+.home .roster-row:hover { border-color: var(--blue-dim); background: var(--card-hover); }
+.home .roster-row:hover .roster-name { color: var(--blue-dim); }
+.home .roster-photo { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--rule); }
+.home .roster-id { min-width: 0; }
+.home .roster-name { font-family: var(--font-ui); font-size: 0.95rem; font-weight: 600; line-height: 1.3; color: var(--ink); transition: color var(--transition); }
+.home .roster-district { font-family: var(--font-ui); font-size: 0.75rem; color: var(--ink-meta); }
+.home .roster-split { width: 116px; }
+.home .roster-split .split-bar { height: 5px; }
+.home .roster-split .micro-labels { display: flex; justify-content: space-between; font-family: var(--font-ui); font-size: 0.68rem; font-weight: 600; margin-top: 0.25rem; }
+.home .roster-split .micro-labels .yes { color: var(--yes); }
+.home .roster-split .micro-labels .no { color: var(--no); }
+.home .roster-foot { display: flex; justify-content: flex-end; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+.home .roster-foot .meta a { color: var(--blue); font-weight: 600; }
+.home .roster-foot .meta a:hover { color: var(--blue-dim); }
+
+/* ---- The Record ---- */
+.home .record { border-top: 3px double var(--navy); margin-top: 3rem; padding-top: 2.5rem; }
+.home .record-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 0 3rem; margin-top: 0.5rem; }
+.home .record-lead { padding-right: 3rem; border-right: 1px solid var(--rule); }
+.home .story-kicker { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+.home .record-lead h3 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.18; margin-bottom: 1rem; }
+.home .record-lead h3 a { color: var(--navy); text-decoration: none; }
+.home .record-lead h3 a:hover { color: var(--blue-dim); }
+.home .record-provisions { list-style: none; margin: 0 0 1.1rem; padding: 0; }
+.home .record-provisions li { position: relative; padding: 0.32rem 0 0.32rem 1.3rem; font-size: 1.02rem; color: var(--ink-soft); line-height: 1.55; }
+.home .record-provisions li::before { content: '§'; position: absolute; left: 0; top: 0.32rem; color: var(--blue); font-family: var(--font-display); }
+.home .official-line { font-family: var(--font-ui); font-size: 0.75rem; color: var(--ink-meta); border-top: 1px solid var(--rule-soft); padding-top: 0.7rem; margin-top: 1rem; }
+
+.home .record-list { list-style: none; margin: 0; padding: 0; }
+.home .record-list li { border-top: 1px solid var(--rule); padding: 0.95rem 0; }
+.home .record-list li:first-child { border-top: none; padding-top: 0; }
+.home .record-item-meta { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.3rem; }
+.home .record-item-meta .bill-no { font-family: var(--font-ui); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; color: var(--blue-dim); }
+.home .record-list h4 { font-family: var(--font-serif); font-weight: 500; font-size: 1.04rem; line-height: 1.45; }
+.home .record-list h4 a { color: var(--ink); text-decoration: none; }
+.home .record-list h4 a:hover { color: var(--blue-dim); }
+.home .record-list .meta { margin-top: 0.25rem; }
+
+.home .record-foot { margin-top: 1.75rem; text-align: center; border-top: 1px solid var(--rule); padding-top: 1.2rem; }
+.home .browse-toggle { font-family: var(--font-ui); font-size: 0.9rem; font-weight: 700; color: var(--blue); background: none; border: none; cursor: pointer; padding: 0.3rem 0; }
+.home .browse-toggle:hover { color: var(--blue-dim); }
+
+/* Browse panel (progressive disclosure) */
+.home .browse-panel { margin-top: 1.75rem; }
+.home .record-search { display: flex; align-items: center; gap: 0.5rem; border-bottom: 2px solid var(--navy); padding-bottom: 0.3rem; margin-bottom: 1.25rem; }
+.home .record-search input { flex: 1; font-family: var(--font-serif); font-style: italic; font-size: 0.95rem; color: var(--ink); background: transparent; border: none; padding: 0.3rem 0; }
+.home .record-search input:focus { outline: none; }
+.home .record-search input::placeholder { color: var(--ink-meta); }
+.home .record-search button { background: none; border: none; cursor: pointer; font-family: var(--font-ui); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); }
+.home .record-search button:hover { color: var(--blue-dim); }
+.home .category-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.home .category-chip { font-family: var(--font-ui); font-size: 0.78rem; font-weight: 500; color: var(--ink-soft); background: var(--card); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.8rem; cursor: pointer; transition: all var(--transition); }
+.home .category-chip:hover, .home .category-chip.active { border-color: var(--blue); color: var(--blue); background: var(--card-hover); }
+.home .browse-panel .bill-list { display: flex; flex-direction: column; gap: 0; }
+.home .browse-panel .record-item { border-top: 1px solid var(--rule); padding: 0.95rem 0; cursor: pointer; }
+.home .browse-panel .record-item:hover h4 a, .home .browse-panel .record-item:hover h4 { color: var(--blue-dim); }
+.home .browse-panel .results-count { font-family: var(--font-ui); font-size: 0.8rem; color: var(--ink-meta); padding: 0.5rem 0; }
+.home .pagination { display: flex; justify-content: center; margin-top: 1.25rem; }
+.home .btn-load-more { font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600; color: var(--blue); background: var(--card); border: 1px solid var(--blue); border-radius: var(--radius); padding: 0.5rem 1.25rem; cursor: pointer; transition: all var(--transition); }
+.home .btn-load-more:hover { background: var(--blue); color: #fff; }
+
+/* ---- Loading / empty (reuses .spinner from styles.css) ---- */
+.home .record-grid .loading, .home .bill-list .loading { font-family: var(--font-ui); color: var(--ink-meta); padding: 1.5rem 0; }
+.home .empty-note { font-family: var(--font-ui); color: var(--ink-meta); font-size: 0.9rem; padding: 1rem 0; }
+
+/* ---- Responsive ---- */
+@media (max-width: 880px) {
+    .masthead-nav { gap: 1.1rem; flex-wrap: wrap; }
+    .home .lead { grid-template-columns: 1fr; gap: 2.25rem; padding-top: 2.5rem; }
+    .home .record-grid { grid-template-columns: 1fr; }
+    .home .record-lead { padding-right: 0; border-right: none; border-bottom: 1px solid var(--rule); padding-bottom: 1.75rem; margin-bottom: 1.5rem; }
+    .home .roster { grid-template-columns: 1fr; }
+    .home .senator-row { grid-template-columns: auto 1fr; }
+    .home .senator-row .member-stats { grid-column: 1 / -1; min-width: 0; max-width: 320px; }
+    .home .participation { text-align: left; }
+}
+@media (max-width: 560px) {
+    .home .state-grid { grid-template-columns: 1fr 1fr; max-width: 420px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .home .state-card:hover { transform: none; }
+}
+
+/* ============================================
+   INNER-PAGE BROADSHEET TREATMENTS
+   Layered over the structural rules in styles.css and scoped to
+   body.broadsheet so the homepage (body.home) is never affected.
+   These bring member / bill / state / about into the same
+   civic-broadsheet language: navy Playfair display headings, blue
+   reserved for links + kickers, hairline & double rules, serif
+   narrative, generous whitespace.
+   ============================================ */
+
+/* ---- Shared page frame ---- */
+body.broadsheet { background: var(--paper); }
+body.broadsheet main { max-width: var(--max-width); margin: 0 auto; padding: 1.75rem 1.25rem 0; }
+
+body.broadsheet .back-link { font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; color: var(--ink-meta); }
+body.broadsheet .back-link:hover { color: var(--blue); }
+
+/* ---- Section / card headings: blue -> navy display ---- */
+body.broadsheet .glance-card h2,
+body.broadsheet .viz-section h3,
+body.broadsheet .bill-section h3,
+body.broadsheet .voting-summary-card h3,
+body.broadsheet .service-compact h3,
+body.broadsheet .vote-block h4 {
+    font-family: var(--font-display);
+    color: var(--navy);
+}
+body.broadsheet .glance-card,
+body.broadsheet .viz-section,
+body.broadsheet .vote-block { border-color: var(--rule); }
+body.broadsheet .viz-stat-card .viz-stat-number,
+body.broadsheet .viz-attendance-pct { color: var(--navy); }
+
+/* ---- Shared chips, links, tables ---- */
+body.broadsheet .impact-tag { font-family: var(--font-ui); background: var(--card); border-color: var(--rule); color: var(--blue-dim); }
+body.broadsheet .copy-link-btn { font-family: var(--font-ui); }
+body.broadsheet .copy-link-btn:hover { border-color: var(--blue); color: var(--blue); }
+body.broadsheet .source-link { font-family: var(--font-ui); font-weight: 600; color: var(--blue); }
+body.broadsheet .source-link:hover { color: var(--blue-dim); }
+body.broadsheet .data-table th { font-family: var(--font-ui); color: var(--ink-meta); }
+body.broadsheet .vote-label { font-family: var(--font-ui); }
+
+/* ---- Member: profile header ---- */
+body.broadsheet .member-header { gap: 1.75rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.75rem; }
+body.broadsheet .member-header h2 { font-family: var(--font-display); font-weight: 700; color: var(--navy); font-size: clamp(1.7rem, 3.5vw, 2.3rem); line-height: 1.12; }
+body.broadsheet .member-header .member-meta { font-family: var(--font-ui); color: var(--ink-meta); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+body.broadsheet .member-header .member-photo,
+body.broadsheet .member-header .member-photo-placeholder { border: 2px solid var(--rule); }
+
+body.broadsheet .party-toggle-inline { font-family: var(--font-ui); }
+body.broadsheet .party-toggle-inline:hover { border-color: var(--blue); color: var(--blue); }
+body.broadsheet .party-toggle-inline.active { background: var(--navy); border-color: var(--navy); }
+
+/* ---- Member: sticky name bar -> broadsheet ---- */
+body.broadsheet .member-sticky-bar { background: var(--card); border-bottom: 1px solid var(--navy); box-shadow: var(--shadow); }
+body.broadsheet .member-sticky-bar .sticky-name { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .member-sticky-bar .sticky-meta { color: var(--ink-meta); }
+
+/* ---- Member: tabs ---- */
+body.broadsheet .member-tab-bar { border-bottom: 1px solid var(--rule); }
+body.broadsheet .member-tab { font-family: var(--font-ui); letter-spacing: 0.03em; }
+body.broadsheet .member-tab:hover { color: var(--navy); }
+body.broadsheet .member-tab.active { color: var(--navy); border-bottom-color: var(--navy); }
+
+/* ---- Member: filters ---- */
+body.broadsheet .filter-row { background: var(--paper); }
+body.broadsheet .filter-select { font-family: var(--font-ui); }
+
+/* ---- Member: At a Glance attribution + finance headings ---- */
+body.broadsheet .glance-card .ai-attribution,
+body.broadsheet .ai-attribution { font-family: var(--font-ui); }
+body.broadsheet .finance-heading { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .finance-name, body.broadsheet .finance-amount { font-family: var(--font-ui); }
+
+/* ---- Member: voting record as broadsheet hairline rows ---- */
+body.broadsheet .bill-list { gap: 0; }
+body.broadsheet .vote-item {
+    background: transparent;
+    border: none;
+    border-top: 1px solid var(--rule);
+    border-radius: 0;
+    padding: 1.05rem 0.4rem;
+}
+body.broadsheet .vote-item:hover { background: var(--card-hover); border-color: var(--rule); }
+body.broadsheet .vote-item .bill-number { font-family: var(--font-ui); font-weight: 700; letter-spacing: 0.06em; color: var(--blue-dim); }
+body.broadsheet .vote-item-title { font-family: var(--font-serif); font-weight: 600; color: var(--ink); }
+body.broadsheet .vote-item-oneliner { font-family: var(--font-serif); }
+body.broadsheet .vote-section-desc { font-family: var(--font-ui); }
+
+/* ---- Bill: header ---- */
+body.broadsheet .bill-header { padding-bottom: 1.4rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.5rem; }
+body.broadsheet .bill-header .bill-number { font-family: var(--font-ui); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-dim); }
+body.broadsheet .bill-header h2 { font-family: var(--font-display); color: var(--navy); font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.3rem); line-height: 1.15; }
+body.broadsheet .bill-header .bill-status { font-family: var(--font-ui); color: var(--ink-meta); font-size: 0.82rem; }
+
+/* ---- Bill: jump-nav table of contents ---- */
+body.broadsheet .bill-toc { border-bottom: 1px solid var(--rule); padding-bottom: 1.1rem; }
+body.broadsheet .bill-toc a { font-family: var(--font-ui); font-weight: 600; letter-spacing: 0.04em; color: var(--ink-soft); border-color: var(--rule); }
+body.broadsheet .bill-toc a:hover { color: var(--navy); border-color: var(--navy); }
+
+/* ---- Bill: "What This Bill Does" (primary) ---- */
+body.broadsheet #ai-summary-section { border-left: 3px solid var(--navy); }
+body.broadsheet .provision-list li { font-family: var(--font-serif); color: var(--ink); padding-left: 1.4rem; }
+body.broadsheet .provision-list li::before {
+    content: '\00A7';
+    background: none;
+    width: auto; height: auto;
+    top: 0.4rem; left: 0;
+    color: var(--blue);
+    font-family: var(--font-display);
+    border-radius: 0;
+}
+body.broadsheet .ai-disclaimer { font-family: var(--font-ui); }
+body.broadsheet .issue-areas-heading { font-family: var(--font-ui); color: var(--ink-meta); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; font-size: 0.72rem; }
+
+/* ---- Bill: both-sides arguments ---- */
+body.broadsheet .bill-arguments h4 { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .arguments-side-header { font-family: var(--font-ui); }
+body.broadsheet .arguments-side li { font-family: var(--font-serif); }
+
+/* ---- Bill: official (secondary) summary ---- */
+body.broadsheet .bill-section-official h3 { font-family: var(--font-ui); color: var(--ink-meta); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; font-size: 0.78rem; }
+body.broadsheet .official-summary { font-family: var(--font-serif); color: var(--ink-soft); }
+
+/* ---- Bill: roll-call votes ---- */
+body.broadsheet .vote-question { font-family: var(--font-serif); }
+body.broadsheet .vote-result { font-family: var(--font-ui); }
+body.broadsheet .vote-note { font-family: var(--font-serif); }
+body.broadsheet .vote-chamber-heading { font-family: var(--font-ui); color: var(--ink-meta); }
+body.broadsheet .party-toggle-section { background: var(--card); border-color: var(--rule); }
+body.broadsheet .party-toggle-section p { font-family: var(--font-ui); }
+
+/* ---- Bill: sponsors ---- */
+body.broadsheet #sponsors-section a { color: var(--blue); font-weight: 600; }
+body.broadsheet #sponsors-section a:hover { color: var(--blue-dim); }
+
+/* ---- State: header + aggregate stats ---- */
+body.broadsheet .state-header h1 { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .state-header .subtitle { font-family: var(--font-serif); color: var(--ink-soft); }
+body.broadsheet .state-stat .number { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .state-stat .label { font-family: var(--font-ui); color: var(--ink-meta); }
+
+/* ---- State: filter/sort controls ---- */
+body.broadsheet .controls-bar label { font-family: var(--font-ui); color: var(--ink-meta); }
+
+/* ---- State: comparison table ---- */
+body.broadsheet .comparison-table thead th { font-family: var(--font-ui); color: var(--ink-meta); }
+body.broadsheet .comparison-table thead th.sorted,
+body.broadsheet .comparison-table thead th:hover { color: var(--navy); }
+body.broadsheet .table-name { font-family: var(--font-ui); }
+body.broadsheet .table-name:hover { color: var(--blue); }
+body.broadsheet .table-chamber,
+body.broadsheet .mini-pct,
+body.broadsheet .split-text { font-family: var(--font-ui); }
+
+/* ---- State: mobile cards ---- */
+body.broadsheet .mobile-card-name { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .mobile-card-meta,
+body.broadsheet .mobile-stat { font-family: var(--font-ui); }
+
+/* ---- About page ---- */
+body.broadsheet .about-page { max-width: 720px; }
+body.broadsheet .about-section h2,
+body.broadsheet .about-section-highlight h2 { font-family: var(--font-display); color: var(--navy); font-weight: 700; }
+body.broadsheet .about-section h2 { font-size: clamp(1.4rem, 3vw, 1.7rem); }
+body.broadsheet .about-section p,
+body.broadsheet .about-section-highlight p,
+body.broadsheet .about-list li,
+body.broadsheet .about-dont-list li { font-family: var(--font-serif); color: var(--ink); }
+body.broadsheet .about-list li strong { color: var(--navy); }
+body.broadsheet .about-list li::before { background: var(--blue); }
+body.broadsheet .about-section-highlight { border: 1px solid var(--rule); border-left: 3px solid var(--navy); }
+body.broadsheet .about-data-source { background: var(--card); border-color: var(--rule); }
+body.broadsheet .about-data-source strong { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .about-data-source span { font-family: var(--font-serif); }
+
+/* ---- 404 / error page ---- */
+body.broadsheet .error-page { max-width: 540px; margin: 4rem auto; text-align: center; }
+body.broadsheet .error-page .kicker { color: var(--blue-dim); margin-bottom: 0.6rem; }
+body.broadsheet .error-page h1 { font-family: var(--font-display); font-weight: 700; color: var(--navy); font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.1; margin-bottom: 0.9rem; }
+body.broadsheet .error-page p { font-family: var(--font-serif); color: var(--ink-soft); margin-bottom: 1.25rem; }
+body.broadsheet .error-page .btn { width: auto; }
+
+/* ---- Visible focus for shared broadsheet chrome (WCAG) ---- */
+.masthead-nav a:focus-visible,
+.footer-links a:focus-visible,
+.arrow-link:focus-visible,
+body.broadsheet .back-link:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 2px;
+}

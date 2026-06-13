@@ -21,7 +21,6 @@ const STATE_NAMES = {
 };
 
 let allMembers = [];
-let showParty = localStorage.getItem('cv-show-party') === 'true';
 let currentSort = 'name-asc';
 let currentChamber = 'all';
 
@@ -87,7 +86,6 @@ async function loadStateOverview(stateCode) {
         clearEl(container);
         renderStateHeader(container, stateCode, stateName, allMembers);
         renderStateStats(container, aggregate);
-        renderPartyToggle(container);
         renderControls(container);
         renderComparisonTable(container, getFilteredMembers());
         renderMobileCards(container, getFilteredMembers());
@@ -132,29 +130,6 @@ function createStatBox(label, number) {
         el('div', { className: 'label' }, label),
         el('div', { className: 'number' }, number)
     );
-}
-
-// --- Party Toggle ---
-function renderPartyToggle(container) {
-    const toggleBar = el('div', { className: 'party-toggle-bar' });
-    const text = el('span', null, 'Party labels are hidden so you can compare on the record.');
-    const btn = el('button', { className: 'btn-secondary', id: 'state-party-toggle' },
-        showParty ? 'Hide Party' : 'Reveal Party'
-    );
-
-    btn.addEventListener('click', () => {
-        showParty = !showParty;
-        localStorage.setItem('cv-show-party', String(showParty));
-        btn.textContent = showParty ? 'Hide Party' : 'Reveal Party';
-        text.textContent = showParty
-            ? 'Party labels are visible.'
-            : 'Party labels are hidden so you can compare on the record.';
-        refreshDisplay();
-    });
-
-    toggleBar.appendChild(text);
-    toggleBar.appendChild(btn);
-    container.appendChild(toggleBar);
 }
 
 // --- Filter/Sort Controls ---

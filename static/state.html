@@ -6,23 +6,22 @@
     <title>State Representatives — ClearVoting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/styles.css?v=9">
+    <link rel="stylesheet" href="/static/css/broadsheet.css?v=1">
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="broadsheet">
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <header class="site-header">
-        <div class="header-inner">
-            <a href="/" class="logo">Clear<span>Voting</span></a>
-            <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
-            <nav>
-                <a href="/">Home</a>
-                <a href="/#browse">Browse Bills</a>
-                <a href="/about">About</a>
-            </nav>
-        </div>
+    <header class="masthead">
+        <a href="/" class="logo" aria-label="ClearVoting home">Clear<span>Voting</span></a>
+        <p class="masthead-tagline">Facts only · No opinions · No spin</p>
+        <nav class="masthead-nav" aria-label="Main">
+            <a href="/">Home</a>
+            <a href="/#record">The Record</a>
+            <a href="/about">About</a>
+        </nav>
     </header>
 
     <main id="main-content">
@@ -33,9 +32,13 @@
     </main>
 
     <footer class="site-footer">
-        <p>Data sourced from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a>.</p>
-        <p>ClearVoting does not express opinions on legislation or representatives.</p>
-        <p><span id="data-freshness" class="data-freshness"></span></p>
+        <nav class="footer-links" aria-label="Footer">
+            <a href="/about">About</a>
+            <a href="/about">Methodology &amp; Corrections</a>
+            <a href="/about">Privacy</a>
+        </nav>
+        <span class="meta">Data from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a> · <span id="data-freshness"></span></span>
+        <p class="credo">ClearVoting does not express opinions on legislation or representatives.</p>
     </footer>
 
     <button class="feedback-btn" id="feedback-open" aria-label="Send feedback">
