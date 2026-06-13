@@ -396,3 +396,27 @@ body.broadsheet .party-toggle-section p { font-family: var(--font-ui); }
 /* ---- Bill: sponsors ---- */
 body.broadsheet #sponsors-section a { color: var(--blue); font-weight: 600; }
 body.broadsheet #sponsors-section a:hover { color: var(--blue-dim); }
+
+/* ---- State: header + aggregate stats ---- */
+body.broadsheet .state-header h1 { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .state-header .subtitle { font-family: var(--font-serif); color: var(--ink-soft); }
+body.broadsheet .state-stat .number { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .state-stat .label { font-family: var(--font-ui); color: var(--ink-meta); }
+
+/* ---- State: filter/sort controls ---- */
+body.broadsheet .controls-bar label { font-family: var(--font-ui); color: var(--ink-meta); }
+
+/* ---- State: comparison table ---- */
+body.broadsheet .comparison-table thead th { font-family: var(--font-ui); color: var(--ink-meta); }
+body.broadsheet .comparison-table thead th.sorted,
+body.broadsheet .comparison-table thead th:hover { color: var(--navy); }
+body.broadsheet .table-name { font-family: var(--font-ui); }
+body.broadsheet .table-name:hover { color: var(--blue); }
+body.broadsheet .table-chamber,
+body.broadsheet .mini-pct,
+body.broadsheet .split-text { font-family: var(--font-ui); }
+
+/* ---- State: mobile cards ---- */
+body.broadsheet .mobile-card-name { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .mobile-card-meta,
+body.broadsheet .mobile-stat { font-family: var(--font-ui); }
