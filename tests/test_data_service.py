@@ -1,3 +1,5 @@
+import json
+import logging
 import pytest
 from pathlib import Path
 from app.services.data_service import DataService
@@ -229,3 +231,68 @@ def test_get_member_narrative_case_insensitive(data_service):
 def test_get_member_narrative_not_found(data_service):
     result = data_service.get_member_narrative("X999999")
     assert result is None
+
+
+def _write_bills(tmp_path, bills):
+    (tmp_path / "bills.json").write_text(json.dumps({"bills": bills}))
+
+
+def test_get_bills_sorted_newest_first(tmp_path):
+    # File order is deliberately scrambled; load must sort by latestAction.actionDate desc
+    _write_bills(tmp_path, [
+        {"congress": 118, "type": "HR", "number": "5", "title": "Old Bill",
+         "latestAction": {"actionDate": "2024-03-12", "text": "Became law"}},
+        {"congress": 119, "type": "S", "number": "9", "title": "No Action Bill"},
+        {"congress": 119, "type": "HR", "number": "2", "title": "Newest Bill",
+         "latestAction": {"actionDate": "2025-05-30", "text": "Passed House"}},
+        {"congress": 119, "type": "HR", "number": "3", "title": "No Date Bill",
+         "latestAction": {"text": "Introduced"}},
+        {"congress": 119, "type": "HR", "number": "4", "title": "Mid Bill",
+         "latestAction": {"actionDate": "2025-01-15", "text": "Introduced"}},
+    ])
+    service = DataService(data_dir=tmp_path)
+    numbers = [b["number"] for b in service.get_bills(limit=10)["bills"]]
+    # Newest first; bills without an action date sort last (in original file order)
+    assert numbers == ["2", "4", "5", "9", "3"]
+
+
+def test_get_bills_congress_filter(tmp_path):
+    _write_bills(tmp_path, [
+        {"congress": 119, "type": "HR", "number": "1", "title": "New Bill",
+         "latestAction": {"actionDate": "2025-05-22"}},
+        {"congress": 118, "type": "HR", "number": "5", "title": "Old Bill",
+         "latestAction": {"actionDate": "2024-03-12"}},
+    ])
+    service = DataService(data_dir=tmp_path)
+    result = service.get_bills(congress=118)
+    assert [b["number"] for b in result["bills"]] == ["5"]
+    # Omitting congress returns all bills
+    assert len(service.get_bills()["bills"]) == 2
+
+
+def test_get_house_vote(data_service):
+    result = data_service.get_house_vote(119, 1, 99)
+    assert result is not None
+    assert result["vote_number"] == 99
+    assert len(result["members"]) == 1
+
+
+def test_get_house_vote_not_found(data_service):
+    result = data_service.get_house_vote(119, 1, 999)
+    assert result is None
+
+
+def test_load_logs_error_when_members_or_bills_empty(tmp_path, caplog):
+    # Missing/empty data files must log loudly but not crash (degraded site still boots)
+    with caplog.at_level(logging.ERROR, logger="app.services.data_service"):
+        service = DataService(data_dir=tmp_path)
+    assert service.get_bills()["bills"] == []
+    messages = [r.getMessage() for r in caplog.records]
+    assert any("members" in m for m in messages)
+    assert any("bills" in m for m in messages)
+
+
+def test_load_populated_data_logs_no_errors(caplog):
+    with caplog.at_level(logging.ERROR, logger="app.services.data_service"):
+        DataService(data_dir=FIXTURES)
+    assert not caplog.records

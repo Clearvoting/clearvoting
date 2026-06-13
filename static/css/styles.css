@@ -2173,6 +2173,21 @@ select:focus, input:focus {
     line-height: 1.4;
 }
 
+.vote-chamber-heading {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.vote-chamber-heading:first-child {
+    margin-top: 0;
+}
+
 /* ============================================
    Skeleton Loading (Phase 2)
    ============================================ */
@@ -3876,4 +3891,33 @@ select:focus, input:focus {
     }
 
     html { scroll-behavior: auto; }
+}
+
+/* ============================================
+   Coverage Note (lookup section)
+   ============================================ */
+.coverage-note {
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* ============================================
+   Member Name Links (state page keyboard access)
+   ============================================ */
+a.member-name-link {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+a.member-name-link:hover {
+    color: var(--accent);
+}
+
+a.member-name-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
 }

@@ -28,6 +28,9 @@ def _bill_matches(bill: dict, q_lower: str) -> bool:
     # Check title
     if q_lower in bill.get("title", "").lower():
         return True
+    # Check the plain-language one-liner ("stablecoin" should find the GENIUS Act)
+    if q_lower in bill.get("one_liner", "").lower():
+        return True
     # Check policyArea name
     policy_area = bill.get("policyArea", {})
     if policy_area and q_lower in policy_area.get("name", "").lower():
@@ -49,7 +52,7 @@ async def search_bills(
     limit: int = Query(20, ge=1, le=50),
 ):
     data_service = get_data_service()
-    all_bills = data_service.get_bills(offset=0, limit=10000)
+    all_bills = data_service.get_bills(offset=0, limit=10000, congress=congress)
     q_lower = q.lower()
     filtered = [b for b in all_bills["bills"] if _bill_matches(b, q_lower)]
     paginated = filtered[offset:offset + limit]

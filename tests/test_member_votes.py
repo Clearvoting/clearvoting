@@ -124,6 +124,38 @@ async def test_get_member_votes_stats_structure():
 
 
 @pytest.mark.asyncio
+async def test_get_member_votes_congress_filter():
+    """Passing congress returns only that congress's votes."""
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/members/D000032/votes?congress=118")
+
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    data = response.json()
+    assert data["total_count"] == 1
+    assert all(v["congress"] == 118 for v in data["votes"])
+
+
+@pytest.mark.asyncio
+async def test_get_member_votes_default_returns_all_congresses():
+    """Omitting congress returns votes from every congress (member page relies on this)."""
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/members/D000032/votes")
+
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    data = response.json()
+    assert data["total_count"] == 4
+    assert {v["congress"] for v in data["votes"]} == {118, 119}
+
+
+@pytest.mark.asyncio
 async def test_get_member_votes_high_limit():
     """High limit (up to 2000) returns all votes."""
     with _patch_data_dir():

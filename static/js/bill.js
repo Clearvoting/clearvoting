@@ -304,7 +304,8 @@ async function loadBillVotes(congress, type, number) {
         const data = await response.json();
 
         const senateVotes = data.senate || [];
-        const hasVotes = senateVotes.length > 0;
+        const houseVotes = data.house || [];
+        const hasVotes = senateVotes.length > 0 || houseVotes.length > 0;
 
         if (!hasVotes) {
             clearEl(votesContent);
@@ -318,8 +319,18 @@ async function loadBillVotes(congress, type, number) {
         clearEl(votesContent);
         votesContent.className = '';
 
-        for (const voteRef of senateVotes) {
-            await loadSenateVote(votesContent, voteRef.congress, voteRef.session, voteRef.vote_number);
+        if (senateVotes.length > 0) {
+            votesContent.appendChild(el('h4', { className: 'vote-chamber-heading' }, 'Senate votes'));
+            for (const voteRef of senateVotes) {
+                await loadChamberVote(votesContent, 'senate', voteRef.congress, voteRef.session, voteRef.vote_number);
+            }
+        }
+
+        if (houseVotes.length > 0) {
+            votesContent.appendChild(el('h4', { className: 'vote-chamber-heading' }, 'House votes'));
+            for (const voteRef of houseVotes) {
+                await loadChamberVote(votesContent, 'house', voteRef.congress, voteRef.session, voteRef.vote_number);
+            }
         }
     } catch {
         clearEl(votesContent);
@@ -330,9 +341,10 @@ async function loadBillVotes(congress, type, number) {
     }
 }
 
-async function loadSenateVote(container, congress, session, voteNumber) {
+async function loadChamberVote(container, chamber, congress, session, voteNumber) {
     try {
-        const url = `/api/votes/senate/${congress}/${session}/${voteNumber}`;
+        const chamberLabel = chamber === 'house' ? 'House' : 'Senate';
+        const url = `/api/votes/${chamber}/${congress}/${session}/${voteNumber}`;
         const response = await fetch(url);
         if (!response.ok) throw new Error('Vote not found');
         const data = await response.json();
@@ -341,7 +353,7 @@ async function loadSenateVote(container, congress, session, voteNumber) {
 
         // Header
         voteBlock.appendChild(el('h4', null,
-            `Senate Vote #${data.vote_number} — ${data.vote_date || ''}`
+            `${chamberLabel} Vote #${data.vote_number} — ${data.vote_date || ''}`
         ));
         voteBlock.appendChild(el('div', { className: 'vote-question' }, data.question || ''));
         voteBlock.appendChild(el('div', { className: 'vote-result' }, `Result: ${data.result || ''}`));
@@ -359,19 +371,21 @@ async function loadSenateVote(container, congress, session, voteNumber) {
         voteBlock.appendChild(chartRow);
 
         // Party breakdown container (shown on reveal)
-        const partyBreakdown = el('div', { id: `party-breakdown-${voteNumber}`, className: 'party-breakdown' });
+        const partyBreakdown = el('div', { id: `party-breakdown-${chamber}-${voteNumber}`, className: 'party-breakdown' });
         voteBlock.appendChild(partyBreakdown);
 
         // Party toggle
         const toggleSection = el('div', { className: 'party-toggle-section', style: 'margin-top:1rem;' });
-        toggleSection.appendChild(el('p', null, 'Viewing senators without party labels.'));
+        toggleSection.appendChild(el('p', null,
+            chamber === 'house' ? 'Viewing representatives without party labels.' : 'Viewing senators without party labels.'
+        ));
         const toggleBtn = el('button', { className: 'btn btn-secondary btn-small' }, 'Reveal Party Affiliations');
         toggleSection.appendChild(toggleBtn);
         voteBlock.appendChild(toggleSection);
 
         // Table (wrapped for mobile scroll — initially without party)
         const members = data.members || [];
-        const tableContainer = el('div', { id: `vote-table-${voteNumber}`, className: 'vote-table-wrap' });
+        const tableContainer = el('div', { id: `vote-table-${chamber}-${voteNumber}`, className: 'vote-table-wrap' });
         tableContainer.appendChild(window.ClearVotingUI.renderVoteTable(members, false));
         voteBlock.appendChild(tableContainer);
 

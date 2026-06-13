@@ -1,10 +1,35 @@
 import json
+import logging
 import re
+from datetime import datetime
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 # Matches bill documents in vote files, e.g. "H.R. 1", "H.Res. 24", "S.J.Res. 10".
 # Tolerates optional spaces between abbreviation parts ("H. Res. 88").
 _BILL_DOCUMENT_RE = re.compile(r"^([A-Za-z]+(?:\.\s*[A-Za-z]+)*\.?)\s+(\d+)$")
+
+# Vote dates look like "June 5, 2026,  04:52 AM" (note the double space before time).
+_VOTE_DATE_FORMATS = ("%B %d, %Y, %I:%M %p", "%B %d, %Y")
+
+
+def _parse_vote_date(raw: str) -> datetime | None:
+    cleaned = re.sub(r"\s+", " ", (raw or "").strip())
+    for fmt in _VOTE_DATE_FORMATS:
+        try:
+            return datetime.strptime(cleaned, fmt)
+        except ValueError:
+            continue
+    return None
+
+
+def _clean_vote_date(raw: str) -> str:
+    """Strip the time off a vote date: 'June 5, 2026,  04:52 AM' -> 'June 5, 2026'."""
+    parts = [p.strip() for p in (raw or "").split(",")]
+    if len(parts) >= 2:
+        return f"{parts[0]}, {parts[1]}"
+    return (raw or "").strip()
 
 
 class DataService:
@@ -19,11 +44,24 @@ class DataService:
         # (congress, bill_type, bill_number) -> {"senate": [...], "house": [...]},
         # built lazily on first get_bill_votes call (one scan of the vote dirs)
         self._bill_votes_index: dict[tuple[int, str, int], dict[str, list[dict]]] | None = None
+        # The single most recent bill-linked vote, built lazily on first request.
+        self._latest_vote_loaded = False
+        self._latest_vote: dict | None = None
         self._load()
 
     def _load(self) -> None:
         self._members = self._read_json("members.json").get("members", [])
         self._bills = self._read_json("bills.json").get("bills", [])
+        # Newest first so every consumer (browse, search, homepage) leads with
+        # recent activity; bills without an action date sort last.
+        self._bills.sort(
+            key=lambda b: (b.get("latestAction") or {}).get("actionDate") or "",
+            reverse=True,
+        )
+        if not self._members:
+            logger.error("Loaded 0 members from %s — site will serve empty member data", self.data_dir / "members.json")
+        if not self._bills:
+            logger.error("Loaded 0 bills from %s — site will serve empty bill data", self.data_dir / "bills.json")
         self._ai_summaries = self._read_json("ai_summaries.json")
         self._member_summaries = self._read_json("member_summaries.json")
         self._donations = self._read_json("donations.json")
@@ -149,9 +187,91 @@ class DataService:
                     break
         return results
 
-    def get_bills(self, offset: int = 0, limit: int = 20) -> dict:
-        paginated = self._bills[offset:offset + limit]
+    def get_bills(self, offset: int = 0, limit: int = 20, congress: int | None = None) -> dict:
+        bills = self._bills
+        if congress is not None:
+            bills = [b for b in bills if b.get("congress") == congress]
+        paginated = [self._with_plain_summary(b) for b in bills[offset:offset + limit]]
         return {"bills": paginated}
+
+    def _with_plain_summary(self, bill: dict) -> dict:
+        """Attach the AI one-liner and issue categories so lists can lead with
+        plain English instead of the official title. Returns a shallow copy so
+        the cached bill is never mutated."""
+        key = f"{bill.get('congress')}-{bill.get('type', '').lower()}-{bill.get('number')}"
+        summary = self._ai_summaries.get(key, {})
+        return {
+            **bill,
+            "one_liner": summary.get("one_liner", ""),
+            "issue_categories": summary.get("issue_categories", []),
+        }
+
+    def get_member_counts(self) -> dict:
+        """Members actually synced per state — the honest count behind each state
+        card and delegation heading (vacant/unsynced seats are not invented)."""
+        counts: dict[str, int] = {}
+        for m in self._members:
+            code = m.get("stateCode")
+            if code:
+                counts[code] = counts.get(code, 0) + 1
+        return counts
+
+    def get_latest_vote(self) -> dict | None:
+        """The most recent roll-call vote that maps to a bill we hold, preferring
+        a final-passage vote over a procedural motion on the same day."""
+        if not self._latest_vote_loaded:
+            self._latest_vote = self._build_latest_vote()
+            self._latest_vote_loaded = True
+        return self._latest_vote
+
+    def _build_latest_vote(self) -> dict | None:
+        bill_index: dict[tuple, dict] = {}
+        for b in self._bills:
+            try:
+                bill_index[(b.get("congress"), b.get("type", "").lower(), int(b.get("number")))] = b
+            except (TypeError, ValueError):
+                continue
+
+        best_key = None
+        best_payload = None
+        for chamber in ("senate", "house"):
+            vote_dir = self.data_dir / "votes" / chamber
+            if not vote_dir.exists():
+                continue
+            for vote_file in vote_dir.glob("*.json"):
+                with open(vote_file, "r") as f:
+                    vote = json.load(f)
+                parsed = self._parse_bill_document(vote.get("document", ""))
+                if not parsed:
+                    continue
+                bill = bill_index.get((vote.get("congress"), parsed[0], parsed[1]))
+                if not bill:
+                    continue
+                date = _parse_vote_date(vote.get("vote_date", ""))
+                if not date:
+                    continue
+                result = (vote.get("result") or "").lower()
+                question = (vote.get("question") or "").lower()
+                decisive = "passage" in question or "bill passed" in result or "bill defeated" in result
+                # Newest date wins; a final-passage vote beats a procedural one the
+                # same day; higher vote number breaks any remaining tie.
+                sort_key = (date, decisive, vote.get("vote_number") or 0)
+                if best_key is None or sort_key > best_key:
+                    best_key = sort_key
+                    best_payload = {
+                        "chamber": "Senate" if chamber == "senate" else "House",
+                        "date": _clean_vote_date(vote.get("vote_date", "")),
+                        "document": vote.get("document"),
+                        "result": vote.get("result"),
+                        "counts": vote.get("counts"),
+                        "bill": {
+                            "congress": bill.get("congress"),
+                            "type": bill.get("type", "").lower(),
+                            "number": int(bill.get("number")),
+                            "title": bill.get("title", ""),
+                        },
+                    }
+        return best_payload
 
     def get_bill_detail(self, congress: int, bill_type: str, bill_number: int) -> dict | None:
         bill_type = bill_type.upper()
@@ -169,6 +289,14 @@ class DataService:
     def get_senate_vote(self, congress: int, session: int, vote_number: int) -> dict | None:
         filename = f"{congress}_{session}_{vote_number:05d}.json"
         path = self.data_dir / "votes" / "senate" / filename
+        if not path.exists():
+            return None
+        with open(path, "r") as f:
+            return json.load(f)
+
+    def get_house_vote(self, congress: int, session: int, vote_number: int) -> dict | None:
+        filename = f"{congress}_{session}_{vote_number:05d}.json"
+        path = self.data_dir / "votes" / "house" / filename
         if not path.exists():
             return None
         with open(path, "r") as f:

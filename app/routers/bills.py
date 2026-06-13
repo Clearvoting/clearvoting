@@ -33,7 +33,7 @@ async def list_bills(
     limit: int = Query(20, ge=1, le=50),
 ):
     data_service = get_data_service()
-    return data_service.get_bills(offset=offset, limit=limit)
+    return data_service.get_bills(offset=offset, limit=limit, congress=congress)
 
 
 @router.get("/{congress}/{bill_type}/{bill_number}")
