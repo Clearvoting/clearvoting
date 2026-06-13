@@ -420,3 +420,19 @@ body.broadsheet .split-text { font-family: var(--font-ui); }
 body.broadsheet .mobile-card-name { font-family: var(--font-display); color: var(--navy); }
 body.broadsheet .mobile-card-meta,
 body.broadsheet .mobile-stat { font-family: var(--font-ui); }
+
+/* ---- About page ---- */
+body.broadsheet .about-page { max-width: 720px; }
+body.broadsheet .about-section h2,
+body.broadsheet .about-section-highlight h2 { font-family: var(--font-display); color: var(--navy); font-weight: 700; }
+body.broadsheet .about-section h2 { font-size: clamp(1.4rem, 3vw, 1.7rem); }
+body.broadsheet .about-section p,
+body.broadsheet .about-section-highlight p,
+body.broadsheet .about-list li,
+body.broadsheet .about-dont-list li { font-family: var(--font-serif); color: var(--ink); }
+body.broadsheet .about-list li strong { color: var(--navy); }
+body.broadsheet .about-list li::before { background: var(--blue); }
+body.broadsheet .about-section-highlight { border: 1px solid var(--rule); border-left: 3px solid var(--navy); }
+body.broadsheet .about-data-source { background: var(--card); border-color: var(--rule); }
+body.broadsheet .about-data-source strong { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .about-data-source span { font-family: var(--font-serif); }
