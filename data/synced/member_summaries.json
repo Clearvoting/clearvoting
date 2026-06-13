@@ -661,7 +661,7 @@
     "generated_at": "2026-03-16T23:30:37.465267+00:00"
   },
   "C001056": {
-    "narrative": "Cornyn votes most on economics and public finance with 144 votes (82 in favor, 23 against). He voted in favor of international affairs measures 30 times against 7, and supported armed forces and national security bills 21 times against 6. He voted in favor of funding the federal government through November 2023 and setting a $35 monthly cap on insulin costs for Medicare and private insurance. He voted against creating a federal right to IVF treatments and removing U.S. troops from Niger within 30 days.",
+    "narrative": "Senator Cornyn votes across many policy areas in the Senate, and the five areas shown here are part of a larger record. On economics and public finance \u2014 where he casts the most votes \u2014 he votes in favor most of the time, including on bills to fund the federal government and a bill that set a $35 monthly cap on insulin costs for people on both Medicare and private insurance. He also votes in favor on most bills related to international affairs, national security, and science and technology. On election and voting rules, he voted against bills that would expand voter registration access and require more disclosure of campaign spending. On transportation, his votes lean in favor, though he voted against a bill to fund the FAA and airports through 2028.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -669,18 +669,18 @@
       "Transportation and Public Works",
       "Science, Technology, Communications"
     ],
-    "generated_at": "2026-03-16T23:31:05.723609+00:00"
+    "generated_at": "2026-06-13T00:03:27.559102+00:00"
   },
   "C001120": {
-    "narrative": "Crenshaw votes most often on Congress, Energy, Economics and Public Finance, Armed Forces and National Security, and International Affairs issues. On Energy matters, he votes against most proposals with 80 votes against compared to 29 in favor. On Armed Forces and National Security issues, he votes in favor most of the time with 50 votes in favor versus 26 against. For International Affairs, he also leans in favor with 46 yes votes and 22 no votes. On Congress-related issues, while he casts the most votes in this area with 176 total, he typically takes neutral positions rather than voting for or against specific measures.",
+    "narrative": "Rep. Dan Crenshaw votes most often on congressional procedure, armed forces and national security, and economic policy. On Armed Forces and National Security bills, he has voted in favor more than against. On International Affairs, he has also voted in favor more than against. He voted against bills directing the president to remove U.S. forces from Lebanon and Iran. He voted in favor of the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act.",
     "top_areas": [
       "Congress",
-      "Energy",
-      "Economics and Public Finance",
       "Armed Forces and National Security",
-      "International Affairs"
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
     ],
-    "generated_at": "2026-03-16T23:31:09.220858+00:00"
+    "generated_at": "2026-06-13T00:01:14.539799+00:00"
   },
   "J000310": {
     "narrative": "Johnson votes most often on Congress issues, voting for 12 bills and against 3. On money and finance matters, she votes against more bills than for them, with 13 votes for and 33 against. On energy issues, she votes for 17 bills and against 11. She voted for requiring the House Ethics Committee to release harassment investigation records and against allowing House votes on homeland security funding.",
@@ -760,37 +760,37 @@
     "generated_at": "2026-03-16T23:34:06.883829+00:00"
   },
   "C001130": {
-    "narrative": "Crockett votes most often on Congress rules (176 votes) and Energy issues (113 votes). She voted in favor of most Energy bills (83 in favor, 22 against) but against most Economics and Public Finance bills (20 in favor, 73 against). She voted in favor of requiring the Energy Department to secure America's energy supply chains and expanding federal housing programs. She voted against funding defense, health, education, and housing for 2025 and against allowing mineral leasing on Minnesota acres.",
+    "narrative": "Crockett votes most often on procedural matters in Congress, economics, and national security. In economics and public finance, she votes against most bills, including appropriations measures for military construction and agriculture. On armed forces and national security, she leans against more bills than she supports, and voted in favor of resolutions to remove U.S. forces from Lebanon and from hostilities with Iran. She votes in favor of most energy-related bills. Her votes on international affairs are split, with slightly more in favor than against.",
     "top_areas": [
       "Congress",
-      "Energy",
       "Economics and Public Finance",
       "Armed Forces and National Security",
+      "Energy",
       "International Affairs"
     ],
-    "generated_at": "2026-03-16T23:35:33.286545+00:00"
+    "generated_at": "2026-06-12T23:50:19.860757+00:00"
   },
   "H001095": {
-    "narrative": "Hunt votes most on defense, economics, energy, Congress, and international affairs issues. Hunt votes in favor of most defense and military bills, including defense funding and bills declaring Iran sponsors terrorism. Hunt votes against most Congress-related and energy bills, including bills to stop military action without Congress approval and Department of Homeland Security funding. Hunt votes in favor of most economics and international affairs bills.",
+    "narrative": "Hunt votes most on Congress, economics, defense, energy, and international affairs issues. On defense and international affairs, he votes in favor most of the time \u2014 for example, he voted yes on the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act. On economics, he also leans in favor, including votes for bills like the Keeping Deposits Local Act and the American Access to Banking Act. On energy and Congress-related procedural votes, he leans against \u2014 voting no on bills like the Northwest Straits Marine Conservation Initiative Reauthorization Act.",
     "top_areas": [
       "Congress",
-      "Energy",
       "Economics and Public Finance",
       "Armed Forces and National Security",
+      "Energy",
       "International Affairs"
     ],
-    "generated_at": "2026-03-16T23:35:50.161118+00:00"
+    "generated_at": "2026-06-12T23:12:19.939495+00:00"
   },
   "C001131": {
-    "narrative": "Casar votes most often on congressional procedures, energy policy, and economic issues. On energy matters, he votes in favor of efficiency standards and renewable energy programs more often than against them. On economic and spending bills, he votes against most measures, including many government funding bills. He votes against more defense and military measures than he supports, and takes a similar stance on international affairs legislation.",
+    "narrative": "Casar votes most often on congressional procedures, economic issues, and defense and national security matters. On energy bills, he votes in favor far more than against. On spending and economic bills, he votes against more than in favor. He also votes against defense and international affairs bills more than in favor. For example, he voted yes on removing U.S. forces from Lebanon and Iran under the War Powers Resolution, and voted no on military construction appropriations.",
     "top_areas": [
       "Congress",
-      "Energy",
       "Economics and Public Finance",
       "Armed Forces and National Security",
+      "Energy",
       "International Affairs"
     ],
-    "generated_at": "2026-03-16T23:36:18.839392+00:00"
+    "generated_at": "2026-06-12T23:51:05.379486+00:00"
   },
   "D000594": {
     "narrative": "De La Cruz votes most often on congressional operations, energy policy, economics, military affairs, and international relations. She votes against most congressional procedure measures and energy efficiency programs, including bills to fund energy rebates and appliance efficiency rules. She votes in favor of most economic, military, and international affairs measures, including housing program expansions, defense funding, and requirements to exclude China from financial groups if China threatens Taiwan. Her voting pattern shows opposition to energy efficiency initiatives while supporting military and economic policies.",
@@ -804,70 +804,70 @@
     "generated_at": "2026-03-16T23:36:23.329493+00:00"
   },
   "G000581": {
-    "narrative": "Gonzalez votes most often on congressional procedures and rules, and usually supports these measures. On energy issues, he votes both in favor and against different proposals. He typically votes against economic and finance bills. On military and security matters, he more often votes against proposals than in favor of them. His voting spans international affairs, where his votes are mixed between supporting and opposing measures.",
+    "narrative": "Gonzalez votes most often on congressional procedure, armed forces, and economic issues. On armed forces and national security bills, he votes in favor more often than against \u2014 he voted yes on removing U.S. forces from hostilities with Iran and yes on veterans' benefits expansion. On economics and public finance bills, he votes against proposals more often than in favor, including a no vote on military construction and Veterans Affairs appropriations. He votes in favor of international affairs and government operations proposals more often than against.",
     "top_areas": [
       "Congress",
-      "Energy",
-      "Economics and Public Finance",
       "Armed Forces and National Security",
-      "International Affairs"
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
     ],
-    "generated_at": "2026-03-16T23:36:32.551687+00:00"
+    "generated_at": "2026-06-12T23:52:29.944165+00:00"
   },
   "G000553": {
-    "narrative": "Green votes most often on congressional procedures, energy policy, economics, defense, and international affairs. He votes in favor of most energy bills, including those on efficiency standards and security measures, and supports congressional ethics and transparency measures. Green votes against most economics and finance bills, defense spending measures, and international affairs legislation. He voted yes on stopping military action against Iran without congressional approval and expanding federal housing programs, while voting no on declaring Iran a terrorism sponsor and blocking energy efficiency rules.",
+    "narrative": "Rep. Al Green votes most often on congressional procedure, armed forces and national security, and economics and public finance. On economics and public finance, he votes against bills more often than in favor \u2014 including a vote against the military construction and Veterans Affairs appropriations bill. On armed forces and national security, his votes are split evenly between in favor and against; he voted in favor of directing the President to remove U.S. armed forces from Lebanon and from hostilities with Iran. On government operations and politics, he votes in favor more often than against.",
     "top_areas": [
       "Congress",
-      "Energy",
-      "Economics and Public Finance",
       "Armed Forces and National Security",
-      "International Affairs"
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
     ],
-    "generated_at": "2026-03-17T00:20:22.517564+00:00"
+    "generated_at": "2026-06-12T23:54:04.073742+00:00"
   },
   "V000134": {
-    "narrative": "Van Duyne votes most often on Congress, energy, economics, armed forces, and international affairs issues. She voted against 85 of 113 energy bills and against 22 Congress bills while voting in favor of only 14. She voted in favor of 63 economics bills, 67 armed forces bills, and 69 international affairs bills.",
+    "narrative": "Van Duyne votes most often on Congressional matters, Armed Forces and National Security, and Economics and Public Finance. On Congressional procedure, she votes against more often than in favor. On Armed Forces bills, she votes in favor more often than against \u2014 she voted yes on the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act and voted against resolutions to remove U.S. forces from Lebanon and Iran. On Economics and Public Finance, she voted in favor of bills like the American Access to Banking Act and the Keeping Deposits Local Act.",
     "top_areas": [
       "Congress",
-      "Energy",
-      "Economics and Public Finance",
       "Armed Forces and National Security",
-      "International Affairs"
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
     ],
-    "generated_at": "2026-03-17T00:36:02.051697+00:00"
+    "generated_at": "2026-06-12T23:58:17.504288+00:00"
   },
   "E000071": {
-    "narrative": "Ellzey votes most often on Congress operations, energy policy, economics, defense, and foreign affairs. He votes against most energy bills and Congress procedure bills. He votes in favor of most defense, economics, and international affairs bills. He voted against funding the Department of Homeland Security and against programs that help people make homes more energy efficient. He voted in favor of defense funding and blocking new energy efficiency rules for home appliances.",
+    "narrative": "Ellzey votes most often on congressional procedure, defense, and federal spending. On armed forces and national security bills, he votes in favor more often than against \u2014 he voted yes on the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act and no on a measure directing the removal of U.S. forces from Lebanon. On international affairs, he also votes in favor more often than against, though he voted against a bill authorizing support for Ukraine. His votes on government operations and politics are split evenly between in favor and against.",
     "top_areas": [
       "Congress",
-      "Energy",
-      "Economics and Public Finance",
       "Armed Forces and National Security",
-      "International Affairs"
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
     ],
-    "generated_at": "2026-03-17T00:37:03.455411+00:00"
+    "generated_at": "2026-06-12T23:56:34.196949+00:00"
   },
   "N000026": {
-    "narrative": "Rep. Nehls voted in favor of 68 of 86 defense bills and 59 of 81 international affairs bills. He voted against most energy measures, supporting only 28 of 113 energy bills. On economic issues, he voted in favor of 69 of 100 bills. He typically voted against congressional procedure measures. His votes included blocking energy efficiency rules, funding military programs, and opposing congressional limits on presidential military action.",
+    "narrative": "Nehls votes most often on congressional procedure, and on those votes he leans against the measures that come to the floor. On Armed Forces and National Security bills, he votes in favor more often than against, and he takes the same stance on Economics and Public Finance \u2014 voting yes on bills like the American Access to Banking Act and the Community Bank Deposit Access Act. On International Affairs, he votes in favor of most measures. He voted against resolutions that would have directed the President to remove U.S. forces from Lebanon and from hostilities with Iran, as well as against a bill to authorize support for Ukraine.",
     "top_areas": [
       "Congress",
-      "Energy",
-      "Economics and Public Finance",
       "Armed Forces and National Security",
-      "International Affairs"
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
     ],
-    "generated_at": "2026-03-17T00:37:15.767087+00:00"
+    "generated_at": "2026-06-13T00:00:24.672012+00:00"
   },
   "D000399": {
-    "narrative": "Doggett votes most often on Congress operations, energy policy, economics and public finance, defense, and international affairs. He votes in favor of most energy bills, including those that fund energy efficiency programs and set new appliance standards. He votes against most economics and public finance measures, including government funding bills for defense, health, education and housing. He also votes against most defense and international affairs bills, such as funding for homeland security agencies and declaring Iran a terrorism sponsor.",
+    "narrative": "Doggett votes most often on congressional procedures, defense and national security, and economics and public finance. He votes in favor of most bills about congressional procedures and government operations. On economics and public finance, he votes against bills more often than in favor. On defense and national security, his votes are close to even \u2014 he voted yes on resolutions directing the removal of U.S. forces from Lebanon and Iran, but voted no on a military construction and Veterans Affairs appropriations bill. His votes on international affairs are also about evenly split.",
     "top_areas": [
       "Congress",
-      "Energy",
-      "Economics and Public Finance",
       "Armed Forces and National Security",
-      "International Affairs"
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
     ],
-    "generated_at": "2026-03-17T00:37:24.828485+00:00"
+    "generated_at": "2026-06-12T23:55:20.906999+00:00"
   },
   "K000401": {
     "narrative": "Kiley votes in favor of most bills related to armed forces and national security issues and international affairs. He votes against most bills about energy policy, economics and public finance, and congressional procedures. He voted in favor of declaring Iran a sponsor of terrorism and blocking new energy efficiency rules for home appliances. He voted against stopping U.S. military action against Iran without congressional approval and against speeding up mining for metals on federal lands.",

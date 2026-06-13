@@ -9,7 +9,12 @@
       "Strong summary. Plain language throughout, accurate representation of the bill's scope, and correct neutral direction for a study-and-report bill. The fourth provision uses 'authentication' which is slightly technical, but it's immediately contextualized ('methods used to protect calls, texts, and devices') making it accessible. The one-liner accurately distills the bill's purpose. 'Safety & Crime' as the issue category is a reasonable fit for cybersecurity, though a 'Technology' or 'National Security' category (if available) would be more precise. No legislative jargon, no bias, and all provisions accurately reflect the original without overstating the bill's effect.",
       "Strong, readable summary overall. One minor issue: Provision 3 says teams 'connect those students with mental health support' \u2014 the source text says teams 'address associated behavioral health issues,' which is slightly broader than mental health support specifically (it could include substance use or behavioral interventions). Consider: 'The teams help those students get support for behavioral or mental health concerns.' The one-liner is right at the 15-word limit and works well. 'Best practices' in Provision 1 is mild professional jargon but widely understood and not legislative language \u2014 acceptable. All other provisions accurately reflect the bill. Direction and structure are correct.",
       "Strong summary overall. Accurate, plain-language, and well-structured. Two minor issues: (1) The issue category 'Safety & Crime' is a weak fit \u2014 this is a congressional administrative action about committee membership, not a safety or crime matter. A 'Government & Elections' or 'Congressional Operations' category (if available in the allowed list) would be more accurate. (2) Provision 1 uses the formal name 'House Permanent Select Committee on Intelligence' while the one-liner uses the simplified 'House Intelligence Committee' \u2014 both are accurate, but the inconsistency within the same summary is worth flagging. Provision 2 adds helpful, accessible context about what the committee does, which is a good call given that most readers won't know why committee membership matters. Provision 3 correctly explains the procedural scope (House-only, no Senate or Presidential action needed). Direction 'neutral' is appropriate for an internal House administrative action with no policy effect.",
-      "Strong, accurate summary of a procedural rule. Plain language throughout, correct neutral direction, and clear descriptions of both underlying bills. One structural gap: the checklist requires 3\u20137 provisions, and this summary has only 2. For a two-bill rule, a third provision is achievable \u2014 for example, a general statement like 'Sets the overall debate framework for both bills to be handled together under one rule.' No other issues."
+      "Strong, accurate summary of a procedural rule. Plain language throughout, correct neutral direction, and clear descriptions of both underlying bills. One structural gap: the checklist requires 3\u20137 provisions, and this summary has only 2. For a two-bill rule, a third provision is achievable \u2014 for example, a general statement like 'Sets the overall debate framework for both bills to be handled together under one rule.' No other issues.",
+      "Strong summary overall. Plain language, accurate provisions, and correct neutral direction for a ceremonial naming bill. The biographical context in Provision 2 is a good call \u2014 most readers won't know who Luke Letlow is, and the information is accurate. One clear issue: 'Jobs & Workers' is the wrong issue category. This bill has no effect on jobs or workers \u2014 it is a commemorative designation. A category like 'Government & Elections' or 'Commemorations' (if available in the allowed list) would be accurate. The weak category fit could mislead readers about what this bill does. All other elements meet standards.",
+      "Strong, readable summary with accurate provisions. Two issues to address: (1) The issue_category 'Environment & Energy' is incorrect \u2014 this is a government-wide data quality and transparency bill that applies to all federal agencies equally, not an environmental bill. It should be categorized as 'Government & Administration' or equivalent. A reader filtering by category would be misled. (2) The one-liner focuses only on posting data and methods, which is one of two main requirements. The bill also requires agencies to use the best reasonably available data \u2014 a distinct data quality mandate, not just a transparency one. Consider: 'Require federal agencies to use and post the best data behind their rules' (14 words). The provisions themselves are accurate, well-sequenced, and clearly written. Sentence lengths are within limits, language is plain throughout, and direction 'in_favor' is correct for a bill creating new agency obligations.",
+      "Strong, accurate summary of a technical research access bill. Plain language throughout, correct direction, and all five key components of the bill are represented. One minor note: the official summary says 'practitioners,' which is broader than 'doctors and scientists' \u2014 it could include nurse researchers or pharmacists authorized to conduct research. Consider: 'doctors, nurses, and researchers' or just 'researchers' to avoid inadvertent narrowing. DEA is used without expansion, but it is a well-known agency used in short sentences as the checklist allows. 'State-licensed dispensaries' in Provision 4 is slightly technical but widely understood and accurately conveys the concept. 'National Institute on Drug Abuse' is spelled out fully \u2014 good. All provisions map cleanly to the official summary with no omissions or distortions.",
+      "Strong summary with clear, accessible language and accurate provisions. Two issues to address: (1) The issue_category 'Environment & Energy' is a poor fit \u2014 this is a building code compliance and disaster mitigation loan program bill, not environmental or energy policy. A reader filtering by that category would be misled. A category like 'Government & Administration' or 'Housing & Infrastructure' (if available) would be accurate. (2) 'Small fixes' in Provision 3 uses the adjective 'small' to characterize scope \u2014 this is editorial, similar to 'modest' which the checklist explicitly flags. The bill's own title signals these are technical corrections; just write 'The bill makes fixes to how this loan program works.' All other elements are solid: sentences are under 25 words, plain language throughout, and direction 'in_favor' is defensible since the bill adds a new substantive requirement for building code compliance.",
+      "Strong, accurate summary overall. One clear issue: Provision 5 uses 'The goal is to help these agencies prepare for terrorism...' \u2014 'The goal is to' is intent characterization, which the checklist explicitly prohibits alongside 'aims to' and 'seeks to.' Rewrite as a factual statement of what the bill does: 'This supports agencies in preparing for terrorism and other homeland security threats.' Additionally, Provision 4 says 'The focus is on departments in rural or hard-to-reach areas' \u2014 the original refers to 'rural or remote communities' and the agencies serving them, so 'agencies' or 'law enforcement in rural or hard-to-reach areas' is more precise than 'departments.' The word 'accreditation' appears in the one-liner and provisions without explanation, but it is the bill's core concept and widely understood at 8th-grade level \u2014 acceptable here. All other provisions are accurate, clearly written, and well-sequenced. Direction 'in_favor' is correct for a bill that creates new reporting obligations and research mandates. Structure is clean."
     ],
     "batch_history": [
       {
@@ -117,6 +122,50 @@
           "118-hr-4691",
           "118-hr-4763"
         ]
+      },
+      {
+        "timestamp": "2026-06-11T23:35:07.481949+00:00",
+        "total": 515,
+        "passed": 62,
+        "failed": 453,
+        "grade_distribution": {
+          "A": 14,
+          "B": 48,
+          "C": 8,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": [
+          "118-hr-8146",
+          "118-hres-1209",
+          "118-hres-1227",
+          "118-s-138",
+          "117-hr-2324",
+          "117-hr-2501",
+          "117-hr-3197",
+          "117-hr-5577"
+        ]
+      },
+      {
+        "timestamp": "2026-06-12T15:27:01.719383+00:00",
+        "total": 445,
+        "passed": 82,
+        "failed": 363,
+        "grade_distribution": {
+          "A": 16,
+          "B": 66,
+          "C": 6,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": [
+          "117-hr-5641",
+          "117-hr-963",
+          "117-hr-735",
+          "117-hres-831",
+          "117-s-452",
+          "118-hres-901"
+        ]
       }
     ]
   },
@@ -206,6 +255,34 @@
           "F": 0
         },
         "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-11T23:37:18.535477+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-12T17:05:20.294290+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
       }
     ]
   },
@@ -260,6 +337,34 @@
         "total": 334,
         "passed": 0,
         "failed": 334,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-11T23:36:55.190824+00:00",
+        "total": 404,
+        "passed": 0,
+        "failed": 404,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-12T16:01:11.977596+00:00",
+        "total": 492,
+        "passed": 0,
+        "failed": 492,
         "grade_distribution": {
           "A": 0,
           "B": 0,
