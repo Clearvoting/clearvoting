@@ -2,6 +2,8 @@ __pycache__/
 *.pyc
 .env
 data/cache/
+data/feedback.jsonl
+data/notify_signups.jsonl
 .venv/
 .firecrawl/
 .worktrees/

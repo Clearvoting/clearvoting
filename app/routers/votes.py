@@ -8,6 +8,15 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/votes", tags=["votes"])
 
 
+@router.get("/latest")
+async def get_latest_vote():
+    data_service = get_data_service()
+    vote = data_service.get_latest_vote()
+    if not vote:
+        raise HTTPException(status_code=404, detail="No recent vote available")
+    return vote
+
+
 @router.get("/senate/{congress}/{session}/{vote_number}")
 async def get_senate_vote(congress: int = Path(ge=1, le=200), session: int = Path(ge=1, le=3), vote_number: int = Path(), show_party: bool = False):
     data_service = get_data_service()
