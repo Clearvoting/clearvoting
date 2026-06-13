@@ -31,9 +31,12 @@ async def list_bills(
     congress: int | None = Query(None, ge=1, le=200),
     offset: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=50),
+    summarized_only: bool = Query(False, description="Only bills with a plain-language AI summary"),
 ):
     data_service = get_data_service()
-    return data_service.get_bills(offset=offset, limit=limit, congress=congress)
+    return data_service.get_bills(
+        offset=offset, limit=limit, congress=congress, summarized_only=summarized_only
+    )
 
 
 @router.get("/{congress}/{bill_type}/{bill_number}")

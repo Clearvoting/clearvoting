@@ -162,6 +162,7 @@ async def get_state_overview(state_code: str):
 async def get_members_by_state(
     state_code: str,
     include_stats: bool = Query(False, description="Include vote stats and narrative snippet per member"),
+    show_party: bool = Query(False, description="Include party labels (hidden by default)"),
 ):
     state_code = _validate_state_code(state_code)
     data_service = get_data_service()
@@ -176,7 +177,7 @@ async def get_members_by_state(
             if narrative_data:
                 full = narrative_data.get("narrative", "")
                 m["narrative_snippet"] = full[:150] + "..." if len(full) > 150 else full
-    return _strip_party(data)
+    return data if show_party else _strip_party(data)
 
 
 @router.get("/detail/{bioguide_id}")

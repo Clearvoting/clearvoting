@@ -1,13 +1,8 @@
 /* ============================================
-   ClearVoting — Landing Page
+   ClearVoting — Homepage ("Civic Broadsheet")
    ============================================ */
 
-const STATES = [
-    { code: 'CA', name: 'California' },
-    { code: 'FL', name: 'Florida' },
-    { code: 'NY', name: 'New York' },
-    { code: 'TX', name: 'Texas' },
-];
+const STATE_NAMES = { CA: 'California', FL: 'Florida', NY: 'New York', TX: 'Texas' };
 
 const ISSUE_CATEGORIES = [
     'Cost of Living', 'Healthcare', 'Jobs & Workers', 'Taxes',
@@ -16,649 +11,504 @@ const ISSUE_CATEGORIES = [
     'Social Security & Retirement',
 ];
 
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
+
+let currentState = null;
 let showParty = localStorage.getItem('cv-show-party') === 'true';
+let browseReady = false;
 let billOffset = 0;
 const BILL_LIMIT = 20;
-let expandedCardId = null;
-let currentMembers = [];
-const summaryCache = new Map();
 
-// --- Initialize ---
 document.addEventListener('DOMContentLoaded', () => {
-    populateStates();
-    populateCategories();
-    loadRecentBills();
-    setupEventListeners();
+    loadStateCounts();
+    loadLatestVote();
+    loadRecord();
+    setupStateCards();
+    setupPartyToggle();
+    setupNotify();
+    setupBrowse();
 });
 
-function setupEventListeners() {
-    const stateSelect = document.getElementById('state-select');
-    const lookupBtn = document.getElementById('lookup-btn');
-    const partyToggle = document.getElementById('party-toggle');
-    const searchBtn = document.getElementById('search-btn');
-    const billSearch = document.getElementById('bill-search');
-    const loadMoreBtn = document.getElementById('load-more-btn');
-    stateSelect.addEventListener('change', () => {
-        lookupBtn.disabled = !stateSelect.value;
-    });
-
-    lookupBtn.addEventListener('click', lookupMembers);
-
-    partyToggle.addEventListener('click', () => {
-        showParty = !showParty;
-        localStorage.setItem('cv-show-party', String(showParty));
-        const container = document.getElementById('results');
-        container.classList.toggle('show-party', showParty);
-        partyToggle.textContent = showParty ? 'Hide Party Affiliations' : 'Reveal Party Affiliations';
-
-        if (showParty) {
-            reloadMembersWithParty();
-        } else {
-            const grid = document.getElementById('member-grid');
-            renderMembers(grid, currentMembers);
-        }
-    });
-
-    searchBtn.addEventListener('click', () => searchBills());
-    billSearch.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') searchBills();
-    });
-
-    loadMoreBtn.addEventListener('click', () => {
-        billOffset += BILL_LIMIT;
-        loadRecentBills(true);
-    });
-
-    // Hamburger menu handled by feedback.js (loaded on all pages)
-
-    // First-visit tooltip for party toggle (Phase 3.1)
-    if (!localStorage.getItem('cv-party-tooltip-seen')) {
-        const resultsSection = document.getElementById('results');
-        const tooltipObserver = new MutationObserver(() => {
-            if (!resultsSection.hidden && !document.getElementById('party-tooltip')) {
-                const tooltip = el('div', { className: 'party-tooltip', id: 'party-tooltip' },
-                    'Party labels are hidden by default so you can form your own opinion. Reveal them anytime with the button below.'
-                );
-                const closeBtn = el('button', { className: 'party-tooltip-close', 'aria-label': 'Dismiss' }, '\u00D7');
-                closeBtn.addEventListener('click', () => {
-                    tooltip.remove();
-                    localStorage.setItem('cv-party-tooltip-seen', 'true');
-                });
-                tooltip.appendChild(closeBtn);
-                const toggleSection = resultsSection.querySelector('.party-toggle-section');
-                if (toggleSection) toggleSection.parentNode.insertBefore(tooltip, toggleSection);
-                localStorage.setItem('cv-party-tooltip-seen', 'true');
-                tooltipObserver.disconnect();
-            }
-        });
-        tooltipObserver.observe(resultsSection, { attributes: true, attributeFilter: ['hidden'] });
-    }
-}
-
-// --- State Dropdown ---
-function populateStates() {
-    const select = document.getElementById('state-select');
-    STATES.forEach(state => {
-        const option = document.createElement('option');
-        option.value = state.code;
-        option.textContent = state.name;
-        select.appendChild(option);
-    });
-}
-
-// --- Category Grid ---
-function populateCategories() {
-    const grid = document.getElementById('category-grid');
-    ISSUE_CATEGORIES.forEach(cat => {
-        const tag = document.createElement('button');
-        tag.className = 'category-tag';
-        tag.textContent = cat;
-        tag.setAttribute('aria-label', `Browse ${cat} bills`);
-        tag.addEventListener('click', () => {
-            document.querySelectorAll('.category-tag').forEach(t => t.classList.remove('active'));
-            tag.classList.toggle('active');
-            document.getElementById('bill-search').value = cat;
-            searchBills();
-        });
-        grid.appendChild(tag);
-    });
-}
-
-// --- DOM Helpers ---
+/* ---- DOM helpers ---- */
 function el(tag, attrs, ...children) {
-    const element = document.createElement(tag);
+    const node = document.createElement(tag);
     if (attrs) {
         for (const [key, value] of Object.entries(attrs)) {
-            if (key === 'className') element.className = value;
-            else if (key.startsWith('data')) element.setAttribute(key.replace(/([A-Z])/g, '-$1').toLowerCase(), value);
-            else element.setAttribute(key, value);
+            if (value === null || value === undefined) continue;
+            if (key === 'className') node.className = value;
+            else node.setAttribute(key, value);
         }
     }
-    children.forEach(child => {
-        if (typeof child === 'string') element.appendChild(document.createTextNode(child));
-        else if (child) element.appendChild(child);
-    });
-    return element;
-}
-
-function clearChildren(parent) {
-    while (parent.firstChild) parent.removeChild(parent.firstChild);
-}
-
-function showLoading(container, message, type) {
-    clearChildren(container);
-    if (type === 'members') {
-        // Skeleton cards for member grid
-        const grid = el('div', { className: 'skeleton-grid' });
-        for (let i = 0; i < 4; i++) {
-            grid.appendChild(el('div', { className: 'skeleton-card' },
-                el('div', { className: 'skeleton skeleton-avatar' }),
-                el('div', { className: 'skeleton-lines' },
-                    el('div', { className: 'skeleton skeleton-line skeleton-line-medium' }),
-                    el('div', { className: 'skeleton skeleton-line skeleton-line-short' }),
-                    el('div', { className: 'skeleton skeleton-line skeleton-line-short' })
-                )
-            ));
-        }
-        container.appendChild(grid);
-    } else if (type === 'bills') {
-        // Skeleton items for bill list
-        for (let i = 0; i < 5; i++) {
-            container.appendChild(el('div', { className: 'skeleton-bill' },
-                el('div', { className: 'skeleton skeleton-line skeleton-line-short' }),
-                el('div', { className: 'skeleton skeleton-line skeleton-line-long' }),
-                el('div', { className: 'skeleton skeleton-line skeleton-line-medium' })
-            ));
-        }
-    } else {
-        const spinner = el('span', { className: 'spinner' });
-        const wrapper = el('div', { className: 'loading' }, spinner, ` ${message}`);
-        container.appendChild(wrapper);
+    for (const child of children) {
+        if (child === null || child === undefined || child === false) continue;
+        node.appendChild(typeof child === 'string' ? document.createTextNode(child) : child);
     }
+    return node;
 }
 
-function showError(container, message) {
-    clearChildren(container);
-    container.appendChild(el('div', { className: 'error-message' }, message));
+function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+
+/* ---- Formatting ---- */
+// "Schumer, Charles E." -> "Charles E. Schumer"
+function humanizeName(name) {
+    if (!name || !name.includes(',')) return name || '';
+    const idx = name.indexOf(',');
+    const last = name.slice(0, idx).trim();
+    const rest = name.slice(idx + 1).trim();
+    return rest ? `${rest} ${last}` : last;
 }
 
-function showEmpty(container, message) {
-    clearChildren(container);
-    container.appendChild(el('div', { className: 'empty-state' }, message));
+function formatISODate(iso) {
+    if (!iso) return '';
+    const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
+    if (!m) return iso;
+    return `${MONTHS[parseInt(m[2], 10) - 1]} ${parseInt(m[3], 10)}, ${m[1]}`;
 }
 
-// --- Member Lookup ---
-async function lookupMembers() {
-    const state = document.getElementById('state-select').value;
-    const district = document.getElementById('district-input').value;
-    if (!state) return;
+function ordinal(n) {
+    const s = ['th', 'st', 'nd', 'rd'];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
 
-    const resultsSection = document.getElementById('results');
-    const grid = document.getElementById('member-grid');
-    resultsSection.hidden = false;
-    showLoading(grid, 'Loading representatives...', 'members');
-    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+function billHref(bill) {
+    return `/bill?congress=${bill.congress}&type=${(bill.type || '').toLowerCase()}&number=${bill.number}`;
+}
 
+function billStatus(bill) {
+    const text = (bill.latestAction && bill.latestAction.text) || '';
+    const date = formatISODate(bill.latestAction && bill.latestAction.actionDate);
+    if (/became public law/i.test(text)) return { label: 'Became Law', moving: false, date };
+    return { label: 'Still in Congress', moving: true, date };
+}
+
+function splitPct(stats) {
+    const yea = (stats && stats.yea_count) || 0;
+    const nay = (stats && stats.nay_count) || 0;
+    const total = yea + nay;
+    if (!total) return null;
+    const yes = Math.round((yea / total) * 100);
+    return { yes, no: 100 - yes };
+}
+
+function verbFromResult(result) {
+    const r = (result || '').toLowerCase();
+    if (r.includes('passed')) return 'passed';
+    if (r.includes('agreed to')) return 'agreed to';
+    if (r.includes('defeated') || r.includes('rejected') || r.includes('failed')) return 'rejected';
+    if (r.includes('confirmed')) return 'confirmed';
+    return 'voted on';
+}
+
+/* ---- State card counts ---- */
+async function loadStateCounts() {
     try {
-        let url = `/api/members/${state}?include_stats=true`;
-        if (district) url = `/api/members/${state}/${district}?include_stats=true`;
-
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Failed to load members');
-        const data = await response.json();
-
-        const members = data.members || [];
-        if (members.length === 0) {
-            clearChildren(grid);
-            const stateName = document.getElementById('state-select').selectedOptions[0]?.text || state;
-            let emptyMsg, emptyHint;
-            if (district) {
-                emptyMsg = `No representative found for District ${district} in ${stateName}.`;
-                emptyHint = 'Try removing the district number to see all representatives from this state.';
-            } else {
-                emptyMsg = `No representatives found for ${stateName}.`;
-                emptyHint = 'Try selecting a different state, or check your district number.';
-            }
-            const emptyDiv = el('div', { className: 'empty-state' },
-                el('span', { className: 'empty-state-icon' }, '\uD83D\uDD0D'),
-                emptyMsg,
-                el('span', { className: 'empty-state-hint' }, emptyHint)
-            );
-            grid.appendChild(emptyDiv);
-            return;
-        }
-
-        currentMembers = members;
-        // Show results count
-        const countEl = document.getElementById('results-count');
-        if (countEl) countEl.textContent = `Showing ${members.length} representative${members.length !== 1 ? 's' : ''}`;
-
-        renderMembers(grid, members);
-
-        // Add "View All Representatives" link to state overview
-        const existingOverviewLink = grid.parentElement.querySelector('.state-overview-link');
-        if (existingOverviewLink) existingOverviewLink.remove();
-        const overviewLink = el('a', {
-            className: 'state-overview-link',
-            href: `/state?code=${state}`,
-        }, 'Compare all representatives side by side \u2192');
-        grid.parentElement.appendChild(overviewLink);
-
-        // Apply persisted party toggle state
-        if (showParty) {
-            const container = document.getElementById('results');
-            container.classList.add('show-party');
-            document.getElementById('party-toggle').textContent = 'Hide Party Affiliations';
-            reloadMembersWithParty();
-        }
-    } catch (err) {
-        showError(grid, 'Unable to load representatives. Congress.gov may be temporarily unavailable.');
-    }
-}
-
-function renderMembers(grid, members) {
-    clearChildren(grid);
-    expandedCardId = null;
-
-    members.forEach(member => {
-        const bioguideId = member.bioguideId || '';
-        const name = member.name || member.directOrderName || 'Unknown';
-        const depiction = member.depiction;
-        const imageUrl = depiction ? depiction.imageUrl : '';
-        const stateText = member.state || '';
-        const district = member.district ? `District ${member.district}` : '';
-        const terms = member.terms || { item: [] };
-        const latestTerm = Array.isArray(terms.item) ? terms.item[terms.item.length - 1] : terms.item;
-        const chamber = latestTerm ? latestTerm.chamber || '' : '';
-
-        const photoEl = imageUrl
-            ? el('img', { className: 'member-photo', src: imageUrl, alt: `Photo of ${name}`, loading: 'lazy' })
-            : el('div', { className: 'member-photo-placeholder', 'aria-hidden': 'true' }, '?');
-
-        const infoEl = el('div', { className: 'member-info' },
-            el('h4', null, name),
-            el('div', { className: 'chamber' }, chamber),
-            el('div', { className: 'state-district' }, `${stateText} ${district}`.trim())
-        );
-
-        const header = el('div', { className: 'card-header' }, photoEl, infoEl);
-
-        const cardChildren = [header];
-
-        // Add viz stats if available (from include_stats=true)
-        const stats = member.stats;
-        if (stats && window.ClearVoteViz) {
-            const participation = stats.participation_rate || 0;
-            const yea = stats.yea_count || 0;
-            const nay = stats.nay_count || 0;
-            const totalVotes = yea + nay;
-            const yeaPct = totalVotes > 0 ? Math.round((yea / totalVotes) * 100) : 0;
-            const nayPct = totalVotes > 0 ? 100 - yeaPct : 0;
-
-            const ring = window.ClearVoteViz.createParticipationRing(participation, 40);
-            const ringItem = el('div', { className: 'card-stat-item' }, ring, el('span', null, 'participation'));
-
-            const voteBarLabels = el('div', { className: 'card-vote-bar-labels' },
-                el('span', { className: 'yea-label' }, `${yeaPct}% yea`),
-                el('span', { className: 'nay-label' }, `${nayPct}% nay`)
-            );
-            const voteBar = window.ClearVoteViz.createVoteSplitBar(yeaPct, nayPct, 0);
-            const voteBarWrap = el('div', { className: 'card-vote-bar-wrap' }, voteBarLabels, voteBar);
-
-            const statsRow = el('div', { className: 'card-stats' }, ringItem, voteBarWrap);
-            cardChildren.push(statsRow);
-        }
-
-        // Narrative snippet
-        if (member.narrative_snippet) {
-            cardChildren.push(el('p', { className: 'card-narrative' }, member.narrative_snippet));
-        }
-
-        // Profile link
-        cardChildren.push(el('a', {
-            className: 'card-profile-link',
-            href: `/member?id=${bioguideId}`,
-        }, 'View Full Profile \u2192'));
-
-        const card = el('article', {
-            className: 'member-card hover-lift',
-            role: 'button',
-            tabindex: '0',
-            'aria-expanded': 'false',
-            'aria-label': `View voting snapshot for ${name}`,
-            'data-member-id': bioguideId,
-        }, ...cardChildren);
-
-        card.addEventListener('click', (e) => {
-            if (e.target.closest('a')) return;
-            toggleCard(bioguideId, card);
+        const res = await fetch('/api/members/counts');
+        if (!res.ok) return;
+        const { counts } = await res.json();
+        document.querySelectorAll('.state-count').forEach(elm => {
+            const code = elm.dataset.countFor;
+            if (counts[code]) elm.textContent = `${counts[code]} members`;
         });
-        card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                if (e.target.closest('a')) return;
-                toggleCard(bioguideId, card);
-            }
-        });
-
-        grid.appendChild(card);
-    });
+    } catch { /* counts are a nicety; cards work without them */ }
 }
 
-// --- Card Expand/Collapse ---
-function toggleCard(bioguideId, card) {
-    if (expandedCardId === bioguideId) {
-        collapseCard(card);
-        expandedCardId = null;
-    } else {
-        const prev = expandedCardId ? document.querySelector(`.member-card[data-member-id="${expandedCardId}"]`) : null;
-        if (prev) collapseCard(prev);
-        expandCard(bioguideId, card);
-        expandedCardId = bioguideId;
-    }
-}
-
-async function expandCard(bioguideId, card) {
-    card.classList.add('expanded');
-    card.setAttribute('aria-expanded', 'true');
-
-    const snapshot = el('div', { className: 'card-snapshot' });
-    card.appendChild(snapshot);
-
-    // Trigger reflow then animate
-    snapshot.offsetHeight;
-    snapshot.classList.add('visible');
-
-    // Auto-scroll expanded card into view after animation
-    setTimeout(() => {
-        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 320);
-
-    if (summaryCache.has(bioguideId)) {
-        renderCardSnapshot(snapshot, summaryCache.get(bioguideId), bioguideId);
-        return;
-    }
-
-    snapshot.appendChild(el('div', { className: 'snapshot-loading' },
-        el('span', { className: 'spinner' }), ' Loading...'
-    ));
-
+/* ---- Latest vote ---- */
+async function loadLatestVote() {
+    const card = document.getElementById('latest-vote');
     try {
-        const resp = await fetch(`/api/members/${bioguideId}/summary`);
-        if (!resp.ok) throw new Error('Not found');
-        const data = await resp.json();
-        summaryCache.set(bioguideId, data);
-        clearChildren(snapshot);
-        renderCardSnapshot(snapshot, data, bioguideId);
+        const res = await fetch('/api/votes/latest');
+        if (!res.ok) return;
+        const v = await res.json();
+        const counts = v.counts || {};
+        const yeas = counts.yeas || 0;
+        const nays = counts.nays || 0;
+        const title = v.bill.title || v.document;
+
+        document.getElementById('latest-vote-dateline').textContent =
+            `${v.date} · U.S. ${v.chamber} · ${v.document}`;
+
+        const headline = document.getElementById('latest-vote-headline');
+        clear(headline);
+        headline.appendChild(el('a', { href: billHref(v.bill) },
+            `The ${v.chamber} ${verbFromResult(v.result)} the ${title}, ${yeas}–${nays}`));
+
+        const total = yeas + nays;
+        const yesPct = total ? Math.round((yeas / total) * 100) : 50;
+        const tally = document.getElementById('latest-vote-tally');
+        clear(tally);
+        tally.setAttribute('role', 'img');
+        tally.setAttribute('aria-label', `${yeas} voted yes, ${nays} voted no`);
+        tally.appendChild(el('div', { className: 'tally-bar' },
+            el('span', { className: 'tally-yes', style: `width:${yesPct}%` }),
+            el('span', { className: 'tally-no', style: `width:${100 - yesPct}%` })
+        ));
+        tally.appendChild(el('div', { className: 'tally-labels' },
+            el('span', { className: 'yes' }, `${yeas} voted yes`),
+            el('span', { className: 'no' }, `${nays} voted no`)
+        ));
+
+        document.getElementById('latest-vote-link').href = billHref(v.bill);
+        card.hidden = false;
+    } catch { /* hero still reads fine without the card */ }
+}
+
+/* ---- The Record ---- */
+async function loadRecord() {
+    const grid = document.getElementById('record-grid');
+    try {
+        const res = await fetch('/api/bills?summarized_only=true&limit=6');
+        if (!res.ok) throw new Error('failed');
+        const bills = (await res.json()).bills || [];
+        clear(grid);
+        if (!bills.length) { grid.appendChild(el('p', { className: 'empty-note' }, 'No bills available yet.')); return; }
+        grid.appendChild(renderRecordLead(bills[0]));
+        grid.appendChild(renderRecordList(bills.slice(1)));
     } catch {
-        clearChildren(snapshot);
-        snapshot.appendChild(el('div', { className: 'snapshot-empty' }, 'Voting record not yet available'));
+        clear(grid);
+        grid.appendChild(el('p', { className: 'empty-note' }, 'Unable to load recent bills right now.'));
     }
 }
 
-function collapseCard(card) {
-    card.classList.remove('expanded');
-    card.setAttribute('aria-expanded', 'false');
-    const snapshot = card.querySelector('.card-snapshot');
-    if (snapshot) snapshot.remove();
-}
+function renderRecordLead(bill) {
+    const status = billStatus(bill);
+    const provisions = (bill.provisions || []).slice(0, 4);
+    const allCount = (bill.provisions || []).length;
 
-function renderCardSnapshot(container, data, bioguideId) {
-    const stats = data.stats || {};
-    const yeaPct = stats.total_votes ? Math.round((stats.yea_count / stats.total_votes) * 100) : 0;
-    const nayPct = 100 - yeaPct;
+    const seal = el('span', { className: status.moving ? 'law-seal moving' : 'law-seal' },
+        status.moving ? status.label : `${status.label} · ${status.date}`);
+    const kicker = el('div', { className: 'story-kicker' }, seal,
+        el('span', { className: 'meta' }, `${(bill.type || '').toUpperCase()}. ${bill.number} · ${ordinal(bill.congress)} Congress`));
 
-    const statsRow = el('div', { className: 'snapshot-stats' },
-        el('span', { className: 'snapshot-stat' },
-            el('strong', null, `${stats.participation_rate ?? 0}%`), ' participation'
-        ),
-        el('span', { className: 'snapshot-stat' },
-            el('span', { className: 'snapshot-yea' }, `${yeaPct}% yea`),
-            ' / ',
-            el('span', { className: 'snapshot-nay' }, `${nayPct}% nay`)
-        )
-    );
-    container.appendChild(statsRow);
-
-    // Narrative snippet — first sentence, truncated to ~120 chars
-    if (data.narrative) {
-        const firstSentence = data.narrative.split(/(?<=\.)\s/)[0] || data.narrative;
-        const truncated = firstSentence.length > 120
-            ? firstSentence.slice(0, 120).replace(/\s+\S*$/, '') + '\u2026'
-            : firstSentence;
-        container.appendChild(el('p', { className: 'snapshot-narrative' }, truncated));
-    }
-
-    const profileLink = el('a', {
-        className: 'snapshot-profile-link',
-        href: `/member?id=${bioguideId}`,
-    }, 'View Full Profile \u2192');
-    container.appendChild(profileLink);
-}
-
-async function reloadMembersWithParty() {
-    const state = document.getElementById('state-select').value;
-    const district = document.getElementById('district-input').value;
-    if (!state) return;
-
-    try {
-        let url = `/api/members/${state}?include_stats=true`;
-        if (district) url = `/api/members/${state}/${district}?include_stats=true`;
-
-        const response = await fetch(url);
-        if (!response.ok) return;
-        const data = await response.json();
-        const members = data.members || [];
-
-        const detailedMembers = await Promise.all(
-            members.map(async (m) => {
-                try {
-                    const resp = await fetch(`/api/members/detail/${m.bioguideId}?show_party=true`);
-                    if (resp.ok) {
-                        const detail = await resp.json();
-                        // Merge detail (which has party) with stats from original member
-                        const merged = detail.member || m;
-                        if (m.stats) merged.stats = m.stats;
-                        if (m.narrative_snippet) merged.narrative_snippet = m.narrative_snippet;
-                        return merged;
-                    }
-                } catch { /* fall through */ }
-                return m;
-            })
-        );
-
-        const grid = document.getElementById('member-grid');
-        clearChildren(grid);
-        expandedCardId = null;
-
-        detailedMembers.forEach(member => {
-            const bioguideId = member.bioguideId || '';
-            const name = member.directOrderName || member.name || 'Unknown';
-            const depiction = member.depiction;
-            const imageUrl = depiction ? depiction.imageUrl : '';
-            const stateText = member.state || '';
-            const party = member.partyName || '';
-            const terms = member.terms || { item: [] };
-            const latestTerm = Array.isArray(terms.item) ? terms.item[terms.item.length - 1] : terms.item;
-            const chamber = latestTerm ? latestTerm.chamber || '' : '';
-
-            const photoEl = imageUrl
-                ? el('img', { className: 'member-photo', src: imageUrl, alt: `Photo of ${name}`, loading: 'lazy' })
-                : el('div', { className: 'member-photo-placeholder', 'aria-hidden': 'true' }, '?');
-
-            const infoChildren = [
-                el('h4', null, name),
-                el('div', { className: 'chamber' }, chamber),
-                el('div', { className: 'state-district' }, stateText),
-            ];
-
-            if (party) {
-                const badge = el('span', { className: 'party-badge', style: 'display:inline-block;' }, party);
-                infoChildren.push(badge);
-            }
-
-            const infoEl = el('div', { className: 'member-info' }, ...infoChildren);
-            const header = el('div', { className: 'card-header' }, photoEl, infoEl);
-
-            const cardChildren = [header];
-
-            // Add viz stats if available
-            const stats = member.stats;
-            if (stats && window.ClearVoteViz) {
-                const participation = stats.participation_rate || 0;
-                const yea = stats.yea_count || 0;
-                const nay = stats.nay_count || 0;
-                const totalVotes = yea + nay;
-                const yeaPct = totalVotes > 0 ? Math.round((yea / totalVotes) * 100) : 0;
-                const nayPct = totalVotes > 0 ? 100 - yeaPct : 0;
-
-                const ring = window.ClearVoteViz.createParticipationRing(participation, 40);
-                const ringItem = el('div', { className: 'card-stat-item' }, ring, el('span', null, 'participation'));
-
-                const voteBarLabels = el('div', { className: 'card-vote-bar-labels' },
-                    el('span', { className: 'yea-label' }, `${yeaPct}% yea`),
-                    el('span', { className: 'nay-label' }, `${nayPct}% nay`)
-                );
-                const voteBar = window.ClearVoteViz.createVoteSplitBar(yeaPct, nayPct, 0);
-                const voteBarWrap = el('div', { className: 'card-vote-bar-wrap' }, voteBarLabels, voteBar);
-
-                const statsRow = el('div', { className: 'card-stats' }, ringItem, voteBarWrap);
-                cardChildren.push(statsRow);
-            }
-
-            if (member.narrative_snippet) {
-                cardChildren.push(el('p', { className: 'card-narrative' }, member.narrative_snippet));
-            }
-
-            cardChildren.push(el('a', {
-                className: 'card-profile-link',
-                href: `/member?id=${bioguideId}`,
-            }, 'View Full Profile \u2192'));
-
-            const card = el('article', {
-                className: 'member-card hover-lift',
-                role: 'button',
-                tabindex: '0',
-                'aria-expanded': 'false',
-                'aria-label': `View voting snapshot for ${name}`,
-                'data-member-id': bioguideId,
-            }, ...cardChildren);
-
-            card.addEventListener('click', (e) => {
-                if (e.target.closest('a')) return;
-                toggleCard(bioguideId, card);
-            });
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    if (e.target.closest('a')) return;
-                    toggleCard(bioguideId, card);
-                }
-            });
-
-            grid.appendChild(card);
-        });
-    } catch { /* silently fail — party reveal is optional */ }
-}
-
-// --- Bills ---
-async function loadRecentBills(append = false) {
-    const billList = document.getElementById('bill-list');
-    const loadMoreBtn = document.getElementById('load-more-btn');
-
-    if (!append) showLoading(billList, 'Loading recent bills...', 'bills');
-
-    try {
-        const response = await fetch(`/api/bills?offset=${billOffset}&limit=${BILL_LIMIT}`);
-        if (!response.ok) throw new Error('Failed to load bills');
-        const data = await response.json();
-
-        const bills = data.bills || [];
-        if (!append) clearChildren(billList);
-
-        if (bills.length === 0 && !append) {
-            clearChildren(billList);
-            billList.appendChild(el('div', { className: 'empty-state' },
-                el('span', { className: 'empty-state-icon' }, '\uD83D\uDCDC'),
-                'No bills found.',
-                el('span', { className: 'empty-state-hint' }, 'Try a different search term or browse by topic above.')
-            ));
-            loadMoreBtn.hidden = true;
-            return;
-        }
-
-        bills.forEach(bill => billList.appendChild(createBillItem(bill)));
-        loadMoreBtn.hidden = bills.length < BILL_LIMIT;
-    } catch (err) {
-        if (!append) showError(billList, 'Unable to load bills. Please try again later.');
-    }
-}
-
-async function searchBills() {
-    const query = document.getElementById('bill-search').value.trim();
-    if (!query) return;
-
-    const billList = document.getElementById('bill-list');
-    const loadMoreBtn = document.getElementById('load-more-btn');
-    showLoading(billList, 'Searching...', 'bills');
-    loadMoreBtn.hidden = true;
-
-    try {
-        const response = await fetch(`/api/search/bills?q=${encodeURIComponent(query)}&limit=50`);
-        if (!response.ok) throw new Error('Search failed');
-        const data = await response.json();
-
-        const bills = data.bills || [];
-
-        clearChildren(billList);
-        if (bills.length === 0) {
-            billList.appendChild(el('div', { className: 'empty-state' },
-                el('span', { className: 'empty-state-icon' }, '\uD83D\uDD0D'),
-                `No bills found matching "${query}".`,
-                el('span', { className: 'empty-state-hint' }, 'Try a broader term or browse by category above.')
-            ));
-            return;
-        }
-
-        billList.insertBefore(
-            el('div', { className: 'results-count' }, `${bills.length} bill${bills.length !== 1 ? 's' : ''} found for "${query}"`),
-            billList.firstChild
-        );
-
-        bills.forEach(bill => billList.appendChild(createBillItem(bill)));
-    } catch {
-        showError(billList, 'Search failed. Please try again.');
-    }
-}
-
-function createBillItem(bill) {
-    const number = bill.number || '';
-    const type = bill.type || '';
-    const congress = bill.congress || '';
-    const title = bill.title || bill.latestTitle || 'Untitled Bill';
-    const action = bill.latestAction ? bill.latestAction.text || '' : '';
-    const actionDate = bill.latestAction ? bill.latestAction.actionDate || '' : '';
+    const provisionList = el('ul', { className: 'record-provisions' },
+        ...provisions.map(p => el('li', null, p)));
 
     const children = [
-        el('span', { className: 'bill-number' }, `${type}.${number}`),
-        document.createTextNode(' '),
-        el('span', { className: 'bill-date' }, actionDate),
-        el('h4', null, title),
+        kicker,
+        el('h3', null, el('a', { href: billHref(bill) }, bill.one_liner || bill.title)),
+        provisionList,
+        el('a', { className: 'arrow-link', href: billHref(bill) },
+            allCount > provisions.length
+                ? `Read all ${allCount} provisions and who voted for it →`
+                : 'See who voted for it →'),
     ];
-
-    if (action) {
-        children.push(el('div', { className: 'bill-action' }, action));
+    if (bill.title) {
+        children.push(el('p', { className: 'official-line' }, `Officially: “${bill.title}”`));
     }
+    return el('article', { className: 'record-lead' }, ...children);
+}
 
-    const item = el('article', { className: 'bill-item hover-lift', tabindex: '0' }, ...children);
+function renderRecordList(bills) {
+    const list = el('ul', { className: 'record-list' });
+    bills.forEach(bill => {
+        const status = billStatus(bill);
+        const metaBits = [status.date, bill.title ? `Officially the “${bill.title}”` : null]
+            .filter(Boolean).join(' · ');
+        list.appendChild(el('li', { className: 'record-item' },
+            el('div', { className: 'record-item-meta' },
+                el('span', { className: 'bill-no' }, `${(bill.type || '').toUpperCase()}. ${bill.number}`),
+                el('span', { className: status.moving ? 'law-seal moving' : 'law-seal' }, status.label)
+            ),
+            el('h4', null, el('a', { href: billHref(bill) }, bill.one_liner || bill.title)),
+            el('p', { className: 'meta' }, metaBits)
+        ));
+    });
+    return list;
+}
 
-    const navigate = () => {
-        window.location.href = `/bill?congress=${congress}&type=${type.toLowerCase()}&number=${number}`;
-    };
-    item.addEventListener('click', navigate);
-    item.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(); }
+/* ---- State selection → delegation ---- */
+function setupStateCards() {
+    document.querySelectorAll('.state-card').forEach(card => {
+        card.addEventListener('click', () => selectState(card.dataset.state));
+    });
+}
+
+function selectState(code) {
+    currentState = code;
+    document.querySelectorAll('.state-card').forEach(c => {
+        const active = c.dataset.state === code;
+        c.classList.toggle('active', active);
+        c.setAttribute('aria-pressed', String(active));
+    });
+    const section = document.getElementById('delegation');
+    section.hidden = false;
+    loadDelegation(code);
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function loadDelegation(code) {
+    const body = document.getElementById('delegation-body');
+    const heading = document.getElementById('delegation-heading');
+    const sub = document.getElementById('delegation-sub');
+    heading.textContent = `${STATE_NAMES[code] || code}’s delegation`;
+    sub.textContent = '';
+    clear(body);
+    body.appendChild(el('div', { className: 'loading' }, el('span', { className: 'spinner' }), ' Loading representatives…'));
+
+    try {
+        let url = `/api/members/${code}?include_stats=true`;
+        if (showParty) url += '&show_party=true';
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('failed');
+        const members = (await res.json()).members || [];
+        renderDelegation(body, heading, sub, members, code);
+        document.getElementById('delegation-foot').hidden = false;
+    } catch {
+        clear(body);
+        body.appendChild(el('p', { className: 'empty-note' }, 'Unable to load representatives right now. Please try again.'));
+    }
+}
+
+function isSenate(member) { return (member.chamber || '').includes('Senate'); }
+
+function renderDelegation(body, heading, sub, members, code) {
+    clear(body);
+    const senators = members.filter(isSenate);
+    const house = members.filter(m => !isSenate(m))
+        .sort((a, b) => (a.district || 0) - (b.district || 0));
+
+    heading.textContent = `${STATE_NAMES[code] || code}’s ${members.length} voices in Washington`;
+    sub.textContent =
+        `${senators.length} senator${senators.length !== 1 ? 's' : ''} for the whole state · ` +
+        `${house.length} House member${house.length !== 1 ? 's' : ''}, one per district`;
+
+    if (senators.length) {
+        body.appendChild(el('h3', { className: 'roster-label' }, 'The Senate'));
+        senators.forEach(m => body.appendChild(renderSenatorRow(m)));
+    }
+    if (house.length) {
+        body.appendChild(el('h3', { className: 'roster-label' }, 'The House — by district'));
+        const roster = el('div', { className: 'roster' });
+        house.forEach(m => roster.appendChild(renderRosterRow(m)));
+        body.appendChild(roster);
+    }
+}
+
+function memberPhoto(member, className) {
+    const url = member.depiction && member.depiction.imageUrl;
+    if (url) return el('img', { className, src: url, alt: '', loading: 'lazy' });
+    return el('div', { className: className + ' photo-fallback', 'aria-hidden': 'true' });
+}
+
+function partyTag(member) {
+    return member.partyName ? el('span', { className: 'party-tag' }, `· ${member.partyName}`) : null;
+}
+
+function splitBar(stats) {
+    const s = splitPct(stats);
+    const stack = el('div', { className: 'member-stats' });
+    if (!s) {
+        stack.appendChild(el('p', { className: 'meta' }, 'Voting record not yet available'));
+        return stack;
+    }
+    stack.appendChild(el('div', { className: 'split-labels' },
+        el('span', { className: 'yes' }, `Voted yes ${s.yes}%`),
+        el('span', { className: 'no' }, `no ${s.no}%`)
+    ));
+    stack.appendChild(el('div', { className: 'split-bar', role: 'img', 'aria-label': `${s.yes} percent yes, ${s.no} percent no` },
+        el('span', { className: 'split-yes', style: `width:${s.yes}%` }),
+        el('span', { className: 'split-no', style: `width:${s.no}%` })
+    ));
+    const rate = stats.participation_rate;
+    if (rate || rate === 0) {
+        stack.appendChild(el('p', { className: 'participation' },
+            'Present for ', el('strong', null, `${rate}%`), ' of all floor votes'));
+    }
+    return stack;
+}
+
+function renderSenatorRow(m) {
+    const info = el('div', {},
+        el('h4', { className: 'senator-name' }, humanizeName(m.name), partyTag(m)),
+        el('p', { className: 'senator-seat' }, `U.S. Senate · ${m.state || STATE_NAMES[currentState] || ''}`),
+        m.narrative_snippet ? el('p', { className: 'senator-narrative' }, m.narrative_snippet) : null
+    );
+    return el('a', { className: 'senator-row', href: `/member?id=${m.bioguideId}` },
+        memberPhoto(m, 'senator-photo'), info, splitBar(m.stats));
+}
+
+function renderRosterRow(m) {
+    const s = splitPct(m.stats);
+    const splitWrap = el('span', { className: 'roster-split' });
+    if (s) {
+        splitWrap.appendChild(el('span', { className: 'split-bar' },
+            el('span', { className: 'split-yes', style: `width:${s.yes}%` }),
+            el('span', { className: 'split-no', style: `width:${s.no}%` })
+        ));
+        splitWrap.appendChild(el('span', { className: 'micro-labels' },
+            el('span', { className: 'yes' }, `yes ${s.yes}%`),
+            el('span', { className: 'no' }, `no ${s.no}%`)
+        ));
+    }
+    const labelBits = s ? `Voted yes ${s.yes}%, no ${s.no}%` : 'Voting record not yet available';
+    return el('a', {
+        className: 'roster-row',
+        href: `/member?id=${m.bioguideId}`,
+        'aria-label': `${humanizeName(m.name)}, District ${m.district}. ${labelBits}`,
+    },
+        memberPhoto(m, 'roster-photo'),
+        el('span', { className: 'roster-id' },
+            el('span', { className: 'roster-name' }, humanizeName(m.name), partyTag(m)),
+            el('br'),
+            el('span', { className: 'roster-district' }, m.district ? `District ${m.district}` : 'At large')
+        ),
+        splitWrap
+    );
+}
+
+/* ---- Party toggle ---- */
+function setupPartyToggle() {
+    const toggle = document.getElementById('party-toggle');
+    toggle.setAttribute('aria-pressed', String(showParty));
+    toggle.textContent = showParty ? 'Hide party labels' : 'Show party labels';
+    toggle.addEventListener('click', () => {
+        showParty = !showParty;
+        localStorage.setItem('cv-show-party', String(showParty));
+        toggle.setAttribute('aria-pressed', String(showParty));
+        toggle.textContent = showParty ? 'Hide party labels' : 'Show party labels';
+        if (currentState) loadDelegation(currentState);
+    });
+}
+
+/* ---- Notify signup ---- */
+function setupNotify() {
+    const form = document.getElementById('notify-form');
+    const reveal = document.getElementById('notify-reveal');
+    const status = document.getElementById('notify-status');
+
+    reveal.addEventListener('click', () => {
+        form.classList.add('open');
+        document.getElementById('notify-email').focus();
     });
 
-    return item;
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('notify-email').value.trim();
+        const btn = document.getElementById('notify-btn');
+        btn.disabled = true;
+        try {
+            const res = await fetch('/api/notify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, state: currentState || '' }),
+            });
+            if (!res.ok) throw new Error('failed');
+            form.classList.remove('open');
+            status.hidden = false;
+            status.textContent = '✓ You’re on the list — we’ll email you when your state is added.';
+        } catch {
+            btn.disabled = false;
+            status.hidden = false;
+            status.style.color = 'var(--no)';
+            status.textContent = 'Something went wrong. Please check your email and try again.';
+        }
+    });
+}
+
+/* ---- Browse panel (progressive disclosure) ---- */
+function setupBrowse() {
+    const toggle = document.getElementById('browse-toggle');
+    const panel = document.getElementById('browse-panel');
+    toggle.addEventListener('click', () => {
+        const open = panel.hidden;
+        panel.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.textContent = open ? 'Hide bill browser ↑' : 'Browse all bills by topic →';
+        if (open && !browseReady) {
+            browseReady = true;
+            initBrowse();
+            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    });
+}
+
+function initBrowse() {
+    const categoryGrid = document.getElementById('category-grid');
+    ISSUE_CATEGORIES.forEach(cat => {
+        const chip = el('button', { className: 'category-chip', type: 'button', 'aria-label': `Browse ${cat} bills` }, cat);
+        chip.addEventListener('click', () => {
+            document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            document.getElementById('bill-search').value = cat;
+            searchBills(cat);
+        });
+        categoryGrid.appendChild(chip);
+    });
+
+    document.getElementById('bill-search-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const q = document.getElementById('bill-search').value.trim();
+        if (q) searchBills(q);
+    });
+
+    document.getElementById('load-more-btn').addEventListener('click', () => {
+        billOffset += BILL_LIMIT;
+        loadBrowseBills(true);
+    });
+
+    loadBrowseBills(false);
+}
+
+function createBillRow(bill) {
+    const status = billStatus(bill);
+    const headline = bill.one_liner || bill.title || 'Untitled bill';
+    const metaBits = [status.date, (bill.one_liner && bill.title) ? `Officially the “${bill.title}”` : null]
+        .filter(Boolean).join(' · ');
+    const row = el('div', { className: 'record-item', tabindex: '0', role: 'link' },
+        el('div', { className: 'record-item-meta' },
+            el('span', { className: 'bill-no' }, `${(bill.type || '').toUpperCase()}. ${bill.number}`),
+            el('span', { className: status.moving ? 'law-seal moving' : 'law-seal' }, status.label)
+        ),
+        el('h4', null, headline),
+        metaBits ? el('p', { className: 'meta' }, metaBits) : null
+    );
+    const go = () => { window.location.href = billHref(bill); };
+    row.addEventListener('click', go);
+    row.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    return row;
+}
+
+async function loadBrowseBills(append) {
+    const list = document.getElementById('bill-list');
+    const loadMore = document.getElementById('load-more-btn');
+    if (!append) {
+        billOffset = 0;
+        clear(list);
+        list.appendChild(el('div', { className: 'loading' }, el('span', { className: 'spinner' }), ' Loading bills…'));
+    }
+    try {
+        const res = await fetch(`/api/bills?offset=${billOffset}&limit=${BILL_LIMIT}`);
+        if (!res.ok) throw new Error('failed');
+        const bills = (await res.json()).bills || [];
+        if (!append) clear(list);
+        bills.forEach(b => list.appendChild(createBillRow(b)));
+        loadMore.hidden = bills.length < BILL_LIMIT;
+    } catch {
+        if (!append) { clear(list); list.appendChild(el('p', { className: 'empty-note' }, 'Unable to load bills right now.')); }
+    }
+}
+
+async function searchBills(query) {
+    const list = document.getElementById('bill-list');
+    const loadMore = document.getElementById('load-more-btn');
+    loadMore.hidden = true;
+    clear(list);
+    list.appendChild(el('div', { className: 'loading' }, el('span', { className: 'spinner' }), ' Searching…'));
+    try {
+        const res = await fetch(`/api/search/bills?q=${encodeURIComponent(query)}&limit=50`);
+        if (!res.ok) throw new Error('failed');
+        const bills = (await res.json()).bills || [];
+        clear(list);
+        list.appendChild(el('p', { className: 'results-count' },
+            `${bills.length} bill${bills.length !== 1 ? 's' : ''} found for “${query}”`));
+        if (!bills.length) {
+            list.appendChild(el('p', { className: 'empty-note' }, 'Try a broader term or pick a topic above.'));
+            return;
+        }
+        bills.forEach(b => list.appendChild(createBillRow(b)));
+    } catch {
+        clear(list);
+        list.appendChild(el('p', { className: 'empty-note' }, 'Search failed. Please try again.'));
+    }
 }
