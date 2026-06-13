@@ -349,3 +349,50 @@ body.broadsheet .vote-item .bill-number { font-family: var(--font-ui); font-weig
 body.broadsheet .vote-item-title { font-family: var(--font-serif); font-weight: 600; color: var(--ink); }
 body.broadsheet .vote-item-oneliner { font-family: var(--font-serif); }
 body.broadsheet .vote-section-desc { font-family: var(--font-ui); }
+
+/* ---- Bill: header ---- */
+body.broadsheet .bill-header { padding-bottom: 1.4rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.5rem; }
+body.broadsheet .bill-header .bill-number { font-family: var(--font-ui); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-dim); }
+body.broadsheet .bill-header h2 { font-family: var(--font-display); color: var(--navy); font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.3rem); line-height: 1.15; }
+body.broadsheet .bill-header .bill-status { font-family: var(--font-ui); color: var(--ink-meta); font-size: 0.82rem; }
+
+/* ---- Bill: jump-nav table of contents ---- */
+body.broadsheet .bill-toc { border-bottom: 1px solid var(--rule); padding-bottom: 1.1rem; }
+body.broadsheet .bill-toc a { font-family: var(--font-ui); font-weight: 600; letter-spacing: 0.04em; color: var(--ink-soft); border-color: var(--rule); }
+body.broadsheet .bill-toc a:hover { color: var(--navy); border-color: var(--navy); }
+
+/* ---- Bill: "What This Bill Does" (primary) ---- */
+body.broadsheet #ai-summary-section { border-left: 3px solid var(--navy); }
+body.broadsheet .provision-list li { font-family: var(--font-serif); color: var(--ink); padding-left: 1.4rem; }
+body.broadsheet .provision-list li::before {
+    content: '\00A7';
+    background: none;
+    width: auto; height: auto;
+    top: 0.4rem; left: 0;
+    color: var(--blue);
+    font-family: var(--font-display);
+    border-radius: 0;
+}
+body.broadsheet .ai-disclaimer { font-family: var(--font-ui); }
+body.broadsheet .issue-areas-heading { font-family: var(--font-ui); color: var(--ink-meta); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; font-size: 0.72rem; }
+
+/* ---- Bill: both-sides arguments ---- */
+body.broadsheet .bill-arguments h4 { font-family: var(--font-display); color: var(--navy); }
+body.broadsheet .arguments-side-header { font-family: var(--font-ui); }
+body.broadsheet .arguments-side li { font-family: var(--font-serif); }
+
+/* ---- Bill: official (secondary) summary ---- */
+body.broadsheet .bill-section-official h3 { font-family: var(--font-ui); color: var(--ink-meta); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; font-size: 0.78rem; }
+body.broadsheet .official-summary { font-family: var(--font-serif); color: var(--ink-soft); }
+
+/* ---- Bill: roll-call votes ---- */
+body.broadsheet .vote-question { font-family: var(--font-serif); }
+body.broadsheet .vote-result { font-family: var(--font-ui); }
+body.broadsheet .vote-note { font-family: var(--font-serif); }
+body.broadsheet .vote-chamber-heading { font-family: var(--font-ui); color: var(--ink-meta); }
+body.broadsheet .party-toggle-section { background: var(--card); border-color: var(--rule); }
+body.broadsheet .party-toggle-section p { font-family: var(--font-ui); }
+
+/* ---- Bill: sponsors ---- */
+body.broadsheet #sponsors-section a { color: var(--blue); font-weight: 600; }
+body.broadsheet #sponsors-section a:hover { color: var(--blue-dim); }

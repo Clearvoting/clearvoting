@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const type = params.get('type');
     const number = params.get('number');
 
+    const backLink = document.getElementById('back-link');
+    if (backLink) backLink.addEventListener('click', () => history.back());
+
     if (!congress || !type || !number) {
         showError('Missing bill information. Go back to the home page and select a bill.');
         return;
@@ -187,7 +190,11 @@ function renderBill(container, bill, congress, type, number) {
         const sponsorSection = el('section', { className: 'bill-section', id: 'sponsors-section' });
         sponsorSection.appendChild(el('h3', null, 'Sponsors'));
         bill.sponsors.forEach(sponsor => {
-            const name = sponsor.fullName || sponsor.firstName + ' ' + sponsor.lastName || '';
+            // Humanize "Rep. Collins, Mike [R-GA-10]" -> "Mike Collins" and drop the
+            // bracketed party/district suffix so party labels stay hidden by default.
+            let raw = (sponsor.fullName || `${sponsor.firstName || ''} ${sponsor.lastName || ''}`).trim();
+            raw = raw.replace(/\s*\[[^\]]*\]\s*$/, '').replace(/^(Rep\.|Sen\.|Del\.|Res\.)\s+/i, '').trim();
+            const name = raw.includes(', ') ? raw.split(', ').reverse().join(' ').trim() : raw;
             const link = el('a', {
                 href: `/member?id=${sponsor.bioguideId || ''}`,
             }, name);
@@ -376,9 +383,9 @@ async function loadChamberVote(container, chamber, congress, session, voteNumber
 
         // Party toggle
         const toggleSection = el('div', { className: 'party-toggle-section', style: 'margin-top:1rem;' });
-        toggleSection.appendChild(el('p', null,
-            chamber === 'house' ? 'Viewing representatives without party labels.' : 'Viewing senators without party labels.'
-        ));
+        const partyNoun = chamber === 'house' ? 'representatives' : 'senators';
+        const toggleText = el('p', null, `Viewing ${partyNoun} without party labels.`);
+        toggleSection.appendChild(toggleText);
         const toggleBtn = el('button', { className: 'btn btn-secondary btn-small' }, 'Reveal Party Affiliations');
         toggleSection.appendChild(toggleBtn);
         voteBlock.appendChild(toggleSection);
@@ -391,6 +398,7 @@ async function loadChamberVote(container, chamber, congress, session, voteNumber
 
         if (showParty) {
             toggleBtn.textContent = 'Hide Party Affiliations';
+            toggleText.textContent = `Viewing ${partyNoun} with party labels.`;
             // Auto-load party data from persisted state
             fetch(`${url}?show_party=true`).then(resp => resp.ok ? resp.json() : null).then(partyData => {
                 if (partyData) {
@@ -408,6 +416,7 @@ async function loadChamberVote(container, chamber, congress, session, voteNumber
             showParty = !showParty;
             localStorage.setItem('cv-show-party', String(showParty));
             toggleBtn.textContent = showParty ? 'Hide Party Affiliations' : 'Reveal Party Affiliations';
+            toggleText.textContent = `Viewing ${partyNoun} ${showParty ? 'with' : 'without'} party labels.`;
 
             if (showParty) {
                 const resp = await fetch(`${url}?show_party=true`);
