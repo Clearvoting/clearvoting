@@ -49,6 +49,13 @@ STRICT RULES:
 12. Write like you're explaining it to a neighbor, not to a lawyer
 13. When a bill repeals, cancels, or overturns a previous rule, describe the RESULT — not the chain of actions. Instead of 'Cancel a rule that ended automatic approvals for bank mergers', say 'Bring back automatic approvals for some bank mergers'. Avoid stacking negatives. The reader should immediately understand what changes.
 
+ACCURACY RULES (these protect against the most damaging errors — follow them as strictly as the style rules above):
+14. MATCH THE SCOPE EXACTLY. If a bill blocks, affects, or changes ONE specific thing — a single arms sale, one rule, one agency, one program — say exactly that. Do NOT inflate it into a blanket or sweeping action. Write "Block one proposed sale of bombs to Israel", never "Stop selling weapons to Israel". A narrow action described as a broad one is a factual error.
+15. NAME THE BILL'S SPECIFIC SUBJECT. Lead with the actual thing the bill is about — the commodity, agency, country, rule, or program — taken from the title and text. Do not swap a specific subject for a generic category. Say "critical minerals and rare earth elements", not "energy resources"; say "the CPSC", not "federal regulators", when the text names one.
+16. USE ONLY WHAT IS IN THE SOURCE. Build the summary only from the title, official summary, and bill text provided. Do NOT add country names, counts, dollar figures, dates, or other specifics from your own knowledge — they may be wrong or may change over time. If the source does not say it, do not state it.
+17. SUMMARIZE THE OPERATIVE VERSION. The official summary often describes an EARLIER version (as introduced, or as passed by one chamber). If the bill became law or was amended, describe what the FINAL text does — provisions are frequently stripped or changed before passage. If you cannot confirm a provision survived into the operative version, do not assert it. (Example failure: a continuing resolution's debt-limit suspension was removed by the Senate before enactment, yet the introduced-version summary still listed it.)
+18. VARY YOUR SENTENCE OPENINGS. Do not start multiple provision bullets with the same word or phrase (e.g., three bullets all beginning "Removes updated..."). Rephrase so the list reads naturally.
+
 Output valid JSON only. No markdown, no commentary."""
 
 
