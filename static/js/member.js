@@ -493,6 +493,9 @@ function renderVotingSummary(stats, votes, summaryData) {
     votes.forEach(v => {
         const key = v.bill_id || v.one_liner;
         if (!key || seenBills.has(key)) return;
+        // Key Bills must read in plain English — skip votes that fall back to an
+        // official title or raw procedural text instead of a real AI one-liner.
+        if (v.has_plain_summary === false) return;
         if (!v.one_liner || v.one_liner === v.bill_number || v.one_liner.match(/^(PN|P\.N\.)\s*\d/)) return;
         if (!v.policy_area) return;
         seenBills.add(key);
