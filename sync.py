@@ -653,6 +653,14 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                 return ai_summary["one_liner"]
         return bill_info.get("title", doc)
 
+    def _has_plain_summary(bill_ref: str | None, congress: int = 119) -> bool:
+        """True only when a real AI plain-language one-liner exists — lets the UI
+        show genuine plain English in 'Key Bills' instead of an official title or
+        raw procedural text (which is what _get_one_liner falls back to)."""
+        if not bill_ref:
+            return False
+        return bool(ai_summaries.get(f"{congress}-{bill_ref}", {}).get("one_liner"))
+
     def _get_direction(bill_ref: str | None, congress: int = 119) -> str | None:
         if bill_ref:
             summary_key = f"{congress}-{bill_ref}"
@@ -715,6 +723,7 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                     "bill_number": doc,
                     "bill_id": f"{vote_congress}-{bill_ref}" if bill_ref else None,
                     "one_liner": _get_one_liner(bill_ref, bill_info, doc, congress=vote_congress),
+                    "has_plain_summary": _has_plain_summary(bill_ref, congress=vote_congress),
                     "vote": matched.get("vote", ""),
                     "date": vote.get("vote_date", ""),
                     "result": vote.get("result", ""),
@@ -748,6 +757,7 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                     "bill_number": doc,
                     "bill_id": f"{vote_congress}-{bill_ref}" if bill_ref else None,
                     "one_liner": _get_one_liner(bill_ref, bill_info, doc, congress=vote_congress),
+                    "has_plain_summary": _has_plain_summary(bill_ref, congress=vote_congress),
                     "vote": matched.get("vote", ""),
                     "date": vote.get("vote_date", ""),
                     "result": vote.get("result", ""),
