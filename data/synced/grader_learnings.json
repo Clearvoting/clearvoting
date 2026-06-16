@@ -224,7 +224,10 @@
       "Excellent data accuracy and neutral tone. Two sentences exceed the 25-word limit: break the first sentence (29 words) and second sentence (31 words) into shorter segments. Consider adding participation rate (99.9%) or total vote count (863) for better completeness.",
       "Strong narrative with excellent data alignment and neutral tone. One sentence exceeds the 25-word limit (26 words) - consider breaking it into two shorter sentences. Missing participation rate or total vote count, which should be included for completeness.",
       "Good narrative with accurate data alignment and neutral tone. Break the 28-word sentence about economics into two shorter sentences. Add specific vote counts (e.g., '12 of 15 times' for Congress votes) and include the 99.1% participation rate for completeness.",
-      "Good narrative with excellent data alignment and neutral tone. The voting patterns are accurately represented for all policy areas. However, the narrative lacks specific numbers (vote counts, participation rate) which are required for structure and completeness. Consider adding the 97.5% participation rate and specific vote ratios like '54 of 86 armed forces votes' to strengthen the factual foundation."
+      "Good narrative with excellent data alignment and neutral tone. The voting patterns are accurately represented for all policy areas. However, the narrative lacks specific numbers (vote counts, participation rate) which are required for structure and completeness. Consider adding the 97.5% participation rate and specific vote ratios like '54 of 86 armed forces votes' to strengthen the factual foundation.",
+      "Accurate data alignment and neutral tone throughout. One sentence exceeds the 25-word limit: 'She voted in favor of directing the removal of U.S. forces from Lebanon and Iran, and voted for bills on housing, child care, and local banking access.' (27 words) \u2014 split into two shorter sentences. All dominant patterns are correctly identified and no bias or cherry-picking is present.",
+      "Strong narrative with accurate data alignment and neutral tone. The voting patterns are correctly represented across all five policy areas, and the Iran/Lebanon contrast effectively illustrates the armed forces split (62 in_favor / 62 against) without cherry-picking. Two issues to fix: (1) Sentence 2 runs 27 words \u2014 break it at the em dash into two sentences. (2) Sentence 3 uses a semicolon to join two independent clauses, making it a single ~37-word sentence \u2014 split into two sentences for clarity. Consider adding specific per-issue vote ratios (e.g., 'voted against 77 of 113 economics bills') to strengthen the factual foundation.",
+      "Strong narrative with good data alignment and neutral tone. One sentence significantly exceeds the 25-word limit: 'His votes on armed forces and international affairs are split, with yes votes on measures like directing the removal of U.S. forces from hostilities with Iran, and no votes on military construction appropriations' runs 33 words \u2014 break it into two shorter sentences. The final sentence selectively highlights in-favor votes on veterans-related bills (banking access, housing, child care) without noting that the member also voted against veterans-related bills (e.g., Veterans Benefits Expansion Act appears in top_opposed), which leans toward cherry-picking; consider grounding it in a policy area pattern or omitting it. Adding specific per-issue vote counts (e.g., '68 of 124 non-neutral armed forces votes in favor') would strengthen factual grounding."
     ],
     "batch_history": [
       {
@@ -342,6 +345,202 @@
           "F": 0
         },
         "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-13T22:56:08.640451+00:00",
+        "total": 69,
+        "passed": 69,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 24,
+          "B": 45,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-14T00:28:13.826745+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-14T01:46:52.697203+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-14T02:57:53.171693+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-14T04:05:41.301243+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-14T05:14:59.243267+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-14T06:24:15.990615+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-14T07:30:01.593090+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-14T08:41:51.439587+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-14T19:14:55.604942+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-14T22:18:04.152609+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-14T23:21:31.076830+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-15T00:32:36.211717+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-15T01:38:34.761003+00:00",
+        "total": 0,
+        "passed": 0,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
       }
     ]
   },
@@ -349,7 +548,10 @@
     "learnings": [
       "Excellent work. All arguments are properly attributed, reference specific provisions (January 21, 2025 rule, commercial refrigeration equipment, Department of Energy), mention specific affected groups (small grocery stores, restaurants, businesses), and maintain neutral tone. Both sides are balanced with 2 arguments each.",
       "Strong work. All arguments are properly attributed, reference specific provisions from the resolution (300 drones and missiles, right to respond, U.S. sanctions and export controls, congressional authorization), and maintain neutral tone throughout. The critics' arguments are particularly strong in specificity, citing the lack of a congressional vote and the vagueness of 'full enforcement.' Both sides are well-balanced with 3 arguments each.",
-      "All arguments meet the standard. Attribution is consistent throughout. Arguments reference specific provisions (subpoena power, DOJ IG authority, nonduty status notification, nomination explanation requirement). Both sides are equally represented with 3 bullets each and neither side is framed more favorably. Tone is neutral with no editorial language. Sentences are clear and accessible."
+      "All arguments meet the standard. Attribution is consistent throughout. Arguments reference specific provisions (subpoena power, DOJ IG authority, nonduty status notification, nomination explanation requirement). Both sides are equally represented with 3 bullets each and neither side is framed more favorably. Tone is neutral with no editorial language. Sentences are clear and accessible.",
+      "All arguments meet the standard. Attribution is consistent throughout with every bullet beginning with 'Supporters say' or 'Critics say.' Arguments reference specific provisions from the bill including the December 31, 2022 deadline, removal of import taxes, fees, quotas, and the tariff code requirement on customs paperwork. Both sides are well-balanced with 3 bullets each and neither side is framed more favorably. Tone is neutral with no editorial language or value judgments. Sentences are clear and accessible at an appropriate reading level.",
+      "All six checks pass. Attribution is consistent across all six bullets. Arguments reference specific provisions: SAMHSA's role and grant-cancellation authority, joint SAMHSA/DOJ evaluation, the absence of a specified funding amount, and the federal vs. local oversight structure. Both sides are equally represented with three bullets each and neither is framed more favorably. Tone is fully neutral with no editorial language or value judgments. Sentences are clear and accessible at an appropriate reading level. Structure is valid JSON with properly formed arrays.",
+      "Strong work. All six arguments are properly attributed, specific to named bill provisions (cross-state travel protection, interstate abortion pill shipment, DOJ civil enforcement, private right of action, out-of-state provider liability), and maintain neutral tone throughout. Both sides are equally represented with 3 bullets each. One minor note: critics' third bullet uses 'too broad' \u2014 a value characterization \u2014 but it is clearly inside 'Critics say' framing so it reads as the critics' own claim rather than editorial judgment. Reading level is accessible and no legislative jargon appears."
     ],
     "batch_history": [
       {
@@ -443,6 +645,20 @@
         "grade_distribution": {
           "A": 145,
           "B": 14,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-06-13T21:37:33.549553+00:00",
+        "total": 211,
+        "passed": 211,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 186,
+          "B": 25,
           "C": 0,
           "D": 0,
           "F": 0
