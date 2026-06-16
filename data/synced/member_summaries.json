@@ -1,6 +1,6 @@
 {
   "G000555": {
-    "narrative": "Gillibrand votes most often on economics and public finance bills, with a split record \u2014 she voted in favor of government funding bills and a cap on insulin costs for Medicare, and against the 2025 federal budget plan. On armed forces and national security bills, she votes in favor at a higher rate, including a bill to fund the military and set defense policies. On international affairs, transportation, and science and technology bills, she also votes in favor more often than against.",
+    "narrative": "Gillibrand votes most often on economics and public finance, with her votes split between in favor and against across that area. She voted in favor of bills to fund the government, set a $35 monthly cap on insulin costs for Medicare and private insurance, and require more disclosure of campaign spending. She voted against canceling protections for endangered species and a federal budget plan for 2025. On armed forces and national security, she voted in favor far more often than against, including a bill to fund the military and set defense policies. She also voted in favor of most bills in international affairs, transportation, and science and technology.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -8,18 +8,18 @@
       "Transportation and Public Works",
       "Science, Technology, Communications"
     ],
-    "generated_at": "2026-06-13T18:01:15.016820+00:00"
+    "generated_at": "2026-06-14T22:29:47.232706+00:00"
   },
   "M001231": {
-    "narrative": "He voted most often on Congress-related issues. On those bills, he voted in favor 12 times and against 3 times. He voted against more economics and finance bills than he supported. His energy votes split evenly between in favor and against.",
+    "narrative": "The largest share of Mannion's votes on record fall under congressional rules and procedures, where he voted in favor more often than against. On economics and public finance bills, he voted against at a higher rate \u2014 including a no vote on a bill making appropriations for military construction and veterans programs. His votes on armed forces and energy bills fell close to evenly between in favor and against. On crime and law enforcement bills, he voted in favor more often than against, including yes votes on the Stop Child Care Scams Act of 2026 and the Veterans 2nd Amendment Protection Act.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
-      "Energy",
       "Armed Forces and National Security",
+      "Energy",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-16T21:02:02.277630+00:00"
+    "generated_at": "2026-06-14T01:49:12.172738+00:00"
   },
   "S000148": {
     "narrative": "Schumer votes most often on economics and public finance bills, where his record is split nearly evenly between votes in favor and against. On armed forces and national security bills, he votes in favor at a much higher rate than against. He also leans in favor on international affairs, transportation, and science and technology bills. He voted in favor of bills to fund the government, cap insulin costs under Medicare, and set defense policies. He voted against bills that would have removed federal protections for certain wildlife species and canceled rules on gender identity in food programs.",
@@ -33,26 +33,26 @@
     "generated_at": "2026-06-13T18:00:29.271979+00:00"
   },
   "R000622": {
-    "narrative": "Riley votes most often on Congressional procedures and rules, where he typically votes in favor of measures. On economics and public finance issues, he votes against most bills, including voting against government funding measures and tax-related legislation. On energy matters, he votes in favor of most bills, including those that change energy efficiency rules and secure energy supply chains. His votes on military and national security issues are mixed, with some support for measures like Iran sanctions and some opposition to defense funding bills.",
+    "narrative": "Josh Riley votes most often on congressional procedure, economics and public finance, and \u2014 tied for third \u2014 energy and national security bills. On economics and public finance, he votes against bills more often than in favor; for example, he voted against appropriations bills for agriculture programs and military construction. On energy bills, he votes in favor more often than against. On national security, he voted in favor of removing U.S. forces from hostilities with Iran, but voted against removing forces from Lebanon.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
-      "Energy",
       "Armed Forces and National Security",
+      "Energy",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-16T21:02:13.230873+00:00"
+    "generated_at": "2026-06-14T02:59:14.719824+00:00"
   },
   "L000606": {
-    "narrative": "Latimer votes most on Congress matters with 96 votes, voting in favor 12 times and against 3 times. On Economics and Public Finance issues, he voted in favor 13 times and against 33 times across 51 votes. He voted on Energy issues 32 times and Armed Forces and National Security issues 31 times, with mixed voting patterns in both areas.",
+    "narrative": "George Latimer's votes fall most often in areas covering congressional rules and procedures, economics and public finance, and armed forces and national security. On economics and public finance votes, he voted against more often than in favor. On congressional procedural votes, he voted in favor more often than against. His votes on armed forces and national security, energy, and crime were more evenly split. He voted in favor of the ARTIST Act and a resolution to remove U.S. forces from hostilities with Iran, and voted against military construction and veterans affairs appropriations bills.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
-      "Energy",
       "Armed Forces and National Security",
+      "Energy",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-16T21:02:45.525756+00:00"
+    "generated_at": "2026-06-13T22:59:57.754802+00:00"
   },
   "L000600": {
     "narrative": "Langworthy votes most often on congressional procedure, economics, and national security matters. On energy bills, he votes against more than in favor \u2014 opposing 83 out of 143 energy votes. On international affairs, he votes in favor most of the time, supporting 72 out of 126 votes in that area. On national security bills, he also leans in favor, voting yes on 62 out of 151 votes. Notable no votes include bills to direct the removal of U.S. forces from Lebanon and Iran, as well as a bill on Ukraine aid.",
@@ -88,15 +88,15 @@
     "generated_at": "2026-03-16T21:05:17.336223+00:00"
   },
   "K000402": {
-    "narrative": "Kennedy votes most often on Congressional procedures and government operations, usually voting in favor of these measures. On economics and public finance issues, he votes against spending proposals more often than for them, including voting against government funding bills for defense, health, education, and housing. His energy voting is mixed, voting for bills like energy resource supply chain requirements while voting against energy efficiency rules for home appliances. He votes in favor of crime and law enforcement measures more often than against them.",
+    "narrative": "Kennedy votes most on congressional procedure bills, where he sides in favor more often than against. On economics and public finance bills, he votes against more often \u2014 he voted no on several appropriations measures. On armed forces and national security, his votes in favor and against are split close to evenly; he voted yes on a measure to support Ukraine and yes on removing U.S. forces from hostilities with Iran. On energy bills, his votes go both ways, while on crime and law enforcement bills, he votes in favor more often than against.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
-      "Energy",
       "Armed Forces and National Security",
+      "Energy",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-16T21:05:17.875981+00:00"
+    "generated_at": "2026-06-14T23:26:26.562722+00:00"
   },
   "L000599": {
     "narrative": "Lawler votes most often on bills related to congressional procedures, economics and public finance, and military and national security. On armed forces and international affairs, he votes in favor more often than against \u2014 for example, he voted yes on a bill to authorize support for Ukraine. When he takes a side on economics and public finance bills, he more often votes against than in favor. He also votes against most energy bills he has cast votes on.",
@@ -187,7 +187,7 @@
     "generated_at": "2026-06-13T17:59:44.213032+00:00"
   },
   "O000172": {
-    "narrative": "Ocasio-Cortez votes most often on bills related to Congress, armed forces and national security, economics and public finance, international affairs, and government operations and politics. On economics bills, she votes against most of them \u2014 she voted no on a military construction and veterans affairs appropriations bill. On international affairs, she also votes against most bills, though she voted yes on a bill to authorize support for Ukraine. Her armed forces votes are about evenly split, including yes votes to direct the removal of U.S. forces from Lebanon and Iran. On government operations and congressional matters, she votes in favor of most bills.",
+    "narrative": "Ocasio-Cortez votes most on congressional procedure and armed forces issues, and she also votes often on economics and international affairs. On economics, she votes against more bills than she supports \u2014 she voted against the Community Bank Deposit Access Act of 2025. On armed forces, her votes go in both directions; she voted in favor of resolutions to remove U.S. forces from Lebanon and from hostilities with Iran, but voted against appropriations for military construction and the Department of Veterans Affairs. On government operations, she votes in favor more often than against.",
     "top_areas": [
       "Congress",
       "Armed Forces and National Security",
@@ -195,7 +195,7 @@
       "International Affairs",
       "Government Operations and Politics"
     ],
-    "generated_at": "2026-06-13T17:58:31.546244+00:00"
+    "generated_at": "2026-06-14T23:32:31.301993+00:00"
   },
   "G000597": {
     "narrative": "Garbarino votes on Congressional procedures, armed forces and national security, and government spending more than other issues. On Congressional procedures and economics and public finance, he votes against more bills than he votes in favor of. He voted against a resolution directing the removal of U.S. forces from hostilities with Iran and against a bill to authorize support for Ukraine. On international affairs and government operations, he votes in favor more often than against. He voted yes on a veterans benefits expansion act and housing legislation.",
@@ -220,7 +220,7 @@
     "generated_at": "2026-06-13T17:56:02.025368+00:00"
   },
   "M001244": {
-    "narrative": "Senator Moody votes most on economics and public finance, and her votes in that area lean in favor. On environmental protection, she voted against most bills that came before her, including EPA rules that set air pollution limits for rubber tire factories and vehicle emission standards for California. She has a mixed record on finance and financial sector measures, with votes split evenly in favor and against \u2014 she voted in favor of rules for stablecoin issuers and against bills to restore consumer financial protections. On international affairs, her votes lean in favor, though she voted against resolutions to limit U.S. military action against Iran without congressional approval. On transportation, she voted in favor more often than against.",
+    "narrative": "Senator Moody votes most often on economics and public finance, where she sides in favor the large majority of the time. On international affairs, she votes in favor more often than against, but voted against resolutions that would have directed the removal of U.S. armed forces from hostilities with Iran. On environmental protection, she voted to repeal EPA rules setting air pollution limits for rubber tire factories and vehicle emission standards for California, and her votes in this area go against environmental protection measures nearly every time. She also voted in favor of defense funding and rules for stablecoin companies.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -228,7 +228,7 @@
       "Environmental Protection",
       "Transportation and Public Works"
     ],
-    "generated_at": "2026-06-13T18:29:02.333578+00:00"
+    "generated_at": "2026-06-14T22:42:09.320920+00:00"
   },
   "F000484": {
     "narrative": "Fine votes most often on Congress issues, economics, and military matters. On Congress-related bills, he votes neutral on most measures but votes against more non-neutral bills than he supports. He votes in favor of most military and defense bills, like declaring Iran a terrorism sponsor and requiring agencies to exclude China from financial groups if China threatens Taiwan. On economic issues, he leans toward voting in favor, supporting bills like expanding federal housing programs and canceling DC's tax law to keep federal tax cuts.",
@@ -352,15 +352,15 @@
     "generated_at": "2026-06-13T18:16:44.213348+00:00"
   },
   "L000597": {
-    "narrative": "Lee votes most often on Congress procedures, energy policy, economics, military affairs, and international relations. She votes against most energy bills, including those that would create efficiency programs for home appliances and require energy security measures. She votes in favor of most military and international affairs bills, such as declaring Iran a terrorism sponsor and funding defense programs. Lee votes against most Congress procedure bills but votes in favor of most economics bills, including housing program expansions and measures to block certain tax changes.",
+    "narrative": "Rep. Lee votes most on congressional procedures, economics and public finance, military and national security, energy, and international relations. She voted against most congressional procedure bills and against most energy bills. She voted in favor of most military and national security bills and most international affairs bills. Her economics votes went both ways, with slightly more yes votes than no votes. She voted yes on the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act and voted no on resolutions to remove U.S. armed forces from Lebanon and from hostilities with Iran.",
     "top_areas": [
       "Congress",
-      "Energy",
       "Economics and Public Finance",
       "Armed Forces and National Security",
+      "Energy",
       "International Affairs"
     ],
-    "generated_at": "2026-03-16T21:23:01.217221+00:00"
+    "generated_at": "2026-06-14T00:45:17.331971+00:00"
   },
   "R000609": {
     "narrative": "Rutherford votes most on congressional procedure, armed forces, and economics bills. On defense and military matters, he votes in favor more often than against, and he voted against resolutions that would have directed the President to remove U.S. troops from Lebanon and from hostilities with Iran. On international affairs, he votes in favor at a much higher rate than against. On congressional procedure votes, he votes against more often than in favor. He voted in favor of bills on veterans' benefits and local banking.",
@@ -584,15 +584,15 @@
     "generated_at": "2026-06-13T18:39:30.148292+00:00"
   },
   "K000400": {
-    "narrative": "Kamlager-Dove votes on congressional procedures, energy policy, government spending, defense issues, and foreign affairs most often. She votes in favor of most energy bills, including programs for energy efficiency and securing energy supply chains. She votes against most government spending bills, including defense funding and homeland security funding. She also votes against most defense and military bills, while voting against many foreign policy measures.",
+    "narrative": "Kamlager-Dove votes most often on congressional procedure, economics and public finance, armed forces and national security, energy, and international affairs. On economic and defense bills, she votes against most of them \u2014 she voted against a veterans benefits expansion act and against several appropriations-related measures. On energy bills, she votes in favor most of the time. Her votes on international affairs are split \u2014 she voted in favor of War Powers resolutions to remove U.S. forces from Lebanon and Iran, and in favor of a procedural measure bringing to the floor a bill to authorize support for Ukraine.",
     "top_areas": [
       "Congress",
-      "Energy",
       "Economics and Public Finance",
       "Armed Forces and National Security",
+      "Energy",
       "International Affairs"
     ],
-    "generated_at": "2026-03-16T23:25:21.501838+00:00"
+    "generated_at": "2026-06-14T21:34:42.701408+00:00"
   },
   "P000613": {
     "narrative": "Panetta votes most often on bills related to congressional procedures, armed forces and national security, and economics and public finance. On congressional process votes and government operations bills, he votes in favor more than against. His votes on armed forces and national security are split nearly evenly between in favor and against \u2014 he voted in favor of a War Powers Resolution to remove U.S. forces from hostilities with Iran, but against a similar resolution on Lebanon. On economics and public finance, he votes against more often than in favor, including voting against military construction and veterans affairs appropriations bills.",
@@ -628,7 +628,7 @@
     "generated_at": "2026-06-13T18:43:32.078469+00:00"
   },
   "J000305": {
-    "narrative": "Rep. Sara Jacobs of California votes most often on procedural congressional matters and defense and national security bills. On economics and public finance, she votes against most bills in that area \u2014 she voted no on the appropriations bill for military construction and the Department of Veterans Affairs for the fiscal year ending September 30, 2027. On defense and national security, her votes are split roughly evenly \u2014 she voted yes on resolutions directing the President to remove U.S. forces from Lebanon and Iran, while voting no on the military construction and VA spending bill. On government operations and politics, she votes in favor most of the time.",
+    "narrative": "Sara Jacobs votes most often on issues related to congressional procedure, national defense, and government spending. On Economics and Public Finance votes, she voted against most bills she considered \u2014 including a bill that would have changed how states spend funds under the Temporary Assistance for Needy Families program. Her record on Armed Forces and National Security is split, with votes in favor of resolutions to remove U.S. forces from Lebanon and Iran, and against certain defense spending bills. She voted in favor of most Government Operations and Politics bills she considered.",
     "top_areas": [
       "Congress",
       "Armed Forces and National Security",
@@ -636,7 +636,7 @@
       "International Affairs",
       "Government Operations and Politics"
     ],
-    "generated_at": "2026-06-13T18:42:33.565528+00:00"
+    "generated_at": "2026-06-14T04:35:46.321721+00:00"
   },
   "A000371": {
     "narrative": "Aguilar votes most often on congressional procedure, armed forces, and economics bills. On economics and public finance, he votes against more often than in favor, including a no vote on military construction and veterans affairs spending. His armed forces votes are split evenly between yes and no \u2014 he voted in favor of removing U.S. forces from hostilities with Iran but against removing forces from Lebanon. International affairs votes are also roughly even, with support for Ukraine authorization among his yes votes. On congressional procedure and government operations bills, he votes in favor more often than against.",
@@ -650,7 +650,7 @@
     "generated_at": "2026-06-13T18:47:41.962310+00:00"
   },
   "C001098": {
-    "narrative": "Cruz voted most often on economics issues, with mixed support for spending bills. Cruz voted in favor of most international affairs measures, including support for Israel and military funding. He showed mixed voting on transportation policy, the fourth largest area with 28 votes.",
+    "narrative": "Cruz casts most of his votes on economics and public finance, and more often votes in favor of those measures than against them. He has voted in favor of federal budget plans and government funding bills, while voting against some spending measures, including a bill to fund the government through December 2021. In international affairs, Cruz has voted in favor of most measures, including a resolution expressing Senate support for Israel against Hamas. He also voted in favor of armed forces and national security measures more often than against them, including a bill funding the military and setting defense policies for the year starting October 2025. His votes on transportation and science and technology bills are more evenly split.",
     "top_areas": [
       "Economics and Public Finance",
       "International Affairs",
@@ -658,7 +658,7 @@
       "Transportation and Public Works",
       "Science, Technology, Communications"
     ],
-    "generated_at": "2026-03-16T23:30:37.465267+00:00"
+    "generated_at": "2026-06-14T08:41:13.222077+00:00"
   },
   "C001056": {
     "narrative": "Senator Cornyn votes across many policy areas in the Senate, and the five areas shown here are part of a larger record. On economics and public finance \u2014 where he casts the most votes \u2014 he votes in favor most of the time, including on bills to fund the federal government and a bill that set a $35 monthly cap on insulin costs for people on both Medicare and private insurance. He also votes in favor on most bills related to international affairs, national security, and science and technology. On election and voting rules, he voted against bills that would expand voter registration access and require more disclosure of campaign spending. On transportation, his votes lean in favor, though he voted against a bill to fund the FAA and airports through 2028.",
@@ -694,7 +694,7 @@
     "generated_at": "2026-06-13T18:58:54.358795+00:00"
   },
   "M001245": {
-    "narrative": "Most of Menefee's votes were on procedural and legislative operations, followed by energy and agriculture. He voted against several procedural rules bills and appropriations measures, including a military construction funding bill. He voted in favor of War Powers resolutions directing the removal of U.S. Armed Forces from Lebanon and from hostilities with Iran. In energy, his votes leaned in favor. Across all issue areas, he cast more votes against bills than in favor.",
+    "narrative": "Rep. Menefee votes most often on issues related to Congress, agriculture and food, energy, environmental protection, and international affairs. In his congressional and energy votes, he leaned in favor of the bills that came to the floor. In agriculture and environmental protection, he cast no votes for or against the substance of any bill \u2014 all votes recorded in those areas were procedural. On international affairs, he voted both ways, including voting in favor of resolutions directing the removal of U.S. armed forces from Lebanon and from hostilities with Iran.",
     "top_areas": [
       "Congress",
       "Agriculture and Food",
@@ -702,7 +702,7 @@
       "Environmental Protection",
       "International Affairs"
     ],
-    "generated_at": "2026-06-13T18:57:20.466192+00:00"
+    "generated_at": "2026-06-15T01:22:27.699316+00:00"
   },
   "S001224": {
     "narrative": "Rep. Keith Self of Texas votes most often on congressional procedural matters, where he votes against more often than in favor. On substantive policy issues, he casts the most votes on economics, military affairs, and energy. He votes in favor of economic and military bills more often than against, while he votes against energy bills more often than in favor. On international affairs, he votes in favor more often than against. He voted against bills to remove U.S. troops from Lebanon and Iran under the War Powers Resolution, and voted in favor of bills related to community banking and veterans' benefits.",
@@ -727,15 +727,15 @@
     "generated_at": "2026-06-13T19:06:34.383625+00:00"
   },
   "G000601": {
-    "narrative": "Goldman votes most often on congressional procedures and operations, but votes against these measures more than in favor. Goldman votes in favor of defense and military bills, including declaring Iran a terrorism sponsor and funding defense programs. Goldman votes in favor of economics and housing measures like expanding federal housing programs and blocking certain tax changes. Goldman shows mixed voting on energy issues, voting against some energy efficiency programs but in favor of blocking new appliance efficiency rules.",
+    "narrative": "Goldman votes most often on congressional procedural matters, where he leans against. On economics and public finance bills, he votes in favor more often than against, with yes votes on bills like the Keeping Deposits Local Act. Goldman votes in favor of defense and military bills and opposed a resolution to remove U.S. forces from hostilities with Iran. On energy, his votes are split between in favor and against.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
-      "Energy",
       "Armed Forces and National Security",
+      "Energy",
       "Crime and Law Enforcement"
     ],
-    "generated_at": "2026-03-16T23:33:52.278071+00:00"
+    "generated_at": "2026-06-14T23:07:08.078148+00:00"
   },
   "L000603": {
     "narrative": "Luttrell votes in favor of most bills related to defense and military matters, including measures that declare Iran a sponsor of terrorism and funding for defense programs. He votes against most energy-related bills, including those that would create efficiency programs for home appliances and speed up mining on federal lands. On economic issues, he votes in favor of bills like expanding housing programs and blocking certain tax changes. He votes in favor of most international affairs measures, such as excluding China from financial groups if China threatens Taiwan. On congressional procedures and rules, he votes against more bills than he supports.",
@@ -760,7 +760,7 @@
     "generated_at": "2026-06-13T19:01:24.863147+00:00"
   },
   "C001130": {
-    "narrative": "Crockett votes most often on procedural matters in Congress, economics, and national security. In economics and public finance, she votes against most bills, including appropriations measures for military construction and agriculture. On armed forces and national security, she leans against more bills than she supports, and voted in favor of resolutions to remove U.S. forces from Lebanon and from hostilities with Iran. She votes in favor of most energy-related bills. Her votes on international affairs are split, with slightly more in favor than against.",
+    "narrative": "Crockett votes most often on bills about how Congress runs and on economic issues. On economic and finance bills, she votes against most of them, including agriculture funding bills. On energy bills, she votes in favor of most. On armed forces and national security, she votes against more than in favor, including voting against military construction and VA funding. On international affairs, her votes are more split, with votes in favor of removing U.S. forces from Lebanon and Iran.",
     "top_areas": [
       "Congress",
       "Economics and Public Finance",
@@ -768,7 +768,7 @@
       "Energy",
       "International Affairs"
     ],
-    "generated_at": "2026-06-12T23:50:19.860757+00:00"
+    "generated_at": "2026-06-14T01:34:13.416003+00:00"
   },
   "H001095": {
     "narrative": "Hunt votes most on Congress, economics, defense, energy, and international affairs issues. On defense and international affairs, he votes in favor most of the time \u2014 for example, he voted yes on the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act. On economics, he also leans in favor, including votes for bills like the Keeping Deposits Local Act and the American Access to Banking Act. On energy and Congress-related procedural votes, he leans against \u2014 voting no on bills like the Northwest Straits Marine Conservation Initiative Reauthorization Act.",
@@ -793,15 +793,15 @@
     "generated_at": "2026-06-12T23:51:05.379486+00:00"
   },
   "D000594": {
-    "narrative": "De La Cruz votes most often on congressional operations, energy policy, economics, military affairs, and international relations. She votes against most congressional procedure measures and energy efficiency programs, including bills to fund energy rebates and appliance efficiency rules. She votes in favor of most economic, military, and international affairs measures, including housing program expansions, defense funding, and requirements to exclude China from financial groups if China threatens Taiwan. Her voting pattern shows opposition to energy efficiency initiatives while supporting military and economic policies.",
+    "narrative": "De La Cruz votes most often on congressional operations, economics, military affairs, energy policy, and international relations. She voted against most energy bills and against most measures related to how Congress runs. She voted in favor of most bills on economics, defense, and international issues. She voted yes on the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act and voted no on resolutions to remove U.S. forces from Lebanon and from hostilities with Iran.",
     "top_areas": [
       "Congress",
-      "Energy",
       "Economics and Public Finance",
       "Armed Forces and National Security",
+      "Energy",
       "International Affairs"
     ],
-    "generated_at": "2026-03-16T23:36:23.329493+00:00"
+    "generated_at": "2026-06-14T00:08:45.258666+00:00"
   },
   "G000581": {
     "narrative": "Gonzalez votes most often on congressional procedure, armed forces, and economic issues. On armed forces and national security bills, he votes in favor more often than against \u2014 he voted yes on removing U.S. forces from hostilities with Iran and yes on veterans' benefits expansion. On economics and public finance bills, he votes against proposals more often than in favor, including a no vote on military construction and Veterans Affairs appropriations. He votes in favor of international affairs and government operations proposals more often than against.",
@@ -815,7 +815,7 @@
     "generated_at": "2026-06-12T23:52:29.944165+00:00"
   },
   "G000553": {
-    "narrative": "Rep. Al Green votes most often on congressional procedure, armed forces and national security, and economics and public finance. On economics and public finance, he votes against bills more often than in favor \u2014 including a vote against the military construction and Veterans Affairs appropriations bill. On armed forces and national security, his votes are split evenly between in favor and against; he voted in favor of directing the President to remove U.S. armed forces from Lebanon and from hostilities with Iran. On government operations and politics, he votes in favor more often than against.",
+    "narrative": "Rep. Al Green of Texas votes most on procedural and congressional matters, armed forces and national security, and economics and public finance. On economics and public finance, he voted against a rule to consider the agriculture, rural development, and FDA appropriations bill for fiscal year 2027, in line with a pattern of voting against economic spending measures. On armed forces and national security, his votes go both ways \u2014 he voted in favor of resolutions to remove U.S. forces from Lebanon and from hostilities with Iran under the War Powers Resolution, while voting against the military construction and VA appropriations bill. On government operations, he voted in favor of bills such as the Smithsonian American Women's History Museum Act.",
     "top_areas": [
       "Congress",
       "Armed Forces and National Security",
@@ -823,7 +823,7 @@
       "International Affairs",
       "Government Operations and Politics"
     ],
-    "generated_at": "2026-06-12T23:54:04.073742+00:00"
+    "generated_at": "2026-06-14T09:40:12.914114+00:00"
   },
   "V000134": {
     "narrative": "Van Duyne votes most often on Congressional matters, Armed Forces and National Security, and Economics and Public Finance. On Congressional procedure, she votes against more often than in favor. On Armed Forces bills, she votes in favor more often than against \u2014 she voted yes on the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act and voted against resolutions to remove U.S. forces from Lebanon and Iran. On Economics and Public Finance, she voted in favor of bills like the American Access to Banking Act and the Keeping Deposits Local Act.",
@@ -848,7 +848,7 @@
     "generated_at": "2026-06-12T23:56:34.196949+00:00"
   },
   "N000026": {
-    "narrative": "Nehls votes most often on congressional procedure, and on those votes he leans against the measures that come to the floor. On Armed Forces and National Security bills, he votes in favor more often than against, and he takes the same stance on Economics and Public Finance \u2014 voting yes on bills like the American Access to Banking Act and the Community Bank Deposit Access Act. On International Affairs, he votes in favor of most measures. He voted against resolutions that would have directed the President to remove U.S. forces from Lebanon and from hostilities with Iran, as well as against a bill to authorize support for Ukraine.",
+    "narrative": "Rep. Troy Nehls votes most often on procedural matters, military and national security, and economics. On military and national security bills, he voted in favor more often than against, including a vote in favor of veterans benefits legislation. On international affairs, he voted in favor more often than against, though he voted against a resolution to bring a bill authorizing support for Ukraine to the House floor for consideration. On procedural matters and government operations, he voted against more often than in favor.",
     "top_areas": [
       "Congress",
       "Armed Forces and National Security",
@@ -856,7 +856,7 @@
       "International Affairs",
       "Government Operations and Politics"
     ],
-    "generated_at": "2026-06-13T00:00:24.672012+00:00"
+    "generated_at": "2026-06-14T06:15:07.936150+00:00"
   },
   "D000399": {
     "narrative": "Doggett votes most often on congressional procedures, defense and national security, and economics and public finance. He votes in favor of most bills about congressional procedures and government operations. On economics and public finance, he votes against bills more often than in favor. On defense and national security, his votes are close to even \u2014 he voted yes on resolutions directing the removal of U.S. forces from Lebanon and Iran, but voted no on a military construction and Veterans Affairs appropriations bill. His votes on international affairs are also about evenly split.",
@@ -879,5 +879,764 @@
       "International Affairs"
     ],
     "generated_at": "2026-03-17T22:42:12.477418+00:00"
+  },
+  "M001188": {
+    "narrative": "Grace Meng votes most often on congressional procedures, armed forces and national security, and economic and financial issues. On economic bills, she has voted against more than she has voted in favor. Her votes on national security and international affairs are more evenly split between in favor and against. She voted in favor of directing the removal of U.S. forces from Lebanon and Iran, and voted for bills on child care such as the Stop Child Care Scams Act of 2026.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T23:11:46.776281+00:00"
+  },
+  "C001067": {
+    "narrative": "Clarke votes most often on issues related to congressional rules and procedures and on armed forces matters. On bills dealing with economics and public finance, she votes against them more often than in favor \u2014 including votes against military construction and veterans affairs spending bills. Her votes on armed forces and international affairs are split, with votes both for and against U.S. military actions abroad; she voted in favor of removing U.S. forces from Iran but against a similar measure on Lebanon. On government operations bills, she votes in favor more often than against.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T21:42:07.985428+00:00"
+  },
+  "S001196": {
+    "narrative": "Stefanik votes most often on congressional procedures, armed forces and national security, and economics. On armed forces and national security, she votes in favor more often than against \u2014 bills like the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act received her vote. In International Affairs, she votes in favor at a high rate (70 in favor vs. 18 against). Her opposition to resolutions that would have directed the removal of U.S. forces from Lebanon and Iran reflects her support for continued U.S. military presence abroad. On economics and government operations, her votes are split about even.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T01:58:01.800652+00:00"
+  },
+  "E000297": {
+    "narrative": "Espaillat votes most often on congressional procedural matters, national security, and economic issues. On economic and public finance bills, he votes against more often than in favor \u2014 he voted no on agriculture and rural development appropriations bills. On military and national security bills, his votes are mixed \u2014 he voted against military construction and Department of Veterans Affairs appropriations. On international affairs, his votes are also mixed \u2014 he voted in favor of directing the President to remove U.S. forces from Lebanon and Iran, and in favor of a bill to authorize support for Ukraine. On government operations bills, he votes in favor more often than against.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T03:08:42.564917+00:00"
+  },
+  "J000294": {
+    "narrative": "Jeffries votes most on congressional procedures and armed forces matters. On economics and public finance bills, his votes lean against, including a no vote on a bill making appropriations for military construction and Veterans Affairs. On congressional procedures and government operations, his votes lean in favor. His armed forces and international affairs votes are split \u2014 he voted yes on a resolution to remove U.S. forces from hostilities with Iran and yes on the Veterans 2nd Amendment Protection Act, which is about preserving Second Amendment rights for veterans.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T23:10:16.449857+00:00"
+  },
+  "M001137": {
+    "narrative": "Rep. Gregory Meeks votes most on congressional procedure, armed forces, and economics. On congressional matters, he voted in favor 32 of 44 times. On economics and public finance bills, he voted against more often, opposing 77 of 114 tracked votes. His armed forces and international affairs votes are split close to evenly between in favor and against. On government operations bills, he voted in favor 30 of 43 times.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T21:46:22.940977+00:00"
+  },
+  "T000469": {
+    "narrative": "Tonko votes most on congressional procedures and bills related to the military, the economy, and international affairs. On economic and spending bills, Tonko voted against more often than in favor, including votes against military construction and veterans affairs spending. On military and national security bills, the votes are split; Tonko voted in favor of resolutions to remove U.S. forces from Lebanon and from hostilities with Iran, and also voted against some veterans benefits bills. On government operations, Tonko voted in favor of bills more often than against. On international affairs, the record is also mixed.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T21:47:18.219969+00:00"
+  },
+  "D000032": {
+    "narrative": "The largest share of Donalds's votes falls in congressional rules and procedures, where he voted against more bills than he voted for. Across armed forces and national security, economics and public finance, and international affairs, he voted in favor of more bills than he voted against. He voted against bills that would direct the removal of U.S. forces from Lebanon and from hostilities with Iran, and voted in favor of veterans benefits expansion and banking access bills. His votes in government operations and politics were split evenly between in favor and against.",
+    "top_areas": [
+      "Congressional Rules and Procedures",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T00:49:47.251978+00:00"
+  },
+  "S000168": {
+    "narrative": "Salazar votes most on congressional and procedural matters, with more bills in that category than any other area. On those bills, she voted against more than in favor \u2014 21 against and 17 in favor. On armed forces and national security, she voted in favor more than against, with 73 of 117 active votes in support; for example, she voted yes on the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act but voted no on resolutions to remove U.S. forces from Lebanon and Iran. Her international affairs votes also leaned in favor, with 49 of 79 active votes in support. Her votes on economics and public finance, and on government operations, were split close to evenly.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T21:47:34.901060+00:00"
+  },
+  "V000081": {
+    "narrative": "Vel\u00e1zquez votes most often on bills related to the workings of Congress, armed forces, and economics. On economics and public finance, she votes against more bills than she votes for \u2014 she voted no on the Farm, Food, and National Security Act of 2026 and against military construction and Veterans Affairs appropriations. On international affairs, she also votes against more bills than she votes for, though she voted in favor of resolutions to remove U.S. forces from Lebanon and Iran under the War Powers Resolution. On government operations, she votes in favor more often than against. Her votes on armed forces and national security go in both directions, with no clear lean toward either side.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T21:47:43.897350+00:00"
+  },
+  "C001039": {
+    "narrative": "Cammack casts the most votes on congressional procedural matters, where she votes against more often than in favor. On armed forces and national security, she voted in favor on 83 bills and against 40, including a yes vote on military construction appropriations. On international affairs, she voted in favor on 77 bills and against 11, voting no on bills to remove U.S. forces from Lebanon. In economics and public finance, she voted in favor on 70 bills and against 44. Her government operations votes were split, with 22 in favor and 23 against.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T21:50:45.244915+00:00"
+  },
+  "S001214": {
+    "narrative": "Rep. Steube votes most on Congress procedures, Armed Forces, economics, and international affairs. On Armed Forces and veterans matters, 75 of 121 non-neutral votes are in favor. He voted for Veterans Affairs appropriations and the Sharri Briley veterans benefits bill. On economic matters, 68 of 105 non-neutral votes are in favor. On international affairs, 74 of 86 non-neutral votes are in favor; on Congress procedures, he leans against.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T21:51:04.172422+00:00"
+  },
+  "W000806": {
+    "narrative": "Webster votes most on congressional rules and procedures, where he more often votes against measures than in favor. On armed forces and national security, he votes in favor of bills more than against \u2014 he voted yes on military construction and Veterans Affairs funding, but voted against resolutions to remove U.S. forces from Lebanon and Iran. He votes in favor of most international affairs bills, and leans in favor on economics and public finance measures, including banking access and veterans benefits legislation.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T21:52:30.565433+00:00"
+  },
+  "S001200": {
+    "narrative": "Rep. Soto votes most often on procedural and congressional business, where he votes in favor more often than against. On economics and public finance, he has voted against more bills than in favor \u2014 including voting against appropriations for military construction and the Department of Veterans Affairs for fiscal year 2027. His votes on armed forces and national security are about evenly split; he voted in favor of a measure to remove U.S. forces from Iran but against a similar measure regarding Lebanon. On government operations, he also votes in favor more often than against.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T23:22:40.392502+00:00"
+  },
+  "W000808": {
+    "narrative": "Rep. Wilson votes most often on bills related to congressional operations, armed forces, and economics. On economics and public finance bills, she votes against more often than in favor. She voted in favor of removing U.S. forces from hostilities with Iran under the War Powers Resolution, but voted against a similar measure to remove forces from Lebanon. On government operations bills, she votes in favor more often than against. Her votes on armed forces bills are split, with only a small gap between the in favor and against totals.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-15T00:55:20.270376+00:00"
+  },
+  "P000608": {
+    "narrative": "Peters votes most often on congressional procedure, national security, and public finance. On procedure, 31 of his 44 decisive votes were in favor and 13 against. His national security votes are nearly split: 61 in favor and 64 against. He voted to remove U.S. forces from hostilities with Iran but voted against a military construction bill. On public finance, he voted against more often \u2014 74 times against and 38 in favor.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T21:56:11.990762+00:00"
+  },
+  "C001066": {
+    "narrative": "Kathy Castor, a House member from Florida, votes most often on congressional procedure, defense, and economic policy. On economic and public finance bills, she voted against more than she voted in favor. On government operations, she voted in favor more than against. She voted in favor of the Stop Child Care Scams Act of 2026. She voted against a bill to fund military construction and the Department of Veterans Affairs for fiscal year 2027.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T23:25:44.155505+00:00"
+  },
+  "D000623": {
+    "narrative": "DeSaulnier votes most on issues related to congressional procedures and armed forces matters. On economics and public finance bills, he votes against more often than in favor \u2014 he voted against the Community Bank Deposit Access Act of 2025. His armed forces votes are split: he voted in favor of resolutions to remove U.S. forces from Lebanon and Iran under the War Powers Resolution, and voted against a military construction and Veterans Affairs appropriations bill. On government operations and politics issues, he votes in favor more than against.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T23:59:02.068330+00:00"
+  },
+  "B001257": {
+    "narrative": "Bilirakis votes most often on congressional procedures, armed forces and national security, and economic issues. On armed forces and national security, he votes in favor more often than against, including on veterans benefits expansion measures such as the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act of 2026, though his support is not uniform across all veterans-related bills \u2014 he voted against the Veterans 2nd Amendment Protection Act. On international affairs, he votes in favor most of the time, and voted against bills directing the removal of U.S. forces from Lebanon and from hostilities with Iran. On congressional procedure votes, he votes against more often than in favor.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T03:23:37.852316+00:00"
+  },
+  "B001260": {
+    "narrative": "Rep. Buchanan votes most on bills about congressional procedure, armed forces, and the economy. On military and national security bills, he voted in favor more than against \u2014 for example, he voted YES on the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act. On international affairs, he voted in favor on most bills. On congressional procedure and government operations bills, he voted against more often than in favor, including voting NO on resolutions to remove U.S. Armed Forces from Lebanon and from hostilities with Iran. His votes on economics and public finance leaned against on balance.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T21:58:39.203288+00:00"
+  },
+  "B001287": {
+    "narrative": "Bera votes most often on congressional process; there, he voted in favor 32 times and against 14. On economics and public finance, he voted against 76 bills and in favor of 38. On armed forces and national security, he voted in favor 65 times and against 60 \u2014 nearly even. He voted in favor of removing U.S. forces from Iran and against removing them from Lebanon. On government operations, he voted in favor 32 times and against 13; his international affairs votes were close, 43 to 45.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:01:59.547811+00:00"
+  },
+  "R000599": {
+    "narrative": "Ruiz votes most often on House procedural bills and on national security and military bills. On procedural bills, his votes leaned in favor, while on economics and public finance bills, he voted against more bills than he voted in favor of. He voted yes on resolutions directing the President to remove U.S. forces from Lebanon and from hostilities with Iran, and yes on a bill to authorize support for Ukraine. He voted no on a Department of Veterans Affairs and military construction appropriations bill for fiscal year 2027, and no on a procedural rule that bundled several bills together, including one expressing support for law enforcement officers.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T23:38:34.228798+00:00"
+  },
+  "V000130": {
+    "narrative": "Vargas votes most often on congressional matters and votes in favor on those more than against. On economics and public finance bills, he votes against more often than in favor. His votes on armed forces bills are split \u2014 he voted yes to direct removal of U.S. forces from hostilities with Iran but voted no on directing removal from Lebanon. On government operations bills, he votes in favor more often than against, and voted yes on the Stop Child Care Scams Act of 2026.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T02:22:47.938304+00:00"
+  },
+  "T000472": {
+    "narrative": "Takano votes most on congressional procedure, armed forces and national security, and economic and financial issues. On economic and financial bills, he voted against more than he voted for. He voted in favor of War Powers resolutions to remove U.S. troops from Lebanon and Iran, and in favor of bills on banking access, housing, and artist rights. He voted against military construction and Veterans Affairs spending bills, against the Cashless Bail Reporting Act, and against a resolution in support of law enforcement. On armed forces and international affairs bills, his votes were split in both directions.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:03:57.840169+00:00"
+  },
+  "V000129": {
+    "narrative": "Valadao votes most on procedural House matters, armed forces and national security, and economics and public finance. On procedural matters and economics, he voted against more often than in favor \u2014 including a no vote on a military construction and Veterans Affairs spending bill for fiscal year 2027. On armed forces and national security, he voted in favor more often than against, including a yes vote on the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act of 2026. On international affairs, he voted in favor more often than against, but voted against resolutions that would have directed the president to remove U.S. forces from Lebanon and Iran.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:04:42.718157+00:00"
+  },
+  "M001177": {
+    "narrative": "McClintock votes most often on Congress-related procedural matters and national security bills. On national security and international affairs, he votes in favor more often than against. On economics and public finance, he also votes in favor more often than against. On procedural and congressional matters, he votes against more often than in favor. Specific votes include yes on military construction and Veterans Affairs appropriations, and no on resolutions to remove U.S. forces from Lebanon and Iran.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:05:43.641360+00:00"
+  },
+  "G000559": {
+    "narrative": "Garamendi votes most often on congressional business and armed forces bills. On congressional and government operations votes, he votes in favor more often than against. On economics and public finance bills, he votes against more often than in favor, including votes against military construction and veterans affairs spending bills. His votes on armed forces and international affairs are split close to even. He voted in favor of a resolution to remove U.S. forces from Iran-related hostilities but voted against a resolution to remove U.S. forces from Lebanon.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:06:46.698548+00:00"
+  },
+  "C001080": {
+    "narrative": "Rep. Judy Chu of California votes most on congressional procedure, armed forces and national security, and economics and public finance. On economic and public finance bills, she votes against more often than in favor. On international affairs bills, she also votes against more often than in favor, though she voted in favor of War Powers Resolution measures to remove U.S. forces from Lebanon and Iran. Her votes on government operations and politics lean in favor, while her votes on armed forces and national security are more evenly split.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T04:43:28.259351+00:00"
+  },
+  "T000460": {
+    "narrative": "Thompson votes most often on congressional procedure and national security matters. On procedural and government operations votes, he leans in favor. On economics and public finance bills, he votes against more often than in favor. He voted yes on arts and conservation bills, including the ARTIST Act, the Smithsonian American Women's History Museum Act, and the Northwest Straits Marine Conservation Initiative Reauthorization Act of 2025. On national security and international affairs votes, his record is split roughly evenly between yes and no.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T01:11:49.556695+00:00"
+  },
+  "M001163": {
+    "narrative": "Matsui votes most on congressional procedures, armed forces, and economic matters. On economics and public finance, she voted against most bills in this area, including appropriations for military construction and Veterans Affairs programs. On government operations, she voted in favor of most bills, such as the Stop Child Care Scams Act and the Smithsonian American Women's History Museum Act. Her votes on armed forces and international affairs were split \u2014 she voted in favor of directing the removal of U.S. troops from Lebanon and Iran, while voting against some military spending bills.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:10:34.912654+00:00"
+  },
+  "L000593": {
+    "narrative": "Mike Levin votes most often on congressional procedure, armed forces and national security, economics and public finance, international affairs, and government operations. On economic bills, he voted against more often than in favor \u2014 he voted no on appropriations packages for military construction and the Department of Veterans Affairs. On armed forces and international affairs bills, his record is nearly even; he voted yes to direct the removal of U.S. forces from hostilities with Iran but voted no on a similar resolution about Lebanon. On congressional and government operations bills, he voted in favor more often than against, including yes votes on the Smithsonian American Women's History Museum Act and the Stop Child Care Scams Act.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T21:47:45.451589+00:00"
+  },
+  "S000344": {
+    "narrative": "Sherman votes most often on congressional rules and procedures, and he leans in favor of those measures. On money and spending bills, he votes against more often than in favor \u2014 including votes against military construction and veterans funding bills. His votes on defense and military matters are split almost evenly between in favor and against, including a yes vote to remove U.S. forces from hostilities with Iran and a no vote on removing forces from Lebanon. On government operations, he votes in favor at a higher rate than against.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:14:41.884348+00:00"
+  },
+  "C000059": {
+    "narrative": "Calvert votes most on congressional procedure, where he voted against more often than in favor. He also voted in favor on armed forces and international affairs bills, and against on economics and public finance bills. He voted against removing U.S. forces from Iran under the War Powers Resolution. He voted in favor of the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act. On government operations, his votes were about evenly split.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:15:17.791258+00:00"
+  },
+  "L000397": {
+    "narrative": "Zoe Lofgren votes most on congressional procedures, armed forces, and economics issues. On economics and public finance, she voted against measures that would change how block grant funds flow to states for public assistance programs. On armed forces and national security, her votes go both ways \u2014 she voted in favor of directing the removal of U.S. forces from hostilities with Iran but against a military construction spending bill. On government operations, she voted in favor more often than against.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T01:14:55.620275+00:00"
+  },
+  "I000056": {
+    "narrative": "The largest share of Issa's votes falls under congressional and procedural matters, where he votes against more measures than he supports. On armed forces and national security, he voted in favor on 71 of 122 sampled bills. On international affairs, he backed 69 of 88 sampled measures. His economics and public finance votes are nearly split, with 56 in favor and 58 against. He voted against War Powers Resolution measures on Lebanon and Iran, and in favor of veterans affairs funding legislation.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:16:37.330125+00:00"
+  },
+  "C001112": {
+    "narrative": "Carbajal votes most often on congressional matters, armed forces, economics, international affairs, and government operations. On congressional and government operations issues, he votes in favor more often than against. On economics and public finance, he votes against more often \u2014 76 against, 39 in favor \u2014 including a no on the farm and food bill. His armed forces votes are split \u2014 67 in favor, 58 against \u2014 including a yes vote on removing U.S. forces from Iran. His international affairs votes are also split, including a yes vote on Ukraine support legislation.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:20:00.125636+00:00"
+  },
+  "K000389": {
+    "narrative": "Khanna cast the most votes on congressional process, favoring 31 of 46 non-neutral votes. On economic and budget bills, he voted against 77 of 115 non-neutral measures, including a vote against military construction appropriations. On defense, he voted in favor 64 of 124 non-neutral times, with yes votes on removing U.S. forces from Lebanon and Iran. On government operations, he voted in favor 31 of 43 non-neutral times.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:20:29.363484+00:00"
+  },
+  "C001110": {
+    "narrative": "Correa votes most often on bills in the Congress policy area, which covers congressional operations and rules, and votes in favor more often than against on those bills. On economics and public finance bills, he votes against more often than in favor \u2014 he voted against an appropriations bill for military construction and the Department of Veterans Affairs. His votes on armed forces and national security are mixed: he voted in favor of directing the removal of U.S. forces from Iran hostilities but against removing forces from Lebanon. On international affairs, he also has a mix of yes and no votes, including a yes vote on a bill to authorize support for Ukraine.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T05:56:21.501641+00:00"
+  },
+  "B001300": {
+    "narrative": "Barrag\u00e1n votes most often on congressional procedure and armed forces issues. On economics and public finance, she votes against bills more often than in favor \u2014 she voted against military construction appropriations and against several rule-waiving procedural bills tied to spending packages. On congressional and government operations matters, she votes in favor more often than against. Her armed forces votes are split \u2014 she voted in favor of resolutions to remove U.S. troops from Lebanon and Iran, while voting against military construction appropriations bills.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:22:22.388329+00:00"
+  },
+  "G000585": {
+    "narrative": "Gomez votes most often on congressional procedure, defense and security issues, and economic and financial matters. On economic and financial bills, he votes against more often than in favor \u2014 his no votes include the Community Bank Deposit Access Act of 2025 and a military construction and veterans affairs spending bill. On government operations, he votes in favor more than against. On defense and international affairs, his votes are more evenly split \u2014 he voted yes on resolutions to pull U.S. forces from Lebanon and Iran, and in favor of a bill to authorize support for Ukraine.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T23:46:19.224638+00:00"
+  },
+  "S001156": {
+    "narrative": "Rep. S\u00e1nchez votes most often on congressional procedure and armed forces bills. On economics and public finance, she voted against bills more often than in favor. Her votes on armed forces and national security are nearly split, with 64 in favor and 58 against. She voted to remove U.S. forces from hostilities with Iran but voted against removing them from Lebanon. On government operations, she voted in favor more often than against.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:25:06.649220+00:00"
+  },
+  "T000474": {
+    "narrative": "Torres votes most on Congressional matters, where she leans in favor, and on Armed Forces and National Security issues, where her votes go both ways. On economics and public finance, she votes against bills more often than she supports them, including voting against military construction and veterans affairs appropriations. Her armed forces votes go both ways \u2014 she voted in favor of removing U.S. forces from hostilities with Iran, but voted against a similar resolution on Lebanon.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T23:52:41.564150+00:00"
+  },
+  "B001285": {
+    "narrative": "Brownley votes most often on bills related to Congress, armed forces, economics, and international affairs. She votes in favor of most bills that fall under congressional operations and government matters. On economic and public finance bills, she votes against more often than in favor \u2014 for example, she voted no on military construction and Veterans Affairs appropriations bills. Her votes on armed forces and international affairs bills are split close to even, including a yes vote to remove U.S. forces from hostilities with Iran and a no vote on removing forces from Lebanon.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:26:15.240173+00:00"
+  },
+  "M001241": {
+    "narrative": "Dave Min votes most often on bills related to Congress and government operations, where he sides in favor more often than against. On economics and public finance bills, he votes against more often than in favor, including a no vote on military construction and Veterans Affairs appropriations. His votes on armed forces and energy bills are split, though he voted in favor of directing the president to remove U.S. forces from Lebanon and Iran under the War Powers Resolution. On crime and law enforcement, he generally votes in favor, though he has voted against several bills in this area, including the Cashless Bail Reporting Act.",
+    "top_areas": [
+      "Congress",
+      "Economics and Public Finance",
+      "Armed Forces and National Security",
+      "Energy",
+      "Crime and Law Enforcement"
+    ],
+    "generated_at": "2026-06-13T23:51:30.082846+00:00"
+  },
+  "H001068": {
+    "narrative": "Huffman votes most often on congressional procedure, and he leans in favor in that area. He also votes in favor on government operations matters, though that area makes up a smaller share of his votes. On armed forces and national security, his votes are split about evenly in favor and against \u2014 he voted yes on a resolution to remove U.S. forces from hostilities with Iran but no on a military construction and Veterans Affairs appropriations bill. On economics and public finance, and on international affairs, he more often votes against bills.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T03:45:32.419868+00:00"
+  },
+  "R000620": {
+    "narrative": "Rivas votes most on congressional procedure, economics and public finance, and armed forces and national security. On economic and financial bills, she votes against more often than in favor, including voting against a rule that would have allowed an agriculture and rural development spending bill to come to the floor for consideration. On armed forces and national security, she also votes against more often than in favor, though she voted in favor of resolutions directing the President to remove U.S. forces from Lebanon and from hostilities with Iran. On energy and crime bills, her votes are split between in favor and against.",
+    "top_areas": [
+      "Congress",
+      "Economics and Public Finance",
+      "Armed Forces and National Security",
+      "Energy",
+      "Crime and Law Enforcement"
+    ],
+    "generated_at": "2026-06-14T08:19:45.781734+00:00"
+  },
+  "S001231": {
+    "narrative": "Rep. Simon votes most often on congressional procedure and rules, where she votes in favor most of the time. On economics and public finance, she votes against most bills \u2014 including procedural rules tied to child care funding and temporary assistance for low-income families. On armed forces and national security, she votes against more bills than she supports, though she voted in favor of directing the removal of U.S. forces from Lebanon and Iran. On energy and crime and law enforcement, her votes are split close to evenly.",
+    "top_areas": [
+      "Congress",
+      "Economics and Public Finance",
+      "Armed Forces and National Security",
+      "Energy",
+      "Crime and Law Enforcement"
+    ],
+    "generated_at": "2026-06-14T21:54:49.257936+00:00"
+  },
+  "G000605": {
+    "narrative": "Gray votes most on congressional procedure and economic bills. On economic bills, he votes against more than in favor. One example was a vote against a military construction and Veterans Affairs spending bill. On armed forces, energy, and crime bills, he votes in favor more than against. Examples include votes in favor of Ukraine support and the Veterans 2nd Amendment Protection Act.",
+    "top_areas": [
+      "Congress",
+      "Economics and Public Finance",
+      "Armed Forces and National Security",
+      "Energy",
+      "Crime and Law Enforcement"
+    ],
+    "generated_at": "2026-06-13T22:32:30.685094+00:00"
+  },
+  "L000607": {
+    "narrative": "Sam Liccardo of California has voted most on congressional procedure, usually voting in favor on those matters. On economics and public finance, he has voted against most bills, including voting against a series of spending and appropriations measures. On armed forces and national security, he voted in favor of a resolution to remove U.S. forces from hostilities with Iran and against appropriations bills for military construction and veterans programs. His votes on energy and crime and law enforcement have gone in both directions, with no clear overall lean.",
+    "top_areas": [
+      "Congress",
+      "Economics and Public Finance",
+      "Armed Forces and National Security",
+      "Energy",
+      "Crime and Law Enforcement"
+    ],
+    "generated_at": "2026-06-14T06:03:18.161438+00:00"
+  },
+  "T000491": {
+    "narrative": "Derek Tran, a House member from California, voted most often on bills related to congressional procedures, federal spending, and national security. On economic and public finance bills, he voted against most of them. He voted against military construction and Department of Veterans Affairs appropriations bills for fiscal year 2027. He voted in favor of bills like the Stop Child Care Scams Act and a measure directing the removal of U.S. Armed Forces from hostilities with Iran. His votes on energy and crime bills were split about evenly between in favor and against.",
+    "top_areas": [
+      "Congress",
+      "Economics and Public Finance",
+      "Armed Forces and National Security",
+      "Energy",
+      "Crime and Law Enforcement"
+    ],
+    "generated_at": "2026-06-13T23:56:42.705319+00:00"
+  },
+  "F000246": {
+    "narrative": "Rep. Pat Fallon of Texas casts the most votes on procedural Congressional matters, followed by armed forces and national security, economics and public finance, and international affairs. On military and national security bills, he votes in favor more often than against. On economics and public finance bills, he also votes in favor more often than against. He voted against resolutions that would have directed the president to remove U.S. forces from Lebanon and from hostilities with Iran under the War Powers Resolution.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T01:38:23.415466+00:00"
+  },
+  "P000048": {
+    "narrative": "Pfluger votes most often on congressional procedure and national security bills. On armed forces and national security, he votes in favor more than against, with yes votes on veterans benefits bills like the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act. On international affairs, he votes in favor at a high rate, though he voted against resolutions to remove U.S. forces from Lebanon and hostilities with Iran. On economics and public finance, he leans in favor, with a yes vote on banking access legislation like the Keeping Deposits Local Act.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T01:37:13.304909+00:00"
+  },
+  "J000304": {
+    "narrative": "Rep. Jackson votes most frequently on congressional procedural matters, but among substantive policy areas, he focuses most on Armed Forces and National Security, Economics and Public Finance, and International Affairs \u2014 and in all three he votes in favor more than against. On military and security bills, he voted yes on measures like the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act. On international affairs, he voted against resolutions that would have directed the removal of U.S. forces from Lebanon and from hostilities with Iran. On procedural congressional votes, he voted against more than he voted in favor.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T00:13:44.738725+00:00"
+  },
+  "G000587": {
+    "narrative": "Rep. Garcia votes most on congressional procedures, armed forces, and economic issues. On economics and public finance bills, she more often votes against \u2014 she voted no on a military construction and Department of Veterans Affairs spending bill. She voted in favor of resolutions under the War Powers Resolution to remove U.S. forces from Lebanon and from hostilities with Iran. Her votes on armed forces and international affairs issues are split more evenly between yes and no.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T00:15:23.839712+00:00"
+  },
+  "G000589": {
+    "narrative": "Gooden votes most often on congressional procedure, military, and economic bills. On military and defense matters, he votes in favor more often than against. On economic and financial bills, he also votes in favor more often. On international affairs, he votes in favor most of the time. He voted against resolutions to remove U.S. forces from Lebanon and Iran, and voted in favor of military construction and veterans' affairs appropriations.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:40:41.214986+00:00"
+  },
+  "S000250": {
+    "narrative": "Sessions votes most often on issues related to congressional procedure, armed forces, economics, and international affairs. He votes in favor of armed forces and national security bills more often than against them, and does the same on economics and international affairs bills. He voted in favor of the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act and the Keeping Deposits Local Act. He voted against two resolutions that would have directed the President to remove U.S. Armed Forces from Lebanon and from hostilities with Iran under the War Powers Resolution.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T00:21:57.719637+00:00"
+  },
+  "R000614": {
+    "narrative": "Rep. Chip Roy (R-TX) most often voted on congressional procedure and national security matters. He voted against congressional procedural measures 31 of 45 times, and against government operations bills 26 of 45 times. He voted in favor of Armed Forces and national security bills 74 of 121 times. On economics and public finance, he voted in favor 73 of 113 times. On international affairs, he voted in favor 68 of 88 times.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:43:48.234253+00:00"
+  },
+  "E000299": {
+    "narrative": "Escobar votes most on congressional procedures, armed forces and national security, and economic policy. She votes against most economic and public finance bills, including appropriations for military construction and the Department of Veterans Affairs. On armed forces and national security, she leans in favor overall, with YES votes on resolutions directing the removal of U.S. forces from Lebanon and Iran under the War Powers Resolution. On government operations, she also leans in favor, including a YES vote on the Smithsonian American Women's History Museum Act. Her votes on international affairs are split nearly evenly between in favor and against.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T00:18:03.105113+00:00"
+  },
+  "F000468": {
+    "narrative": "Fletcher votes most often on congressional matters and armed forces and national security issues. On economics and public finance bills, she votes against more than she votes in favor. On national security, her votes go both ways \u2014 she voted in favor of a measure to remove U.S. forces from hostilities with Iran, but voted against a similar measure for Lebanon. She also voted against a military construction and veterans affairs appropriations bill. She voted in favor of bills related to child care, the arts, and historic battlefield preservation.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T00:19:57.673115+00:00"
+  },
+  "A000375": {
+    "narrative": "Arrington votes most on congressional procedure and rules, and in that area he voted against more bills than he voted in favor of. On armed forces and national security, he voted in favor more often than against. He also voted in favor more than against on economics and public finance, with yes votes on banking access and housing bills. On international affairs, he voted in favor at a much higher rate than against. His votes on government operations and politics were split evenly between in favor and against.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:48:02.675929+00:00"
+  },
+  "V000131": {
+    "narrative": "Rep. Marc Veasey of Texas votes most often on congressional matters, national security, and economic policy. On congressional operations and government bills, he voted in favor more often than against. On economic and public finance bills, he voted against more often than in favor, including a no vote on the fiscal year 2026 budget resolution. On armed forces bills, his votes were split nearly evenly. He voted for removing U.S. forces from Iran but not from Lebanon.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:48:37.680273+00:00"
+  },
+  "B001291": {
+    "narrative": "Rep. Brian Babin of Texas votes most on congressional procedure, armed forces, and economic issues. He votes in favor of armed forces and international affairs bills more often than against them. On economic issues, he voted yes on banking bills like the Keeping Deposits Local Act and the American Access to Banking Act. He voted no on resolutions to remove U.S. forces from Lebanon and Iran under the War Powers Resolution.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T01:42:44.889633+00:00"
+  },
+  "C001115": {
+    "narrative": "Rep. Cloud votes most on congressional, armed forces, and economics matters. On congressional measures, he leans against. He votes in favor of armed forces and economics bills \u2014 including military construction funding and banking access measures. On international affairs, he votes in favor of most measures. He voted against a few specific resolutions, including those on U.S. forces in Lebanon, Iran, and Ukraine.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:50:25.796025+00:00"
+  },
+  "W000816": {
+    "narrative": "Williams votes most often on matters related to Congress, armed forces, and economics. On armed forces and national security bills, he votes in favor more than against, including a yes vote on military construction and Veterans Affairs appropriations. On international affairs, he votes in favor at a high rate, though he voted against measures directing the removal of U.S. forces from Lebanon and hostilities with Iran. On economic and finance bills, he votes in favor more than against, with yes votes on banking access and community bank measures. On congressional procedure bills, he votes against more than in favor.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:50:44.098836+00:00"
+  },
+  "M001157": {
+    "narrative": "McCaul votes most often on procedural and congressional matters, and in that area he votes against more than in favor. On armed forces and national security, he votes in favor more often than against, and the same pattern holds for international affairs. His votes on economics and public finance are split close to even. He voted yes on a procedural rule to bring a Ukraine support authorization bill to the floor for consideration, and voted against resolutions directing the President to remove U.S. armed forces from Lebanon and from hostilities with Iran.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T01:46:05.572596+00:00"
+  },
+  "C001063": {
+    "narrative": "Cuellar votes most often on congressional procedures, defense, and federal spending. On defense and national security bills, he votes in favor more often than against. On economic and spending bills, he votes against more often than in favor. He voted yes on the Veterans 2nd Amendment Protection Act, which limits VA reporting of veterans to the federal background check system. He voted no on the FY2027 military construction and VA appropriations bill.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T00:26:42.368454+00:00"
+  },
+  "W000814": {
+    "narrative": "Weber votes most often on congressional procedure, Armed Forces and National Security, and Economics and Public Finance \u2014 leaning against on procedure but in favor on the latter two. He also votes mostly in favor on International Affairs bills. He voted against resolutions that would have directed the removal of U.S. forces from Lebanon and from hostilities with Iran. He voted against the Veterans 2nd Amendment Protection Act but in favor of the Sharri Briley and Eric Edmundson Veterans Benefits Expansion Act.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T06:22:26.291247+00:00"
+  },
+  "C001051": {
+    "narrative": "Carter votes most often on congressional procedure and national security bills. On national security, he votes in favor more often than against, and he voted against bills that would have directed the removal of U.S. forces from Lebanon and Iran. On international affairs, he votes in favor at a high rate. His votes on spending and government operations are split closer to even.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-13T22:56:02.128799+00:00"
+  },
+  "C001091": {
+    "narrative": "Castro votes most often on congressional procedures, national security, and economic matters. On economic and public finance bills, he votes against more often than in favor, including a vote against appropriations for military construction and veterans' affairs programs. On international affairs, he also votes against more often, though he voted in favor of a bill to authorize support for Ukraine. He voted against the Cashless Bail Reporting Act and in favor of a bill to address child care fraud. His votes on armed forces and national security are split in both directions.",
+    "top_areas": [
+      "Congress",
+      "Armed Forces and National Security",
+      "Economics and Public Finance",
+      "International Affairs",
+      "Government Operations and Politics"
+    ],
+    "generated_at": "2026-06-14T00:25:02.608163+00:00"
   }
 }
