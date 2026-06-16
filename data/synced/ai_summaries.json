@@ -767,9 +767,10 @@
     }
   },
   "119-sjres-34": {
-    "one_liner": "Block a planned weapons sale to Israel",
+    "one_liner": "Block one proposed sale of bombs and guidance kits to Israel",
     "provisions": [
-      "Stops the government from selling weapons and military equipment to Israel"
+      "Rejects one specific proposed U.S. sale to Israel of about 5,000 1,000-pound bomb bodies and about 5,000 kits that guide them to their targets",
+      "Uses Congress's power to disapprove this single arms sale; it does not change other U.S. weapons sales to Israel"
     ],
     "issue_categories": [
       "Veterans & Military"
@@ -777,12 +778,12 @@
     "direction": "against",
     "arguments": {
       "supporters": [
-        "Supporters say this resolution uses Congress's power to block the transfer of weapons and military equipment to Israel's government.",
-        "Supporters say this stops the sale of defense articles and services that were proposed for transfer to Israel."
+        "Supporters say this resolution uses Congress's power to stop one specific sale of bombs and guidance kits to Israel's government.",
+        "Supporters say Congress should be able to review and block individual weapons sales like this one."
       ],
       "critics": [
-        "Critics say this resolution blocks the president's authority to conduct foreign policy through approved military sales to allies.",
-        "Critics say this prevents defense articles and services from reaching Israel, undermining security partnerships."
+        "Critics say blocking this specific sale interferes with the president's authority to approve military sales to allies.",
+        "Critics say stopping this delivery of bombs and guidance kits weakens security cooperation with Israel."
       ]
     }
   },
@@ -4753,12 +4754,11 @@
     }
   },
   "117-hr-5305": {
-    "one_liner": "Fund the government through December 2021 and suspend the debt limit",
+    "one_liner": "Fund the government through December 2021 with disaster and Afghan evacuee aid",
     "provisions": [
       "Funds federal agencies through December 3, 2021 to prevent a government shutdown",
       "Keeps funding at 2021 levels while Congress writes the 2022 budget",
-      "Suspends the debt limit through December 16, 2022",
-      "Gives extra money for natural disaster relief and helping Afghan evacuees",
+      "Gives extra money for natural disaster relief and for helping Afghan evacuees resettle",
       "Extends flood insurance and food assistance programs that were set to expire"
     ],
     "issue_categories": [
@@ -4768,13 +4768,12 @@
     "arguments": {
       "supporters": [
         "Supporters say this bill prevents a government shutdown on October 1, 2021 by funding federal agencies through December 3, 2021.",
-        "Supporters say suspending the debt limit through December 16, 2022 prevents the U.S. from defaulting on its debts and protects the economy.",
+        "Supporters say a short-term funding bill keeps the government open while Congress finishes the full-year 2022 budget.",
         "Supporters say the extra money for natural disaster relief and Afghan evacuees helps people who lost their homes and need emergency aid."
       ],
       "critics": [
-        "Critics say suspending the debt limit through December 16, 2022 lets the government borrow more money without setting a clear spending limit.",
         "Critics say funding agencies at 2021 levels through December 3, 2021 does not let Congress set new budget priorities for 2022.",
-        "Critics say this bill just delays budget decisions for two months instead of solving the funding problem."
+        "Critics say a two-month stopgap delays budget decisions instead of solving the funding problem."
       ]
     }
   },
@@ -12636,13 +12635,13 @@
     }
   },
   "119-hr-3617": {
-    "one_liner": "Require the Energy Department to secure America's energy resource supply chains",
+    "one_liner": "Require the Energy Department to secure supply chains for critical minerals and energy materials",
     "provisions": [
-      "Requires the Energy Department to study which energy resources America needs most",
-      "Orders ongoing checks of supply systems to find weak spots that could cause shortages",
-      "Directs studies of how much America relies on importing energy materials from other countries",
-      "Requires the Energy Department to create plans to strengthen domestic energy supplies",
-      "Orders work on backup materials and better ways to reuse energy resources"
+      "Requires the Energy Department to identify the critical minerals and materials \u2014 like rare earth elements \u2014 most essential to U.S. energy",
+      "Orders ongoing checks of their supply chains to find weak spots that could cause shortages",
+      "Directs studies of how much America relies on importing these minerals and materials from other countries",
+      "Calls for plans to strengthen domestic supplies",
+      "Funds work on backup materials, substitutes, and recycling"
     ],
     "issue_categories": [
       "Environment & Energy"
@@ -12650,7 +12649,7 @@
     "direction": "in_favor",
     "arguments": {
       "supporters": [
-        "Supporters say the required studies of import reliance and domestic supply plans would help America become less dependent on foreign countries for critical energy materials.",
+        "Supporters say the required studies of import reliance and domestic supply plans would help America become less dependent on foreign countries for critical minerals and energy materials.",
         "Supporters say the ongoing supply chain assessments would help spot weak spots before they cause energy shortages that hurt families and businesses.",
         "Supporters say the research on recycling and reuse technology would help stretch existing energy materials further and reduce waste."
       ],
