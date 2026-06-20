@@ -6,9 +6,9 @@
     119
   ],
   "stats": {
-    "total_votes": 1035,
+    "total_votes": 1040,
     "yea_count": 596,
-    "nay_count": 415,
+    "nay_count": 420,
     "not_voting_count": 23,
     "participation_rate": 97.7
   },
@@ -193,7 +193,7 @@
     {
       "bill_number": "H.R. 5305",
       "bill_id": "117-hr-5305",
-      "one_liner": "Fund the government through December 2021 and suspend the debt limit",
+      "one_liner": "Fund the government through December 2021 with disaster and Afghan evacuee aid",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "September 30, 2021,  01:11 PM",
@@ -305,7 +305,7 @@
     {
       "bill_number": "H.R. 5305",
       "bill_id": "117-hr-5305",
-      "one_liner": "Fund the government through December 2021 and suspend the debt limit",
+      "one_liner": "Fund the government through December 2021 with disaster and Afghan evacuee aid",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "September 27, 2021,  05:46 PM",
@@ -7311,6 +7311,22 @@
       "vote_number": 235
     },
     {
+      "bill_number": "H.R. 6644",
+      "bill_id": "119-hr-6644",
+      "one_liner": "Expand federal housing programs and increase government funding for housing",
+      "has_plain_summary": true,
+      "vote": "Nay",
+      "date": "June 18, 2026,  11:01 AM",
+      "result": "Cloture Motion Agreed to (84-8, 3/5 majority required)",
+      "policy_area": "Housing and Community Development",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": "in_favor",
+      "congress": 119,
+      "session": 2,
+      "vote_number": 180
+    },
+    {
       "bill_number": "S. 870",
       "bill_id": "118-s-870",
       "one_liner": "Fund fire departments and federal fire safety programs through 2030",
@@ -7327,6 +7343,22 @@
       "vote_number": 200
     },
     {
+      "bill_number": "S.Res. 616",
+      "bill_id": "119-sres-616",
+      "one_liner": "S.Res. 616",
+      "has_plain_summary": false,
+      "vote": "Nay",
+      "date": "June 17, 2026,  04:27 PM",
+      "result": "Motion to Discharge Rejected (44-50)",
+      "policy_area": "",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 179
+    },
+    {
       "bill_number": "S. 1582",
       "bill_id": "119-s-1582",
       "one_liner": "Create rules for companies that issue stablecoins",
@@ -7341,6 +7373,54 @@
       "congress": 119,
       "session": 1,
       "vote_number": 318
+    },
+    {
+      "bill_number": "S.J.Res. 190",
+      "bill_id": "119-sjres-190",
+      "one_liner": "S.J.Res. 190",
+      "has_plain_summary": false,
+      "vote": "Nay",
+      "date": "June 16, 2026,  11:44 AM",
+      "result": "Motion to Proceed Rejected (46-48)",
+      "policy_area": "",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 173
+    },
+    {
+      "bill_number": "H.R. 6644",
+      "bill_id": "119-hr-6644",
+      "one_liner": "Expand federal housing programs and increase government funding for housing",
+      "has_plain_summary": true,
+      "vote": "Nay",
+      "date": "June 16, 2026,  04:52 PM",
+      "result": "Motion to Proceed Agreed to (87-8)",
+      "policy_area": "Housing and Community Development",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": "in_favor",
+      "congress": 119,
+      "session": 2,
+      "vote_number": 175
+    },
+    {
+      "bill_number": "S.J.Res. 172",
+      "bill_id": "119-sjres-172",
+      "one_liner": "S.J.Res. 172",
+      "has_plain_summary": false,
+      "vote": "Nay",
+      "date": "June 16, 2026,  03:01 PM",
+      "result": "Motion to Discharge Rejected (47-48)",
+      "policy_area": "",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 174
     },
     {
       "bill_number": "H.R. 3967",
@@ -7745,7 +7825,7 @@
     {
       "bill_number": "S.J.Res. 34",
       "bill_id": "119-sjres-34",
-      "one_liner": "Block a planned weapons sale to Israel",
+      "one_liner": "Block one proposed sale of bombs and guidance kits to Israel",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "July 30, 2025,  09:42 PM",
