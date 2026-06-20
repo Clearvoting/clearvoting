@@ -1791,7 +1791,7 @@
     {
       "bill_number": "H.J.Res. 139",
       "bill_id": "119-hjres-139",
-      "one_liner": "Add a rule to the Constitution requiring the federal government to balance its budget",
+      "one_liner": "Add a balanced budget requirement to the U.S. Constitution",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-03-18",
@@ -2223,7 +2223,7 @@
     {
       "bill_number": "H.J.Res. 72",
       "bill_id": "119-hjres-72",
-      "one_liner": "Relating to a national emergency by the President on February 1, 2025.",
+      "one_liner": "End the national immigration emergency the President declared on February 1, 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-02-11",
@@ -2231,7 +2231,7 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 65
@@ -2399,7 +2399,7 @@
     {
       "bill_number": "H.J.Res. 142",
       "bill_id": "119-hjres-142",
-      "one_liner": "Cancel DC's tax law to keep federal tax cuts",
+      "one_liner": "Cancel a DC tax law and bring back federal tax rules for DC residents",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-02-04",

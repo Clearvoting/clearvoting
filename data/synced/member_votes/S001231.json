@@ -1791,7 +1791,7 @@
     {
       "bill_number": "H.J.Res. 139",
       "bill_id": "119-hjres-139",
-      "one_liner": "Add a rule to the Constitution requiring the federal government to balance its budget",
+      "one_liner": "Add a balanced budget requirement to the U.S. Constitution",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-03-18",
@@ -2223,7 +2223,7 @@
     {
       "bill_number": "H.J.Res. 72",
       "bill_id": "119-hjres-72",
-      "one_liner": "Relating to a national emergency by the President on February 1, 2025.",
+      "one_liner": "End the national immigration emergency the President declared on February 1, 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-02-11",
@@ -2231,7 +2231,7 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 65
@@ -2399,7 +2399,7 @@
     {
       "bill_number": "H.J.Res. 142",
       "bill_id": "119-hjres-142",
-      "one_liner": "Cancel DC's tax law to keep federal tax cuts",
+      "one_liner": "Cancel a DC tax law and bring back federal tax rules for DC residents",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-02-04",
@@ -2719,7 +2719,7 @@
     {
       "bill_number": "H.J.Res. 140",
       "bill_id": "119-hjres-140",
-      "one_liner": "Allow mineral and geothermal leasing on 225,504 acres in Minnesota",
+      "one_liner": "Reopen 225,504 acres of Minnesota forest land to mining and energy leasing",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-01-21",
@@ -4383,7 +4383,7 @@
     {
       "bill_number": "H.J.Res. 130",
       "bill_id": "119-hjres-130",
-      "one_liner": "Cancel a rule that stopped coal leasing in Wyoming's Buffalo Field Office",
+      "one_liner": "Bring back coal mining permits on federal land in Wyoming's Buffalo Field Office",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-18",
@@ -4399,7 +4399,7 @@
     {
       "bill_number": "H.J.Res. 131",
       "bill_id": "119-hjres-131",
-      "one_liner": "Cancel a rule that limited oil drilling to 400,000 acres in an Alaska wildlife refuge",
+      "one_liner": "Cancel a 2024 rule limiting oil and gas leasing in the Arctic National Wildlife Refuge",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-18",
@@ -4415,7 +4415,7 @@
     {
       "bill_number": "S.J.Res. 80",
       "bill_id": "119-sjres-80",
-      "one_liner": "Open more Alaska land to oil and gas drilling",
+      "one_liner": "Reopen about half of Alaska's National Petroleum Reserve to oil and gas drilling",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-18",
@@ -4799,7 +4799,7 @@
     {
       "bill_number": "H.J.Res. 117",
       "bill_id": "119-hjres-117",
-      "one_liner": "End the national emergency declared on July 30, 2025",
+      "one_liner": "Take Congressional action on the national emergency the President declared July 30, 2025",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-09-15",
@@ -4807,7 +4807,7 @@
       "policy_area": "Emergency Management",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "against",
+      "direction": "neutral",
       "congress": 119,
       "session": 1,
       "vote_number": 265
@@ -5359,7 +5359,7 @@
     {
       "bill_number": "H.J.Res. 104",
       "bill_id": "119-hjres-104",
-      "one_liner": "Cancel a rule that blocks coal leasing on 1.7 million acres in Montana",
+      "one_liner": "Cancel a rule that blocked coal leasing on 1.7 million acres in Montana",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-09-03",
@@ -5375,7 +5375,7 @@
     {
       "bill_number": "H.J.Res. 106",
       "bill_id": "119-hjres-106",
-      "one_liner": "Cancel a Bureau of Land Management rule covering 3.6 million acres in Alaska",
+      "one_liner": "Remove protected status from 21 areas covering 3.6 million acres in Alaska's Central Yukon",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-09-03",
@@ -5391,7 +5391,7 @@
     {
       "bill_number": "H.J.Res. 105",
       "bill_id": "119-hjres-105",
-      "one_liner": "Cancel a Bureau of Land Management rule limiting oil, gas, and coal development in North Dakota",
+      "one_liner": "Cancel a 2025 BLM land plan limiting oil, gas, and coal activity in North Dakota",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-09-03",
@@ -6799,7 +6799,7 @@
     {
       "bill_number": "S.J.Res. 31",
       "bill_id": "119-sjres-31",
-      "one_liner": "Cancel an EPA rule requiring some factories to keep following stricter pollution limits",
+      "one_liner": "Cancel an EPA rule keeping tighter pollution limits on some factories that switched categories",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-05-22",
@@ -6911,7 +6911,7 @@
     {
       "bill_number": "S.J.Res. 13",
       "bill_id": "119-sjres-13",
-      "one_liner": "Bring back automatic approvals for some bank mergers",
+      "one_liner": "Bring back automatic approvals and simplified forms for some bank mergers",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-05-20",
@@ -7231,7 +7231,7 @@
     {
       "bill_number": "H.J.Res. 78",
       "bill_id": "119-hjres-78",
-      "one_liner": "Cancel protection for longfin smelt fish in San Francisco Bay",
+      "one_liner": "Remove endangered species protection for a Bay-Delta smelt fish population",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2025-05-01",
@@ -7247,7 +7247,7 @@
     {
       "bill_number": "H.J.Res. 88",
       "bill_id": "119-hjres-88",
-      "one_liner": "Cancel EPA approval for California to set its own car pollution rules",
+      "one_liner": "Cancel an EPA decision letting California set its own car pollution rules",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2025-05-01",
@@ -7263,7 +7263,7 @@
     {
       "bill_number": "H.J.Res. 87",
       "bill_id": "119-hjres-87",
-      "one_liner": "Cancel an EPA rule letting California set its own emission standards for heavy-duty vehicles",
+      "one_liner": "Cancel the EPA's permission for California to use its own heavy-duty truck emission rules",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-30",
@@ -7279,7 +7279,7 @@
     {
       "bill_number": "H.J.Res. 89",
       "bill_id": "119-hjres-89",
-      "one_liner": "Cancel an EPA rule letting California set pollution limits for trucks",
+      "one_liner": "Cancel an EPA waiver letting California set its own pollution limits on heavy-duty trucks",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-30",
@@ -7375,7 +7375,7 @@
     {
       "bill_number": "H.J.Res. 60",
       "bill_id": "119-hjres-60",
-      "one_liner": "Cancel a National Park Service rule limiting off-road vehicles at Glen Canyon",
+      "one_liner": "Cancel a rule limiting off-road vehicle access in Glen Canyon National Recreation Area",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-29",
@@ -7503,7 +7503,7 @@
     {
       "bill_number": "S.J.Res. 28",
       "bill_id": "119-sjres-28",
-      "one_liner": "Cancel a rule letting government check on large payment apps",
+      "one_liner": "Remove CFPB oversight from large digital payment apps",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-09",
@@ -7519,7 +7519,7 @@
     {
       "bill_number": "S.J.Res. 18",
       "bill_id": "119-sjres-18",
-      "one_liner": "Cancel a rule capping overdraft fees at $5 for large banks",
+      "one_liner": "Cancel a rule that would have capped overdraft fees at $5 at large banks",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-09",
@@ -7727,7 +7727,7 @@
     {
       "bill_number": "H.J.Res. 24",
       "bill_id": "119-hjres-24",
-      "one_liner": "Cancel energy efficiency standards for walk-in coolers and freezers",
+      "one_liner": "Cancel a 2024 Department of Energy energy efficiency rule for walk-in coolers and freezers",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-03-27",
@@ -7743,7 +7743,7 @@
     {
       "bill_number": "H.J.Res. 75",
       "bill_id": "119-hjres-75",
-      "one_liner": "Cancel a Department of Energy rule setting energy standards for commercial refrigerators and freezers",
+      "one_liner": "Cancel a 2025 rule setting energy standards for commercial refrigerators and freezers",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-03-27",
@@ -7999,7 +7999,7 @@
     {
       "bill_number": "H.J.Res. 25",
       "bill_id": "119-hjres-25",
-      "one_liner": "Cancel an IRS rule requiring crypto brokers to report sales to the government",
+      "one_liner": "Cancel an IRS rule requiring crypto brokers to report decentralized finance sales",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-11",
@@ -8063,7 +8063,7 @@
     {
       "bill_number": "S.J.Res. 11",
       "bill_id": "119-sjres-11",
-      "one_liner": "Cancel rule requiring oil companies to report on historical artifacts before offshore drilling",
+      "one_liner": "Cancel a rule requiring offshore oil and gas companies to report underwater archaeological sites",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-03-06",
@@ -8095,7 +8095,7 @@
     {
       "bill_number": "H.J.Res. 61",
       "bill_id": "119-hjres-61",
-      "one_liner": "Cancel an EPA rule setting air pollution limits for rubber tire factories",
+      "one_liner": "Cancel an EPA rule limiting toxic air pollution from rubber tire factories",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-03-05",
@@ -8111,7 +8111,7 @@
     {
       "bill_number": "H.J.Res. 42",
       "bill_id": "119-hjres-42",
-      "one_liner": "Cancel a Department of Energy rule on appliance energy efficiency requirements",
+      "one_liner": "Cancel a 2024 rule changing how appliance makers must report and label energy use",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-03-05",
@@ -8207,7 +8207,7 @@
     {
       "bill_number": "H.J.Res. 20",
       "bill_id": "119-hjres-20",
-      "one_liner": "Cancel a Department of Energy rule on gas water heater energy use",
+      "one_liner": "Cancel a rule setting energy efficiency standards for gas-fired tankless water heaters",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-02-27",
@@ -8239,7 +8239,7 @@
     {
       "bill_number": "H.J.Res. 35",
       "bill_id": "119-hjres-35",
-      "one_liner": "Cancel an EPA rule charging fees for methane emissions from oil and gas companies",
+      "one_liner": "Cancel an EPA rule setting up how oil and gas companies handle methane fee requirements",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-02-26",
