@@ -1793,7 +1793,7 @@
     {
       "bill_number": "H.J.Res. 139",
       "bill_id": "119-hjres-139",
-      "one_liner": "Add a rule to the Constitution requiring the federal government to balance its budget",
+      "one_liner": "Add a balanced budget requirement to the U.S. Constitution",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-03-18",
@@ -2225,7 +2225,7 @@
     {
       "bill_number": "H.J.Res. 72",
       "bill_id": "119-hjres-72",
-      "one_liner": "Relating to a national emergency by the President on February 1, 2025.",
+      "one_liner": "End the national immigration emergency the President declared on February 1, 2025",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-02-11",
@@ -2233,7 +2233,7 @@
       "policy_area": "Immigration",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 65
@@ -2401,7 +2401,7 @@
     {
       "bill_number": "H.J.Res. 142",
       "bill_id": "119-hjres-142",
-      "one_liner": "Cancel DC's tax law to keep federal tax cuts",
+      "one_liner": "Cancel a DC tax law and bring back federal tax rules for DC residents",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-02-04",
@@ -2721,7 +2721,7 @@
     {
       "bill_number": "H.J.Res. 140",
       "bill_id": "119-hjres-140",
-      "one_liner": "Allow mineral and geothermal leasing on 225,504 acres in Minnesota",
+      "one_liner": "Reopen 225,504 acres of Minnesota forest land to mining and energy leasing",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-01-21",
@@ -4385,7 +4385,7 @@
     {
       "bill_number": "H.J.Res. 130",
       "bill_id": "119-hjres-130",
-      "one_liner": "Cancel a rule that stopped coal leasing in Wyoming's Buffalo Field Office",
+      "one_liner": "Bring back coal mining permits on federal land in Wyoming's Buffalo Field Office",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-11-18",
@@ -4401,7 +4401,7 @@
     {
       "bill_number": "H.J.Res. 131",
       "bill_id": "119-hjres-131",
-      "one_liner": "Cancel a rule that limited oil drilling to 400,000 acres in an Alaska wildlife refuge",
+      "one_liner": "Cancel a 2024 rule limiting oil and gas leasing in the Arctic National Wildlife Refuge",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-11-18",
@@ -4417,7 +4417,7 @@
     {
       "bill_number": "S.J.Res. 80",
       "bill_id": "119-sjres-80",
-      "one_liner": "Open more Alaska land to oil and gas drilling",
+      "one_liner": "Reopen about half of Alaska's National Petroleum Reserve to oil and gas drilling",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-11-18",
@@ -4801,7 +4801,7 @@
     {
       "bill_number": "H.J.Res. 117",
       "bill_id": "119-hjres-117",
-      "one_liner": "End the national emergency declared on July 30, 2025",
+      "one_liner": "Take Congressional action on the national emergency the President declared July 30, 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-09-15",
@@ -4809,7 +4809,7 @@
       "policy_area": "Emergency Management",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "against",
+      "direction": "neutral",
       "congress": 119,
       "session": 1,
       "vote_number": 265
@@ -5361,7 +5361,7 @@
     {
       "bill_number": "H.J.Res. 104",
       "bill_id": "119-hjres-104",
-      "one_liner": "Cancel a rule that blocks coal leasing on 1.7 million acres in Montana",
+      "one_liner": "Cancel a rule that blocked coal leasing on 1.7 million acres in Montana",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-09-03",
@@ -5377,7 +5377,7 @@
     {
       "bill_number": "H.J.Res. 106",
       "bill_id": "119-hjres-106",
-      "one_liner": "Cancel a Bureau of Land Management rule covering 3.6 million acres in Alaska",
+      "one_liner": "Remove protected status from 21 areas covering 3.6 million acres in Alaska's Central Yukon",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-09-03",
@@ -5393,7 +5393,7 @@
     {
       "bill_number": "H.J.Res. 105",
       "bill_id": "119-hjres-105",
-      "one_liner": "Cancel a Bureau of Land Management rule limiting oil, gas, and coal development in North Dakota",
+      "one_liner": "Cancel a 2025 BLM land plan limiting oil, gas, and coal activity in North Dakota",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-09-03",
@@ -6801,7 +6801,7 @@
     {
       "bill_number": "S.J.Res. 31",
       "bill_id": "119-sjres-31",
-      "one_liner": "Cancel an EPA rule requiring some factories to keep following stricter pollution limits",
+      "one_liner": "Cancel an EPA rule keeping tighter pollution limits on some factories that switched categories",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-05-22",
@@ -6913,7 +6913,7 @@
     {
       "bill_number": "S.J.Res. 13",
       "bill_id": "119-sjres-13",
-      "one_liner": "Bring back automatic approvals for some bank mergers",
+      "one_liner": "Bring back automatic approvals and simplified forms for some bank mergers",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-05-20",
@@ -7233,7 +7233,7 @@
     {
       "bill_number": "H.J.Res. 78",
       "bill_id": "119-hjres-78",
-      "one_liner": "Cancel protection for longfin smelt fish in San Francisco Bay",
+      "one_liner": "Remove endangered species protection for a Bay-Delta smelt fish population",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-05-01",
@@ -7249,7 +7249,7 @@
     {
       "bill_number": "H.J.Res. 88",
       "bill_id": "119-hjres-88",
-      "one_liner": "Cancel EPA approval for California to set its own car pollution rules",
+      "one_liner": "Cancel an EPA decision letting California set its own car pollution rules",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-05-01",
@@ -7265,7 +7265,7 @@
     {
       "bill_number": "H.J.Res. 87",
       "bill_id": "119-hjres-87",
-      "one_liner": "Cancel an EPA rule letting California set its own emission standards for heavy-duty vehicles",
+      "one_liner": "Cancel the EPA's permission for California to use its own heavy-duty truck emission rules",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-04-30",
@@ -7281,7 +7281,7 @@
     {
       "bill_number": "H.J.Res. 89",
       "bill_id": "119-hjres-89",
-      "one_liner": "Cancel an EPA rule letting California set pollution limits for trucks",
+      "one_liner": "Cancel an EPA waiver letting California set its own pollution limits on heavy-duty trucks",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-04-30",
@@ -7377,7 +7377,7 @@
     {
       "bill_number": "H.J.Res. 60",
       "bill_id": "119-hjres-60",
-      "one_liner": "Cancel a National Park Service rule limiting off-road vehicles at Glen Canyon",
+      "one_liner": "Cancel a rule limiting off-road vehicle access in Glen Canyon National Recreation Area",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-04-29",
@@ -7505,7 +7505,7 @@
     {
       "bill_number": "S.J.Res. 28",
       "bill_id": "119-sjres-28",
-      "one_liner": "Cancel a rule letting government check on large payment apps",
+      "one_liner": "Remove CFPB oversight from large digital payment apps",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-04-09",
@@ -7521,7 +7521,7 @@
     {
       "bill_number": "S.J.Res. 18",
       "bill_id": "119-sjres-18",
-      "one_liner": "Cancel a rule capping overdraft fees at $5 for large banks",
+      "one_liner": "Cancel a rule that would have capped overdraft fees at $5 at large banks",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-04-09",
@@ -7729,7 +7729,7 @@
     {
       "bill_number": "H.J.Res. 24",
       "bill_id": "119-hjres-24",
-      "one_liner": "Cancel energy efficiency standards for walk-in coolers and freezers",
+      "one_liner": "Cancel a 2024 Department of Energy energy efficiency rule for walk-in coolers and freezers",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2025-03-27",
@@ -7745,7 +7745,7 @@
     {
       "bill_number": "H.J.Res. 75",
       "bill_id": "119-hjres-75",
-      "one_liner": "Cancel a Department of Energy rule setting energy standards for commercial refrigerators and freezers",
+      "one_liner": "Cancel a 2025 rule setting energy standards for commercial refrigerators and freezers",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-27",
@@ -8001,7 +8001,7 @@
     {
       "bill_number": "H.J.Res. 25",
       "bill_id": "119-hjres-25",
-      "one_liner": "Cancel an IRS rule requiring crypto brokers to report sales to the government",
+      "one_liner": "Cancel an IRS rule requiring crypto brokers to report decentralized finance sales",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-11",
@@ -8065,7 +8065,7 @@
     {
       "bill_number": "S.J.Res. 11",
       "bill_id": "119-sjres-11",
-      "one_liner": "Cancel rule requiring oil companies to report on historical artifacts before offshore drilling",
+      "one_liner": "Cancel a rule requiring offshore oil and gas companies to report underwater archaeological sites",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-06",
@@ -8097,7 +8097,7 @@
     {
       "bill_number": "H.J.Res. 61",
       "bill_id": "119-hjres-61",
-      "one_liner": "Cancel an EPA rule setting air pollution limits for rubber tire factories",
+      "one_liner": "Cancel an EPA rule limiting toxic air pollution from rubber tire factories",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-05",
@@ -8113,7 +8113,7 @@
     {
       "bill_number": "H.J.Res. 42",
       "bill_id": "119-hjres-42",
-      "one_liner": "Cancel a Department of Energy rule on appliance energy efficiency requirements",
+      "one_liner": "Cancel a 2024 rule changing how appliance makers must report and label energy use",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-05",
@@ -8209,7 +8209,7 @@
     {
       "bill_number": "H.J.Res. 20",
       "bill_id": "119-hjres-20",
-      "one_liner": "Cancel a Department of Energy rule on gas water heater energy use",
+      "one_liner": "Cancel a rule setting energy efficiency standards for gas-fired tankless water heaters",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-02-27",
@@ -8241,7 +8241,7 @@
     {
       "bill_number": "H.J.Res. 35",
       "bill_id": "119-hjres-35",
-      "one_liner": "Cancel an EPA rule charging fees for methane emissions from oil and gas companies",
+      "one_liner": "Cancel an EPA rule setting up how oil and gas companies handle methane fee requirements",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-02-26",
@@ -10081,7 +10081,7 @@
     {
       "bill_number": "H.J.Res. 136",
       "bill_id": "118-hjres-136",
-      "one_liner": "Cancel EPA pollution rules for cars and trucks made in 2027 and later",
+      "one_liner": "Cancel the EPA's 2027 pollution and battery standards for cars, trucks, and SUVs",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-09-20",
@@ -11489,7 +11489,7 @@
     {
       "bill_number": "H.J.Res. 165",
       "bill_id": "118-hjres-165",
-      "one_liner": "Cancel a 2024 federal rule on sex discrimination in schools",
+      "one_liner": "Cancel a 2024 Education Department rule on sex discrimination in federally funded schools",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-07-11",
@@ -11505,7 +11505,7 @@
     {
       "bill_number": "H.J.Res. 109",
       "bill_id": "118-hjres-109",
-      "one_liner": "Cancel an SEC rule requiring companies to report how they handle customer cryptocurrency",
+      "one_liner": "Cancel an SEC accounting rule for companies that hold cryptocurrency for customers",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-07-11",
@@ -13985,7 +13985,7 @@
     {
       "bill_number": "H.J.Res. 109",
       "bill_id": "118-hjres-109",
-      "one_liner": "Cancel an SEC rule requiring companies to report how they handle customer cryptocurrency",
+      "one_liner": "Cancel an SEC accounting rule for companies that hold cryptocurrency for customers",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-05-08",
@@ -14193,7 +14193,7 @@
     {
       "bill_number": "H.J.Res. 98",
       "bill_id": "118-hjres-98",
-      "one_liner": "Cancel a labor board rule about when two companies are both employers",
+      "one_liner": "Cancel a federal labor board rule that changed when two companies count as joint employers",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-05-07",
@@ -16929,7 +16929,7 @@
     {
       "bill_number": "H.J.Res. 98",
       "bill_id": "118-hjres-98",
-      "one_liner": "Cancel a labor board rule about when two companies are both employers",
+      "one_liner": "Cancel a federal labor board rule that changed when two companies count as joint employers",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-01-12",
@@ -17009,7 +17009,7 @@
     {
       "bill_number": "S.J.Res. 38",
       "bill_id": "118-sjres-38",
-      "one_liner": "Cancel a rule that let companies use foreign parts in electric vehicle chargers",
+      "one_liner": "Cancel a rule that waived Buy America requirements for electric vehicle chargers",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-01-11",
@@ -17017,7 +17017,7 @@
       "policy_area": "Transportation and Public Works",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "in_favor",
+      "direction": "against",
       "congress": 118,
       "session": 2,
       "vote_number": 8
@@ -19985,7 +19985,7 @@
     {
       "bill_number": "S.J.Res. 9",
       "bill_id": "118-sjres-9",
-      "one_liner": "Cancel government protections for lesser prairie-chickens under the Endangered Species Act",
+      "one_liner": "Remove federal protections for the lesser prairie-chicken",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-07-27",
@@ -20001,7 +20001,7 @@
     {
       "bill_number": "S.J.Res. 24",
       "bill_id": "118-sjres-24",
-      "one_liner": "Cancel a rule that made the northern long-eared bat an endangered species",
+      "one_liner": "Cancel a 2022 rule that changed the northern long-eared bat to endangered status",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-07-27",
@@ -20689,7 +20689,7 @@
     {
       "bill_number": "H.J.Res. 68",
       "bill_id": "118-hjres-68",
-      "one_liner": "End a 2006 national emergency about Congo conflict",
+      "one_liner": "End a 2006 emergency order freezing assets tied to the Congo conflict",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2023-07-18",
@@ -20705,7 +20705,7 @@
     {
       "bill_number": "H.J.Res. 70",
       "bill_id": "118-hjres-70",
-      "one_liner": "End the national emergency about Libya from 2011",
+      "one_liner": "End the national emergency the U.S. declared about Libya in 2011",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2023-07-18",
@@ -20721,7 +20721,7 @@
     {
       "bill_number": "H.J.Res. 74",
       "bill_id": "118-hjres-74",
-      "one_liner": "End a national emergency from 2012 that freezes money of people threatening Yemen",
+      "one_liner": "End a national emergency that froze assets of people threatening Yemen's stability",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2023-07-18",
@@ -20737,7 +20737,7 @@
     {
       "bill_number": "H.J.Res. 71",
       "bill_id": "118-hjres-71",
-      "one_liner": "End the Iraq national emergency from 2003",
+      "one_liner": "End the national emergency declared for Iraq in 2003",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2023-07-18",
@@ -20753,7 +20753,7 @@
     {
       "bill_number": "H.J.Res. 79",
       "bill_id": "118-hjres-79",
-      "one_liner": "End a 2004 emergency rule that blocks trade and property dealing with Syria",
+      "one_liner": "End a 2004 national emergency that blocked money and exports to Syria",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2023-07-18",
@@ -21585,7 +21585,7 @@
     {
       "bill_number": "H.J.Res. 45",
       "bill_id": "118-hjres-45",
-      "one_liner": "End federal student loan payment suspensions and debt forgiveness",
+      "one_liner": "Cancel a federal rule that paused student loan payments and erased some debt",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-06-21",
@@ -22017,7 +22017,7 @@
     {
       "bill_number": "H.J.Res. 44",
       "bill_id": "118-hjres-44",
-      "one_liner": "Cancel a rule about when guns with stabilizing braces must be registered",
+      "one_liner": "Stop treating guns with stabilizing braces as rifles under the National Firearms Act",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-06-13",
@@ -22033,7 +22033,7 @@
     {
       "bill_number": "H.J.Res. 42",
       "bill_id": "118-hjres-42",
-      "one_liner": "Cancel police reforms in Washington DC from 2022",
+      "one_liner": "Cancel DC rules on police neck restraints, body cameras, and discipline records",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-06-13",
@@ -22305,7 +22305,7 @@
     {
       "bill_number": "H.J.Res. 39",
       "bill_id": "118-hjres-39",
-      "one_liner": "Cancel a rule that stopped tariffs on solar panels from four Asian countries",
+      "one_liner": "Cancel a rule that put tariffs on hold for solar panels from four countries",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-05-24",
@@ -22321,7 +22321,7 @@
     {
       "bill_number": "H.J.Res. 45",
       "bill_id": "118-hjres-45",
-      "one_liner": "End federal student loan payment suspensions and debt forgiveness",
+      "one_liner": "Cancel a federal rule that paused student loan payments and erased some debt",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-05-24",
@@ -22385,7 +22385,7 @@
     {
       "bill_number": "S.J.Res. 11",
       "bill_id": "118-sjres-11",
-      "one_liner": "Cancel an EPA rule setting emissions limits for heavy-duty trucks and vehicles",
+      "one_liner": "Cancel an EPA rule setting pollution limits for heavy-duty trucks and large vehicles",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-05-23",
@@ -22833,7 +22833,7 @@
     {
       "bill_number": "H.J.Res. 39",
       "bill_id": "118-hjres-39",
-      "one_liner": "Cancel a rule that stopped tariffs on solar panels from four Asian countries",
+      "one_liner": "Cancel a rule that put tariffs on hold for solar panels from four countries",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-04-28",
@@ -23041,7 +23041,7 @@
     {
       "bill_number": "H.J.Res. 42",
       "bill_id": "118-hjres-42",
-      "one_liner": "Cancel police reforms in Washington DC from 2022",
+      "one_liner": "Cancel DC rules on police neck restraints, body cameras, and discipline records",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2023-04-19",
@@ -23105,7 +23105,7 @@
     {
       "bill_number": "H.J.Res. 27",
       "bill_id": "118-hjres-27",
-      "one_liner": "Cancel a rule that expanded federal control over waterways and wetlands",
+      "one_liner": "Cancel a 2023 rule that expanded federal oversight of rivers, streams, and wetlands",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-04-18",
@@ -23665,7 +23665,7 @@
     {
       "bill_number": "H.J.Res. 30",
       "bill_id": "118-hjres-30",
-      "one_liner": "Cancel a rule letting retirement plan managers consider climate factors in investments",
+      "one_liner": "Cancel a rule letting retirement fund managers consider climate factors when investing",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-03-23",
@@ -23825,7 +23825,7 @@
     {
       "bill_number": "H.J.Res. 27",
       "bill_id": "118-hjres-27",
-      "one_liner": "Cancel a rule that expanded federal control over waterways and wetlands",
+      "one_liner": "Cancel a 2023 rule that expanded federal oversight of rivers, streams, and wetlands",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-03-09",
@@ -24113,7 +24113,7 @@
     {
       "bill_number": "H.J.Res. 30",
       "bill_id": "118-hjres-30",
-      "one_liner": "Cancel a rule letting retirement plan managers consider climate factors in investments",
+      "one_liner": "Cancel a rule letting retirement fund managers consider climate factors when investing",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-02-28",
@@ -24177,7 +24177,7 @@
     {
       "bill_number": "H.J.Res. 24",
       "bill_id": "118-hjres-24",
-      "one_liner": "Cancel a DC law that lets non-citizens vote in local elections",
+      "one_liner": "Cancel a DC law that let non-citizens vote in local elections",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-02-09",
@@ -24193,7 +24193,7 @@
     {
       "bill_number": "H.J.Res. 26",
       "bill_id": "118-hjres-26",
-      "one_liner": "Cancel DC's changes to criminal laws and sentencing rules",
+      "one_liner": "Cancel a DC law that changed criminal definitions, sentencing rules, and jury trial rights",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-02-09",
@@ -24449,7 +24449,7 @@
     {
       "bill_number": "H.J.Res. 7",
       "bill_id": "118-hjres-7",
-      "one_liner": "End the COVID-19 national emergency declared in March 2020",
+      "one_liner": "End the national COVID-19 emergency declared on March 13, 2020",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-02-01",
@@ -27009,7 +27009,7 @@
     {
       "bill_number": "H.J.Res. 100",
       "bill_id": "117-hjres-100",
-      "one_liner": "Require railroads and unions to accept negotiated contracts without worker votes",
+      "one_liner": "Force railroads and their workers to accept unratified labor agreements",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2022-11-30",
@@ -27017,7 +27017,7 @@
       "policy_area": "Labor and Employment",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "in_favor",
       "congress": 117,
       "session": 2,
       "vote_number": 490
@@ -34849,7 +34849,7 @@
     {
       "bill_number": "S.J.Res. 33",
       "bill_id": "117-sjres-33",
-      "one_liner": "Increase the debt limit by $2.5 trillion",
+      "one_liner": "Raise the U.S. debt limit by $2.5 trillion",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2021-12-15",
@@ -39073,7 +39073,7 @@
     {
       "bill_number": "S.J.Res. 14",
       "bill_id": "117-sjres-14",
-      "one_liner": "Cancel a 2020 EPA rule about oil and gas emissions",
+      "one_liner": "Bring back EPA methane emission limits on oil and gas operations",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2021-06-25",
@@ -39089,7 +39089,7 @@
     {
       "bill_number": "S.J.Res. 15",
       "bill_id": "117-sjres-15",
-      "one_liner": "Cancel a 2020 rule about when banks count as lenders",
+      "one_liner": "Cancel a 2020 rule defining when a bank counts as a lender",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2021-06-24",
@@ -39121,7 +39121,7 @@
     {
       "bill_number": "S.J.Res. 13",
       "bill_id": "117-sjres-13",
-      "one_liner": "Cancel an EEOC rule about sharing discrimination case details with employers",
+      "one_liner": "Cancel an EEOC rule requiring the agency to share its reasoning with employers before settling",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2021-06-24",
@@ -40609,7 +40609,7 @@
     {
       "bill_number": "H.J.Res. 17",
       "bill_id": "117-hjres-17",
-      "one_liner": "Remove the deadline for states to approve the Equal Rights Amendment",
+      "one_liner": "Remove the deadline for states to ratify the Equal Rights Amendment",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2021-03-17",
