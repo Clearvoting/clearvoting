@@ -5,9 +5,9 @@
     119
   ],
   "stats": {
-    "total_votes": 1628,
+    "total_votes": 1629,
     "yea_count": 1128,
-    "nay_count": 451,
+    "nay_count": 452,
     "not_voting_count": 21,
     "participation_rate": 97.0
   },
@@ -9052,6 +9052,22 @@
       "congress": 119,
       "session": 1,
       "vote_number": 5
+    },
+    {
+      "bill_number": "H.R. 7213",
+      "bill_id": "118-hr-7213",
+      "one_liner": "Keep funding autism research, education, and tracking programs through 2029",
+      "has_plain_summary": true,
+      "vote": "Nay",
+      "date": "2024-12-16",
+      "result": "Passed",
+      "policy_area": "Health",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": "in_favor",
+      "congress": 118,
+      "session": 2,
+      "vote_number": 502
     },
     {
       "bill_number": "S. 4199",
