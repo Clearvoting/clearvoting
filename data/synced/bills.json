@@ -131673,6 +131673,246 @@
       "updateDate": "2025-12-12T23:05:19Z",
       "updateDateIncludingText": "2025-12-13T03:18:27Z",
       "summaries": []
+    },
+    {
+      "actions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/172/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/172/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-04-13",
+      "latestAction": {
+        "actionDate": "2026-06-16",
+        "text": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 47 - 48. Record Vote Number: 174."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/172",
+      "number": "172",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/172/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "W000790",
+          "firstName": "Raphael",
+          "fullName": "Sen. Warnock, Raphael G. [D-GA]",
+          "isByRequest": "N",
+          "lastName": "Warnock",
+          "party": "D",
+          "state": "GA",
+          "url": "https://api.congress.gov/v3/member/W000790?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/172/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-13",
+          "actionDesc": "Introduced in Senate",
+          "text": "<p>This joint resolution directs the President to remove U.S. Armed Forces from hostilities within or against Iran unless a declaration of war or authorization to use military force for such purpose has been enacted.</p><p>The resolution specifies that it shall not be construed to prevent the United States from defending against an attack on the United States or its personnel or facilities in other nations.</p>",
+          "updateDate": "2026-05-06T14:57:03Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/172/text?format=json"
+      },
+      "title": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/172/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-06-17T10:56:29Z",
+      "updateDateIncludingText": "2026-06-17T10:56:29Z"
+    },
+    {
+      "actions": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/190/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/190/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 1,
+        "countIncludingWithdrawnCosponsors": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/190/cosponsors?format=json"
+      },
+      "introducedDate": "2026-04-30",
+      "latestAction": {
+        "actionDate": "2026-06-16",
+        "text": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 46 - 48. Record Vote Number: 173. (consideration: CR S2816)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/190",
+      "number": "190",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Immigration"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "K000384",
+          "firstName": "Timothy",
+          "fullName": "Sen. Kaine, Tim [D-VA]",
+          "isByRequest": "N",
+          "lastName": "Kaine",
+          "middleName": "M.",
+          "party": "D",
+          "state": "VA",
+          "url": "https://api.congress.gov/v3/member/K000384?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/190/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/190/text?format=json"
+      },
+      "title": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Executive Office for Immigration Review relating to \"Appellate Procedures for the Board of Immigration Appeals\".",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/190/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-06-17T16:46:40Z",
+      "updateDateIncludingText": "2026-06-17T16:46:40Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/196/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/196/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 8,
+        "countIncludingWithdrawnCosponsors": 8,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/196/cosponsors?format=json"
+      },
+      "introducedDate": "2026-06-04",
+      "latestAction": {
+        "actionDate": "2026-06-24",
+        "text": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 45 - 52. Record Vote Number: 190. (CR S3193)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/196",
+      "number": "196",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Education"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/196/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "M001176",
+          "firstName": "Jeff",
+          "fullName": "Sen. Merkley, Jeff [D-OR]",
+          "isByRequest": "N",
+          "lastName": "Merkley",
+          "party": "D",
+          "state": "OR",
+          "url": "https://api.congress.gov/v3/member/M001176?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/196/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/196/text?format=json"
+      },
+      "title": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Education relating to \"Reimagining and Improving Student Education-Federal Student Loan Program Final Regulations\".",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/196/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-06-26T17:11:46Z",
+      "updateDateIncludingText": "2026-06-26T17:11:46Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/sres/616/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sres/616/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 2,
+        "countIncludingWithdrawnCosponsors": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sres/616/cosponsors?format=json"
+      },
+      "introducedDate": "2026-02-26",
+      "latestAction": {
+        "actionDate": "2026-06-17",
+        "text": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 44 - 50. Record Vote Number: 179."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-resolution/616",
+      "number": "616",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "C001113",
+          "firstName": "Catherine",
+          "fullName": "Sen. Cortez Masto, Catherine [D-NV]",
+          "isByRequest": "N",
+          "lastName": "Cortez Masto",
+          "party": "D",
+          "state": "NV",
+          "url": "https://api.congress.gov/v3/member/C001113?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sres/616/subjects?format=json"
+      },
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sres/616/text?format=json"
+      },
+      "title": "A resolution requesting information on Honduras's human rights practices pursuant to section 502B(c) of the Foreign Assistance Act of 1961.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sres/616/titles?format=json"
+      },
+      "type": "SRES",
+      "updateDate": "2026-06-18T15:22:23Z",
+      "updateDateIncludingText": "2026-06-18T15:22:23Z",
+      "summaries": []
     }
   ]
 }
