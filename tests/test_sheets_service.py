@@ -53,3 +53,74 @@ def test_append_row_handles_api_error():
     assert svc.is_available is True
     result = svc.append_row(["2026-01-01", "test", "/", "home", "", ""])
     assert result is False
+
+
+# --- Named worksheet (notify signups tab) ---
+
+def _mock_gspread_env(mock_gspread, mock_sheet):
+    """Wire a mocked gspread client returning the given spreadsheet."""
+    mock_gc = MagicMock()
+    mock_gc.open_by_key.return_value = mock_sheet
+    mock_gspread.service_account_from_dict.return_value = mock_gc
+    mock_gspread.WorksheetNotFound = type("WorksheetNotFound", (Exception,), {})
+    return mock_gc
+
+
+@patch("app.services.sheets.gspread", create=True)
+def test_named_worksheet_used_when_exists(mock_gspread):
+    """worksheet_title selects the named tab instead of sheet1."""
+    mock_ws = MagicMock()
+    mock_ws.row_values.return_value = ["Timestamp"]  # header exists
+    mock_sheet = MagicMock()
+    mock_sheet.worksheet.return_value = mock_ws
+    _mock_gspread_env(mock_gspread, mock_sheet)
+
+    with patch.dict("sys.modules", {"gspread": mock_gspread}):
+        svc = SheetsService(
+            '{"type":"service_account"}', "sheet-123",
+            worksheet_title="Notify Signups",
+            headers=["Timestamp", "Email", "State"],
+        )
+
+    assert svc.is_available is True
+    mock_sheet.worksheet.assert_called_once_with("Notify Signups")
+    mock_sheet.add_worksheet.assert_not_called()
+
+
+@patch("app.services.sheets.gspread", create=True)
+def test_named_worksheet_created_when_missing(mock_gspread):
+    """Missing named tab is created and gets the custom header row."""
+    mock_ws = MagicMock()
+    mock_ws.row_values.return_value = []  # fresh worksheet, no header
+    mock_sheet = MagicMock()
+    mock_sheet.add_worksheet.return_value = mock_ws
+    _mock_gspread_env(mock_gspread, mock_sheet)
+    mock_sheet.worksheet.side_effect = mock_gspread.WorksheetNotFound()
+
+    with patch.dict("sys.modules", {"gspread": mock_gspread}):
+        svc = SheetsService(
+            '{"type":"service_account"}', "sheet-123",
+            worksheet_title="Notify Signups",
+            headers=["Timestamp", "Email", "State"],
+        )
+
+    assert svc.is_available is True
+    mock_sheet.add_worksheet.assert_called_once()
+    mock_ws.append_row.assert_called_once_with(["Timestamp", "Email", "State"])
+
+
+@patch("app.services.sheets.gspread", create=True)
+def test_default_still_uses_sheet1(mock_gspread):
+    """Without worksheet_title, behavior is unchanged: sheet1 + feedback headers."""
+    mock_ws = MagicMock()
+    mock_ws.row_values.return_value = []  # empty → headers inserted
+    mock_sheet = MagicMock()
+    mock_sheet.sheet1 = mock_ws
+    _mock_gspread_env(mock_gspread, mock_sheet)
+
+    with patch.dict("sys.modules", {"gspread": mock_gspread}):
+        svc = SheetsService('{"type":"service_account"}', "sheet-123")
+
+    assert svc.is_available is True
+    mock_sheet.worksheet.assert_not_called()
+    mock_ws.append_row.assert_called_once_with(SheetsService._HEADERS)
