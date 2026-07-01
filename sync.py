@@ -40,6 +40,7 @@ load_dotenv()
 
 from app.services.cache import CacheService
 from app.services.congress_api import CongressAPIClient
+from app.services.data_service import _parse_vote_date
 from app.services.senate_votes import SenateVoteService
 
 BASE_DIR = Path(__file__).parent
@@ -645,6 +646,13 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
             print("  Warning: ai_summaries.json is malformed — using raw titles")
             ai_summaries = {}
 
+    def _iso_vote_date(raw: str) -> str:
+        """Senate XML dates are display strings ("September 9, 2025,  06:46 PM")
+        which sort lexicographically, not chronologically. Store ISO 8601 so
+        plain string sorts are chronological; the UI formats at render time."""
+        parsed = _parse_vote_date(raw or "")
+        return parsed.isoformat() if parsed else (raw or "")
+
     def _get_one_liner(bill_ref: str | None, bill_info: dict, doc: str, congress: int = 119) -> str:
         if bill_ref:
             summary_key = f"{congress}-{bill_ref}"
@@ -725,7 +733,7 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                     "one_liner": _get_one_liner(bill_ref, bill_info, doc, congress=vote_congress),
                     "has_plain_summary": _has_plain_summary(bill_ref, congress=vote_congress),
                     "vote": matched.get("vote", ""),
-                    "date": vote.get("vote_date", ""),
+                    "date": _iso_vote_date(vote.get("vote_date", "")),
                     "result": vote.get("result", ""),
                     "policy_area": bill_info.get("policyArea", {}).get("name", ""),
                     "chamber": "Senate",
@@ -759,7 +767,7 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                     "one_liner": _get_one_liner(bill_ref, bill_info, doc, congress=vote_congress),
                     "has_plain_summary": _has_plain_summary(bill_ref, congress=vote_congress),
                     "vote": matched.get("vote", ""),
-                    "date": vote.get("vote_date", ""),
+                    "date": _iso_vote_date(vote.get("vote_date", "")),
                     "result": vote.get("result", ""),
                     "policy_area": bill_info.get("policyArea", {}).get("name", ""),
                     "chamber": "House",
@@ -781,6 +789,16 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
 
         congresses_seen = sorted(set(v.get("congress", 119) for v in member_vote_list if v.get("congress")))
 
+        # Scorecards are AI-generated in a separate step that needs an API key;
+        # a rebuild must carry them forward, not reset them.
+        out_path = member_votes_dir / f"{bioguide_id}.json"
+        existing_scorecard = []
+        if out_path.exists():
+            try:
+                existing_scorecard = json.loads(out_path.read_text()).get("scorecard", [])
+            except (json.JSONDecodeError, OSError):
+                pass
+
         record = {
             "member_id": bioguide_id,
             "congresses": congresses_seen if congresses_seen else [119],
@@ -791,11 +809,13 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
                 "not_voting_count": not_voting,
                 "participation_rate": participation,
             },
-            "scorecard": [],
-            "votes": sorted(member_vote_list, key=lambda v: v["date"], reverse=True),
+            "scorecard": existing_scorecard,
+            "votes": sorted(member_vote_list,
+                            key=lambda v: (v["date"], v.get("vote_number", 0)),
+                            reverse=True),
             "policy_areas": policy_areas,
         }
-        _atomic_write_json(member_votes_dir / f"{bioguide_id}.json", record)
+        _atomic_write_json(out_path, record)
         count += 1
 
     print(f"  Built voting records for {count} members")

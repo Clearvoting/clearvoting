@@ -10,6 +10,18 @@ const VOTE_COLORS = {
     absent: '#757575',
 };
 
+const VOTE_DATE_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
+
+// Vote dates are stored as ISO 8601; anything else (legacy display strings in
+// raw roll-call files) passes through unchanged.
+function formatVoteDate(raw) {
+    if (!raw) return '';
+    const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(raw);
+    if (!m) return raw;
+    return `${VOTE_DATE_MONTHS[parseInt(m[2], 10) - 1]} ${parseInt(m[3], 10)}, ${m[1]}`;
+}
+
 // --- SVG Pie Chart ---
 
 function renderVotePieChart(counts, size) {
