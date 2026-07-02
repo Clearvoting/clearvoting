@@ -1638,5 +1638,16 @@
       "Government Operations and Politics"
     ],
     "generated_at": "2026-06-14T00:25:02.608163+00:00"
+  },
+  "G000607": {
+    "narrative": "Rep. Gallagher voted most often on government operations and commerce issues, but neither area shows a clear in-favor or against direction in the area records. Finance votes also show no clear direction. Housing is the one area where a direction appears \u2014 he voted in favor of a bill to expand federal housing programs. He voted against a resolution that would have directed the president to remove U.S. forces from Lebanon.",
+    "top_areas": [
+      "Government Operations and Politics",
+      "Commerce",
+      "Finance and Financial Sector",
+      "International Affairs",
+      "Housing and Community Development"
+    ],
+    "generated_at": "2026-07-02T14:41:06.320839+00:00"
   }
 }

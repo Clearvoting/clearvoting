@@ -23,7 +23,8 @@
       "Excellent summary. Plain language throughout, accurate provisions, and correct direction for a Congressional Review Act disapproval resolution. Provision 2 is a strong pedagogical addition \u2014 most readers won't know what walk-in coolers and freezers are in a commercial context, and the grocery store and restaurant examples make it immediately concrete. Provision 3 accurately captures the rule's effect (higher efficiency standards than before), and Provision 4 correctly explains the real-world consequence of cancellation (revert to older standards). The one-liner is clean, starts with a verb, and lands at 14 words. Direction 'against' is correct per checklist guidance for CRA disapproval resolutions that cancel rules. 'Environment & Energy' is the right category for an energy efficiency standards rule. No sentences exceed 25 words, no legislative jargon, no editorial framing, no bias. All provisions map accurately to the official summary without omission or distortion.",
       "Excellent summary. Plain language throughout, accurate provisions, and correct 'against' direction for a CRA disapproval resolution. Provision 2 is a strong pedagogical addition \u2014 defining 'endangered' vs 'threatened' gives readers the context needed to understand why the status change mattered, without editorializing. Provision 4 accurately captures that canceling the 2022 rule restores the species-specific protections. One minor imprecision: the official summary refers to a single species-specific rule (a 4(d) rule under the ESA), not 'a set of rules' \u2014 consider 'a rule that applied only when the bat was listed as threatened' to stay precise. This is not materially misleading but worth correcting. The one-liner is 13 words, starts with a verb, no period. 'Environment & Energy' is the right category for a wildlife classification rule. No jargon, no bias, no sentences over 25 words.",
       "Strong, accurate summary of a foreign military sale disapproval resolution. Plain language throughout, correct direction, and helpful procedural context that makes the mechanism accessible to general readers. Two issues to address: (1) The issue_category 'Safety & Crime' is a poor fit \u2014 this is a foreign arms sale disapproval, not a domestic safety or crime matter. A reader filtering by that category would be misled about what this resolution does. A category like 'Foreign Policy' or 'Defense' (if available in the allowed list) would be accurate. (2) Provision 3 runs to approximately 26 words ('Under U.S. law, when the President plans to sell military equipment to a foreign government, Congress gets a window of time to vote to stop it') \u2014 just over the 25-word limit. Consider splitting: 'U.S. law gives Congress a window to block a planned sale of military equipment to a foreign government. Congress can vote to stop the sale before it goes through.' All four provisions are factually accurate and clearly written. Provisions 1 and 4 correctly scope the resolution to one specific sale, which is an important clarification given the political context. Direction 'against' is correct \u2014 this resolution would block a proposed sale. The one-liner is clean, starts with a verb, and lands at 12 words with no period.",
-      "Strong summary overall with accurate provisions and correct 'against' direction for a CRA disapproval resolution. Three issues to address: (1) Provision 2 runs to approximately 27 words \u2014 over the 25-word limit. Split it: 'That rule let schools and libraries in the E-Rate program buy discounted Wi-Fi hotspots at a reduced cost. They could lend those hotspots to students, staff, and library visitors for home use.' (2) 'E-Rate' appears three times without explanation. Most general readers will not know what it is. Introduce it with a brief description the first time: 'the E-Rate program \u2014 a government fund that helps schools and libraries pay for internet.' (3) The issue_category 'Cost of Living' is a poor fit \u2014 this bill is about an education internet subsidy program, not consumer prices or household expenses. A reader filtering by that category would be misled. Drop 'Cost of Living' and keep 'Education'; add 'Technology' or 'Infrastructure' if available in the allowed list. One minor factual gap: Provision 4 covers students and staff but omits library patrons, who are explicitly within scope of the original rule. Consider: 'E-Rate funds cannot be used to buy hotspots for students, staff, or library visitors to take home.'"
+      "Strong summary overall with accurate provisions and correct 'against' direction for a CRA disapproval resolution. Three issues to address: (1) Provision 2 runs to approximately 27 words \u2014 over the 25-word limit. Split it: 'That rule let schools and libraries in the E-Rate program buy discounted Wi-Fi hotspots at a reduced cost. They could lend those hotspots to students, staff, and library visitors for home use.' (2) 'E-Rate' appears three times without explanation. Most general readers will not know what it is. Introduce it with a brief description the first time: 'the E-Rate program \u2014 a government fund that helps schools and libraries pay for internet.' (3) The issue_category 'Cost of Living' is a poor fit \u2014 this bill is about an education internet subsidy program, not consumer prices or household expenses. A reader filtering by that category would be misled. Drop 'Cost of Living' and keep 'Education'; add 'Technology' or 'Infrastructure' if available in the allowed list. One minor factual gap: Provision 4 covers students and staff but omits library patrons, who are explicitly within scope of the original rule. Consider: 'E-Rate funds cannot be used to buy hotspots for students, staff, or library visitors to take home.'",
+      "Strong, readable summary that accurately captures a simple informational resolution. One issue to address: the issue_category 'Safety & Crime' is a weak fit \u2014 this is a foreign policy resolution requesting a diplomatic human rights report, not a domestic safety or crime matter. A reader filtering by that category would be misled about what this resolution does. A category like 'Foreign Policy' or 'Human Rights' (whichever is available in the allowed list) would be accurate. All provisions are clearly written, sentence lengths are within limits, and the plain-language explanation in Provision 2 ('a process... that lets Congress formally request this kind of report from the executive branch') does good work contextualizing the Foreign Assistance Act reference without requiring the reader to know what that law does. Direction 'neutral' is correct for a resolution that changes no law, policy, or spending. The three-provision count is at the minimum but appropriate for the scope of this resolution \u2014 there is little additional substance to add beyond what is covered."
     ],
     "batch_history": [
       {
@@ -268,6 +269,22 @@
           "F": 0
         },
         "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-07-02T14:27:41.010112+00:00",
+        "total": 29,
+        "passed": 28,
+        "failed": 1,
+        "grade_distribution": {
+          "A": 5,
+          "B": 23,
+          "C": 1,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": [
+          "119-hr-2913"
+        ]
       }
     ]
   },
@@ -284,7 +301,8 @@
       "Good narrative with excellent data alignment and neutral tone. The voting patterns are accurately represented for all policy areas. However, the narrative lacks specific numbers (vote counts, participation rate) which are required for structure and completeness. Consider adding the 97.5% participation rate and specific vote ratios like '54 of 86 armed forces votes' to strengthen the factual foundation.",
       "Accurate data alignment and neutral tone throughout. One sentence exceeds the 25-word limit: 'She voted in favor of directing the removal of U.S. forces from Lebanon and Iran, and voted for bills on housing, child care, and local banking access.' (27 words) \u2014 split into two shorter sentences. All dominant patterns are correctly identified and no bias or cherry-picking is present.",
       "Strong narrative with accurate data alignment and neutral tone. The voting patterns are correctly represented across all five policy areas, and the Iran/Lebanon contrast effectively illustrates the armed forces split (62 in_favor / 62 against) without cherry-picking. Two issues to fix: (1) Sentence 2 runs 27 words \u2014 break it at the em dash into two sentences. (2) Sentence 3 uses a semicolon to join two independent clauses, making it a single ~37-word sentence \u2014 split into two sentences for clarity. Consider adding specific per-issue vote ratios (e.g., 'voted against 77 of 113 economics bills') to strengthen the factual foundation.",
-      "Strong narrative with good data alignment and neutral tone. One sentence significantly exceeds the 25-word limit: 'His votes on armed forces and international affairs are split, with yes votes on measures like directing the removal of U.S. forces from hostilities with Iran, and no votes on military construction appropriations' runs 33 words \u2014 break it into two shorter sentences. The final sentence selectively highlights in-favor votes on veterans-related bills (banking access, housing, child care) without noting that the member also voted against veterans-related bills (e.g., Veterans Benefits Expansion Act appears in top_opposed), which leans toward cherry-picking; consider grounding it in a policy area pattern or omitting it. Adding specific per-issue vote counts (e.g., '68 of 124 non-neutral armed forces votes in favor') would strengthen factual grounding."
+      "Strong narrative with good data alignment and neutral tone. One sentence significantly exceeds the 25-word limit: 'His votes on armed forces and international affairs are split, with yes votes on measures like directing the removal of U.S. forces from hostilities with Iran, and no votes on military construction appropriations' runs 33 words \u2014 break it into two shorter sentences. The final sentence selectively highlights in-favor votes on veterans-related bills (banking access, housing, child care) without noting that the member also voted against veterans-related bills (e.g., Veterans Benefits Expansion Act appears in top_opposed), which leans toward cherry-picking; consider grounding it in a policy area pattern or omitting it. Adding specific per-issue vote counts (e.g., '68 of 124 non-neutral armed forces votes in favor') would strengthen factual grounding.",
+      "Excellent narrative that accurately represents a dataset dominated by neutral votes. The writing correctly avoids assigning direction to areas (Government Operations, Commerce, Finance) where all votes are classified neutral, and accurately cites the one directional housing vote and the Lebanon opposition. Language is plain and unbiased throughout. Minor note: the phrase 'in the area records' in sentence one is slightly awkward \u2014 consider 'based on the area data' \u2014 but it does not constitute a rules violation. Sentence one lands at exactly 25 words, the permitted maximum."
     ],
     "batch_history": [
       {
@@ -640,6 +658,20 @@
           "F": 0
         },
         "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-07-02T14:41:06.324196+00:00",
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 1,
+          "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
       }
     ]
   },
@@ -652,7 +684,8 @@
       "All six checks pass. Attribution is consistent across all six bullets. Arguments reference specific provisions: SAMHSA's role and grant-cancellation authority, joint SAMHSA/DOJ evaluation, the absence of a specified funding amount, and the federal vs. local oversight structure. Both sides are equally represented with three bullets each and neither is framed more favorably. Tone is fully neutral with no editorial language or value judgments. Sentences are clear and accessible at an appropriate reading level. Structure is valid JSON with properly formed arrays.",
       "Strong work. All six arguments are properly attributed, specific to named bill provisions (cross-state travel protection, interstate abortion pill shipment, DOJ civil enforcement, private right of action, out-of-state provider liability), and maintain neutral tone throughout. Both sides are equally represented with 3 bullets each. One minor note: critics' third bullet uses 'too broad' \u2014 a value characterization \u2014 but it is clearly inside 'Critics say' framing so it reads as the critics' own claim rather than editorial judgment. Reading level is accessible and no legislative jargon appears.",
       "Excellent work. All six arguments are properly attributed, reference specific provisions (December 2024 rule, Department of Energy authority, chapter 8 of title 5, walk-in coolers and freezers used in grocery stores and restaurants), and maintain neutral tone throughout. Both sides are equally represented with 3 bullets each. The supporters' third bullet is particularly strong in citing the specific legal mechanism (chapter 8 of title 5). Critics' arguments correctly reflect the bill's own language about 'maximum energy efficiency' and 'economically justified' \u2014 these are traceable to the official summary, not editorial additions. Reading level is accessible with no legislative jargon.",
-      "Excellent work. All six arguments are properly attributed, reference specific provisions from the bill and the canceled FCC rule (August 2024 rule, E-Rate program, hotspot lending to students and library patrons, acceptable use policies, educational use requirement, in-building vs. off-premises use), and maintain neutral tone throughout. Both sides are equally represented with 3 bullets each and neither is framed more favorably. The critics' second bullet is particularly strong in citing the safeguard mechanism (acceptable use policies requiring educational purposes) as a specific provision of the canceled rule. The term 'homework gap' in critics' first bullet is a widely recognized policy term and is properly attributed inside the critics' framing rather than used as editorial language. Reading level is accessible with no unexplained jargon."
+      "Excellent work. All six arguments are properly attributed, reference specific provisions from the bill and the canceled FCC rule (August 2024 rule, E-Rate program, hotspot lending to students and library patrons, acceptable use policies, educational use requirement, in-building vs. off-premises use), and maintain neutral tone throughout. Both sides are equally represented with 3 bullets each and neither is framed more favorably. The critics' second bullet is particularly strong in citing the safeguard mechanism (acceptable use policies requiring educational purposes) as a specific provision of the canceled rule. The term 'homework gap' in critics' first bullet is a widely recognized policy term and is properly attributed inside the critics' framing rather than used as editorial language. Reading level is accessible with no unexplained jargon.",
+      "Excellent work. All six arguments are properly attributed, reference specific provisions from the bill (temporary-to-permanent conversion, lifetime appointments, the 10 named states including Texas, California, Florida, Alabama, Kansas, and Hawaii, and the 2024 introduction timeline), and maintain neutral tone throughout. Both sides are equally represented with 3 bullets each and neither is framed more favorably. The critics' third bullet is particularly strong in identifying the downstream consequence of lifetime appointment power accruing to the sitting President \u2014 a traceable implication of the permanent conversion provision. The supporters' third bullet correctly reflects the bill's own logic about unfilled temporary seats. Reading level is accessible with no legislative jargon. Structure is valid JSON with properly formed arrays."
     ],
     "batch_history": [
       {
@@ -802,6 +835,20 @@
         "grade_distribution": {
           "A": 2,
           "B": 0,
+          "C": 0,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": []
+      },
+      {
+        "timestamp": "2026-07-02T14:34:59.690282+00:00",
+        "total": 29,
+        "passed": 29,
+        "failed": 0,
+        "grade_distribution": {
+          "A": 27,
+          "B": 2,
           "C": 0,
           "D": 0,
           "F": 0
