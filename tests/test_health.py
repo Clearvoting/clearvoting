@@ -43,7 +43,10 @@ async def test_health_check_record_counts():
     assert data["bills"] == 3
     assert data["ai_summaries"] == 1
     assert data["member_summaries"] == 1
-    assert data["summary_coverage"] == 0.33
+    # Coverage is intersected (bills that actually have a summary) and precise
+    # enough that 1521/1525 can never read as 1.0 again.
+    assert data["summary_coverage"] == 0.3333
+    assert data["bills_missing_summary"] == 2
 
 
 @pytest.mark.asyncio

@@ -164,5 +164,8 @@ async def test_loop_with_persistent_failure():
     )
 
     assert result.needs_review is True
-    assert result.best_grade.grade == "D"
+    # The deterministic structural gate now catches banned jargon with a
+    # code-level F before the AI grader runs (was the AI grader's D).
+    assert result.best_grade.grade == "F"
+    assert "jargon" in result.best_grade.feedback
     assert result.rounds == 3

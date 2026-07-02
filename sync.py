@@ -321,6 +321,62 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rat
     return len(all_bills)
 
 
+def run_validation(output_dir: Path) -> int:
+    """Validate data/synced; returns the failure count (0 = pass).
+
+    When the data lives in this git repo, the previously committed state is
+    loaded from HEAD so regressions (lost summaries, wiped scorecards) are
+    caught BEFORE they are committed."""
+    import subprocess
+    from app.services.data_validator import validate_synced_data
+
+    previous_summaries = None
+    previous_scorecard_members = None
+    try:
+        rel = output_dir.resolve().relative_to(BASE_DIR.resolve())
+    except ValueError:
+        rel = None
+    if rel is not None:
+        try:
+            blob = subprocess.run(
+                ["git", "show", f"HEAD:{rel}/ai_summaries.json"],
+                capture_output=True, text=True, cwd=BASE_DIR, timeout=60,
+            )
+            if blob.returncode == 0:
+                previous_summaries = json.loads(blob.stdout)
+            listing = subprocess.run(
+                ["git", "ls-tree", "-r", "--name-only", "HEAD", f"{rel}/member_votes"],
+                capture_output=True, text=True, cwd=BASE_DIR, timeout=60,
+            )
+            if listing.returncode == 0:
+                previous_scorecard_members = set()
+                for name in listing.stdout.split():
+                    show = subprocess.run(
+                        ["git", "show", f"HEAD:{name}"],
+                        capture_output=True, text=True, cwd=BASE_DIR, timeout=60,
+                    )
+                    if show.returncode == 0:
+                        try:
+                            if json.loads(show.stdout).get("scorecard"):
+                                previous_scorecard_members.add(Path(name).stem)
+                        except json.JSONDecodeError:
+                            pass
+        except Exception as e:
+            print(f"  (git comparison unavailable: {e})")
+
+    failures, warnings = validate_synced_data(
+        output_dir,
+        previous_summaries=previous_summaries,
+        previous_scorecard_members=previous_scorecard_members,
+    )
+    for w in warnings:
+        print(f"  WARNING: {w}")
+    for f in failures:
+        print(f"  FAILURE: {f}")
+    print(f"  Validation: {len(failures)} failure(s), {len(warnings)} warning(s)")
+    return len(failures)
+
+
 def _latest_official_summary(bill: dict) -> str:
     """Congress.gov orders summaries oldest-first, so [0] is the introduced
     version — which can describe provisions that never became law (e.g. the
@@ -1849,7 +1905,7 @@ async def main() -> None:
                         help="Clear and re-fetch all FEC donation data (fixes bad matches).")
     parser.add_argument("--step", type=str, default=None,
                         choices=["members", "senate-votes", "house-votes", "bills",
-                                 "member-votes", "metadata"],
+                                 "member-votes", "metadata", "validate"],
                         help="Run a single sync step (for CI incremental workflows).")
     parser.add_argument("--congress", type=int, default=None,
                         help="Specific congress number (use with --step senate-votes or house-votes).")
@@ -1903,6 +1959,11 @@ async def main() -> None:
         elif args.step == "member-votes":
             print("[step] Building member voting records...")
             await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
+
+        elif args.step == "validate":
+            print("[step] Validating synced data...")
+            if run_validation(SYNC_DIR):
+                sys.exit(1)
 
         elif args.step == "metadata":
             print("[step] Writing sync metadata...")

@@ -90,8 +90,15 @@ jobs:
         timeout-minutes: 5
         run: python sync.py --step member-votes
 
-      - name: Commit member votes
+      # Gate: a rebuild that wipes scorecards, loses summaries, or breaks
+      # date order must never be committed (July 2026 incidents).
+      - name: Validate member voting records
+        id: validate_member_votes
         if: always()
+        run: python sync.py --step validate
+
+      - name: Commit member votes
+        if: always() && steps.validate_member_votes.outcome == 'success'
         run: |
           git add data/synced/
           git diff --cached --quiet || (git commit -m "data: sync member votes [automated]" && git push)
@@ -100,8 +107,15 @@ jobs:
         if: always()
         run: python sync.py --step metadata
 
-      - name: Final commit
+      # Final gate: fails the workflow loudly (red run + notification) if any
+      # synced data is structurally bad, and blocks the final commit.
+      - name: Validate all synced data
+        id: validate_all
         if: always()
+        run: python sync.py --step validate
+
+      - name: Final commit
+        if: always() && steps.validate_all.outcome == 'success'
         run: |
           git add data/synced/
           git diff --cached --quiet || (git commit -m "data: weekly sync complete [automated]" && git push)

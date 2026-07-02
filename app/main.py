@@ -124,6 +124,13 @@ async def health_check() -> dict:
     # Record counts from the in-memory stores — a sync that wipes data shows up here
     bills = len(data_service._bills)
     ai_summaries = len(data_service._ai_summaries)
+    # Intersected coverage: bills that actually have a summary, precise to 4
+    # places so a near-miss (1521/1525) can never round up to a clean 1.0.
+    bill_keys = {
+        f"{b.get('congress')}-{str(b.get('type', '')).lower()}-{b.get('number')}"
+        for b in data_service._bills
+    }
+    covered = len(bill_keys & set(data_service._ai_summaries))
     return {
         "status": "ok",
         "version": "0.1.0",
@@ -132,7 +139,8 @@ async def health_check() -> dict:
         "bills": bills,
         "ai_summaries": ai_summaries,
         "member_summaries": len(data_service._member_summaries),
-        "summary_coverage": round(ai_summaries / bills, 2) if bills else 0,
+        "summary_coverage": round(covered / len(bill_keys), 4) if bill_keys else 0,
+        "bills_missing_summary": len(bill_keys) - covered,
     }
 
 

@@ -105,6 +105,24 @@ SUMMARY TO GRADE:
 Evaluate against every check in your checklist. Be strict — this tool exists to prevent misinformation. Return JSON only."""
 
     async def grade(self, summary_type: str, summary_text: str, context: dict) -> GradeResult:
+        # Deterministic pre-grade: structural breakage is an automatic F with
+        # specific feedback — no model call, and the loop's retry machinery
+        # gets objective instructions instead of a subjective grade.
+        if summary_type == "bill_summary":
+            from app.services.summary_checks import structural_violations
+            try:
+                summary_dict = json.loads(summary_text)
+            except json.JSONDecodeError:
+                summary_dict = None
+            if isinstance(summary_dict, dict):
+                violations = structural_violations(summary_dict, title=context.get("title", ""))
+                if violations:
+                    return GradeResult(
+                        grade="F", passed=False,
+                        feedback="Structural rule violations (fix each): " + "; ".join(violations),
+                        checks={"structure": "fail: " + "; ".join(violations)},
+                    )
+
         system_prompt = self._build_system_prompt()
         user_prompt = self._build_grade_prompt(summary_type, summary_text, context)
 
