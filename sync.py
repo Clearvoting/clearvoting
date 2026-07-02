@@ -321,6 +321,97 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rat
     return len(all_bills)
 
 
+def _latest_official_summary(bill: dict) -> str:
+    """Congress.gov orders summaries oldest-first, so [0] is the introduced
+    version — which can describe provisions that never became law (e.g. the
+    IRA's introduced summary is Build Back Better). Prefer the Public Law
+    summary; otherwise the newest by actionDate."""
+    summaries = bill.get("summaries")
+    if not isinstance(summaries, list) or not summaries:
+        return ""
+    law = [s for s in summaries if "public law" in (s.get("actionDesc") or "").lower()]
+    pool = law or summaries
+    best = max(pool, key=lambda s: s.get("actionDate") or "")
+    return best.get("text", "") or ""
+
+
+def _bill_text_excerpt(bill: dict) -> str:
+    """Latest text version carrying embedded text. The bill-detail API stores
+    textVersions as a URL-reference dict, so most bills have no embedded text
+    until fetch_bill_texts runs."""
+    versions = bill.get("textVersions")
+    if not isinstance(versions, list):
+        return ""
+    with_text = [v for v in versions if isinstance(v, dict) and v.get("text")]
+    if not with_text:
+        return ""
+    return max(with_text, key=lambda v: v.get("date") or "").get("text", "")
+
+
+async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3) -> int:
+    """Fetch the LATEST text version for bills with no embedded text.
+
+    The writer generates from title + summary + text; without this step 99% of
+    bills reach the AI with an empty text field. Incremental: bills that
+    already carry text are skipped, so weekly runs only fetch new bills."""
+    import re
+    import httpx
+
+    bills_path = output_dir / "bills.json"
+    if not bills_path.exists():
+        print("  No bills.json — skipping text fetch")
+        return 0
+    with open(bills_path) as f:
+        bills_data = json.load(f)
+    bills = bills_data.get("bills", [])
+    to_fetch = [b for b in bills if not _bill_text_excerpt(b)]
+    print(f"  {len(to_fetch)} bills missing text (of {len(bills)})")
+
+    fetched = 0
+    for i, bill in enumerate(to_fetch):
+        bt = (bill.get("type") or "").lower()
+        bn = str(bill.get("number") or "")
+        congress = bill.get("congress", 119)
+        try:
+            resp = await client.get_bill_text(congress, bt, int(bn))
+        except Exception as e:
+            print(f"    Error listing text for {congress}-{bt}-{bn}: {e}")
+            continue
+        versions = resp.get("textVersions") or []
+        versions = [v for v in versions if isinstance(v, dict)]
+        if not versions:
+            continue
+        latest = max(versions, key=lambda v: v.get("date") or "")
+        formats = latest.get("formats") or []
+        url = next((f.get("url") for f in formats if f.get("type") == "Formatted Text"), None) \
+            or next((f.get("url") for f in formats if f.get("type") == "Formatted XML"), None)
+        if not url:
+            continue
+        try:
+            async with httpx.AsyncClient(timeout=30.0) as http:
+                r = await http.get(url, follow_redirects=True)
+                r.raise_for_status()
+        except Exception as e:
+            print(f"    Error fetching text body for {congress}-{bt}-{bn}: {e}")
+            continue
+        clean = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", r.text)).strip()
+        if not clean:
+            continue
+        latest["text"] = clean[:6000]
+        bill["textVersions"] = versions
+        fetched += 1
+        if fetched % 50 == 0:
+            _atomic_write_json(bills_path, bills_data)  # crash-safe checkpoints
+            print(f"    ...{fetched} fetched ({i + 1}/{len(to_fetch)} scanned)")
+        if rate_limit:
+            await asyncio.sleep(rate_limit)
+
+    if fetched:
+        _atomic_write_json(bills_path, bills_data)
+    print(f"  Fetched text for {fetched} bills")
+    return fetched
+
+
 async def sync_bill_summaries(
     output_dir: Path,
     api_key: str | None = None,
@@ -386,15 +477,14 @@ async def sync_bill_summaries(
     async def _process_one_bill(key: str, bill: dict) -> None:
         """Process a single bill through the writer-grader loop."""
         title = bill.get("title", "")
-        summaries_list = bill.get("summaries", [])
-        official_summary = summaries_list[0].get("text", "") if isinstance(summaries_list, list) and summaries_list else ""
-        text_versions = bill.get("textVersions", [])
-        bill_text = text_versions[0].get("text", "") if isinstance(text_versions, list) and text_versions else ""
+        official_summary = _latest_official_summary(bill)
+        bill_text = _bill_text_excerpt(bill)
         policy_area = bill.get("policyArea", {}).get("name")
+        latest_action = (bill.get("latestAction") or {}).get("text", "")
 
         print(f"    Grading: {title[:60]}...")
 
-        async def writer_fn(grader_feedback=None, _bill_id=key, _title=title, _official_summary=official_summary, _bill_text=bill_text, _policy_area=policy_area, **kwargs):
+        async def writer_fn(grader_feedback=None, _bill_id=key, _title=title, _official_summary=official_summary, _bill_text=bill_text, _policy_area=policy_area, _latest_action=latest_action, **kwargs):
             return await writer_service.generate_summary(
                 bill_id=_bill_id,
                 title=_title,
@@ -402,6 +492,7 @@ async def sync_bill_summaries(
                 bill_text_excerpt=_bill_text[:6000],
                 grader_feedback=grader_feedback,
                 policy_area=_policy_area,
+                latest_action=_latest_action,
             )
 
         loop = WriterGraderLoop(writer_fn=writer_fn, grader=grader)
@@ -409,10 +500,18 @@ async def sync_bill_summaries(
             result = await loop.run(
                 summary_type="bill_summary",
                 writer_kwargs={},
-                grader_context={"title": title, "official_summary": official_summary},
+                grader_context={"title": title, "official_summary": official_summary,
+                                "latest_action": latest_action},
             )
 
             summary_data = result.best_summary
+            if summary_data.get("generation_failed"):
+                # Never persist the parse-failure fallback — an absent entry
+                # gets the router's honest "not available" treatment instead.
+                print(f"    NOT SAVED — generation failed for {key}")
+                stats["failed"] += 1
+                stats["total"] += 1
+                return
             if result.needs_review:
                 summary_data["needs_review"] = True
                 stats["needs_review"].append(key)
@@ -1533,14 +1632,14 @@ async def _run_audit(anthropic_key: str | None) -> None:
 
         for i, (key, bill) in enumerate(failures):
             title = bill.get("title", "")
-            summaries_list = bill.get("summaries", [])
-            official = summaries_list[0].get("text", "") if summaries_list else ""
-            bill_text = bill.get("textVersions", [{}])[0].get("text", "") if bill.get("textVersions") else ""
+            official = _latest_official_summary(bill)
+            bill_text = _bill_text_excerpt(bill)
             policy_area = bill.get("policyArea", {}).get("name")
+            latest_action = (bill.get("latestAction") or {}).get("text", "")
 
             print(f"  [{i + 1}/{len(failures)}] {title[:60]}...")
 
-            async def writer_fn(grader_feedback=None, _key=key, _title=title, _official=official, _bill_text=bill_text, _policy_area=policy_area, **kwargs):
+            async def writer_fn(grader_feedback=None, _key=key, _title=title, _official=official, _bill_text=bill_text, _policy_area=policy_area, _latest_action=latest_action, **kwargs):
                 return await writer_service.generate_summary(
                     bill_id=_key,
                     title=_title,
@@ -1548,13 +1647,15 @@ async def _run_audit(anthropic_key: str | None) -> None:
                     bill_text_excerpt=_bill_text[:6000],
                     grader_feedback=grader_feedback,
                     policy_area=_policy_area,
+                    latest_action=_latest_action,
                 )
 
             loop = WriterGraderLoop(writer_fn=writer_fn, grader=grader)
             result = await loop.run(
                 summary_type="bill_summary",
                 writer_kwargs={},
-                grader_context={"title": title, "official_summary": official},
+                grader_context={"title": title, "official_summary": official,
+                                "latest_action": latest_action},
             )
 
             new_summary = result.best_summary
@@ -1796,6 +1897,8 @@ async def main() -> None:
         elif args.step == "bills":
             print("[step] Syncing voted-on bills...")
             await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
+            print("[step] Fetching bill text for bills missing it...")
+            await fetch_bill_texts(client, SYNC_DIR, rate_limit=0.3)
 
         elif args.step == "member-votes":
             print("[step] Building member voting records...")
@@ -2077,6 +2180,8 @@ async def main() -> None:
     print()
     print("[4/12] Syncing voted-on bills...")
     bills_count = await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
+    print("  Fetching bill text for bills missing it...")
+    await fetch_bill_texts(client, SYNC_DIR, rate_limit=0.3)
 
     # Step 5: AI bill summaries (writer-grader loop)
     summary_stats = {}
