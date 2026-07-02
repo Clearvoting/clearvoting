@@ -37947,5 +37947,760 @@
         "Critics say students, school staff, and library patrons who rely on borrowed hotspots for schoolwork will lose access to that equipment because E-Rate funds can no longer pay for it."
       ]
     }
+  },
+  "119-sres-616": {
+    "one_liner": "Request a State Department report on human rights conditions in Honduras",
+    "provisions": [
+      "Asks the State Department to put together a report on human rights conditions in Honduras",
+      "Uses a process in the Foreign Assistance Act of 1961 that lets Congress formally request this kind of report from the executive branch",
+      "Does not change any laws, policies, or spending \u2014 it only requests information"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral",
+    "arguments": {
+      "supporters": [
+        "Supporters say section 502B(c) of the Foreign Assistance Act of 1961 gives Congress the legal right to formally request this report, and this resolution uses that tool to get information directly from the State Department about human rights conditions in Honduras.",
+        "Supporters say the report could help Congress make future decisions about U.S. foreign assistance to Honduras, since U.S. law ties aid decisions to a country's human rights record."
+      ],
+      "critics": [
+        "Critics say the State Department already releases annual human rights reports on Honduras through its regular process, which makes this resolution a request for information that is already publicly available.",
+        "Critics say the resolution does not change any laws, policies, or spending, so even if the report finds serious human rights problems in Honduras, the resolution itself cannot require any action to address them."
+      ]
+    }
+  },
+  "119-sjres-190": {
+    "one_liner": "Cancel a rule about how the immigration appeals court handles cases",
+    "provisions": [
+      "Cancels a rule that changed how the Board of Immigration Appeals \u2014 the court that reviews immigration judge decisions \u2014 runs its process.",
+      "The Board of Immigration Appeals is part of the Executive Office for Immigration Review, which runs federal immigration courts across the country.",
+      "Once this resolution passes, the Board of Immigration Appeals goes back to following the older appeals procedures that were in place before the rule took effect."
+    ],
+    "issue_categories": [
+      "Immigration"
+    ],
+    "direction": "against",
+    "arguments": {
+      "supporters": [
+        "Supporters say canceling this rule returns the Board of Immigration Appeals to its older procedures, which they argue gave both sides more time and process to make their case.",
+        "Supporters say the new rule changed how appeals were handled at the Board of Immigration Appeals in ways that Congress did not approve, and this resolution restores congressional oversight over immigration court procedures.",
+        "Supporters say the Board of Immigration Appeals handles thousands of cases each year, and going back to the prior rules gives immigrants more consistent protections during the appeals process."
+      ],
+      "critics": [
+        "Critics say this resolution cancels a rule designed to make the Board of Immigration Appeals run more efficiently, which could slow down decisions for the large backlog of immigration cases already waiting in federal immigration courts.",
+        "Critics say removing the updated appellate procedures means the Executive Office for Immigration Review loses tools it put in place to reduce delays, leaving immigrants and enforcement agencies waiting longer for final decisions.",
+        "Critics say the rule that Congress is canceling was meant to streamline how the Board of Immigration Appeals reviews immigration judge decisions, and undoing it adds steps back into a process that was already taking too long."
+      ]
+    }
+  },
+  "119-sjres-196": {
+    "one_liner": "Cancel a Department of Education rule on federal student loan programs",
+    "provisions": [
+      "Cancels a set of rules the Department of Education issued about federal student loans, called the 'Reimagining and Improving Student Education' regulations.",
+      "Under a law called the Congressional Review Act, Congress can vote to cancel a federal agency's rule \u2014 this resolution does that for this specific rule.",
+      "If passed and signed, the Department of Education cannot bring back this same rule without Congress passing a new law first."
+    ],
+    "issue_categories": [
+      "Education",
+      "Cost of Living"
+    ],
+    "direction": "against",
+    "arguments": {
+      "supporters": [
+        "Supporters say the 'Reimagining and Improving Student Education' regulations went beyond what Congress authorized the Department of Education to do, and this resolution uses the Congressional Review Act to bring that power back to elected lawmakers.",
+        "Supporters say canceling these rules protects taxpayers by stopping loan forgiveness or repayment changes that were not approved by Congress, which controls federal spending.",
+        "Supporters say the Congressional Review Act block means the Department of Education cannot quietly bring back the same rules later without a vote in Congress first."
+      ],
+      "critics": [
+        "Critics say the 'Reimagining and Improving Student Education' rules were designed to help federal student loan borrowers \u2014 including those in repayment hardship \u2014 and canceling them removes those protections.",
+        "Critics say using the Congressional Review Act here means the Department of Education cannot issue any rule that is 'substantially the same' without a new law, which limits future fixes for student loan borrowers.",
+        "Critics say this resolution wipes out regulations that were already finalized after a public comment process, and borrowers who were counting on those rules will lose access to relief programs tied to them."
+      ]
+    }
+  },
+  "119-sjres-172": {
+    "one_liner": "Require the President to pull U.S. troops out of any unauthorized fighting against Iran",
+    "provisions": [
+      "The President must remove U.S. troops from any fighting against Iran that Congress has not approved.",
+      "Two things could allow military action to continue: Congress declaring war on Iran, or Congress passing a vote giving the President permission to use military force.",
+      "The bill still lets the U.S. fight back if Iran attacks U.S. troops, people, or U.S.-run buildings in other countries."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "against",
+    "arguments": {
+      "supporters": [
+        "Supporters say the bill follows the Constitution, which gives Congress \u2014 not the President \u2014 the power to declare war, meaning military action against Iran requires a vote in Congress before U.S. troops are sent into hostilities.",
+        "Supporters say the bill still allows U.S. forces to fight back if Iran attacks American troops, personnel, or U.S.-run facilities in other countries, so it does not leave the military defenseless.",
+        "Supporters say removing troops from unauthorized hostilities against Iran protects service members from being placed in a war zone without Congress first approving it."
+      ],
+      "critics": [
+        "Critics say the bill could slow the President's ability to respond quickly to threats from Iran, since getting a formal declaration of war or a military force authorization from Congress takes time.",
+        "Critics say the self-defense exception \u2014 which allows fighting back against attacks on U.S. troops or facilities \u2014 may be too narrow, leaving the President unable to act against Iranian-backed groups operating in other countries.",
+        "Critics say the resolution could signal to Iran that the U.S. is limited in how it can respond, which they argue weakens the country's position in the region."
+      ]
+    }
+  },
+  "118-hr-4821": {
+    "one_liner": "Fund the Interior Department, EPA, and related agencies for the year starting October 2023",
+    "provisions": [
+      "Gives money to the Department of the Interior, which manages national parks, public lands, and wildlife programs.",
+      "Funds the EPA to keep its environmental programs running.",
+      "Pays for health care for Native American and Alaska Native communities through the Indian Health Service.",
+      "Sets aside money for the Bureau of Indian Affairs and Bureau of Indian Education to serve tribal communities.",
+      "Sends money to arts and culture organizations, including the Smithsonian Institution, the National Gallery of Art, and the Kennedy Center.",
+      "Sets rules for how agencies can and cannot use the money this bill provides."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say the bill funds the Bureau of Land Management and National Park Service to manage more than 245 million acres of public land, paying for park rangers, trail upkeep, and wildlife programs that serve millions of visitors each year.",
+        "Supporters say the Indian Health Service, which provides health care to about 2.6 million Native Americans and Alaska Natives, would keep receiving money for clinics and medical services that many tribal communities have no other way to access.",
+        "Supporters say the Bureau of Indian Education would get funding to run more than 180 schools on reservations, giving Native students access to basic education that depends almost entirely on federal support."
+      ],
+      "critics": [
+        "Critics say the bill allocates roughly $207 million to the National Endowment for the Arts and $207 million to the National Endowment for the Humanities \u2014 a combined $414 million \u2014 for cultural programs that critics argue are not a core responsibility of the federal government.",
+        "Critics say the bill's rules bar the Forest Service and Bureau of Land Management from moving funds between accounts mid-year without returning to Congress for approval, which critics argue prevents agencies from quickly shifting resources when wildfires or other land emergencies break out.",
+        "Critics say the EPA receives roughly $9 billion through this bill, locking in funding for air and water enforcement programs that critics argue were written by agency staff rather than authorized in law by Congress."
+      ]
+    }
+  },
+  "118-hres-798": {
+    "one_liner": "Condemn support for designated terrorist groups at colleges and call for a federal investigation",
+    "provisions": [
+      "Condemns support of Hamas, Hezbollah, or other groups the U.S. has designated as terrorist organizations at colleges.",
+      "Congress states that this support may make colleges hostile for Jewish students, faculty, and staff.",
+      "Calls on the Department of Education to have its Office for Civil Rights look into incidents at colleges.",
+      "Where problems are found, calls for the Office for Civil Rights to take action."
+    ],
+    "issue_categories": [
+      "Education",
+      "Safety & Crime"
+    ],
+    "direction": "neutral",
+    "arguments": {
+      "supporters": [
+        "Supporters say the resolution is needed because groups like Hamas and Hezbollah are U.S.-designated terrorist organizations, and showing support for them at colleges creates a hostile environment for Jewish students, faculty, and staff.",
+        "Supporters say directing the Department of Education's Office for Civil Rights to investigate campus incidents gives Jewish students a formal way to report harassment and get federal action taken.",
+        "Supporters say that without this resolution, colleges may not feel pressure to address pro-terrorist activity that Title VI of the Civil Rights Act is meant to protect against."
+      ],
+      "critics": [
+        "Critics say the resolution does not define what 'support' means, which could lead the Office for Civil Rights to investigate protected speech like political protests or classroom discussions about Hamas or Hezbollah.",
+        "Critics say the call for the Office for Civil Rights to 'take action' is vague and could result in colleges restricting student and faculty speech beyond what the First Amendment allows.",
+        "Critics say the resolution only names a hostile environment for Jewish students but does not address similar concerns for Muslim, Arab, or Palestinian students who also report harassment on campuses."
+      ]
+    }
+  },
+  "118-s-3998": {
+    "one_liner": "Make temporary federal judge positions permanent in 10 states",
+    "provisions": [
+      "Turns temporary judge positions into permanent ones in federal courts in Alabama, Arizona, California, Florida, Hawaii, Kansas, Missouri, New Mexico, North Carolina, and Texas.",
+      "Permanent judges have lifetime appointments, while temporary judges serve for a set number of years until the position expires.",
+      "This change lets those courts keep those judges on the bench long-term instead of losing them when the temporary term ends."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say converting temporary judgeships to permanent ones in 10 states \u2014 including Texas, California, and Florida \u2014 lets courts keep experienced judges instead of losing them when their terms expire.",
+        "Supporters say permanent judges, who serve lifetime appointments, can take on long-term cases and reduce backlogs in busy federal districts without having to be replaced mid-case.",
+        "Supporters say the change gives these 10 federal districts more stable staffing, since temporary positions can go unfilled when terms end and no replacement is named."
+      ],
+      "critics": [
+        "Critics say turning temporary judgeships into permanent lifetime appointments removes the built-in check that comes with a set term, making it harder to adjust court size if caseloads drop.",
+        "Critics say adding permanent judgeships in states like Alabama, Kansas, and Hawaii locks in a larger federal judiciary long-term, which increases ongoing salary and benefit costs for those courts.",
+        "Critics say the bill was introduced in 2024 under one Congress, and converting these seats permanently gives whoever appoints the judges \u2014 the sitting President \u2014 a lasting influence on those courts."
+      ]
+    }
+  },
+  "118-hres-773": {
+    "one_liner": "Remove Representative George Santos from his seat in the House of Representatives",
+    "provisions": [
+      "The House votes on whether to remove George Santos from his seat in Congress.",
+      "Passing this resolution requires a two-thirds vote of all House members.",
+      "The Senate and the President have no role \u2014 only the House acts on this.",
+      "If it passes, Santos stops serving as a Member of Congress right away."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral",
+    "arguments": {
+      "supporters": [
+        "Supporters say the House Ethics Committee voted 6-0 to recommend expulsion after finding that Santos used campaign funds for personal items, giving House members a documented record to base their vote on.",
+        "Supporters say Santos faces 23 federal criminal charges, including wire fraud and identity theft, and that keeping him in office lets him vote on laws while those charges are pending.",
+        "Supporters say the two-thirds vote rule \u2014 requiring at least 290 of 435 House members to agree \u2014 already sets a high bar that protects against removing members for minor or political reasons."
+      ],
+      "critics": [
+        "Critics say only three members of Congress have ever been expelled in U.S. history, all during or just after the Civil War, and none were removed before a criminal conviction, making this resolution a break from that historical standard.",
+        "Critics say Santos has not been convicted of any crime, and removing him before a court verdict would set a new standard that allows the House to expel members based on charges alone.",
+        "Critics say Santos was elected by voters in New York's 3rd congressional district, and expelling him before trial removes a representative those voters chose before any court has ruled on the charges."
+      ]
+    }
+  },
+  "119-hconres-108": {
+    "one_liner": "Order U.S. troops out of hostilities in Lebanon within seven days",
+    "provisions": [
+      "Tells the President to pull U.S. military forces out of any active fighting in Lebanon within 7 days of this resolution passing.",
+      "Does not stop the U.S. from working with Lebanon's own military forces.",
+      "Does not stop the U.S. from protecting its embassies or other official buildings in Lebanon."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "against",
+    "arguments": {
+      "supporters": [
+        "Supporters say the resolution uses Section 5(c) of the War Powers Resolution to require the President to end U.S. military involvement in active fighting in Lebanon within 7 days, which they argue restores Congress's role in deciding when American forces are sent into combat.",
+        "Supporters say the 7-day deadline gives the executive branch time to withdraw forces in an orderly way while still acting quickly to stop unauthorized military action.",
+        "Supporters say the resolution keeps two key exceptions in place \u2014 the U.S. can still work with the Lebanese Armed Forces and still protect its embassies and official buildings \u2014 so core U.S. interests in Lebanon are not abandoned."
+      ],
+      "critics": [
+        "Critics say the 7-day withdrawal deadline does not give military commanders enough time to safely remove forces or hand off responsibilities without putting troops at risk.",
+        "Critics say the resolution's exceptions for working with the Lebanese Armed Forces and protecting diplomatic facilities do not cover other U.S. operations, such as counterterrorism support or intelligence sharing, which would be forced to stop.",
+        "Critics say the word 'hostilities' in the resolution is not clearly defined, which means it is unclear whether ongoing advisory missions or intelligence operations would trigger the 7-day clock and require a full withdrawal."
+      ]
+    }
+  },
+  "118-hres-838": {
+    "one_liner": "Set the House debate rules for three government spending bills",
+    "provisions": [
+      "Sets the rules for how the House votes on and debates three separate spending bills",
+      "One of those bills covers money for the Department of the Interior and environment programs for the year ending September 30, 2024",
+      "A second bill covers money for transportation and housing programs for the same year",
+      "A third bill covers emergency money related to the attacks in Israel for the year ending September 30, 2024",
+      "This bill does not spend any money itself \u2014 it only controls how Congress handles those three spending bills"
+    ],
+    "issue_categories": [
+      "Environment & Energy",
+      "Housing"
+    ],
+    "direction": "neutral",
+    "arguments": {
+      "supporters": [
+        "Supporters say this rule creates an organized process for the House to debate and vote on three separate spending bills \u2014 H.R. 4821, H.R. 4820, and H.R. 6126 \u2014 without needing to pass a separate procedural vote for each one.",
+        "Supporters say setting a clear debate structure for H.R. 6126 lets Congress move quickly on emergency funding tied to the attacks in Israel, rather than leaving that bill waiting for floor time under uncertain terms.",
+        "Supporters say combining the Interior funding bill, the transportation and housing bill, and the Israel emergency supplemental into one rule reduces the total number of procedural steps the House must complete before reaching a final vote on any of them."
+      ],
+      "critics": [
+        "Critics say packaging H.R. 4821, H.R. 4820, and H.R. 6126 into a single rule means members cannot separately reject the debate terms for just one of those three bills \u2014 they must accept or reject all three debate structures together.",
+        "Critics say the rule gives House leadership the power to control how H.R. 6126 \u2014 the emergency spending bill tied to the Israel attacks \u2014 is handled on the floor, rather than letting the full chamber decide those terms.",
+        "Critics say linking the debate structure for unrelated spending areas \u2014 Interior and environment programs, transportation and housing programs, and emergency Israel aid \u2014 inside one procedural package makes it harder for members to draw a clear line between domestic spending decisions and emergency foreign policy funding."
+      ]
+    }
+  },
+  "119-hr-5408": {
+    "one_liner": "Set deadlines for first union contracts and require arbitration if talks fail",
+    "provisions": [
+      "Once a union wins the right to negotiate at a company, the employer must start contract talks within 10 days.",
+      "Both sides must make every reasonable effort to reach and sign a deal.",
+      "If no deal is reached after 90 days, either side can ask a federal agency called the FMCS to help mediate.",
+      "If mediation fails after 30 days, a panel of arbitrators steps in and makes a final, binding decision that lasts two years.",
+      "The arbitration panel must weigh the employer's expected financial future and workers' cost of living when making its decision.",
+      "During negotiations, the employer must keep current wages, hours, and working conditions in place.",
+      "Even if the union loses its official status, the employer must still bargain."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say the 10-day deadline to start talks and the 90-day limit before mediation kicks in will stop employers from stalling after workers vote to unionize, which currently can drag on for years without a first contract.",
+        "Supporters say the requirement to keep current wages, hours, and conditions in place during negotiations protects workers from having their pay or schedules cut while a deal is being worked out.",
+        "Supporters say the arbitration panel's two-year binding decision gives both sides a firm contract, ending the limbo that leaves newly unionized workers without guaranteed terms."
+      ],
+      "critics": [
+        "Critics say forcing binding arbitration after just 120 days \u2014 90 days of talks plus 30 days of mediation \u2014 takes away an employer's right to negotiate freely and hands a panel of arbitrators the power to set wages and conditions the business must live with for two years.",
+        "Critics say the rule that an employer must keep bargaining even after a union loses its official certification status forces companies to negotiate with a representative that workers may no longer want.",
+        "Critics say the arbitration panel's authority to set a two-year binding contract based on the employer's expected financial future could force small businesses to agree to terms they cannot afford, with no exit option during the two-year period."
+      ]
+    }
+  },
+  "119-hr-7128": {
+    "one_liner": "Extend the terrorism risk insurance program through 2034 and tighten its rules",
+    "provisions": [
+      "The program pays back part of what insurance companies lose when a terrorist attack causes property damage or injures people.",
+      "The program is extended through 2034 \u2014 without this bill, it would have ended sooner.",
+      "Starting in 2029, an attack must cause a larger total amount of losses before the program steps in to cover insurers.",
+      "The Treasury Department gets clear legal authority to publicly explain how it decides whether something counts as a terrorist attack."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say extending the program through 2034 gives insurance companies the stability they need to keep offering terrorism coverage to businesses and property owners.",
+        "Supporters say the program helps make sure that if a major attack happens, private insurers will not have to pay all the losses alone, which keeps insurance available in the market.",
+        "Supporters say giving the Treasury Department clear legal authority to explain how it certifies an attack as terrorism makes the process more open to the public."
+      ],
+      "critics": [
+        "Critics say raising the loss threshold starting in 2029 means smaller attacks may no longer trigger federal help for insurers, leaving some companies to cover those losses on their own.",
+        "Critics say the bill does not set a specific dollar amount for the new 2029 loss threshold, so insurers and businesses cannot plan ahead for how much coverage they may actually need.",
+        "Critics say extending the program through 2034 continues a government backstop that private insurance markets have had over 20 years to replace on their own."
+      ]
+    }
+  },
+  "119-hr-7401": {
+    "one_liner": "Require SBA employees to sign a conflict-of-interest statement before working on any loan",
+    "provisions": [
+      "Before an SBA employee can work on a loan \u2014 reviewing it, approving it, or helping start it \u2014 they must sign a written statement saying they have no conflict of interest with that loan.",
+      "If a conflict of interest comes up after signing, the employee must report it.",
+      "The written statement must also confirm the employee understands the conflict-of-interest rules that apply to their job.",
+      "The SBA must write new rules to carry out these requirements."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say requiring SBA employees to sign a written conflict-of-interest statement before working on any loan will make it harder for employees to approve loans that benefit people they have financial ties to.",
+        "Supporters say the rule that employees must report new conflicts of interest after signing gives small business owners a better chance at a fair review, since the problem must be flagged even if it comes up mid-process.",
+        "Supporters say having the SBA write new regulations to carry out these requirements creates a clear, enforceable process that existing federal ethics rules do not already provide for SBA loan work specifically."
+      ],
+      "critics": [
+        "Critics say the bill adds a paperwork step \u2014 a signed written statement \u2014 for every SBA employee involved in loan origination, review, or approval, which could slow down the lending process for small businesses waiting on funds.",
+        "Critics say federal employees are already required by law to disclose financial conflicts of interest and recuse themselves, so this bill may duplicate rules that are already in place without fixing a proven gap.",
+        "Critics say the bill does not set a penalty for employees who sign the statement falsely, which could make the new certification requirement hard to enforce in practice."
+      ]
+    }
+  },
+  "119-hr-2478": {
+    "one_liner": "Let investment companies pause mutual fund withdrawals when they suspect elder financial fraud",
+    "provisions": [
+      "Investment companies and transfer agents can pause a mutual fund withdrawal for up to 15 days if they think someone age 65 or older is being financially scammed.",
+      "The same applies to people 18 or older who cannot protect themselves because of a mental or physical condition.",
+      "If the company confirms exploitation is happening, it can pause the withdrawal for 10 more days.",
+      "A state regulator or court can extend the pause beyond those time limits.",
+      "During any pause, the money must be held in a bank account.",
+      "Companies and transfer agents must tell the SEC if they choose to follow these rules.",
+      "The SEC must issue recommendations on how to better protect adults from financial exploitation."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say the bill protects adults age 65 or older, and adults with mental or physical impairments, by letting investment companies pause a mutual fund withdrawal for up to 15 days when they suspect financial exploitation is happening.",
+        "Supporters say that if a company confirms exploitation is taking place, it can add 10 more days to the pause, giving law enforcement or family members more time to step in before the money is gone.",
+        "Supporters say requiring the SEC to issue recommendations on protecting these adults means the government must take concrete follow-up steps, not just pass a law and move on."
+      ],
+      "critics": [
+        "Critics say the bill gives investment companies the power to block a person's own withdrawal for up to 25 days\u2014and longer if a court gets involved\u2014without the account holder's agreement, which could trap people out of their money when they need it.",
+        "Critics say adults with disabilities who have urgent financial needs, like paying for medical care, could be locked out of their funds for weeks if a company misjudges a normal transaction as exploitation.",
+        "Critics say the bill does not set clear penalties if a company wrongly delays a redemption, which means account holders may have no quick way to get their money back if the company makes a mistake."
+      ]
+    }
+  },
+  "119-hr-2913": {
+    "one_liner": "Send aid to Ukraine and impose penalties on Russia if it keeps attacking",
+    "provisions": [
+      "Creates a fund to pay for rebuilding Ukraine after the war.",
+      "Gives the U.S. the power to lend military equipment to Ukraine and nearby European countries through 2028.",
+      "Extends the U.S. military's power to send weapons, training, and intelligence to Ukraine's forces through 2027.",
+      "Tells the State Department to help strengthen the armies and border forces of Baltic countries.",
+      "The President must check regularly whether Russia is still attacking Ukraine or blocking peace talks.",
+      "If the President finds Russia is still attacking or blocking peace, the U.S. must charge at least 500% in extra taxes on all goods imported from Russia \u2014 a $10 Russian product would face $50 in added taxes.",
+      "That same finding would freeze U.S. bank accounts and block visas for Russian officials, and freeze the assets of Russian oil, mining, and nuclear companies."
+    ],
+    "issue_categories": [
+      "Veterans & Military",
+      "Taxes"
+    ],
+    "direction": "in_favor",
+    "needs_review": true,
+    "arguments": {
+      "supporters": [
+        "Supporters say the bill protects U.S. security by extending military aid and intelligence support to Ukraine through 2027 and keeping the lend-lease program for military equipment open through 2028, which they argue limits Russia's ability to expand the war into NATO countries.",
+        "Supporters say the 500% tariff on Russian imports \u2014 meaning a $10 Russian product would cost $60 total \u2014 along with freezing assets of Russian oil, mining, and nuclear companies, would put direct economic pressure on Russia to stop the war or enter real peace talks.",
+        "Supporters say the reconstruction trust fund and stronger Baltic military forces would help stabilize the region and reduce long-term costs for the U.S. by building up European allies to handle more of their own defense."
+      ],
+      "critics": [
+        "Critics say extending military aid and intelligence support to Ukraine through 2027, and keeping the lend-lease authority open through 2028, risks pulling the U.S. deeper into a conflict with no clear end date or exit plan.",
+        "Critics say the 500% tariff on Russian goods could raise prices for U.S. businesses and consumers who rely on Russian materials like oil and minerals, since the cost of those taxes often gets passed on to buyers.",
+        "Critics say the bill gives the President broad power to trigger major sanctions and tariffs based on a personal determination about Russia's actions, with little role for Congress to check or vote on those decisions."
+      ]
+    }
+  },
+  "119-hr-7892": {
+    "one_liner": "Require identity checks before releasing federal student aid to flagged applicants",
+    "provisions": [
+      "Starting October 1, 2026, the Department of Education must run every federal student aid application through a system that looks for signs of identity fraud.",
+      "If an application looks suspicious, the Department of Education must alert the applicant and every college listed on their application.",
+      "Colleges cannot release federal financial aid money to a flagged applicant until they confirm who that person is \u2014 either face-to-face or by live video call.",
+      "Once a college confirms the applicant's identity, it must report that back to the Department of Education.",
+      "The Department of Education must write the rules colleges have to follow when checking applicants' identities."
+    ],
+    "issue_categories": [
+      "Education"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say the bill would protect federal student aid money by requiring every FAFSA application to go through a fraud detection system starting October 1, 2026, stopping identity thieves from collecting aid meant for real students.",
+        "Supporters say flagging suspicious applications and requiring colleges to verify applicants in person or by live video gives schools a clear process to confirm someone is who they say they are before any aid money is released.",
+        "Supporters say having the Department of Education write the rules for identity checks gives all colleges the same standard to follow, making the process consistent across schools."
+      ],
+      "critics": [
+        "Critics say requiring in-person or live video verification for flagged applicants could create barriers for students in rural areas or without reliable internet access, delaying or blocking their aid.",
+        "Critics say the bill puts the burden of identity verification on colleges without providing funding to cover the cost of setting up verification systems or staffing the process.",
+        "Critics say students flagged by the fraud detection system could have their aid held up even if they are real applicants, since the bill does not set a deadline for how quickly schools must complete the verification process."
+      ]
+    }
+  },
+  "119-hr-8464": {
+    "one_liner": "Require federal agencies to pause and check payments that show signs of fraud",
+    "provisions": [
+      "Federal agencies must stop and review a payment request if they have documented reasons to think it might be fraudulent or wrong.",
+      "Any pause on a payment must target only the specific part that looks risky \u2014 not the whole payment.",
+      "Pauses must last only as long as it takes to confirm whether the payment is correct.",
+      "The Treasury Department must send back payment requests that its fraud-detection system flags as high-risk, so the agency can review them.",
+      "Federal workers who follow this law in good faith cannot be held personally responsible if something goes wrong in the process."
+    ],
+    "issue_categories": [
+      "Safety & Crime",
+      "Money in Politics"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say the bill would cut down on fraudulent federal payments by requiring agencies to pause and review payment requests when they have documented, specific reasons to think fraud is present \u2014 not just a general suspicion.",
+        "Supporters say the rule that pauses must target only the risky part of a payment, not the whole amount, means most payments go through on time while only the suspicious portion gets held back.",
+        "Supporters say requiring Treasury to return high-risk payments flagged by its Do Not Pay system adds a second layer of review that could catch errors agencies miss on their own."
+      ],
+      "critics": [
+        "Critics say the bill gives agencies broad power to pause payments without clear deadlines, and even though it says pauses must be short, there is no set time limit written into the law to enforce that.",
+        "Critics say people or businesses waiting on federal payments \u2014 such as contractors, benefit recipients, or grant holders \u2014 could face delays even when their payments turn out to be fully legitimate, because the review process takes time.",
+        "Critics say the good-faith protection for federal workers who pause payments removes accountability if agencies apply the fraud-risk rules too broadly or inconsistently."
+      ]
+    }
+  },
+  "119-hr-8312": {
+    "one_liner": "Create a new Treasury office to find and stop fraud in federal spending",
+    "provisions": [
+      "Creates a new office inside the Treasury Department to look into fraud in government spending",
+      "The new office checks on any government payment or award of $50,000 or more",
+      "It also reviews how COVID relief money, disaster funds, and economic recovery payments were used",
+      "A government tool called 'Do Not Pay' \u2014 which checks a person's identity before they get government money \u2014 moves under Treasury's control",
+      "Federal agencies must share data with each other to catch fraud and stop wrong payments before they go out",
+      "When the new office finds signs of a crime, it must quickly send that information to the Justice Department"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say moving the 'Do Not Pay' system to Treasury will stop wrong payments before they go out, since agencies will share data with each other to catch fraud earlier.",
+        "Supporters say the new Office of the Inspector General for Fraud, Accountability, and Recovery (OIGFAR) will check any federal award of $50,000 or more, creating a clear process to catch waste across the government.",
+        "Supporters say requiring OIGFAR to quickly send signs of crime to the Justice Department means more fraud cases will lead to actual prosecution, not just reports."
+      ],
+      "critics": [
+        "Critics say creating a new inspector general office inside Treasury adds another layer of bureaucracy that may overlap with the 74 inspector general offices that already exist across federal agencies.",
+        "Critics say requiring data sharing agreements between federal agencies and private entities raises privacy concerns for people who receive government payments, since their personal information moves across more systems.",
+        "Critics say focusing OIGFAR's review on COVID relief funds and disaster payments \u2014 money already spent \u2014 may not recover those dollars and pulls attention away from preventing future fraud."
+      ]
+    }
+  },
+  "119-hr-8428": {
+    "one_liner": "Require federal employees who manage public funds to take anti-fraud training every two years",
+    "provisions": [
+      "Federal workers in roles that involve managing or overseeing government money must complete an anti-fraud training program every two years.",
+      "Roles covered include program administrators, financial managers, disbursement officials, auditors, and grants managers.",
+      "The training covers how to spot fraud risks, how to use government fraud-detection tools, and how to report suspected fraud or waste.",
+      "The Office of Personnel Management keeps records of who has finished the training.",
+      "States, local governments, and tribal governments can also access the training for their own employees who run federally funded programs.",
+      "Federal agencies can require proof of completed training before giving out grants or awards.",
+      "Within two years of the law taking effect, Treasury and OMB must send Congress a report on how the program is running."
+    ],
+    "issue_categories": [
+      "Jobs & Workers",
+      "Taxes"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say requiring federal workers in roles like grants manager, auditor, and disbursement official to complete anti-fraud training every two years will help catch and prevent improper payments before they happen.",
+        "Supporters say making the training available to state, local, and tribal governments means more people managing federally funded programs will know how to spot fraud risks and use government fraud-detection tools.",
+        "Supporters say allowing agencies to require proof of completed training before giving out grants adds a clear accountability step that connects training to real federal dollars."
+      ],
+      "critics": [
+        "Critics say the bill does not include a cost estimate, so Congress has no way to know how much it will cost to build, run, and maintain the training program across all covered federal agencies.",
+        "Critics say adding a mandatory two-year training requirement for program administrators, financial managers, and other covered roles may pull staff away from their regular duties without clear proof that the training reduces fraud.",
+        "Critics say the requirement for Treasury and OMB to report to Congress only two years after the law takes effect may not give enough time to measure whether the program is actually working."
+      ]
+    }
+  },
+  "119-hr-7757": {
+    "one_liner": "Require online platforms to set up safety rules for users under 18",
+    "provisions": [
+      "Websites where more than one-third of content is sexual must use technology to identify minors and block their access to that content.",
+      "Social media platforms must set default options for minors that limit addictive features and stop strangers from sending them messages.",
+      "Parents get tools to control their child's privacy settings and account on social media platforms.",
+      "Disappearing messages are not allowed for minors on social media platforms.",
+      "Video game platforms must give parents tools to limit who their child talks to and stop the child from making purchases.",
+      "AI chatbots must tell users who are minors that they are talking to a computer, not a person, and must share suicide and crisis hotline numbers.",
+      "The Federal Trade Commission and state attorneys general can take action against platforms that break these rules."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say the bill protects minors by requiring websites where more than one-third of content is sexual to use technology to identify and block children from accessing that material.",
+        "Supporters say the bill gives parents real control by requiring social media and video game platforms to provide tools that let parents manage their child's privacy settings, limit who they talk to, and block in-game purchases.",
+        "Supporters say requiring AI chatbots to tell minors they are talking to a computer \u2014 and to share suicide and crisis hotline numbers \u2014 reduces the risk of young users being misled or harmed."
+      ],
+      "critics": [
+        "Critics say the requirement for platforms to identify whether users are minors could force websites to collect more personal data from all users, raising privacy concerns for adults and children alike.",
+        "Critics say banning disappearing messages for minors on social media platforms limits a feature that many teenagers use to communicate privately, and may be difficult for platforms to enforce without age verification systems that do not yet exist at scale.",
+        "Critics say the bill puts enforcement in the hands of the Federal Trade Commission and state attorneys general, but does not set clear technical standards for what counts as valid age-identification technology, leaving platforms uncertain about how to comply."
+      ]
+    }
+  },
+  "119-hr-915": {
+    "one_liner": "Let small businesses use Small Business Administration loans to buy software and cloud services",
+    "provisions": [
+      "The Small Business Administration (SBA) runs a loan program for small businesses that cannot get affordable credit on their own.",
+      "This bill adds software and cloud computing services to what those SBA loans can pay for.",
+      "Covered software includes tools for payroll, human resources, sales, billing, and accounting.",
+      "Loans can also cover software that tracks inventory or helps run day-to-day business operations.",
+      "Business tools that use artificial intelligence count as covered software under this bill."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say that small businesses that cannot get affordable credit on their own will now be able to use SBA 7(a) loans to pay for payroll software, billing tools, and accounting programs they could not afford before.",
+        "Supporters say that including AI-powered business tools as covered software gives small businesses access to the same technology that larger companies already use for HR, inventory tracking, and daily operations.",
+        "Supporters say that covering cloud computing services under the 7(a) program means small businesses can borrow to run core operations \u2014 like payroll processing and sales functions \u2014 without relying on high-interest credit."
+      ],
+      "critics": [
+        "Critics say the bill does not set a dollar cap on how much of a 7(a) loan can go toward software, which could lead small businesses to take on long-term debt to pay for monthly subscription fees.",
+        "Critics say that allowing loans to cover AI tools is risky because that technology changes fast, and a business could end up repaying a loan for software that no longer works for them.",
+        "Critics say the 7(a) program was built to help businesses get capital for things like equipment and real estate, and adding recurring cloud service costs could increase the risk of defaults that the SBA's loan guaranty fund has to cover."
+      ]
+    }
+  },
+  "119-hres-1335": {
+    "one_liner": "Condemn fraud against the U.S. government and call for checking who qualifies before payments",
+    "provisions": [
+      "The House condemns anyone who tries to cheat or steal from U.S. government programs.",
+      "The House says new rules to stop fraud and wrong payments from government programs would help the country's finances.",
+      "Government programs should check whether someone qualifies before sending them money."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral",
+    "arguments": {
+      "supporters": [
+        "Supporters say the resolution backs eligibility checks before payments go out, which would stop money from going to people or groups who don't qualify for a federal program.",
+        "Supporters say new rules to catch fraud and wrong payments \u2014 as the resolution calls for \u2014 would protect tax dollars and help the country's finances over time.",
+        "Supporters say formally condemning anyone who cheats government programs puts the House on record that stealing from federal programs is wrong."
+      ],
+      "critics": [
+        "Critics say the resolution uses the phrase 'improper payment' without defining it, which could group actual fraud together with simple paperwork errors made by government agencies \u2014 two very different problems.",
+        "Critics say requiring eligibility checks before every payment could delay or block benefits for people who do qualify, such as seniors or people with disabilities waiting on federal programs.",
+        "Critics say the resolution names no specific programs, dollar amounts, or enforcement tools, so it is hard to see how it would lead to real changes in how fraud is caught or stopped."
+      ]
+    }
+  },
+  "119-hres-1140": {
+    "one_liner": "Set House debate rules for a bill about speeding up union contract timelines",
+    "provisions": [
+      "This resolution allows the House to bring H.R. 5408 to the floor for debate and a vote.",
+      "H.R. 5408, the bill this resolution covers, would change how long it takes for workers and employers to reach a first contract after workers vote to form a union under the National Labor Relations Act.",
+      "The resolution itself does not change any labor rules \u2014 it only sets the terms for how the House debates H.R. 5408."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "neutral",
+    "arguments": {
+      "supporters": [
+        "Supporters say this resolution gives the House a chance to vote on H.R. 5408, which would set faster deadlines for workers and employers to reach a first contract after a union vote under the National Labor Relations Act.",
+        "Supporters say H.R. 5408 addresses a gap in the NLRA where employers can delay first-contract talks for months or years after workers vote to form a union, leaving those workers without a contract.",
+        "Supporters say bringing H.R. 5408 to the floor through this resolution lets lawmakers debate specific changes to NLRA timelines that currently leave newly formed unions without enforceable contract deadlines."
+      ],
+      "critics": [
+        "Critics say the resolution limits how long the House can debate H.R. 5408, which they argue prevents a full review of how new contract deadlines under the NLRA would affect employers of different sizes.",
+        "Critics say H.R. 5408 would force employers to reach a first contract on a government-set schedule, which they say removes flexibility from both sides to negotiate terms that fit their specific workplace under the NLRA.",
+        "Critics say the resolution fast-tracks a vote on H.R. 5408 before lawmakers can fully study how shorter time-to-contract rules would affect industries where negotiations are complex, such as construction or healthcare."
+      ]
+    }
+  },
+  "119-hr-8466": {
+    "one_liner": "Require federal agencies to create anti-fraud plans for emergency spending",
+    "provisions": [
+      "Each federal agency must write a plan within one year to stop fraud and bad payments in emergency spending, like disaster relief or pandemic funds.",
+      "The Office of Management and Budget must write rules that tell agencies what their fraud-prevention plans need to cover.",
+      "Agency plans must include steps to spot the risk of losing money to fraud \u2014 and put safeguards in place before the money goes out when possible.",
+      "Plans must include tools to watch payments and flag unusual transactions as they come in.",
+      "Agencies must review and resubmit their plans at least every three years.",
+      "The Office of Management and Budget must send all agency plans to Congress each year, along with suggestions for new laws on emergency spending."
+    ],
+    "issue_categories": [
+      "Money in Politics"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say requiring each federal agency to write a fraud-prevention plan within one year would create clear steps to catch bad payments before emergency money \u2014 like disaster relief or pandemic funds \u2014 goes out the door.",
+        "Supporters say having the Office of Management and Budget send all agency plans to Congress each year gives lawmakers a way to track whether agencies are actually following through on reducing fraud in emergency spending.",
+        "Supporters say building in payment monitoring tools to flag unusual transactions as they come in could catch fraud faster than waiting until after the money is spent."
+      ],
+      "critics": [
+        "Critics say the bill adds new reporting work for federal agencies \u2014 including writing plans, reviewing them every three years, and resubmitting to OMB \u2014 without providing dedicated funding to carry out those tasks.",
+        "Critics say the one-year deadline for all agencies to submit fraud-prevention plans may not be enough time for large agencies managing complex emergency programs to build reliable internal controls.",
+        "Critics say the bill relies on the Office of Management and Budget to write guidance and review plans, which puts a heavy coordination burden on one office during the same emergencies the bill is meant to address."
+      ]
+    }
+  },
+  "119-hr-8646": {
+    "one_liner": "Fund the USDA, FDA, and food assistance programs for the year starting October 2026",
+    "provisions": [
+      "Pays for SNAP, the program that helps low-income Americans buy groceries each month.",
+      "Gives money to WIC, which provides food and nutrition help to pregnant women, new mothers, and children under age five.",
+      "Covers school lunch and breakfast programs that feed children at low or no cost.",
+      "Keeps food safety workers on the job to inspect meat, poultry, and egg products sold across the country.",
+      "Sets aside money for rural housing loans and business support in small towns and farming communities.",
+      "Funds the FDA, which checks that food, drugs, and medical devices are safe.",
+      "Backs farm insurance programs that pay out when farmers lose crops or income."
+    ],
+    "issue_categories": [
+      "Cost of Living",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say the bill funds SNAP, which helps roughly 42 million low-income Americans buy groceries each month, and WIC, which provides food and nutrition support to pregnant women and children under age five.",
+        "Supporters say the bill keeps food safety inspectors working to check meat, poultry, and egg products before they reach store shelves, protecting consumers from unsafe food.",
+        "Supporters say rural housing loans and business funding in the bill give small farming towns access to money that private banks often will not lend."
+      ],
+      "critics": [
+        "Critics say the bill funds SNAP without adding work requirements for able-bodied adults without dependents, letting people who can work receive monthly grocery benefits with no conditions.",
+        "Critics say farm crop insurance payments in the bill flow mostly to large farming operations, not the small family farms that need financial protection the most.",
+        "Critics say the bill increases spending across USDA, FDA, and rural development programs without cutting any existing ones, adding to federal costs with no offset."
+      ]
+    }
+  },
+  "119-hres-1399": {
+    "one_liner": "Require the House Ethics Committee to keep and release records on harassment settlements",
+    "provisions": [
+      "The House Ethics Committee must keep all written records and documents tied to money paid to settle sexual harassment claims by members of Congress.",
+      "The committee must release those records to the public.",
+      "This covers any communications, agreements, or payments connected to sexual harassment settlements involving House members."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say the bill would force the House Ethics Committee to release all written records, agreements, and payment amounts tied to sexual harassment settlements involving House members, giving the public the right to know how their money was spent.",
+        "Supporters say that making these records public holds members of Congress accountable, since taxpayer funds or public resources may have been used to pay settlement costs.",
+        "Supporters say requiring the committee to preserve all communications and documents prevents records from being destroyed or hidden before the public can see them."
+      ],
+      "critics": [
+        "Critics say releasing settlement records could expose the names and personal details of victims who chose to settle privately, which may discourage future victims from coming forward.",
+        "Critics say that making all agreements and communications public could violate the privacy rights of accusers, since many settlements include confidentiality terms that both sides agreed to.",
+        "Critics say the bill does not set limits on what details must be released, which could mean sensitive personal information about victims gets shared alongside records about the accused members."
+      ]
+    }
+  },
+  "119-hres-1398": {
+    "one_liner": "Allow the House to debate and vote on the defense budget and other bills",
+    "provisions": [
+      "Lets the House vote on the defense spending plan for the year starting October 2026.",
+      "Opens debate on the national security and State Department spending plan for the year ending September 2027.",
+      "Schedules a vote on extending a Social Security disability insurance test program.",
+      "Sets up a vote on a statement marking one year since the Working Families Tax Cuts passed."
+    ],
+    "issue_categories": [
+      "Veterans & Military",
+      "Social Security & Retirement"
+    ],
+    "direction": "neutral",
+    "arguments": {
+      "supporters": [
+        "Supporters say this rule moves the fiscal year 2027 defense spending bill (H.R. 8800) to the House floor, letting Congress set military funding and troop strength levels before the October 2026 deadline.",
+        "Supporters say the rule also brings the State Department and national security spending bill (H.R. 8595) to a vote, keeping funding for U.S. diplomacy and security programs on track through September 2027.",
+        "Supporters say scheduling a vote on H.R. 8884 prevents the Social Security disability insurance test program from expiring without a chance for Congress to reauthorize it."
+      ],
+      "critics": [
+        "Critics say bundling four unrelated items \u2014 defense spending, State Department funding, a Social Security program extension, and a tax cut anniversary resolution \u2014 into one rule forces members to vote on all of them together rather than judging each on its own.",
+        "Critics say including H. Res. 1383, a statement marking one year since the Working Families Tax Cuts, adds a political messaging item to a rule that also controls defense and Social Security votes, limiting separate debate on each.",
+        "Critics say the rule may limit or block amendments to H.R. 8800 and H.R. 8595, reducing the ability of members to propose changes to how defense and national security money is spent."
+      ]
+    }
+  },
+  "119-hres-1345": {
+    "one_liner": "Set House floor rules for votes on fraud prevention and budget bills",
+    "provisions": [
+      "Opens the House floor for a vote on a bill to set up a new fraud-prevention office inside the Treasury Department.",
+      "Brings to the House floor a bill that lets the government pause or split up payments when fraud is suspected.",
+      "Schedules a vote on a House statement condemning government fraud and saying benefits should be checked before payments go out.",
+      "Also schedules a vote on S. 2, a budget bill written through a special fast-track process.",
+      "That fast-track process limits how long the Senate can debate the bill."
+    ],
+    "issue_categories": [
+      "Safety & Crime",
+      "Taxes"
+    ],
+    "direction": "neutral",
+    "arguments": {
+      "supporters": [
+        "Supporters say the new Treasury fraud office created by H.R. 8312 would add a permanent Inspector General focused only on catching improper payments before they go out, filling a gap that existing agencies have not covered.",
+        "Supporters say H.R. 8464 gives the government a tool to pause or split up payments when fraud is suspected, so taxpayer money is not sent out while a problem is still being investigated.",
+        "Supporters say using the fast-track reconciliation process for S. 2 allows the budget bill to pass the Senate with a simple majority instead of needing 60 votes to end debate."
+      ],
+      "critics": [
+        "Critics say the fast-track process used to schedule S. 2 limits how long the Senate can debate a major budget bill, reducing the time lawmakers have to review its full effects.",
+        "Critics say the payment-pausing authority in H.R. 8464 could delay or cut off benefits for real people while the government investigates a fraud claim, with no clear timeline for when payments would resume.",
+        "Critics say H.R. 8312 creates a brand-new government office without stating how much it will cost to run or how it will coordinate with fraud offices that already exist inside federal agencies."
+      ]
+    }
+  },
+  "119-s-629": {
+    "one_liner": "Expand emergency aid for farmers and forest landowners hit by natural disasters",
+    "provisions": [
+      "Raises the upfront payment farmers can get to replace damaged farm structures from 25% to 75% of the cost, and for repairs or restoration from 25% to 50% of the cost",
+      "Lets forest landowners get up to 75% of their emergency costs paid upfront \u2014 they could not get any advance payment before this bill",
+      "Gives farmers 180 days to spend their emergency funds instead of 60 days",
+      "Adds human-caused wildfires that spread because of natural conditions as events that qualify for emergency aid",
+      "Covers damages from wildfires the federal government caused"
+    ],
+    "issue_categories": [
+      "Environment & Energy",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say raising the advance payment for replacing damaged farm structures from 25% to 75% of the cost lets farmers buy materials right after a disaster, instead of paying most of the cost themselves while waiting for reimbursement.",
+        "Supporters say forest landowners can now get up to 75% of their emergency costs paid upfront \u2014 they received zero advance payment before this bill \u2014 so they can hire workers and start repairs without taking on debt.",
+        "Supporters say extending the spending window from 60 days to 180 days gives farmers enough time to find contractors and get materials, since 60 days is often too short after a major natural disaster."
+      ],
+      "critics": [
+        "Critics say covering human-caused wildfires that spread due to natural conditions expands the number of events that qualify for federal emergency aid, which could increase total program spending beyond current budget levels.",
+        "Critics say paying out 75% of costs before the repair work is finished and verified raises the risk that some funds will not be used for the intended emergency measures, and may be hard to recover if the work is never completed.",
+        "Critics say adding coverage for wildfires caused by the federal government creates a new spending path for damages that might otherwise be handled through separate federal liability or claims processes."
+      ]
+    }
   }
 }
