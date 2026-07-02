@@ -360,7 +360,7 @@ async function loadChamberVote(container, chamber, congress, session, voteNumber
 
         // Header
         voteBlock.appendChild(el('h4', null,
-            `${chamberLabel} Vote #${data.vote_number} — ${data.vote_date || ''}`
+            `${chamberLabel} Vote #${data.vote_number} — ${formatVoteDate(data.vote_date)}`
         ));
         voteBlock.appendChild(el('div', { className: 'vote-question' }, data.question || ''));
         voteBlock.appendChild(el('div', { className: 'vote-result' }, `Result: ${data.result || ''}`));

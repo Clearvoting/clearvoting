@@ -767,7 +767,7 @@ function _buildVoteItem(vote) {
 
     const topRow = el('div', { className: 'vote-item-top' });
     topRow.appendChild(el('span', { className: 'bill-number' }, vote.bill_number));
-    topRow.appendChild(el('span', { className: 'bill-date' }, vote.date));
+    topRow.appendChild(el('span', { className: 'bill-date' }, formatVoteDate(vote.date)));
     item.appendChild(topRow);
 
     item.appendChild(el('div', { className: 'vote-item-title' }, vote.bill_title));

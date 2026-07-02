@@ -312,6 +312,92 @@ async def test_build_member_votes_no_members(tmp_path):
     assert count == 0
 
 
+def _setup_member_votes_env(tmp_path, senate_votes):
+    """Write members.json, bills.json, and the given senate vote files."""
+    _write_json(tmp_path / "members.json", {"members": [
+        {"bioguideId": "S001217", "name": "Scott, Rick", "directOrderName": "Rick Scott",
+         "stateCode": "FL", "chamber": "Senate"},
+    ]})
+    _write_json(tmp_path / "bills.json", {"bills": []})
+    vote_dir = tmp_path / "votes" / "senate"
+    vote_dir.mkdir(parents=True)
+    for i, vote in enumerate(senate_votes):
+        _write_json(vote_dir / f"119_1_{i:05d}.json", vote)
+
+
+def _senate_vote(vote_date, vote_number, doc="S. 100"):
+    return {
+        "congress": 119, "session": 1, "vote_number": vote_number,
+        "vote_date": vote_date, "document": doc,
+        "question": "On Passage", "result": "Passed",
+        "counts": {"yeas": 60, "nays": 40, "present": 0, "absent": 0},
+        "members": [
+            {"first_name": "Rick", "last_name": "Scott", "party": "R",
+             "state": "FL", "vote": "Yea", "lis_member_id": "S404"},
+        ],
+    }
+
+
+@pytest.mark.asyncio
+async def test_build_member_votes_normalizes_senate_dates_to_iso(tmp_path):
+    """Senate display-string dates are stored as ISO 8601 (sortable, parseable)."""
+    _setup_member_votes_env(tmp_path, [
+        _senate_vote("September 9, 2025,  06:46 PM", 511),  # double space, as in Senate XML
+    ])
+
+    await build_member_votes(tmp_path)
+
+    data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
+    assert data["votes"][0]["date"] == "2025-09-09T18:46:00"
+
+
+@pytest.mark.asyncio
+async def test_build_member_votes_sorts_chronologically(tmp_path):
+    """June 2026 must sort above September 2025 — the lexicographic-sort P0."""
+    _setup_member_votes_env(tmp_path, [
+        _senate_vote("September 9, 2025,  06:46 PM", 511),
+        _senate_vote("June 24, 2026, 10:15 PM", 129),
+        _senate_vote("September 30, 2021, 12:31 PM", 400),
+    ])
+
+    await build_member_votes(tmp_path)
+
+    data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
+    dates = [v["date"] for v in data["votes"]]
+    assert dates == ["2026-06-24T22:15:00", "2025-09-09T18:46:00", "2021-09-30T12:31:00"]
+
+
+@pytest.mark.asyncio
+async def test_build_member_votes_same_day_tiebreak_by_vote_number(tmp_path):
+    """Same-day votes order by roll-call number, newest first."""
+    _setup_member_votes_env(tmp_path, [
+        _senate_vote("June 24, 2026, 10:15 PM", 5),
+        _senate_vote("June 24, 2026, 10:15 PM", 12),
+    ])
+
+    await build_member_votes(tmp_path)
+
+    data = json.loads((tmp_path / "member_votes" / "S001217.json").read_text())
+    assert [v["vote_number"] for v in data["votes"]] == [12, 5]
+
+
+@pytest.mark.asyncio
+async def test_build_member_votes_preserves_existing_scorecard(tmp_path):
+    """Rebuilds must not wipe AI-generated scorecards (regenerating needs an API key)."""
+    _setup_member_votes_env(tmp_path, [_senate_vote("June 24, 2026, 10:15 PM", 129)])
+    scorecard = [{"category": "Healthcare", "verdict": "Mostly supported expanding coverage."}]
+    member_votes_dir = tmp_path / "member_votes"
+    member_votes_dir.mkdir()
+    _write_json(member_votes_dir / "S001217.json",
+                {"member_id": "S001217", "scorecard": scorecard, "votes": []})
+
+    await build_member_votes(tmp_path)
+
+    data = json.loads((member_votes_dir / "S001217.json").read_text())
+    assert data["scorecard"] == scorecard
+    assert len(data["votes"]) == 1  # rebuild still refreshed the votes
+
+
 # --- _parse_bill_ref ---
 
 def test_parse_bill_ref_hr():
