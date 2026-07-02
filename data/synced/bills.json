@@ -131913,6 +131913,1880 @@
       "updateDate": "2026-06-18T15:22:23Z",
       "updateDateIncludingText": "2026-06-18T15:22:23Z",
       "summaries": []
+    },
+    {
+      "actions": {
+        "count": 148,
+        "url": "https://api.congress.gov/v3/bill/118/hr/4821/actions?format=json"
+      },
+      "amendments": {
+        "count": 81,
+        "url": "https://api.congress.gov/v3/bill/118/hr/4821/amendments?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 118-155",
+          "url": "https://api.congress.gov/v3/committee-report/118/HRPT/155?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/118/hr/4821/committees?format=json"
+      },
+      "congress": 118,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 169, Number 127 (Monday, July 24, 2023)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. SIMPSON:\nH.R. 4821.\nCongress has the power to enact this legislation pursuant\nto the following:\nThe principal constitutional authority for this legislation\nis clause 7 of section 9 of article I of the Constitution of\nthe United States (the appropriation power), which states:\n``No Money shall be drawn from the Treasury, but in\nConsequence of Appropriations made by Law . . . .'' In\naddition, clause 1 of section 8 of article I of the\nConstitution (the spending power) provides: ``The Congress\nshall have the Power . . . to pay the Debts and provide for\nthe common Defence and general Welfare of the United States .\n. . .Together, these specific constitutional provisions\nestablish the congressional power of the purse, granting\nCongress the authority to appropriate funds, to determine\ntheir purpose, amount, and period of availability, and to set\nforth terms and conditions governing their use.\nThe single subject of this legislation is:\nThe subject of the bill is the making of appropriations for\nthe Department of the Interior, environment, and related\nagencies for fiscal year 2024.\n[Page H3896]\n</pre>",
+      "introducedDate": "2023-07-24",
+      "latestAction": {
+        "actionDate": "2023-11-07",
+        "text": "Received in the Senate. Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 239."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/118th-congress/house-bill/4821",
+      "number": "4821",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Economics and Public Finance"
+      },
+      "relatedBills": {
+        "count": 8,
+        "url": "https://api.congress.gov/v3/bill/118/hr/4821/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "S001148",
+          "district": 2,
+          "firstName": "MICHAEL",
+          "fullName": "Rep. Simpson, Michael K. [R-ID-2]",
+          "isByRequest": "N",
+          "lastName": "SIMPSON",
+          "middleName": "K.",
+          "party": "R",
+          "state": "ID",
+          "url": "https://api.congress.gov/v3/member/S001148?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 133,
+        "url": "https://api.congress.gov/v3/bill/118/hr/4821/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2023-07-24",
+          "actionDesc": "Introduced in House",
+          "text": " <p><b>Department of the Interior, Environment, and Related Agencies Appropriations Act, 2024</b></p> <p>This bill provides FY2024 appropriations for the Department of the Interior, the Environmental Protection Agency (EPA), and several related agencies. </p> <p>The bill provides appropriations to Interior for</p> <ul> <li> the Bureau of Land Management,</li> <li> the U.S. Fish and Wildlife Service, </li> <li> the National Park Service,</li> <li> the U.S. Geological Survey,</li> <li> the Bureau of Ocean Energy Management,</li> <li> the Bureau of Safety and Environmental Enforcement,</li> <li> the Office of Surface Mining Reclamation and Enforcement, </li> <li> the Bureau of Indian Affairs,</li> <li>the Bureau of Indian Education,</li> <li>the Bureau of Trust Funds Administration, </li> <li>Departmental Offices, and </li> <li>Department-Wide Programs.</li> </ul> <p>The bill also provides appropriations to the EPA and the Forest Service. </p> <p>Within the Department of Health and Human Services, the bill provides appropriations for</p> <ul> <li> the Indian Health Service, </li> <li> the National Institute of Environmental Health Sciences, and </li> <li> the Agency for Toxic Substances and Disease Registry. </li> </ul> <p>The bill provides appropriations to several related agencies, including</p> <ul> <li> the Council on Environmental Quality and Office of Environmental Quality,</li> <li>the Chemical Safety and Hazard Investigation Board,</li> <li> the Office of Navajo and Hopi Indian Relocation,</li> <li> the Institute of American Indian and Alaska Native Culture and Arts Development,</li> <li> the Smithsonian Institution,</li> <li> the National Gallery of Art,</li> <li> the John F. Kennedy Center for the Performing Arts,</li> <li> the Woodrow Wilson International Center for Scholars,</li> <li>the National Endowment for the Arts,</li> <li>the National Endowment for the Humanities,</li> <li> the Commission of Fine Arts,</li> <li> the Advisory Council on Historic Preservation.</li> <li> the National Capital Planning Commission,</li> <li> the U.S. Holocaust Memorial Museum,</li> <li>the World War I Centennial Commission, and</li> <li>the U.S. Semiquincentennial Commission. </li> </ul> <p>Additionally, the bill sets forth requirements and restrictions for using funds provided by this and other appropriations acts. </p>",
+          "updateDate": "2023-08-25T16:07:55Z",
+          "versionCode": "00"
+        },
+        {
+          "actionDate": "2023-07-24",
+          "actionDesc": "Reported to House",
+          "text": " <p><b>Department of the Interior, Environment, and Related Agencies Appropriations Act, 2024</b></p> <p>This bill provides FY2024 appropriations for the Department of the Interior, the Environmental Protection Agency (EPA), and several related agencies. </p> <p>The bill provides appropriations to Interior for</p> <ul> <li> the Bureau of Land Management,</li> <li> the U.S. Fish and Wildlife Service, </li> <li> the National Park Service,</li> <li> the U.S. Geological Survey,</li> <li> the Bureau of Ocean Energy Management,</li> <li> the Bureau of Safety and Environmental Enforcement,</li> <li> the Office of Surface Mining Reclamation and Enforcement, </li> <li> the Bureau of Indian Affairs,</li> <li>the Bureau of Indian Education,</li> <li>the Bureau of Trust Funds Administration, </li> <li>Departmental Offices, and </li> <li>Department-Wide Programs.</li> </ul> <p>The bill also provides appropriations to the EPA and the Forest Service. </p> <p>Within the Department of Health and Human Services, the bill provides appropriations for</p> <ul> <li> the Indian Health Service, </li> <li> the National Institute of Environmental Health Sciences, and </li> <li> the Agency for Toxic Substances and Disease Registry. </li> </ul> <p>The bill provides appropriations to several related agencies, including</p> <ul> <li> the Council on Environmental Quality and Office of Environmental Quality,</li> <li>the Chemical Safety and Hazard Investigation Board,</li> <li> the Office of Navajo and Hopi Indian Relocation,</li> <li> the Institute of American Indian and Alaska Native Culture and Arts Development,</li> <li> the Smithsonian Institution,</li> <li> the National Gallery of Art,</li> <li> the John F. Kennedy Center for the Performing Arts,</li> <li> the Woodrow Wilson International Center for Scholars,</li> <li>the National Endowment for the Arts,</li> <li>the National Endowment for the Humanities,</li> <li> the Commission of Fine Arts,</li> <li> the Advisory Council on Historic Preservation.</li> <li> the National Capital Planning Commission,</li> <li> the U.S. Holocaust Memorial Museum,</li> <li>the World War I Centennial Commission, and</li> <li>the U.S. Semiquincentennial Commission. </li> </ul> <p>Additionally, the bill sets forth requirements and restrictions for using funds provided by this and other appropriations acts. </p>",
+          "updateDate": "2023-08-25T16:09:05Z",
+          "versionCode": "07"
+        },
+        {
+          "actionDate": "2023-11-03",
+          "actionDesc": "Passed House",
+          "text": " <p><b>Department of the Interior, Environment, and Related Agencies Appropriations Act, 2024</b></p> <p>This bill provides FY2024 appropriations for the Department of the Interior, the Environmental Protection Agency (EPA), and several related agencies. </p> <p>The bill provides appropriations to Interior for</p> <ul> <li> the Bureau of Land Management,</li> <li> the U.S. Fish and Wildlife Service, </li> <li> the National Park Service,</li> <li> the U.S. Geological Survey,</li> <li> the Bureau of Ocean Energy Management,</li> <li> the Bureau of Safety and Environmental Enforcement,</li> <li> the Office of Surface Mining Reclamation and Enforcement, </li> <li> the Bureau of Indian Affairs,</li> <li>the Bureau of Indian Education,</li> <li>the Bureau of Trust Funds Administration, </li> <li>Departmental Offices, and </li> <li>Department-Wide Programs.</li> </ul> <p>The bill also provides appropriations to the EPA and the Forest Service. </p> <p>Within the Department of Health and Human Services, the bill provides appropriations for</p> <ul> <li> the Indian Health Service, </li> <li> the National Institute of Environmental Health Sciences, and </li> <li> the Agency for Toxic Substances and Disease Registry. </li> </ul> <p>The bill provides appropriations to several related agencies, including</p> <ul> <li> the Council on Environmental Quality and Office of Environmental Quality,</li> <li>the Chemical Safety and Hazard Investigation Board,</li> <li> the Office of Navajo and Hopi Indian Relocation,</li> <li> the Institute of American Indian and Alaska Native Culture and Arts Development,</li> <li> the Smithsonian Institution,</li> <li> the National Gallery of Art,</li> <li> the John F. Kennedy Center for the Performing Arts,</li> <li> the Woodrow Wilson International Center for Scholars,</li> <li>the National Endowment for the Arts,</li> <li>the National Endowment for the Humanities,</li> <li> the Commission of Fine Arts,</li> <li> the Advisory Council on Historic Preservation.</li> <li> the National Capital Planning Commission,</li> <li> the U.S. Holocaust Memorial Museum,</li> <li>the World War I Centennial Commission, and</li> <li>the U.S. Semiquincentennial Commission. </li> </ul> <p>Additionally, the bill sets forth requirements and restrictions for using funds provided by this and other appropriations acts. </p>",
+          "updateDate": "2023-11-09T16:19:57Z",
+          "versionCode": "53"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/118/hr/4821/text?format=json"
+      },
+      "title": "Department of the Interior, Environment, and Related Agencies Appropriations Act, 2024",
+      "titles": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/118/hr/4821/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-01-28T12:55:10Z",
+      "updateDateIncludingText": "2026-01-28T12:55:12Z"
+    },
+    {
+      "actions": {
+        "count": 13,
+        "url": "https://api.congress.gov/v3/bill/118/hres/773/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/118/hres/773/committees?format=json"
+      },
+      "congress": 118,
+      "cosponsors": {
+        "count": 4,
+        "countIncludingWithdrawnCosponsors": 4,
+        "url": "https://api.congress.gov/v3/bill/118/hres/773/cosponsors?format=json"
+      },
+      "introducedDate": "2023-10-11",
+      "latestAction": {
+        "actionDate": "2023-11-01",
+        "actionTime": "19:50:28",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/118th-congress/house-resolution/773",
+      "number": "773",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/118/hres/773/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "D000632",
+          "district": 4,
+          "firstName": "Anthony",
+          "fullName": "Rep. D'Esposito, Anthony [R-NY-4]",
+          "isByRequest": "N",
+          "lastName": "D'Esposito",
+          "party": "R",
+          "state": "NY",
+          "url": "https://api.congress.gov/v3/member/D000632?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/118/hres/773/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2023-10-11",
+          "actionDesc": "Introduced in House",
+          "text": " <p>This resolution expels Representative George Santos from the House of Representatives.</p>",
+          "updateDate": "2023-10-31T12:49:28Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/118/hres/773/text?format=json"
+      },
+      "title": "Providing for the expulsion of Representative George Santos from the House of Representatives.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/118/hres/773/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2024-07-24T15:20:04Z",
+      "updateDateIncludingText": "2024-07-24T15:20:04Z"
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/118/hres/798/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/118/hres/798/committees?format=json"
+      },
+      "congress": 118,
+      "cosponsors": {
+        "count": 100,
+        "countIncludingWithdrawnCosponsors": 100,
+        "url": "https://api.congress.gov/v3/bill/118/hres/798/cosponsors?format=json"
+      },
+      "introducedDate": "2023-10-19",
+      "latestAction": {
+        "actionDate": "2023-11-02",
+        "actionTime": "18:01:02",
+        "text": "The title of the measure was amended. Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/118th-congress/house-resolution/798",
+      "number": "798",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Education"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "O000086",
+          "district": 4,
+          "firstName": "Burgess",
+          "fullName": "Rep. Owens, Burgess [R-UT-4]",
+          "isByRequest": "N",
+          "lastName": "Owens",
+          "party": "R",
+          "state": "UT",
+          "url": "https://api.congress.gov/v3/member/O000086?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/118/hres/798/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2023-10-19",
+          "actionDesc": "Introduced in House",
+          "text": " <p>This resolution condemns the support of Hamas, Hezbollah, and other terrorist organizations at institutions of higher education, which may lead to the creation of a hostile environment for Jewish students, faculty, and staff. It also urges the Department of Education to direct the Office for Civil Rights to investigate and, where appropriate, take immediate action.</p>",
+          "updateDate": "2023-10-30T15:53:51Z",
+          "versionCode": "00"
+        },
+        {
+          "actionDate": "2023-11-02",
+          "actionDesc": "Passed House",
+          "text": " <p>This resolution condemns the support of Hamas, Hezbollah, and other terrorist organizations at institutions of higher education, which may lead to the creation of a hostile environment for Jewish students, faculty, and staff. </p> <p>Additionally, the resolution calls on campus administrators to (1) condemn all forms of antisemitism on college campuses; and (2) ensure Jewish faculty, students, and guests can exercise the same free speech rights as are guaranteed to all other faculty, students, and guests without intimidation.</p> <p>The resolution also urges enforcement of federal civil rights laws to protect Jewish students from antisemitism.</p>",
+          "updateDate": "2023-11-14T16:25:32Z",
+          "versionCode": "53"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/118/hres/798/text?format=json"
+      },
+      "title": "Condemning the support of Hamas, Hezbollah, and other terrorist organizations at institutions of higher education, which may lead to the creation of a hostile environment for Jewish students, faculty, and staff.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/118/hres/798/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2025-07-21T19:44:15Z",
+      "updateDateIncludingText": "2025-07-21T19:44:15Z"
+    },
+    {
+      "actions": {
+        "count": 13,
+        "url": "https://api.congress.gov/v3/bill/118/hres/838/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 118-261",
+          "url": "https://api.congress.gov/v3/committee-report/118/HRPT/261?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/118/hres/838/committees?format=json"
+      },
+      "congress": 118,
+      "introducedDate": "2023-11-02",
+      "latestAction": {
+        "actionDate": "2023-11-02",
+        "actionTime": "11:00:55",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/118th-congress/house-resolution/838",
+      "number": "838",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "relatedBills": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/118/hres/838/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "F000470",
+          "district": 7,
+          "firstName": "Michelle",
+          "fullName": "Rep. Fischbach, Michelle [R-MN-7]",
+          "isByRequest": "N",
+          "lastName": "Fischbach",
+          "party": "R",
+          "state": "MN",
+          "url": "https://api.congress.gov/v3/member/F000470?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/118/hres/838/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2023-11-02",
+          "actionDesc": "Introduced in House",
+          "text": "Sets forth the rule for consideration of the bill (H.R. 4821) making appropriations for the Department of the Interior, environment, and related agencies for the fiscal year ending September 30, 2024, and for other purposes; providing for consideration of the bill (H.R. 4820) making appropriations for the Departments of Transportation, and Housing and Urban Development, and related agencies for the fiscal year ending September 30, 2024, and for other purposes; and providing for consideration of the bill (H.R. 6126) making emergency supplemental appropriations to respond to the attacks in Israel for the fiscal year ending September 30, 2024.",
+          "updateDate": "2023-11-03T11:02:19Z",
+          "versionCode": "00"
+        },
+        {
+          "actionDate": "2023-11-02",
+          "actionDesc": "Passed House",
+          "text": " <p>This resolution sets forth the rule for consideration of the bill (H.R. 4821) making appropriations for the Department of the Interior, environment, and related agencies for FY2024, and for other purposes; providing for consideration of the bill (H.R. 4820) making appropriations for the Departments of Transportation, and Housing and Urban Development, and related agencies for FY2024, and for other purposes; and providing for consideration of the bill (H.R. 6126) making emergency supplemental appropriations to respond to the attacks in Israel for FY2024. </p>",
+          "updateDate": "2023-12-15T22:35:53Z",
+          "versionCode": "53"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/118/hres/838/text?format=json"
+      },
+      "title": "Providing for consideration of the bill (H.R. 4821) making appropriations for the Department of the Interior, environment, and related agencies for the fiscal year ending September 30, 2024, and for other purposes; providing for consideration of the bill (H.R. 4820) making appropriations for the Departments of Transportation, and Housing and Urban Development, and related agencies for the fiscal year ending September 30, 2024, and for other purposes; and providing for consideration of the bill (H.R. 6126) making emergency supplemental appropriations to respond to the attacks in Israel for the fiscal year ending September 30, 2024, and for other purposes.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/118/hres/838/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2025-05-27T14:15:20Z",
+      "updateDateIncludingText": "2025-05-27T14:15:20Z"
+    },
+    {
+      "actions": {
+        "count": 23,
+        "url": "https://api.congress.gov/v3/bill/118/s/3998/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/118/s/3998/committees?format=json"
+      },
+      "congress": 118,
+      "cosponsors": {
+        "count": 19,
+        "countIncludingWithdrawnCosponsors": 19,
+        "url": "https://api.congress.gov/v3/bill/118/s/3998/cosponsors?format=json"
+      },
+      "introducedDate": "2024-03-20",
+      "latestAction": {
+        "actionDate": "2024-12-23",
+        "text": "Became Public Law No: 118-203."
+      },
+      "laws": [
+        {
+          "number": "118-203",
+          "type": "Public Law"
+        }
+      ],
+      "legislationUrl": "https://www.congress.gov/bill/118th-congress/senate-bill/3998",
+      "number": "3998",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Law"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/118/s/3998/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "C001098",
+          "firstName": "Ted",
+          "fullName": "Sen. Cruz, Ted [R-TX]",
+          "isByRequest": "N",
+          "lastName": "Cruz",
+          "party": "R",
+          "state": "TX",
+          "url": "https://api.congress.gov/v3/member/C001098?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 13,
+        "url": "https://api.congress.gov/v3/bill/118/s/3998/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2024-03-20",
+          "actionDesc": "Introduced in Senate",
+          "text": "<p><strong>Federal Judiciary Stabilization Act of 2024</strong></p><p>This bill converts certain temporary district court judgeships to permanent judgeships in specified judicial districts in Alabama, Arizona, California, Florida, Hawaii,&nbsp;Kansas, Missouri, New Mexico, North Carolina, and Texas.</p>",
+          "updateDate": "2024-12-17T16:26:10Z",
+          "versionCode": "00"
+        },
+        {
+          "actionDate": "2024-12-23",
+          "actionDesc": "Public Law",
+          "text": "<p><strong>Federal Judiciary Stabilization Act of 2024</strong></p><p>This act converts certain temporary district court judgeships to permanent judgeships in specified judicial districts in Alabama, Arizona, California, Florida, Hawaii,&nbsp;Kansas, Missouri, New Mexico, North Carolina, and Texas.</p>",
+          "updateDate": "2025-05-08T00:09:09Z",
+          "versionCode": "49"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/118/s/3998/text?format=json"
+      },
+      "title": "Federal Judiciary Stabilization Act of 2024",
+      "titles": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/118/s/3998/titles?format=json"
+      },
+      "type": "S",
+      "updateDate": "2025-12-05T08:02:05Z",
+      "updateDateIncludingText": "2025-12-05T08:02:05Z"
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/108/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/108/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 43,
+        "countIncludingWithdrawnCosponsors": 43,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/108/cosponsors?format=json"
+      },
+      "introducedDate": "2026-06-03",
+      "latestAction": {
+        "actionDate": "2026-06-30",
+        "actionTime": "14:27:23",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/108",
+      "number": "108",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/108/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "T000481",
+          "district": 12,
+          "firstName": "Rashida",
+          "fullName": "Rep. Tlaib, Rashida [D-MI-12]",
+          "isByRequest": "N",
+          "lastName": "Tlaib",
+          "party": "D",
+          "state": "MI",
+          "url": "https://api.congress.gov/v3/member/T000481?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 8,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/108/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-06-03",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This concurrent resolution directs the President to remove U.S. Armed Forces from hostilities in Lebanon within seven days of the resolution's adoption.</p><p>The resolution specifies that it shall not be construed to prevent or limit security cooperation with the Lebanese Armed Forces or the protection of diplomatic facilities.</p>",
+          "updateDate": "2026-06-26T20:29:08Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/108/text?format=json"
+      },
+      "title": "Directing the President pursuant to section 5(c) of the War Powers Resolution to remove United States Armed Forces from hostilities in Lebanon.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/108/titles?format=json"
+      },
+      "type": "HCONRES",
+      "updateDate": "2026-07-01T18:10:13Z",
+      "updateDateIncludingText": "2026-07-01T18:10:13Z"
+    },
+    {
+      "actions": {
+        "count": 16,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2478/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Financial Services on November 4, 2025",
+          "pubDate": "2026-04-08T18:23:00Z",
+          "title": "H.R. 2478, Financial Exploitation Prevention Act of 2025",
+          "url": "https://www.cbo.gov/publication/62311"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-361",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/361?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2478/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 56 (Thursday, March 27, 2025)]\n[House]\n[Pages H1339-H1340]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mrs. WAGNER:\nH.R. 2478.\nCongress has the power to enact this legislation pursuant\nto the following:\n[[Page H1340]]\nArticle 1, Section 8, Clause 18\n</pre>",
+      "cosponsors": {
+        "count": 11,
+        "countIncludingWithdrawnCosponsors": 11,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2478/cosponsors?format=json"
+      },
+      "introducedDate": "2025-03-27",
+      "latestAction": {
+        "actionDate": "2026-06-25",
+        "actionTime": "13:30:25",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/2478",
+      "number": "2478",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Finance and Financial Sector"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2478/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "W000812",
+          "district": 2,
+          "firstName": "Ann",
+          "fullName": "Rep. Wagner, Ann [R-MO-2]",
+          "isByRequest": "N",
+          "lastName": "Wagner",
+          "party": "R",
+          "state": "MO",
+          "url": "https://api.congress.gov/v3/member/W000812?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 9,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2478/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-03-27",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Financial Exploitation Prevention Act of 2025</strong></p><p>This bill establishes procedures for delaying the redemption of certain securities if an investment company or agent believes&nbsp;that an older individual or an individual with certain impairments has been financially exploited.</p><p>Specifically, the bill allows for the delay of the redemption of a security issued by an open-end investment management company and serviced by a transfer agent&nbsp;if the company or agent reasonably believes the redemption involves the financial exploitation of an individual (1) age 65 or older, or (2) age 18 or older who is unable to protect his or her own interests due to a mental or physical impairment.&nbsp;(Open-end investment management companies offer securities in pooled investment vehicles such as mutual funds. Transfer agents facilitate certain transactions for corporations and investment companies, including dividend distribution and change of securities ownership.)</p><p>The company may initially delay the redemption for up to 15 days and, upon making a determination of exploitation, may delay the redemption an additional 10 days. A state regulator, appropriate administrative agency, or court may extend this period.&nbsp;In the event of delay, the company must hold the amounts related to the redemption in a demand deposit account.&nbsp;The bill also establishes notification requirements.&nbsp;</p><p>The bill requires the registered open-end investment company and transfer agent to notify the Securities and Exchange Commission (SEC) if they elect to comply with the procedures established under this bill.&nbsp;</p><p>Additionally, the SEC must make recommendations to address the financial exploitation of these adults.</p>",
+          "updateDate": "2025-11-24T20:14:55Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2478/text?format=json"
+      },
+      "title": "Financial Exploitation Prevention Act of 2025",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2478/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-07-01T03:53:27Z",
+      "updateDateIncludingText": "2026-07-01T12:03:46Z"
+    },
+    {
+      "actions": {
+        "count": 18,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2913/actions?format=json"
+      },
+      "committees": {
+        "count": 9,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2913/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 66 (Monday, April 14, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. MEEKS:\nH.R. 2913.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8 of the Constitution\n[Page H1607]\n</pre>",
+      "cosponsors": {
+        "count": 43,
+        "countIncludingWithdrawnCosponsors": 43,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2913/cosponsors?format=json"
+      },
+      "introducedDate": "2025-04-14",
+      "latestAction": {
+        "actionDate": "2026-06-08",
+        "text": "Received in the Senate."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/2913",
+      "number": "2913",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "relatedBills": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2913/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "M001137",
+          "district": 5,
+          "firstName": "Gregory",
+          "fullName": "Rep. Meeks, Gregory W. [D-NY-5]",
+          "isByRequest": "N",
+          "lastName": "Meeks",
+          "middleName": "W.",
+          "party": "D",
+          "state": "NY",
+          "url": "https://api.congress.gov/v3/member/M001137?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 34,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2913/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-04-14",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Ukraine Support Act</strong><br/>&nbsp;<br/>This bill addresses the war between Russia&nbsp;and Ukraine by (1) providing assistance to Ukraine and certain European countries, and (2) establishing penalties for Russia and certain foreign persons (individuals and entities).<br/>&nbsp;<br/>Assistance provided under the bill includes</p><ul><li>establishing a reconstruction trust fund for Ukraine,</li><li>requiring the U.S. International Development Finance Corporation to prioritize support for Ukraine,</li><li>reviving the President\u2019s authority to lend or lease defense articles to Ukraine or Eastern European countries affected by the war through FY2028,&nbsp;</li><li>extending through 2027 the Department of Defense\u2019s authority to provide security assistance and intelligence support to Ukrainian forces, and</li><li>requiring the Department of State to take certain actions to build the capacity of the militaries and border forces of Baltic countries.</li></ul><p>Additionally, the President must periodically determine if the Russian government or any proxy is waging a war of aggression against Ukraine, refusing to sincerely negotiate a peace agreement with Ukraine, or acting in violation of a negotiated peace agreement with Ukraine.&nbsp;If the President makes such a determination, the President must impose certain penalties including</p><ul><li>property- and visa-blocking sanctions on certain Russian officials;</li><li>property-blocking sanctions on Russian companies in the oil and mining sectors, Rosatom (Russia's state-owned nuclear enterprise) and its subsidiaries, and certain Russian financial institutions; and</li><li>increasing the rate of duty on all goods and services imported from Russia into the United States to at least 500% relative to the value of such goods and services.</li></ul>",
+          "updateDate": "2026-06-02T17:02:52Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2913/text?format=json"
+      },
+      "title": "Ukraine Support Act",
+      "titles": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2913/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-18T13:08:14Z",
+      "updateDateIncludingText": "2026-06-18T13:08:14Z"
+    },
+    {
+      "actions": {
+        "count": 10,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5408/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5408/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 151 (Tuesday, September 16, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. NORCROSS:\nH.R. 5408.\nCongress has the power to enact this legislation pursuant\nto the following:\nNecessary and Proper Clause (Art. 1, Sec. 8, Cl. 18)\n[Page H4364]\n</pre>",
+      "cosponsors": {
+        "count": 110,
+        "countIncludingWithdrawnCosponsors": 110,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5408/cosponsors?format=json"
+      },
+      "introducedDate": "2025-09-16",
+      "latestAction": {
+        "actionDate": "2026-06-10",
+        "text": "Received in the Senate."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/5408",
+      "number": "5408",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Labor and Employment"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5408/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "N000188",
+          "district": 1,
+          "firstName": "Donald",
+          "fullName": "Rep. Norcross, Donald [D-NJ-1]",
+          "isByRequest": "N",
+          "lastName": "Norcross",
+          "party": "D",
+          "state": "NJ",
+          "url": "https://api.congress.gov/v3/member/N000188?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5408/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-06-09",
+          "actionDesc": "Passed House",
+          "text": "<p><strong>Faster Labor Contracts Act</strong></p><p>This bill establishes mandatory deadlines for parties negotiating an initial collective bargaining agreement (CBA)&nbsp;and provides for mediation and arbitration to finalize CBAs.</p><p>Under the bill, CBA negotiations must begin within 10 days after an employer receives a&nbsp;written request from a newly recognized or certified bargaining representative. The bill provides that parties must make every reasonable effort to conclude and sign a CBA. Further, the bill provides that, if the parties have not reached an agreement after 90 days, either party may request mediation by the Federal Mediation and Conciliation&nbsp;Service (FMCS).&nbsp;The bill directs&nbsp;FMCS to use its best efforts to secure an agreement.</p><p>If mediation does not result in an agreement within 30 days (or an additional period agreed to by both parties),&nbsp;FMSC must refer the parties to an&nbsp;arbitration panel to render a decision settling the dispute. The panel must consider specified factors, including the employer's financial prospects and employees' cost of living. The resulting CBA is binding on the parties for two years. (Parties may agree to amend the terms during the two-year period.)</p><p>The bill specifies that (1) an employer must maintain current wages, hours, terms, and conditions of employment during negotiations; and (2) an employer's duty to collectively bargain continues even if a representative has been decertified.&nbsp;</p><p>The Government Accountability Office must report to Congress regarding&nbsp;the average number of days between the certification or recognition&nbsp;of a bargaining&nbsp;representative and the date&nbsp;the initial CBA was executed.</p>",
+          "updateDate": "2026-06-23T19:46:01Z",
+          "versionCode": "53"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5408/text?format=json"
+      },
+      "title": "Faster Labor Contracts Act",
+      "titles": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/5408/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-23T19:47:55Z",
+      "updateDateIncludingText": "2026-06-23T19:47:55Z"
+    },
+    {
+      "actions": {
+        "count": 16,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7128/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-561",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/561?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7128/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 12 (Friday, January 16, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. FLOOD:\nH.R. 7128.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8, Clause 18 of the United States\nConstitution\n[Page H924]\n</pre>",
+      "cosponsors": {
+        "count": 4,
+        "countIncludingWithdrawnCosponsors": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7128/cosponsors?format=json"
+      },
+      "introducedDate": "2026-01-16",
+      "latestAction": {
+        "actionDate": "2026-06-29",
+        "actionTime": "19:09:46",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/7128",
+      "number": "7128",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Finance and Financial Sector"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7128/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "F000474",
+          "district": 1,
+          "firstName": "Mike",
+          "fullName": "Rep. Flood, Mike [R-NE-1]",
+          "isByRequest": "N",
+          "lastName": "Flood",
+          "party": "R",
+          "state": "NE",
+          "url": "https://api.congress.gov/v3/member/F000474?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7128/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-03-19",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>TRIA Program Reauthorization Act of 2026</strong></p><p>This bill reauthorizes the Terrorism Risk Insurance Program through 2034. The program covers a portion of the losses incurred by private insurers for property and casualty insurance coverage for terrorism risk.</p><p>The bill also increases the amount of property and casualty insurance losses required for certification under the program beginning in 2029 and provides statutory authority for Department of the Treasury public notification requirements regarding the determination process for whether an act qualifies as an act of terrorism under this program.</p>",
+          "updateDate": "2026-04-17T19:50:37Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7128/text?format=json"
+      },
+      "title": "TRIA Program Reauthorization Act of 2026",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7128/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-07-01T08:05:33Z",
+      "updateDateIncludingText": "2026-07-01T12:03:40Z"
+    },
+    {
+      "actions": {
+        "count": 16,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7401/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Small Business on February 20, 2026",
+          "pubDate": "2026-04-14T16:25:00Z",
+          "title": "H.R. 7401, Small Business Lending Fraud Prevention Act",
+          "url": "https://www.cbo.gov/publication/62337"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-500",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/500?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7401/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 26 (Thursday, February 5, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. MEUSER:\nH.R. 7401.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle 1 Section 8\n[Page H2041]\n</pre>",
+      "cosponsors": {
+        "count": 1,
+        "countIncludingWithdrawnCosponsors": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7401/cosponsors?format=json"
+      },
+      "introducedDate": "2026-02-05",
+      "latestAction": {
+        "actionDate": "2026-06-24",
+        "actionTime": "17:06:13",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/7401",
+      "number": "7401",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Commerce"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "M001204",
+          "district": 9,
+          "firstName": "Daniel",
+          "fullName": "Rep. Meuser, Daniel [R-PA-9]",
+          "isByRequest": "N",
+          "lastName": "Meuser",
+          "party": "R",
+          "state": "PA",
+          "url": "https://api.congress.gov/v3/member/M001204?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7401/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-02-20",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Small Business Lending Fraud Prevention Act</strong></p><p>This bill requires Small Business Administration (SBA) employees who participate in the origination, review, or approval of&nbsp;SBA loans to certify in writing prior to such&nbsp;participation that the employee&nbsp;</p><ul><li>does not have any conflict of interest with respect to the loan,&nbsp;</li><li>will disclose any such conflict of interest arising after the certification is made, and</li><li>understands the requirements with respect to conflicts of interest applicable SBA employees.</li></ul><p>Under current law, federal employees must disclose financial conflicts of interest with respect to a particular matter and recuse themselves from such matter (with limited exceptions upon authorization from the employee's agency designee).</p><p>The SBA must issue regulations implementing the requirements of this bill.</p>",
+          "updateDate": "2026-06-17T17:40:27Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7401/text?format=json"
+      },
+      "title": "Small Business Lending Fraud Prevention Act",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7401/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-26T16:46:27Z",
+      "updateDateIncludingText": "2026-06-26T16:46:27Z"
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7757/actions?format=json"
+      },
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7757/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 40 (Tuesday, March 3, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. GUTHRIE:\nH.R. 7757.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle 1, Section 8 of the United States Constitution.\n[Page H2369]\n</pre>",
+      "cosponsors": {
+        "count": 1,
+        "countIncludingWithdrawnCosponsors": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7757/cosponsors?format=json"
+      },
+      "introducedDate": "2026-03-03",
+      "latestAction": {
+        "actionDate": "2026-06-29",
+        "actionTime": "19:02:09",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/7757",
+      "number": "7757",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Commerce"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7757/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "G000558",
+          "district": 2,
+          "firstName": "Brett",
+          "fullName": "Rep. Guthrie, Brett [R-KY-2]",
+          "isByRequest": "N",
+          "lastName": "Guthrie",
+          "party": "R",
+          "state": "KY",
+          "url": "https://api.congress.gov/v3/member/G000558?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 29,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7757/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-03-03",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Kids Internet and Digital Safety Act or the KIDS Act</strong></p><p>This bill requires specified online platforms to establish safeguards for minors. The safeguards include (1) limiting access to specified sexual material, (2) providing parental controls on social media and online video game platforms, and (3) requiring artificial intelligence (AI)&nbsp;chatbots to disclose certain information to users who are minors.</p><p>First, publicly available online platforms on which more than one-third of the content is considered sexual material harmful to minors under the bill&nbsp;must adopt technology to identify minors and prevent them from accessing such material.</p><p>Next,&nbsp;social media platforms must (1) implement default settings for minors that limit compulsive usage features and the ability of other users to communicate with minors, and (2) provide tools for parents to manage the privacy and account settings of a minor. Social media platforms may not allow ephemeral messaging features for minors.</p><p>The bill also requires online video game platforms to provide tools that allow parents to (1) limit communication between a minor and other users of the platform, and (2) restrict purchases by a minor on the platform.&nbsp;</p><p>Further, providers of AI chatbots must disclose to users who are minors (1) that the chatbot is an AI system and not a human, and (2) suicide and crisis intervention hotline information.</p><p>Finally, the bill requires specified studies and reports about the effects of social media platforms on minors and provides for enforcement of the bill's requirements by the Federal Trade Commission and state attorneys general.</p>",
+          "updateDate": "2026-06-26T13:36:37Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7757/text?format=json"
+      },
+      "title": "KIDS Act",
+      "titles": {
+        "count": 35,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7757/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-07-01T08:06:49Z",
+      "updateDateIncludingText": "2026-07-01T12:03:44Z"
+    },
+    {
+      "actions": {
+        "count": 19,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7892/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7892/amendments?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As ordered reported by the House Committee on Education and Workforce on March 17, 2026",
+          "pubDate": "2026-05-13T16:17:00Z",
+          "title": "H.R. 7892, No Aid for Ghost Students Act of 2026 ",
+          "url": "https://www.cbo.gov/publication/62439"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-669",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/669?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7892/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 4,
+        "countIncludingWithdrawnCosponsors": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7892/cosponsors?format=json"
+      },
+      "introducedDate": "2026-03-12",
+      "latestAction": {
+        "actionDate": "2026-06-11",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Health, Education, Labor, and Pensions."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/7892",
+      "number": "7892",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Education"
+      },
+      "relatedBills": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7892/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "O000086",
+          "district": 4,
+          "firstName": "Burgess",
+          "fullName": "Rep. Owens, Burgess [R-UT-4]",
+          "isByRequest": "N",
+          "lastName": "Owens",
+          "party": "R",
+          "state": "UT",
+          "url": "https://api.congress.gov/v3/member/O000086?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7892/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-05-26",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>No Aid for Ghost Students Act of 2026</strong></p><p>This bill requires the Department of Education (ED) to establish an identity fraud detection system for the Free Application for Federal Student Aid (FAFSA).</p><p>Beginning on October 1, 2026, ED must use an identity fraud detection system to review each submitted application to determine whether the applicant presents a reasonable suspicion of identity fraud. If ED makes such a determination, it must notify the applicant and each institution of higher education (IHE) designated on the application that the applicant  is subject to additional identity verification.</p><p>An IHE may not disburse federal financial aid to an applicant that presents a reasonable suspicion of fraud unless the IHE verifies the applicant's identity  in person or by live video. If the applicant's identity is confirmed, the IHE must notify ED that the applicant's identity has been verified.</p><p>ED must establish guidelines for the identity verification procedures conducted by IHEs.</p><p>(On April 26, 2026, ED began implementing a real-time identity fraud detection process within the FAFSA form that places applicants into one of four risk categories. High-risk applicants must confirm their identity by presenting documentation during the online application process, including via a live camera process. Applicants who are rejected via this automated process must then have their identity verified in person by IHEs.)</p>",
+          "updateDate": "2026-06-01T16:08:45Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7892/text?format=json"
+      },
+      "title": "No Aid for Ghost Students Act of 2026",
+      "titles": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/7892/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-16T17:21:11Z",
+      "updateDateIncludingText": "2026-06-16T17:21:11Z"
+    },
+    {
+      "actions": {
+        "count": 19,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8312/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8312/amendments?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Oversight and Government Reform on June 3, 2026",
+          "pubDate": "2026-06-04T20:02:00Z",
+          "title": "H.R. 8312, Fraud Prevention and Accountability Act",
+          "url": "https://www.cbo.gov/publication/62503"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-683",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/683?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8312/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 66 (Wednesday, April 15, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. SESSIONS:\nH.R. 8312.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8, Clause 18\n[Page H2925]\n</pre>",
+      "cosponsors": {
+        "count": 1,
+        "countIncludingWithdrawnCosponsors": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8312/cosponsors?format=json"
+      },
+      "introducedDate": "2026-04-15",
+      "latestAction": {
+        "actionDate": "2026-06-11",
+        "text": "Received in the Senate."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/8312",
+      "number": "8312",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Government Operations and Politics"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8312/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "S000250",
+          "district": 17,
+          "firstName": "Pete",
+          "fullName": "Rep. Sessions, Pete [R-TX-17]",
+          "isByRequest": "N",
+          "lastName": "Sessions",
+          "party": "R",
+          "state": "TX",
+          "url": "https://api.congress.gov/v3/member/S000250?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8312/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-06-03",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Fraud Prevention and Accountability Act</strong></p><p>This bill (1) assigns financial integrity, improper payment prevention, and spending transparency functions to the Bureau of the Fiscal Service (BFS) within the Department of the Treasury; (2) establishes an Office of the Inspector General for Fraud, Accountability, and Recovery (OIGFAR) within Treasury; and (3) requires Treasury to enter into data sharing agreements with other federal agencies and allowable private entities to prevent fraud and improper payments.</p><p>Functions assigned to&nbsp;BFS by the bill include</p><ul><li>administering the Do Not Pay system (which provides federal agencies and federally funded state-administered programs the ability to verify recipient identity and eligibility before making an award or issuing a payment);</li><li>maintaining a voluntary governmentwide program to provide data sharing and analysis to federal agencies and to state, local, or tribal governments responsible for administering a federally funded program in order to detect fraud and prevent improper payments that result in financial loss; and</li><li>supporting&nbsp;OIGFAR by providing access to information technology and data.</li></ul><p>The duties of&nbsp;OIGFAR include auditing and investigating the use of certain federal funds, such as</p><ul><li>funds, loans, and tax credits made available by various&nbsp;coronavirus response laws;</li><li>any federal award of $50,000 or more;&nbsp;and</li><li>emergency spending related to disaster relief or economic recovery.</li></ul><p>OIGFAR must ensure the expeditious reporting of suspected violations of federal criminal law to the Department of Justice. OIGFAR is authorized to provide investigative support to prosecutive and enforcement authorities to protect program integrity and prevent, detect, and prosecute fraud.</p>",
+          "updateDate": "2026-06-06T20:58:50Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8312/text?format=json"
+      },
+      "title": "Fraud Prevention and Accountability Act",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8312/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-15T18:05:37Z",
+      "updateDateIncludingText": "2026-06-15T18:05:37Z"
+    },
+    {
+      "actions": {
+        "count": 15,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8428/actions?format=json"
+      },
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8428/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 71 (Wednesday, April 22, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. GROTHMAN:\nH.R. 8428.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle 1, Section 8 of the United States Constitution\n[Page H3068]\n</pre>",
+      "cosponsors": {
+        "count": 1,
+        "countIncludingWithdrawnCosponsors": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8428/cosponsors?format=json"
+      },
+      "introducedDate": "2026-04-22",
+      "latestAction": {
+        "actionDate": "2026-06-09",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/8428",
+      "number": "8428",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Government Operations and Politics"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "G000576",
+          "district": 6,
+          "firstName": "Glenn",
+          "fullName": "Rep. Grothman, Glenn [R-WI-6]",
+          "isByRequest": "N",
+          "lastName": "Grothman",
+          "party": "R",
+          "state": "WI",
+          "url": "https://api.congress.gov/v3/member/G000576?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8428/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-22",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Federal Fraud Prevention Workforce Training Act</strong></p><p>This bill requires the Office of Management and Budget (OMB) and the Department of the Treasury to&nbsp;establish and maintain a mandatory antifraud and&nbsp;improper payment prevention training program for federal employees whose&nbsp;roles involve federal financial assistance or oversight of federal programs. The program must also be made available to state, local, and tribal governments to train relevant personnel.</p><p>Under the bill, federal agencies must ensure that all federal employees in roles involving oversight of federal programs or federal financial assistance complete the training every two years. (Such positions include program administrator or officer, financial administrator or manager, disbursement certifying official, auditing official, and grants manager.) The Office of Personnel Management shall certify and maintain records of completion.</p><p>Treasury must also provide the program and related technical assistance to state, local, and tribal governments for training&nbsp;employees who are responsible for the administration of federally funded programs.  Federal agencies may make completion of the program a condition of a federal grant or award.</p><p>The program curriculum must include comprehensive instruction on specified topics, including (1) identifying fraud and improper payment risks in federal programs; (2) using government-wide&nbsp;antifraud data sharing and&nbsp;other payee validation programs; and (3) reporting mechanisms for suspected fraud, waste, and abuse.</p><p>No later than two years after the date of the bill's enactment, Treasury and OMB must provide&nbsp;Congress with a report on program implementation.</p><p>Finally, Treasury may prescribe any regulations necessary to implement and administer the training program.</p>",
+          "updateDate": "2026-06-05T13:14:15Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8428/text?format=json"
+      },
+      "title": "Federal Fraud Prevention Workforce Training Act",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8428/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-13T05:53:29Z",
+      "updateDateIncludingText": "2026-06-13T05:53:29Z"
+    },
+    {
+      "actions": {
+        "count": 22,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8464/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8464/amendments?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Oversight and Government Reform on June 3, 2026",
+          "pubDate": "2026-06-08T16:31:00Z",
+          "title": "H.R. 8464, Stopping Fraudulent Payments Act",
+          "url": "https://www.cbo.gov/publication/62513"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-684",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/684?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8464/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 72 (Thursday, April 23, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. COMER:\nH.R. 8464.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8, Clause 18 of the U.S. Constitution,\nin that the legislation ``is necessary and proper for\ncarrying into Execution the . . . Powers vested by this\nConstitution in the Government of the United States, or in\nany Department or Officer thereof.\n[Page H3092]\n</pre>",
+      "cosponsors": {
+        "count": 2,
+        "countIncludingWithdrawnCosponsors": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8464/cosponsors?format=json"
+      },
+      "introducedDate": "2026-04-23",
+      "latestAction": {
+        "actionDate": "2026-06-11",
+        "text": "Received in the Senate."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/8464",
+      "number": "8464",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Government Operations and Politics"
+      },
+      "relatedBills": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8464/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "C001108",
+          "district": 1,
+          "firstName": "James",
+          "fullName": "Rep. Comer, James [R-KY-1]",
+          "isByRequest": "N",
+          "lastName": "Comer",
+          "party": "R",
+          "state": "KY",
+          "url": "https://api.congress.gov/v3/member/C001108?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8464/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-06-03",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Stopping Fraudulent Payments Act</strong></p><p>This bill establishes requirements to prevent fraudulent or improper payments from federal programs.</p><p>Specifically, the bill directs executive agencies to take corrective actions to temporarily pause, condition, or segment payment voucher requests before certifying them if the agencies have sufficient reason to determine that the payments present elevated risks of fraud or improper payments resulting in financial loss to the government. The corrective actions must be (1) based on objective, documented fraud-risk indicators; (2) narrowly applied to the portion of the payments presenting the elevated risk; and (3) limited in duration to the minimum period necessary to verify the eligibility or accuracy of the payments.</p><p>The Department of the Treasury must return certified payment vouchers to agencies for corrective action if they present an elevated risk of fraud based on an output of Treasury\u2019s Do Not Pay system.</p><p>The bill also prohibits officers or employees of the federal government from being personally liable for actions taken in good faith under this bill.</p>",
+          "updateDate": "2026-06-05T19:14:42Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8464/text?format=json"
+      },
+      "title": "Stopping Fraudulent Payments Act",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8464/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-30T21:37:09Z",
+      "updateDateIncludingText": "2026-06-30T21:37:09Z"
+    },
+    {
+      "actions": {
+        "count": 15,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8466/actions?format=json"
+      },
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8466/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 72 (Thursday, April 23, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. BIGGS of Arizona:\nH.R. 8466.\nCongress has the power to enact this legislation pursuant\nto the following:\nCongress has the authority to enact this legislation\npursuant to Article I, Section 8 of the Constitution.\n[Page H3092]\n</pre>",
+      "cosponsors": {
+        "count": 1,
+        "countIncludingWithdrawnCosponsors": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8466/cosponsors?format=json"
+      },
+      "introducedDate": "2026-04-23",
+      "latestAction": {
+        "actionDate": "2026-06-09",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/8466",
+      "number": "8466",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Emergency Management"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "B001302",
+          "district": 5,
+          "firstName": "Andy",
+          "fullName": "Rep. Biggs, Andy [R-AZ-5]",
+          "isByRequest": "N",
+          "lastName": "Biggs",
+          "party": "R",
+          "state": "AZ",
+          "url": "https://api.congress.gov/v3/member/B001302?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8466/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-23",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Taxpayer Resources Used in Emergencies Accountability Act or the TRUE Accountability Act</strong></p><p>This bill requires agencies to develop and implement plans for preventing fraud and improper payments relating to federal emergency spending (e.g., providing funding relating to disasters or pandemics).</p><p>The Office of Management and Budget (OMB) must issue, and review every three years, guidance to agencies for developing plans with appropriate internal controls. The guidance must incorporate the current Government Accountability Office frameworks for managing fraud risk in federal programs and managing improper payments in federal emergency assistance.</p><p>Within one year after the bill\u2019s enactment, agencies must submit to&nbsp;OMB plans required by the guidance. Each plan must include procedures to (1) evaluate the risk of financial loss to the federal government caused by improper payments and fraud relating to the agency\u2019s federal emergency spending; (2) develop risk reduction strategies that are, to the extent possible, implemented prior to expenditure; and (3) adopt payment monitoring to identify and reduce improper and fraudulent payments (e.g., anomaly detection). Agencies must revise and resubmit plans, as necessary, at least every three years.</p><p>OMB must annually submit the plans to Congress along with information relating to helping agencies implement the plans and legislative recommendations for emergency appropriations.</p>",
+          "updateDate": "2026-06-03T22:01:15Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8466/text?format=json"
+      },
+      "title": "TRUE Accountability Act",
+      "titles": {
+        "count": 9,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8466/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-13T05:53:29Z",
+      "updateDateIncludingText": "2026-06-13T05:53:29Z"
+    },
+    {
+      "actions": {
+        "count": 23,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8646/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8646/amendments?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-632",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/632?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8646/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 77 (Monday, May 4, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. HARRIS:\nH.R. 8646.\nCongress has the power to enact this legislation pursuant\nto the following:\nThe principal constitutional authority for this legislation\nis clause 7 of section 9 of article I of the Constitution of\nthe United States (the appropriation power), which states:\n``No Money shall be drawn from the Treasury, but in\nConsequence of Appropriations made by Law . . . .'' In\naddition, clause 1 of section 8 of article I of the\nConstitution (the spending power) provides: ``The Congress\nshall have the Power . . . to pay the Debts and provide for\nthe common Defence and general Welfare of the United States .\n. . .'' Together, these specific constitutional provisions\nestablish the congressional power of the purse, granting\nCongress the authority to appropriate funds, to determine\ntheir purpose, amount, and period of availability, and to set\nforth terms and conditions governing their use.\n[Page H3337]\n</pre>",
+      "introducedDate": "2026-05-01",
+      "latestAction": {
+        "actionDate": "2026-06-08",
+        "text": "Received in the Senate."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/8646",
+      "number": "8646",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Economics and Public Finance"
+      },
+      "relatedBills": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8646/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "H001052",
+          "district": 1,
+          "firstName": "Andy",
+          "fullName": "Rep. Harris, Andy [R-MD-1]",
+          "isByRequest": "N",
+          "lastName": "Harris",
+          "party": "R",
+          "state": "MD",
+          "url": "https://api.congress.gov/v3/member/H001052?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 89,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8646/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-05-01",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Agriculture, Rural Development, Food and Drug Administration, and Related Agency Appropriations Act, 2027</strong></p><p>This bill provides FY2027 appropriations for the Department of Agriculture (USDA), the Food and Drug Administration, and related agencies.</p><p>The bill provides appropriations to USDA for agricultural programs, including</p><ul><li>the Office of the Secretary,</li><li>Executive Operations,</li><li>the Economic Research Service,</li><li>the National Agricultural Statistics Service,</li><li>the Agricultural Research Service,</li><li>the National Institute of Food and Agriculture,</li><li>the Animal and Plant Health Inspection Service,</li><li>the Agricultural Marketing Service, and</li><li>the Food Safety and Inspection Service.</li></ul><p>The bill also provides appropriations to USDA for farm production and conservation programs, including</p><ul><li>the Farm Production and Conservation Business Center,</li><li>the Farm Service Agency,</li><li>the Risk Management Agency, and</li><li>the Natural Resources Conservation Service.</li></ul><p>The bill provides appropriations to the Federal Crop Insurance Corporation Fund and the Commodity Credit Corporation Fund.</p><p>For USDA rural development programs, the bill includes appropriations for</p><ul><li>Salaries and Expenses,</li><li>the Rural Housing Service,</li><li>the Rural Business-Cooperative Service, and</li><li>the Rural Utilities Service.</li></ul><p>The bill provides appropriations to the Food and Nutrition Service for</p><ul><li>Child Nutrition Programs;</li><li>the Special Supplemental Nutrition Program for Women, Infants, and Children (WIC);</li><li>the Supplemental Nutrition Assistance Program (SNAP);</li><li>the Commodity Assistance Program; and</li><li>Nutrition Programs Administration.</li></ul><p>The bill provides appropriations to the Foreign Agricultural Service for (1) Food for Peace Title II Grants, and (2) McGovern-Dole International Food for Education and Child Nutrition Program Grants.</p><p>The bill also provides appropriations for</p><ul><li>the Food and Drug Administration,</li><li>the Commodity Futures Trading Commission, and</li><li>the Farm Credit Administration.</li></ul><p>Additionally, the bill sets forth requirements and restrictions for using funds provided by this and other appropriations acts.</p><p>It also includes provisions that address the regulation of animal food, liability for donations of pet-related products, and payments for&nbsp;the construction of the Arkansas Valley Conduit.&nbsp;</p>",
+          "updateDate": "2026-05-05T13:07:41Z",
+          "versionCode": "00"
+        },
+        {
+          "actionDate": "2026-05-01",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Agriculture, Rural Development, Food and Drug Administration, and Related Agency Appropriations Act, 2027</strong></p><p>This bill provides FY2027 appropriations for the Department of Agriculture (USDA), the Food and Drug Administration, and related agencies.</p><p>The bill provides appropriations to USDA for agricultural programs, including</p><ul><li>the Office of the Secretary,</li><li>Executive Operations,</li><li>the Economic Research Service,</li><li>the National Agricultural Statistics Service,</li><li>the Agricultural Research Service,</li><li>the National Institute of Food and Agriculture,</li><li>the Animal and Plant Health Inspection Service,</li><li>the Agricultural Marketing Service, and</li><li>the Food Safety and Inspection Service.</li></ul><p>The bill also provides appropriations to USDA for farm production and conservation programs, including</p><ul><li>the Farm Production and Conservation Business Center,</li><li>the Farm Service Agency,</li><li>the Risk Management Agency, and</li><li>the Natural Resources Conservation Service.</li></ul><p>The bill provides appropriations to the Federal Crop Insurance Corporation Fund and the Commodity Credit Corporation Fund.</p><p>For USDA rural development programs, the bill includes appropriations for</p><ul><li>Salaries and Expenses,</li><li>the Rural Housing Service,</li><li>the Rural Business-Cooperative Service, and</li><li>the Rural Utilities Service.</li></ul><p>The bill provides appropriations to the Food and Nutrition Service for</p><ul><li>Child Nutrition Programs;</li><li>the Special Supplemental Nutrition Program for Women, Infants, and Children (WIC);</li><li>the Supplemental Nutrition Assistance Program (SNAP);</li><li>the Commodity Assistance Program; and</li><li>Nutrition Programs Administration.</li></ul><p>The bill provides appropriations to the Foreign Agricultural Service for (1) Food for Peace Title II Grants, and (2) McGovern-Dole International Food for Education and Child Nutrition Program Grants.</p><p>The bill also provides appropriations for</p><ul><li>the Food and Drug Administration,</li><li>the Commodity Futures Trading Commission, and</li><li>the Farm Credit Administration.</li></ul><p>Additionally, the bill sets forth requirements and restrictions for using funds provided by this and other appropriations acts.</p><p>It also includes provisions that address the regulation of animal food, liability for donations of pet-related products, and payments for&nbsp;the construction of the Arkansas Valley Conduit.&nbsp;</p>",
+          "updateDate": "2026-05-05T13:19:51Z",
+          "versionCode": "07"
+        },
+        {
+          "actionDate": "2026-06-04",
+          "actionDesc": "Passed House",
+          "text": "<p><strong>Agriculture, Rural Development, Food and Drug Administration, and Related Agency Appropriations Act, 2027</strong></p><p>This bill provides FY2027 appropriations for the Department of Agriculture (USDA), the Food and Drug Administration, and related agencies.</p><p>The bill provides appropriations to USDA for agricultural programs, including</p><ul><li>the Office of the Secretary,</li><li>Executive Operations,</li><li>the Economic Research Service,</li><li>the National Agricultural Statistics Service,</li><li>the Agricultural Research Service,</li><li>the National Institute of Food and Agriculture,</li><li>the Animal and Plant Health Inspection Service,</li><li>the Agricultural Marketing Service, and</li><li>the Food Safety and Inspection Service.</li></ul><p>The bill also provides appropriations to USDA for farm production and conservation programs, including</p><ul><li>the Farm Production and Conservation Business Center,</li><li>the Farm Service Agency,</li><li>the Risk Management Agency, and</li><li>the Natural Resources Conservation Service.</li></ul><p>The bill provides appropriations to the Federal Crop Insurance Corporation Fund and the Commodity Credit Corporation Fund.</p><p>For USDA rural development programs, the bill includes appropriations for</p><ul><li>Salaries and Expenses,</li><li>the Rural Housing Service,</li><li>the Rural Business-Cooperative Service, and</li><li>the Rural Utilities Service.</li></ul><p>The bill provides appropriations to the Food and Nutrition Service for</p><ul><li>Child Nutrition Programs;</li><li>the Special Supplemental Nutrition Program for Women, Infants, and Children (WIC);</li><li>the Supplemental Nutrition Assistance Program (SNAP);</li><li>the Commodity Assistance Program; and</li><li>Nutrition Programs Administration.</li></ul><p>The bill provides appropriations to the Foreign Agricultural Service for (1) Food for Peace Title II Grants, and (2) McGovern-Dole International Food for Education and Child Nutrition Program Grants.</p><p>The bill also provides appropriations for</p><ul><li>the Food and Drug Administration,</li><li>the Commodity Futures Trading Commission, and</li><li>the Farm Credit Administration.</li></ul><p>Additionally, the bill sets forth requirements and restrictions for using funds provided by this and other appropriations acts.</p><p>It also includes provisions that address the regulation of animal food, liability for donations of pet-related products, and payments for&nbsp;the construction of the Arkansas Valley Conduit.&nbsp;</p>",
+          "updateDate": "2026-06-15T14:25:31Z",
+          "versionCode": "53"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8646/text?format=json"
+      },
+      "title": "Agriculture, Rural Development, Food and Drug Administration, and Related Agency Appropriations Act, 2027",
+      "titles": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/8646/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-30T16:05:51Z",
+      "updateDateIncludingText": "2026-06-30T16:05:51Z"
+    },
+    {
+      "actions": {
+        "count": 16,
+        "url": "https://api.congress.gov/v3/bill/119/hr/915/actions?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Small Business on June 3, 2026",
+          "pubDate": "2026-06-16T17:25:00Z",
+          "title": "H.R. 915, Small Business Technological Act of 2025",
+          "url": "https://www.cbo.gov/publication/62527"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-678",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/678?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/915/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 23 (Tuesday, February 4, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. ALFORD:\nH.R. 915.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8, Clause 1 ``The Congress shall have\npower to . . . provide for the . . . general welfare of the\nUnited States; . . . ''\n[Page H460]\n</pre>",
+      "cosponsors": {
+        "count": 3,
+        "countIncludingWithdrawnCosponsors": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/915/cosponsors?format=json"
+      },
+      "introducedDate": "2025-02-04",
+      "latestAction": {
+        "actionDate": "2026-06-24",
+        "actionTime": "17:17:18",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/915",
+      "number": "915",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Commerce"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/915/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "A000379",
+          "district": 4,
+          "firstName": "Mark",
+          "fullName": "Rep. Alford, Mark [R-MO-4]",
+          "isByRequest": "N",
+          "lastName": "Alford",
+          "party": "R",
+          "state": "MO",
+          "url": "https://api.congress.gov/v3/member/A000379?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/915/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-06-03",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Small Business Technological Act of 2025</strong></p><p>This bill authorizes the Small Business Administration (SBA) to finance under the 7(a) loan program business software or cloud computing services that facilitate business operations, product or service delivery, payroll processing, human resources functions, sales and billing functions, or accounting or tracking of inventory. Such software or services include business tools that utilize artificial intelligence.</p><p>The 7(a) loan program is the SBA's primary business loan program that provides loan guaranties for participating lenders to provide financing to small businesses that are otherwise unable obtain reasonable credit terms.</p>",
+          "updateDate": "2026-06-18T14:18:47Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/915/text?format=json"
+      },
+      "title": "Small Business Technological Advancement Act",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/915/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-06-26T16:47:20Z",
+      "updateDateIncludingText": "2026-06-26T16:47:20Z"
+    },
+    {
+      "actions": {
+        "count": 19,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1140/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1140/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-03-26",
+      "latestAction": {
+        "actionDate": "2026-06-09",
+        "actionTime": "17:31:11",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1140",
+      "number": "1140",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1140/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "N000188",
+          "district": 1,
+          "firstName": "Donald",
+          "fullName": "Rep. Norcross, Donald [D-NJ-1]",
+          "isByRequest": "N",
+          "lastName": "Norcross",
+          "party": "D",
+          "state": "NJ",
+          "url": "https://api.congress.gov/v3/member/N000188?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1140/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-03-26",
+          "actionDesc": "Introduced in House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 5408) to accelerate workplace time-to-contract under the National Labor Relations Act.",
+          "updateDate": "2026-04-03T12:59:10Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1140/text?format=json"
+      },
+      "title": "Providing for consideration of the bill (H.R. 5408) to accelerate workplace time-to-contract under the National Labor Relations Act.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1140/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-06-16T14:14:53Z",
+      "updateDateIncludingText": "2026-06-16T14:14:53Z"
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1335/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1335/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 8,
+        "countIncludingWithdrawnCosponsors": 8,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1335/cosponsors?format=json"
+      },
+      "introducedDate": "2026-06-03",
+      "latestAction": {
+        "actionDate": "2026-06-11",
+        "actionTime": "10:45:26",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1335",
+      "number": "1335",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Government Operations and Politics"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1335/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "F000246",
+          "district": 4,
+          "firstName": "Pat",
+          "fullName": "Rep. Fallon, Pat [R-TX-4]",
+          "isByRequest": "N",
+          "lastName": "Fallon",
+          "party": "R",
+          "state": "TX",
+          "url": "https://api.congress.gov/v3/member/F000246?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1335/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-06-03",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This resolution condemns the actions of those seeking to defraud the U.S. government.&nbsp;</p><p>The resolution also expresses&nbsp;the belief of the House of Representatives that (1) legislative and policy reforms to prevent fraud and improper payment will meaningfully improve the continued financial prosperity of the U.S. government and the American taxpayer, and (2) federal program eligibility and spending activities should be verified prior to payments being issued.</p>",
+          "updateDate": "2026-06-05T15:06:04Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1335/text?format=json"
+      },
+      "title": "Condemning actors seeking to defraud the United States Government, and expressing the sense of the House of Representatives that governmentwide fraud and improper payment prevention reforms will meaningfully improve the financial prosperity of the United States, and that Federal program eligibility should be verified before payment.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1335/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-06-15T18:48:45Z",
+      "updateDateIncludingText": "2026-06-15T18:48:45Z"
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1345/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-690",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/690?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1345/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-06-08",
+      "latestAction": {
+        "actionDate": "2026-06-09",
+        "actionTime": "14:41:53",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1345",
+      "number": "1345",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "relatedBills": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1345/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "L000600",
+          "district": 23,
+          "firstName": "Nicholas",
+          "fullName": "Rep. Langworthy, Nicholas A. [R-NY-23]",
+          "isByRequest": "N",
+          "lastName": "Langworthy",
+          "middleName": "A.",
+          "party": "R",
+          "state": "NY",
+          "url": "https://api.congress.gov/v3/member/L000600?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1345/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-06-08",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 8312) to establish fraud prevention and program integrity functions and data sharing authorities within the Department of Treasury and a permanent governmentwide Inspector General for Fraud, Accountability, and Recovery, and for other purposes; providing for consideration of the bill (H.R. 8464) to amend title 31, United States Code, to authorize pausing and segmenting payments, and for other purposes; providing for consideration of the resolution (H. Res. 1335) condemning actors seeking to defraud the United States Government, and expressing the sense of the House of Representatives that governmentwide fraud and improper payment prevention reforms will meaningfully improve the financial prosperity of the United States, and that Federal program eligibility should be verified before payment; and providing for consideration of the bill (S. 2) to provide for reconciliation pursuant to title II of S. Con. Res. 33.",
+          "updateDate": "2026-06-09T08:19:57Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1345/text?format=json"
+      },
+      "title": "Providing for consideration of the bill (H.R. 8312) to establish fraud prevention and program integrity functions and data sharing authorities within the Department of Treasury and a permanent governmentwide Inspector General for Fraud, Accountability, and Recovery, and for other purposes; providing for consideration of the bill (H.R. 8464) to amend title 31, United States Code, to authorize pausing and segmenting payments, and for other purposes; providing for consideration of the resolution (H. Res. 1335) condemning actors seeking to defraud the United States Government, and expressing the sense of the House of Representatives that governmentwide fraud and improper payment prevention reforms will meaningfully improve the financial prosperity of the United States, and that Federal program eligibility should be verified before payment; and providing for consideration of the bill (S. 2) to provide for reconciliation pursuant to title II of S. Con. Res. 33.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1345/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-06-30T18:23:22Z",
+      "updateDateIncludingText": "2026-06-30T18:23:22Z"
+    },
+    {
+      "actions": {
+        "count": 11,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1398/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1398/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-06-30",
+      "latestAction": {
+        "actionDate": "2026-06-30",
+        "actionTime": "14:16:45",
+        "text": "POSTPONED PROCEEDINGS - The Chair put the question on motion to reconsider and by voice vote, announced the ayes had prevailed. Mr. McGovern demanded a recorded vote and the Chair postponed further proceedings until a time to be announced."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1398",
+      "number": "1398",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "relatedBills": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1398/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "S001189",
+          "district": 8,
+          "firstName": "Austin",
+          "fullName": "Rep. Scott, Austin [R-GA-8]",
+          "isByRequest": "N",
+          "lastName": "Scott",
+          "party": "R",
+          "state": "GA",
+          "url": "https://api.congress.gov/v3/member/S001189?format=json"
+        }
+      ],
+      "textVersions": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1398/text?format=json"
+      },
+      "title": "Providing for consideration of the bill (H.R. 8800) to authorize appropriations for fiscal year 2027 for military activities of the Department of Defense, for military construction, and for defense activities of the Department of Energy, to prescribe military personnel strengths for such fiscal year, and for other purposes; providing for consideration of the bill (H.R. 8595) making appropriations for national security, Department of State, and related programs for the fiscal year ending September 30, 2027, and for other purposes; providing for consideration of the bill (H.R. 8884) to amend title II of the Social Security Act to reauthorize demonstration authority for the disability insurance program; providing for consideration of the resolution (H. Res. 1383) commemorating the one-year anniversary of the enactment of the Working Families Tax Cuts; and for other purposes.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1398/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-07-01T14:14:00Z",
+      "updateDateIncludingText": "2026-07-01T14:14:00Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 9,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1399/actions?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-06-30",
+      "latestAction": {
+        "actionDate": "2026-06-30",
+        "actionTime": "17:47:30",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1399",
+      "number": "1399",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "sponsors": [
+        {
+          "bioguideId": "M001184",
+          "district": 4,
+          "firstName": "Thomas",
+          "fullName": "Rep. Massie, Thomas [R-KY-4]",
+          "isByRequest": "N",
+          "lastName": "Massie",
+          "party": "R",
+          "state": "KY",
+          "url": "https://api.congress.gov/v3/member/M001184?format=json"
+        }
+      ],
+      "title": "Directing the Committee on Ethics to preserve and publicly release records relating to monetary settlements involving acts of sexual harassment.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1399/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-07-02T08:06:15Z",
+      "updateDateIncludingText": "2026-07-02T08:06:15Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 19,
+        "url": "https://api.congress.gov/v3/bill/119/s/629/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/629/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 2,
+        "countIncludingWithdrawnCosponsors": 2,
+        "url": "https://api.congress.gov/v3/bill/119/s/629/cosponsors?format=json"
+      },
+      "introducedDate": "2025-02-19",
+      "latestAction": {
+        "actionDate": "2026-06-30",
+        "text": "Presented to President."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-bill/629",
+      "number": "629",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Agriculture and Food"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/s/629/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "F000463",
+          "firstName": "Deb",
+          "fullName": "Sen. Fischer, Deb [R-NE]",
+          "isByRequest": "N",
+          "lastName": "Fischer",
+          "party": "R",
+          "state": "NE",
+          "url": "https://api.congress.gov/v3/member/F000463?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/s/629/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-02-19",
+          "actionDesc": "Introduced in Senate",
+          "text": "<p><strong>Emergency Conservation Program Improvement Act of 2025 </strong></p><p>This bill revises the Emergency Conservation Program (ECP) and the Emergency Forest Restoration Program (EFRP) to expand eligibility for payments to agricultural producers and owners of forest land impacted by natural disasters. The bill also&nbsp;provides additional options to receive an advance on cost-sharing payments before carrying out emergency measures.</p><p>The bill expands advance ECP payments  to include&nbsp;the replacement, repair, or restoration of farmland or conservation structures requiring an immediate response. Producers may receive an advance on cost-sharing payments for 75% of the cost of the replacement and 50% of the cost of the repair or restoration. Current law limits advance payments to 25% of the cost of the repair or replacement of fencing.</p><p>Under EFRP, the bill allows owners of nonindustrial private forest land impacted by a natural disaster to receive an advance on cost-sharing payments for up to 75% of the cost of the emergency measures. Currently, advance payments are not available under the program.</p><p>ECP and EFRP recipients must use the funds within 180 days after the funds are disbursed. This provides additional time to ECP recipients who currently must use the funds within 60 days.</p><p>The bill also expands eligibility for payments under the programs to include emergency measures to address damages caused by (1) a wildfire that is not caused naturally, if the damage is caused by the spread of the wildfire due to natural causes; and (2) a wildfire that is caused by the federal government.</p>",
+          "updateDate": "2026-01-29T15:06:09Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/s/629/text?format=json"
+      },
+      "title": "Emergency Conservation Program Improvement Act of 2025",
+      "titles": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/s/629/titles?format=json"
+      },
+      "type": "S",
+      "updateDate": "2026-07-01T08:07:08Z",
+      "updateDateIncludingText": "2026-07-01T08:07:08Z"
     }
   ]
 }
