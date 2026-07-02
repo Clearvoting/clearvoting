@@ -3,7 +3,7 @@ enrichment, party reveal, and the notify signup endpoint."""
 import json
 import pytest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 from httpx import AsyncClient, ASGITransport
 
 from app.main import app
@@ -106,8 +106,11 @@ async def test_state_members_show_party_when_requested():
 @pytest.fixture(autouse=True)
 def _use_tmp_notify_file(tmp_path):
     tmp_file = tmp_path / "notify_signups.jsonl"
+    unavailable_sheets = MagicMock()
+    unavailable_sheets.is_available = False
     limiter.reset()
-    with patch("app.routers.notify.NOTIFY_FILE", tmp_file):
+    with patch("app.routers.notify.NOTIFY_FILE", tmp_file), \
+         patch("app.routers.notify._sheets", unavailable_sheets):
         yield tmp_file
 
 
