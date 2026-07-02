@@ -80,9 +80,13 @@ class AISummaryService:
             from app.services.claude_cli import call_claude_cli
             return await call_claude_cli(system, user_prompt)
 
-    def _build_prompt(self, title: str, official_summary: str, bill_text_excerpt: str, grader_feedback: str | None = None, policy_area: str | None = None) -> str:
+    def _build_prompt(self, title: str, official_summary: str, bill_text_excerpt: str, grader_feedback: str | None = None, policy_area: str | None = None, latest_action: str | None = None) -> str:
         categories_str = ", ".join(ISSUE_CATEGORIES)
         policy_area_line = f'\nPolicy Area (from Congress.gov): {policy_area}' if policy_area else ''
+        # Tells the writer which version it is reading (accuracy rule 17): a
+        # "Became Public Law" status paired with an introduced-era summary is
+        # the wrong-version trap.
+        latest_action_line = f'\nLatest Action (bill status): {latest_action}' if latest_action else ''
         prompt = f"""Analyze this bill and return JSON with four fields:
 
 1. "one_liner": A single plain-English phrase (max 15 words) starting with a verb that says what this bill does. No period. No adjectives. Examples: "Cancel an EPA rule limiting methane fees on oil and gas companies", "Fund the military and set troop pay for 2026".
@@ -97,7 +101,7 @@ Bill Title: {title}
 
 Official Summary: {official_summary}
 
-Bill Text (excerpt): {bill_text_excerpt}{policy_area_line}
+Bill Text (excerpt): {bill_text_excerpt}{policy_area_line}{latest_action_line}
 
 Return ONLY valid JSON. Example format:
 {{"one_liner": "Raise the federal minimum wage to $15 per hour", "provisions": ["Raises the minimum wage from $7.25 to $15.00 per hour over 5 years", "Gives veterans a raise to keep up with the rising cost of living"], "issue_categories": ["Jobs & Workers"], "direction": "in_favor"}}"""
@@ -112,7 +116,7 @@ Generate a corrected version. Return ONLY valid JSON."""
 
         return prompt
 
-    async def generate_summary(self, bill_id: str, title: str, official_summary: str, bill_text_excerpt: str, grader_feedback: str | None = None, policy_area: str | None = None) -> dict:
+    async def generate_summary(self, bill_id: str, title: str, official_summary: str, bill_text_excerpt: str, grader_feedback: str | None = None, policy_area: str | None = None, latest_action: str | None = None) -> dict:
         # Skip cache when grader_feedback is present (this is a retry)
         if not grader_feedback:
             cache_key = f"ai_summary:{bill_id}"
@@ -120,15 +124,21 @@ Generate a corrected version. Return ONLY valid JSON."""
             if cached is not None:
                 return cached
 
-        prompt = self._build_prompt(title, official_summary, bill_text_excerpt, grader_feedback=grader_feedback, policy_area=policy_area)
+        prompt = self._build_prompt(title, official_summary, bill_text_excerpt, grader_feedback=grader_feedback, policy_area=policy_area, latest_action=latest_action)
 
-        raw_text = await self._call_llm(SYSTEM_PROMPT, prompt)
-        raw_text = _strip_code_fences(raw_text)
-        try:
-            result = json.loads(raw_text)
-        except json.JSONDecodeError:
-            logger.error("AI response was not valid JSON: %s", raw_text[:200])
-            return {"provisions": ["AI summary temporarily unavailable"], "issue_categories": [], "one_liner": title, "direction": "neutral"}
+        result = None
+        for attempt in range(2):
+            raw_text = _strip_code_fences(await self._call_llm(SYSTEM_PROMPT, prompt))
+            try:
+                result = json.loads(raw_text)
+                break
+            except json.JSONDecodeError:
+                logger.warning("AI response was not valid JSON (attempt %d): %s", attempt + 1, raw_text[:200])
+        if result is None:
+            # Never cache, never persist, never surface the raw official title
+            # — titles can carry partisan framing straight onto the page.
+            return {"provisions": ["AI summary temporarily unavailable"], "issue_categories": [],
+                    "one_liner": "", "direction": "neutral", "generation_failed": True}
 
         valid_categories = [c for c in result.get("issue_categories", []) if c in ISSUE_CATEGORIES]
         result["issue_categories"] = valid_categories
@@ -138,7 +148,7 @@ Generate a corrected version. Return ONLY valid JSON."""
             result["direction"] = "neutral"
 
         if "one_liner" not in result or not result["one_liner"]:
-            result["one_liner"] = result["provisions"][0] if result.get("provisions") else title
+            result["one_liner"] = result["provisions"][0] if result.get("provisions") else ""
 
         # Only cache final results (no grader_feedback = final or first pass)
         if not grader_feedback:

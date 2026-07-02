@@ -1,3 +1,4 @@
+import json
 import pytest
 from unittest.mock import AsyncMock, patch, MagicMock
 from app.services.ai_summary import AISummaryService, ISSUE_CATEGORIES, SYSTEM_PROMPT
@@ -161,7 +162,9 @@ async def test_generate_summary_fallback_when_no_one_liner():
 
 
 @pytest.mark.asyncio
-async def test_generate_summary_json_error_includes_one_liner():
+async def test_generate_summary_json_error_never_leaks_title():
+    """On unrecoverable parse failure the one_liner must be EMPTY — the raw
+    official title can carry partisan framing straight onto the page."""
     mock_cache = MagicMock()
     mock_cache.get.return_value = None
     service = AISummaryService(api_key="test", cache=mock_cache)
@@ -179,7 +182,8 @@ async def test_generate_summary_json_error_includes_one_liner():
         )
 
     assert "one_liner" in result
-    assert result["one_liner"] == "Fallback Title"
+    assert result["one_liner"] == ""
+    assert result["generation_failed"] is True
 
 
 def test_build_prompt_with_grader_feedback():
@@ -313,3 +317,80 @@ def test_system_prompt_double_negative_rule():
     """System prompt instructs AI to describe the RESULT, not chain of actions."""
     assert "RESULT" in SYSTEM_PROMPT
     assert "stacking negatives" in SYSTEM_PROMPT
+
+
+# --- failure-path hardening (retry once, never cache fallback, never leak raw title) ---
+
+def _resp(text):
+    r = MagicMock()
+    r.content = [MagicMock(text=text)]
+    return r
+
+
+@pytest.mark.asyncio
+async def test_parse_failure_retries_once_then_succeeds():
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = None
+    service = AISummaryService(api_key="test", cache=mock_cache)
+
+    good = '{"one_liner": "Do a thing", "provisions": ["Does a thing"], "issue_categories": ["Taxes"], "direction": "neutral"}'
+    with patch.object(service, "client") as mock_client:
+        mock_client.messages.create = AsyncMock(side_effect=[_resp("NOT JSON {"), _resp(good)])
+        result = await service.generate_summary(
+            bill_id="119-hr-1", title="T", official_summary="S", bill_text_excerpt="X")
+
+    assert result["one_liner"] == "Do a thing"
+    assert mock_client.messages.create.call_count == 2
+
+
+@pytest.mark.asyncio
+async def test_double_parse_failure_returns_safe_uncached_fallback():
+    """Fallback must never surface the raw official title and must never be cached."""
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = None
+    service = AISummaryService(api_key="test", cache=mock_cache)
+
+    partisan_title = "Censuring a Member for colluding with a convicted felon."
+    with patch.object(service, "client") as mock_client:
+        mock_client.messages.create = AsyncMock(side_effect=[_resp("garbage"), _resp("more garbage")])
+        result = await service.generate_summary(
+            bill_id="119-hres-888", title=partisan_title,
+            official_summary="", bill_text_excerpt="")
+
+    assert result["generation_failed"] is True
+    assert result["one_liner"] == ""  # never the raw title
+    assert partisan_title not in json.dumps(result)
+    mock_cache.set.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_missing_one_liner_falls_back_to_provision_not_title():
+    """When the model omits one_liner, use the first provision — never the raw title."""
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = None
+    service = AISummaryService(api_key="test", cache=mock_cache)
+
+    no_oneliner = '{"provisions": ["Renames a post office"], "issue_categories": [], "direction": "neutral"}'
+    with patch.object(service, "client") as mock_client:
+        mock_client.messages.create = AsyncMock(return_value=_resp(no_oneliner))
+        result = await service.generate_summary(
+            bill_id="119-hr-2", title="An Act to designate the facility...",
+            official_summary="", bill_text_excerpt="")
+
+    assert result["one_liner"] == "Renames a post office"
+
+
+# --- bill status context (which version is the writer reading?) ---
+
+def test_build_prompt_includes_bill_status():
+    service = AISummaryService(api_key="test", cache=MagicMock())
+    prompt = service._build_prompt(
+        "Inflation Reduction Act", "summary text", "bill text",
+        policy_area="Health", latest_action="Became Public Law No: 117-169.")
+    assert "Became Public Law No: 117-169." in prompt
+
+
+def test_build_prompt_omits_status_line_when_absent():
+    service = AISummaryService(api_key="test", cache=MagicMock())
+    prompt = service._build_prompt("T", "S", "X")
+    assert "Latest Action" not in prompt

@@ -1,7 +1,7 @@
 import pytest
 import json
 from pathlib import Path
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import AsyncMock, MagicMock, patch
 import inspect
 from sync import sync_members, sync_senate_votes, sync_bills_from_votes, build_member_votes, _parse_bill_ref, sync_house_votes, _house_leg_to_document, sync_bill_summaries, backfill_bill_directions, sync_member_summaries
 
@@ -815,6 +815,112 @@ async def test_build_member_votes_ai_file_exists_but_bill_missing(tmp_path):
 def test_sync_bill_summaries_is_callable():
     """sync_bill_summaries function exists and is callable."""
     assert callable(sync_bill_summaries)
+
+
+# --- writer input selection (wrong-version root cause) ---
+
+def test_latest_official_summary_prefers_public_law():
+    """Congress.gov orders summaries oldest-first; the writer must get the enacted version."""
+    from sync import _latest_official_summary
+    bill = {"summaries": [
+        {"actionDate": "2021-09-27", "actionDesc": "Introduced in House", "text": "BBB draft text"},
+        {"actionDate": "2022-08-16", "actionDesc": "Public Law", "text": "IRA enacted text"},
+    ]}
+    assert _latest_official_summary(bill) == "IRA enacted text"
+
+
+def test_latest_official_summary_falls_back_to_newest():
+    """Without a Public Law summary, pick the newest by actionDate."""
+    from sync import _latest_official_summary
+    bill = {"summaries": [
+        {"actionDate": "2025-01-15", "actionDesc": "Introduced in House", "text": "old"},
+        {"actionDate": "2025-05-09", "actionDesc": "Passed Senate", "text": "newer"},
+    ]}
+    assert _latest_official_summary(bill) == "newer"
+
+
+def test_latest_official_summary_handles_missing():
+    from sync import _latest_official_summary
+    assert _latest_official_summary({}) == ""
+    assert _latest_official_summary({"summaries": []}) == ""
+    assert _latest_official_summary({"summaries": {"count": 3, "url": "x"}}) == ""
+
+
+def test_bill_text_excerpt_picks_latest_version_with_text():
+    from sync import _bill_text_excerpt
+    bill = {"textVersions": [
+        {"date": "2025-01-01", "type": "Introduced", "text": "introduced text"},
+        {"date": "2025-06-01", "type": "Enrolled", "text": "enrolled text"},
+    ]}
+    assert _bill_text_excerpt(bill) == "enrolled text"
+
+
+def test_bill_text_excerpt_handles_url_dict_and_missing():
+    from sync import _bill_text_excerpt
+    assert _bill_text_excerpt({"textVersions": {"count": 5, "url": "x"}}) == ""
+    assert _bill_text_excerpt({}) == ""
+    # versions without embedded text are skipped
+    assert _bill_text_excerpt({"textVersions": [{"date": "2025-01-01", "type": "Introduced"}]}) == ""
+
+
+# --- fetch_bill_texts sync step ---
+
+@pytest.mark.asyncio
+async def test_fetch_bill_texts_fetches_missing_text(tmp_path):
+    """Bills without embedded text get the LATEST text version fetched and stored."""
+    from sync import fetch_bill_texts
+    _write_json(tmp_path / "bills.json", {"bills": [
+        {"congress": 119, "type": "HR", "number": "1", "title": "Test Bill",
+         "textVersions": {"count": 2, "url": "https://api"}},
+    ]})
+
+    mock_client = MagicMock()
+    mock_client.get_bill_text = AsyncMock(return_value={"textVersions": [
+        {"date": "2025-06-01", "type": "Enrolled",
+         "formats": [{"type": "Formatted Text", "url": "https://congress.gov/text.htm"}]},
+        {"date": "2025-01-01", "type": "Introduced",
+         "formats": [{"type": "Formatted Text", "url": "https://congress.gov/old.htm"}]},
+    ]})
+
+    html_body = "<html><body><p>SECTION 1. " + ("This law does things. " * 400) + "</p></body></html>"
+    mock_resp = MagicMock()
+    mock_resp.text = html_body
+    mock_resp.raise_for_status = MagicMock()
+    mock_http = MagicMock()
+    mock_http.get = AsyncMock(return_value=mock_resp)
+    mock_http.__aenter__ = AsyncMock(return_value=mock_http)
+    mock_http.__aexit__ = AsyncMock(return_value=False)
+
+    with patch("httpx.AsyncClient", return_value=mock_http):
+        count = await fetch_bill_texts(mock_client, tmp_path, rate_limit=0)
+
+    assert count == 1
+    saved = json.loads((tmp_path / "bills.json").read_text())["bills"][0]
+    versions = saved["textVersions"]
+    assert isinstance(versions, list)
+    with_text = [v for v in versions if v.get("text")]
+    assert len(with_text) == 1
+    assert with_text[0]["date"] == "2025-06-01"  # latest version got the text
+    assert "This law does things." in with_text[0]["text"]
+    assert "<p>" not in with_text[0]["text"]  # HTML stripped
+    assert len(with_text[0]["text"]) <= 6000  # capped
+
+
+@pytest.mark.asyncio
+async def test_fetch_bill_texts_skips_bills_with_text(tmp_path):
+    """Bills that already carry text are not re-fetched."""
+    from sync import fetch_bill_texts
+    _write_json(tmp_path / "bills.json", {"bills": [
+        {"congress": 119, "type": "HR", "number": "2", "title": "Has text",
+         "textVersions": [{"date": "2025-01-01", "text": "already here"}]},
+    ]})
+    mock_client = MagicMock()
+    mock_client.get_bill_text = AsyncMock()
+
+    count = await fetch_bill_texts(mock_client, tmp_path, rate_limit=0)
+
+    assert count == 0
+    mock_client.get_bill_text.assert_not_called()
 
 
 # --- build_member_votes with anthropic_key ---
