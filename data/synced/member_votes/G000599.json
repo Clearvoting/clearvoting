@@ -1264,7 +1264,7 @@
     {
       "bill_number": "S. 4465",
       "bill_id": "119-s-4465",
-      "one_liner": "Extend the government's legal authority to monitor foreign communications for national security",
+      "one_liner": "Extend a federal surveillance law by six weeks",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2026-04-30T00:00:00",
@@ -2848,7 +2848,7 @@
     {
       "bill_number": "H.J.Res. 142",
       "bill_id": "119-hjres-142",
-      "one_liner": "Cancel a DC tax law and bring back federal tax rules for DC residents",
+      "one_liner": "Cancel a D.C. law that changed how the city collects income taxes",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-02-04T00:00:00",
@@ -2896,7 +2896,7 @@
     {
       "bill_number": "H.R. 7148",
       "bill_id": "119-hr-7148",
-      "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+      "one_liner": "Fund the military, health care, education, housing, and other federal departments for 2026",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-02-03T00:00:00",
@@ -3024,7 +3024,7 @@
     {
       "bill_number": "H.R. 7148",
       "bill_id": "119-hr-7148",
-      "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+      "one_liner": "Fund the military, health care, education, housing, and other federal departments for 2026",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-01-22T00:00:00",
@@ -3040,7 +3040,7 @@
     {
       "bill_number": "H.R. 7148",
       "bill_id": "119-hr-7148",
-      "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+      "one_liner": "Fund the military, health care, education, housing, and other federal departments for 2026",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-01-22T00:00:00",
@@ -3056,7 +3056,7 @@
     {
       "bill_number": "H.R. 7148",
       "bill_id": "119-hr-7148",
-      "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+      "one_liner": "Fund the military, health care, education, housing, and other federal departments for 2026",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-01-22T00:00:00",
@@ -3344,15 +3344,15 @@
     {
       "bill_number": "H.Res. 992",
       "bill_id": "119-hres-992",
-      "one_liner": "Providing for consideration of the bill (H.R. 7006) making further consolidated appropriations for the fiscal year ending September 30, 2026, and for other purposes.",
-      "has_plain_summary": false,
+      "one_liner": "Set the rules for House debate and a vote on a government spending bill",
+      "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-01-14T00:00:00",
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "neutral",
       "congress": 119,
       "session": 2,
       "vote_number": 25
@@ -3360,15 +3360,15 @@
     {
       "bill_number": "H.Res. 992",
       "bill_id": "119-hres-992",
-      "one_liner": "Providing for consideration of the bill (H.R. 7006) making further consolidated appropriations for the fiscal year ending September 30, 2026, and for other purposes.",
-      "has_plain_summary": false,
+      "one_liner": "Set the rules for House debate and a vote on a government spending bill",
+      "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-01-14T00:00:00",
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "neutral",
       "congress": 119,
       "session": 2,
       "vote_number": 24
@@ -3568,15 +3568,15 @@
     {
       "bill_number": "H.R. 1834",
       "bill_id": "119-hr-1834",
-      "one_liner": "Breaking the Gridlock Act",
-      "has_plain_summary": false,
+      "one_liner": "Extend health insurance tax credits through 2028 instead of letting them end",
+      "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-01-08T00:00:00",
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 11
@@ -3632,7 +3632,7 @@
     {
       "bill_number": "H.R. 6938",
       "bill_id": "119-hr-6938",
-      "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+      "one_liner": "Fund science, justice, energy, and environment agencies for the year starting October 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-01-08T00:00:00",
@@ -3648,7 +3648,7 @@
     {
       "bill_number": "H.R. 6938",
       "bill_id": "119-hr-6938",
-      "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+      "one_liner": "Fund science, justice, energy, and environment agencies for the year starting October 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-01-08T00:00:00",
@@ -3664,7 +3664,7 @@
     {
       "bill_number": "H.R. 6938",
       "bill_id": "119-hr-6938",
-      "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+      "one_liner": "Fund science, justice, energy, and environment agencies for the year starting October 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-01-08T00:00:00",
@@ -3952,15 +3952,15 @@
     {
       "bill_number": "H.R. 6703",
       "bill_id": "119-hr-6703",
-      "one_liner": "Lower Health Care Premiums for All Americans Act",
-      "has_plain_summary": false,
+      "one_liner": "Let groups of employers from different industries share one health insurance plan",
+      "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-12-17T00:00:00",
       "result": "Passed",
       "policy_area": "Health",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 349
@@ -3968,15 +3968,15 @@
     {
       "bill_number": "H.R. 6703",
       "bill_id": "119-hr-6703",
-      "one_liner": "Lower Health Care Premiums for All Americans Act",
-      "has_plain_summary": false,
+      "one_liner": "Let groups of employers from different industries share one health insurance plan",
+      "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-12-17T00:00:00",
       "result": "Failed",
       "policy_area": "Health",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 348
@@ -4176,7 +4176,7 @@
     {
       "bill_number": "S. 284",
       "bill_id": "119-s-284",
-      "one_liner": "Extend the Congressional Award Program for youth through 2028",
+      "one_liner": "Reauthorize the Congressional Award Program board through 2028",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2025-12-15T00:00:00",
@@ -4416,7 +4416,7 @@
     {
       "bill_number": "S. 1071",
       "bill_id": "119-s-1071",
-      "one_liner": "Remove remains of convicted rapist from veterans cemetery in Texas",
+      "one_liner": "Fund and set rules for the U.S. military for the year starting October 2025",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-12-10T00:00:00",
@@ -4432,7 +4432,7 @@
     {
       "bill_number": "S. 1071",
       "bill_id": "119-s-1071",
-      "one_liner": "Remove remains of convicted rapist from veterans cemetery in Texas",
+      "one_liner": "Fund and set rules for the U.S. military for the year starting October 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-12-10T00:00:00",
@@ -4496,7 +4496,7 @@
     {
       "bill_number": "S. 356",
       "bill_id": "119-s-356",
-      "one_liner": "Extend federal payments to rural counties with federal land through 2026",
+      "one_liner": "Renew payments to counties with federal land and extend their ability to fund local projects",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-12-09T00:00:00",
@@ -4768,15 +4768,15 @@
     {
       "bill_number": "H.R. 5214",
       "bill_id": "119-hr-5214",
-      "one_liner": "District of Columbia Cash Bail Reform Act of 2025",
-      "has_plain_summary": false,
+      "one_liner": "Require cash bail and jail holds for violent crimes in Washington DC",
+      "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-19T00:00:00",
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 298
@@ -4784,15 +4784,15 @@
     {
       "bill_number": "H.Res. 888",
       "bill_id": "119-hres-888",
-      "one_liner": "Censuring and condemning Delegate Stacey Plaskett and removing her from the House Permanent Select Committee on Intelligence for conduct that reflects discreditably on the House of Representatives for colluding with convicted felony sex offender Jeffrey Epstein during a congressional hearing.",
-      "has_plain_summary": false,
+      "one_liner": "Censure Delegate Stacey Plaskett and remove her from the Intelligence Committee",
+      "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-18T00:00:00",
       "result": "Failed",
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 297
@@ -4800,7 +4800,7 @@
     {
       "bill_number": "S.J.Res. 80",
       "bill_id": "119-sjres-80",
-      "one_liner": "Reopen about half of Alaska's National Petroleum Reserve to oil and gas drilling",
+      "one_liner": "Reopen about half of a 23-million-acre Alaska oil reserve to drilling",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-18T00:00:00",
@@ -4816,7 +4816,7 @@
     {
       "bill_number": "H.J.Res. 131",
       "bill_id": "119-hjres-131",
-      "one_liner": "Cancel a 2024 rule limiting oil and gas leasing in the Arctic National Wildlife Refuge",
+      "one_liner": "Allow oil and gas leasing on 1.6 million acres in Alaska's Arctic National Wildlife Refuge",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-18T00:00:00",
@@ -4832,7 +4832,7 @@
     {
       "bill_number": "H.J.Res. 130",
       "bill_id": "119-hjres-130",
-      "one_liner": "Bring back coal mining permits on federal land in Wyoming's Buffalo Field Office",
+      "one_liner": "Bring back coal leasing on federal land in Wyoming's Buffalo Field Office area",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-18T00:00:00",
@@ -4848,15 +4848,15 @@
     {
       "bill_number": "H.Res. 888",
       "bill_id": "119-hres-888",
-      "one_liner": "Censuring and condemning Delegate Stacey Plaskett and removing her from the House Permanent Select Committee on Intelligence for conduct that reflects discreditably on the House of Representatives for colluding with convicted felony sex offender Jeffrey Epstein during a congressional hearing.",
-      "has_plain_summary": false,
+      "one_liner": "Censure Delegate Stacey Plaskett and remove her from the Intelligence Committee",
+      "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-11-18T00:00:00",
       "result": "Failed",
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 293
@@ -4912,7 +4912,7 @@
     {
       "bill_number": "H.R. 4405",
       "bill_id": "119-hr-4405",
-      "one_liner": "Require the Justice Department to publish all records about Jeffrey Epstein's case",
+      "one_liner": "Release all DOJ records about Jeffrey Epstein's investigation to the public",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2025-11-18T00:00:00",
@@ -4976,7 +4976,7 @@
     {
       "bill_number": "H.R. 5371",
       "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
+      "one_liner": "Reopen the government after a shutdown and fully fund veterans and agriculture through 2026",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-12T00:00:00",
@@ -5040,7 +5040,7 @@
     {
       "bill_number": "H.R. 5371",
       "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
+      "one_liner": "Reopen the government after a shutdown and fully fund veterans and agriculture through 2026",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-09-19T00:00:00",
@@ -5056,7 +5056,7 @@
     {
       "bill_number": "H.R. 5371",
       "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
+      "one_liner": "Reopen the government after a shutdown and fully fund veterans and agriculture through 2026",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-09-19T00:00:00",
@@ -5920,7 +5920,7 @@
     {
       "bill_number": "H.J.Res. 105",
       "bill_id": "119-hjres-105",
-      "one_liner": "Cancel a 2025 BLM land plan limiting oil, gas, and coal activity in North Dakota",
+      "one_liner": "Cancel a BLM land rule that limited oil, gas, and coal in North Dakota",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2025-09-03T00:00:00",
@@ -5936,7 +5936,7 @@
     {
       "bill_number": "H.J.Res. 106",
       "bill_id": "119-hjres-106",
-      "one_liner": "Remove protected status from 21 areas covering 3.6 million acres in Alaska's Central Yukon",
+      "one_liner": "Cancel a federal land management plan for Central Yukon, Alaska",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2025-09-03T00:00:00",
@@ -5952,7 +5952,7 @@
     {
       "bill_number": "H.J.Res. 104",
       "bill_id": "119-hjres-104",
-      "one_liner": "Cancel a rule that blocked coal leasing on 1.7 million acres in Montana",
+      "one_liner": "Bring back coal leasing on 1.7 million acres of Montana federal land",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2025-09-03T00:00:00",
@@ -6336,7 +6336,7 @@
     {
       "bill_number": "S. 1582",
       "bill_id": "119-s-1582",
-      "one_liner": "Create rules for companies that issue stablecoins",
+      "one_liner": "Set rules for who can issue dollar-backed digital tokens called stablecoins",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-07-17T00:00:00",
@@ -6448,7 +6448,7 @@
     {
       "bill_number": "S. 1596",
       "bill_id": "119-s-1596",
-      "one_liner": "Rename the Anahuac National Wildlife Refuge in Texas to the Jocelyn Nungaray National Wildlife Refuge",
+      "one_liner": "Rename a national wildlife refuge in Texas after Jocelyn Nungaray",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-07-14T00:00:00",
@@ -6496,7 +6496,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+      "one_liner": "Cut taxes, increase defense spending, tighten federal benefit programs, and raise the debt limit",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2025-07-03T00:00:00",
@@ -6504,7 +6504,7 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 190
@@ -6848,7 +6848,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+      "one_liner": "Cut $9.4 billion in unspent foreign aid and public broadcasting funds",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-06-12T00:00:00",
@@ -6864,7 +6864,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+      "one_liner": "Cut $9.4 billion in unspent foreign aid and public broadcasting funds",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-06-12T00:00:00",
@@ -6880,7 +6880,7 @@
     {
       "bill_number": "S. 331",
       "bill_id": "119-s-331",
-      "one_liner": "Make fentanyl-related substances permanently illegal under federal law",
+      "one_liner": "Permanently classify all fentanyl-related substances as Schedule I drugs under federal law",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-06-12T00:00:00",
@@ -7120,7 +7120,7 @@
     {
       "bill_number": "H.R. 2483",
       "bill_id": "119-hr-2483",
-      "one_liner": "Fund drug addiction and mental health programs through 2030",
+      "one_liner": "Renew and expand federal drug addiction treatment and overdose prevention programs",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-06-04T00:00:00",
@@ -7136,7 +7136,7 @@
     {
       "bill_number": "H.R. 2483",
       "bill_id": "119-hr-2483",
-      "one_liner": "Fund drug addiction and mental health programs through 2030",
+      "one_liner": "Renew and expand federal drug addiction treatment and overdose prevention programs",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2025-06-04T00:00:00",
@@ -7216,7 +7216,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+      "one_liner": "Cut taxes, increase defense spending, tighten federal benefit programs, and raise the debt limit",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-05-22T00:00:00",
@@ -7224,7 +7224,7 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 145
@@ -7232,7 +7232,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+      "one_liner": "Cut taxes, increase defense spending, tighten federal benefit programs, and raise the debt limit",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-05-22T00:00:00",
@@ -7240,7 +7240,7 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 144
@@ -7248,7 +7248,7 @@
     {
       "bill_number": "S.J.Res. 31",
       "bill_id": "119-sjres-31",
-      "one_liner": "Cancel an EPA rule keeping tighter pollution limits on some factories that switched categories",
+      "one_liner": "Cancel an EPA rule keeping pollution limits on factories after they reduce their emissions",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-05-22T00:00:00",
@@ -7344,7 +7344,7 @@
     {
       "bill_number": "S.J.Res. 13",
       "bill_id": "119-sjres-13",
-      "one_liner": "Bring back automatic approvals and simplified forms for some bank mergers",
+      "one_liner": "Bring back automatic approvals for some bank mergers",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-05-20T00:00:00",
@@ -7536,7 +7536,7 @@
     {
       "bill_number": "H.R. 2215",
       "bill_id": "119-hr-2215",
-      "one_liner": "Change Salem Maritime National Historic Site to a national historical park",
+      "one_liner": "Rename a Salem, Massachusetts national historic site and study expanding its boundaries",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-05-14T00:00:00",
@@ -7712,7 +7712,7 @@
     {
       "bill_number": "H.J.Res. 88",
       "bill_id": "119-hjres-88",
-      "one_liner": "Cancel an EPA decision letting California set its own car pollution rules",
+      "one_liner": "Block California's rules on car pollution and electric vehicle sales",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-05-01T00:00:00",
@@ -7744,7 +7744,7 @@
     {
       "bill_number": "H.J.Res. 89",
       "bill_id": "119-hjres-89",
-      "one_liner": "Cancel an EPA waiver letting California set its own pollution limits on heavy-duty trucks",
+      "one_liner": "Block California's right to set stricter pollution rules for heavy trucks",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-30T00:00:00",
@@ -7760,7 +7760,7 @@
     {
       "bill_number": "H.J.Res. 87",
       "bill_id": "119-hjres-87",
-      "one_liner": "Cancel the EPA's permission for California to use its own heavy-duty truck emission rules",
+      "one_liner": "Cancel the EPA decision letting California set its own heavy-duty truck emission rules",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-30T00:00:00",
@@ -7776,7 +7776,7 @@
     {
       "bill_number": "H.J.Res. 60",
       "bill_id": "119-hjres-60",
-      "one_liner": "Cancel a rule limiting off-road vehicle access in Glen Canyon National Recreation Area",
+      "one_liner": "Cancel a rule limiting off-road vehicles in Glen Canyon National Recreation Area",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-29T00:00:00",
@@ -7872,7 +7872,7 @@
     {
       "bill_number": "S. 146",
       "bill_id": "119-s-146",
-      "one_liner": "Ban posting intimate images without consent and require website removal",
+      "one_liner": "Make it a federal crime to post intimate images of someone online without their consent",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-04-28T00:00:00",
@@ -8000,7 +8000,7 @@
     {
       "bill_number": "S.J.Res. 18",
       "bill_id": "119-sjres-18",
-      "one_liner": "Cancel a rule that would have capped overdraft fees at $5 at large banks",
+      "one_liner": "Cancel a rule that capped overdraft fees at big banks",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-09T00:00:00",
@@ -8016,7 +8016,7 @@
     {
       "bill_number": "S.J.Res. 28",
       "bill_id": "119-sjres-28",
-      "one_liner": "Remove CFPB oversight from large digital payment apps",
+      "one_liner": "Cancel CFPB oversight rules for large non-bank payment apps",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-09T00:00:00",
@@ -8128,7 +8128,7 @@
     {
       "bill_number": "H.R. 1491",
       "bill_id": "119-hr-1491",
-      "one_liner": "Count disaster-related tax deadline delays as extensions for tax refunds",
+      "one_liner": "Let disaster victims count delayed tax deadlines toward their refund window",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-04-01T00:00:00",
@@ -8192,7 +8192,7 @@
     {
       "bill_number": "H.R. 517",
       "bill_id": "119-hr-517",
-      "one_liner": "Let the IRS postpone tax deadlines for state-declared disasters and extend automatic extensions",
+      "one_liner": "Give people more time to file taxes after state or federally declared disasters",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-31T00:00:00",
@@ -8288,7 +8288,7 @@
     {
       "bill_number": "H.J.Res. 75",
       "bill_id": "119-hjres-75",
-      "one_liner": "Cancel a 2025 rule setting energy standards for commercial refrigerators and freezers",
+      "one_liner": "Cancel a federal rule setting energy efficiency standards for commercial refrigerators, freezers, and refrigerator-freezers",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-03-27T00:00:00",
@@ -8304,7 +8304,7 @@
     {
       "bill_number": "H.J.Res. 24",
       "bill_id": "119-hjres-24",
-      "one_liner": "Cancel a 2024 Department of Energy energy efficiency rule for walk-in coolers and freezers",
+      "one_liner": "Cancel a federal rule setting energy standards for walk-in coolers and freezers",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-03-27T00:00:00",
@@ -8400,7 +8400,7 @@
     {
       "bill_number": "H.J.Res. 25",
       "bill_id": "119-hjres-25",
-      "one_liner": "Cancel an IRS rule requiring crypto brokers to report decentralized finance sales",
+      "one_liner": "Cancel an IRS rule requiring crypto brokers to report certain digital asset sales",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-11T00:00:00",
@@ -8416,7 +8416,7 @@
     {
       "bill_number": "H.R. 1968",
       "bill_id": "119-hr-1968",
-      "one_liner": "Fund federal agencies through September 2025",
+      "one_liner": "Keep the federal government funded and extend expiring programs through September 2025",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-03-11T00:00:00",
@@ -8432,7 +8432,7 @@
     {
       "bill_number": "H.R. 1968",
       "bill_id": "119-hr-1968",
-      "one_liner": "Fund federal agencies through September 2025",
+      "one_liner": "Keep the federal government funded and extend expiring programs through September 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-11T00:00:00",
@@ -8560,7 +8560,7 @@
     {
       "bill_number": "S.J.Res. 11",
       "bill_id": "119-sjres-11",
-      "one_liner": "Cancel a rule requiring offshore oil and gas companies to report underwater archaeological sites",
+      "one_liner": "Cancel a rule requiring oil and gas companies to file underwater archaeology reports before drilling",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-03-06T00:00:00",
@@ -8592,7 +8592,7 @@
     {
       "bill_number": "H.J.Res. 42",
       "bill_id": "119-hjres-42",
-      "one_liner": "Cancel a 2024 rule changing how appliance makers must report and label energy use",
+      "one_liner": "Cancel a Department of Energy rule updating how appliance makers certify and label energy use",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-03-05T00:00:00",
@@ -8608,7 +8608,7 @@
     {
       "bill_number": "H.J.Res. 61",
       "bill_id": "119-hjres-61",
-      "one_liner": "Cancel an EPA rule limiting toxic air pollution from rubber tire factories",
+      "one_liner": "Cancel an EPA rule setting hazardous air pollution limits for rubber tire factories",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-03-05T00:00:00",
@@ -8688,7 +8688,7 @@
     {
       "bill_number": "H.J.Res. 20",
       "bill_id": "119-hjres-20",
-      "one_liner": "Cancel a rule setting energy efficiency standards for gas-fired tankless water heaters",
+      "one_liner": "Cancel a federal rule requiring gas tankless water heaters to meet stricter efficiency standards",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-02-27T00:00:00",
@@ -8704,7 +8704,7 @@
     {
       "bill_number": "H.J.Res. 35",
       "bill_id": "119-hjres-35",
-      "one_liner": "Cancel an EPA rule setting up how oil and gas companies handle methane fee requirements",
+      "one_liner": "Cancel an EPA fee on oil and gas companies for releasing too much methane",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-02-26T00:00:00",
@@ -8720,7 +8720,7 @@
     {
       "bill_number": "H.R. 695",
       "bill_id": "119-hr-695",
-      "one_liner": "Increase monthly pension for Medal of Honor recipients and create pension for surviving spouses",
+      "one_liner": "Raise the monthly pension for living Medal of Honor recipients from $1,407 to $8,333",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-02-26T00:00:00",
@@ -9088,7 +9088,7 @@
     {
       "bill_number": "H.R. 43",
       "bill_id": "119-hr-43",
-      "one_liner": "Let Alaska Native village corporations keep their lands instead of giving them to municipalities",
+      "one_liner": "Remove the rule requiring Alaska Native village corporations to hand over land to Alaska",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-02-04T00:00:00",
@@ -9168,7 +9168,7 @@
     {
       "bill_number": "S. 5",
       "bill_id": "119-s-5",
-      "one_liner": "Require detention of non-citizens arrested for theft, burglary, or shoplifting",
+      "one_liner": "Require federal detention of non-citizens charged with theft or break-ins",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-01-22T00:00:00",
@@ -9184,7 +9184,7 @@
     {
       "bill_number": "H.R. 165",
       "bill_id": "119-hr-165",
-      "one_liner": "Give 40 acres in South Dakota to two Sioux tribes for a Wounded Knee memorial",
+      "one_liner": "Give 40 acres at Wounded Knee to two Sioux tribes as a memorial",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-01-22T00:00:00",
@@ -9232,7 +9232,7 @@
     {
       "bill_number": "H.R. 187",
       "bill_id": "119-hr-187",
-      "one_liner": "Require federal agencies to publish data about waterway access and fishing rules",
+      "one_liner": "Make federal waterway rules and fishing limits available online in a standard format",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-01-21T00:00:00",
@@ -9728,7 +9728,7 @@
     {
       "bill_number": "S. 3998",
       "bill_id": "118-s-3998",
-      "one_liner": "Make temporary federal judge positions permanent in 10 states",
+      "one_liner": "Make 10 temporary federal judge positions permanent across 10 states",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-12-16T00:00:00",
@@ -9744,7 +9744,7 @@
     {
       "bill_number": "H.R. 7213",
       "bill_id": "118-hr-7213",
-      "one_liner": "Keep funding autism research, education, and tracking programs through 2029",
+      "one_liner": "Keep federal autism research, education, and tracking programs running through 2029",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-12-16T00:00:00",
@@ -9776,7 +9776,7 @@
     {
       "bill_number": "H.R. 5009",
       "bill_id": "118-hr-5009",
-      "one_liner": "Extends wildlife conservation programs through 2028",
+      "one_liner": "Set military pay, troop levels, and defense programs for the year starting October 2024",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2024-12-11T00:00:00",
@@ -9840,7 +9840,7 @@
     {
       "bill_number": "S. 3613",
       "bill_id": "118-s-3613",
-      "one_liner": "Require federal building security committees to respond to security recommendations",
+      "one_liner": "Require federal building security committees to respond to safety recommendations within 90 days",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-12-10T00:00:00",
@@ -9888,7 +9888,7 @@
     {
       "bill_number": "S. 4367",
       "bill_id": "118-s-4367",
-      "one_liner": "Fund Army Corps projects for flood control, dam repairs, and waterway improvements",
+      "one_liner": "Authorize Army Corps of Engineers water projects and update flood and harbor rules",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-12-10T00:00:00",
@@ -10000,7 +10000,7 @@
     {
       "bill_number": "H.R. 9600",
       "bill_id": "118-hr-9600",
-      "one_liner": "Name a post office in Plains, Georgia after Jimmy and Rosalynn Carter",
+      "one_liner": "Rename a post office in Plains, Georgia, after Jimmy and Rosalynn Carter",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-12-05T00:00:00",
@@ -10032,7 +10032,7 @@
     {
       "bill_number": "S. 709",
       "bill_id": "118-s-709",
-      "one_liner": "Require federal agencies to check and report their progress on goals each year",
+      "one_liner": "Require federal agencies to track and report progress on their goals each year",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-12-05T00:00:00",
@@ -10080,7 +10080,7 @@
     {
       "bill_number": "H.R. 8219",
       "bill_id": "118-hr-8219",
-      "one_liner": "Study whether Lahaina, Hawaii should become a National Heritage Area",
+      "one_liner": "Study whether Lahaina, Hawaii should be named a National Heritage Area",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-12-04T00:00:00",
@@ -10112,7 +10112,7 @@
     {
       "bill_number": "S. 3791",
       "bill_id": "118-s-3791",
-      "one_liner": "Extend and update wildlife and conservation programs through 2030",
+      "one_liner": "Extend conservation programs to 2030 and let states issue permits to kill black vultures",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-12-03T00:00:00",
@@ -10336,7 +10336,7 @@
     {
       "bill_number": "H.R. 8932",
       "bill_id": "118-hr-8932",
-      "one_liner": "Require the student financial aid application to open by October 1 each year",
+      "one_liner": "Require the FAFSA to open by October 1 each year",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2024-11-15T00:00:00",
@@ -10480,7 +10480,7 @@
     {
       "bill_number": "H.R. 82",
       "bill_id": "118-hr-82",
-      "one_liner": "Restore full Social Security benefits for people with government pensions",
+      "one_liner": "Raise Social Security payments for workers and spouses who also receive government pensions",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-11-12T00:00:00",
@@ -10576,7 +10576,7 @@
     {
       "bill_number": "H.R. 9747",
       "bill_id": "118-hr-9747",
-      "one_liner": "Keep the government funded and extend programs through December 2024",
+      "one_liner": "Keep federal agencies funded at 2024 levels through December 20, 2024",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-09-25T00:00:00",
@@ -10592,7 +10592,7 @@
     {
       "bill_number": "H.R. 6513",
       "bill_id": "118-hr-6513",
-      "one_liner": "Let Congress send official observers to watch how federal elections are run",
+      "one_liner": "Let Congress send staff to watch how federal elections are run in every state",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-09-25T00:00:00",
@@ -10640,7 +10640,7 @@
     {
       "bill_number": "H.R. 8057",
       "bill_id": "118-hr-8057",
-      "one_liner": "Rename a Westminster, California post office after Little Saigon Vietnam War Veterans",
+      "one_liner": "Name a post office in Westminster, California after Vietnam War veterans",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-09-24T00:00:00",
@@ -10704,7 +10704,7 @@
     {
       "bill_number": "S. 3764",
       "bill_id": "118-s-3764",
-      "one_liner": "Keep a federal commission running that tracks threats to religious freedom around the world",
+      "one_liner": "Keep the federal commission on international religious freedom running through 2026",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-09-23T00:00:00",
@@ -10736,7 +10736,7 @@
     {
       "bill_number": "S. 2228",
       "bill_id": "118-s-2228",
-      "one_liner": "Speed up environmental reviews for microchip factory projects that get federal funding",
+      "one_liner": "Cut environmental review rules for some microchip factory projects",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2024-09-23T00:00:00",
@@ -10752,7 +10752,7 @@
     {
       "bill_number": "H.R. 9106",
       "bill_id": "118-hr-9106",
-      "one_liner": "Require equal Secret Service protection staffing for presidents, vice presidents, and major candidates",
+      "one_liner": "Require equal Secret Service staffing for the president, vice president, and major candidates",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-09-20T00:00:00",
@@ -10992,7 +10992,7 @@
     {
       "bill_number": "H.R. 7213",
       "bill_id": "118-hr-7213",
-      "one_liner": "Keep funding autism research, education, and tracking programs through 2029",
+      "one_liner": "Keep federal autism research, education, and tracking programs running through 2029",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-09-18T00:00:00",
@@ -11008,7 +11008,7 @@
     {
       "bill_number": "H.R. 9076",
       "bill_id": "118-hr-9076",
-      "one_liner": "Keep funding for child welfare and foster care programs running through 2029",
+      "one_liner": "Renew funding for child welfare programs and let tribal agencies collect past-due child support",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-09-18T00:00:00",
@@ -11072,7 +11072,7 @@
     {
       "bill_number": "S. 2861",
       "bill_id": "118-s-2861",
-      "one_liner": "Award Billie Jean King a Congressional Gold Medal",
+      "one_liner": "Award a Congressional Gold Medal to tennis player and equal rights advocate Billie Jean King",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-09-17T00:00:00",
@@ -11984,7 +11984,7 @@
     {
       "bill_number": "S. 227",
       "bill_id": "118-s-227",
-      "one_liner": "Add two cities to the list of places where federal courts must hold sessions",
+      "one_liner": "Add two cities as locations where federal courts can hold sessions",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-07-23T00:00:00",
@@ -12000,7 +12000,7 @@
     {
       "bill_number": "S. 3706",
       "bill_id": "118-s-3706",
-      "one_liner": "Let family members and guardians collect money owed to crime victims in court",
+      "one_liner": "Let family members collect court-ordered repayment when a victim cannot",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-07-23T00:00:00",
@@ -12080,7 +12080,7 @@
     {
       "bill_number": "S. 3249",
       "bill_id": "118-s-3249",
-      "one_liner": "Name a VA clinic in Kansas City, Kansas after Captain Elwin Shopteese",
+      "one_liner": "Rename a VA clinic in Kansas City, Kansas after Captain Elwin Shopteese",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-07-22T00:00:00",
@@ -13744,7 +13744,7 @@
     {
       "bill_number": "S. 138",
       "bill_id": "118-s-138",
-      "one_liner": "Set a U.S. position on Tibet's legal status and counter China's claims about Tibet",
+      "one_liner": "Change the U.S. definition of Tibet and counter Chinese government disinformation about it",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-06-12T00:00:00",
@@ -14256,7 +14256,7 @@
     {
       "bill_number": "H.R. 3019",
       "bill_id": "118-hr-3019",
-      "one_liner": "Create a system to inspect and oversee federal prisons",
+      "one_liner": "Set up inspections and a complaint office for federal prisons",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-05-21T00:00:00",
@@ -14272,7 +14272,7 @@
     {
       "bill_number": "H.R. 5863",
       "bill_id": "118-hr-5863",
-      "one_liner": "Remove federal income taxes on payments received for wildfire and certain disaster losses",
+      "one_liner": "Give tax breaks to disaster victims, wildfire survivors, and East Palestine train derailment residents",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-05-21T00:00:00",
@@ -14448,7 +14448,7 @@
     {
       "bill_number": "H.R. 6960",
       "bill_id": "118-hr-6960",
-      "one_liner": "Keep federal funding for children's emergency medical programs through 2029",
+      "one_liner": "Keep funding grants for emergency medical care for children through 2029",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-05-15T00:00:00",
@@ -14464,7 +14464,7 @@
     {
       "bill_number": "H.R. 4581",
       "bill_id": "118-hr-4581",
-      "one_liner": "Add stillbirth prevention research to a federal health funding program",
+      "one_liner": "Let states use federal maternal health grants for stillbirth prevention programs and research",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-05-15T00:00:00",
@@ -14576,7 +14576,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-05-15T00:00:00",
@@ -14640,7 +14640,7 @@
     {
       "bill_number": "S. 546",
       "bill_id": "118-s-546",
-      "one_liner": "Expand a federal grant program to help police departments hire more officers",
+      "one_liner": "Expand federal grants to help police departments recruit and hire new officers",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2024-05-14T00:00:00",
@@ -14672,7 +14672,7 @@
     {
       "bill_number": "S. 870",
       "bill_id": "118-s-870",
-      "one_liner": "Fund fire departments and federal fire safety programs through 2030",
+      "one_liner": "Fund firefighter programs and change rules to speed up building and approving nuclear reactors",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-05-08T00:00:00",
@@ -14784,7 +14784,7 @@
     {
       "bill_number": "H.R. 8289",
       "bill_id": "118-hr-8289",
-      "one_liner": "Keep FAA programs and airport funding running through May 17, 2024",
+      "one_liner": "Extend FAA airport programs and aviation tax collection through May 17, 2024",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-05-08T00:00:00",
@@ -14792,7 +14792,7 @@
       "policy_area": "Transportation and Public Works",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "in_favor",
+      "direction": "neutral",
       "congress": 118,
       "session": 2,
       "vote_number": 187
@@ -14912,7 +14912,7 @@
     {
       "bill_number": "H.R. 3354",
       "bill_id": "118-hr-3354",
-      "one_liner": "Name a Virginia post office after former Secretary of State Madeleine Albright",
+      "one_liner": "Name a post office in Purcellville, Virginia after Secretary of State Madeleine Albright",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-05-07T00:00:00",
@@ -15856,7 +15856,7 @@
     {
       "bill_number": "H.R. 7888",
       "bill_id": "118-hr-7888",
-      "one_liner": "Extend FBI surveillance powers for 5 years with new rules",
+      "one_liner": "Extend foreign surveillance powers for two years and add new FBI search rules",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2024-04-15T00:00:00",
@@ -15872,7 +15872,7 @@
     {
       "bill_number": "H.R. 7888",
       "bill_id": "118-hr-7888",
-      "one_liner": "Extend FBI surveillance powers for 5 years with new rules",
+      "one_liner": "Extend foreign surveillance powers for two years and add new FBI search rules",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2024-04-12T00:00:00",
@@ -15888,7 +15888,7 @@
     {
       "bill_number": "H.R. 7888",
       "bill_id": "118-hr-7888",
-      "one_liner": "Extend FBI surveillance powers for 5 years with new rules",
+      "one_liner": "Extend foreign surveillance powers for two years and add new FBI search rules",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2024-04-12T00:00:00",
@@ -15904,7 +15904,7 @@
     {
       "bill_number": "H.R. 7888",
       "bill_id": "118-hr-7888",
-      "one_liner": "Extend FBI surveillance powers for 5 years with new rules",
+      "one_liner": "Extend foreign surveillance powers for two years and add new FBI search rules",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2024-04-12T00:00:00",
@@ -15920,7 +15920,7 @@
     {
       "bill_number": "H.R. 7888",
       "bill_id": "118-hr-7888",
-      "one_liner": "Extend FBI surveillance powers for 5 years with new rules",
+      "one_liner": "Extend foreign surveillance powers for two years and add new FBI search rules",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2024-04-12T00:00:00",
@@ -15936,7 +15936,7 @@
     {
       "bill_number": "H.R. 7888",
       "bill_id": "118-hr-7888",
-      "one_liner": "Extend FBI surveillance powers for 5 years with new rules",
+      "one_liner": "Extend foreign surveillance powers for two years and add new FBI search rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2024-04-12T00:00:00",
@@ -15952,7 +15952,7 @@
     {
       "bill_number": "H.R. 7888",
       "bill_id": "118-hr-7888",
-      "one_liner": "Extend FBI surveillance powers for 5 years with new rules",
+      "one_liner": "Extend foreign surveillance powers for two years and add new FBI search rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2024-04-12T00:00:00",
@@ -16016,7 +16016,7 @@
     {
       "bill_number": "S. 382",
       "bill_id": "118-s-382",
-      "one_liner": "Transfer about 17 acres in Washington state into trust for the Puyallup Tribe",
+      "one_liner": "Transfer 17 acres of land in Pierce County, Washington to the Puyallup Tribe",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2024-04-11T00:00:00",
@@ -16024,7 +16024,7 @@
       "policy_area": "Native Americans",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "in_favor",
       "congress": 118,
       "session": 2,
       "vote_number": 110
@@ -16080,7 +16080,7 @@
     {
       "bill_number": "S. 2051",
       "bill_id": "118-s-2051",
-      "one_liner": "Keep funding programs that find missing children and fight exploitation through 2028",
+      "one_liner": "Reauthorize federal programs that help find missing and exploited children",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-04-09T00:00:00",
@@ -16736,7 +16736,7 @@
     {
       "bill_number": "H.R. 3821",
       "bill_id": "118-hr-3821",
-      "one_liner": "Extend funding for a firefighter cancer database through 2028",
+      "one_liner": "Keep a national cancer database for firefighters running through 2028",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-03-06T00:00:00",
@@ -16816,7 +16816,7 @@
     {
       "bill_number": "H.R. 3391",
       "bill_id": "118-hr-3391",
-      "one_liner": "Extend funding for children's medical research at NIH through 2028",
+      "one_liner": "Extend the NIH program for researching diseases in children through 2028",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-03-05T00:00:00",
@@ -16832,7 +16832,7 @@
     {
       "bill_number": "H.R. 7454",
       "bill_id": "118-hr-7454",
-      "one_liner": "Extend FAA programs and airport funding through May 10, 2024",
+      "one_liner": "Keep FAA airport and flight programs running through May 10, 2024",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-02-29T00:00:00",
@@ -16848,7 +16848,7 @@
     {
       "bill_number": "H.R. 7463",
       "bill_id": "118-hr-7463",
-      "one_liner": "Keep the government running through March 2024 and change student aid rules",
+      "one_liner": "Keep the government funded through March 2024 and add money for Pell Grants",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-02-29T00:00:00",
@@ -16880,7 +16880,7 @@
     {
       "bill_number": "H.R. 4984",
       "bill_id": "118-hr-4984",
-      "one_liner": "Give D.C. control of RFK Stadium land for redevelopment",
+      "one_liner": "Give D.C. control of the RFK Stadium Campus from the National Park Service",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2024-02-28T00:00:00",
@@ -17200,7 +17200,7 @@
     {
       "bill_number": "H.R. 1727",
       "bill_id": "118-hr-1727",
-      "one_liner": "Extend the Chesapeake and Ohio Canal National Historical Park Commission through 2034",
+      "one_liner": "Keep the Chesapeake and Ohio Canal National Historical Park Commission running until 2031",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-02-06T00:00:00",
@@ -17264,7 +17264,7 @@
     {
       "bill_number": "H.R. 2882",
       "bill_id": "118-hr-2882",
-      "one_liner": "Fund the Udall Foundation through 2028",
+      "one_liner": "Fund six federal departments for the year ending September 2024",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-02-05T00:00:00",
@@ -17312,7 +17312,7 @@
     {
       "bill_number": "H.R. 2754",
       "bill_id": "118-hr-2754",
-      "one_liner": "Name a post office in Laredo, Texas after three service members",
+      "one_liner": "Rename a post office in Laredo, Texas after three fallen Marines",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-01-31T00:00:00",
@@ -17320,7 +17320,7 @@
       "policy_area": "Government Operations and Politics",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "in_favor",
       "congress": 118,
       "session": 2,
       "vote_number": 29
@@ -17440,7 +17440,7 @@
     {
       "bill_number": "S. 3427",
       "bill_id": "118-s-3427",
-      "one_liner": "Extend overtime pay authority for Secret Service protective employees through 2028",
+      "one_liner": "Let Secret Service agents earn overtime pay above the normal cap through 2028",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-01-29T00:00:00",
@@ -17536,7 +17536,7 @@
     {
       "bill_number": "H.R. 2872",
       "bill_id": "118-hr-2872",
-      "one_liner": "Change duck stamp rules for waterfowl hunting",
+      "one_liner": "Keep most of the federal government funded through early March 2024",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-01-18T00:00:00",
@@ -17552,7 +17552,7 @@
     {
       "bill_number": "S. 3250",
       "bill_id": "118-s-3250",
-      "one_liner": "Let victims of the 1988 Pan Am Flight 103 bombing watch court cases remotely",
+      "one_liner": "Let victims of the 1988 Pan Am Flight 103 bombing watch court proceedings online",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2024-01-18T00:00:00",
@@ -18976,7 +18976,7 @@
     {
       "bill_number": "H.R. 2379",
       "bill_id": "118-hr-2379",
-      "one_liner": "Rename a post office in St. Charles, Illinois, after Vietnam War veterans",
+      "one_liner": "Rename a post office in St. Charles, Illinois to honor Vietnam War veterans",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-10-02T00:00:00",
@@ -18992,7 +18992,7 @@
     {
       "bill_number": "H.R. 5860",
       "bill_id": "118-hr-5860",
-      "one_liner": "Fund the federal government through November 17, 2023",
+      "one_liner": "Keep federal agencies funded at 2023 spending levels through November 17, 2023",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-09-30T00:00:00",
@@ -20688,7 +20688,7 @@
     {
       "bill_number": "H.R. 5110",
       "bill_id": "118-hr-5110",
-      "one_liner": "Let schools use federal education funds to buy weapons for archery and shooting sports training",
+      "one_liner": "Let schools use federal education money for archery, hunting, and shooting sports programs",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-09-26T00:00:00",
@@ -20800,7 +20800,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-09-20T00:00:00",
@@ -20816,7 +20816,7 @@
     {
       "bill_number": "S. 112",
       "bill_id": "118-s-112",
-      "one_liner": "Expand lifelong benefits for children of Vietnam veterans with spina bifida",
+      "one_liner": "Expand VA benefits for children of certain veterans born with spina bifida or birth defects",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-09-19T00:00:00",
@@ -20864,7 +20864,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-09-19T00:00:00",
@@ -20880,7 +20880,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-09-19T00:00:00",
@@ -20896,7 +20896,7 @@
     {
       "bill_number": "H.R. 663",
       "bill_id": "118-hr-663",
-      "one_liner": "Fund programs preventing child abuse in Native American communities through 2028",
+      "one_liner": "Update child abuse prevention and treatment programs for Native American families",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-09-18T00:00:00",
@@ -20912,7 +20912,7 @@
     {
       "bill_number": "S. 475",
       "bill_id": "118-s-475",
-      "one_liner": "Rename a VA clinic in Gallup, New Mexico after Hiroshi Miyamura",
+      "one_liner": "Name a VA clinic in Gallup, New Mexico after veteran Hiroshi Miyamura",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-09-18T00:00:00",
@@ -20920,7 +20920,7 @@
       "policy_area": "Armed Forces and National Security",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "in_favor",
       "congress": 118,
       "session": 1,
       "vote_number": 393
@@ -21008,7 +21008,7 @@
     {
       "bill_number": "H.R. 3324",
       "bill_id": "118-hr-3324",
-      "one_liner": "Let the Agriculture Department collect marina fees through 2029",
+      "one_liner": "Let the government keep collecting fees at a California national forest marina through 2029",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-09-13T00:00:00",
@@ -21120,7 +21120,7 @@
     {
       "bill_number": "H.R. 4366",
       "bill_id": "118-hr-4366",
-      "one_liner": "Fund military construction and veterans programs for 2024",
+      "one_liner": "Fund six federal departments and extend health and social programs through 2024",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2023-07-27T00:00:00",
@@ -21136,7 +21136,7 @@
     {
       "bill_number": "H.R. 4366",
       "bill_id": "118-hr-4366",
-      "one_liner": "Fund military construction and veterans programs for 2024",
+      "one_liner": "Fund six federal departments and extend health and social programs through 2024",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-07-27T00:00:00",
@@ -21152,7 +21152,7 @@
     {
       "bill_number": "H.R. 4366",
       "bill_id": "118-hr-4366",
-      "one_liner": "Fund military construction and veterans programs for 2024",
+      "one_liner": "Fund six federal departments and extend health and social programs through 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-26T00:00:00",
@@ -21168,7 +21168,7 @@
     {
       "bill_number": "H.R. 4366",
       "bill_id": "118-hr-4366",
-      "one_liner": "Fund military construction and veterans programs for 2024",
+      "one_liner": "Fund six federal departments and extend health and social programs through 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-26T00:00:00",
@@ -21184,7 +21184,7 @@
     {
       "bill_number": "H.R. 4366",
       "bill_id": "118-hr-4366",
-      "one_liner": "Fund military construction and veterans programs for 2024",
+      "one_liner": "Fund six federal departments and extend health and social programs through 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-26T00:00:00",
@@ -21200,7 +21200,7 @@
     {
       "bill_number": "H.R. 4366",
       "bill_id": "118-hr-4366",
-      "one_liner": "Fund military construction and veterans programs for 2024",
+      "one_liner": "Fund six federal departments and extend health and social programs through 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-26T00:00:00",
@@ -21216,7 +21216,7 @@
     {
       "bill_number": "H.R. 4366",
       "bill_id": "118-hr-4366",
-      "one_liner": "Fund military construction and veterans programs for 2024",
+      "one_liner": "Fund six federal departments and extend health and social programs through 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-26T00:00:00",
@@ -21232,7 +21232,7 @@
     {
       "bill_number": "H.R. 4366",
       "bill_id": "118-hr-4366",
-      "one_liner": "Fund military construction and veterans programs for 2024",
+      "one_liner": "Fund six federal departments and extend health and social programs through 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-26T00:00:00",
@@ -21248,7 +21248,7 @@
     {
       "bill_number": "H.R. 4366",
       "bill_id": "118-hr-4366",
-      "one_liner": "Fund military construction and veterans programs for 2024",
+      "one_liner": "Fund six federal departments and extend health and social programs through 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-26T00:00:00",
@@ -21264,7 +21264,7 @@
     {
       "bill_number": "H.R. 4366",
       "bill_id": "118-hr-4366",
-      "one_liner": "Fund military construction and veterans programs for 2024",
+      "one_liner": "Fund six federal departments and extend health and social programs through 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-26T00:00:00",
@@ -21280,7 +21280,7 @@
     {
       "bill_number": "H.R. 4366",
       "bill_id": "118-hr-4366",
-      "one_liner": "Fund military construction and veterans programs for 2024",
+      "one_liner": "Fund six federal departments and extend health and social programs through 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-26T00:00:00",
@@ -21296,7 +21296,7 @@
     {
       "bill_number": "H.R. 4366",
       "bill_id": "118-hr-4366",
-      "one_liner": "Fund military construction and veterans programs for 2024",
+      "one_liner": "Fund six federal departments and extend health and social programs through 2024",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2023-07-26T00:00:00",
@@ -21376,7 +21376,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-07-20T00:00:00",
@@ -21392,7 +21392,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-20T00:00:00",
@@ -21408,7 +21408,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2023-07-20T00:00:00",
@@ -21424,7 +21424,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2023-07-20T00:00:00",
@@ -21440,7 +21440,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21456,7 +21456,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21472,7 +21472,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21488,7 +21488,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21504,7 +21504,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21520,7 +21520,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21536,7 +21536,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21552,7 +21552,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21568,7 +21568,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21584,7 +21584,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21600,7 +21600,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21616,7 +21616,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21632,7 +21632,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21648,7 +21648,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21664,7 +21664,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21680,7 +21680,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21696,7 +21696,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21712,7 +21712,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2023-07-19T00:00:00",
@@ -21728,7 +21728,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-19T00:00:00",
@@ -21744,7 +21744,7 @@
     {
       "bill_number": "H.R. 3935",
       "bill_id": "118-hr-3935",
-      "one_liner": "Fund the FAA and airports through 2028",
+      "one_liner": "Reauthorize FAA funding through 2028 and update airline, airport, and drone rules",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2023-07-19T00:00:00",
@@ -21936,7 +21936,7 @@
     {
       "bill_number": "S. 111",
       "bill_id": "118-s-111",
-      "one_liner": "Require federal agencies to post plain-language summaries of proposed rules",
+      "one_liner": "Require federal agencies to post a plain-language summary of every proposed rule",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-07-17T00:00:00",
@@ -21952,7 +21952,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2023-07-14T00:00:00",
@@ -21968,7 +21968,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-07-14T00:00:00",
@@ -21984,7 +21984,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-14T00:00:00",
@@ -22000,7 +22000,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-14T00:00:00",
@@ -22016,7 +22016,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22032,7 +22032,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22048,7 +22048,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22064,7 +22064,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22080,7 +22080,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22096,7 +22096,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22112,7 +22112,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22128,7 +22128,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2023-07-13T00:00:00",
@@ -22144,7 +22144,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22160,7 +22160,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22176,7 +22176,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22192,7 +22192,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22208,7 +22208,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22224,7 +22224,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22240,7 +22240,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22256,7 +22256,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22272,7 +22272,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22288,7 +22288,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22304,7 +22304,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22320,7 +22320,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22336,7 +22336,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22352,7 +22352,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22368,7 +22368,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22384,7 +22384,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22400,7 +22400,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-07-13T00:00:00",
@@ -22416,7 +22416,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2023-07-13T00:00:00",
@@ -22432,7 +22432,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2023-07-13T00:00:00",
@@ -22448,7 +22448,7 @@
     {
       "bill_number": "H.R. 2670",
       "bill_id": "118-hr-2670",
-      "one_liner": "Fund the military with $886 billion and give troops a 5.2% pay raise for 2024",
+      "one_liner": "Fund and set rules for the U.S. military, intelligence agencies, and State Department for 2024",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2023-07-13T00:00:00",
@@ -22544,7 +22544,7 @@
     {
       "bill_number": "H.R. 1096",
       "bill_id": "118-hr-1096",
-      "one_liner": "Create coins to celebrate the Marine Corps turning 250 years old",
+      "one_liner": "Create coins marking the Marine Corps' 250th anniversary and fund its heritage museum",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-07-11T00:00:00",
@@ -22832,7 +22832,7 @@
     {
       "bill_number": "H.R. 3672",
       "bill_id": "118-hr-3672",
-      "one_liner": "Name a Veterans Affairs clinic in Michigan after Pfc. Justin T. Paton",
+      "one_liner": "Rename a VA clinic in Indian River, Michigan after Pfc. Justin T. Paton",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-06-20T00:00:00",
@@ -23312,7 +23312,7 @@
     {
       "bill_number": "H.R. 3746",
       "bill_id": "118-hr-3746",
-      "one_liner": "Raise the debt limit while cutting government spending and expanding work requirements",
+      "one_liner": "Raise the debt limit and cap federal spending through 2025",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2023-05-31T00:00:00",
@@ -23320,7 +23320,7 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "against",
       "congress": 118,
       "session": 1,
       "vote_number": 243
@@ -23552,7 +23552,7 @@
     {
       "bill_number": "H.R. 1076",
       "bill_id": "118-hr-1076",
-      "one_liner": "Require a government study on how money flows through illegal drug trafficking",
+      "one_liner": "Order a government study on how drug traffickers move money for fentanyl and meth",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-05-22T00:00:00",
@@ -23808,7 +23808,7 @@
     {
       "bill_number": "H.R. 1734",
       "bill_id": "118-hr-1734",
-      "one_liner": "Fund research to detect xylazine and man-made opioids in drugs",
+      "one_liner": "Require federal research on detecting xylazine and new synthetic opioids in street drugs",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-05-11T00:00:00",
@@ -24912,7 +24912,7 @@
     {
       "bill_number": "S. 619",
       "bill_id": "118-s-619",
-      "one_liner": "Require spy agencies to release information about how COVID-19 started",
+      "one_liner": "Release government secrets about the Wuhan Institute of Virology and COVID-19 origins",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-03-10T00:00:00",
@@ -25088,7 +25088,7 @@
     {
       "bill_number": "H.R. 1226",
       "bill_id": "118-hr-1226",
-      "one_liner": "Create an online tool for veterans to request their records from the VA",
+      "one_liner": "Let veterans request VA records online and warn them about illegal VA representatives",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-03-07T00:00:00",
@@ -25296,7 +25296,7 @@
     {
       "bill_number": "H.J.Res. 26",
       "bill_id": "118-hjres-26",
-      "one_liner": "Cancel a DC law that changed criminal definitions, sentencing rules, and jury trial rights",
+      "one_liner": "Cancel DC's updated criminal code law",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2023-02-09T00:00:00",
@@ -26656,7 +26656,7 @@
     {
       "bill_number": "H.R. 346",
       "bill_id": "118-hr-346",
-      "one_liner": "Create a task force to improve flight safety notices for pilots",
+      "one_liner": "Create a task force and new system to improve safety notices sent to pilots",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2023-01-25T00:00:00",

@@ -1263,7 +1263,7 @@
     {
       "bill_number": "S. 4465",
       "bill_id": "119-s-4465",
-      "one_liner": "Extend the government's legal authority to monitor foreign communications for national security",
+      "one_liner": "Extend a federal surveillance law by six weeks",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-04-30T00:00:00",
@@ -2847,7 +2847,7 @@
     {
       "bill_number": "H.J.Res. 142",
       "bill_id": "119-hjres-142",
-      "one_liner": "Cancel a DC tax law and bring back federal tax rules for DC residents",
+      "one_liner": "Cancel a D.C. law that changed how the city collects income taxes",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-02-04T00:00:00",
@@ -2895,7 +2895,7 @@
     {
       "bill_number": "H.R. 7148",
       "bill_id": "119-hr-7148",
-      "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+      "one_liner": "Fund the military, health care, education, housing, and other federal departments for 2026",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-02-03T00:00:00",
@@ -3023,7 +3023,7 @@
     {
       "bill_number": "H.R. 7148",
       "bill_id": "119-hr-7148",
-      "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+      "one_liner": "Fund the military, health care, education, housing, and other federal departments for 2026",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-01-22T00:00:00",
@@ -3039,7 +3039,7 @@
     {
       "bill_number": "H.R. 7148",
       "bill_id": "119-hr-7148",
-      "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+      "one_liner": "Fund the military, health care, education, housing, and other federal departments for 2026",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-01-22T00:00:00",
@@ -3055,7 +3055,7 @@
     {
       "bill_number": "H.R. 7148",
       "bill_id": "119-hr-7148",
-      "one_liner": "Fund defense, health, education, and housing for the year starting October 2025",
+      "one_liner": "Fund the military, health care, education, housing, and other federal departments for 2026",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-01-22T00:00:00",
@@ -3343,15 +3343,15 @@
     {
       "bill_number": "H.Res. 992",
       "bill_id": "119-hres-992",
-      "one_liner": "Providing for consideration of the bill (H.R. 7006) making further consolidated appropriations for the fiscal year ending September 30, 2026, and for other purposes.",
-      "has_plain_summary": false,
+      "one_liner": "Set the rules for House debate and a vote on a government spending bill",
+      "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-01-14T00:00:00",
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "neutral",
       "congress": 119,
       "session": 2,
       "vote_number": 25
@@ -3359,15 +3359,15 @@
     {
       "bill_number": "H.Res. 992",
       "bill_id": "119-hres-992",
-      "one_liner": "Providing for consideration of the bill (H.R. 7006) making further consolidated appropriations for the fiscal year ending September 30, 2026, and for other purposes.",
-      "has_plain_summary": false,
+      "one_liner": "Set the rules for House debate and a vote on a government spending bill",
+      "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-01-14T00:00:00",
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "neutral",
       "congress": 119,
       "session": 2,
       "vote_number": 24
@@ -3567,15 +3567,15 @@
     {
       "bill_number": "H.R. 1834",
       "bill_id": "119-hr-1834",
-      "one_liner": "Breaking the Gridlock Act",
-      "has_plain_summary": false,
+      "one_liner": "Extend health insurance tax credits through 2028 instead of letting them end",
+      "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-01-08T00:00:00",
       "result": "Passed",
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "in_favor",
       "congress": 119,
       "session": 2,
       "vote_number": 11
@@ -3631,7 +3631,7 @@
     {
       "bill_number": "H.R. 6938",
       "bill_id": "119-hr-6938",
-      "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+      "one_liner": "Fund science, justice, energy, and environment agencies for the year starting October 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-01-08T00:00:00",
@@ -3647,7 +3647,7 @@
     {
       "bill_number": "H.R. 6938",
       "bill_id": "119-hr-6938",
-      "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+      "one_liner": "Fund science, justice, energy, and environment agencies for the year starting October 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-01-08T00:00:00",
@@ -3663,7 +3663,7 @@
     {
       "bill_number": "H.R. 6938",
       "bill_id": "119-hr-6938",
-      "one_liner": "Fund 3 of 12 government departments including Justice, Energy, and EPA for the year starting October 2025",
+      "one_liner": "Fund science, justice, energy, and environment agencies for the year starting October 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-01-08T00:00:00",
@@ -3951,15 +3951,15 @@
     {
       "bill_number": "H.R. 6703",
       "bill_id": "119-hr-6703",
-      "one_liner": "Lower Health Care Premiums for All Americans Act",
-      "has_plain_summary": false,
+      "one_liner": "Let groups of employers from different industries share one health insurance plan",
+      "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-12-17T00:00:00",
       "result": "Passed",
       "policy_area": "Health",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 349
@@ -3967,15 +3967,15 @@
     {
       "bill_number": "H.R. 6703",
       "bill_id": "119-hr-6703",
-      "one_liner": "Lower Health Care Premiums for All Americans Act",
-      "has_plain_summary": false,
+      "one_liner": "Let groups of employers from different industries share one health insurance plan",
+      "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-12-17T00:00:00",
       "result": "Failed",
       "policy_area": "Health",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 348
@@ -4175,7 +4175,7 @@
     {
       "bill_number": "S. 284",
       "bill_id": "119-s-284",
-      "one_liner": "Extend the Congressional Award Program for youth through 2028",
+      "one_liner": "Reauthorize the Congressional Award Program board through 2028",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-12-15T00:00:00",
@@ -4415,7 +4415,7 @@
     {
       "bill_number": "S. 1071",
       "bill_id": "119-s-1071",
-      "one_liner": "Remove remains of convicted rapist from veterans cemetery in Texas",
+      "one_liner": "Fund and set rules for the U.S. military for the year starting October 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-12-10T00:00:00",
@@ -4431,7 +4431,7 @@
     {
       "bill_number": "S. 1071",
       "bill_id": "119-s-1071",
-      "one_liner": "Remove remains of convicted rapist from veterans cemetery in Texas",
+      "one_liner": "Fund and set rules for the U.S. military for the year starting October 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-12-10T00:00:00",
@@ -4495,7 +4495,7 @@
     {
       "bill_number": "S. 356",
       "bill_id": "119-s-356",
-      "one_liner": "Extend federal payments to rural counties with federal land through 2026",
+      "one_liner": "Renew payments to counties with federal land and extend their ability to fund local projects",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-12-09T00:00:00",
@@ -4767,15 +4767,15 @@
     {
       "bill_number": "H.R. 5214",
       "bill_id": "119-hr-5214",
-      "one_liner": "District of Columbia Cash Bail Reform Act of 2025",
-      "has_plain_summary": false,
+      "one_liner": "Require cash bail and jail holds for violent crimes in Washington DC",
+      "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-11-19T00:00:00",
       "result": "Passed",
       "policy_area": "Crime and Law Enforcement",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 298
@@ -4783,15 +4783,15 @@
     {
       "bill_number": "H.Res. 888",
       "bill_id": "119-hres-888",
-      "one_liner": "Censuring and condemning Delegate Stacey Plaskett and removing her from the House Permanent Select Committee on Intelligence for conduct that reflects discreditably on the House of Representatives for colluding with convicted felony sex offender Jeffrey Epstein during a congressional hearing.",
-      "has_plain_summary": false,
+      "one_liner": "Censure Delegate Stacey Plaskett and remove her from the Intelligence Committee",
+      "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-18T00:00:00",
       "result": "Failed",
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 297
@@ -4799,7 +4799,7 @@
     {
       "bill_number": "S.J.Res. 80",
       "bill_id": "119-sjres-80",
-      "one_liner": "Reopen about half of Alaska's National Petroleum Reserve to oil and gas drilling",
+      "one_liner": "Reopen about half of a 23-million-acre Alaska oil reserve to drilling",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-18T00:00:00",
@@ -4815,7 +4815,7 @@
     {
       "bill_number": "H.J.Res. 131",
       "bill_id": "119-hjres-131",
-      "one_liner": "Cancel a 2024 rule limiting oil and gas leasing in the Arctic National Wildlife Refuge",
+      "one_liner": "Allow oil and gas leasing on 1.6 million acres in Alaska's Arctic National Wildlife Refuge",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-18T00:00:00",
@@ -4831,7 +4831,7 @@
     {
       "bill_number": "H.J.Res. 130",
       "bill_id": "119-hjres-130",
-      "one_liner": "Bring back coal mining permits on federal land in Wyoming's Buffalo Field Office",
+      "one_liner": "Bring back coal leasing on federal land in Wyoming's Buffalo Field Office area",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-11-18T00:00:00",
@@ -4847,15 +4847,15 @@
     {
       "bill_number": "H.Res. 888",
       "bill_id": "119-hres-888",
-      "one_liner": "Censuring and condemning Delegate Stacey Plaskett and removing her from the House Permanent Select Committee on Intelligence for conduct that reflects discreditably on the House of Representatives for colluding with convicted felony sex offender Jeffrey Epstein during a congressional hearing.",
-      "has_plain_summary": false,
+      "one_liner": "Censure Delegate Stacey Plaskett and remove her from the Intelligence Committee",
+      "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-11-18T00:00:00",
       "result": "Failed",
       "policy_area": "Congress",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": null,
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 293
@@ -4911,7 +4911,7 @@
     {
       "bill_number": "H.R. 4405",
       "bill_id": "119-hr-4405",
-      "one_liner": "Require the Justice Department to publish all records about Jeffrey Epstein's case",
+      "one_liner": "Release all DOJ records about Jeffrey Epstein's investigation to the public",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2025-11-18T00:00:00",
@@ -4975,7 +4975,7 @@
     {
       "bill_number": "H.R. 5371",
       "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
+      "one_liner": "Reopen the government after a shutdown and fully fund veterans and agriculture through 2026",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-11-12T00:00:00",
@@ -5039,7 +5039,7 @@
     {
       "bill_number": "H.R. 5371",
       "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
+      "one_liner": "Reopen the government after a shutdown and fully fund veterans and agriculture through 2026",
       "has_plain_summary": true,
       "vote": "Not Voting",
       "date": "2025-09-19T00:00:00",
@@ -5055,7 +5055,7 @@
     {
       "bill_number": "H.R. 5371",
       "bill_id": "119-hr-5371",
-      "one_liner": "Keep government funded through November 2025 and extend expiring programs",
+      "one_liner": "Reopen the government after a shutdown and fully fund veterans and agriculture through 2026",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-09-19T00:00:00",
@@ -5919,7 +5919,7 @@
     {
       "bill_number": "H.J.Res. 105",
       "bill_id": "119-hjres-105",
-      "one_liner": "Cancel a 2025 BLM land plan limiting oil, gas, and coal activity in North Dakota",
+      "one_liner": "Cancel a BLM land rule that limited oil, gas, and coal in North Dakota",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-09-03T00:00:00",
@@ -5935,7 +5935,7 @@
     {
       "bill_number": "H.J.Res. 106",
       "bill_id": "119-hjres-106",
-      "one_liner": "Remove protected status from 21 areas covering 3.6 million acres in Alaska's Central Yukon",
+      "one_liner": "Cancel a federal land management plan for Central Yukon, Alaska",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-09-03T00:00:00",
@@ -5951,7 +5951,7 @@
     {
       "bill_number": "H.J.Res. 104",
       "bill_id": "119-hjres-104",
-      "one_liner": "Cancel a rule that blocked coal leasing on 1.7 million acres in Montana",
+      "one_liner": "Bring back coal leasing on 1.7 million acres of Montana federal land",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-09-03T00:00:00",
@@ -6335,7 +6335,7 @@
     {
       "bill_number": "S. 1582",
       "bill_id": "119-s-1582",
-      "one_liner": "Create rules for companies that issue stablecoins",
+      "one_liner": "Set rules for who can issue dollar-backed digital tokens called stablecoins",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-07-17T00:00:00",
@@ -6447,7 +6447,7 @@
     {
       "bill_number": "S. 1596",
       "bill_id": "119-s-1596",
-      "one_liner": "Rename the Anahuac National Wildlife Refuge in Texas to the Jocelyn Nungaray National Wildlife Refuge",
+      "one_liner": "Rename a national wildlife refuge in Texas after Jocelyn Nungaray",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-07-14T00:00:00",
@@ -6495,7 +6495,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+      "one_liner": "Cut taxes, increase defense spending, tighten federal benefit programs, and raise the debt limit",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2025-07-03T00:00:00",
@@ -6503,7 +6503,7 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 190
@@ -6847,7 +6847,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+      "one_liner": "Cut $9.4 billion in unspent foreign aid and public broadcasting funds",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-06-12T00:00:00",
@@ -6863,7 +6863,7 @@
     {
       "bill_number": "H.R. 4",
       "bill_id": "119-hr-4",
-      "one_liner": "Cut $9.4 billion in unspent funding for international programs and public broadcasting",
+      "one_liner": "Cut $9.4 billion in unspent foreign aid and public broadcasting funds",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-06-12T00:00:00",
@@ -6879,7 +6879,7 @@
     {
       "bill_number": "S. 331",
       "bill_id": "119-s-331",
-      "one_liner": "Make fentanyl-related substances permanently illegal under federal law",
+      "one_liner": "Permanently classify all fentanyl-related substances as Schedule I drugs under federal law",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-06-12T00:00:00",
@@ -7119,7 +7119,7 @@
     {
       "bill_number": "H.R. 2483",
       "bill_id": "119-hr-2483",
-      "one_liner": "Fund drug addiction and mental health programs through 2030",
+      "one_liner": "Renew and expand federal drug addiction treatment and overdose prevention programs",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-06-04T00:00:00",
@@ -7135,7 +7135,7 @@
     {
       "bill_number": "H.R. 2483",
       "bill_id": "119-hr-2483",
-      "one_liner": "Fund drug addiction and mental health programs through 2030",
+      "one_liner": "Renew and expand federal drug addiction treatment and overdose prevention programs",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2025-06-04T00:00:00",
@@ -7215,7 +7215,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+      "one_liner": "Cut taxes, increase defense spending, tighten federal benefit programs, and raise the debt limit",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-05-22T00:00:00",
@@ -7223,7 +7223,7 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 145
@@ -7231,7 +7231,7 @@
     {
       "bill_number": "H.R. 1",
       "bill_id": "119-hr-1",
-      "one_liner": "Cut taxes while adding work requirements for food assistance and healthcare",
+      "one_liner": "Cut taxes, increase defense spending, tighten federal benefit programs, and raise the debt limit",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-05-22T00:00:00",
@@ -7239,7 +7239,7 @@
       "policy_area": "Economics and Public Finance",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "neutral",
+      "direction": "in_favor",
       "congress": 119,
       "session": 1,
       "vote_number": 144
@@ -7247,7 +7247,7 @@
     {
       "bill_number": "S.J.Res. 31",
       "bill_id": "119-sjres-31",
-      "one_liner": "Cancel an EPA rule keeping tighter pollution limits on some factories that switched categories",
+      "one_liner": "Cancel an EPA rule keeping pollution limits on factories after they reduce their emissions",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-05-22T00:00:00",
@@ -7343,7 +7343,7 @@
     {
       "bill_number": "S.J.Res. 13",
       "bill_id": "119-sjres-13",
-      "one_liner": "Bring back automatic approvals and simplified forms for some bank mergers",
+      "one_liner": "Bring back automatic approvals for some bank mergers",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-05-20T00:00:00",
@@ -7535,7 +7535,7 @@
     {
       "bill_number": "H.R. 2215",
       "bill_id": "119-hr-2215",
-      "one_liner": "Change Salem Maritime National Historic Site to a national historical park",
+      "one_liner": "Rename a Salem, Massachusetts national historic site and study expanding its boundaries",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-05-14T00:00:00",
@@ -7711,7 +7711,7 @@
     {
       "bill_number": "H.J.Res. 88",
       "bill_id": "119-hjres-88",
-      "one_liner": "Cancel an EPA decision letting California set its own car pollution rules",
+      "one_liner": "Block California's rules on car pollution and electric vehicle sales",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-05-01T00:00:00",
@@ -7743,7 +7743,7 @@
     {
       "bill_number": "H.J.Res. 89",
       "bill_id": "119-hjres-89",
-      "one_liner": "Cancel an EPA waiver letting California set its own pollution limits on heavy-duty trucks",
+      "one_liner": "Block California's right to set stricter pollution rules for heavy trucks",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-30T00:00:00",
@@ -7759,7 +7759,7 @@
     {
       "bill_number": "H.J.Res. 87",
       "bill_id": "119-hjres-87",
-      "one_liner": "Cancel the EPA's permission for California to use its own heavy-duty truck emission rules",
+      "one_liner": "Cancel the EPA decision letting California set its own heavy-duty truck emission rules",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-30T00:00:00",
@@ -7775,7 +7775,7 @@
     {
       "bill_number": "H.J.Res. 60",
       "bill_id": "119-hjres-60",
-      "one_liner": "Cancel a rule limiting off-road vehicle access in Glen Canyon National Recreation Area",
+      "one_liner": "Cancel a rule limiting off-road vehicles in Glen Canyon National Recreation Area",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-29T00:00:00",
@@ -7871,7 +7871,7 @@
     {
       "bill_number": "S. 146",
       "bill_id": "119-s-146",
-      "one_liner": "Ban posting intimate images without consent and require website removal",
+      "one_liner": "Make it a federal crime to post intimate images of someone online without their consent",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-04-28T00:00:00",
@@ -7999,7 +7999,7 @@
     {
       "bill_number": "S.J.Res. 18",
       "bill_id": "119-sjres-18",
-      "one_liner": "Cancel a rule that would have capped overdraft fees at $5 at large banks",
+      "one_liner": "Cancel a rule that capped overdraft fees at big banks",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-09T00:00:00",
@@ -8015,7 +8015,7 @@
     {
       "bill_number": "S.J.Res. 28",
       "bill_id": "119-sjres-28",
-      "one_liner": "Remove CFPB oversight from large digital payment apps",
+      "one_liner": "Cancel CFPB oversight rules for large non-bank payment apps",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-04-09T00:00:00",
@@ -8127,7 +8127,7 @@
     {
       "bill_number": "H.R. 1491",
       "bill_id": "119-hr-1491",
-      "one_liner": "Count disaster-related tax deadline delays as extensions for tax refunds",
+      "one_liner": "Let disaster victims count delayed tax deadlines toward their refund window",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-04-01T00:00:00",
@@ -8191,7 +8191,7 @@
     {
       "bill_number": "H.R. 517",
       "bill_id": "119-hr-517",
-      "one_liner": "Let the IRS postpone tax deadlines for state-declared disasters and extend automatic extensions",
+      "one_liner": "Give people more time to file taxes after state or federally declared disasters",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-31T00:00:00",
@@ -8287,7 +8287,7 @@
     {
       "bill_number": "H.J.Res. 75",
       "bill_id": "119-hjres-75",
-      "one_liner": "Cancel a 2025 rule setting energy standards for commercial refrigerators and freezers",
+      "one_liner": "Cancel a federal rule setting energy efficiency standards for commercial refrigerators, freezers, and refrigerator-freezers",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-27T00:00:00",
@@ -8303,7 +8303,7 @@
     {
       "bill_number": "H.J.Res. 24",
       "bill_id": "119-hjres-24",
-      "one_liner": "Cancel a 2024 Department of Energy energy efficiency rule for walk-in coolers and freezers",
+      "one_liner": "Cancel a federal rule setting energy standards for walk-in coolers and freezers",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-27T00:00:00",
@@ -8399,7 +8399,7 @@
     {
       "bill_number": "H.J.Res. 25",
       "bill_id": "119-hjres-25",
-      "one_liner": "Cancel an IRS rule requiring crypto brokers to report decentralized finance sales",
+      "one_liner": "Cancel an IRS rule requiring crypto brokers to report certain digital asset sales",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-11T00:00:00",
@@ -8415,7 +8415,7 @@
     {
       "bill_number": "H.R. 1968",
       "bill_id": "119-hr-1968",
-      "one_liner": "Fund federal agencies through September 2025",
+      "one_liner": "Keep the federal government funded and extend expiring programs through September 2025",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2025-03-11T00:00:00",
@@ -8431,7 +8431,7 @@
     {
       "bill_number": "H.R. 1968",
       "bill_id": "119-hr-1968",
-      "one_liner": "Fund federal agencies through September 2025",
+      "one_liner": "Keep the federal government funded and extend expiring programs through September 2025",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-11T00:00:00",
@@ -8559,7 +8559,7 @@
     {
       "bill_number": "S.J.Res. 11",
       "bill_id": "119-sjres-11",
-      "one_liner": "Cancel a rule requiring offshore oil and gas companies to report underwater archaeological sites",
+      "one_liner": "Cancel a rule requiring oil and gas companies to file underwater archaeology reports before drilling",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-06T00:00:00",
@@ -8591,7 +8591,7 @@
     {
       "bill_number": "H.J.Res. 42",
       "bill_id": "119-hjres-42",
-      "one_liner": "Cancel a 2024 rule changing how appliance makers must report and label energy use",
+      "one_liner": "Cancel a Department of Energy rule updating how appliance makers certify and label energy use",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-05T00:00:00",
@@ -8607,7 +8607,7 @@
     {
       "bill_number": "H.J.Res. 61",
       "bill_id": "119-hjres-61",
-      "one_liner": "Cancel an EPA rule limiting toxic air pollution from rubber tire factories",
+      "one_liner": "Cancel an EPA rule setting hazardous air pollution limits for rubber tire factories",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-03-05T00:00:00",
@@ -8687,7 +8687,7 @@
     {
       "bill_number": "H.J.Res. 20",
       "bill_id": "119-hjres-20",
-      "one_liner": "Cancel a rule setting energy efficiency standards for gas-fired tankless water heaters",
+      "one_liner": "Cancel a federal rule requiring gas tankless water heaters to meet stricter efficiency standards",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-02-27T00:00:00",
@@ -8703,7 +8703,7 @@
     {
       "bill_number": "H.J.Res. 35",
       "bill_id": "119-hjres-35",
-      "one_liner": "Cancel an EPA rule setting up how oil and gas companies handle methane fee requirements",
+      "one_liner": "Cancel an EPA fee on oil and gas companies for releasing too much methane",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-02-26T00:00:00",
@@ -8719,7 +8719,7 @@
     {
       "bill_number": "H.R. 695",
       "bill_id": "119-hr-695",
-      "one_liner": "Increase monthly pension for Medal of Honor recipients and create pension for surviving spouses",
+      "one_liner": "Raise the monthly pension for living Medal of Honor recipients from $1,407 to $8,333",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-02-26T00:00:00",
@@ -9087,7 +9087,7 @@
     {
       "bill_number": "H.R. 43",
       "bill_id": "119-hr-43",
-      "one_liner": "Let Alaska Native village corporations keep their lands instead of giving them to municipalities",
+      "one_liner": "Remove the rule requiring Alaska Native village corporations to hand over land to Alaska",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-02-04T00:00:00",
@@ -9167,7 +9167,7 @@
     {
       "bill_number": "S. 5",
       "bill_id": "119-s-5",
-      "one_liner": "Require detention of non-citizens arrested for theft, burglary, or shoplifting",
+      "one_liner": "Require federal detention of non-citizens charged with theft or break-ins",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-01-22T00:00:00",
@@ -9183,7 +9183,7 @@
     {
       "bill_number": "H.R. 165",
       "bill_id": "119-hr-165",
-      "one_liner": "Give 40 acres in South Dakota to two Sioux tribes for a Wounded Knee memorial",
+      "one_liner": "Give 40 acres at Wounded Knee to two Sioux tribes as a memorial",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-01-22T00:00:00",
@@ -9231,7 +9231,7 @@
     {
       "bill_number": "H.R. 187",
       "bill_id": "119-hr-187",
-      "one_liner": "Require federal agencies to publish data about waterway access and fishing rules",
+      "one_liner": "Make federal waterway rules and fishing limits available online in a standard format",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2025-01-21T00:00:00",
