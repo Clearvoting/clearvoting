@@ -906,6 +906,104 @@ async def test_fetch_bill_texts_fetches_missing_text(tmp_path):
     assert len(with_text[0]["text"]) <= 6000  # capped
 
 
+def _resp_429():
+    import httpx
+    resp = MagicMock()
+    resp.raise_for_status.side_effect = httpx.HTTPStatusError(
+        "429", request=MagicMock(), response=MagicMock(status_code=429))
+    return resp
+
+
+def _resp_ok(html="<p>SECTION 1. The law does things.</p>"):
+    resp = MagicMock()
+    resp.text = html
+    resp.raise_for_status = MagicMock()
+    return resp
+
+
+def _mock_http(responses):
+    http = MagicMock()
+    http.get = AsyncMock(side_effect=responses)
+    http.__aenter__ = AsyncMock(return_value=http)
+    http.__aexit__ = AsyncMock(return_value=False)
+    return http
+
+
+def _text_listing():
+    return {"textVersions": [{"date": "2025-06-01", "type": "Enrolled",
+            "formats": [{"type": "Formatted Text", "url": "https://congress.gov/t.htm"}]}]}
+
+
+@pytest.mark.asyncio
+async def test_fetch_bill_texts_backs_off_and_retries_on_429(tmp_path):
+    """A 429 on the text body triggers a backoff sleep and a retry."""
+    from sync import fetch_bill_texts
+    _write_json(tmp_path / "bills.json", {"bills": [
+        {"congress": 119, "type": "HR", "number": "1", "title": "T",
+         "textVersions": {"count": 1, "url": "x"}},
+    ]})
+    mock_client = MagicMock()
+    mock_client.get_bill_text = AsyncMock(return_value=_text_listing())
+    http = _mock_http([_resp_429(), _resp_ok()])
+
+    import unittest.mock
+    with patch("httpx.AsyncClient", return_value=http), \
+         unittest.mock.patch("sync.asyncio.sleep", new_callable=AsyncMock) as mock_sleep:
+        count = await fetch_bill_texts(mock_client, tmp_path, rate_limit=0)
+
+    assert count == 1
+    backoffs = [c.args[0] for c in mock_sleep.call_args_list if c.args and c.args[0] >= 30]
+    assert backoffs, "expected a >=30s backoff sleep after the 429"
+    saved = json.loads((tmp_path / "bills.json").read_text())["bills"][0]
+    assert any(v.get("text") for v in saved["textVersions"])
+
+
+@pytest.mark.asyncio
+async def test_fetch_bill_texts_stops_run_on_persistent_429(tmp_path):
+    """If 429s persist through retries, the run stops instead of hammering on."""
+    from sync import fetch_bill_texts
+    _write_json(tmp_path / "bills.json", {"bills": [
+        {"congress": 119, "type": "HR", "number": "1", "title": "A",
+         "textVersions": {"count": 1, "url": "x"}},
+        {"congress": 119, "type": "HR", "number": "2", "title": "B",
+         "textVersions": {"count": 1, "url": "x"}},
+    ]})
+    mock_client = MagicMock()
+    mock_client.get_bill_text = AsyncMock(return_value=_text_listing())
+    http = _mock_http([_resp_429(), _resp_429(), _resp_429()])
+
+    import unittest.mock
+    with patch("httpx.AsyncClient", return_value=http), \
+         unittest.mock.patch("sync.asyncio.sleep", new_callable=AsyncMock):
+        count = await fetch_bill_texts(mock_client, tmp_path, rate_limit=0)
+
+    assert count == 0
+    # The second bill was never attempted — the run aborted after persistent 429s
+    assert mock_client.get_bill_text.call_count == 1
+
+
+@pytest.mark.asyncio
+async def test_fetch_bill_texts_respects_max_fetches(tmp_path):
+    """A per-run cap stops fetching so the CI step can never blow its timeout."""
+    from sync import fetch_bill_texts
+    _write_json(tmp_path / "bills.json", {"bills": [
+        {"congress": 119, "type": "HR", "number": str(n), "title": f"B{n}",
+         "textVersions": {"count": 1, "url": "x"}} for n in (1, 2, 3)
+    ]})
+    mock_client = MagicMock()
+    mock_client.get_bill_text = AsyncMock(return_value=_text_listing())
+    http = _mock_http([_resp_ok(), _resp_ok(), _resp_ok()])
+
+    with patch("httpx.AsyncClient", return_value=http):
+        count = await fetch_bill_texts(mock_client, tmp_path, rate_limit=0, max_fetches=2)
+
+    assert count == 2
+    assert mock_client.get_bill_text.call_count == 2
+    saved = json.loads((tmp_path / "bills.json").read_text())["bills"]
+    with_text = [b for b in saved if any(isinstance(v, dict) and v.get("text") for v in b.get("textVersions", []) if isinstance(b.get("textVersions"), list))]
+    assert len(with_text) == 2
+
+
 @pytest.mark.asyncio
 async def test_fetch_bill_texts_skips_bills_with_text(tmp_path):
     """Bills that already carry text are not re-fetched."""
