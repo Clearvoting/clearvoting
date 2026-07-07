@@ -404,12 +404,17 @@ def _bill_text_excerpt(bill: dict) -> str:
     return max(with_text, key=lambda v: v.get("date") or "").get("text", "")
 
 
-async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3) -> int:
+async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3, max_fetches: int | None = None) -> int:
     """Fetch the LATEST text version for bills with no embedded text.
 
     The writer generates from title + summary + text; without this step 99% of
     bills reach the AI with an empty text field. Incremental: bills that
-    already carry text are skipped, so weekly runs only fetch new bills."""
+    already carry text are skipped, so weekly runs only fetch new bills.
+
+    www.congress.gov rate-limits aggressively from CI (July 4 sync failure):
+    429s back off and retry twice, persistent 429s end the run with progress
+    saved, and max_fetches caps a run so a backlog can't blow the CI step
+    timeout — the next run resumes where this one stopped."""
     import re
     import httpx
 
@@ -424,7 +429,11 @@ async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3) ->
     print(f"  {len(to_fetch)} bills missing text (of {len(bills)})")
 
     fetched = 0
+    rate_limited_out = False
     for i, bill in enumerate(to_fetch):
+        if max_fetches is not None and fetched >= max_fetches:
+            print(f"  Per-run cap of {max_fetches} reached — stopping; next run resumes")
+            break
         bt = (bill.get("type") or "").lower()
         bn = str(bill.get("number") or "")
         congress = bill.get("congress", 119)
@@ -443,12 +452,33 @@ async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3) ->
             or next((f.get("url") for f in formats if f.get("type") == "Formatted XML"), None)
         if not url:
             continue
-        try:
-            async with httpx.AsyncClient(timeout=30.0) as http:
-                r = await http.get(url, follow_redirects=True)
-                r.raise_for_status()
-        except Exception as e:
-            print(f"    Error fetching text body for {congress}-{bt}-{bn}: {e}")
+        r = None
+        for attempt in range(3):
+            try:
+                async with httpx.AsyncClient(timeout=30.0) as http:
+                    candidate = await http.get(url, follow_redirects=True)
+                    candidate.raise_for_status()
+                    r = candidate
+                break
+            except httpx.HTTPStatusError as e:
+                status = e.response.status_code if e.response is not None else None
+                if status == 429 and attempt < 2:
+                    backoff = 30 * (attempt + 1)
+                    print(f"    429 rate-limited on {congress}-{bt}-{bn} — backing off {backoff}s")
+                    await asyncio.sleep(backoff)
+                    continue
+                if status == 429:
+                    rate_limited_out = True
+                else:
+                    print(f"    Error fetching text body for {congress}-{bt}-{bn}: {e}")
+                break
+            except Exception as e:
+                print(f"    Error fetching text body for {congress}-{bt}-{bn}: {e}")
+                break
+        if rate_limited_out:
+            print("  Persistent 429s from congress.gov — stopping this run; progress saved, next run resumes")
+            break
+        if r is None:
             continue
         clean = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", r.text)).strip()
         if not clean:
@@ -1907,6 +1937,8 @@ async def main() -> None:
                         choices=["members", "senate-votes", "house-votes", "bills",
                                  "member-votes", "metadata", "validate"],
                         help="Run a single sync step (for CI incremental workflows).")
+    parser.add_argument("--max-text-fetches", type=int, default=300,
+                        help="Per-run cap on bill-text downloads (congress.gov rate-limits CI; the fetch is incremental).")
     parser.add_argument("--congress", type=int, default=None,
                         help="Specific congress number (use with --step senate-votes or house-votes).")
     parser.add_argument("--session", type=int, default=None,
@@ -1954,7 +1986,7 @@ async def main() -> None:
             print("[step] Syncing voted-on bills...")
             await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
             print("[step] Fetching bill text for bills missing it...")
-            await fetch_bill_texts(client, SYNC_DIR, rate_limit=0.3)
+            await fetch_bill_texts(client, SYNC_DIR, rate_limit=0.3, max_fetches=args.max_text_fetches)
 
         elif args.step == "member-votes":
             print("[step] Building member voting records...")
@@ -2242,7 +2274,7 @@ async def main() -> None:
     print("[4/12] Syncing voted-on bills...")
     bills_count = await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
     print("  Fetching bill text for bills missing it...")
-    await fetch_bill_texts(client, SYNC_DIR, rate_limit=0.3)
+    await fetch_bill_texts(client, SYNC_DIR, rate_limit=0.3, max_fetches=args.max_text_fetches)
 
     # Step 5: AI bill summaries (writer-grader loop)
     summary_stats = {}
