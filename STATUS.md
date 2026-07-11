@@ -52,7 +52,8 @@ and live.** One open PR (#24, docs-only: the review report + this STATUS update)
 
 ### Weekly GitHub Actions
 - weekly-sync.yml (Saturdays) — government data sync, reliable.
-- ai-sync.yml (Sundays) — AI generation; dormant until ANTHROPIC_API_KEY secret exists.
+- ai-sync.yml (Sundays) — AI generation; dormant until the CLAUDE_CODE_OAUTH_TOKEN
+  secret exists (Max subscription, preferred) or ANTHROPIC_API_KEY (pay-per-token).
 - tests.yml — pytest on every push/PR.
 - Party affiliations hidden by default. "Facts only. No opinions. No spin."
 
@@ -77,10 +78,12 @@ and live.** One open PR (#24, docs-only: the review report + this STATUS update)
 chronologically sorted, donations 2024 cycle (stale — see open items)
 
 ## Open Items (priority order)
-1. **Add ANTHROPIC_API_KEY secret** on GitHub → ai-sync.yml takes over generation in
-   the cloud (no laptop dependency), keeps summaries current as the weekly sync adds
-   bills, and fills the 1 missing narrative. ~$5-10/mo ongoing. This is the single
-   biggest remaining infra fix — the manual laptop loop is retired and won't self-heal.
+1. **Add CLAUDE_CODE_OAUTH_TOKEN secret** on GitHub (Settings → Secrets → Actions)
+   → ai-sync.yml takes over generation in the cloud on the Max subscription ($0/mo;
+   token from `claude setup-token`, lasts ~1 year). Keeps summaries current as the
+   weekly sync adds bills. This is the single biggest remaining infra fix — the
+   manual laptop loop won't self-heal. (ANTHROPIC_API_KEY still works as the
+   pay-per-token fallback, ~$5-10/mo.)
 2. **Analytics** (P1): Plausible/Fathom + Search Console — SEO shipped (server-side
    meta/OG/sitemap/robots), but nothing measures it yet; North Star is unmeasurable.
 3. **Donations**: 2026 cycle + House office-filter bug + monthly CI step (still 2024).
@@ -92,7 +95,8 @@ chronologically sorted, donations 2024 cycle (stale — see open items)
 
 ## API Keys
 - `CONGRESS_API_KEY` in `.env` (valid)
-- `ANTHROPIC_API_KEY` placeholder locally; needed as GitHub secret for ai-sync.yml
+- `ANTHROPIC_API_KEY` placeholder locally; ai-sync.yml prefers the
+  `CLAUDE_CODE_OAUTH_TOKEN` GitHub secret (Max subscription via `claude setup-token`)
 
 ## Key Files
 - `sync.py` — data sync pipeline (`--step members|bills|...`, `--ai-only`, `--skip-ai`)

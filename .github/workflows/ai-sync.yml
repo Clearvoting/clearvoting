@@ -1,13 +1,19 @@
 # Automated weekly AI generation sync for ClearVote.
 # Runs every Sunday at 10:00 UTC, the day after the government data sync.
 # Generates bill summaries, arguments, scorecard verdicts, member narratives,
-# and coherence checks via the Anthropic API (sync.py --ai-only).
+# and coherence checks (sync.py --ai-only).
 #
-# If the ANTHROPIC_API_KEY secret is not configured, the run exits cleanly
-# with a notice instead of failing — the owner can add the secret later.
-# Generation is incremental (skips covered bills), so a timeout mid-run is
-# fine: the commit step still pushes partial progress and the next run
-# picks up where the last one left off.
+# Two credential modes, checked in order:
+#   1. CLAUDE_CODE_OAUTH_TOKEN secret (preferred) — runs on the owner's Claude
+#      Max subscription via the claude CLI, no per-token API billing. Create
+#      with `claude setup-token` locally, then add as a repo Actions secret.
+#   2. ANTHROPIC_API_KEY secret — pay-per-token Anthropic API.
+#
+# If neither secret is configured, the run exits cleanly with a notice instead
+# of failing — the owner can add a secret later.
+# Generation is incremental (skips covered bills), so a timeout or usage-limit
+# mid-run is fine: the commit step still pushes partial progress and the next
+# run picks up where the last one left off.
 
 name: Weekly AI Generation Sync
 
@@ -25,45 +31,63 @@ jobs:
 
     env:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
 
     steps:
-      - name: Check for ANTHROPIC_API_KEY
+      - name: Check for credentials
         id: key-check
         run: |
-          if [ -z "$ANTHROPIC_API_KEY" ]; then
-            echo "::notice::ANTHROPIC_API_KEY secret is not set — skipping AI generation. Add the secret in repo settings to enable this workflow."
-            echo "has_key=false" >> "$GITHUB_OUTPUT"
+          if [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "::notice::Using Claude Max subscription (claude CLI) for AI generation."
+            echo "mode=subscription" >> "$GITHUB_OUTPUT"
+          elif [ -n "$ANTHROPIC_API_KEY" ]; then
+            echo "::notice::Using Anthropic API key for AI generation."
+            echo "mode=api" >> "$GITHUB_OUTPUT"
           else
-            echo "has_key=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Neither CLAUDE_CODE_OAUTH_TOKEN nor ANTHROPIC_API_KEY secret is set — skipping AI generation. Run 'claude setup-token' locally and add the token as the CLAUDE_CODE_OAUTH_TOKEN secret to enable this workflow."
+            echo "mode=none" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Check out repo
-        if: steps.key-check.outputs.has_key == 'true'
+        if: steps.key-check.outputs.mode != 'none'
         uses: actions/checkout@v4
 
       - name: Set up Python 3.12
-        if: steps.key-check.outputs.has_key == 'true'
+        if: steps.key-check.outputs.mode != 'none'
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
       - name: Install dependencies
-        if: steps.key-check.outputs.has_key == 'true'
+        if: steps.key-check.outputs.mode != 'none'
         run: pip install -r requirements.txt
 
+      - name: Install Claude Code CLI
+        if: steps.key-check.outputs.mode == 'subscription'
+        run: npm install -g @anthropic-ai/claude-code
+
       - name: Configure git identity
-        if: steps.key-check.outputs.has_key == 'true'
+        if: steps.key-check.outputs.mode != 'none'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Run AI generation
-        if: steps.key-check.outputs.has_key == 'true'
+      - name: Run AI generation (subscription)
+        if: steps.key-check.outputs.mode == 'subscription'
+        timeout-minutes: 350
+        env:
+          # Must be empty so the AI services fall back to the claude CLI,
+          # which authenticates with CLAUDE_CODE_OAUTH_TOKEN.
+          ANTHROPIC_API_KEY: ''
+        run: python sync.py --ai-only
+
+      - name: Run AI generation (API)
+        if: steps.key-check.outputs.mode == 'api'
         timeout-minutes: 350
         run: python sync.py --ai-only
 
       - name: Commit AI content
-        if: always() && steps.key-check.outputs.has_key == 'true'
+        if: always() && steps.key-check.outputs.mode != 'none'
         run: |
           git add data/synced/
           git diff --cached --quiet || (git commit -m "data: ai sync [automated]" && git push)
