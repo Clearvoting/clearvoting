@@ -1911,6 +1911,37 @@ async def sync_donations(
     return {"synced": synced, "skipped": skipped, "errors": errors, "total": len(donations)}
 
 
+async def _ai_preflight(anthropic_key: str) -> None:
+    """Fail fast (exit 1) if the AI credential is dead.
+
+    Without this, a dead credential (expired CLAUDE_CODE_OAUTH_TOKEN, revoked
+    API key) degrades into a per-bill 'SKIPPED' exception for every bill,
+    exit code 0, and a green CI run that generated nothing.
+    """
+    from app.services.grader_common import CLAUDE_MODEL
+
+    try:
+        if anthropic_key:
+            import anthropic
+            client = anthropic.AsyncAnthropic(api_key=anthropic_key)
+            await client.messages.create(
+                model=CLAUDE_MODEL, max_tokens=8,
+                messages=[{"role": "user", "content": "Reply with exactly: OK"}],
+            )
+        else:
+            from app.services.claude_cli import call_claude_cli
+            await call_claude_cli("You echo exactly what is asked.",
+                                  "Reply with exactly: OK")
+    except Exception as e:
+        print(f"ERROR: AI credential preflight failed — aborting before generation: {e}")
+        if anthropic_key:
+            print("  Check the ANTHROPIC_API_KEY secret/environment variable.")
+        else:
+            print("  Claude CLI mode: regenerate the token with 'claude setup-token' and")
+            print("  update the CLAUDE_CODE_OAUTH_TOKEN secret (locally: 'claude auth login').")
+        sys.exit(1)
+
+
 async def main() -> None:
     parser = argparse.ArgumentParser(description="ClearVote Data Sync")
     parser.add_argument("--states", type=str, default=None,
@@ -2175,6 +2206,8 @@ async def main() -> None:
         print(f"  Mode: {'API' if anthropic_key else 'Claude CLI (Max plan)'}")
         print()
 
+        await _ai_preflight(anthropic_key)
+
         # Step 5: AI bill summaries
         print("[5/12] Generating graded AI bill summaries...")
         summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
@@ -2229,6 +2262,19 @@ async def main() -> None:
             print(f"  Arguments: {arguments_stats['total']} ({arguments_stats.get('passed', 0)} passed)")
         if member_summary_stats.get("total"):
             print(f"  Member narratives: {member_summary_stats['total']} ({member_summary_stats.get('passed', 0)} passed)")
+
+        # A run that attempted work but persisted nothing means every call
+        # failed (dead credential mid-run, hard outage). Exit non-zero so CI
+        # shows red instead of a green run that generated nothing.
+        # needs_review entries count as persisted — they are saved, just flagged.
+        attempted = sum(s.get("total", 0) for s in
+                        (summary_stats, arguments_stats, member_summary_stats))
+        persisted = sum(s.get("passed", 0) + len(s.get("needs_review", []))
+                        for s in (summary_stats, arguments_stats, member_summary_stats))
+        if attempted > 0 and persisted == 0:
+            print(f"ERROR: attempted {attempted} generations, persisted none — "
+                  "treating as total failure.")
+            sys.exit(1)
         return
 
     api_key = os.getenv("CONGRESS_API_KEY", "")

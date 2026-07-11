@@ -49,6 +49,7 @@ async def test_ai_only_skips_congress_key_check(monkeypatch, tmp_path):
 
     monkeypatch.delenv("CONGRESS_API_KEY", raising=False)
     monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
+    monkeypatch.setattr(sync_module, "_ai_preflight", AsyncMock())
     for step in ("sync_bill_summaries", "sync_bill_arguments", "generate_scorecard_verdicts",
                  "sync_member_summaries", "check_page_coherence"):
         monkeypatch.setattr(sync_module, step, AsyncMock(return_value={}))
@@ -58,6 +59,55 @@ async def test_ai_only_skips_congress_key_check(monkeypatch, tmp_path):
 
     assert sync_module.sync_member_summaries.await_count == 1
     assert (tmp_path / "sync_metadata.json").exists()
+
+
+async def test_ai_preflight_exits_on_dead_credential(monkeypatch):
+    """A dead credential (expired OAuth token, revoked key) must abort with
+    exit code 1 — not degrade into per-bill failures and a green run."""
+    import pytest
+    import sync as sync_module
+    from app.services import claude_cli
+
+    async def dead_cli(*args, **kwargs):
+        raise RuntimeError("claude CLI error: 401 unauthorized")
+    monkeypatch.setattr(claude_cli, "call_claude_cli", dead_cli)
+
+    with pytest.raises(SystemExit) as exc:
+        await sync_module._ai_preflight("")
+    assert exc.value.code == 1
+
+
+async def test_ai_preflight_passes_with_working_cli(monkeypatch):
+    """A working CLI credential lets the preflight return normally."""
+    import sync as sync_module
+    from app.services import claude_cli
+
+    async def ok_cli(*args, **kwargs):
+        return "OK"
+    monkeypatch.setattr(claude_cli, "call_claude_cli", ok_cli)
+
+    await sync_module._ai_preflight("")
+
+
+async def test_ai_only_fails_when_nothing_persists(monkeypatch, tmp_path):
+    """--ai-only must exit non-zero when generations were attempted but none
+    persisted (credential died mid-run, hard outage)."""
+    from unittest.mock import AsyncMock
+    import pytest
+    import sync as sync_module
+
+    monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
+    monkeypatch.setattr(sync_module, "_ai_preflight", AsyncMock())
+    failed_stats = {"total": 5, "passed": 0, "failed": 5, "needs_review": []}
+    for step in ("sync_bill_summaries", "sync_bill_arguments", "sync_member_summaries"):
+        monkeypatch.setattr(sync_module, step, AsyncMock(return_value=dict(failed_stats)))
+    for step in ("generate_scorecard_verdicts", "check_page_coherence"):
+        monkeypatch.setattr(sync_module, step, AsyncMock(return_value={}))
+    monkeypatch.setattr(sys, "argv", ["sync.py", "--ai-only"])
+
+    with pytest.raises(SystemExit) as exc:
+        await sync_module.main()
+    assert exc.value.code == 1
 
 
 def test_sync_states_constant_exists():
