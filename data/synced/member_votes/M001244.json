@@ -4,14 +4,46 @@
     119
   ],
   "stats": {
-    "total_votes": 416,
-    "yea_count": 199,
-    "nay_count": 213,
+    "total_votes": 418,
+    "yea_count": 200,
+    "nay_count": 214,
     "not_voting_count": 4,
     "participation_rate": 99.0
   },
   "scorecard": [],
   "votes": [
+    {
+      "bill_number": "S.J.Res. 198",
+      "bill_id": "119-sjres-198",
+      "one_liner": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Centers for Medicare & Medicaid Services of the Department of Health and Human Services relating to \"Medicare Program; Implementation of Prior Authorization for Select Services for the Wasteful and Inappropriate Services Reduction (WISeR) Model\".",
+      "has_plain_summary": false,
+      "vote": "Nay",
+      "date": "2026-07-16T13:25:00",
+      "result": "Motion to Proceed Rejected (46-50)",
+      "policy_area": "Health",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 199
+    },
+    {
+      "bill_number": "S. 4784",
+      "bill_id": "119-s-4784",
+      "one_liner": "National Defense Authorization Act for Fiscal Year 2027",
+      "has_plain_summary": false,
+      "vote": "Yea",
+      "date": "2026-07-14T14:41:00",
+      "result": "Cloture on the Motion to Proceed Rejected (50-46, 3/5 majority required)",
+      "policy_area": "Armed Forces and National Security",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 195
+    },
     {
       "bill_number": "S.J.Res. 185",
       "bill_id": "119-sjres-185",
