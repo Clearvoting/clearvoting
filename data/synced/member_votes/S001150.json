@@ -5,14 +5,30 @@
     119
   ],
   "stats": {
-    "total_votes": 437,
-    "yea_count": 234,
+    "total_votes": 438,
+    "yea_count": 235,
     "nay_count": 189,
     "not_voting_count": 14,
     "participation_rate": 96.8
   },
   "scorecard": [],
   "votes": [
+    {
+      "bill_number": "S.J.Res. 180",
+      "bill_id": "119-sjres-180",
+      "one_liner": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
+      "has_plain_summary": false,
+      "vote": "Yea",
+      "date": "2026-07-23T11:51:00",
+      "result": "Motion to Discharge Rejected (47-49)",
+      "policy_area": "International Affairs",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 207
+    },
     {
       "bill_number": "S.J.Res. 198",
       "bill_id": "119-sjres-198",
