@@ -5,8 +5,8 @@
     119
   ],
   "stats": {
-    "total_votes": 1795,
-    "yea_count": 1317,
+    "total_votes": 1796,
+    "yea_count": 1318,
     "nay_count": 431,
     "not_voting_count": 18,
     "participation_rate": 97.4
@@ -18604,6 +18604,22 @@
       "congress": 118,
       "session": 2,
       "vote_number": 1
+    },
+    {
+      "bill_number": "H.R. 4664",
+      "bill_id": "118-hr-4664",
+      "one_liner": "Making appropriations for financial services and general government for the fiscal year ending September 30, 2024, and for other purposes.",
+      "has_plain_summary": false,
+      "vote": "Aye",
+      "date": "2023-11-08T00:00:00",
+      "result": "Failed",
+      "policy_area": "Economics and Public Finance",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 118,
+      "session": 1,
+      "vote_number": 634
     },
     {
       "bill_number": "H.R. 4664",
