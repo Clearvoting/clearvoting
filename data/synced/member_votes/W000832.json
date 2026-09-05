@@ -1,0 +1,69 @@
+{
+  "member_id": "W000832",
+  "congresses": [
+    119
+  ],
+  "stats": {
+    "total_votes": 3,
+    "yea_count": 0,
+    "nay_count": 3,
+    "not_voting_count": 0,
+    "participation_rate": 100.0
+  },
+  "scorecard": [],
+  "votes": [
+    {
+      "bill_number": "H.R. 4795",
+      "bill_id": "119-hr-4795",
+      "one_liner": "Protect Economic and Academic Freedom Act of 2026",
+      "has_plain_summary": false,
+      "vote": "Nay",
+      "date": "2026-09-03T00:00:00",
+      "result": "Passed",
+      "policy_area": "Education",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 295
+    },
+    {
+      "bill_number": "H.R. 1501",
+      "bill_id": "119-hr-1501",
+      "one_liner": "Protecting Domestic Mining Act of 2025",
+      "has_plain_summary": false,
+      "vote": "Nay",
+      "date": "2026-09-02T00:00:00",
+      "result": "Passed",
+      "policy_area": "Energy",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 294
+    },
+    {
+      "bill_number": "H.J.Res. 1",
+      "bill_id": "119-hjres-1",
+      "one_liner": "Proposing an amendment to the Constitution of the United States to require that the Supreme Court of the United States be composed of nine justices.",
+      "has_plain_summary": false,
+      "vote": "Nay",
+      "date": "2026-09-02T00:00:00",
+      "result": "Failed",
+      "policy_area": "Law",
+      "chamber": "House",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 293
+    }
+  ],
+  "policy_areas": [
+    "Education",
+    "Energy",
+    "Law"
+  ]
+}
