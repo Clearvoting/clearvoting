@@ -5,7 +5,55 @@
 **URL:** ClearVoting.org
 **Elevated:** Co-primary project (Mar 2026) based on LinkedIn traction
 
-## SESSION HANDOFF (2026-07-02) — read this first
+## SESSION HANDOFF (2026-09-22) — REDESIGN IN FLIGHT, read this first
+
+**Where the work lives.** Branch `redesign/2026-09` in the worktree `/Users/josephgarcia/.clearvote-worktrees/redesign-2026-09`
+(off origin/main f1dc535; frontend identical to live). The main checkout at `Projects/Non-Profit/ClearVote` is untouched and
+~49 commits behind — do not work there. Persistent helper artifacts (outside the repo, survive scratchpad wipes):
+`/Users/josephgarcia/.clearvote-worktrees/tools/` — `shots/shoot.mjs` (Playwright batch screenshots, desktop 1280 + mobile 375,
+prints scrollWidth), `data/zip_districts.json` + `build_zip_crosswalk.py` (+ `raw/` Census files), `data/senate_2026.json`
+(verified against senate.gov 2026-09-19: Cornyn TX regular, Moody FL special), `design/` (four proposals + mockups + judge
+screenshots), `plan/index_tasks.py`. Launchable workflow scripts (must live under the vault): `~/Claude/.claude/workflows/clearvote/`
+— `design-workflow.js`, `spec-critique-workflow.js`, `plan-workflow.js`, `build-workflow.js`.
+
+**Done (all committed on the branch).**
+1. Review — `docs/reviews/2026-09-10-redesign-review.md`: 63 verified findings (2 P0, 18 P1, 35 P2, 8 P3), 18 protect-this items,
+   8 themes, guardrails, Appendix C (independent critic: gaps, unverified claims, contradictions). Brief: `…-review-brief.md`.
+2. Design panel — `docs/superpowers/specs/2026-09-18-design-panel/` (README has the scores): Spine 135, Broadsheet 133, Share 130,
+   Evolve 130; winner votes citizen+PM → Spine, designer → Broadsheet.
+3. Design spec — `docs/superpowers/specs/2026-09-18-clearvoting-redesign-design.md` (659 lines, 12 sections: IA/URLs, page specs
+   with every fallback state, ZIP feature, tokens with computed contrast, glossary, WCAG list, reach, 19 backend touches, F01–F63
+   coverage, deferrals). **Critique pass not yet run** — its Status line says so.
+4. Baseline: 370 tests pass from the worktree with the main checkout's venv; app boots locally (`uvicorn app.main:app --port 8011`).
+
+**Not done.** Spec critique/revision → implementation plan (+ adversarial plan review) → build → QA → push + PR (Joseph merges).
+
+**Next session, in order (each is one Workflow call; the scripts carry all context).**
+1. Spec critique: `Workflow({scriptPath: "/Users/josephgarcia/Claude/.claude/workflows/clearvote/spec-critique-workflow.js"})` —
+   3 critics + revision edit the spec in place; then `git commit` the spec.
+2. Plan: `Workflow({scriptPath: ".../plan-workflow.js"})` — architect map → parallel task writers → assembled plan at
+   `docs/superpowers/plans/2026-09-18-clearvoting-redesign.md` → 3 adversarial reviewers → revised plan + review doc at
+   `docs/reviews/2026-09-18-redesign-plan-review.md`. Read the review's readiness verdict before building. Commit both.
+3. Build: `python3 ~/.clearvote-worktrees/tools/plan/index_tasks.py <plan.md> > ~/.clearvote-worktrees/tools/plan/tasks.json`, then
+   `Workflow({scriptPath: ".../build-workflow.js", args: {tasks: <contents of tasks.json as a JSON array>, start: 1}})` — sequential:
+   fresh implementer per task (TDD, smoke, commit) → reviewer → one fix round; stops on a blocked/failed task; returns `next_start`.
+   Relaunch with `start: <next_start>` after any stop. Per-task reviews land in `docs/reviews/build-2026-09/`.
+4. QA (`/qa` against the local server, all pages at 375/768/1280 + every fallback state), update this STATUS + NOW.md, push the branch,
+   open the PR (Joseph merges; Render auto-deploys main).
+
+**PM decisions I made on Joseph's behalf (overturn any of them before step 2 — they are baked into plan-workflow.js).**
+(a) About page names "Joseph Garcia" as maintainer; contact = the feedback form only, no email published. (b) No Render plan change
+in this PR (cold start deferred to ops). (c) The AI "supporters say / critics say" module is removed (unsourced text is not content);
+campaign money is one dated 2024-cycle sentence with an FEC link for the 80 members who have data. (d) "On the ballot" copy always
+describes the seat, never the person.
+
+**Gotchas that cost days.** Usage-limit windows cut workflows mid-run: resume with `resumeFromRunId` in the SAME session; after a
+session-id rotation the journal is gone — scripts accept `args.done` / `args.start` to skip finished work. Keep verifiers cheap
+(grep/curl first, ≤2 screenshots, effort medium; ~200k tokens per screenshot-heavy agent). Never keep phase artifacts only in the
+scratchpad. `Workflow({scriptPath})` only accepts paths under the vault. Do not use the Playwright MCP inside workflow agents (shared
+browser) — use `tools/shots/shoot.mjs`. Deploy is PR → Joseph merges; direct push and self-merge are blocked.
+
+## SESSION HANDOFF (2026-07-02) — (previous)
 
 Full project/UI review + both P0 fixes + votes refresh + AI backfill: **shipped, merged,
 and live.** One open PR (#24, docs-only: the review report + this STATUS update).
