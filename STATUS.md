@@ -23,25 +23,30 @@ screenshots), `plan/index_tasks.py`. Launchable workflow scripts (must live unde
    Evolve 130; winner votes citizen+PM → Spine, designer → Broadsheet.
 3. Design spec — `docs/superpowers/specs/2026-09-18-clearvoting-redesign-design.md` (659 lines, 12 sections: IA/URLs, page specs
    with every fallback state, ZIP feature, tokens with computed contrast, glossary, WCAG list, reach, 19 backend touches, F01–F63
-   coverage, deferrals). **Critique pass not yet run** — its Status line says so.
+   coverage, deferrals). **Critique done 2026-09-22** (`795b22f`): 4 critics (feasibility/user/trust/F01–F63 traceability) raised
+   115 issues (10 blocker, 52 major), all fixed (9 partial fixes declined with reasons, §2.5); a completeness check made 10 inline
+   fixes → "ready with notes". Spec is now 1,107 lines; adds sync-time `votes_index.json`, merge-by **2026-10-13** + cut-first list (§10.3).
 4. Baseline: 370 tests pass from the worktree with the main checkout's venv; app boots locally (`uvicorn app.main:app --port 8011`).
 
-**Not done.** Spec critique/revision → implementation plan (+ adversarial plan review) → build → QA → push + PR (Joseph merges).
+**Not done.** Implementation plan (+ adversarial plan review) → build → QA → push + PR (Joseph merges).
 
 **Next session, in order (each is one Workflow call; the scripts carry all context).**
-1. Spec critique: `Workflow({scriptPath: "/Users/josephgarcia/Claude/.claude/workflows/clearvote/spec-critique-workflow.js"})` —
-   3 critics + revision edit the spec in place; then `git commit` the spec.
+1. ~~Spec critique~~ — done 2026-09-22 (`795b22f`, `5cdc26e`).
+   Plan workflow launched 2026-09-22 as run `wf_4ddf70c2-75c` (resumable only in that session; otherwise relaunch fresh).
 2. Plan: `Workflow({scriptPath: ".../plan-workflow.js"})` — architect map → parallel task writers → assembled plan at
    `docs/superpowers/plans/2026-09-18-clearvoting-redesign.md` → 3 adversarial reviewers → revised plan + review doc at
    `docs/reviews/2026-09-18-redesign-plan-review.md`. Read the review's readiness verdict before building. Commit both.
 3. Build: `python3 ~/.clearvote-worktrees/tools/plan/index_tasks.py <plan.md> > ~/.clearvote-worktrees/tools/plan/tasks.json`, then
    `Workflow({scriptPath: ".../build-workflow.js", args: {tasks: <contents of tasks.json as a JSON array>, start: 1}})` — sequential:
-   fresh implementer per task (TDD, smoke, commit) → reviewer → one fix round; stops on a blocked/failed task; returns `next_start`.
+   fresh implementer per task (TDD, smoke, commit) → reviewer → up to two fix rounds; stops on ANY task that does not pass review
+   (never builds on a failed task); returns `next_start`. Tasks titled "(cut-first)" can be skipped with `start`/`stop` if behind on Oct 6.
    Relaunch with `start: <next_start>` after any stop. Per-task reviews land in `docs/reviews/build-2026-09/`.
 4. QA (`/qa` against the local server, all pages at 375/768/1280 + every fallback state), update this STATUS + NOW.md, push the branch,
    open the PR (Joseph merges; Render auto-deploys main).
 
-**PM decisions I made on Joseph's behalf (overturn any of them before step 2 — they are baked into plan-workflow.js).**
+**PM decisions — all confirmed by Joseph 2026-09-22 and baked into plan-workflow.js.** Spec §2.5 adds: (A) member narratives withdrawn
+(34/150 used "leans" stance labels) and `/summary` deleted; (B) "Key votes 4 yes + 4 no" → "Recent votes" (8 newest decisive, any position);
+(C) the 115 `needs_review` summaries (failed the site's own grader) withheld; (D) merge-by 2026-10-13, cut extras if behind on Oct 6. Earlier:
 (a) About page names "Joseph Garcia" as maintainer; contact = the feedback form only, no email published. (b) No Render plan change
 in this PR (cold start deferred to ops). (c) The AI "supporters say / critics say" module is removed (unsourced text is not content);
 campaign money is one dated 2024-cycle sentence with an FEC link for the 80 members who have data. (d) "On the ballot" copy always
