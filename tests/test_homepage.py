@@ -1,6 +1,7 @@
 """Tests for the homepage redesign: state counts, latest vote, bill plain-language
 enrichment, party reveal, and the notify signup endpoint."""
 import json
+import re
 import pytest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -172,3 +173,134 @@ async def test_notify_accepts_valid_email(_use_tmp_notify_file):
 async def test_notify_rejects_bad_email():
     response = await _post_notify({"email": "not-an-email"})
     assert response.status_code == 422
+
+
+# --- Server-rendered home (plan T3.3, spec §4.1) ---
+
+@pytest.mark.asyncio
+async def test_home_renders_lead_card_and_record_in_the_html():
+    response = await _get("/")
+    assert response.status_code == 200
+    html = response.text
+    assert "<!--content-->" not in html and "<!--edition-->" not in html
+    assert '<p class="kicker">An independent record of Congress</p>' in html
+    assert '<h1 id="home-h1">See how your representatives vote.</h1>' in html
+    assert '<form class="zip-form" id="find" method="get" action="/state">' in html
+    assert '<h2 class="kicker" id="latest-vote-h">The latest vote</h2>' in html
+    assert '<h2 id="record-h">What Congress voted on</h2>' in html
+    assert '<header class="masthead">' in html and '<p class="edition">' in html
+    assert '<a href="/#find" id="nav-mine">My representatives</a>' in html
+
+
+@pytest.mark.asyncio
+async def test_home_state_links_and_coverage_use_real_counts():
+    counts = DataService(FIXTURES).get_member_counts()
+    html = (await _get("/")).text
+    for code, name in (("CA", "California"), ("FL", "Florida"), ("NY", "New York"), ("TX", "Texas")):
+        label = f"{name} · {counts[code]}" if counts.get(code) else name
+        assert f'<a class="state-link" href="/state?code={code}">{label}</a>' in html
+    assert f"today — {sum(counts.values())} members and every bill that has had a roll-call vote" in html
+
+
+@pytest.mark.asyncio
+async def test_home_record_lists_the_newest_bills_regardless_of_summary():
+    bills = DataService(FIXTURES).get_bills(limit=7)["bills"]
+    html = (await _get("/")).text
+    assert html.count('class="bill-row"') == max(len(bills) - 1, 0)
+    lead_code = render.format_bill_code(str(bills[0]["type"]).lower(), bills[0]["number"])
+    assert f'<p class="kicker">{lead_code} · ' in html
+    assert "<b>&" not in html  # hostile fixture titles arrive escaped
+
+
+@pytest.mark.asyncio
+async def test_home_degrades_by_module_when_data_is_missing():
+    with patch("app.services.data_service.DataService.get_latest_vote", return_value=None), \
+         patch("app.services.data_service.DataService.get_bills", side_effect=OSError("index missing")):
+        response = await _get("/")
+    assert response.status_code == 200
+    assert '<h1 id="home-h1">See how your representatives vote.</h1>' in response.text
+    assert "The latest vote isn't available right now." in response.text
+    assert "We couldn't load recent bills right now." in response.text
+
+
+@pytest.mark.asyncio
+async def test_home_error_state_when_the_lead_cannot_render():
+    # §4 common: a lead dependency failing is a page failure, not a module one.
+    with patch("app.services.data_service.DataService.get_member_counts",
+               side_effect=OSError("members.json missing")):
+        response = await _get("/")
+    assert response.status_code == 503
+    assert "<h1>See how your representatives vote.</h1>" in response.text
+    assert render.PAGE_ERROR_SENTENCE in response.text
+    assert 'id="record-h"' not in response.text
+
+
+@pytest.mark.asyncio
+async def test_every_internal_link_on_home_resolves():
+    """§10.3: no commit links to a page that does not exist yet (footer, notify Privacy →,
+    state chips, Record rows, the card link)."""
+    html = (await _get("/")).text
+    paths = sorted({p.replace("&amp;", "&") for p in re.findall(r'href="(/[^"#]*)', html)
+                    if not p.startswith("/static/")})
+    assert "/about" in paths
+    for path in paths:
+        assert (await _get(path)).status_code in (200, 302), path
+
+
+@pytest.mark.asyncio
+async def test_home_heading_outline_follows_the_spec():
+    """§8 item 2: h1, then h2 "The latest vote", "What Congress voted on", the latest-summary
+    block when it renders, "Browse all bills by topic"; the feedback dialog's h2 sits after
+    the footer. "Your representatives" is JS-only and absent from the server HTML."""
+    html = (await _get("/")).text
+    found = re.findall(r"<(h[1-6])\b[^>]*>(.*?)</\1>", html, re.S)
+    levels = [level for level, _ in found]
+    texts = [re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", inner)).strip() for _, inner in found]
+    latest = [t for t in texts if t.startswith("Most recent plain-English summary")]
+    expected = (["See how your representatives vote.", "The latest vote", "What Congress voted on"]
+                + latest + ["Browse all bills by topic →", "Send feedback"])
+    assert texts == expected
+    assert levels == ["h1"] + ["h2"] * (len(expected) - 1)
+
+
+@pytest.mark.asyncio
+async def test_home_drops_the_retired_modules():
+    html = (await _get("/")).text
+    for gone in ('id="state-grid"', 'id="delegation"', "Updated weekly", "aria-live",
+                 "styles.css", "broadsheet.css", "viz.js", "notify-reveal"):
+        assert gone not in html
+
+
+@pytest.mark.asyncio
+async def test_home_footer_freshness_is_server_filled():
+    metadata = json.loads((FIXTURES / "sync_metadata.json").read_text())
+    html = (await _get("/")).text
+    synced = render.format_date(metadata["last_sync"][:10])
+    assert f'<span id="data-freshness"> · Synced {synced}</span>' in html
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path, shell", [
+    ("/state?code=FL", "state.html"), ("/member?id=S001217", "member.html"),
+    ("/bill?congress=119&type=hr&number=1", "bill.html"), ("/about", "about.html"),
+])
+async def test_other_pages_serve_their_own_shell(path, shell):
+    """§10.3: each page switches stylesheet in its own commit. The page links exactly the
+    stylesheets its shell on disk links, so this holds unchanged when T4.2, T5.1, T6.3 and
+    T7.4 move those shells to site.css (today: still styles.css)."""
+    on_disk = (Path(__file__).parent.parent / "static" / shell).read_text()
+    response = await _get(path)
+    assert response.status_code == 200
+    for sheet in ("/static/css/styles.css", "/static/css/broadsheet.css", "/static/css/site.css"):
+        assert (sheet in response.text) == (sheet in on_disk), sheet
+    assert "/static/css/" in response.text
+
+
+@pytest.mark.asyncio
+async def test_state_members_ignore_include_stats():
+    for path in ("/api/members/FL?include_stats=true", "/api/members/FL/19?include_stats=true"):
+        response = await _get(path)
+        assert response.status_code == 200
+        for member in response.json()["members"]:
+            assert "stats" not in member
+            assert "narrative_snippet" not in member

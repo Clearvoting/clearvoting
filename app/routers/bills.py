@@ -26,6 +26,14 @@ def _validate_bill_type(bill_type: str) -> None:
         raise HTTPException(status_code=400, detail="Invalid bill type")
 
 
+# Fields the home Record and browse panel read, for every bill *list* payload
+# (/api/bills and /api/search/bills). Sponsors/cosponsors (party letters, "[R-AL-6]"
+# in fullName) never leave in a list (spec §2.2 #10, §10 #9).
+LIST_FIELDS = ("congress", "type", "number", "title", "introducedDate", "latestAction",
+               "policyArea", "laws", "one_liner", "provisions", "issue_categories",
+               "derived_status", "activity_date")
+
+
 @router.get("")
 async def list_bills(
     congress: int | None = Query(None, ge=1, le=200),
@@ -34,9 +42,10 @@ async def list_bills(
     summarized_only: bool = Query(False, description="Only bills with a plain-language AI summary"),
 ):
     data_service = get_data_service()
-    return data_service.get_bills(
+    data = data_service.get_bills(
         offset=offset, limit=limit, congress=congress, summarized_only=summarized_only
     )
+    return {**data, "bills": [{k: b[k] for k in LIST_FIELDS if k in b} for b in data["bills"]]}
 
 
 @router.get("/{congress}/{bill_type}/{bill_number}")

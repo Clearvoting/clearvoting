@@ -746,6 +746,8 @@ def _bill_code(bill: dict) -> str:
 
 def _month_year(iso: str) -> str:
     long_form = format_date(iso[:10])  # "January 3, 2021"
+    if " " not in long_form:  # not an ISO date: format_date returned it unchanged ("2021")
+        return long_form
     return f"{long_form.split(' ', 1)[0]} {long_form.rsplit(' ', 1)[1]}"
 
 

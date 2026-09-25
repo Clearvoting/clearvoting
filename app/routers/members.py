@@ -208,22 +208,10 @@ async def get_state_overview(state_code: str):
 @router.get("/{state_code}")
 async def get_members_by_state(
     state_code: str,
-    include_stats: bool = Query(False, description="Include vote stats and narrative snippet per member"),
     show_party: bool = Query(False, description="Include party labels (hidden by default)"),
 ):
     state_code = _validate_state_code(state_code)
-    data_service = get_data_service()
-    data = data_service.get_members_by_state(state_code)
-    if include_stats:
-        for m in data.get("members", []):
-            bio_id = m.get("bioguideId", "")
-            votes_data = data_service.get_member_votes(bio_id)
-            if votes_data:
-                m["stats"] = votes_data.get("stats", {})
-            narrative_data = data_service.get_member_narrative(bio_id)
-            if narrative_data:
-                full = narrative_data.get("narrative", "")
-                m["narrative_snippet"] = full[:150] + "..." if len(full) > 150 else full
+    data = get_data_service().get_members_by_state(state_code)
     return data if show_party else _strip_party(data)
 
 
@@ -241,24 +229,9 @@ async def get_member_detail(bioguide_id: str, show_party: bool = False):
 
 
 @router.get("/{state_code}/{district}")
-async def get_members_by_district(
-    state_code: str,
-    district: int,
-    include_stats: bool = Query(False, description="Include vote stats and narrative snippet per member"),
-):
+async def get_members_by_district(state_code: str, district: int):
     state_code = _validate_state_code(state_code)
-    data_service = get_data_service()
-    data = data_service.get_members_by_district(state_code, district)
-    if include_stats:
-        for m in data.get("members", []):
-            bio_id = m.get("bioguideId", "")
-            votes_data = data_service.get_member_votes(bio_id)
-            if votes_data:
-                m["stats"] = votes_data.get("stats", {})
-            narrative_data = data_service.get_member_narrative(bio_id)
-            if narrative_data:
-                full = narrative_data.get("narrative", "")
-                m["narrative_snippet"] = full[:150] + "..." if len(full) > 150 else full
+    data = get_data_service().get_members_by_district(state_code, district)
     return _strip_party(data)
 
 

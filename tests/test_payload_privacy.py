@@ -23,6 +23,16 @@ CHECKED_ENDPOINTS = [
     "/api/districts/88430",
     "/api/members/S000148/page",
     "/api/members/G000602/page",
+    # Home and the endpoints it reads (plan T3.3; spec §2.2 #10, §10 #9)
+    "/api/bills",
+    "/api/bills?limit=7",
+    "/api/bills?summarized_only=true&limit=1",
+    "/api/search/bills?q=act",
+    "/api/votes/latest",
+    "/api/members/CA",
+    "/api/members/FL",
+    "/api/members/NY",
+    "/api/members/TX",
 ]
 
 
@@ -63,3 +73,11 @@ async def test_default_payload_has_no_retired_keys(path):
     response = await _get(path)
     assert response.status_code == 200
     assert not _all_keys(response.json()) & FORBIDDEN_KEYS
+
+
+@pytest.mark.asyncio
+async def test_home_html_has_no_party_labels():
+    """Plan T3.3: the server-rendered home (lead, card, Record) carries no party label."""
+    response = await _get("/")
+    assert response.status_code == 200
+    assert not PARTY_LEAK.search(response.text)

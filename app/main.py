@@ -276,13 +276,43 @@ def _state_meta(code: str | None) -> dict:
     }
 
 
+def _home_content(data_service) -> str:
+    """Home blocks (spec §4.1). The Latest Vote card and the Record each degrade on
+    their own (C-11, §4.1 states); the lead always renders."""
+    metadata = data_service.get_sync_metadata()
+    counts = data_service.get_member_counts()
+    coverage = {"members": sum(counts.values()), "since": data_service.earliest_roll_call_date()}
+    try:
+        vote = data_service.get_latest_vote()
+    except Exception:
+        logger.exception("home: latest vote unavailable")
+        vote = None
+    try:
+        bills = data_service.get_bills(limit=7)["bills"]
+        latest_summary = None
+        if bills and not bills[0].get("one_liner"):
+            found = data_service.get_bills(summarized_only=True, limit=1)["bills"]
+            latest_summary = found[0] if found else None
+    except Exception:
+        logger.exception("home: recent bills unavailable")
+        bills, latest_summary = None, None
+    return render.render_home(
+        counts, coverage, vote, bills, latest_summary,
+        metadata.get("last_sync"), metadata.get("ai_summaries_updated"),
+    )
+
+
 @app.get("/")
-async def serve_index():
-    return _serve_html("index.html", {
+def serve_index():
+    from app.dependencies import get_data_service
+    meta = {
         "title": "ClearVoting — See How Your Representatives Vote",
         "description": "Unbiased congressional voting records. See how your representatives vote on bills — facts only, no opinions.",
         "url": f"{SITE_URL}/",
-    })
+        "h1": "See how your representatives vote.",
+    }
+    content, status = _page_content(lambda: _home_content(get_data_service()), meta)
+    return _serve_html("index.html", meta, content, status_code=status)
 
 
 @app.get("/member")

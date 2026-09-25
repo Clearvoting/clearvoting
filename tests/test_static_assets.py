@@ -268,3 +268,52 @@ def test_every_shell_has_an_empty_freshness_span_for_the_server():
         html = shell.read_text()
         assert html.count('<span id="data-freshness"></span>') == 1, shell.name
         assert re.search(r"·\s*<span id=\"data-freshness\">", html) is None, shell.name
+
+
+# --- Home shell and app.js (plan T3.3) ---
+
+def test_index_shell_contract():
+    html = (STATIC / "index.html").read_text()
+    assert re.search(r"<title>[^<]+</title>", html)
+    assert "</head>" in html
+    main = re.search(r'<main id="main-content" tabindex="-1">(.*?)</main>', html, re.S)
+    assert main and "<!--content-->" in main.group(1)
+    masthead = re.search(r'<header class="masthead">(.*?)</header>', html, re.S)
+    assert masthead and "<!--edition-->" in masthead.group(1)
+    assert re.search(r'href="/static/css/site\.css\?v=\d+"', html)
+    assert "styles.css" not in html and "broadsheet.css" not in html
+    scripts = re.findall(r'<script src="/static/js/([a-z]+)\.js\?v=\d+"></script>', html)
+    assert scripts == ["site", "app", "feedback"]
+    assert '<dialog id="feedback-modal"' in html
+    for hook in ("feedback-modal", "feedback-open", "feedback-cancel", "feedback-overlay",
+                 "feedback-form", "feedback-message", "feedback-submit", "feedback-status",
+                 "feedback-context", "data-freshness"):
+        assert f'id="{hook}"' in html
+    assert '<a href="/#find" id="nav-mine">My representatives</a>' in html
+
+
+def test_index_shell_has_no_inline_script_or_handler():
+    html = (STATIC / "index.html").read_text()
+    assert re.search(r"<script(?![^>]*\bsrc=)[^>]*>", html) is None
+    assert re.search(r"\son[a-z]+\s*=", html, re.I) is None
+    assert "aria-live" not in html
+
+
+def test_app_js_is_a_thin_enhancer():
+    js = (STATIC / "js" / "app.js").read_text()
+    for gone in ("loadDelegation", "selectState", "renderDelegation", "splitBar", "include_stats",
+                 "cv-show-party", "innerHTML", "insertAdjacentHTML", "document.title",
+                 "pushState", "role: 'link'", "billOffset += BILL_LIMIT", "style.color"):
+        assert gone not in js
+    assert "new URLSearchParams(window.location.search).get('q')" in js
+    assert "history.replaceState" in js
+    assert "billOffset = offset;" in js
+    # §4.1 m3 / §4.4 m2: the absent chip names the vote's chamber, not chip()'s 'House' default.
+    assert "chip(m.position, { chamber: vote.chamber })" in js
+    assert "Adopted by the" not in js  # final-vs-moving comes from derived_status.variant
+
+
+def test_site_js_binds_the_home_markup_contract():
+    js = (STATIC / "js" / "site.js").read_text()
+    for hook in ("notify-form", "notify-state", "notify-email", "notify-status", "notify-fields", "nav-mine"):
+        assert hook in js
