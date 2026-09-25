@@ -37,8 +37,8 @@ async def _get(path):
 async def test_member_counts():
     response = await _get("/api/members/counts")
     assert response.status_code == 200
-    # Real synced members per state — fixtures hold FL x2, NY x1.
-    assert response.json()["counts"] == {"FL": 2, "NY": 1}
+    # Real synced members per state — fixtures hold FL x2, NY x4, TX x1.
+    assert response.json()["counts"] == {"FL": 2, "NY": 4, "TX": 1}
 
 
 # --- Latest vote ---
@@ -48,12 +48,13 @@ async def test_latest_vote_picks_newest_bill_linked_passage():
     response = await _get("/api/votes/latest")
     assert response.status_code == 200
     data = response.json()
-    # Newest fixture vote that maps to a held bill is the Senate's H.R. 1 passage.
-    assert data["chamber"] == "Senate"
+    # Newest fixture vote that maps to a held bill is the House's H.R. 4795
+    # passage on 2026-09-03 (the real latest roll call, cut into the fixtures).
+    assert data["chamber"] == "House"
     assert data["bill"]["type"] == "hr"
-    assert data["bill"]["number"] == 1
-    assert data["bill"]["title"] == "One Big Beautiful Bill Act"
-    assert data["counts"]["yeas"] == 51
+    assert data["bill"]["number"] == 4795
+    assert data["bill"]["title"] == "Protect Economic and Academic Freedom Act of 2026"
+    assert data["counts"]["yeas"] == 237
 
 
 # --- Bills plain-language enrichment ---

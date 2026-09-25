@@ -48,7 +48,9 @@ def test_get_member_votes_not_found(data_service):
 
 def test_get_bills(data_service):
     result = data_service.get_bills()
-    assert len(result["bills"]) == 3
+    fixture_bills = json.loads((FIXTURES / "bills.json").read_text())["bills"]
+    # Default page size is 20; the real-data fixtures hold more bills than that.
+    assert len(result["bills"]) == min(len(fixture_bills), 20)
 
 
 def test_get_bills_pagination(data_service):

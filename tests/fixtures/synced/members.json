@@ -10,10 +10,21 @@
       "partyName": "Republican",
       "partyCode": "R",
       "chamber": "Senate",
-      "terms": {"item": [
-        {"chamber": "Senate", "congress": 119, "startYear": 2025, "endYear": null, "stateCode": "FL"}
-      ]},
-      "depiction": {"imageUrl": "https://www.congress.gov/img/member/s001217_200.jpg", "attribution": ""},
+      "terms": {
+        "item": [
+          {
+            "chamber": "Senate",
+            "congress": 119,
+            "startYear": 2025,
+            "endYear": null,
+            "stateCode": "FL"
+          }
+        ]
+      },
+      "depiction": {
+        "imageUrl": "https://www.congress.gov/img/member/s001217_200.jpg",
+        "attribution": ""
+      },
       "currentMember": true
     },
     {
@@ -26,27 +37,144 @@
       "partyName": "Republican",
       "partyCode": "R",
       "chamber": "House",
-      "terms": {"item": [
-        {"chamber": "House of Representatives", "congress": 119, "startYear": 2025, "endYear": null, "stateCode": "FL"}
-      ]},
-      "depiction": {"imageUrl": "https://www.congress.gov/img/member/d000032_200.jpg", "attribution": ""},
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "congress": 119,
+            "startYear": 2025,
+            "endYear": null,
+            "stateCode": "FL"
+          }
+        ]
+      },
+      "depiction": {
+        "imageUrl": "https://www.congress.gov/img/member/d000032_200.jpg",
+        "attribution": ""
+      },
       "currentMember": true
     },
     {
       "bioguideId": "S000148",
+      "depiction": {
+        "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+        "imageUrl": "https://www.congress.gov/img/member/s000148_200.jpg"
+      },
       "name": "Schumer, Charles E.",
-      "directOrderName": "Charles E. Schumer",
+      "partyName": "Democratic",
       "state": "New York",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "endYear": 1999,
+            "startYear": 1981
+          },
+          {
+            "chamber": "Senate",
+            "startYear": 1999
+          }
+        ]
+      },
+      "updateDate": "2026-03-08T10:32:37Z",
+      "url": "https://api.congress.gov/v3/member/S000148?format=json",
       "stateCode": "NY",
-      "district": null,
-      "partyName": "Democrat",
-      "partyCode": "D",
-      "chamber": "Senate",
-      "terms": {"item": [
-        {"chamber": "Senate", "congress": 119, "startYear": 2025, "endYear": null, "stateCode": "NY"}
-      ]},
-      "depiction": {"imageUrl": "https://www.congress.gov/img/member/s000148_200.jpg", "attribution": ""},
-      "currentMember": true
+      "chamber": "Senate"
+    },
+    {
+      "bioguideId": "G000555",
+      "depiction": {
+        "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+        "imageUrl": "https://www.congress.gov/img/member/g000555_200.jpg"
+      },
+      "name": "Gillibrand, Kirsten E.",
+      "partyName": "Democratic",
+      "state": "New York",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "endYear": 2009,
+            "startYear": 2007
+          },
+          {
+            "chamber": "Senate",
+            "startYear": 2009
+          }
+        ]
+      },
+      "updateDate": "2026-03-08T10:31:15Z",
+      "url": "https://api.congress.gov/v3/member/G000555?format=json",
+      "stateCode": "NY",
+      "chamber": "Senate"
+    },
+    {
+      "bioguideId": "G000602",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/677427de0b34857ecc9090ad_200.jpg"
+      },
+      "district": 4,
+      "name": "Gillen, Laura",
+      "partyName": "Democratic",
+      "state": "New York",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2025
+          }
+        ]
+      },
+      "updateDate": "2026-09-05T07:40:26Z",
+      "url": "https://api.congress.gov/v3/member/G000602?format=json",
+      "stateCode": "NY",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "R000579",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/r000579_200.jpg"
+      },
+      "district": 18,
+      "name": "Ryan, Patrick",
+      "partyName": "Democratic",
+      "state": "New York",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2022
+          }
+        ]
+      },
+      "updateDate": "2026-09-05T07:40:25Z",
+      "url": "https://api.congress.gov/v3/member/R000579?format=json",
+      "stateCode": "NY",
+      "chamber": "House of Representatives"
+    },
+    {
+      "bioguideId": "C001056",
+      "depiction": {
+        "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+        "imageUrl": "https://www.congress.gov/img/member/c001056_200.jpg"
+      },
+      "name": "Cornyn, John",
+      "partyName": "Republican",
+      "state": "Texas",
+      "terms": {
+        "item": [
+          {
+            "chamber": "Senate",
+            "startYear": 2002
+          }
+        ]
+      },
+      "updateDate": "2026-03-08T10:30:53Z",
+      "url": "https://api.congress.gov/v3/member/C001056?format=json",
+      "stateCode": "TX",
+      "chamber": "Senate"
     }
   ]
 }

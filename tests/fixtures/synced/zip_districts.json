@@ -1,0 +1,63 @@
+{
+  "_source": {
+    "licence": "Public domain (17 U.S.C. §105)",
+    "name": "U.S. Census Bureau 2020 ZCTA to 119th Congressional District relationship files",
+    "retrieved": "2026-09-11",
+    "share": "land area (AREALAND_PART / AREALAND_ZCTA5_20), covered states only",
+    "url": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/cd-sld/"
+  },
+  "10001": [
+    {
+      "district": 12,
+      "share": 1.0,
+      "state": "NY"
+    }
+  ],
+  "11201": [
+    {
+      "district": 10,
+      "share": 0.7216,
+      "state": "NY"
+    },
+    {
+      "district": 7,
+      "share": 0.2784,
+      "state": "NY"
+    }
+  ],
+  "11570": [
+    {
+      "district": 4,
+      "share": 1.0,
+      "state": "NY"
+    }
+  ],
+  "73949": [
+    {
+      "district": 13,
+      "share": 0.1367,
+      "state": "TX"
+    }
+  ],
+  "88430": [
+    {
+      "district": 13,
+      "share": 0.0265,
+      "state": "TX"
+    }
+  ],
+  "89019": [
+    {
+      "district": 23,
+      "share": 0.2153,
+      "state": "CA"
+    }
+  ],
+  "97635": [
+    {
+      "district": 1,
+      "share": 0.9282,
+      "state": "CA"
+    }
+  ]
+}

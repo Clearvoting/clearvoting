@@ -1,3 +1,4 @@
+import json
 import pytest
 from unittest.mock import patch
 from pathlib import Path
@@ -111,7 +112,9 @@ async def test_list_bills():
     _clear_data_service_cache()
     assert response.status_code == 200
     data = response.json()
-    assert len(data["bills"]) == 3
+    fixture_bills = json.loads((FIXTURES / "bills.json").read_text())["bills"]
+    # Default page size is 20; the real-data fixtures hold more bills than that.
+    assert len(data["bills"]) == min(len(fixture_bills), 20)
 
 
 @pytest.mark.asyncio
@@ -121,11 +124,14 @@ async def test_list_bills_congress_filter():
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
             match = await client.get("/api/bills?congress=119")
-            no_match = await client.get("/api/bills?congress=118")
+            no_match = await client.get("/api/bills?congress=116")
 
     _clear_data_service_cache()
+    fixture_bills = json.loads((FIXTURES / "bills.json").read_text())["bills"]
+    in_119 = [b for b in fixture_bills if b["congress"] == 119]
     assert match.status_code == 200
-    assert len(match.json()["bills"]) == 3
+    assert len(match.json()["bills"]) == min(len(in_119), 20)
+    assert all(b["congress"] == 119 for b in match.json()["bills"])
     assert no_match.status_code == 200
     assert no_match.json()["bills"] == []
 
@@ -267,8 +273,8 @@ async def test_search_bills_congress_filter():
         _clear_data_service_cache()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            match = await client.get("/api/search/bills?q=energy&congress=119")
-            no_match = await client.get("/api/search/bills?q=energy&congress=118")
+            match = await client.get("/api/search/bills?q=beautiful&congress=119")
+            no_match = await client.get("/api/search/bills?q=beautiful&congress=118")
 
     _clear_data_service_cache()
     assert match.status_code == 200

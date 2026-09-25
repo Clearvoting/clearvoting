@@ -1,3 +1,4 @@
+import json
 import pytest
 from unittest.mock import patch
 from pathlib import Path
@@ -39,14 +40,20 @@ async def test_health_check_record_counts():
     _clear_data_service_cache()
     assert response.status_code == 200
     data = response.json()
-    assert data["members"] == 3
-    assert data["bills"] == 3
-    assert data["ai_summaries"] == 1
+    members = json.loads((FIXTURES / "members.json").read_text())["members"]
+    bills = json.loads((FIXTURES / "bills.json").read_text())["bills"]
+    summaries = json.loads((FIXTURES / "ai_summaries.json").read_text())
+    bill_keys = {f"{b['congress']}-{b['type'].lower()}-{b['number']}" for b in bills}
+    covered = len(bill_keys & set(summaries))
+    assert data["members"] == len(members)
+    assert data["bills"] == len(bills)
+    assert data["ai_summaries"] == len(summaries)
     assert data["member_summaries"] == 1
     # Coverage is intersected (bills that actually have a summary) and precise
     # enough that 1521/1525 can never read as 1.0 again.
-    assert data["summary_coverage"] == 0.3333
-    assert data["bills_missing_summary"] == 2
+    assert 0 < covered < len(bill_keys)
+    assert data["summary_coverage"] == round(covered / len(bill_keys), 4)
+    assert data["bills_missing_summary"] == len(bill_keys) - covered
 
 
 @pytest.mark.asyncio
