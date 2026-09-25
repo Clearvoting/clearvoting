@@ -1,6 +1,7 @@
+import hashlib
 import logging
+import os
 import re
-import time
 from datetime import datetime, timezone
 from html import escape
 from xml.sax.saxutils import escape as xml_escape
@@ -37,8 +38,28 @@ app.add_middleware(SlowAPIMiddleware)
 static_dir = Path(__file__).parent.parent / "static"
 app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
 
-# Cache-bust version — changes on every server restart
-_asset_version = str(int(time.time()))
+_COMMIT_RE = re.compile(r"^[0-9a-fA-F]{7,40}$")
+
+
+def _compute_asset_version(static_root: Path, environ) -> str:
+    """Cache-bust token for ?v= links (§9.5).
+
+    RENDER_GIT_COMMIT (first 12 characters) when Render sets it; otherwise a hash
+    of the static/ file list with sizes and mtimes, computed once at startup, so an
+    idle restart of the same deploy keeps the same ?v= (the old process-start
+    timestamp changed it several times a day and defeated the immutable cache).
+    """
+    commit = str(environ.get("RENDER_GIT_COMMIT") or "").strip()
+    if _COMMIT_RE.match(commit):
+        return commit[:12].lower()
+    digest = hashlib.sha256()
+    for path in sorted(p for p in static_root.rglob("*") if p.is_file()):
+        stat = path.stat()
+        digest.update(f"{path.relative_to(static_root).as_posix()}:{stat.st_size}:{stat.st_mtime_ns}\n".encode())
+    return digest.hexdigest()[:12]
+
+
+_asset_version = _compute_asset_version(static_dir, os.environ)
 
 
 _version_re = re.compile(r'\?v=\d+')
@@ -187,7 +208,7 @@ def _serve_html(filename: str, meta: dict | None = None, content_html: str | Non
     # see server-rendered data (spec §9.1, §9.2).
     if content_html is not None:
         html = html.replace("<!--content-->", content_html, 1)
-    return HTMLResponse(html, status_code=status_code, headers={"Cache-Control": "no-cache, no-store, must-revalidate"})
+    return HTMLResponse(html, status_code=status_code)
 
 app.include_router(members_router)
 app.include_router(bills_router)
@@ -196,6 +217,52 @@ app.include_router(search_router)
 app.include_router(feedback_router)
 app.include_router(notify_router)
 app.include_router(districts_router)
+
+
+CACHE_NO_STORE = "no-store"
+CACHE_404 = "public, max-age=60"
+CACHE_STATIC = "public, max-age=31536000, immutable"
+CACHE_OG = "public, max-age=86400"
+CACHE_FAVICON = "public, max-age=31536000"
+CACHE_HTML = "public, max-age=0, s-maxage=600, stale-while-revalidate=3600"
+CACHE_ZIP_REDIRECT = "public, max-age=0, s-maxage=86400"
+CACHE_API = "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400"
+
+_HTML_ROUTES = frozenset({"/", "/state", "/member", "/bill", "/about", "/methodology", "/privacy"})
+_NO_STORE_ROUTES = frozenset({"/api/health", "/api/notify", "/api/feedback"})
+_REDIRECT_STATUSES = frozenset({301, 302, 303, 307, 308})
+
+
+def _cache_control_for(method: str, path: str, query, status: int, existing: str | None) -> str | None:
+    """Cache-Control by status first, then by route (spec §9.5).
+
+    Returns the header value to set, or None to leave the response untouched.
+    Nothing per-visitor is ever in the HTML (cv-home and the party reveal live in
+    the browser), so shells and data are safe to share at the edge.
+    """
+    if status >= 500 or (400 <= status < 500 and status != 404):
+        return CACHE_NO_STORE
+    if status == 404:
+        return CACHE_404
+    if method not in ("GET", "HEAD") or path in _NO_STORE_ROUTES:
+        return CACHE_NO_STORE
+    if status in _REDIRECT_STATUSES:
+        # The ZIP lookup is static per deploy; any other redirect is not cached.
+        return CACHE_ZIP_REDIRECT if path == "/state" and "zip" in query else CACHE_NO_STORE
+    if status not in (200, 304):
+        return existing
+    if path.startswith("/static/og/"):
+        return CACHE_OG
+    if path.startswith("/static/"):
+        return CACHE_STATIC
+    if path == "/favicon.ico":
+        return CACHE_FAVICON
+    if path.startswith("/api/"):
+        # /api/districts sets its own day-long header (§5.2); keep a route's own value.
+        return existing or CACHE_API
+    if path in _HTML_ROUTES:
+        return CACHE_HTML
+    return existing
 
 
 @app.middleware("http")
@@ -216,6 +283,15 @@ async def add_security_headers(request: Request, call_next):
     path = request.url.path
     if path.startswith("/static/") and path.endswith(".html"):
         response.headers["X-Robots-Tag"] = "noindex"
+    cache_control = _cache_control_for(
+        request.method,
+        request.url.path,
+        request.query_params,
+        response.status_code,
+        response.headers.get("cache-control"),
+    )
+    if cache_control:
+        response.headers["Cache-Control"] = cache_control
     return response
 
 
@@ -654,6 +730,16 @@ def serve_sitemap() -> Response:
 async def serve_robots() -> PlainTextResponse:
     body = f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n"
     return PlainTextResponse(body)
+
+
+@app.exception_handler(Exception)
+async def server_error_handler(request: Request, exc: Exception) -> PlainTextResponse:
+    """Generic 500 that is never cached (§9.5). Starlette still logs the traceback."""
+    return PlainTextResponse(
+        "Internal Server Error",
+        status_code=500,
+        headers={"Cache-Control": CACHE_NO_STORE},
+    )
 
 
 @app.exception_handler(StarletteHTTPException)
