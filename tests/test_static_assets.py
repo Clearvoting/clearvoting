@@ -178,3 +178,41 @@ def test_text_tokens_meet_4_5_to_1_on_paper_and_card():
     assert _contrast(TOKENS["--yes-text"], TOKENS["--yes-tint"]) >= 4.5
     assert _contrast(TOKENS["--no-text"], TOKENS["--no-tint"]) >= 4.5
     assert _contrast(TOKENS["--card"], TOKENS["--navy"]) >= 4.5
+
+
+# --- site.js behaviour hooks (plan T2.3; spec §5.4, §6.3, §6.4, §8 items 10–11) ---
+
+SITE_JS = STATIC / "js" / "site.js"
+
+
+def test_site_js_binds_the_shared_markup_contract():
+    js = SITE_JS.read_text()
+    for hook in (".party-toggle", ".party-status", "data-party-url", ".share-btn", "[data-share]",
+                 "data-share-url", "data-share-title", "data-share-text", ".share-status",
+                 "notify-form", "notify-fields", "notify-state", "notify-email", "notify-email-error",
+                 "notify-submit", "notify-status", "nav-mine", ".photo img", ".speaker-pick[data-rc]",
+                 ".member-header .party"):
+        assert hook in js, hook
+
+
+def test_site_js_storage_rules():
+    js = SITE_JS.read_text()
+    assert "const HOME_KEY = 'cv-home';" in js and "const PARTY_KEY = 'cv-show-party';" in js
+    assert "storageSet('sessionStorage', PARTY_KEY, '1')" in js
+    assert "storageSet('localStorage', PARTY_KEY" not in js       # the reveal never persists across visits
+    assert "storageRemove('localStorage', PARTY_KEY)" in js        # legacy key removed on load
+    assert "document.cookie" not in js
+    assert "aria-pressed" not in js and "aria-live" not in js
+    for fn in ("initPartyToggle", "initShare", "initPhotos", "initHome", "rememberDistrict", "forgetHome",
+               "rewriteMastheadLink", "initNotify", "focusHeading", "rememberedLine", "readHome"):
+        assert re.search(rf"^(?:async )?function {fn}\(", js, re.M), fn
+
+
+def test_site_js_copy_is_quoted_from_the_spec():
+    js = SITE_JS.read_text()
+    for copy in ("'Show party labels'", "'Hide party labels'", "'Party labels shown'", "'Party labels hidden'",
+                 "'Link copied'", "\"Thanks — we'll email you when {state} is added.\"",
+                 "\"We couldn't save that. Please try again in a few minutes.\"",
+                 "\"That doesn't look like an email address.\"", "'Remembered: {place}'",
+                 "'Remember District {district} as mine'", "'No final votes on bills in our record yet'"):
+        assert copy in js, copy

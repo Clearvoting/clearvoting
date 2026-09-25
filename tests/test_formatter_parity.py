@@ -232,3 +232,55 @@ def test_js_vocabulary_never_uses_the_banned_verbs():
     calls, _ = _formatter_calls(_synthetic_pairs())
     for text in _run_node(calls):
         assert not re.search(r"blocked|let the veto stand|taken up", str(text)), text
+
+
+# --- cv-home rules under node (plan T2.3; spec §5.4, C-13) ---
+
+_HOME_SCRIPT = r"""
+function memoryStorage() {
+  const data = {};
+  return { getItem: (k) => (k in data ? data[k] : null), setItem: (k, v) => { data[k] = String(v); },
+           removeItem: (k) => { delete data[k]; }, data };
+}
+const local = memoryStorage();
+globalThis.window = { localStorage: local, sessionStorage: memoryStorage(),
+  location: { hash: '#mine', search: '?code=NY&district=4', pathname: '/state' } };
+globalThis.history = { state: null, replaced: null, replaceState(state, title, url) { this.replaced = url; } };
+const s = require(process.argv[1]);
+const out = {};
+out.home = s.initHome();
+out.replaced = history.replaced;
+out.stored = JSON.parse(local.data['cv-home']);
+out.place = s.homePlace(out.home);
+out.href = s.homeHref(out.home);
+out.second = s.initHome();
+out.refusedState = s.rememberDistrict('OH', 3);
+out.refusedDistrict = s.rememberDistrict('NY', 0);
+out.lower = s.rememberDistrict('tx', '7');
+s.forgetHome();
+out.afterForget = s.readHome();
+local.setItem('cv-home', '{not json');
+out.corrupt = s.readHome();
+window.localStorage = { getItem() { throw new Error('blocked'); }, setItem() { throw new Error('blocked'); },
+                        removeItem() { throw new Error('blocked'); } };
+out.blockedRead = s.readHome();
+out.blockedWrite = s.rememberDistrict('NY', 4);
+process.stdout.write(JSON.stringify(out));
+"""
+
+
+@needs_node
+def test_cv_home_is_written_from_mine_and_only_for_covered_districts():
+    done = subprocess.run([_NODE, "-e", _HOME_SCRIPT, str(_SITE_JS)], capture_output=True, text=True,
+                          check=True, timeout=60)
+    out = json.loads(done.stdout)
+    saved = out["home"]["savedAt"]
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", saved)
+    assert out["home"] == out["stored"] == out["second"] == {"state": "NY", "district": 4, "savedAt": saved}
+    assert out["replaced"] == "/state?code=NY&district=4"  # the #mine fragment is dropped
+    assert out["place"] == "New York, District 4"
+    assert out["href"] == "/state?code=NY&district=4"
+    assert out["refusedState"] is None and out["refusedDistrict"] is None
+    assert out["lower"] == {"state": "TX", "district": 7, "savedAt": saved}
+    assert out["afterForget"] is None and out["corrupt"] is None
+    assert out["blockedRead"] is None and out["blockedWrite"] is None

@@ -446,11 +446,418 @@ function rcTableRow(member, options) {
         el('td', null, chip(position, { short: true })));
 }
 
+/* ============================================
+   Behaviours (plan T2.3; spec §5.4, §6.3, §6.4, §6.6, §8 items 10–11, C-13)
+   Every init is idempotent: site.js runs the page-independent ones itself at
+   DOMContentLoaded, and a page enhancer may call any of them again safely.
+   ============================================ */
+
+const COVERED_STATES = { CA: 'California', FL: 'Florida', NY: 'New York', TX: 'Texas' };
+const BREAKPOINTS = { narrow: '(min-width: 560px)', wide: '(min-width: 880px)' };
+const HOME_KEY = 'cv-home';
+const PARTY_KEY = 'cv-show-party';
+const bound = new Set();
+
+// Read once (§6.6): programmatic scrolls use behavior 'auto' when reduced motion is set.
+const REDUCED_MOTION = (() => {
+    try {
+        return typeof window !== 'undefined' && !!window.matchMedia
+            && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch (e) {
+        return false;
+    }
+})();
+
+function isWide() {
+    try {
+        return !!window.matchMedia && window.matchMedia(BREAKPOINTS.wide).matches;
+    } catch (e) {
+        return false;
+    }
+}
+
+function once(name) {
+    if (bound.has(name)) return false;
+    bound.add(name);
+    return true;
+}
+
+/* ---- Storage: every access in try/catch (private mode, blocked storage) ---- */
+function storageGet(store, key) {
+    try {
+        return window[store].getItem(key);
+    } catch (e) {
+        return null;
+    }
+}
+
+function storageSet(store, key, value) {
+    try {
+        window[store].setItem(key, value);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+function storageRemove(store, key) {
+    try {
+        window[store].removeItem(key);
+    } catch (e) {
+        /* nothing stored, nothing to remove */
+    }
+}
+
+/* ---- Focus (§8 item 11) ---- */
+function focusHeading(heading) {
+    if (!heading) return;
+    if (!heading.hasAttribute('tabindex')) heading.setAttribute('tabindex', '-1');
+    heading.focus({ preventScroll: true });
+    heading.scrollIntoView({ block: 'start', behavior: REDUCED_MOTION ? 'auto' : 'smooth' });
+}
+
+function focusFirstControl(container) {
+    if (!container) return;
+    const target = container.querySelector('input, select, textarea, button, a[href], summary');
+    if (target) target.focus();
+}
+
+/* ---- Remembered district: localStorage['cv-home'] (§5.4, C-13) ---- */
+// {state, district, savedAt} or null. Only covered states and whole district numbers count.
+function readHome() {
+    let value = null;
+    try {
+        value = JSON.parse(storageGet('localStorage', HOME_KEY) || 'null');
+    } catch (e) {
+        return null;
+    }
+    if (!value || !COVERED_STATES[value.state]) return null;
+    const district = Number(value.district);
+    if (!Number.isInteger(district) || district < 1 || district > 99) return null;
+    return { state: value.state, district, savedAt: String(value.savedAt || '') };
+}
+
+function todayIso() {
+    const now = new Date();
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+}
+
+// Written only on the reader's own act: a #mine landing, the Remember button, or a
+// bill-page ZIP pick (T7.3). Returns the stored object, or null when it was refused.
+function rememberDistrict(state, district) {
+    const code = String(state || '').toUpperCase();
+    const number = Number(district);
+    if (!COVERED_STATES[code] || !Number.isInteger(number) || number < 1 || number > 99) return null;
+    const home = { state: code, district: number, savedAt: todayIso() };
+    return storageSet('localStorage', HOME_KEY, JSON.stringify(home)) ? home : null;
+}
+
+function forgetHome() {
+    storageRemove('localStorage', HOME_KEY);
+}
+
+function homePlace(home) {
+    return `${COVERED_STATES[home.state]}, District ${home.district}`;
+}
+
+function homeHref(home) {
+    return `/state?code=${home.state}&district=${home.district}`;
+}
+
+// "Remembered: New York, District 4 · Change · Forget" (§5.4). onForget(line) runs after
+// the key is removed and returns the re-rendered container; focus goes to its first control.
+function rememberedLine(home, onForget) {
+    const forget = el('button', { type: 'button', className: 'btn--secondary remember-forget' }, t('forget'));
+    const line = el('p', { className: 'meta remembered-line' },
+        t('remembered', { place: homePlace(home) }), ' · ',
+        el('a', { href: '/#find', className: 'remember-change' }, t('change')), ' · ',
+        forget);
+    forget.addEventListener('click', () => {
+        forgetHome();
+        rewriteMastheadLink();
+        const container = typeof onForget === 'function' ? onForget(line) : null;
+        if (container) focusFirstControl(container);
+    });
+    return line;
+}
+
+// The #mine fragment is the only automatic trigger (§3.3): write cv-home from the URL's own
+// code and district, then drop the fragment with history.replaceState.
+function initHome() {
+    if (!once('home')) return readHome();
+    if (window.location.hash === '#mine') {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('code') && params.get('district')) rememberDistrict(params.get('code'), params.get('district'));
+        try {
+            history.replaceState(history.state, '', window.location.pathname + window.location.search);
+        } catch (e) {
+            /* the fragment stays; nothing else depends on it */
+        }
+    }
+    return readHome();
+}
+
+// Masthead "My representatives": server href is /#find; point it at the remembered district.
+function rewriteMastheadLink() {
+    const link = document.getElementById('nav-mine');
+    if (!link) return;
+    const home = readHome();
+    link.setAttribute('href', home ? homeHref(home) : '/#find');
+}
+
+// The reveal lives in sessionStorage only; the old localStorage key is removed on every load.
+function removeLegacyPartyKey() {
+    storageRemove('localStorage', PARTY_KEY);
+}
+
+/* ---- Photos (§6.3): a failed <img> is removed so the initials block shows ---- */
+function dropBrokenPhoto(img) {
+    if (img && img.parentNode && img.parentNode.classList && img.parentNode.classList.contains('photo')) {
+        img.parentNode.removeChild(img);
+    }
+}
+
+function initPhotos() {
+    if (once('photos')) {
+        document.addEventListener('error', (event) => {
+            if (event.target && event.target.tagName === 'IMG') dropBrokenPhoto(event.target);
+        }, true);
+    }
+    // Images that failed before this script ran: complete, nothing decoded, a source chosen
+    // (a lazy image not yet requested has currentSrc '' and is caught by the listener later).
+    document.querySelectorAll('.photo img').forEach((img) => {
+        if (img.complete && img.naturalWidth === 0 && img.currentSrc) dropBrokenPhoto(img);
+    });
+}
+
+/* ---- Party toggle (§6.4, §4.2, §4.3, §5.4) ----
+   One control pair, "Show party labels" / "Hide party labels" (the label is the state); the
+   role=status sibling .party-status (present and empty in the HTML) announces the change.
+   Accepted call shapes, so each page passes what it has:
+     initPartyToggle()                         – fetch the toggle's data-party-url and fill spans
+     initPartyToggle(fill)                     – fill(true|false) after the default fill/clear
+     initPartyToggle(onShow, onHide)           – onShow(payload) / onHide()
+     initPartyToggle({url, onShow, onHide})    – as above with an explicit ?show_party=true URL */
+function initPartyToggle(arg, hideArg) {
+    const toggles = Array.from(document.querySelectorAll('.party-toggle'));
+    if (!toggles.length || !once('party')) return;
+    let url = toggles[0].getAttribute('data-party-url') || '';
+    let onShow = null;
+    let onHide = null;
+    if (typeof arg === 'function' && typeof hideArg === 'function') {
+        onShow = arg;
+        onHide = hideArg;
+    } else if (typeof arg === 'function') {
+        onShow = () => arg(true);
+        onHide = () => arg(false);
+    } else if (arg && typeof arg === 'object') {
+        url = arg.url || url;
+        onShow = typeof arg.onShow === 'function' ? arg.onShow : null;
+        onHide = typeof arg.onHide === 'function' ? arg.onHide : null;
+    }
+    let revealed = false;
+    let partyName = '';
+    let payload = null;
+
+    function status(key) {
+        document.querySelectorAll('.party-status').forEach((node) => { node.textContent = key ? t(key) : ''; });
+    }
+
+    function label() {
+        toggles.forEach((button) => { button.textContent = revealed ? t('hideParty') : t('showParty'); });
+    }
+
+    // Default fill from the payload: overview members by data-bioguide, the member header,
+    // and "Voted for {Name}" into Speaker rows. Page callbacks may add to it.
+    function fillSpeakerPicks() {
+        const picks = (payload && payload.speaker_votes) || {};
+        document.querySelectorAll('.speaker-pick[data-rc]').forEach((span) => {
+            const name = revealed ? picks[span.getAttribute('data-rc')] : '';
+            span.textContent = name ? `Voted for ${name}` : '';
+        });
+    }
+
+    function fillSpans() {
+        const byId = {};
+        const members = payload ? [].concat(payload.senators || [], payload.house || [], payload.members || []) : [];
+        members.forEach((member) => { if (member && member.bioguideId) byId[member.bioguideId] = member.partyName || ''; });
+        document.querySelectorAll('[data-bioguide] .party').forEach((span) => {
+            const holder = span.closest('[data-bioguide]');
+            const value = holder ? byId[holder.getAttribute('data-bioguide')] : '';
+            if (value !== undefined) span.textContent = revealed ? value : '';
+        });
+        partyName = payload && payload.member ? payload.member.partyName || '' : '';
+        document.querySelectorAll('.member-header .party').forEach((span) => { span.textContent = revealed ? partyName : ''; });
+        fillSpeakerPicks();
+    }
+
+    async function show(announce) {
+        revealed = true;
+        label();
+        try {
+            if (url && !payload) {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`party ${response.status}`);
+                payload = await response.json();
+            }
+            fillSpans();
+            if (onShow) await onShow(payload);
+            storageSet('sessionStorage', PARTY_KEY, '1');
+            if (announce) status('partyShown');
+        } catch (e) {
+            // The reveal failed: put the "Show party labels" label back and say nothing.
+            // "Party labels hidden" would be a false status after a Show press (§8 item 10),
+            // and the spec gives no failure copy for this control.
+            revealed = false;
+            label();
+            fillSpans();
+            status('');
+        }
+    }
+
+    function hide() {
+        revealed = false;
+        label();
+        document.querySelectorAll('.party, .speaker-pick').forEach((span) => { span.textContent = ''; });
+        if (onHide) onHide();
+        storageRemove('sessionStorage', PARTY_KEY);
+        status('partyHidden');
+    }
+
+    function onToggle() {
+        if (revealed) hide();
+        else show(true);
+    }
+
+    toggles.forEach((button) => button.addEventListener('click', onToggle));
+    label();
+    if (storageGet('sessionStorage', PARTY_KEY) === '1') show(false);
+}
+
+/* ---- Share (§4.3 Share, §6.4): navigator.share, else copy the canonical URL ---- */
+function canonicalUrl() {
+    const link = document.querySelector('link[rel="canonical"]');
+    return link ? link.href : window.location.origin + window.location.pathname;
+}
+
+function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text);
+    return new Promise((resolve, reject) => {
+        const field = el('textarea', { readonly: true, className: 'visually-hidden' });
+        field.value = text;
+        document.body.appendChild(field);
+        field.select();
+        const ok = document.execCommand && document.execCommand('copy');
+        document.body.removeChild(field);
+        if (ok) resolve();
+        else reject(new Error('copy'));
+    });
+}
+
+function initShare() {
+    document.querySelectorAll('.share-btn, [data-share]').forEach((button) => {
+        if (button.hasAttribute('data-share-bound')) return;
+        button.setAttribute('data-share-bound', '');
+        button.addEventListener('click', async () => {
+            const data = {
+                title: button.getAttribute('data-share-title') || document.title.split(' | ')[0],
+                text: button.getAttribute('data-share-text') || '',
+                url: button.getAttribute('data-share-url') || canonicalUrl(),
+            };
+            const statusNode = (button.parentNode && button.parentNode.querySelector('.share-status'))
+                || document.querySelector('.share-status');
+            if (navigator.share) {
+                try {
+                    await navigator.share(data);
+                    return;
+                } catch (e) {
+                    if (e && e.name === 'AbortError') return;
+                }
+            }
+            try {
+                await copyText(data.url);
+                if (statusNode) statusNode.textContent = t('linkCopied');
+            } catch (e) {
+                if (statusNode) statusNode.textContent = data.url;
+            }
+        });
+    });
+}
+
+/* ---- Notify form (§4.1 m2): JSON POST, result in role=status, focus to it ---- */
+function initNotify() {
+    const form = document.getElementById('notify-form');
+    if (!form || !once('notify')) return;
+    const fields = form.querySelector('fieldset.notify-fields');
+    if (fields) fields.disabled = false;
+    const stateSelect = document.getElementById('notify-state');
+    const email = document.getElementById('notify-email');
+    const emailError = document.getElementById('notify-email-error');
+    const submit = document.getElementById('notify-submit');
+    const status = document.getElementById('notify-status');
+    if (!stateSelect || !email || !status) return;
+
+    function setEmailError(message) {
+        if (!emailError) return;
+        emailError.textContent = message;
+        if (message) {
+            email.setAttribute('aria-describedby', emailError.id);
+            email.setAttribute('aria-invalid', 'true');
+        } else {
+            email.removeAttribute('aria-invalid');
+        }
+    }
+
+    email.addEventListener('invalid', () => setEmailError(t('invalidEmail')));
+    email.addEventListener('input', () => setEmailError(''));
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const state = stateSelect.value;
+        const stateName = stateSelect.options[stateSelect.selectedIndex]
+            ? stateSelect.options[stateSelect.selectedIndex].textContent.trim() : state;
+        if (submit) submit.disabled = true;
+        status.textContent = '';
+        let ok = false;
+        try {
+            const response = await fetch('/api/notify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email.value.trim(), state }),
+            });
+            ok = response.ok;
+        } catch (e) {
+            ok = false;
+        }
+        status.textContent = ok ? t('notifyThanks', { state: stateName }) : t('notifyFailed');
+        status.classList.toggle('field-error', !ok);
+        if (ok) form.reset();
+        if (submit) submit.disabled = false;
+        if (!status.hasAttribute('tabindex')) status.setAttribute('tabindex', '-1');
+        status.focus();
+    });
+}
+
+/* ---- Page-independent start-up: run once per page, before page enhancers ---- */
+function initSite() {
+    removeLegacyPartyKey();
+    initHome();
+    rewriteMastheadLink();
+    initPhotos();
+    initNotify();
+}
+
+if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initSite);
+    else initSite();
+}
+
 /* ---- Node export for tests/test_formatter_parity.py (browsers skip this) ---- */
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         STRINGS, BILL_TYPE_LABELS, QUESTION_CLASSES, POSITIONS, SHORT_LABELS,
         t, formatBillCode, ordinal, displayName, formatDate, questionClass, plainQuestion,
         resultPhrase, outcomeSentence, positionChip, initials,
+        readHome, rememberDistrict, forgetHome, homePlace, homeHref, initHome,
     };
 }
