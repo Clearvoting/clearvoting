@@ -305,7 +305,7 @@ body.broadsheet .vote-label { font-family: var(--font-ui); }
 
 /* ---- Member: profile header ---- */
 body.broadsheet .member-header { gap: 1.75rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.75rem; }
-body.broadsheet .member-header h2 { font-family: var(--font-display); font-weight: 700; color: var(--navy); font-size: clamp(1.7rem, 3.5vw, 2.3rem); line-height: 1.12; }
+body.broadsheet .member-header h1 { font-family: var(--font-display); font-weight: 700; color: var(--navy); font-size: clamp(1.7rem, 3.5vw, 2.3rem); line-height: 1.12; }
 body.broadsheet .member-header .member-meta { font-family: var(--font-ui); color: var(--ink-meta); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 body.broadsheet .member-header .member-photo,
 body.broadsheet .member-header .member-photo-placeholder { border: 2px solid var(--rule); }
@@ -353,7 +353,7 @@ body.broadsheet .vote-section-desc { font-family: var(--font-ui); }
 /* ---- Bill: header ---- */
 body.broadsheet .bill-header { padding-bottom: 1.4rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.5rem; }
 body.broadsheet .bill-header .bill-number { font-family: var(--font-ui); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-dim); }
-body.broadsheet .bill-header h2 { font-family: var(--font-display); color: var(--navy); font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.3rem); line-height: 1.15; }
+body.broadsheet .bill-header h1 { font-family: var(--font-display); color: var(--navy); font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.3rem); line-height: 1.15; }
 body.broadsheet .bill-header .bill-status { font-family: var(--font-ui); color: var(--ink-meta); font-size: 0.82rem; }
 
 /* ---- Bill: jump-nav table of contents ---- */

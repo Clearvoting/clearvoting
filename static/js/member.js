@@ -120,7 +120,7 @@ function renderMember(container, member, bioguideId) {
     });
 
     const headerInfo = el('div', { className: 'member-header-info' },
-        el('h2', null, name),
+        el('h1', null, name),
         el('div', { className: 'member-meta-row' },
             el('span', { className: 'member-meta' }, metaText),
             toggleBtn

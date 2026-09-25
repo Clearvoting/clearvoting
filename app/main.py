@@ -72,10 +72,34 @@ def _inject_meta(html: str, meta: dict) -> str:
     return html.replace("</head>", block + "</head>", 1)
 
 
+_freshness_re = re.compile(r'<span id="data-freshness">\s*</span>')
+
+
+def _freshness_text() -> str:
+    """Footer freshness (spec §6.4 footer, §7.4): " · Synced September 5, 2026", or "" when
+    last_sync is absent. The separator is inside the span so nothing dangles; no JS writes it."""
+    from app.dependencies import get_data_service
+    from app.render import format_date
+    last_sync = get_data_service().get_sync_metadata().get("last_sync")
+    if not last_sync:
+        return ""
+    try:
+        formatted = format_date(str(last_sync)[:10])
+    except (TypeError, ValueError, IndexError):
+        return ""
+    return f" · Synced {escape(formatted)}" if formatted else ""
+
+
+def _fill_freshness(html: str) -> str:
+    return _freshness_re.sub(
+        lambda _match: f'<span id="data-freshness">{_freshness_text()}</span>', html, count=1)
+
+
 def _serve_html(filename: str, meta: dict | None = None) -> HTMLResponse:
     """Serve an HTML file with dynamic cache-bust versions and optional SEO meta."""
     html = (static_dir / filename).read_text()
     html = _version_re.sub(f"?v={_asset_version}", html)
+    html = _fill_freshness(html)
     if meta is not None:
         html = _inject_meta(html, meta)
     return HTMLResponse(html, headers={"Cache-Control": "no-cache, no-store, must-revalidate"})

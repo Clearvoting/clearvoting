@@ -97,7 +97,7 @@ function renderBill(container, bill, congress, type, number) {
     // Bill Header
     const header = el('div', { className: 'bill-header' },
         el('span', { className: 'bill-number' }, `${billNumber} — ${congress}th Congress`),
-        el('h2', null, title),
+        el('h1', null, title),
         el('div', { className: 'bill-status' },
             statusDate ? `Latest action (${statusDate}): ${statusText}` : statusText
         )

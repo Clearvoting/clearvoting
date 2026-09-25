@@ -27,20 +27,20 @@
 
     <main id="main-content">
         <article class="about-page">
-            <section class="about-section animate-in">
+            <section class="about-section">
                 <h2>Why We Built This</h2>
                 <p>We built ClearVoting because we couldn't find a simple way to see how our representatives actually vote. Congressional voting records are public, but they're buried in government websites, written in legal language, and hard to make sense of.</p>
                 <p>We believe democracy works better when everyone can understand what's happening in Congress — not just lawyers and policy experts. So we built a tool that takes real voting data and presents it in plain language, without jargon, without spin, and without telling you what to think.</p>
             </section>
 
-            <section class="about-section animate-in">
+            <section class="about-section">
                 <h2>About This Project</h2>
                 <p>ClearVoting is an independent, non-partisan volunteer project. It is not funded by or affiliated with any campaign, party, or advocacy group. If you spot an error or have a question, use the feedback button on any page — a person reads every message.</p>
                 <p>Data updates weekly through an automated sync from Congress.gov and Senate.gov, and the footer of every page shows when the last update ran.</p>
                 <p>Today we cover the US Congress for members from California, Florida, New York, and Texas, including House and Senate roll-call votes from the 117th through 119th Congresses. Campaign finance figures come from the FEC's 2024 election cycle. More states are coming.</p>
             </section>
 
-            <section class="about-section animate-in">
+            <section class="about-section">
                 <h2>What We Do Differently</h2>
                 <ul class="about-list">
                     <li><strong>Plain language</strong> — Bill summaries written so anyone can understand them, not just policy experts</li>
@@ -50,7 +50,7 @@
                 </ul>
             </section>
 
-            <section class="about-section-highlight animate-scale">
+            <section class="about-section-highlight">
                 <h2>How We Stay Unbiased</h2>
                 <ul class="about-list">
                     <li><strong>Official data only</strong> — Every vote, bill, and action comes directly from government sources. We never editorialize or add our own interpretation.</li>
@@ -60,7 +60,7 @@
                 </ul>
             </section>
 
-            <section class="about-section animate-in">
+            <section class="about-section">
                 <h2>Our Data Sources</h2>
                 <p>ClearVoting pulls all data directly from official government sources. We don't use intermediaries, aggregators, or third-party databases.</p>
                 <div class="about-data-sources">
@@ -75,7 +75,7 @@
                 </div>
             </section>
 
-            <section class="about-section animate-in">
+            <section class="about-section">
                 <h2>What We Don't Do</h2>
                 <ul class="about-dont-list">
                     <li>We don't score or rank representatives</li>
@@ -86,7 +86,7 @@
                 </ul>
             </section>
 
-            <section class="about-section animate-in">
+            <section class="about-section">
                 <h2>Help Us Improve</h2>
                 <p>ClearVoting is a work in progress and your feedback makes it better. Tell us what's working, what's confusing, or what you wish this tool could do.</p>
                 <button class="btn btn-primary about-cta" id="about-feedback-cta">Share Your Feedback</button>
@@ -100,7 +100,7 @@
             <a href="/about">Methodology &amp; Corrections</a>
             <a href="/about">Privacy</a>
         </nav>
-        <span class="meta">Data from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a> · <span id="data-freshness"></span></span>
+        <span class="meta">Data from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a><span id="data-freshness"></span></span>
         <p class="credo">ClearVoting does not express opinions on legislation or representatives.</p>
     </footer>
 
@@ -109,19 +109,20 @@
         Feedback
     </button>
 
-    <div id="feedback-modal" class="feedback-modal" hidden>
+    <dialog id="feedback-modal" class="feedback-modal" aria-labelledby="feedback-title">
         <div class="feedback-overlay" id="feedback-overlay"></div>
         <form class="feedback-form" id="feedback-form">
-            <h3>Send Feedback</h3>
+            <h2 id="feedback-title">Send feedback</h2>
             <p class="feedback-context" id="feedback-context"></p>
-            <textarea id="feedback-message" placeholder="What's on your mind?" rows="4" required maxlength="2000"></textarea>
+            <label for="feedback-message">What did you see?</label>
+            <textarea id="feedback-message" rows="4" required maxlength="2000" autofocus></textarea>
             <div class="feedback-actions">
                 <button type="button" class="btn btn-secondary btn-small" id="feedback-cancel">Cancel</button>
-                <button type="submit" class="btn btn-primary btn-small" id="feedback-submit" style="width:auto">Send</button>
+                <button type="submit" class="btn btn-primary btn-small" id="feedback-submit">Send</button>
             </div>
-            <p class="feedback-status" id="feedback-status" hidden></p>
+            <p class="feedback-status" id="feedback-status" role="status"></p>
         </form>
-    </div>
+    </dialog>
 
     <script src="/static/js/feedback.js?v=5"></script>
 </body>

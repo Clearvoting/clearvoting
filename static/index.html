@@ -124,7 +124,7 @@
             <a href="/about">Methodology &amp; Corrections</a>
             <a href="/about">Privacy</a>
         </nav>
-        <span class="meta">Data from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a> · <span id="data-freshness"></span></span>
+        <span class="meta">Data from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a><span id="data-freshness"></span></span>
         <p class="credo">ClearVoting does not express opinions on legislation or representatives.</p>
     </footer>
 
@@ -133,19 +133,20 @@
         Feedback
     </button>
 
-    <div id="feedback-modal" class="feedback-modal" hidden>
+    <dialog id="feedback-modal" class="feedback-modal" aria-labelledby="feedback-title">
         <div class="feedback-overlay" id="feedback-overlay"></div>
         <form class="feedback-form" id="feedback-form">
-            <h3>Send Feedback</h3>
+            <h2 id="feedback-title">Send feedback</h2>
             <p class="feedback-context" id="feedback-context"></p>
-            <textarea id="feedback-message" placeholder="What's on your mind?" rows="4" required maxlength="2000"></textarea>
+            <label for="feedback-message">What did you see?</label>
+            <textarea id="feedback-message" rows="4" required maxlength="2000" autofocus></textarea>
             <div class="feedback-actions">
                 <button type="button" class="btn btn-secondary btn-small" id="feedback-cancel">Cancel</button>
-                <button type="submit" class="btn btn-primary btn-small" id="feedback-submit" style="width:auto">Send</button>
+                <button type="submit" class="btn btn-primary btn-small" id="feedback-submit">Send</button>
             </div>
-            <p class="feedback-status" id="feedback-status" hidden></p>
+            <p class="feedback-status" id="feedback-status" role="status"></p>
         </form>
-    </div>
+    </dialog>
 
     <script src="/static/js/app.js?v=1"></script>
     <script src="/static/js/feedback.js?v=1"></script>

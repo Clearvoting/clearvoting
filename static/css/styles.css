@@ -892,7 +892,7 @@ select:focus, input:focus {
     font-weight: 600;
 }
 
-.bill-header h2 {
+.bill-header h1 {
     font-family: var(--font-heading);
     font-size: 1.75rem;
     margin: 0.5rem 0;
@@ -1113,7 +1113,7 @@ select:focus, input:focus {
     height: 96px;
 }
 
-.member-header h2 {
+.member-header h1 {
     font-family: var(--font-heading);
     font-size: 1.75rem;
     line-height: 1.3;
@@ -2653,7 +2653,7 @@ select:focus, input:focus {
         flex-direction: column;
     }
 
-    .bill-header h2 { font-size: 1.35rem; }
+    .bill-header h1 { font-size: 1.35rem; }
 
     .data-table { font-size: 0.85rem; }
     .data-table th, .data-table td {
@@ -2770,11 +2770,11 @@ select:focus, input:focus {
         height: 72px;
     }
 
-    .member-header h2 {
+    .member-header h1 {
         font-size: 1.35rem;
     }
 
-    .bill-header h2 {
+    .bill-header h1 {
         font-size: 1.2rem;
     }
 
@@ -2834,23 +2834,20 @@ select:focus, input:focus {
 }
 
 .feedback-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: 1.5rem;
+    width: 360px;
+    max-width: calc(100% - 2rem);
+    padding: 0;
+    border: none;
+    background: transparent;
+    overflow: visible;
 }
 
-.feedback-modal[hidden] {
-    display: none;
+.feedback-modal::backdrop {
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .feedback-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.3);
+    display: none;
 }
 
 .feedback-form {
@@ -2864,11 +2861,18 @@ select:focus, input:focus {
     box-shadow: var(--shadow-lg);
 }
 
-.feedback-form h3 {
+.feedback-form h2 {
     font-family: var(--font-heading);
     font-size: 1.1rem;
     color: var(--accent);
     margin-bottom: 0.5rem;
+}
+
+.feedback-form label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
 }
 
 .feedback-context {
@@ -2884,7 +2888,7 @@ select:focus, input:focus {
     border-radius: var(--radius);
     padding: 0.65rem 0.85rem;
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-primary);
     resize: vertical;
     min-height: 80px;
@@ -2904,14 +2908,17 @@ select:focus, input:focus {
     margin-top: 0.75rem;
 }
 
+.feedback-actions .btn {
+    width: auto;
+}
+
 .feedback-status {
     font-size: 0.8rem;
     margin-top: 0.5rem;
     text-align: center;
 }
 
-.feedback-success { color: var(--vote-yea); }
-.feedback-error { color: var(--vote-nay); }
+.feedback-status.field-error { color: #8A1C1C; }
 
 /* ============================================
    At a Glance Card (Phase 2 — Member Profile)
@@ -3690,98 +3697,6 @@ select:focus, input:focus {
     .state-stat .number {
         font-size: var(--text-xl);
     }
-}
-
-/* ============================================
-   Entrance Animations (scroll-triggered)
-   ============================================ */
-
-/* Base state: invisible and offset */
-.animate-in {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-/* Revealed state — use 'none' to remove stacking context after animation */
-.animate-in.visible {
-    opacity: 1;
-    transform: none;
-}
-
-/* Hero text — fade in on page load (no scroll trigger needed) */
-.hero-animate {
-    opacity: 0;
-    transform: translateY(16px);
-    animation: heroFadeIn 0.8s ease forwards;
-}
-
-.hero-animate-delay {
-    opacity: 0;
-    transform: translateY(16px);
-    animation: heroFadeIn 0.8s ease 0.15s forwards;
-}
-
-.hero-animate-delay-2 {
-    opacity: 0;
-    transform: translateY(12px);
-    animation: heroFadeIn 0.7s ease 0.35s forwards;
-}
-
-@keyframes heroFadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Staggered children — each child delays slightly more */
-.stagger-children.visible > * {
-    opacity: 0;
-    transform: translateY(16px);
-    animation: staggerIn 0.5s ease forwards;
-}
-
-.stagger-children.visible > *:nth-child(1) { animation-delay: 0s; }
-.stagger-children.visible > *:nth-child(2) { animation-delay: 0.06s; }
-.stagger-children.visible > *:nth-child(3) { animation-delay: 0.12s; }
-.stagger-children.visible > *:nth-child(4) { animation-delay: 0.18s; }
-.stagger-children.visible > *:nth-child(5) { animation-delay: 0.24s; }
-.stagger-children.visible > *:nth-child(6) { animation-delay: 0.30s; }
-.stagger-children.visible > *:nth-child(7) { animation-delay: 0.36s; }
-.stagger-children.visible > *:nth-child(8) { animation-delay: 0.42s; }
-.stagger-children.visible > *:nth-child(9) { animation-delay: 0.48s; }
-.stagger-children.visible > *:nth-child(10) { animation-delay: 0.54s; }
-.stagger-children.visible > *:nth-child(11) { animation-delay: 0.60s; }
-.stagger-children.visible > *:nth-child(12) { animation-delay: 0.66s; }
-
-@keyframes staggerIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Card hover lift — enhanced elevation on hover */
-.hover-lift {
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color var(--transition), background var(--transition);
-}
-
-.hover-lift:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-}
-
-/* Scale fade — for elements that should scale up slightly */
-.animate-scale {
-    opacity: 0;
-    transform: scale(0.95) translateY(12px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.animate-scale.visible {
-    opacity: 1;
-    transform: none;
 }
 
 /* ============================================

@@ -222,3 +222,49 @@ def test_site_js_copy_is_quoted_from_the_spec():
                  "\"That doesn't look like an email address.\"", "'Remembered: {place}'",
                  "'Remember District {district} as mine'", "'No final votes on bills in our record yet'"):
         assert copy in js, copy
+
+
+# --- Shell gates and the native feedback dialog (plan T2.4; spec §2.2 #2–#5, §6.4 dialog, §6.9 item 7) ---
+
+SHELLS = sorted(STATIC.glob("*.html"))
+DIALOG_IDS = ["feedback-modal", "feedback-open", "feedback-cancel", "feedback-overlay", "feedback-form",
+              "feedback-message", "feedback-submit", "feedback-status", "feedback-context"]
+
+
+def _tag(html: str, tag: str, element_id: str) -> str:
+    match = re.search(rf"<{tag}\b[^>]*\bid=\"{element_id}\"[^>]*>", html)
+    assert match, f"<{tag} id={element_id}> missing"
+    return match.group(0)
+
+
+def test_every_shell_keeps_title_head_and_no_inline_script():
+    assert len(SHELLS) >= 6
+    for shell in SHELLS:
+        html = shell.read_text()
+        assert re.search(r"<title>[^<]+</title>", html), shell.name
+        assert "</head>" in html, shell.name
+        assert re.search(r"<script(?![^>]*\bsrc=)[^>]*>", html) is None, shell.name
+        assert re.search(r"\son[a-z]+\s*=", html, re.I) is None, shell.name
+
+
+def test_every_shell_has_the_native_feedback_dialog():
+    for shell in SHELLS:
+        html = shell.read_text()
+        for element_id in DIALOG_IDS:
+            assert html.count(f'id="{element_id}"') == 1, f"{shell.name}: #{element_id}"
+        dialog = _tag(html, "dialog", "feedback-modal")
+        assert 'aria-labelledby="feedback-title"' in dialog and " hidden" not in dialog, shell.name
+        assert re.search(r"<h2\b[^>]*\bid=\"feedback-title\"[^>]*>Send feedback</h2>", html), shell.name
+        assert re.search(r"<label\b[^>]*\bfor=\"feedback-message\"[^>]*>What did you see\?</label>", html), shell.name
+        assert "autofocus" in _tag(html, "textarea", "feedback-message"), shell.name
+        status = _tag(html, "p", "feedback-status")
+        assert 'role="status"' in status and " hidden" not in status, shell.name
+        assert html[html.index(status) + len(status):].startswith("</p>"), f"{shell.name}: status not empty"
+        assert '<div id="feedback-modal"' not in html, shell.name
+
+
+def test_every_shell_has_an_empty_freshness_span_for_the_server():
+    for shell in SHELLS:
+        html = shell.read_text()
+        assert html.count('<span id="data-freshness"></span>') == 1, shell.name
+        assert re.search(r"·\s*<span id=\"data-freshness\">", html) is None, shell.name
