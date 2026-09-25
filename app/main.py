@@ -21,7 +21,7 @@ logger = logging.getLogger("app.main")
 from app.limiter import limiter
 from app import render
 from app.render import _BILL_TYPE_LABELS, bill_displayable, cut_words, display_name, format_bill_code, render_bill_page
-from app.routers.members import router as members_router
+from app.routers.members import router as members_router, BIOGUIDE_PATTERN
 from app.routers.bills import router as bills_router, VALID_BILL_TYPES
 from app.routers.votes import router as votes_router
 from app.routers.search import router as search_router
@@ -47,31 +47,85 @@ SITE_URL = "https://clearvoting.org"
 
 _title_re = re.compile(r"<title>.*?</title>", re.DOTALL)
 _description_re = re.compile(r'<meta\s+name="description"[^>]*>', re.IGNORECASE)
+_h1_re = re.compile(r"(<h1\b[^>]*>).*?(</h1>)", re.DOTALL)
+
+_TITLE_SUFFIX = " | ClearVoting"
+_OG_TITLE_MAX = 90
+_ISO_DAY_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+def _og_title(title: str) -> str:
+    """og:title = the page title without ' | ClearVoting', at most 90 characters (§9.2).
+
+    render.cut_words(text, n) can return n + 1 characters (the '…'), so the cut is at 89.
+    """
+    base = title.removesuffix(_TITLE_SUFFIX)
+    return base if len(base) <= _OG_TITLE_MAX else cut_words(base, _OG_TITLE_MAX - 1)
+
+
+def _normalize_bill_params(congress, bill_type, number) -> tuple[int, str, int] | None:
+    """(congress, lower-case type, number) by the rule T7.4's serve_bill applies, or None.
+
+    Used by the sitemap so every bill URL it lists is one serve_bill answers with a 200.
+    """
+    congress_raw = str(congress if congress is not None else "").strip()
+    number_raw = str(number if number is not None else "").strip()
+    type_lower = str(bill_type or "").strip().lower()
+    if not (congress_raw.isdigit() and number_raw.isdigit()) or type_lower not in VALID_BILL_TYPES:
+        return None
+    congress_int, number_int = int(congress_raw), int(number_raw)
+    if not 1 <= congress_int <= 200 or number_int < 1:
+        return None
+    return congress_int, type_lower, number_int
+
+
+def _iso_day(value) -> str | None:
+    day = str(value or "")[:10]
+    return day if _ISO_DAY_RE.match(day) else None
 
 
 def _inject_meta(html: str, meta: dict) -> str:
     """Replace the page <title> and inject SEO/social meta tags before </head>.
 
     Strips any static <meta name="description"> so the dynamic one isn't duplicated.
+    Optional keys: og_type, og_title, image {path, width, height, alt},
+    canonical (False omits the canonical link and og:url), h1 (replaces the
+    text of the shell's first <h1>). Runs before content is injected, so h1
+    only ever touches the shell's own heading.
     """
     title = escape(meta["title"])
-    html = _title_re.sub(f"<title>{title}</title>", html, count=1)
+    html = _title_re.sub(lambda _m: f"<title>{title}</title>", html, count=1)
     html = _description_re.sub("", html, count=1)
+    if meta.get("h1"):
+        h1_text = escape(meta["h1"])
+        html = _h1_re.sub(lambda m: f"{m.group(1)}{h1_text}{m.group(2)}", html, count=1)
 
     description = escape(meta["description"])
-    og_title = escape(meta.get("og_title", meta["title"]))
-    og_type = meta.get("og_type", "website")
-    url = escape(meta["url"])
+    og_title = escape(meta.get("og_title") or _og_title(meta["title"]))
+    og_type = escape(meta.get("og_type", "website"))
+    canonical = meta.get("canonical", meta.get("url"))
+    image = meta.get("image")
     tags = [
         f'<meta name="description" content="{description}">',
         f'<meta property="og:title" content="{og_title}">',
         f'<meta property="og:description" content="{description}">',
         f'<meta property="og:type" content="{og_type}">',
-        f'<meta property="og:url" content="{url}">',
-        '<meta property="og:site_name" content="ClearVoting">',
-        '<meta name="twitter:card" content="summary">',
-        f'<link rel="canonical" href="{url}">',
     ]
+    if canonical:
+        tags.append(f'<meta property="og:url" content="{escape(canonical)}">')
+    tags.append('<meta property="og:site_name" content="ClearVoting">')
+    if image:
+        tags += [
+            f'<meta property="og:image" content="{escape(SITE_URL + image["path"])}">',
+            f'<meta property="og:image:width" content="{int(image.get("width", 1200))}">',
+            f'<meta property="og:image:height" content="{int(image.get("height", 630))}">',
+            f'<meta property="og:image:alt" content="{escape(image["alt"])}">',
+            '<meta name="twitter:card" content="summary_large_image">',
+        ]
+    else:
+        tags.append('<meta name="twitter:card" content="summary">')
+    if canonical:
+        tags.append(f'<link rel="canonical" href="{escape(canonical)}">')
     block = "\n    " + "\n    ".join(tags) + "\n"
     return html.replace("</head>", block + "</head>", 1)
 
@@ -159,6 +213,9 @@ async def add_security_headers(request: Request, call_next):
         "script-src 'self'; "
         "connect-src 'self'"
     )
+    path = request.url.path
+    if path.startswith("/static/") and path.endswith(".html"):
+        response.headers["X-Robots-Tag"] = "noindex"
     return response
 
 
@@ -220,33 +277,45 @@ def _bill_meta(page: dict) -> dict:
         headline = cut_words(official, 70)
     return {
         "title": f"{code} — {headline} | ClearVoting",
-        "og_title": cut_words(f"{code} — {headline}", 90),
         "description": official or headline,
         "og_type": "article",
         "url": f"{SITE_URL}/bill?congress={page['congress']}&type={page['bill_type']}&number={page['number']}",
     }
 
 
-def _state_meta(code: str | None) -> dict:
-    """SEO meta for a state page; falls back to generic copy for unknown codes."""
+def _state_meta(code: str) -> dict:
+    """SEO meta for a delegation page (spec §9.2).
+
+    `code` is a covered, upper-case code: T4.2's serve_state has already turned anything
+    else into a 404. district and zip are additive params, so the canonical is always
+    /state?code=XX.
+    """
     from app.dependencies import get_data_service
-    if not code:
-        return {
-            "title": "State Representatives — ClearVoting",
-            "description": "See how your state's members of Congress vote — facts only, no opinions.",
-            "url": f"{SITE_URL}/state",
-        }
-    code = code.upper()
-    members = get_data_service().get_members_by_state(code)["members"]
-    state_name = members[0].get("state", code) if members else code
-    count = len(members)
+    state_name = render.COVERED_STATE_NAMES[code]
+    count = len(get_data_service().get_members_by_state(code)["members"])
     return {
-        "title": f"{state_name} Representatives — Voting Records | ClearVoting",
+        "title": f"{state_name}'s Representatives — Voting Records{_TITLE_SUFFIX}",
         "description": (
             f"Voting records for {count} members of Congress from {state_name}. "
             "See how they vote on bills — facts only, no opinions."
         ),
         "url": f"{SITE_URL}/state?code={code}",
+    }
+
+
+def _zip_finder_meta() -> dict:
+    """Meta for /state pages without a code (empty form, malformed ZIP, ZIP not found).
+
+    These answer one visitor's query and are not pages to index, so no canonical tag.
+    """
+    return {
+        "title": f"Find your representatives{_TITLE_SUFFIX}",
+        "description": (
+            "Enter your ZIP code to see how your two senators and your House member voted "
+            "— facts only, no opinions."
+        ),
+        "url": f"{SITE_URL}/state",
+        "canonical": False,
     }
 
 
@@ -464,7 +533,7 @@ def _parse_district(raw: str | None) -> int | None:
 def _serve_state_page(code: str | None, h1: str, build) -> HTMLResponse:
     """One /state page through T3.1's _page_content: `build()` renders the body, and if it
     raises, the §4 error state shows `h1` (the H1 this URL would have had) with a 503."""
-    meta = {**_state_meta(code), "h1": h1}
+    meta = {**(_state_meta(code) if code else _zip_finder_meta()), "h1": h1}
     content, status = _page_content(build, meta)
     return _serve_html("state.html", meta, content, status_code=status)
 
@@ -512,30 +581,67 @@ def serve_state(request: Request):
         ds=data_service, zip_value=lookup["zip"] if lookup else ""))
 
 
+_FAVICON_SVG = (static_dir / "favicon.svg").read_bytes()
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+def serve_favicon() -> Response:
+    return Response(
+        content=_FAVICON_SVG,
+        media_type="image/svg+xml",
+        headers={"Cache-Control": "public, max-age=31536000"},
+    )
+
+
 @app.get("/sitemap.xml")
-async def serve_sitemap() -> Response:
+def serve_sitemap() -> Response:
     from app.dependencies import get_data_service
     data_service = get_data_service()
-    lastmod = (data_service.get_sync_metadata().get("last_sync") or "")[:10]
+    last_sync = _iso_day(data_service.get_sync_metadata().get("last_sync"))
 
-    def url_tag(loc: str) -> str:
+    entries: list[tuple[str, str | None]] = [
+        (f"{SITE_URL}/", last_sync),
+        (f"{SITE_URL}/about", last_sync),
+        (f"{SITE_URL}/methodology", last_sync),
+        (f"{SITE_URL}/privacy", None),
+    ]
+
+    # State roster date and each member's lastmod come from T1.6's precomputed
+    # delegation files (one cached read per state). A member's lastmod is
+    # latest_vote.date, the newest decisive bill vote: the date the page's
+    # indexable content last changed (plan T8.1, "Member lastmod source").
+    member_last_vote: dict[str, str | None] = {}
+    for code in render.COVERED_STATE_NAMES:
+        overview = data_service.get_state_overview(code) or {}
+        entries.append((f"{SITE_URL}/state?code={code}", _iso_day(overview.get("roster_as_of"))))
+        for member in overview.get("senators", []) + overview.get("house", []):
+            bioguide = str(member.get("bioguideId") or "").upper()
+            member_last_vote[bioguide] = _iso_day((member.get("latest_vote") or {}).get("date"))
+
+    for member in data_service._members:
+        bioguide = str(member.get("bioguideId") or "").strip().upper()
+        if BIOGUIDE_PATTERN.match(bioguide):
+            entries.append((f"{SITE_URL}/member?id={bioguide}", member_last_vote.get(bioguide)))
+
+    index_bills = (data_service._votes_index or {}).get("bills", {})
+    for bill in data_service._bills:
+        params = _normalize_bill_params(bill.get("congress"), bill.get("type"), bill.get("number"))
+        if params is None:
+            continue
+        congress, bill_type, number = params
+        entry = index_bills.get(f"{congress}-{bill_type}-{number}")
+        activity = _iso_day(entry.get("activity_date")) if isinstance(entry, dict) else None
+        if activity is None:
+            activity = _iso_day((bill.get("latestAction") or {}).get("actionDate"))
+        entries.append((f"{SITE_URL}/bill?congress={congress}&type={bill_type}&number={number}", activity))
+
+    def url_tag(loc: str, lastmod: str | None) -> str:
         body = f"<loc>{xml_escape(loc)}</loc>"
         if lastmod:
             body += f"<lastmod>{lastmod}</lastmod>"
         return f"<url>{body}</url>"
 
-    locs = [f"{SITE_URL}/", f"{SITE_URL}/about"]
-    locs += [f"{SITE_URL}/state?code={code}" for code in ("CA", "FL", "NY", "TX")]
-    for m in data_service._members:
-        if m.get("bioguideId"):
-            locs.append(f"{SITE_URL}/member?id={m['bioguideId']}")
-    for b in data_service._bills:
-        bill_type = (b.get("type") or "").lower()
-        locs.append(
-            f"{SITE_URL}/bill?congress={b.get('congress')}&type={bill_type}&number={b.get('number')}"
-        )
-
-    urls = "".join(url_tag(loc) for loc in locs)
+    urls = "".join(url_tag(loc, lastmod) for loc, lastmod in entries)
     xml = (
         '<?xml version="1.0" encoding="UTF-8"?>'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
@@ -570,6 +676,7 @@ async def custom_exception_handler(request: Request, exc: StarletteHTTPException
             "h1": "We don't have that page",
             "description": "The link may be old, or the bill or member may be outside our four-state coverage.",
             "url": f"{SITE_URL}{request.url.path}",
+            "canonical": False,
         }, content)
         response.status_code = 404
         return response
