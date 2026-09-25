@@ -278,3 +278,11 @@ def test_member_t61_money_omits_the_fec_link_for_a_hostile_candidate_id(s):
     assert "fec.gov" not in out
     assert "Campaign finance isn't in our data for this member yet." in out
     _assert_member_safe(out, s, echoes=False)
+
+
+@_pytest_member.mark.parametrize("s", MEMBER_HOSTILE)
+def test_member_t62_record_and_page_escape_hostile_strings(s):
+    page = _hostile_member_page(s)
+    for out in (_render_member.render_record_section(page), _render_member.render_member_page(page)):
+        _assert_member_safe(out, s)
+        assert "<select" in out  # the form rendered, so the hostile topic went through an attribute

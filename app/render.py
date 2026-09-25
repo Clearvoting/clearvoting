@@ -1719,6 +1719,7 @@ def _mp_phrase(vote: dict) -> str:
         return result_phrase(rc, str(vote.get("chamber") or ""))
     return str(vote.get("result") or "").split("(")[0].strip()
 
+
 def render_vote_row(href, chip_html: str, headline: str, displayable: bool,
                     meta_parts: list, extra_html: str = "") -> str:
     """The shared .vote-row (§6.4): the member's chip, the headline (Playfair one-liner,
@@ -1818,6 +1819,7 @@ def render_member_header(page: dict) -> str:
         '</div>'
         '</header>'
     )
+
 
 def render_recent_votes(rows: list) -> str:
     """'Recent votes' (§4.3 m2): the rows get_member_page() picked by the published rule,
@@ -1926,3 +1928,248 @@ def render_money(donation) -> str:
     )
     href = f"https://www.fec.gov/data/candidate/{urllib.parse.quote(fec_id, safe='')}/"
     return head + f'<p>{h(sentence)} <a href="{h(href)}">Filings on FEC.gov →</a></p></section>'
+
+
+# ===========================================================================
+# Member page — the record (§4.3 m4)                                [plan T6.2]
+# ===========================================================================
+
+_MP_POSITION_OPTIONS = (("", "All positions"), ("yes", "Voted yes"), ("no", "Voted no"), ("nv", "Didn't vote"))
+_MP_POSITION_LABELS = {"yes": "Voted yes", "no": "Voted no", "nv": "Didn't vote"}
+
+
+def _mp_plain(vote: dict) -> str:
+    rc = vote.get("roll_call") or {}
+    return str(rc.get("plain") or (plain_question(rc["question"]) if rc.get("question") else ""))
+
+
+def _mp_rc_line(vote: dict) -> str:
+    """One extra roll call on a bill: plain question · result phrase · date · chip · source."""
+    return _mp_join(h(_mp_plain(vote)), h(_mp_phrase(vote)), h(_mp_short_date(vote.get("date"))),
+                    _mp_chip(vote.get("vote")), _mp_source_anchor(vote))
+
+
+def _mp_speaker_line(vote: dict) -> str:
+    """'Election of the Speaker · Jan 3, 2025 · Voted · Roll call source →'. The candidate's
+    name is never rendered; member.js writes 'Voted for {Name}' into the empty pick slot
+    only while the party reveal is on (§4.3 party reveal)."""
+    pick = f'<span class="speaker-pick" data-rc="{h(vote.get("rc") or "")}"></span>'
+    return _mp_join(h("Election of the Speaker"), h(_mp_short_date(vote.get("date"))),
+                    _mp_chip(vote.get("vote")) + " " + pick, _mp_source_anchor(vote))
+
+
+_MP_OWN_LABELS = frozenset({"Attendance call", "Election of the Speaker"})
+
+
+def _mp_other_label(vote: dict) -> str:
+    """§4.3 m4 label: `Amendment…` result → "Amendment"; `Motion…`/`Cloture…` result or a
+    procedural question (index class P, or no index entry) → "Motion"; otherwise the §7.1
+    plain question. Attendance calls and Speaker elections keep their own plain question
+    ("Attendance call · Jan 6, 2026 · Present")."""
+    result = str(vote.get("result") or "")
+    if result.startswith("Amendment"):
+        return "Amendment"
+    plain = _mp_plain(vote)
+    if plain in _MP_OWN_LABELS:
+        return plain
+    rc = vote.get("roll_call") or {}
+    if result.startswith(("Motion", "Cloture")) or not rc or rc.get("class") == "P":
+        return "Motion"
+    return plain or "Motion"
+
+
+def _mp_other_line(vote: dict, label: str) -> str:
+    """One vote without a bill: '{Label} "{text}" to {parent} · {result phrase} · {chip} · source'."""
+    chip = _mp_chip(vote.get("vote"))
+    source = _mp_source_anchor(vote)
+    if label == "Attendance call":
+        return _mp_join(h(label), h(_mp_short_date(vote.get("date"))), chip, source)
+    text = str(vote.get("text") or "").strip()
+    parent = vote.get("parent") or None
+    if text or parent:
+        head = h(label)
+        if text:
+            head += " " + h('"' + text + '"')
+        if parent:
+            code = format_bill_code(parent.get("bill_type"), parent.get("bill_number"))
+            href = (_mp_bill_href(parent.get("congress"), parent.get("bill_type"), parent.get("bill_number"))
+                    if parent.get("in_bills") else None)
+            head += " to " + (f'<a href="{h(href)}">{h(code)}</a>' if href else h(code))
+    else:
+        lead = f"{vote.get('chamber') or 'Congress'} vote" if label in ("Amendment", "Motion") else label
+        head = h(lead + " · no bill or amendment text in our data")
+    return _mp_join(head, h(_mp_phrase(vote)), chip, source)
+
+
+def _mp_bill_group(group: dict) -> str:
+    """A bill group: the shared vote row for the lead roll call (latest decisive, else latest),
+    then '+ N more roll calls on this bill' as a sibling <details> (never inside the link)."""
+    lead = group.get("lead") or {}
+    displayable = bool(group.get("displayable"))
+    href = _mp_bill_href(group.get("congress"), group.get("bill_type"), group.get("bill_number"))
+    pending = "" if displayable else render_seal(_MP_PENDING, "pending")
+    meta = [format_bill_code(group.get("bill_type"), group.get("bill_number")),
+            _mp_phrase(lead), _mp_short_date(lead.get("date"))]
+    row = render_vote_row(href, _mp_chip(lead.get("vote")), group.get("headline") or "",
+                          displayable, meta, pending)
+    more = group.get("more") or []
+    details = ""
+    if more:
+        label = f"+ {len(more)} more roll call{'' if len(more) == 1 else 's'} on this bill"
+        items = "".join(f"<li>{_mp_rc_line(v)}</li>" for v in more)
+        details = f'<details class="more-rcs"><summary>{h(label)}</summary><ul>{items}</ul></details>'
+    return f'<li class="group group--bill">{row}{details}</li>'
+
+
+def _mp_other_group(group: dict) -> str:
+    """Consecutive votes without a bill, one dated row per day: '14 amendments and motions · Aug 8, 2026'."""
+    votes = group.get("votes") or []
+    labels = ["Election of the Speaker" if _mp_is_speaker(v) else _mp_other_label(v) for v in votes]
+    count = len(votes)
+    kinds = set(labels)
+    if kinds == {"Amendment"}:
+        noun = "amendment" if count == 1 else "amendments"
+    elif kinds == {"Motion"}:
+        noun = "motion" if count == 1 else "motions"
+    elif kinds == {"Amendment", "Motion"}:
+        noun = "amendments and motions"
+    else:
+        noun = "other vote" if count == 1 else "other votes"
+    summary = f"{count:,} {noun} · {_mp_short_date(group.get('date'))}"
+    items = "".join(
+        f"<li>{_mp_speaker_line(v) if label == 'Election of the Speaker' else _mp_other_line(v, label)}</li>"
+        for v, label in zip(votes, labels)
+    )
+    return (f'<li class="group group--other"><details><summary>{h(summary)}</summary>'
+            f'<ul>{items}</ul></details></li>')
+
+
+def _mp_group(group: dict) -> str:
+    kind = group.get("kind")
+    if kind == "bill":
+        return _mp_bill_group(group)
+    if kind == "speaker":
+        return f'<li class="group group--speaker">{_mp_speaker_line(group.get("vote") or {})}</li>'
+    return _mp_other_group(group)
+
+
+def _mp_record_href(bioguide: str, record: dict, page_no: int) -> str:
+    """A record page URL carrying page/topic/position/plain and #record (focus lands on the heading)."""
+    params = [("id", bioguide)]
+    if page_no > 1:
+        params.append(("page", page_no))
+    if record.get("topic"):
+        params.append(("topic", record["topic"]))
+    if record.get("position") in _MP_POSITION_LABELS:
+        params.append(("position", record["position"]))
+    if record.get("plain"):
+        params.append(("plain", "1"))
+    return "/member?" + urllib.parse.urlencode(params) + "#record"
+
+
+def render_record_section(page: dict) -> str:
+    """The record (§4.3 m4): heading (focus target via #record), the server result line when
+    filtered, the count line verbatim from stats, the senators' nominations scope line, the
+    GET filter form, the bill / other-votes / Speaker groups, and link pagination."""
+    member = page["member"]
+    bioguide = str(member.get("bioguideId") or "")
+    senate = member.get("chamber") == "Senate"
+    record = page.get("record") or {}
+    stats = page.get("stats") or {}
+    heading = "Votes on bills, amendments and motions, by bill" if senate else "Every roll call, by bill"
+
+    total = int(stats.get("total_votes") or 0)
+    yea = int(stats.get("yea_count") or 0)
+    nay = int(stats.get("nay_count") or 0)
+    nv = int(stats.get("not_voting_count") or 0)
+    other = total - yea - nay - nv
+    since = _mp_month_year(page.get("first_vote_date"))
+    count_line = (f"{total:,} roll calls" + (f" since {since}" if since else "")
+                  + f" · {yea:,} yes · {nay:,} no · {nv:,} didn't vote"
+                  + (f" · {other:,} other" if other > 0 else ""))
+    blocks = [f'<p class="meta record-count">{h(count_line)}</p>']
+    nominations = page.get("nominations_count")
+    if senate and nominations is not None and since:
+        scope = f"Senate votes on nominations ({int(nominations):,} since {since}) aren't in this record yet."
+        blocks.append(f'<p class="meta">{h(scope)} <a href="/methodology#coverage">Why →</a></p>')
+
+    topic = str(record.get("topic") or "")
+    position = record.get("position") if record.get("position") in _MP_POSITION_LABELS else ""
+    plain = bool(record.get("plain"))
+    topic_options = ['<option value="">All topics</option>'] + [
+        f'<option value="{h(area)}"{" selected" if area == topic else ""}>{h(area)}</option>'
+        for area in record.get("policy_areas") or []
+    ]
+    position_options = [
+        f'<option value="{value}"{" selected" if value == position and value else ""}>{h(label)}</option>'
+        for value, label in _MP_POSITION_OPTIONS
+    ]
+    plain_label = (f"Only bills with a plain-English summary ({int(record.get('plain_bills') or 0):,} "
+                   f"of {int(record.get('total_bills') or 0):,} bills)")
+    form = (
+        '<form class="record-filter" id="record-filter" method="get" action="/member#record">'
+        f'<input type="hidden" name="id" value="{h(bioguide)}">'
+        '<p class="field"><label for="record-topic">Topic</label>'
+        f'<select id="record-topic" name="topic">{"".join(topic_options)}</select></p>'
+        '<p class="field"><label for="record-position">Position</label>'
+        f'<select id="record-position" name="position">{"".join(position_options)}</select></p>'
+        f'<p class="check"><input type="checkbox" id="record-plain" name="plain" value="1"{" checked" if plain else ""}>'
+        f'<label for="record-plain">{h(plain_label)}</label></p>'
+        '<button class="btn" type="submit">Filter</button>'
+        '</form>'
+    )
+
+    filtered = bool(topic or position or plain)
+    result = ""
+    if filtered:
+        matching = int(record.get("matching_bills") or 0)
+        line = f"{matching:,} bill{'' if matching == 1 else 's'}" + (f" on {topic}" if topic else "")
+        if position:
+            line += f" · {_MP_POSITION_LABELS[position]}"
+        if plain:
+            line += " · with a plain-English summary"
+        result = f'<p class="result-line">{h(line)}</p>'
+
+    groups = record.get("groups") or []
+    if groups:
+        body = f'<ol class="record-list">{"".join(_mp_group(g) for g in groups)}</ol>'
+    elif filtered:
+        body = '<p class="note">No votes match these filters.</p>'
+    else:
+        body = '<p class="note">We don&#x27;t have this member&#x27;s roll-call record yet.</p>'
+
+    page_no = int(record.get("page") or 1)
+    pages = int(record.get("pages") or 1)
+    pager = ""
+    if pages > 1:
+        links = []
+        if page_no > 1:
+            links.append(f'<a href="{h(_mp_record_href(bioguide, record, page_no - 1))}">← Newer votes</a>')
+        links.append(f'<span class="meta">Page {page_no:,} of {pages:,}</span>')
+        if page_no < pages:
+            links.append(f'<a href="{h(_mp_record_href(bioguide, record, page_no + 1))}">Older votes →</a>')
+        pager = f'<nav class="pager" aria-label="Record pages">{"".join(links)}</nav>'
+
+    return (
+        '<section class="section member-record" aria-labelledby="record">'
+        f'<h2 id="record" tabindex="-1">{h(heading)}</h2>'
+        f'{result}{"".join(blocks)}{form}{body}{pager}'
+        '</section>'
+    )
+
+
+def render_member_page(page: dict) -> str:
+    """The whole member page body (§4.3 modules in order): header, recent votes, the record,
+    sponsored, money. The AI narrative is withdrawn (§2.5 A): nothing renders in its place.
+    Without a member_votes file: the header plus one sentence, then sponsored and money."""
+    member = page["member"]
+    parts = [render_member_header(page)]
+    if page.get("has_record"):
+        parts.append(render_recent_votes(page.get("recent_votes") or []))
+        parts.append(render_record_section(page))
+    else:
+        parts.append('<p class="note">We don&#x27;t have this member&#x27;s roll-call record yet.</p>')
+    parts.append(render_sponsored(page.get("sponsored") or [], display_name(str(member.get("name") or "")),
+                                  str(member.get("bioguideId") or ""), total=page.get("sponsored_count")))
+    parts.append(render_money(page.get("donation")))
+    return "\n".join(p for p in parts if p)
