@@ -223,6 +223,31 @@ def test_speaker_row_is_recognised_without_an_index_entry():
     assert groups[0]["kind"] == "speaker" and groups[0]["vote"]["vote"] == "Voted"
 
 
+def test_speaker_not_voting_row_keeps_its_real_position():
+    row = _row(15, None, vote="Not Voting", day="2023-01-04", chamber="House", result="McCarthy")
+    index = {_key(row): _entry(cls="P", plain="Election of the Speaker", question="Election of the Speaker",
+                               result="McCarthy", day="2023-01-04")}
+    groups = group_record([row], index, {}, _plain_except())
+    assert groups[0]["kind"] == "speaker"
+    vote = groups[0]["vote"]
+    assert (vote["vote"], vote["result"]) == ("Not Voting", "Speaker elected")
+    assert vote["roll_call"]["result"] == "Speaker elected"
+    assert "McCarthy" not in json.dumps(groups)
+
+
+def test_get_speaker_votes_leaves_out_real_positions():
+    rows = [
+        _row(15, None, vote="Not Voting", day="2023-01-04", chamber="House", result="McCarthy"),
+        _row(16, None, vote="Jeffries", day="2023-01-04", chamber="House", result="McCarthy"),
+    ]
+    index = {_key(r): _entry(cls="P", plain="Election of the Speaker", question="Election of the Speaker",
+                             result="McCarthy", day="2023-01-04") for r in rows}
+    service = DataService(data_dir=FIXTURES)
+    with patch.object(service, "get_member_votes", return_value={"votes": rows}), \
+            patch.object(service, "_index_roll_calls", return_value=index):
+        assert service.get_speaker_votes("X000001") == {_key(rows[1]): "Jeffries"}
+
+
 def test_filters_apply_to_votes_before_grouping():
     rows = [
         _row(9, "119-hr-1", "Yea", area="Health"),
@@ -645,3 +670,17 @@ async def test_detail_reveals_speaker_votes_only_with_show_party():
     revealed = (await _get("/api/members/detail/G000602?show_party=true")).json()
     assert revealed["speaker_votes"] == {"house/119_1_00002": "Jeffries"}
     assert revealed["member"]["bioguideId"] == "G000602"
+
+
+def test_real_speaker_not_voting_rows_are_not_shown_as_voted(real_service):
+    if not (REAL / "member_votes" / "H001095.json").exists():
+        pytest.skip("H001095 not in the real data")
+    first = real_service.get_member_page("H001095")
+    pages = [first] + [real_service.get_member_page("H001095", n) for n in range(2, first["record"]["pages"] + 1)]
+    raw = {_key(r): r["vote"] for r in json.loads((REAL / "member_votes" / "H001095.json").read_text())["votes"]}
+    speakers = [g["vote"] for p in pages for g in p["record"]["groups"] if g["kind"] == "speaker"]
+    assert speakers
+    for vote in speakers:
+        if raw.get(vote["rc"]) == "Not Voting":
+            assert vote["vote"] == "Not Voting"
+    assert "Not Voting" not in real_service.get_speaker_votes("H001095").values()

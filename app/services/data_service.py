@@ -273,7 +273,8 @@ def filter_record_votes(votes: list[dict], topic, position, plain, plain_one_lin
 
 def _record_vote(row: dict, roll_calls: dict, bills_by_id: dict) -> dict:
     """One member_votes row joined to its index entry (§4.3 m4). A Speaker-election row
-    loses the candidate name here: position 'Voted', result 'Speaker elected'; the name
+    loses the candidate name here: a candidate-name position becomes 'Voted' (a real
+    position such as 'Not Voting' stays), result 'Speaker elected'; the name
     returns only through /api/members/detail/{id}?show_party=true (§4.3 party reveal)."""
     key = rc_key_or_none(row.get("chamber"), row.get("congress"), row.get("session"), row.get("vote_number"))
     entry = roll_calls.get(key) if key else None
@@ -294,7 +295,11 @@ def _record_vote(row: dict, roll_calls: dict, bills_by_id: dict) -> dict:
         "parent": parent,
     }
     if is_speaker_vote(row, entry):
-        vote.update({"vote": "Voted", "result": "Speaker elected", "text": ""})
+        # Only a candidate name becomes 'Voted'; a real position ('Not Voting', 'Present')
+        # stays as recorded. The result is the winner's name, so it is hidden either way.
+        vote.update({"result": "Speaker elected", "text": ""})
+        if vote["vote"] not in _KNOWN_POSITIONS:
+            vote["vote"] = "Voted"
         if entry:
             vote["roll_call"] = {**entry, "result": "Speaker elected"}
     return vote
@@ -1005,6 +1010,7 @@ class DataService:
         picks: dict[str, str] = {}
         for row in data.get("votes") or []:
             key = rc_key_or_none(row.get("chamber"), row.get("congress"), row.get("session"), row.get("vote_number"))
-            if key and is_speaker_vote(row, roll_calls.get(key)):
-                picks[key] = str(row.get("vote") or "")
+            pick = str(row.get("vote") or "")
+            if key and pick not in _KNOWN_POSITIONS and is_speaker_vote(row, roll_calls.get(key)):
+                picks[key] = pick
         return picks
