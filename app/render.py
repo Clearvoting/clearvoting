@@ -689,7 +689,7 @@ def render_notify_disclosure() -> str:
         '<button class="btn" type="submit" id="notify-submit">Notify me</button>'
         "</fieldset>"
         '<p class="meta">We store your email, your state and the time you signed up. '
-        '<a href="/about">Privacy →</a></p>'  # T5.1 repoints this to /privacy
+        '<a href="/privacy">Privacy →</a></p>'
         '<p class="notify-status" id="notify-status" role="status" tabindex="-1"></p>'
         "</form>"
         '<noscript><p class="meta">Signing up needs JavaScript.</p></noscript>'
@@ -1350,3 +1350,263 @@ def render_zip_not_found(zip5: str, counts: dict) -> str:
             f'<p class="meta">Or choose a state:</p>{render_state_links(counts)}'
             f'{render_notify_disclosure()}'
             '</section></div>')
+
+
+# ---------------------------------------------------------------------------
+# Trust pages: About counts, Methodology blocks, the 404 body (plan Task T5.1)
+# ---------------------------------------------------------------------------
+
+_TRUST_STATE_NAMES = {"CA": "California", "FL": "Florida", "NY": "New York", "TX": "Texas"}
+_TRUST_NUMBER_WORDS = ("no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten")
+_PROMPT_RULE_RE = re.compile(r"^(\d+)\.\s+(.+)$")
+_TRUST_CROSSWALK_PREFIX = "https://www2.census.gov/"
+_TRUST_SENATE_PREFIX = "https://www.senate.gov/"
+
+
+def prompt_rules(prompt: str) -> dict[str, list[str]]:
+    """The two numbered rule lists of the bill-summary prompt, verbatim.
+
+    "STRICT RULES:" opens the neutrality list and "ACCURACY RULES" the accuracy list;
+    a blank line after a list's items ends it. /methodology prints both, and a test
+    checks the page equals the prompt, so the page can never drift from the prompt."""
+    lists: dict[str, list[str]] = {"neutrality": [], "accuracy": []}
+    current = None
+    for line in prompt.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("STRICT RULES"):
+            current = "neutrality"
+            continue
+        if stripped.startswith("ACCURACY RULES"):
+            current = "accuracy"
+            continue
+        if not stripped:
+            if current and lists[current]:
+                current = None
+            continue
+        match = _PROMPT_RULE_RE.match(stripped)
+        if current and match:
+            lists[current].append(match.group(2))
+    return lists
+
+
+def _trust_count(n) -> str:
+    return f"{int(n):,}"
+
+
+def _trust_number_word(n: int) -> str:
+    return _TRUST_NUMBER_WORDS[n] if 0 <= n < len(_TRUST_NUMBER_WORDS) else f"{n:,}"
+
+
+def _trust_iso(value) -> str | None:
+    """The YYYY-MM-DD prefix of value when it is a real date, else None."""
+    if not value:
+        return None
+    text = str(value)[:10]
+    try:
+        date.fromisoformat(text)
+    except ValueError:
+        return None
+    return text
+
+
+def _trust_month_year(value) -> str | None:
+    iso = _trust_iso(value)
+    return date.fromisoformat(iso).strftime("%B %Y") if iso else None
+
+
+def _trust_long_date(value) -> str | None:
+    iso = _trust_iso(value)
+    return format_date(iso) if iso else None
+
+
+def _trust_links(url_field, prefix: str) -> str:
+    """Anchors for a _source url field ("A and B" allowed); only https URLs under prefix."""
+    urls = [u.strip() for u in str(url_field or "").split(" and ")]
+    return " · ".join(f'<a href="{h(u)}">{h(u)}</a>' for u in urls if u.startswith(prefix))
+
+
+def _trust_section(anchor: str, heading: str, body: str) -> str:
+    # anchor and heading are literals from this module, never data.
+    return (f'<section id="{anchor}" aria-labelledby="{anchor}-h">'
+            f'<h2 id="{anchor}-h">{heading}</h2>{body}</section>')
+
+
+def render_about_counts(counts: dict) -> str:
+    """The "What we cover" sentence on /about (spec §4.5), from the /api/health counts."""
+    since = _trust_month_year(counts.get("since"))
+    scope = "every bill that has had a roll-call vote" + (f" since {h(since)}" if since else "")
+    return (
+        f"<p>California, Florida, New York and Texas today: {_trust_count(counts['members'])} members "
+        f"and {_trust_count(counts['bills'])} bills — {scope}. The site is in English only for now.</p>"
+    )
+
+
+def _methodology_coverage(counts: dict) -> str:
+    since = _trust_month_year(counts.get("since"))
+    since_txt = f" since {h(since)}" if since else ""
+    return _trust_section("coverage", "What we cover", (
+        f"<p>ClearVoting holds {_trust_count(counts['bills'])} bills — every bill that has had a "
+        f"roll-call vote{since_txt} in the House or Senate. Bills that never reached a roll-call vote "
+        "are not in our data.</p>"
+        "<p>Senate records on member pages include votes on bills, amendments and motions; the "
+        f"{_trust_count(counts['nominations'])} Senate votes on nominations{since_txt} aren't included "
+        "yet. House records include every House roll call.</p>"
+    ))
+
+
+def _methodology_ai(counts: dict, rules: dict) -> str:
+    neutrality = rules.get("neutrality", [])
+    accuracy = rules.get("accuracy", [])
+    updated = _trust_long_date(counts.get("ai_summaries_updated"))
+    updated_txt = f" Plain-English summaries were last updated {h(updated)}." if updated else ""
+    return _trust_section("ai", "What AI writes, and what it never touches", (
+        "<p>An AI model writes each bill's one-line summary and its list of provisions, from the "
+        "bill's title, official summary and a text excerpt. It never touches votes, tallies, dates, "
+        "names, outcomes or party.</p>"
+        "<h3>Our rules for neutrality</h3>"
+        "<p>The AI is given these rules, word for word, every time it writes a summary:</p>"
+        '<ol class="rules" id="neutrality-rules">'
+        + "".join(f"<li>{h(rule)}</li>" for rule in neutrality)
+        + "</ol>"
+        "<h3>Our rules for accuracy</h3>"
+        f'<ol class="rules" id="accuracy-rules" start="{len(neutrality) + 1}">'
+        + "".join(f"<li>{h(rule)}</li>" for rule in accuracy)
+        + "</ol>"
+        f"<p>{_trust_count(counts['shown'])} of {_trust_count(counts['bills'])} bills have a "
+        f"plain-English summary. {_trust_count(counts['missing'])} have none yet, and "
+        f"{_trust_count(counts['withheld'])} summaries are withheld because they did not pass our "
+        f"automated accuracy check; those bills show their official title.{updated_txt}</p>"
+        f"<p>{_trust_count(counts['audited'])} summaries were spot-checked by a second AI review.</p>"
+        "<p>Member summaries are withdrawn until they can be rewritten without stance labels.</p>"
+        "<p>We do not publish arguments for or against a bill. An earlier version showed AI-drafted "
+        "'supporters say / critics say' bullets; they were unattributed and have been removed until "
+        "they can be sourced.</p>"
+    ))
+
+
+def _methodology_recent_votes() -> str:
+    # The rule exactly as DataService.get_member_page applies it (spec §4.3 m2).
+    return _trust_section("recent-votes", "How “Recent votes” are chosen", (
+        "<p>The “Recent votes” list on each member page is chosen by one rule, and the rule never "
+        "looks at how the member voted:</p>"
+        "<ol>"
+        "<li>We consider the member's roll-call votes on a bill that has a plain-English summary we "
+        "show and a policy area, where the vote was on the bill itself — a final vote to pass or "
+        "adopt it, to accept the other chamber's changes, to override a veto or to ratify a treaty — "
+        "and the member voted yes (Yea or Aye) or no (Nay or No).</li>"
+        "<li>Going from newest to oldest, we keep the first such vote on each bill. A bill counts as "
+        "used only once one of its votes is picked, so a vote the member missed never hides one they "
+        "cast.</li>"
+        "<li>We take one vote per policy area in turn, starting with the area whose newest vote is "
+        "most recent, and go round the areas again until we have eight. So the first pick is always "
+        "the newest qualifying vote.</li>"
+        "<li>The eight are shown newest first. A member with fewer qualifying votes shows as many as "
+        "qualify.</li>"
+        "</ol>"
+        "<p>Amendments, procedural motions and votes on nominations are never in this list. Every "
+        "vote in our record is in the member's full record below it; Senate votes on nominations "
+        "are not in our record yet (see What we cover).</p>"
+    ))
+
+
+def _methodology_counts() -> str:
+    return _trust_section("counts", "Counts, never grades", (
+        "<p>We show roll calls voted as a count, never as a grade, and never rank members by it.</p>"
+        "<p>A member page says how many of the roll calls in our record the member voted in, and "
+        "since when. It never turns that into a percentage, a colour or a score.</p>"
+    ))
+
+
+def _methodology_zip(sources: dict) -> str:
+    source_p = ""
+    if sources.get("name"):
+        retrieved = _trust_long_date(sources.get("retrieved"))
+        source_p = (
+            f"<p>Source: {h(sources['name'])}"
+            + (f" ({h(sources['licence'])})" if sources.get("licence") else "")
+            + (f", retrieved {h(retrieved)}" if retrieved else "")
+            + ".</p>"
+        )
+    links = _trust_links(sources.get("url"), _TRUST_CROSSWALK_PREFIX)
+    return _trust_section("zip", "ZIP codes and districts", (
+        "<p>To find your representatives from a ZIP code, we use the Census Bureau's table of which "
+        "congressional districts each ZIP code area overlaps.</p>"
+        + source_p
+        + (f'<p class="meta">{links}</p>' if links else "")
+        + "<p>Shares are land area, not population; PO-box-only and business ZIPs are not in the "
+        "Census file; a ZIP that crosses a state line is shown with a note.</p>"
+        "<p>A district counts as a match when it covers at least 5 % of the ZIP's land area. When one "
+        "district matches and at least 95 % of the ZIP's land is in California, Florida, New York or "
+        "Texas, we take you straight to that district. When two to four districts match, we show "
+        "each one with its share and you choose. When less than 95 % of the ZIP's land is in our four "
+        "states, we show the match with a note and remember it only if you choose it.</p>"
+        # Same link and copy as T4.1's split/partial note (spec §5.5: rel=noopener, same tab).
+        f'<p><a class="source-link" href="{HOUSE_LOOKUP_URL}" rel="noopener">'
+        "Not sure? Look up your district by street address on house.gov →</a></p>"
+    ))
+
+
+def _methodology_ballot(counts: dict, senate: dict) -> str:
+    day = _trust_long_date(senate.get("election_day"))
+    if not day:
+        return _trust_section("ballot", "Seats on the ballot",
+                              "<p>Ballot details aren't available right now.</p>")
+    clauses = []
+    for seat in senate.get("seats", []):
+        state = _TRUST_STATE_NAMES.get(seat.get("state"))
+        if not state:
+            continue
+        name = h(display_name(seat.get("name") or ""))
+        if seat.get("kind") == "special":
+            clauses.append(f"the {state} seat held by {name} is up in a special election")
+        else:
+            clauses.append(f"the {state} seat held by {name} is up for its regular election")
+    senators = _trust_number_word(int(counts.get("senators", 0)))
+    if clauses:
+        joined = clauses[0] if len(clauses) == 1 else ", ".join(clauses[:-1]) + " and " + clauses[-1]
+        senate_txt = f"Of the {senators} senators we cover, {joined}."
+    else:
+        senate_txt = f"None of the Senate seats held by the {senators} senators we cover is up in this election."
+    source = senate.get("_source") or {}
+    retrieved = _trust_long_date(source.get("retrieved"))
+    source_txt = " Source: senate.gov class lists" + (f", retrieved {h(retrieved)}" if retrieved else "") + "."
+    links = _trust_links(source.get("url"), _TRUST_SENATE_PREFIX)
+    # _source.method names party letters; it is never rendered.
+    return _trust_section("ballot", "Seats on the ballot", (
+        f"<p>Every House seat is on the ballot on {h(day)}. {senate_txt}{source_txt}</p>"
+        + (f'<p class="meta">{links}</p>' if links else "")
+        + "<p>These are facts about the seats, not about the people in them: our data does not say "
+        "who is running.</p>"
+    ))
+
+
+def render_methodology(counts: dict, sources: dict, rules: dict[str, list[str]], senate_source: dict) -> str:
+    """The server-filled run of /methodology, #coverage through #ballot (spec §4.6).
+
+    counts: main._trust_counts(); sources: DataService._crosswalk_source (the _source block of
+    zip_districts.json); rules: prompt_rules(SYSTEM_PROMPT); senate_source: DataService._senate_file
+    (the whole senate_2026.json). All three data inputs were loaded at startup."""
+    return "".join([
+        _methodology_coverage(counts),
+        _methodology_ai(counts, rules),
+        _methodology_recent_votes(),
+        _methodology_counts(),
+        _methodology_zip(sources),
+        _methodology_ballot(counts, senate_source),
+    ])
+
+
+def render_not_found(zip_form: str, state_links: str) -> str:
+    """The 404 body (spec §4.8): kicker, the only heading, one sentence, the ZIP form, the four
+    state links and a front-page link. Both arguments are HTML built by render_zip_form and
+    render_state_links."""
+    return (
+        '<section class="notfound">'
+        '<p class="kicker">Not in this edition</p>'
+        "<h1>We don't have that page</h1>"
+        '<p class="deck">The link may be old, or the bill or member may be outside our four-state '
+        "coverage.</p>"
+        f"{zip_form}{state_links}"
+        '<p><a href="/">Go to the front page →</a></p>'
+        "</section>"
+    )

@@ -158,3 +158,35 @@ DELEGATION = {
 @pytest.mark.parametrize("name", sorted(DELEGATION))
 def test_delegation_renderer_escapes_hostile_input(name, payload):
     assert_escaped(DELEGATION[name](payload), payload)
+
+
+# --- Trust-page renderers (plan Task T5.1) ---
+import pytest  # noqa: E402,F811
+from app import render as _trust_render  # noqa: E402
+
+_TRUST_HOSTILE = ["<script>alert(1)</script>", '"><img src=x>', "&amp;", "javascript:alert(1)"]
+
+
+def _trust_outputs(s: str) -> dict[str, str]:
+    counts = {"members": 150, "senators": 8, "bills": 1610, "shown": 1435, "missing": 60,
+              "withheld": 115, "audited": 1200, "nominations": 1469,
+              "since": s, "ai_summaries_updated": s}
+    sources = {"name": s, "url": s, "retrieved": s, "licence": s, "share": s}
+    senate = {"_source": {"url": s, "retrieved": s, "method": s}, "election_day": "2026-11-03",
+              "seats": [{"state": "TX", "bioguideId": "C001056", "name": s, "kind": "regular", "class": 2}]}
+    return {
+        "render_about_counts": _trust_render.render_about_counts(counts),
+        "render_methodology": _trust_render.render_methodology(
+            counts, sources, {"neutrality": [s], "accuracy": [s]}, senate),
+    }
+
+
+@pytest.mark.parametrize("hostile", _TRUST_HOSTILE)
+def test_trust_renderers_escape_hostile_input(hostile):
+    outputs = _trust_outputs(hostile)
+    for name, out in outputs.items():
+        assert "<script>alert(1)</script>" not in out, name
+        assert '"><img src=x>' not in out, name
+        assert 'href="javascript:' not in out, name
+    if hostile == "&amp;":
+        assert "&amp;amp;" in outputs["render_methodology"]

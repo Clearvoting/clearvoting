@@ -28,6 +28,7 @@ from app.routers.search import router as search_router
 from app.routers.feedback import router as feedback_router
 from app.routers.notify import router as notify_router
 from app.routers.districts import router as districts_router
+from app.services.ai_summary import SYSTEM_PROMPT
 
 app = FastAPI(title="ClearVoting", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None)
 app.state.limiter = limiter
@@ -327,12 +328,76 @@ async def serve_bill(request: Request):
         params.get("congress"), params.get("type"), params.get("number")))
 
 
+def _trust_counts() -> dict:
+    """Counts for /about and /methodology — the same numbers /api/health reports."""
+    from app.dependencies import get_data_service
+    ds = get_data_service()
+    coverage = ds.coverage_counts()
+    return {
+        "members": len(ds._members),
+        "senators": sum(1 for m in ds._members if m.get("chamber") == "Senate"),
+        "bills": coverage["bills"],
+        "shown": coverage["shown"],
+        "missing": coverage["missing"],
+        "withheld": coverage["withheld"],
+        "audited": coverage["audited"],
+        "nominations": coverage["nominations_excluded"],
+        "since": ds.earliest_roll_call_date(),
+        "ai_summaries_updated": ds.get_sync_metadata().get("ai_summaries_updated"),
+    }
+
+
+def _trust_block(build) -> tuple[str, int]:
+    """Run a trust page's server-filled block (spec §4 "Common to every page").
+
+    T3.1's _page_content can't be used here: render_error emits its own <h1>, and on these
+    shells the <!--content--> marker sits under the shell's static h1. So on failure this
+    logs and returns only the error sentence, with 503 (no-store under T8.2's rules)."""
+    try:
+        return build(), 200
+    except Exception:
+        logger.exception("trust page counts failed")
+        return f"<p>{render.PAGE_ERROR_SENTENCE}</p>", 503
+
+
 @app.get("/about")
-async def serve_about():
+def serve_about():
+    content, status = _trust_block(lambda: render.render_about_counts(_trust_counts()))
     return _serve_html("about.html", {
         "title": "About — ClearVoting",
-        "description": "Why we built ClearVoting and how you can help make congressional voting records accessible to everyone.",
+        "h1": "About ClearVoting",
+        "description": "Who runs ClearVoting, how it is funded, what it covers and what it does not do.",
         "url": f"{SITE_URL}/about",
+    }, content, status_code=status)
+
+
+@app.get("/methodology")
+def serve_methodology():
+    from app.dependencies import get_data_service
+
+    def build() -> str:
+        ds = get_data_service()
+        return render.render_methodology(
+            _trust_counts(), ds._crosswalk_source, render.prompt_rules(SYSTEM_PROMPT), ds._senate_file)
+
+    content, status = _trust_block(build)
+    return _serve_html("methodology.html", {
+        "title": "Methodology & Corrections — ClearVoting",
+        "h1": "Methodology & Corrections",
+        "description": ("Where ClearVoting's data comes from, what AI writes and the rules it follows, "
+                        "what we cover, and a dated corrections log."),
+        "url": f"{SITE_URL}/methodology",
+    }, content, status_code=status)
+
+
+@app.get("/privacy")
+def serve_privacy():
+    return _serve_html("privacy.html", {
+        "title": "Privacy — ClearVoting",
+        "h1": "Privacy",
+        "description": ("What ClearVoting stores, where and for how long: the notify and feedback forms, "
+                        "your browser's storage, logs and the services we use."),
+        "url": f"{SITE_URL}/privacy",
     })
 
 
@@ -458,13 +523,25 @@ async def serve_robots() -> PlainTextResponse:
 
 @app.exception_handler(StarletteHTTPException)
 async def custom_exception_handler(request: Request, exc: StarletteHTTPException):
-    """Serve a friendly HTML 404 for page routes; keep JSON for the API."""
+    """Serve the "Not in this edition" page for page routes; keep JSON for the API."""
     if exc.status_code == 404 and not request.url.path.startswith("/api"):
+        from app.dependencies import get_data_service
+        try:
+            member_counts = get_data_service().get_member_counts()
+        except Exception:
+            # A data failure must not turn every 404 into a 500: the chips lose their counts.
+            logger.exception("member counts unavailable for the 404 page")
+            member_counts = {}
+        content = render.render_not_found(
+            render.render_zip_form(label="Find your representatives instead"),
+            render.render_state_links(member_counts),
+        )
         response = _serve_html("404.html", {
             "title": "Page Not Found — ClearVoting",
-            "description": "The page you're looking for doesn't exist.",
+            "h1": "We don't have that page",
+            "description": "The link may be old, or the bill or member may be outside our four-state coverage.",
             "url": f"{SITE_URL}{request.url.path}",
-        })
+        }, content)
         response.status_code = 404
         return response
     return await http_exception_handler(request, exc)

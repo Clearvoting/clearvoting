@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy — ClearVoting</title>
+    <meta name="description" content="What ClearVoting stores, where and for how long: the notify and feedback forms, your browser's storage, logs and the services we use.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,700;0,800;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/site.css?v=1">
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="masthead">
+        <a href="/" class="logo" aria-label="ClearVoting home">Clear<span>Voting</span></a>
+        <p class="masthead-tagline">Facts only · No opinions · No spin</p>
+        <nav class="masthead-nav" aria-label="Main">
+            <a href="/">Home</a>
+            <a href="/#find" id="nav-mine">My representatives</a>
+            <a href="/#record" class="nav-wide">The Record</a>
+            <a href="/about">About</a>
+        </nav>
+        <!--edition-->
+    </header>
+
+    <main id="main-content" tabindex="-1">
+        <article class="trust">
+          <p class="kicker">Privacy</p>
+          <h1>Privacy</h1>
+          <p class="deck">What ClearVoting stores, where, who holds it and for how long. This page describes what the site's code does today.</p>
+
+          <section id="notify" aria-labelledby="notify-h">
+            <h2 id="notify-h">The notify form</h2>
+            <p>When you ask to be emailed when your state is added, we store your email, your state and the time, in a private Google Sheet. If the spreadsheet is unavailable, a sign-up may be written to a temporary file on our server, which is deleted when the server restarts.</p>
+          </section>
+
+          <section id="feedback" aria-labelledby="feedback-h">
+            <h2 id="feedback-h">The feedback form</h2>
+            <p>When you send feedback, we store your message, the address of the page you were on (which may include a ZIP you typed), the page type, the id and name of the member, bill or state on that page, and the time, in the same Google account. If the spreadsheet is unavailable, feedback may be written to a temporary file on our server, which is deleted when the server restarts.</p>
+          </section>
+
+          <section id="deletion" aria-labelledby="deletion-h">
+            <h2 id="deletion-h">Deleting your email</h2>
+            <p>To have your email deleted, send a request through the feedback form with the address to remove. Requests land in the feedback sheet and are handled by hand.</p>
+            <button type="button" class="btn btn--secondary" id="about-feedback-cta">Open the feedback form</button>
+          </section>
+
+          <section id="browser" aria-labelledby="browser-h">
+            <h2 id="browser-h">What stays in your browser</h2>
+            <p>We remember where you live, never how you look. Your state and district stay in your browser (<code>cv-home</code>) until you press Forget. Whether you revealed party labels is kept only for this browsing session in this tab. Showing them asks our server for the party field, so that request appears in our hosts' request logs like any page address.</p>
+          </section>
+
+          <section id="logs" aria-labelledby="logs-h">
+            <h2 id="logs-h">Logs</h2>
+            <p>The ZIP you type becomes part of the page address, so it appears in our hosts' request logs along with your IP address. We use those logs only for counts of page paths. Render keeps request logs for a limited period set by its plan; we keep no copy.</p>
+          </section>
+
+          <section id="processors" aria-labelledby="processors-h">
+            <h2 id="processors-h">Who handles data for us</h2>
+            <ul>
+              <li>Google (Sheets): holds the notify and feedback sheets.</li>
+              <li>Render (hosting): runs the server and keeps its request logs.</li>
+              <li>Cloudflare (network): carries every request to our server.</li>
+            </ul>
+          </section>
+
+          <section id="third-party" aria-labelledby="third-party-h">
+            <h2 id="third-party-h">Requests to other sites</h2>
+            <p>This site makes no third-party requests except member photos from congress.gov, which receives only our site's address as the referrer.</p>
+            <p>No cookies, no analytics scripts.</p>
+          </section>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <nav class="footer-links" aria-label="Footer">
+            <a href="/about">About</a>
+            <a href="/methodology">Methodology &amp; Corrections</a>
+            <a href="/privacy">Privacy</a>
+            <button type="button" id="feedback-open" class="footer-feedback">Report an error on this page</button>
+        </nav>
+        <p class="data-line meta">Data from <a href="https://www.congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://www.senate.gov" target="_blank" rel="noopener">Senate.gov</a><span id="data-freshness"></span></p>
+        <p class="credo">ClearVoting does not express opinions on legislation or representatives.</p>
+    </footer>
+
+    <button class="feedback-btn" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Feedback</button>
+
+    <dialog id="feedback-modal" class="feedback-modal" aria-labelledby="feedback-title">
+        <div id="feedback-overlay" class="feedback-overlay"></div>
+        <form id="feedback-form" class="feedback-form">
+            <h2 id="feedback-title">Send feedback</h2>
+            <p id="feedback-context" class="meta"></p>
+            <label for="feedback-message">What did you see?</label>
+            <textarea id="feedback-message" rows="4" required maxlength="2000" autofocus></textarea>
+            <div class="feedback-actions"><button type="button" class="btn--secondary" id="feedback-cancel">Cancel</button><button type="submit" class="btn" id="feedback-submit">Send</button></div>
+            <p id="feedback-status" role="status"></p>
+        </form>
+    </dialog>
+
+    <script src="/static/js/site.js?v=1"></script>
+    <script src="/static/js/feedback.js?v=6"></script>
+</body>
+</html>

@@ -154,10 +154,8 @@ def test_notify_disclosure_lists_only_uncovered_states_and_dc():
     assert '<select id="notify-state" name="state" required>' in html
     assert 'id="notify-email" name="email" type="email" autocomplete="email"' in html
     assert '<button class="btn" type="submit" id="notify-submit">Notify me</button>' in html
-    # /privacy arrives with T5.1 (commit 5); until then the link goes where the old
-    # footer's "Privacy" link went (/about), so no commit links to a 404 (§10.3).
     assert ('<p class="meta">We store your email, your state and the time you signed up. '
-            '<a href="/about">Privacy →</a></p>') in html
+            '<a href="/privacy">Privacy →</a></p>') in html
     assert '<p class="notify-status" id="notify-status" role="status" tabindex="-1"></p>' in html
     assert '<noscript><p class="meta">Signing up needs JavaScript.</p></noscript>' in html
 

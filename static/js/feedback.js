@@ -61,8 +61,8 @@
             };
         }
 
-        if (path === '/about') {
-            return { page_type: 'about', context_id: '', context_label: '' };
+        if (path === '/about' || path === '/methodology' || path === '/privacy') {
+            return { page_type: path.slice(1), context_id: '', context_label: '' };
         }
 
         return { page_type: 'home', context_id: '', context_label: '' };

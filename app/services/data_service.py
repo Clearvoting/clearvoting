@@ -467,6 +467,10 @@ class DataService:
         # Sanctioned data (§10 #1, #2): Senate seats up in 2026, and the ZIP crosswalk with
         # the district counts and member ids derived from it once at startup.
         self._senate_2026: dict[str, dict] = {}
+        # /methodology prints the sources of the two sanctioned files (§4.6); both are kept
+        # from the startup load so the request path never reads a file (§9.1).
+        self._senate_file: dict = {}
+        self._crosswalk_source: dict = {}
         self._zip_districts: dict[str, list[dict]] = {}
         self._districts_expected: dict[str, int] = {}
         self._house_ids: dict[tuple[str, int], list[str]] = {}
@@ -500,12 +504,13 @@ class DataService:
         metadata_path = self.data_dir / "sync_metadata.json"
         if metadata_path.exists():
             self._metadata = self._read_json("sync_metadata.json")
-        seats = self._read_json("senate_2026.json").get("seats") or []
+        self._senate_file = self._read_json("senate_2026.json")
+        seats = self._senate_file.get("seats") or []
         self._senate_2026 = {s["bioguideId"]: s for s in seats if s.get("bioguideId")}
         # §5.1: keys starting with "_" (the _source block) are metadata, not ZCTAs.
-        self._zip_districts = {
-            key: rows for key, rows in self._read_json("zip_districts.json").items() if not key.startswith("_")
-        }
+        crosswalk = self._read_json("zip_districts.json")
+        self._crosswalk_source = crosswalk.get("_source") or {}
+        self._zip_districts = {key: rows for key, rows in crosswalk.items() if not key.startswith("_")}
         for rows in self._zip_districts.values():
             for row in rows:
                 state, district = row.get("state"), row.get("district")

@@ -246,6 +246,21 @@ details[open] > summary::before { content: "–"; }
 .yours, .senate, .house, .state-foot { margin-top: var(--s10); }
 
 /* ---- Breakpoints: declared once, here, at the end (§6.3) ---- */
+/* Trust pages: About, Methodology, Privacy, and the 404 body (plan Task T5.1) */
+.trust, .notfound { max-width: 42rem; margin-inline: auto; padding-block: var(--s8) var(--s12); overflow-wrap: anywhere; }
+.trust > section { border-top: 3px double var(--navy); margin-top: var(--s10); padding-top: var(--s10); }
+.trust > section > h2 { margin-bottom: var(--s6); }
+.trust h3 { font-size: var(--t-h3); margin: var(--s6) 0 var(--s2); }
+.trust p, .trust li { font-size: var(--t-body); line-height: 1.6; }
+.trust p + p, .trust p + ul, .trust p + ol, .trust ul + p, .trust ol + p { margin-top: var(--s3); }
+.trust ul, .trust ol { padding-left: var(--s6); }
+.trust li + li { margin-top: var(--s2); }
+.trust .rules { list-style: decimal; }  /* ol[class] resets list-style; the rule numbers match the prompt */
+.trust .meta { font-size: var(--t-meta); color: var(--ink-meta); }
+.trust code { font-size: var(--t-ui); }
+.trust .btn { margin-top: var(--s4); }
+.notfound .deck { margin-bottom: var(--s6); }
+
 @media (min-width: 560px) {
     :root { --t-kicker: 0.75rem; --gutter: 24px; }
     .edition-mid { display: inline; }

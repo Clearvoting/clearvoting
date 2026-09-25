@@ -69,9 +69,9 @@ ClearVote serves the person in the middle — someone who cares enough to look s
 
 | Capability | Status | Notes |
 |------------|--------|-------|
-| Member lookup by state | Live | All 50 states + DC |
+| Member lookup by state | Live | Four states: California, Florida, New York, Texas |
 | Member voting profiles | Live | 117th–119th Congress, tabs for votes/bills/finance |
-| AI bill summaries | Live | Plain-language with 12 neutrality guardrails |
+| AI bill summaries | Live | Plain-language, following the neutrality and accuracy rules listed on /methodology |
 | AI member narratives | Live | "At a Glance" voting pattern descriptions |
 | Issue scorecards | Live | 12 policy categories with yea/nay counts |
 | Campaign finance | Live | FEC data for ~51/80 initial members |
@@ -166,7 +166,7 @@ Before prioritizing, classify what matters:
 - Working search *(met)*
 
 **Performance Features (more = proportionally better)**
-- More states with data → ✅ now all 50 states
+- More states with data → four states today (California, Florida, New York, Texas); no date set for more
 - More bills with AI summaries → ongoing
 - Better campaign finance coverage → in progress (OpenSecrets pending)
 - More congresses of historical data → 117th–119th shipped
@@ -222,7 +222,7 @@ Before prioritizing, classify what matters:
 
 Three things no competitor combines:
 
-1. **AI summaries with anti-bias guardrails** — 12 neutrality rules, no adjectives, no editorial framing. GovTrack doesn't summarize. Vote Smart summarizes selectively with humans. Congress.gov uses CRS jargon. Nobody else has AI + neutrality discipline.
+1. **AI summaries with anti-bias guardrails** — the neutrality and accuracy rules listed on /methodology, no adjectives, no editorial framing. GovTrack doesn't summarize. Vote Smart summarizes selectively with humans. Congress.gov uses CRS jargon. Nobody else has AI + neutrality discipline.
 
 2. **Party hidden by default** — This is philosophically unique. Every other platform shows party prominently. ClearVote is the only tool that asks: "What if you saw the votes first?"
 
@@ -328,7 +328,7 @@ ClearVote's growth comes from being useful at the right moment — not from mark
 
 | Risk | Severity | Likelihood | Mitigation |
 |------|----------|------------|------------|
-| **AI bias slips through** — a summary contains loaded language | High | Medium | 12 guardrails in prompt, grader loop, human spot-checks. Feedback system for user reports. |
+| **AI bias slips through** — a summary contains loaded language | High | Medium | Neutrality and accuracy rules in the prompt (listed on /methodology), grader loop, human spot-checks. Feedback system for user reports. |
 | **Data freshness** — users see stale voting data | High | High (currently) | Phase 1 priority: automated sync pipeline. |
 | **Congress.gov API rate limits or downtime** | Medium | Medium | Pre-synced data model means runtime doesn't depend on Congress.gov. Sync failures are recoverable. |
 | **Scale under traffic spike** (election season) | Medium | Medium | Static JSON architecture handles reads well. May need CDN for static assets. |
