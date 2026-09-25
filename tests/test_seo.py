@@ -113,6 +113,21 @@ async def test_state_page_meta_injected():
     assert '<link rel="canonical" href="https://clearvoting.org/state?code=FL">' in html
 
 
+@pytest.mark.asyncio
+async def test_state_page_unknown_code_is_404():
+    for path in ("/state?code=ZZ", "/state?code=OH", "/state?code=N1"):
+        response = await _get(path)
+        assert response.status_code == 404
+        assert response.headers["content-type"].startswith("text/html")
+
+
+@pytest.mark.asyncio
+async def test_state_page_lowercase_code_is_normalized():
+    response = await _get("/state?code=fl")
+    assert response.status_code == 200
+    assert '<link rel="canonical" href="https://clearvoting.org/state?code=FL">' in response.text
+
+
 # --- Home and about static og tags ---
 
 @pytest.mark.asyncio

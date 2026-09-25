@@ -237,6 +237,14 @@ details[open] > summary::before { content: "–"; }
 .results-count { font-family: var(--font-ui); font-size: var(--t-meta); color: var(--ink-meta); }
 .page-error { padding-block: var(--s10); }
 
+/* ---- Delegation page (plan T4.2; spec §4.2). Rows, photos, the ZIP form and field
+   errors are T2.1's rules; this block adds only the lists and the page's own lines. ---- */
+.delegation [hidden] { display: none; }
+.reps, .roster { list-style: none; margin: 0; padding: 0; }
+.district-line { margin: var(--s2) 0; font-family: var(--font-ui); font-weight: 500; font-size: var(--t-ui); color: var(--ink); }
+.district-line a, .source-link { display: inline-flex; align-items: center; min-height: var(--tap); font-family: var(--font-ui); }
+.yours, .senate, .house, .state-foot { margin-top: var(--s10); }
+
 /* ---- Breakpoints: declared once, here, at the end (§6.3) ---- */
 @media (min-width: 560px) {
     :root { --t-kicker: 0.75rem; --gutter: 24px; }
@@ -259,4 +267,6 @@ details[open] > summary::before { content: "–"; }
     html { scroll-padding-bottom: 72px; }
     .lead { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; }
     .vote-card { min-height: 22rem; }
+    .reps--yours { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 var(--s6); }
+    .house .roster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s8); }
 }

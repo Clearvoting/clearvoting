@@ -4,10 +4,10 @@ import time
 from datetime import datetime, timezone
 from html import escape
 from xml.sax.saxutils import escape as xml_escape
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.exception_handlers import http_exception_handler
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse, PlainTextResponse, Response
+from fastapi.responses import HTMLResponse, PlainTextResponse, RedirectResponse, Response
 from pathlib import Path
 from slowapi.middleware import SlowAPIMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -336,9 +336,86 @@ async def serve_about():
     })
 
 
+# The lookup is static per deploy, so the edge may keep a ZIP's redirect for a day (§9.5).
+_ZIP_REDIRECT_CACHE = "public, max-age=0, s-maxage=86400"
+_ZIP_ERROR = "A ZIP code is five digits."
+_FINDER_H1 = "Find your representatives"
+_YOURS_H1 = "Your representatives"
+
+
+def _zip_redirect(target: str) -> RedirectResponse:
+    return RedirectResponse(target, status_code=302, headers={"Cache-Control": _ZIP_REDIRECT_CACHE})
+
+
+def _zip_target(result: dict) -> str | None:
+    """Where a ZIP lookup sends the reader (§3.1). A single covered match goes to the
+    district URL with #mine (site.js writes cv-home from it). A split or partial match goes
+    to code + zip, which renders 200 and writes nothing. No match returns None."""
+    matches = result.get("matches") or []
+    if not matches:
+        return None
+    first = matches[0]
+    if result.get("kind") == "single":
+        return f"/state?code={first['state']}&district={int(first['district'])}#mine"
+    if result.get("kind") in ("split", "partial"):
+        return f"/state?code={first['state']}&zip={result['zip']}"
+    return None
+
+
+def _parse_district(raw: str | None) -> int | None:
+    value = (raw or "").strip()
+    return int(value) if value.isdigit() and len(value) <= 3 else None
+
+
+def _serve_state_page(code: str | None, h1: str, build) -> HTMLResponse:
+    """One /state page through T3.1's _page_content: `build()` renders the body, and if it
+    raises, the §4 error state shows `h1` (the H1 this URL would have had) with a 503."""
+    meta = {**_state_meta(code), "h1": h1}
+    content, status = _page_content(build, meta)
+    return _serve_html("state.html", meta, content, status_code=status)
+
+
 @app.get("/state")
-async def serve_state(request: Request):
-    return _serve_html("state.html", _state_meta(request.query_params.get("code")))
+def serve_state(request: Request):
+    """The delegation page and the ZIP form's target (§3.1, §5.3). Plain def: the overview
+    read runs in the threadpool."""
+    from app.dependencies import get_data_service
+    data_service = get_data_service()
+    params = request.query_params
+    code = (params.get("code") or "").strip().upper()
+    if code and code not in render.COVERED_STATE_NAMES:
+        raise HTTPException(status_code=404)
+    state_h1 = f"{render.COVERED_STATE_NAMES[code]}'s representatives" if code else _FINDER_H1
+
+    raw_zip = (params.get("zip") or "").strip()
+    lookup = None
+    if raw_zip:
+        lookup = data_service.lookup_zip(raw_zip)  # T1.5: None when the input is not a ZIP
+        if lookup is None:
+            if not code:
+                return _serve_state_page(None, _FINDER_H1, lambda: render.render_zip_finder_page(
+                    data_service.get_member_counts(), value=raw_zip, error=_ZIP_ERROR))
+            return _serve_state_page(code, state_h1, lambda: render.render_state_page(
+                data_service.get_state_overview(code, fallback=True), None, None, _ZIP_ERROR,
+                ds=data_service, zip_value=raw_zip))
+        target = _zip_target(lookup)
+        if target is None:
+            return _serve_state_page(None, _FINDER_H1, lambda: render.render_zip_not_found(
+                lookup["zip"], data_service.get_member_counts()))
+        renders_here = (lookup["kind"] in ("split", "partial")
+                        and any(m.get("state") == code for m in lookup["matches"]))
+        if not renders_here:
+            return _zip_redirect(target)
+
+    if not code:
+        return _serve_state_page(None, _FINDER_H1, lambda: render.render_zip_finder_page(
+            data_service.get_member_counts()))
+    district = None if lookup else _parse_district(params.get("district"))
+    # The error state's H1 follows the URL shape: district and ZIP URLs lead with "Your representatives".
+    h1 = _YOURS_H1 if (lookup is not None or district is not None) else state_h1
+    return _serve_state_page(code, h1, lambda: render.render_state_page(
+        data_service.get_state_overview(code, fallback=True), district, lookup, "",
+        ds=data_service, zip_value=lookup["zip"] if lookup else ""))
 
 
 @app.get("/sitemap.xml")

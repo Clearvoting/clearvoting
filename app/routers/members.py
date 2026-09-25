@@ -2,6 +2,7 @@ import re
 import copy
 import logging
 from fastapi import APIRouter, HTTPException, Query
+from app import render
 from app.dependencies import get_data_service
 from app.services.data_service import RECORD_API_MAX_GROUPS
 
@@ -147,62 +148,28 @@ async def get_member_counts():
 
 
 @router.get("/{state_code}/overview")
-async def get_state_overview(state_code: str):
+def get_state_overview(
+    state_code: str,
+    show_party: bool = Query(False, description="Include party labels (hidden by default)"),
+):
+    """One state's delegation for the home block, the bill slot and the party reveal:
+    one cached file read, no per-member vote files (F05)."""
     state_code = _validate_state_code(state_code)
+    if state_code not in render.COVERED_STATE_NAMES:
+        raise HTTPException(status_code=404, detail="State not covered")
     data_service = get_data_service()
-    members_data = data_service.get_members_by_state(state_code)
-    members = members_data.get("members", [])
-
-    enriched = []
-    total_participation = 0.0
-    total_support = 0.0
-    total_votes_all = 0
-    count_with_stats = 0
-
-    for m in members:
-        bio_id = m.get("bioguideId", "")
-        votes_data = data_service.get_member_votes(bio_id)
-        stats = votes_data.get("stats", {}) if votes_data else {}
-        narrative_data = data_service.get_member_narrative(bio_id)
-        narrative_snippet = ""
-        if narrative_data:
-            full = narrative_data.get("narrative", "")
-            narrative_snippet = full[:150] + "..." if len(full) > 150 else full
-
-        participation = stats.get("participation_rate", 0)
-        yea = stats.get("yea_count", 0)
-        nay = stats.get("nay_count", 0)
-        total_v = stats.get("total_votes", 0)
-        support_rate = round(yea / (yea + nay) * 100) if (yea + nay) > 0 else 0
-
-        enriched.append({
-            **m,
-            "participation_rate": participation,
-            "support_rate": support_rate,
-            "total_votes": total_v,
-            "yea_count": yea,
-            "nay_count": nay,
-            "narrative_snippet": narrative_snippet,
-        })
-
-        if total_v > 0:
-            total_participation += participation
-            total_support += support_rate
-            total_votes_all += total_v
-            count_with_stats += 1
-
-    avg_participation = round(total_participation / count_with_stats) if count_with_stats else 0
-    avg_support = round(total_support / count_with_stats) if count_with_stats else 0
-
-    return _strip_party({
-        "members": enriched,
-        "aggregate": {
-            "total_members": len(members),
-            "avg_participation": avg_participation,
-            "avg_support_rate": avg_support,
-            "total_votes": total_votes_all,
-        },
-    })
+    # The committed file; if it is missing, T1.6's members.json roster without signal lines.
+    overview = data_service.get_state_overview(state_code, fallback=True) or {}
+    payload = {
+        "state": overview.get("state") or state_code,
+        "state_name": overview.get("state_name"),
+        "roster_as_of": overview.get("roster_as_of"),
+        "generated_at": overview.get("generated_at"),
+        "districts_expected": overview.get("districts_expected"),
+        "senators": [render.overview_member_fields(m, data_service) for m in overview.get("senators") or []],
+        "house": [render.overview_member_fields(m, data_service) for m in overview.get("house") or []],
+    }
+    return payload if show_party else _strip_party(payload)
 
 
 @router.get("/{state_code}")

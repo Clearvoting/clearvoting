@@ -26,6 +26,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         addLatestVoteStateLine();
         initBrowsePanel();
+        initYourRepresentatives();
     });
 
     function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
@@ -196,3 +197,66 @@
         }
     }
 })();
+
+/* ---- Home module 4: "Your representatives" (plan T4.2; spec §4.1 m4, §5.4) ----
+   Only for a reader with a remembered district (site.js readHome()). The rows are site.js
+   personRow(), built from the same render-ready /api/members/{state}/overview payload as
+   the delegation page. The block fills T3.2's empty #home-reps mount, which sits after
+   section.lead (after the Latest Vote card) and before the Record, so it never moves the
+   fold. If the fetch fails, one "Remembered from your last visit" line appears under the
+   Find button instead. Forget clears either one and focuses the ZIP field (form#find). */
+function homeVacantRow(home) {
+    // Spec §5.3: the crosswalk names this district, but members.json has no one in it.
+    // The button is opened by feedback.js's delegated [data-feedback-open] listener (T2.4).
+    return el('div', { className: 'person person--vacant', 'data-state': home.state, 'data-district': String(home.district) },
+        el('span', { className: 'person-body' },
+            el('span', { className: 'person-vacancy' },
+                el('span', { className: 'person-name' }, `District ${home.district} — vacant in our data`),
+                ' · ',
+                el('button', { type: 'button', className: 'btn btn--secondary', 'data-feedback-open': true },
+                    'Tell us if this is wrong'))));
+}
+
+function forgetHomeBlock(clearBlock) {
+    forgetHome();
+    rewriteMastheadLink();
+    clearBlock();
+    focusFirstControl(document.getElementById('find'));  // the ZIP input, #zip
+}
+
+function showRememberedFallback(home) {
+    const finder = document.getElementById('find');
+    if (!finder) return;
+    const forget = el('button', { type: 'button', className: 'btn--secondary' }, 'Forget');
+    const line = el('p', { className: 'meta remembered-line' },
+        `Remembered from your last visit: ${COVERED_STATES[home.state]}, District ${home.district} → `,
+        el('a', { href: `/state?code=${home.state}&district=${home.district}` }, 'Show my representatives'),
+        ' · ', forget);
+    forget.addEventListener('click', () => forgetHomeBlock(() => line.remove()));
+    finder.appendChild(line);  // under the Find button, inside form#find
+}
+
+async function initYourRepresentatives() {
+    const home = readHome();
+    const mount = document.getElementById('home-reps');
+    if (!home || !mount) return;
+    try {
+        const response = await fetch(`/api/members/${encodeURIComponent(home.state)}/overview`);
+        if (!response.ok) throw new Error(`overview ${response.status}`);
+        const data = await response.json();
+        const list = el('ul', { className: 'reps reps--yours' });
+        (data.senators || []).forEach((m) => list.appendChild(el('li', null, personRow(m, home.state))));
+        const house = (data.house || []).filter((m) => m.district === home.district);
+        if (house.length) house.forEach((m) => list.appendChild(el('li', null, personRow(m, home.state))));
+        else list.appendChild(el('li', null, homeVacantRow(home)));
+        const forget = el('button', { type: 'button', className: 'btn--secondary' }, 'Forget');
+        forget.addEventListener('click', () => forgetHomeBlock(() => mount.replaceChildren()));
+        mount.appendChild(el('section', { className: 'yours home-yours', 'aria-labelledby': 'home-yours-h' },
+            el('h2', { id: 'home-yours-h' }, 'Your representatives'),
+            el('p', { className: 'meta remembered-line' }, 'remembered from your last visit · ',
+                el('a', { href: '/#find' }, 'Change'), ' · ', forget),
+            list));
+    } catch (e) {
+        showRememberedFallback(home);
+    }
+}

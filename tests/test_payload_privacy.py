@@ -33,6 +33,8 @@ CHECKED_ENDPOINTS = [
     "/api/members/FL",
     "/api/members/NY",
     "/api/members/TX",
+    # Delegation (plan T4.2; spec §10 #7, §10 #9)
+    "/api/members/NY/overview",
 ]
 
 
@@ -81,3 +83,41 @@ async def test_home_html_has_no_party_labels():
     response = await _get("/")
     assert response.status_code == 200
     assert not PARTY_LEAK.search(response.text)
+
+
+# --- Delegation page and overview (plan T4.2): party-free by default (§2.2 #10, §10 #9) ---
+
+_STATE_FIXTURES = Path(__file__).parent / "fixtures" / "synced"
+_STATE_PARTY_WORDS = re.compile(r"Democratic|Republican|Independent|\[[RDI]-")
+
+
+async def _state_privacy_get(path: str):
+    from app.dependencies import get_data_service
+    with patch("app.dependencies.get_data_dir", return_value=_STATE_FIXTURES):
+        get_data_service.cache_clear()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get(path)
+    get_data_service.cache_clear()
+    return response
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path", [
+    "/state?code=NY", "/state?code=NY&district=4", "/state?code=NY&zip=11201",
+    "/state?code=FL", "/state?code=TX&zip=73949", "/state?zip=44101", "/state",
+])
+async def test_state_html_has_no_party_labels(path):
+    response = await _state_privacy_get(path)
+    assert response.status_code == 200
+    assert not _STATE_PARTY_WORDS.search(response.text)
+    assert response.text.count('<span class="party"></span>') == response.text.count("data-bioguide=")
+
+
+@pytest.mark.asyncio
+async def test_overview_reveals_party_only_on_request():
+    default = await _state_privacy_get("/api/members/NY/overview")
+    assert not _STATE_PARTY_WORDS.search(default.text)
+    assert '"partyName"' not in default.text
+    revealed = (await _state_privacy_get("/api/members/NY/overview?show_party=true")).json()
+    assert any(m.get("partyName") for m in revealed["senators"] + revealed["house"])

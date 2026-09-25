@@ -317,3 +317,8 @@ def test_site_js_binds_the_home_markup_contract():
     js = (STATIC / "js" / "site.js").read_text()
     for hook in ("notify-form", "notify-state", "notify-email", "notify-status", "notify-fields", "nav-mine"):
         assert hook in js
+
+
+def test_person_row_rules_are_declared_once():
+    # T2.1 owns the person row; page tasks add deltas, never a second .person rule (plan T4.2).
+    assert len(re.findall(r"(?m)^\s*\.person \{", _css())) == 1

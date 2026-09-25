@@ -25,141 +25,98 @@ def _clear_data_service_cache():
     get_data_service.cache_clear()
 
 
-# --- State Overview Endpoint ---
+# --- GET /api/members/{state}/overview (plan T4.2; spec §10 #7, §10 #9) ---
+# The precomputed file plus render-ready fields, party-free by default. The old aggregate,
+# rates and narrative snippet are gone with their only consumer, the old state.js.
 
-@pytest.mark.asyncio
-async def test_state_overview_returns_correct_structure():
+NY_OVERVIEW = json.loads((FIXTURES / "state_overview" / "NY.json").read_text())
+FL_IDS = {m["bioguideId"] for m in json.loads((FIXTURES / "members.json").read_text())["members"]
+          if m.get("stateCode") == "FL"}
+RENDER_READY = {"display_name", "initials", "seat_line", "seat_seal", "url", "photo", "latest_vote"}
+LATEST_VOTE_READY = {"rc", "bill_id", "position", "date", "bill_code", "bill_url", "headline",
+                     "displayable", "seal", "chip", "chip_class", "date_short"}
+RETIRED = ("aggregate", "participation_rate", "support_rate", "total_votes", "yea_count",
+           "nay_count", "narrative_snippet")
+
+
+async def _get(path: str):
     with _patch_data_dir():
         _clear_data_service_cache()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/FL/overview")
-
+            response = await client.get(path)
     _clear_data_service_cache()
+    return response
+
+
+@pytest.mark.asyncio
+async def test_overview_is_the_precomputed_file_plus_render_ready_fields():
+    response = await _get("/api/members/NY/overview")
     assert response.status_code == 200
     data = response.json()
-
-    assert "members" in data
-    assert "aggregate" in data
-
-    agg = data["aggregate"]
-    assert "total_members" in agg
-    assert "avg_participation" in agg
-    assert "avg_support_rate" in agg
-    assert "total_votes" in agg
-
-
-@pytest.mark.asyncio
-async def test_state_overview_member_data_shape():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/FL/overview")
-
-    _clear_data_service_cache()
-    data = response.json()
-    members = data["members"]
-
-    assert len(members) == 2
-
-    for member in members:
-        assert "bioguideId" in member
-        assert "participation_rate" in member
-        assert "support_rate" in member
-        assert "total_votes" in member
-        assert "yea_count" in member
-        assert "nay_count" in member
-        assert "narrative_snippet" in member
+    assert data["state"] == "NY"
+    assert data["state_name"] == "New York"
+    assert data["districts_expected"] == NY_OVERVIEW["districts_expected"]
+    assert data["roster_as_of"] == NY_OVERVIEW["roster_as_of"]
+    assert [m["bioguideId"] for m in data["senators"]] == [m["bioguideId"] for m in NY_OVERVIEW["senators"]]
+    assert [m["bioguideId"] for m in data["house"]] == [m["bioguideId"] for m in NY_OVERVIEW["house"]]
+    for member in data["senators"] + data["house"]:
+        assert RENDER_READY <= set(member)
+        assert member["url"] == f"/member?id={member['bioguideId']}"
+        if member["latest_vote"] is not None:
+            assert LATEST_VOTE_READY <= set(member["latest_vote"])
+            assert member["latest_vote"]["chip"] in {
+                "Voted yes", "Voted no", "Didn't vote", "Present", "Guilty", "Not Guilty", "Voted"}
+    gillen = next(m for m in data["house"] if m["bioguideId"] == "G000602")
+    assert gillen["display_name"] == "Laura Gillen"
+    assert gillen["seat_line"].startswith("District 4 · In Congress since ")
+    assert gillen["seat_seal"] == "Seat up Nov 3"
 
 
 @pytest.mark.asyncio
-async def test_state_overview_aggregate_calculations():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/FL/overview")
-
-    _clear_data_service_cache()
-    data = response.json()
-    agg = data["aggregate"]
-
-    assert agg["total_members"] == 2
-
-    # S001217: participation=100, total_votes=2, yea=1, nay=1 -> support=50
-    # D000032: participation=85, total_votes=3, yea=2, nay=1 -> support=67
-    # avg_participation = round((100 + 85) / 2) = 92 (or 93 depending on rounding)
-    assert agg["avg_participation"] in [92, 93]
-    # avg_support = round((50 + 67) / 2) = 58 (or 59)
-    assert agg["avg_support_rate"] in [58, 59]
-    assert agg["total_votes"] == 5
+async def test_overview_drops_the_retired_aggregate_and_rates():
+    text = (await _get("/api/members/NY/overview")).text
+    for key in RETIRED:
+        assert f'"{key}"' not in text
 
 
 @pytest.mark.asyncio
-async def test_state_overview_strips_party():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/FL/overview")
-
-    _clear_data_service_cache()
-    data = response.json()
-    for member in data["members"]:
-        assert "partyName" not in member
-        assert "partyCode" not in member
+async def test_overview_strips_party_by_default_and_reveals_on_request():
+    default = await _get("/api/members/NY/overview")
+    assert '"partyName"' not in default.text
+    assert '"partyCode"' not in default.text
+    revealed = (await _get("/api/members/NY/overview?show_party=true")).json()
+    assert any(m.get("partyName") for m in revealed["senators"] + revealed["house"])
 
 
 @pytest.mark.asyncio
-async def test_state_overview_invalid_state():
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/api/members/INVALID/overview")
+async def test_overview_reads_no_member_vote_files():
+    with patch.object(DataService, "get_member_votes", side_effect=AssertionError("request-path scan")):
+        response = await _get("/api/members/NY/overview")
+    assert response.status_code == 200
+
+
+@pytest.mark.asyncio
+async def test_overview_invalid_state_is_400():
+    response = await _get("/api/members/INVALID/overview")
     assert response.status_code == 400
 
 
 @pytest.mark.asyncio
-async def test_state_overview_empty_state():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/CA/overview")
-
-    _clear_data_service_cache()
-    assert response.status_code == 200
-    data = response.json()
-    assert data["aggregate"]["total_members"] == 0
-    assert len(data["members"]) == 0
+async def test_overview_uncovered_state_is_404():
+    response = await _get("/api/members/OH/overview")
+    assert response.status_code == 404
 
 
 @pytest.mark.asyncio
-async def test_state_overview_narrative_snippet():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/FL/overview")
-
-    _clear_data_service_cache()
-    data = response.json()
-
-    # S001217 has a narrative in fixtures; D000032 does not
-    s001217 = next(m for m in data["members"] if m["bioguideId"] == "S001217")
-    d000032 = next(m for m in data["members"] if m["bioguideId"] == "D000032")
-
-    assert len(s001217["narrative_snippet"]) > 0
-    assert d000032["narrative_snippet"] == ""
-
-
-@pytest.mark.asyncio
-async def test_state_page_route():
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/state")
+async def test_overview_missing_file_falls_back_to_members_json():
+    # The fixtures carry only state_overview/NY.json; FL is served from members.json.
+    response = await _get("/api/members/FL/overview")
     assert response.status_code == 200
-    assert "ClearVoting" in response.text
+    data = response.json()
+    assert {m["bioguideId"] for m in data["senators"] + data["house"]} == FL_IDS
+    assert all(m["latest_vote"] is None for m in data["senators"] + data["house"])
+    assert '"partyName"' not in response.text
 
 
 # --- Precomputed delegation files (plan T1.6; spec §10 #7, §4.2) ---
