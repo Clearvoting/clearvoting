@@ -27,14 +27,6 @@ def _parse_vote_date(raw: str) -> datetime | None:
     return None
 
 
-def _clean_vote_date(raw: str) -> str:
-    """Strip the time off a vote date: 'June 5, 2026,  04:52 AM' -> 'June 5, 2026'."""
-    parts = [p.strip() for p in (raw or "").split(",")]
-    if len(parts) >= 2:
-        return f"{parts[0]}, {parts[1]}"
-    return (raw or "").strip()
-
-
 def roll_call_key(chamber, congress, session, vote_number) -> str:
     """The votes_index.json key of one roll call, e.g. 'house/119_2_00295' (spec §10 #3).
 
@@ -463,12 +455,13 @@ class DataService:
         self._member_summaries: dict[str, dict] = {}
         self._donations: dict[str, dict] = {}
         self._metadata: dict = {}
-        # (congress, bill_type, bill_number) -> {"senate": [...], "house": [...]},
-        # built lazily on first get_bill_votes call (one scan of the vote dirs)
-        self._bill_votes_index: dict[tuple[int, str, int], dict[str, list[dict]]] | None = None
-        # The single most recent bill-linked vote, built lazily on first request.
-        self._latest_vote_loaded = False
-        self._latest_vote: dict | None = None
+        # Built from the votes index at startup by _index_bills() (spec §10 #11). The bill map
+        # is T1.7's lazy _bill_lookup(); the bill -> roll-call keys are T1.7's _index_bill_keys().
+        self._activity_dates: dict[str, str] = {}
+        self._derived_statuses: dict[str, object] = {}
+        # The hero payload: built on first request (one roll-call file read), then cached.
+        self._latest_vote_built = False
+        self._latest_vote_cache: dict | None = None
         # Sync-built roll-call index (§10 #3); {} when the file is absent.
         self._votes_index: dict = {}
         # Sanctioned data (§10 #1, #2): Senate seats up in 2026, and the ZIP crosswalk with
@@ -487,12 +480,6 @@ class DataService:
     def _load(self) -> None:
         self._members = self._read_json("members.json").get("members", [])
         self._bills = self._read_json("bills.json").get("bills", [])
-        # Newest first so every consumer (homepage, browse, search) leads with
-        # recent activity; bills without an action date sort last.
-        self._bills.sort(
-            key=lambda b: (b.get("latestAction") or {}).get("actionDate") or "",
-            reverse=True,
-        )
         if not self._members:
             logger.error("Loaded 0 members from %s — site will serve empty member data", self.data_dir / "members.json")
         if not self._bills:
@@ -502,6 +489,7 @@ class DataService:
         self._donations = self._read_json("donations.json")
         # One read at startup replaces the per-request scans of votes/ (§9.6).
         self._votes_index = self._read_json("votes_index.json")
+        self._index_bills()
         if not self._votes_index:
             logger.warning("votes_index.json missing in %s — run: python sync.py --step votes-index", self.data_dir)
         metadata_path = self.data_dir / "sync_metadata.json"
@@ -678,30 +666,38 @@ class DataService:
         congress: int | None = None,
         summarized_only: bool = False,
     ) -> dict:
+        """Bills newest activity first (spec §4.1 m5): activity date = max(latestAction,
+        newest roll call), so a bill voted on last week leads even when its latestAction
+        is older. one_liner is None unless the summary is displayable (§2.5 C);
+        summarized_only keeps only bills with a displayable one-liner."""
         bills = self._bills
         if congress is not None:
             bills = [b for b in bills if b.get("congress") == congress]
         if summarized_only:
-            # Homepage "Record" leads with plain English, so skip bills the AI
-            # hasn't summarized yet (mostly procedural resolutions).
-            bills = [b for b in bills if self._bill_summary(b).get("one_liner")]
-        paginated = [self._with_plain_summary(b) for b in bills[offset:offset + limit]]
-        return {"bills": paginated}
+            bills = [b for b in bills if self._display_summary(b).get("one_liner")]
+        return {"bills": [self._with_plain_summary(b) for b in bills[offset:offset + limit]]}
 
-    def _bill_summary(self, bill: dict) -> dict:
-        key = f"{bill.get('congress')}-{bill.get('type', '').lower()}-{bill.get('number')}"
-        return self.displayable_summary(key) or {}
+    @staticmethod
+    def _bill_id_of(bill: dict) -> str:
+        return f"{bill.get('congress')}-{str(bill.get('type', '')).lower()}-{bill.get('number')}"
+
+    def _display_summary(self, bill: dict) -> dict:
+        """The bill's AI summary when displayable (exists, not needs_review), else {}."""
+        bill_id = self._bill_id_of(bill)
+        return self._ai_summaries.get(bill_id, {}) if self.displayable_summary(bill_id) else {}
 
     def _with_plain_summary(self, bill: dict) -> dict:
-        """Attach the AI one-liner, provisions, and issue categories so lists can
-        lead with plain English instead of the official title. Returns a shallow
-        copy so the cached bill is never mutated."""
-        summary = self._bill_summary(bill)
+        """A shallow copy of the bill with the displayable AI fields, its activity date
+        and its derived status seal. Withheld and missing summaries look the same."""
+        bill_id = self._bill_id_of(bill)
+        summary = self._display_summary(bill)
         return {
             **bill,
-            "one_liner": summary.get("one_liner") or "",
+            "one_liner": summary.get("one_liner") or None,
             "provisions": summary.get("provisions") or [],
             "issue_categories": summary.get("issue_categories") or [],
+            "activity_date": self._activity_dates.get(bill_id) or None,
+            "derived_status": self._derived_statuses.get(bill_id),
         }
 
     def displayable_summary(self, bill_id: str) -> dict | None:
@@ -768,62 +764,93 @@ class DataService:
                 counts[code] = counts.get(code, 0) + 1
         return counts
 
+    # --- Votes index reads (spec §10 #3, #11): dict lookups, no directory scans ---
+
+    @staticmethod
+    def _split_rc_key(key: str) -> tuple[str, int, int, int] | None:
+        """'house/119_2_00295' -> ('house', 119, 2, 295); None when malformed."""
+        try:
+            chamber, name = key.split("/", 1)
+            congress, session, number = (int(part) for part in name.split("_"))
+        except (AttributeError, ValueError):
+            return None
+        if chamber not in ("house", "senate"):
+            return None
+        return chamber, congress, session, number
+
+    def _index_bills(self) -> None:
+        """One startup pass: each bill's activity date (the index `bills[id].activity_date`,
+        which T1.4 computed as max(latestAction, newest roll call); latestAction alone when
+        the index does not list the bill) and its status seal (T1.7's _bill_status_for, the
+        one status path). Then bills are sorted newest activity first. Dict work only;
+        no roll-call file is opened."""
+        index_bills = (self._votes_index or {}).get("bills") or {}
+        self._activity_dates, self._derived_statuses = {}, {}
+        for bill in self._bills:
+            bill_id = self._bill_id_of(bill)
+            entry = index_bills.get(bill_id)
+            indexed = str(entry.get("activity_date") or "")[:10] if isinstance(entry, dict) else ""
+            action = str((bill.get("latestAction") or {}).get("actionDate") or "")[:10]
+            self._activity_dates[bill_id] = max(indexed, action)
+            self._derived_statuses[bill_id] = self._bill_status_for(bill, bill_id)
+        # Stable sort: bills with no date at all keep their file order at the end.
+        self._bills.sort(key=lambda b: self._activity_dates[self._bill_id_of(b)], reverse=True)
+
     def get_latest_vote(self) -> dict | None:
-        """The most recent roll-call vote that maps to a bill we hold, preferring
-        a final-passage vote over a procedural motion on the same day."""
-        if not self._latest_vote_loaded:
-            self._latest_vote = self._build_latest_vote()
-            self._latest_vote_loaded = True
-        return self._latest_vote
+        """The Latest Vote hero (spec §4.1 m3, F02). It is the index's `latest` key: the newest
+        roll call on a bill we hold, with decisive votes first within a day. A newer
+        unsummarized vote is shown, never skipped. Built once, with one roll-call file
+        read for `covered`, then cached."""
+        if not self._latest_vote_built:
+            self._latest_vote_cache = self._build_latest_vote_from_index()
+            self._latest_vote_built = True
+        return self._latest_vote_cache
 
-    def _build_latest_vote(self) -> dict | None:
-        bill_index: dict[tuple, dict] = {}
-        for b in self._bills:
-            try:
-                bill_index[(b.get("congress"), b.get("type", "").lower(), int(b.get("number")))] = b
-            except (TypeError, ValueError):
-                continue
-
-        best_key = None
-        best_payload = None
-        for chamber in ("senate", "house"):
-            vote_dir = self.data_dir / "votes" / chamber
-            if not vote_dir.exists():
-                continue
-            for vote_file in vote_dir.glob("*.json"):
-                with open(vote_file, "r") as f:
-                    vote = json.load(f)
-                parsed = self._parse_bill_document(vote.get("document", ""))
-                if not parsed:
-                    continue
-                bill = bill_index.get((vote.get("congress"), parsed[0], parsed[1]))
-                if not bill:
-                    continue
-                date = _parse_vote_date(vote.get("vote_date", ""))
-                if not date:
-                    continue
-                result = (vote.get("result") or "").lower()
-                question = (vote.get("question") or "").lower()
-                decisive = "passage" in question or "bill passed" in result or "bill defeated" in result
-                # Most recent calendar day wins; within that day a final-passage
-                # vote beats a procedural motion; vote number breaks any last tie.
-                sort_key = (date.date(), decisive, vote.get("vote_number") or 0)
-                if best_key is None or sort_key > best_key:
-                    best_key = sort_key
-                    best_payload = {
-                        "chamber": "Senate" if chamber == "senate" else "House",
-                        "date": _clean_vote_date(vote.get("vote_date", "")),
-                        "document": vote.get("document"),
-                        "result": vote.get("result"),
-                        "counts": vote.get("counts"),
-                        "bill": {
-                            "congress": bill.get("congress"),
-                            "type": bill.get("type", "").lower(),
-                            "number": int(bill.get("number")),
-                            "title": bill.get("title", ""),
-                        },
-                    }
-        return best_payload
+    def _build_latest_vote_from_index(self) -> dict | None:
+        key = (self._votes_index or {}).get("latest")
+        rc = self._index_roll_calls().get(key) if key else None
+        parts = self._split_rc_key(key) if rc else None
+        parsed = self._parse_bill_document(rc.get("document") or "") if parts else None
+        if not parsed:
+            return None
+        chamber_dir, congress, session, number = parts
+        bill_id = f"{congress}-{parsed[0]}-{parsed[1]}"
+        bill = self._bill_lookup().get(bill_id)
+        if bill is None:
+            return None
+        chamber = "Senate" if chamber_dir == "senate" else "House"
+        one_liner = self._display_summary(bill).get("one_liner") or None
+        seal = render.result_phrase(rc, chamber)
+        date_iso = str(rc.get("date") or "")[:10]
+        return {
+            "rc": key,
+            "chamber": chamber,
+            # `date` stays a display string until T3.3 rewrites app.js, which prints it raw
+            # (a Senate hero already read "August 8, 2026"); new readers use `date_iso`.
+            "date": render.format_date(date_iso),
+            "date_iso": date_iso,
+            "document": rc.get("document"),
+            "plain_question": rc.get("plain") or render.plain_question(rc.get("question") or ""),
+            "result": rc.get("result"),
+            "counts": rc.get("counts"),
+            # On this endpoint `outcome` is the §7.2 seal (G3 reads it); `seal` names it the
+            # way /api/bills/…/votes does, where `outcome` is the §7.3 sentence instead.
+            "seal": seal,
+            "outcome": seal,
+            "state_tallies": rc.get("tallies") or {},
+            "bill": {
+                "congress": bill.get("congress"),
+                "type": parsed[0],
+                "number": parsed[1],
+                "title": bill.get("title", ""),
+            },
+            "one_liner": one_liner,
+            "has_summary": one_liner is not None,
+            # T1.8's one covered builder: every covered member of that chamber; a member
+            # missing from the roll call reads position None, "Not in the {chamber} for this vote".
+            "covered": self.covered_positions(
+                chamber_dir, self._read_roll_call(chamber_dir, congress, session, number)),
+        }
 
     def get_bill_detail(self, congress: int, bill_type: str, bill_number: int) -> dict | None:
         bill_type = bill_type.upper()
@@ -867,45 +894,30 @@ class DataService:
         bill_type = match.group(1).replace(".", "").replace(" ", "").lower()
         return bill_type, int(match.group(2))
 
-    def _build_bill_votes_index(self) -> dict[tuple[int, str, int], dict[str, list[dict]]]:
-        """Scan both vote directories once, mapping each bill to its vote summaries.
-
-        Stores only summary fields (no per-member positions) — the bill page
-        fetches full vote detail separately via the votes API.
-        """
-        index: dict[tuple[int, str, int], dict[str, list[dict]]] = {}
-        for chamber in ("senate", "house"):
-            vote_dir = self.data_dir / "votes" / chamber
-            if not vote_dir.exists():
-                continue
-            # Sorted so votes list in filename (chronological) order
-            for vote_file in sorted(vote_dir.glob("*.json")):
-                with open(vote_file, "r") as f:
-                    vote = json.load(f)
-                parsed = self._parse_bill_document(vote.get("document", ""))
-                if not parsed:
-                    continue
-                bill_type, bill_number = parsed
-                key = (vote.get("congress"), bill_type, bill_number)
-                entry = index.setdefault(key, {"senate": [], "house": []})
-                entry[chamber].append({
-                    "congress": vote.get("congress"),
-                    "session": vote.get("session"),
-                    "vote_number": vote.get("vote_number"),
-                    "vote_date": vote.get("vote_date"),
-                    "question": vote.get("question"),
-                    "result": vote.get("result"),
-                    "counts": vote.get("counts"),
-                })
-        return index
-
     def get_bill_votes(self, congress: int, bill_type: str, bill_number: int) -> dict | None:
-        if self._bill_votes_index is None:
-            self._bill_votes_index = self._build_bill_votes_index()
-        entry = self._bill_votes_index.get((congress, bill_type.lower(), bill_number))
-        if not entry:
+        """Roll-call refs for a bill from the votes index (T1.7's _index_bill_keys); no file
+        I/O. Oldest first per chamber (the order the old bill.js renders); the seven summary
+        keys only."""
+        keys = self._index_bill_keys(f"{congress}-{bill_type.lower()}-{bill_number}")
+        if not keys:
             return None
-        return {"senate": entry["senate"], "house": entry["house"]}
+        refs: dict[str, list[dict]] = {"senate": [], "house": []}
+        roll_calls = self._index_roll_calls()
+        for key in reversed(keys):
+            parts, rc = self._split_rc_key(key), roll_calls.get(key)
+            if not parts or rc is None:
+                continue
+            chamber, rc_congress, session, number = parts
+            refs[chamber].append({
+                "congress": rc_congress,
+                "session": session,
+                "vote_number": number,
+                "vote_date": rc.get("date"),
+                "question": rc.get("question"),
+                "result": rc.get("result"),
+                "counts": rc.get("counts"),
+            })
+        return refs
 
     def get_member_donations(self, bioguide_id: str) -> dict | None:
         bioguide_id = bioguide_id.upper()

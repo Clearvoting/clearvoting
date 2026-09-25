@@ -29,7 +29,7 @@ def _bill_matches(bill: dict, q_lower: str) -> bool:
     if q_lower in bill.get("title", "").lower():
         return True
     # Check the plain-language one-liner ("stablecoin" should find the GENIUS Act)
-    if q_lower in bill.get("one_liner", "").lower():
+    if q_lower in (bill.get("one_liner") or "").lower():
         return True
     # Check policyArea name
     policy_area = bill.get("policyArea", {})

@@ -1,5 +1,7 @@
+import builtins
 import json
 import logging
+import os
 import pytest
 from pathlib import Path
 from app.services.data_service import DataService
@@ -199,22 +201,27 @@ def test_get_bill_votes_returns_summary_fields_only(data_service):
     }
 
 
-def test_get_bill_votes_scans_directories_once(data_service, monkeypatch):
-    # The bill->votes index is built once; later calls must not rescan the directories
-    calls = {"count": 0}
+def test_get_bill_votes_reads_the_index_not_the_vote_dirs(data_service, monkeypatch):
+    # The votes index (spec §10 #3) replaced the directory scan: no glob, no roll-call file reads.
+    calls = {"glob": 0, "open": 0}
     real_glob = Path.glob
+    real_open = builtins.open
 
     def counting_glob(self, pattern):
-        calls["count"] += 1
+        calls["glob"] += 1
         return real_glob(self, pattern)
 
+    def counting_open(file, *args, **kwargs):
+        if f"{os.sep}votes{os.sep}" in str(file):
+            calls["open"] += 1
+        return real_open(file, *args, **kwargs)
+
     monkeypatch.setattr(Path, "glob", counting_glob)
-    data_service.get_bill_votes(119, "hr", 1)
-    scans_after_first = calls["count"]
-    assert scans_after_first > 0
+    monkeypatch.setattr(builtins, "open", counting_open)
+    assert data_service.get_bill_votes(119, "hr", 1) is not None
     data_service.get_bill_votes(119, "hjres", 20)
     data_service.get_bill_votes(119, "hr", 9999)
-    assert calls["count"] == scans_after_first
+    assert calls == {"glob": 0, "open": 0}
 
 
 def test_get_member_narrative(data_service):

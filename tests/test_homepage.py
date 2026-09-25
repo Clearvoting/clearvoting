@@ -8,6 +8,8 @@ from httpx import AsyncClient, ASGITransport
 
 from app.main import app
 from app.limiter import limiter
+from app import render
+from app.services.data_service import DataService
 
 FIXTURES = Path(__file__).parent / "fixtures" / "synced"
 
@@ -43,35 +45,67 @@ async def test_member_counts():
 
 # --- Latest vote ---
 
+def _bill_id(bill: dict) -> str:
+    return f"{bill['congress']}-{str(bill['type']).lower()}-{bill['number']}"
+
+
 @pytest.mark.asyncio
-async def test_latest_vote_picks_newest_bill_linked_passage():
+async def test_latest_vote_is_the_index_hero():
+    index = json.loads((FIXTURES / "votes_index.json").read_text())
+    held = {_bill_id(b) for b in json.loads((FIXTURES / "bills.json").read_text())["bills"]}
+    # F02 rule recomputed from the fixture index: newest date, decisive first within a day,
+    # vote number last; only roll calls whose document is a bill we hold.
+    candidates = []
+    for key, rc in index["roll_calls"].items():
+        parsed = DataService._parse_bill_document(rc.get("document") or "")
+        congress = int(key.split("/")[1].split("_")[0])
+        if parsed and f"{congress}-{parsed[0]}-{parsed[1]}" in held:
+            candidates.append(((rc["date"][:10], rc.get("class") == "D", int(key.rsplit("_", 1)[1])), key))
+    expected = max(candidates)[1]
+    assert index["latest"] == expected
+
     response = await _get("/api/votes/latest")
     assert response.status_code == 200
     data = response.json()
-    # Newest fixture vote that maps to a held bill is the House's H.R. 4795
-    # passage on 2026-09-03 (the real latest roll call, cut into the fixtures).
-    assert data["chamber"] == "House"
-    assert data["bill"]["type"] == "hr"
-    assert data["bill"]["number"] == 4795
-    assert data["bill"]["title"] == "Protect Economic and Academic Freedom Act of 2026"
-    assert data["counts"]["yeas"] == 237
+    rc = index["roll_calls"][expected]
+    assert data["rc"] == expected
+    assert data["chamber"] == ("Senate" if expected.startswith("senate/") else "House")
+    assert data["date_iso"] == rc["date"][:10]
+    assert data["date"] == render.format_date(rc["date"][:10])
+    assert data["counts"] == rc["counts"]
+    assert data["plain_question"] == rc["plain"]
+    assert data["state_tallies"] == rc["tallies"]
+    assert data["outcome"] == data["seal"] == render.result_phrase(rc, data["chamber"])
+    parsed = DataService._parse_bill_document(rc["document"])
+    assert (data["bill"]["type"], data["bill"]["number"]) == parsed
+    bill_id = f"{data['bill']['congress']}-{parsed[0]}-{parsed[1]}"
+    summary = json.loads((FIXTURES / "ai_summaries.json").read_text()).get(bill_id) or {}
+    displayable = bool(summary) and summary.get("needs_review") is not True
+    assert data["has_summary"] == bool(displayable and summary.get("one_liner"))
+    assert data["one_liner"] == (summary["one_liner"] if data["has_summary"] else None)
+    for row in data["covered"].values():
+        assert set(row) == {"name", "state", "district", "chamber", "position", "relation"}
+    assert '"party' not in response.text
 
 
 # --- Bills plain-language enrichment ---
 
 @pytest.mark.asyncio
 async def test_bills_include_plain_language_fields():
-    response = await _get("/api/bills")
+    response = await _get("/api/bills?limit=50")
     assert response.status_code == 200
     bills = response.json()["bills"]
     assert bills, "fixture should return bills"
+    summaries = json.loads((FIXTURES / "ai_summaries.json").read_text())
     for bill in bills:
-        assert "one_liner" in bill
-        assert isinstance(bill["one_liner"], str)  # never null
+        summary = summaries.get(_bill_id(bill)) or {}
+        displayable = bool(summary) and summary.get("needs_review") is not True
+        # Nullable: missing and withheld summaries both read None (spec §4.1 m5, §2.5 C)
+        assert bill["one_liner"] == ((summary.get("one_liner") or None) if displayable else None)
+        assert bill["issue_categories"] == ((summary.get("issue_categories") or []) if displayable else [])
         assert isinstance(bill["provisions"], list)
-        assert isinstance(bill["issue_categories"], list)
-    hr1 = next(b for b in bills if b["type"] == "HR" and str(b["number"]) == "1")
-    assert hr1["issue_categories"] == ["Taxes", "Cost of Living"]
+        assert "derived_status" in bill and bill["derived_status"]
+        assert "activity_date" in bill
 
 
 @pytest.mark.asyncio

@@ -137,6 +137,57 @@ async def test_list_bills_congress_filter():
 
 
 @pytest.mark.asyncio
+async def test_list_bills_newest_activity_first_with_status():
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/bills?limit=50")
+
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    bills = response.json()["bills"]
+    dates = [b["activity_date"] or "" for b in bills]
+    assert dates == sorted(dates, reverse=True)
+    for bill in bills:
+        assert bill["derived_status"]
+        assert bill["one_liner"] is None or (isinstance(bill["one_liner"], str) and bill["one_liner"])
+
+
+@pytest.mark.asyncio
+async def test_latest_vote_extended_payload_keeps_old_keys_and_hides_party():
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/votes/latest")
+
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    data = response.json()
+    # Old app.js reads these (spec §10.3 commit 1: additive only)
+    assert {"chamber", "date", "document", "result", "counts", "bill"} <= set(data)
+    assert {"congress", "type", "number", "title"} <= set(data["bill"])
+    # New card fields (spec §10 #11)
+    assert {"one_liner", "has_summary", "plain_question", "outcome", "state_tallies", "covered"} <= set(data)
+    assert '"party' not in json.dumps(data)
+
+
+@pytest.mark.asyncio
+async def test_search_tolerates_bills_without_a_summary():
+    # one_liner is None for unsummarized/withheld bills; search must not call .lower() on it
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/search/bills?q=zzzz-no-such-bill")
+
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    assert response.json() == {"bills": [], "total": 0}
+
+
+@pytest.mark.asyncio
 async def test_get_bill_detail():
     with _patch_data_dir():
         _clear_data_service_cache()
