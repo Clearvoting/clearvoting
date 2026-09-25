@@ -132,6 +132,11 @@ async def health_check() -> dict:
         "member_summaries": len(data_service._member_summaries),
         "summary_coverage": round(covered / len(bill_keys), 4) if bill_keys else 0,
         "bills_missing_summary": len(bill_keys) - covered,
+        # Dated freshness and coverage facts (spec §7.4, §4.6); /about and
+        # /methodology read the same coverage_counts().
+        "latest_roll_call": data_service.latest_roll_call_date(),
+        "ai_summaries_updated": metadata.get("ai_summaries_updated"),
+        "coverage": data_service.coverage_counts(),
     }
 
 

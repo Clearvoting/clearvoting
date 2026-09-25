@@ -26,6 +26,7 @@ Usage:
 
 import argparse
 import asyncio
+import hashlib
 import json
 import os
 import re
@@ -93,6 +94,40 @@ def _atomic_write_json(path: Path, data: dict | list, compact: bool = False) -> 
         if os.path.exists(tmp_path):
             os.unlink(tmp_path)
         raise
+
+
+def _ai_summaries_digest(sync_dir: Path) -> str | None:
+    path = sync_dir / "ai_summaries.json"
+    if not path.exists():
+        return None
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _ai_summaries_stamp(sync_dir: Path, rewrote: bool = False, today: str | None = None) -> dict:
+    """The `ai_summaries_updated` date (spec §7.4) plus the file digest it was stamped
+    against, for the next sync_metadata.json write.
+
+    - The previous date is carried forward.
+    - It becomes today when this run rewrote ai_summaries.json (`rewrote`), or when
+      the file's digest differs from the one stored at the last metadata write. That
+      second case catches --audit and --regenerate runs, which write no metadata.
+    - A first write with no stored digest carries the date and records the digest.
+    """
+    try:
+        previous = json.loads((sync_dir / "sync_metadata.json").read_text())
+    except (OSError, ValueError):
+        previous = {}
+    if not isinstance(previous, dict):
+        previous = {}
+    digest = _ai_summaries_digest(sync_dir)
+    updated = previous.get("ai_summaries_updated")
+    stored = previous.get("ai_summaries_digest")
+    if rewrote or (stored is not None and stored != digest):
+        updated = today or datetime.now(timezone.utc).date().isoformat()
+    stamp: dict = {"ai_summaries_digest": digest}
+    if updated:
+        stamp["ai_summaries_updated"] = updated
+    return stamp
 
 
 def _write_derived_json(path: Path, payload: dict, compact: bool = False) -> bool:
@@ -2234,6 +2269,7 @@ async def main() -> None:
                 "states_synced": states,
                 "incremental": True,
             }
+            metadata.update(_ai_summaries_stamp(SYNC_DIR))
             _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
 
         return
@@ -2401,6 +2437,7 @@ async def main() -> None:
     # --ai-only mode: skip government data steps, go straight to AI
     if args.ai_only:
         SYNC_DIR.mkdir(parents=True, exist_ok=True)
+        ai_digest_before = _ai_summaries_digest(SYNC_DIR)
         print("=== ClearVote AI-Only Sync ===")
         print(f"  Mode: {'API' if anthropic_key else 'Claude CLI (Max plan)'}")
         print()
@@ -2451,6 +2488,7 @@ async def main() -> None:
             "member_summary_stats": member_summary_stats,
             "coherence_stats": coherence_stats,
         }
+        metadata.update(_ai_summaries_stamp(SYNC_DIR, rewrote=_ai_summaries_digest(SYNC_DIR) != ai_digest_before))
         _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
 
         print()
@@ -2482,6 +2520,7 @@ async def main() -> None:
         sys.exit(1)
 
     SYNC_DIR.mkdir(parents=True, exist_ok=True)
+    ai_digest_before = _ai_summaries_digest(SYNC_DIR)
     cache = CacheService(cache_dir=CACHE_DIR, ttl_seconds=86400)
     client = CongressAPIClient(api_key=api_key, cache=cache)
 
@@ -2616,6 +2655,7 @@ async def main() -> None:
         "arguments_stats": arguments_stats,
         "donations_stats": donations_stats,
     }
+    metadata.update(_ai_summaries_stamp(SYNC_DIR, rewrote=_ai_summaries_digest(SYNC_DIR) != ai_digest_before))
     _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
     print()
     print("=== Sync complete ===")

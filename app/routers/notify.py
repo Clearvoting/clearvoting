@@ -65,8 +65,7 @@ async def submit_signup(signup: NotifySignup, request: Request) -> dict:
     NOTIFY_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(NOTIFY_FILE, "a", encoding="utf-8") as f:
         f.write(json.dumps(entry) + "\n")
-    # The JSONL copy is lost on the next deploy, so the log line is the only
-    # durable record when Sheets is down — include the email deliberately.
-    logger.warning("Notify signup saved to JSONL fallback (ephemeral on Render): %s state=%s",
-                   signup.email, signup.state or "(unspecified)")
+    # Never log the address (spec §10 #16, §4.7): the privacy page promises emails live
+    # only in the Sheet or, during an outage, this temporary file.
+    logger.warning("signup saved to fallback, state=%s", signup.state or "(unspecified)")
     return {"status": "ok"}

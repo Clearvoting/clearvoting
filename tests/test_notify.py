@@ -4,6 +4,7 @@ Signups must survive deploys — Render's filesystem is ephemeral, so JSONL is
 only a local-dev/outage fallback, never the primary store.
 """
 import json
+import logging
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -79,3 +80,20 @@ async def test_notify_jsonl_fallback_when_no_credentials(tmp_path):
     mock_sheets.append_row.assert_not_called()
     entry = json.loads(tmp_file.read_text().strip())
     assert entry["email"] == "voter@example.com"
+
+
+@pytest.mark.asyncio
+async def test_notify_fallback_log_never_contains_the_email(tmp_path, caplog):
+    """Spec §10 #16: the fallback log names the state, never the address."""
+    tmp_file = tmp_path / "notify_signups.jsonl"
+    limiter.reset()
+
+    with patch("app.routers.notify.NOTIFY_FILE", tmp_file), \
+         patch("app.routers.notify._sheets", _make_sheets(available=False)), \
+         caplog.at_level(logging.INFO, logger="app.routers.notify"):
+        resp = await _post_notify({"email": "voter@example.com", "state": "OH"})
+
+    assert resp.status_code == 200
+    messages = [r.getMessage() for r in caplog.records]
+    assert "signup saved to fallback, state=OH" in messages
+    assert not any("voter@example.com" in m for m in messages)

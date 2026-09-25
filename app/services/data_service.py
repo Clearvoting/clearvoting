@@ -475,6 +475,9 @@ class DataService:
         self._state_overviews: dict[str, dict | None] = {}
         self._bills_by_id: dict[str, dict] | None = None  # bill_id -> bills.json row, built on first use
         self._members_by_id: dict[str, dict] | None = None  # bioguideId -> members.json row, built on first use
+        self._audit_grades: dict = {}
+        # Coverage numbers for /api/health, /about and /methodology; computed once.
+        self._coverage: dict | None = None
         self._load()
 
     def _load(self) -> None:
@@ -487,6 +490,7 @@ class DataService:
         self._ai_summaries = self._read_json("ai_summaries.json")
         self._member_summaries = self._read_json("member_summaries.json")
         self._donations = self._read_json("donations.json")
+        self._audit_grades = self._read_json("audit_grades.json")
         # One read at startup replaces the per-request scans of votes/ (§9.6).
         self._votes_index = self._read_json("votes_index.json")
         self._index_bills()
@@ -925,6 +929,39 @@ class DataService:
 
     def get_sync_metadata(self) -> dict:
         return self._metadata
+
+    def coverage_counts(self) -> dict:
+        """The §4.6 coverage numbers, counted from the loaded data (never hard-coded).
+        - shown: the summary exists and needs_review is not true (displayable_summary).
+        - withheld: a summary exists but is flagged needs_review.
+        - missing: no summary. shown + withheld + missing == bills.
+        - audited: bills with an entry in audit_grades.json.
+        - nominations_excluded: Senate roll calls on a nomination (document PN… / P.N.…),
+          the ones build_member_votes leaves out of member records."""
+        if self._coverage is None:
+            bill_ids = [self._bill_id_of(b) for b in self._bills]
+            shown = sum(1 for bill_id in bill_ids if self.displayable_summary(bill_id))
+            withheld = sum(1 for bill_id in bill_ids
+                           if bill_id in self._ai_summaries and not self.displayable_summary(bill_id))
+            nominations = sum(
+                1 for key, rc in self._index_roll_calls().items()
+                if key.startswith("senate/")
+                and str(rc.get("document") or "").strip().startswith(("PN", "P.N."))
+            )
+            self._coverage = {
+                "bills": len(bill_ids),
+                "shown": shown,
+                "missing": len(bill_ids) - shown - withheld,
+                "withheld": withheld,
+                "audited": sum(1 for bill_id in bill_ids if bill_id in self._audit_grades),
+                "nominations_excluded": nominations,
+            }
+        return dict(self._coverage)
+
+    def latest_roll_call_date(self) -> str | None:
+        """The newest roll-call date in the index (ISO), for the edition line and health."""
+        dates = (str(rc.get("date") or "")[:10] for rc in self._index_roll_calls().values())
+        return max((d for d in dates if d), default=None)
 
     # ---- Member page payload (plan T1.7) ----
 
