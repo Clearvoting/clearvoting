@@ -325,6 +325,10 @@ BILL_RENDERERS = {
     "render_official_summary_slot": lambda s: render.render_official_summary_slot(
         {**_hostile_bill_page(s), "legislation_url": "https://www.congress.gov/bill/" + s}),
     "render_fact_box": lambda s: render.render_fact_box(_hostile_bill_page(s)),
+    "render_vote_by_state": lambda s: render.render_vote_by_state(_hostile_bill_page(s)),
+    "render_vote_by_state (collapsed)": lambda s: render.render_vote_by_state(
+        {**_hostile_bill_page(s), "roll_calls": [{**_hostile_bill_page(s)["head"], "rendered": False}]}),
+    "render_bill_page": lambda s: render.render_bill_page(_hostile_bill_page(s), "2026-07-07"),
 }
 
 

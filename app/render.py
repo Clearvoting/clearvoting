@@ -2346,3 +2346,202 @@ def render_fact_box(page: dict) -> str:
             '<h2 id="facts-h" class="kicker">About this bill</h2>'
             f'<dl>{facts}</dl><div class="actions">{"".join(actions)}</div>'
             '<p class="share-status" role="status"></p></aside>')
+
+
+# --- Bill page roll-call blocks and the reps slot (plan T7.2, spec §4.4 m2–m3, §6.4, §8 item 2) ---
+
+_CURRENT_CONGRESS = 119
+_STATE_ORDER = (("CA", "California"), ("FL", "Florida"), ("NY", "New York"), ("TX", "Texas"))
+_CAPTION_CHAMBER_RE = re.compile(r" (?:by |in )?the (?:House|Senate)(?= \d)")
+
+
+def _rc_chamber(rc: dict) -> str:
+    return "senate" if rc.get("chamber") == "senate" else "house"
+
+
+def _rc_numbers(rc: dict) -> tuple[int, int, int]:
+    return int(rc["congress"]), int(rc["session"]), int(rc["vote_number"])
+
+
+def _rc_dom_id(rc: dict) -> str:
+    congress, session, number = _rc_numbers(rc)
+    return f"rc-{_rc_chamber(rc)}-{congress}-{session}-{number}"
+
+
+def _rc_api_url(rc: dict) -> str:
+    congress, session, number = _rc_numbers(rc)
+    return f"/api/votes/{_rc_chamber(rc)}/{congress}/{session}/{number}"
+
+
+def _rc_source_url(rc: dict) -> str:
+    congress, session, number = _rc_numbers(rc)
+    if _rc_chamber(rc) == "senate":
+        return ("https://www.senate.gov/legislative/LIS/roll_call_votes/"
+                f"vote{congress}{session}/vote_{congress}_{session}_{number:05d}.htm")
+    return f"https://clerk.house.gov/Votes/{str(rc.get('date') or '')[:4]}{number}"
+
+
+def _rc_caption(rc: dict) -> str:
+    """'House roll call 295 · September 3, 2026 · Final vote to pass · Passed 237–169'."""
+    plain = rc.get("plain") or plain_question(str(rc.get("question") or ""))
+    result = _CAPTION_CHAMBER_RE.sub("", str(rc.get("seal") or ""), count=1)
+    _, _, number = _rc_numbers(rc)
+    return f"{_rc_word(rc)} roll call {number} · {format_date(rc['date'])} · {plain} · {result}"
+
+
+def _rc_current(rc: dict) -> str:
+    """data-current: "1" for a 119th-Congress roll call (district print and order, §4.4 m3)."""
+    return "1" if int(rc["congress"]) == _CURRENT_CONGRESS else "0"
+
+
+def _rc_tally(rc: dict) -> str:
+    return render_tally(rc["counts"], _tally_label(str(rc.get("seal") or ""), _rc_word(rc)))
+
+
+def _rc_sorted_rows(rows: list[dict], rc: dict) -> list[dict]:
+    """119th House: district order; earlier Congresses and the Senate: last-name order (§4.4 m3)."""
+    if int(rc["congress"]) == _CURRENT_CONGRESS and _rc_chamber(rc) == "house":
+        return sorted(rows, key=lambda m: (m.get("district") is None, m.get("district") or 0,
+                                           (m.get("last_name") or "").lower()))
+    return sorted(rows, key=lambda m: ((m.get("last_name") or "").lower(), (m.get("first_name") or "").lower()))
+
+
+def _rc_row(member: dict, rc: dict) -> str:
+    chamber = _rc_chamber(rc)
+    name = h(f'{member.get("first_name") or ""} {member.get("last_name") or ""}'.strip())
+    covered = str(member.get("covered_id") or "")
+    if _BIOGUIDE_RE.fullmatch(covered):
+        name_html = f'<a href="/member?id={quote(covered)}">{name}</a>'
+        bioguide_attr = f' data-bioguide="{covered}"'
+    else:
+        name_html, bioguide_attr = name, ""
+    if chamber == "house":
+        key = str(member.get("bioguide_id") or "")
+    else:
+        key = f'{member.get("state") or ""}-{member.get("last_name") or ""}'
+    district = member.get("district")
+    if int(rc["congress"]) == _CURRENT_CONGRESS and chamber == "house" and isinstance(district, int):
+        seat = f"District {district}"
+    else:
+        seat = str(member.get("state") or "")
+    position = str(member.get("vote") or "Not Voting")
+    chip = position_chip(position)  # the one §7.1 positions table (T1.2); site.js chip() mirrors it
+    return (f'<tr data-key="{h(key)}"{bioguide_attr} data-position="{h(position)}">'
+            f'<th scope="row">{name_html}<span class="rc-seat">{h(seat)}</span><span class="party"></span></th>'
+            f'<td><span class="chip chip--{h(chip["variant"])}" data-short>{h(chip["short"])}</span></td></tr>')
+
+
+def _rc_state_groups(rc: dict) -> str:
+    by_state: dict[str, list[dict]] = {}
+    for member in rc.get("members") or []:
+        by_state.setdefault(member.get("state"), []).append(member)
+    tallies = rc.get("state_tallies") or {}
+    _, _, number = _rc_numbers(rc)
+    groups = []
+    for code, name in _STATE_ORDER:
+        tally = tallies.get(code)
+        if not tally:
+            continue
+        yes, no, not_voting = (int(x) for x in tally)
+        body = "".join(_rc_row(m, rc) for m in _rc_sorted_rows(by_state.get(code, []), rc))
+        groups.append(
+            f'<details class="state-group" data-state="{code}">'
+            f"<summary>{h(name)}: {yes} yes · {no} no · {not_voting} didn't vote</summary>"
+            f'<table class="rc"><caption>{h(name)} — {_rc_word(rc)} roll call {number}</caption>'
+            '<thead><tr><th scope="col">Member</th><th scope="col">Vote</th></tr></thead>'
+            f"<tbody>{body}</tbody></table></details>"
+        )
+    return "".join(groups)
+
+
+def _rc_all_votes(rc: dict) -> str:
+    dom_id = _rc_dom_id(rc)
+    counts = rc.get("counts") or {}
+    total = sum(int(counts.get(k) or 0) for k in ("yeas", "nays", "present", "absent"))
+    _, _, number = _rc_numbers(rc)
+    return (f'<details class="rc-all" data-url="{h(_rc_api_url(rc))}" '
+            f'data-caption="{_rc_word(rc)} roll call {number}"><summary>All {total} votes, every state</summary>'
+            f'<div class="rc-all-controls"><label for="{dom_id}-q">Search by name</label>'
+            f'<input type="search" id="{dom_id}-q" class="rc-all-q" autocomplete="off">'
+            f'<label for="{dom_id}-show">Show</label>'
+            f'<select id="{dom_id}-show" class="rc-all-show"><option value="all">all</option>'
+            '<option value="yes">yes</option><option value="no">no</option>'
+            "<option value=\"nv\">didn't vote</option></select></div>"
+            '<div class="rc-all-list"></div>'
+            f'<noscript><p><a href="{h(_rc_source_url(rc))}" rel="noopener">'
+            "Open the full list on the roll call source page →</a></p></noscript></details>")
+
+
+def _rc_block(rc: dict, is_head: bool) -> str:
+    """A roll call whose file was read: caption, source, four state tables, the lazy full list."""
+    dom_id = _rc_dom_id(rc)
+    parts = [f'<section class="rc-block" data-rendered="1" data-chamber="{_rc_chamber(rc)}" '
+             f'data-rc="{h(rc["key"])}" data-url="{h(_rc_api_url(rc))}" data-current="{_rc_current(rc)}" '
+             f'aria-labelledby="{dom_id}">',
+             f'<h3 id="{dom_id}">{h(_rc_caption(rc))}</h3>']
+    if not is_head:
+        parts.append(f'<p class="outcome">{h(rc.get("outcome") or "")}</p>')
+        parts.append(_rc_tally(rc))
+    parts.append(f'<p class="rc-source"><a href="{h(_rc_source_url(rc))}" rel="noopener">Roll call source →</a></p>')
+    parts.append(_rc_state_groups(rc))
+    parts.append(_rc_all_votes(rc))
+    parts.append("</section>")
+    return "".join(parts)
+
+
+def _rc_more(rc: dict) -> str:
+    """A roll call from the index only: collapsed, state groups fetched by bill.js on first open."""
+    _, _, number = _rc_numbers(rc)
+    tallies = rc.get("state_tallies") or {}
+    # data-state lets bill.js reuse each line as the summary of the group it builds (§4.4 m3).
+    items = "".join(
+        f'<li data-state="{code}">{h(name)}: {int(t[0])} yes · {int(t[1])} no · {int(t[2])} didn\'t vote</li>'
+        for code, name in _STATE_ORDER if (t := tallies.get(code))
+    )
+    return (f'<details class="rc-more" data-chamber="{_rc_chamber(rc)}" data-rc="{h(rc["key"])}" '
+            f'data-url="{h(_rc_api_url(rc))}" data-caption="{_rc_word(rc)} roll call {number}" '
+            f'data-current="{_rc_current(rc)}">'
+            f'<summary><h3 class="rc-caption">{h(_rc_caption(rc))}</h3></summary>'
+            f'<p class="outcome">{h(rc.get("outcome") or "")}</p>{_rc_tally(rc)}'
+            f'<ul class="state-tallies">{items}</ul><div class="rc-groups"></div>'
+            f'<p class="rc-source"><a href="{h(_rc_source_url(rc))}" rel="noopener">Roll call source →</a></p>'
+            "</details>")
+
+
+def render_your_reps_slot(page: dict) -> str:
+    """Module 2 as served to everyone: T3.1's ZIP form (a plain GET to /state without JS) and the
+    empty role=status node site.js writes the in-place result into (§8 item 10)."""
+    if not page.get("head"):
+        return ""
+    form = render_zip_form(form_id="reps-zip-form",
+                           label="Enter your ZIP to see how your representatives voted")
+    return ('<section class="section your-reps" id="your-reps" aria-labelledby="your-reps-h">'
+            '<h2 id="your-reps-h" tabindex="-1">How did your representatives vote?</h2>'
+            f'<div class="your-reps-body" id="your-reps-body">{form}</div>'
+            '<p class="status" id="reps-zip-status" role="status"></p></section>')
+
+
+def render_vote_by_state(page: dict) -> str:
+    """Module 3: one party toggle, ≤2 rendered roll calls (head first), the rest collapsed newest first."""
+    roll_calls = page.get("roll_calls") or []
+    if not roll_calls:
+        return ""
+    head_key = (page.get("head") or {}).get("key")
+    rendered = sorted((rc for rc in roll_calls if rc.get("rendered")), key=lambda rc: rc["key"] != head_key)
+    others = [rc for rc in roll_calls if not rc.get("rendered")]
+    parts = ['<section class="section vote-by-state" aria-labelledby="by-state-h">',
+             '<div class="section-head"><h2 id="by-state-h">The vote, by state</h2>',
+             '<button class="party-toggle" type="button">Show party labels</button>',
+             '<p class="party-status" role="status"></p></div>']
+    parts.extend(_rc_block(rc, rc["key"] == head_key) for rc in rendered)
+    parts.extend(_rc_more(rc) for rc in others)
+    parts.append("</section>")
+    return "".join(parts)
+
+
+def render_bill_page(page: dict, ai_summaries_updated: str | None) -> str:
+    """The whole server-rendered bill page body (§4.4 modules 1–6, §9.1)."""
+    main = (render_bill_head(page) + render_your_reps_slot(page) + render_vote_by_state(page)
+            + render_what_it_does(page, ai_summaries_updated) + render_official_summary_slot(page))
+    return (f'<div class="bill-grid" data-ssr="1" data-bill="{h(page["bill_id"])}">'
+            f'<article class="bill-main">{main}</article>{render_fact_box(page)}</div>')

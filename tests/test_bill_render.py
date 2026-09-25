@@ -314,3 +314,233 @@ def test_fact_box_drops_links_that_are_not_congress_gov():
     html = render.render_fact_box(_page(legislation_url="javascript:alert(1)"))
     assert "javascript:" not in html
     assert "Congress.gov →" not in html
+
+
+# --- Roll-call blocks (§4.4 m3, §6.4) and the reps slot (§4.4 m2) ---
+
+def _members_119():
+    """Fictional rows: two covered NY members, one uncovered NY row, one covered FL row."""
+    return [
+        {"first_name": "Bea", "last_name": "Beta", "state": "NY", "vote": "Yea",
+         "bioguide_id": "B000001", "covered_id": "B000001", "district": 4},
+        {"first_name": "Ann", "last_name": "Alpha", "state": "NY", "vote": "Nay",
+         "bioguide_id": "A000001", "covered_id": "A000001", "district": 1},
+        {"first_name": "Former", "last_name": "Member", "state": "NY", "vote": "Not Voting",
+         "bioguide_id": "X000001", "covered_id": None, "district": None},
+        {"first_name": "Cal", "last_name": "Gamma", "state": "FL", "vote": "Present",
+         "bioguide_id": "C000001", "covered_id": "C000001", "district": 19},
+    ]
+
+
+def _group(html: str, state: str) -> str:
+    return html.split(f'<details class="state-group" data-state="{state}">', 1)[1].split("</details>", 1)[0]
+
+
+def test_your_reps_slot_is_the_shared_get_zip_form_with_empty_status():
+    html = render.render_your_reps_slot(_page())
+    assert '<section class="section your-reps" id="your-reps" aria-labelledby="your-reps-h">' in html
+    assert '<h2 id="your-reps-h" tabindex="-1">How did your representatives vote?</h2>' in html
+    # The same form every page uses (T3.1 render_zip_form): .zip-label + .zip-row, one pattern.
+    form = render.render_zip_form(form_id="reps-zip-form",
+                                  label="Enter your ZIP to see how your representatives voted")
+    assert f'<div class="your-reps-body" id="your-reps-body">{form}</div>' in html
+    assert '<form class="zip-form" id="reps-zip-form" method="get" action="/state">' in html
+    assert ('<label class="zip-label" for="reps-zip-form-field">'
+            'Enter your ZIP to see how your representatives voted</label>') in html
+    assert '<p class="status" id="reps-zip-status" role="status"></p>' in html
+
+
+def test_your_reps_slot_carries_no_page_data():
+    # Nothing from the bill is interpolated, so it is not in the escaping registry; pin that
+    # instead: two very different pages give the same slot.
+    other = _page(bill_id="117-hres-8", title='<b>"x"</b>', one_liner="&amp;", congress=117)
+    assert render.render_your_reps_slot(_page()) == render.render_your_reps_slot(other)
+
+
+def test_your_reps_slot_is_omitted_without_a_roll_call():
+    assert render.render_your_reps_slot(_page(head=None, roll_calls=[])) == ""
+
+
+def test_vote_by_state_caption_source_toggle_and_four_closed_groups():
+    head = _rc(rendered=True, members=_members_119())
+    html = render.render_vote_by_state(_page(head=head, roll_calls=[head]))
+    assert '<h2 id="by-state-h">The vote, by state</h2>' in html
+    assert html.count('<button class="party-toggle" type="button">Show party labels</button>') == 1
+    assert '<p class="party-status" role="status"></p>' in html
+    assert ('<h3 id="rc-house-119-2-295">House roll call 295 · September 3, 2026 · '
+            "Final vote to pass · Passed 237–169</h3>") in html
+    assert '<a href="https://clerk.house.gov/Votes/2026295" rel="noopener">Roll call source →</a>' in html
+    summaries = re.findall(r'<details class="state-group" data-state="(\w\w)"><summary>([^<]*)</summary>', html)
+    assert summaries == [
+        ("CA", "California: 13 yes · 35 no · 4 didn't vote"),
+        ("FL", "Florida: 22 yes · 2 no · 3 didn't vote"),
+        ("NY", "New York: 13 yes · 11 no · 2 didn't vote"),
+        ("TX", "Texas: 25 yes · 11 no · 1 didn't vote"),
+    ]
+    assert "<caption>New York — House roll call 295</caption>" in html
+    assert html.count('<thead><tr><th scope="col">Member</th><th scope="col">Vote</th></tr></thead>') == 4
+
+
+def test_119th_house_rows_are_district_ordered_and_link_only_covered_members():
+    head = _rc(rendered=True, members=_members_119())
+    ny = _group(render.render_vote_by_state(_page(head=head, roll_calls=[head])), "NY")
+    assert ny.index("Ann Alpha") < ny.index("Bea Beta") < ny.index("Former Member")
+    assert ('<tr data-key="A000001" data-bioguide="A000001" data-position="Nay"><th scope="row">'
+            '<a href="/member?id=A000001">Ann Alpha</a><span class="rc-seat">District 1</span>'
+            '<span class="party"></span></th><td><span class="chip chip--no" data-short>No</span></td></tr>') in ny
+    assert '<tr data-key="X000001" data-position="Not Voting"><th scope="row">Former Member' in ny
+    assert "Didn&#x27;t vote" in ny
+    assert "chip--present" in _group(render.render_vote_by_state(_page(head=head, roll_calls=[head])), "FL")
+
+
+def test_row_chips_come_from_the_one_positions_table():
+    assert not hasattr(render, "RC_SHORT_CHIP")
+    for vote in ("Yea", "Nay", "Not Voting", "Present", "Guilty", "Some Candidate"):
+        rc = _rc(rendered=True, members=[{"first_name": "Ann", "last_name": "Alpha", "state": "NY",
+                                          "vote": vote, "bioguide_id": "A000001",
+                                          "covered_id": None, "district": None}])
+        chip = render.position_chip(vote)
+        ny = _group(render.render_vote_by_state(_page(head=rc, roll_calls=[rc])), "NY")
+        assert f'<span class="chip chip--{chip["variant"]}" data-short>{escape(chip["short"])}</span>' in ny
+
+
+def test_earlier_congress_rows_sort_by_last_name_and_show_state_only():
+    members = [
+        {"first_name": "Zed", "last_name": "Zulu", "state": "NY", "vote": "Yea",
+         "bioguide_id": "Z000001", "covered_id": None, "district": None},
+        {"first_name": "Bea", "last_name": "Beta", "state": "NY", "vote": "Nay",
+         "bioguide_id": "B000001", "covered_id": "B000001", "district": 4},
+    ]
+    rc = _rc(key="house/117_1_00006", congress=117, session=1, vote_number=6, date="2021-01-04",
+             rendered=True, members=members, state_tallies={"NY": [1, 1, 0]})
+    ny = _group(render.render_vote_by_state(_page(congress=117, head=rc, roll_calls=[rc])), "NY")
+    assert ny.index("Bea Beta") < ny.index("Zed Zulu")
+    assert "District" not in ny
+    assert ny.count('<span class="rc-seat">NY</span>') == 2
+
+
+def test_fixture_117th_house_roll_call_rows_are_last_name_ordered():
+    page = DataService(data_dir=FIXTURES).get_bill_page(117, "hres", 8)
+    assert page is not None
+    rendered = next(rc for rc in page["roll_calls"] if rc["rendered"])
+    ny_members = [m for m in rendered["members"] if m["state"] == "NY"]
+    expected = [escape(f'{m["first_name"]} {m["last_name"]}'.strip()) for m in sorted(
+        ny_members, key=lambda m: ((m["last_name"] or "").lower(), (m["first_name"] or "").lower()))]
+    ny = _group(render.render_vote_by_state(page), "NY")
+    names = re.findall(r'<th scope="row">(?:<a [^>]+>)?([^<]+)', ny)
+    assert names == expected
+    assert "District" not in ny
+
+
+def test_senate_block_uses_the_senate_source_page_and_state_seat():
+    members = [{"first_name": "Ada", "last_name": "Example", "state": "NY", "vote": "Yea",
+                "bioguide_id": None, "covered_id": "E000001", "district": None}]
+    rc = _rc(key="senate/119_1_00372", chamber="senate", session=1, vote_number=372,
+             seal="Passed the Senate 51–49", rendered=True, members=members,
+             state_tallies={"NY": [1, 0, 0]})
+    html = render.render_vote_by_state(_page(head=rc, roll_calls=[rc]))
+    assert "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1191/vote_119_1_00372.htm" in html
+    assert "Senate roll call 372 · September 3, 2026 · Final vote to pass · Passed 51–49" in html
+    assert '<tr data-key="NY-Example" data-bioguide="E000001" data-position="Yea">' in html
+    assert '<span class="rc-seat">NY</span>' in html
+
+
+def test_many_roll_calls_render_two_blocks_and_collapse_the_rest_newest_first():
+    head = _rc(rendered=True, members=_members_119())
+    other = _rc(key="senate/119_2_00400", chamber="senate", vote_number=400, rendered=True,
+                seal="Passed the Senate 60–38", outcome="The Senate passed it, 60 to 38, on September 3, 2026.")
+    extras = [_rc(key=f"house/119_2_{n:05d}", vote_number=n, **{"class": "P"},
+                  plain="Vote on an amendment", seal="Amendment rejected 45–53",
+                  outcome="On September 3, 2026, the House rejected an amendment, 45 to 53.")
+              for n in range(154, 99, -1)]
+    html = render.render_vote_by_state(_page(head=head, roll_calls=[other, head] + extras))
+    assert html.count('<section class="rc-block"') == 2
+    assert html.count('<details class="rc-more"') == 55
+    assert html.index('data-rc="house/119_2_00295"') < html.index('data-rc="senate/119_2_00400"')
+    assert html.index('data-rc="house/119_2_00154"') < html.index('data-rc="house/119_2_00100"')
+    more = html.split('<details class="rc-more"', 1)[1].split("</details>", 1)[0]
+    assert "<h3 class=\"rc-caption\">House roll call 154 · September 3, 2026 · Vote on an amendment · Amendment rejected 45–53</h3>" in more
+    assert "On September 3, 2026, the House rejected an amendment, 45 to 53." in more
+    assert '<li data-state="NY">New York: 13 yes · 11 no · 2 didn\'t vote</li>' in more
+    assert 'data-current="1"' in more
+    assert '<div class="rc-groups"></div>' in more
+    assert "<table" not in more
+
+
+def test_second_rendered_block_carries_its_own_outcome_and_tally():
+    head = _rc(rendered=True, members=_members_119())
+    other = _rc(key="senate/119_2_00400", chamber="senate", vote_number=400, rendered=True,
+                seal="Passed the Senate 60–38", outcome="The Senate passed it, 60 to 38, on September 3, 2026.")
+    html = render.render_vote_by_state(_page(head=head, roll_calls=[other, head]))
+    senate = html.split('data-rc="senate/119_2_00400"', 1)[1]
+    assert '<p class="outcome">The Senate passed it, 60 to 38, on September 3, 2026.</p>' in senate
+    house = html.split('data-rc="house/119_2_00295"', 1)[1].split('data-rc="senate/119_2_00400"', 1)[0]
+    assert 'class="outcome"' not in house
+
+
+def test_house_decisive_head_plus_senate_procedural_renders_both_chambers():
+    # 117-hr-3233, 117-hr-7, 117-hr-4350, 118-hr-6126: House passage plus Senate cloture only.
+    # T1.8 renders the other chamber's decisive vote, else its newest roll call, so the slot
+    # never claims the Senate has no recorded vote while a Senate block sits on the page.
+    head = _rc(rendered=True, members=_members_119())
+    cloture = _rc(key="senate/117_2_00100", chamber="senate", congress=117, session=2, vote_number=100,
+                  **{"class": "P"}, plain="Vote to end debate (needed 60)", rendered=True,
+                  seal="Debate not ended 52–46 (60 needed)",
+                  outcome=("On September 3, 2026, the Senate voted 52 to 46 to end debate; "
+                           "60 votes were needed, so debate did not end."))
+    html = render.render_vote_by_state(_page(head=head, roll_calls=[cloture, head]))
+    assert html.count('<section class="rc-block"') == 2
+    assert 'data-chamber="senate"' in html and 'data-chamber="house"' in html
+    senate = html.split('data-rc="senate/117_2_00100"', 1)[1]
+    assert "60 votes were needed, so debate did not end." in senate
+    assert 'data-current="0"' in senate
+
+
+def test_fixture_118_hr_21_renders_one_block_per_roll_call():
+    page = DataService(data_dir=FIXTURES).get_bill_page(118, "hr", 21)
+    assert page is not None
+    html = render.render_vote_by_state(page)
+    rendered = html.count('<section class="rc-block"')
+    assert rendered <= 2
+    assert rendered + html.count('<details class="rc-more"') == len(page["roll_calls"])
+
+
+def test_all_votes_details_is_empty_with_search_select_and_noscript():
+    head = _rc(rendered=True, members=_members_119())
+    html = render.render_vote_by_state(_page(head=head, roll_calls=[head]))
+    assert ('<details class="rc-all" data-url="/api/votes/house/119/2/295" '
+            'data-caption="House roll call 295"><summary>All 433 votes, every state</summary>') in html
+    assert '<input type="search" id="rc-house-119-2-295-q" class="rc-all-q" autocomplete="off">' in html
+    assert ('<select id="rc-house-119-2-295-show" class="rc-all-show"><option value="all">all</option>'
+            '<option value="yes">yes</option><option value="no">no</option>'
+            "<option value=\"nv\">didn't vote</option></select>") in html
+    assert '<div class="rc-all-list"></div>' in html
+    assert "Open the full list on the roll call source page →" in html
+
+
+def test_bill_page_composition_and_heading_outline():
+    head = _rc(rendered=True, members=_members_119())
+    html = render.render_bill_page(_page(head=head, roll_calls=[head]), "2026-07-07")
+    assert html.startswith('<div class="bill-grid" data-ssr="1" data-bill="119-hr-4795">')
+    headings = re.findall(r"<(h[1-3])[^>]*>(.*?)</\1>", html)
+    assert headings[0][0] == "h1"
+    assert [text for tag, text in headings if tag == "h2"] == [
+        "How did your representatives vote?", "The vote, by state", "What it does",
+        "Official summary", "About this bill",
+    ]
+    assert html.index("How did your representatives vote?") < html.index("The vote, by state")
+    assert html.index('<article class="bill-main">') < html.index('<aside class="section fact-box"')
+    # The five module wrappers share T2.1's .section role; none uses the .official type role.
+    for wrapper in ('<section class="section your-reps"', '<section class="section vote-by-state"',
+                    '<section class="section what-it-does"', '<section class="section official-summary-section"',
+                    '<aside class="section fact-box"'):
+        assert wrapper in html, wrapper
+    assert 'class="official"' not in html.split("</header>", 1)[1]
+
+
+def test_bill_page_without_roll_calls_omits_modules_two_and_three():
+    html = render.render_bill_page(_page(head=None, roll_calls=[],
+                                         status={"text": "No final vote yet", "variant": "moving"}), None)
+    assert "How did your representatives vote?" not in html
+    assert "The vote, by state" not in html
+    assert "none in our data" in html
