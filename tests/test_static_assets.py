@@ -203,6 +203,12 @@ def test_site_js_storage_rules():
     assert "storageRemove('localStorage', PARTY_KEY)" in js        # legacy key removed on load
     assert "document.cookie" not in js
     assert "aria-pressed" not in js and "aria-live" not in js
+    # A Hide pressed while a reveal is loading wins: stale reveals bail after every wait.
+    assert "const mine = ++attempt;" in js and "attempt++;" in js
+    assert js.count("if (mine !== attempt || !revealed)") >= 3
+    # A second "Link copied" is announced; a 422 from /api/notify is the email, not an outage.
+    assert "statusNode.textContent = '';" in js
+    assert "response.status === 422" in js and "setEmailError(t('invalidEmail'))" in js
     for fn in ("initPartyToggle", "initShare", "initPhotos", "initHome", "rememberDistrict", "forgetHome",
                "rewriteMastheadLink", "initNotify", "focusHeading", "rememberedLine", "readHome"):
         assert re.search(rf"^(?:async )?function {fn}\(", js, re.M), fn

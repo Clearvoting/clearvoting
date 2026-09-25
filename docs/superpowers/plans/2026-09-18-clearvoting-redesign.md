@@ -9465,8 +9465,8 @@ MSG
   - Markup contracts from later tasks, bound by id/class so they work whichever page renders them: `#nav-mine` (masthead "My representatives", server `href="/#find"`, T3.3); `form#notify-form > fieldset.notify-fields[disabled]`, `select#notify-state`, `input#notify-email`, `p#notify-email-error`, `button#notify-submit`, `p#notify-status[role=status][tabindex=-1]` (T3.1); `.party-toggle[data-party-url]` + `.party-status[role=status]`, `.person[data-bioguide] .party`, `.member-header .party`, `.speaker-pick[data-rc]` (T4.1/T6.1); `.share-btn|[data-share]` with `data-share-url`, `data-share-title`, `data-share-text` + `.share-status[role=status]` (T4.1/T6.1/T7.1); `.photo > img` (T4.1/T6.1).
 - Produces (top-level functions in `site.js`; every `init*` is idempotent, so a page script may call one that `site.js` already ran):
   - Auto-run once per page at `DOMContentLoaded` by `initSite()`: `removeLegacyPartyKey()`, `initHome()`, `rewriteMastheadLink()`, `initPhotos()`, `initNotify()`. Pages call `initPartyToggle(...)` and `initShare()` themselves (they know their reveal URL/callbacks).
-  - `initPartyToggle()` / `initPartyToggle(fill)` / `initPartyToggle(onShow, onHide)` / `initPartyToggle({url, onShow, onHide})` — binds every `.party-toggle`; label "Show party labels" ↔ "Hide party labels" (no `aria-pressed`); writes "Party labels shown"/"Party labels hidden" into every `.party-status`; fetches `url` (or the first toggle's `data-party-url`) once on the first reveal; default fill: `[data-bioguide] .party` from `payload.senators|house|members[].partyName`, `.member-header .party` from `payload.member.partyName`, "Voted for {Name}" into `.speaker-pick[data-rc]` from `payload.speaker_votes`; then calls `fill(true|false)` or `onShow(payload)`/`onHide()`; keeps `sessionStorage['cv-show-party']` and re-applies a remembered reveal on load without announcing it; if the reveal fetch or the page callback fails, the label returns to "Show party labels" and every `.party-status` is left empty (never "Party labels hidden" after a Show press). Internal names later tasks extend: `toggles`, `revealed`, `partyName`, `payload`, `fillSpeakerPicks()`, `onToggle()`.
-  - `initShare()` — `navigator.share({title, text, url})` from the button's `data-share-*` (url falls back to `<link rel=canonical>`); on no support or error (except the reader's own cancel) copies the canonical URL and writes "Link copied" into the nearest `.share-status`.
+  - `initPartyToggle()` / `initPartyToggle(fill)` / `initPartyToggle(onShow, onHide)` / `initPartyToggle({url, onShow, onHide})` — binds every `.party-toggle`; label "Show party labels" ↔ "Hide party labels" (no `aria-pressed`); writes "Party labels shown"/"Party labels hidden" into every `.party-status`; fetches `url` (or the first toggle's `data-party-url`) once on the first reveal; default fill: `[data-bioguide] .party` from `payload.senators|house|members[].partyName`, `.member-header .party` from `payload.member.partyName`, "Voted for {Name}" into `.speaker-pick[data-rc]` from `payload.speaker_votes`; then calls `fill(true|false)` or `onShow(payload)`/`onHide()`; keeps `sessionStorage['cv-show-party']` and re-applies a remembered reveal on load without announcing it; if the reveal fetch or the page callback fails, the label returns to "Show party labels" and every `.party-status` is left empty (never "Party labels hidden" after a Show press); every press takes a new `attempt` number, and a reveal whose fetch or page callback settles after a later press returns without filling, writing the session key or announcing (a Hide pressed while the reveal loads wins). Internal names later tasks extend: `toggles`, `revealed`, `partyName`, `payload`, `attempt`, `fillSpeakerPicks()`, `onToggle()`.
+  - `initShare()` — `navigator.share({title, text, url})` from the button's `data-share-*` (url falls back to `<link rel=canonical>`); on no support or error (except the reader's own cancel) copies the canonical URL and writes "Link copied" into the nearest `.share-status` (emptied first, so a second copy is announced again).
   - `initPhotos()` — capture-phase `error` listener plus the init sweep (`img.complete && img.naturalWidth === 0 && img.currentSrc`) that removes a failed `.photo img`.
   - `readHome() -> {state, district, savedAt} | null`, `rememberDistrict(state, district) -> object | null`, `forgetHome()`, `homePlace(home) -> "New York, District 4"`, `homeHref(home) -> "/state?code=NY&district=4"`, `initHome() -> home | null` (writes `cv-home` from `#mine` on `/state?code=XX&district=N#mine`, then `history.replaceState` drops the fragment), `rememberedLine(home, onForget) -> <p class="meta remembered-line">`, `rewriteMastheadLink()`.
   - `initNotify()`, `focusHeading(heading)`, `focusFirstControl(container)`, `isWide()`, `REDUCED_MOTION`, `BREAKPOINTS`, `COVERED_STATES`, `storageGet/storageSet/storageRemove(store, key[, value])`, `initSite()`.
@@ -9554,6 +9554,12 @@ def test_site_js_storage_rules():
     assert "storageRemove('localStorage', PARTY_KEY)" in js        # legacy key removed on load
     assert "document.cookie" not in js
     assert "aria-pressed" not in js and "aria-live" not in js
+    # A Hide pressed while a reveal is loading wins: stale reveals bail after every wait.
+    assert "const mine = ++attempt;" in js and "attempt++;" in js
+    assert js.count("if (mine !== attempt || !revealed)") >= 3
+    # A second "Link copied" is announced; a 422 from /api/notify is the email, not an outage.
+    assert "statusNode.textContent = '';" in js
+    assert "response.status === 422" in js and "setEmailError(t('invalidEmail'))" in js
     for fn in ("initPartyToggle", "initShare", "initPhotos", "initHome", "rememberDistrict", "forgetHome",
                "rewriteMastheadLink", "initNotify", "focusHeading", "rememberedLine", "readHome"):
         assert re.search(rf"^(?:async )?function {fn}\(", js, re.M), fn
@@ -9793,6 +9799,10 @@ function initPartyToggle(arg, hideArg) {
     let revealed = false;
     let partyName = '';
     let payload = null;
+    // Every Show and Hide press takes a new number. A reveal whose fetch or page callback
+    // settles after a later press is stale: it must not touch the screen, the session key
+    // or the status line (§8 item 10, §5.4).
+    let attempt = 0;
 
     function status(key) {
         document.querySelectorAll('.party-status').forEach((node) => { node.textContent = key ? t(key) : ''; });
@@ -9827,6 +9837,7 @@ function initPartyToggle(arg, hideArg) {
     }
 
     async function show(announce) {
+        const mine = ++attempt;
         revealed = true;
         label();
         try {
@@ -9834,12 +9845,19 @@ function initPartyToggle(arg, hideArg) {
                 const response = await fetch(url);
                 if (!response.ok) throw new Error(`party ${response.status}`);
                 payload = await response.json();
+                if (mine !== attempt || !revealed) return;
             }
             fillSpans();
             if (onShow) await onShow(payload);
+            if (mine !== attempt || !revealed) {
+                // A Hide landed while the page callback ran: its fill must not outlive the Hide.
+                if (!revealed && onHide) onHide();
+                return;
+            }
             storageSet('sessionStorage', PARTY_KEY, '1');
             if (announce) status('partyShown');
         } catch (e) {
+            if (mine !== attempt || !revealed) return;   // a later press owns the state now
             // The reveal failed: put the "Show party labels" label back and say nothing.
             // "Party labels hidden" would be a false status after a Show press (§8 item 10),
             // and the spec gives no failure copy for this control.
@@ -9851,6 +9869,7 @@ function initPartyToggle(arg, hideArg) {
     }
 
     function hide() {
+        attempt++;
         revealed = false;
         label();
         document.querySelectorAll('.party, .speaker-pick').forEach((span) => { span.textContent = ''; });
@@ -9911,7 +9930,11 @@ function initShare() {
             }
             try {
                 await copyText(data.url);
-                if (statusNode) statusNode.textContent = t('linkCopied');
+                if (statusNode) {
+                    // Empty the line first, so a second copy is a change a screen reader announces.
+                    statusNode.textContent = '';
+                    setTimeout(() => { statusNode.textContent = t('linkCopied'); }, 100);
+                }
             } catch (e) {
                 if (statusNode) statusNode.textContent = data.url;
             }
@@ -9953,6 +9976,7 @@ function initNotify() {
         if (submit) submit.disabled = true;
         status.textContent = '';
         let ok = false;
+        let rejected = false;
         try {
             const response = await fetch('/api/notify', {
                 method: 'POST',
@@ -9960,8 +9984,19 @@ function initNotify() {
                 body: JSON.stringify({ email: email.value.trim(), state }),
             });
             ok = response.ok;
+            rejected = response.status === 422;
         } catch (e) {
             ok = false;
+        }
+        if (rejected) {
+            // The server's email check is stricter than the browser's type=email (a@b passes
+            // the browser, not the server), so this is the reader's address, not an outage.
+            if (submit) submit.disabled = false;
+            status.classList.remove('field-error');
+            if (emailError) setEmailError(t('invalidEmail'));
+            else status.textContent = t('invalidEmail');
+            email.focus();
+            return;
         }
         status.textContent = ok ? t('notifyThanks', { state: stateName }) : t('notifyFailed');
         status.classList.toggle('field-error', !ok);

@@ -659,6 +659,10 @@ function initPartyToggle(arg, hideArg) {
     let revealed = false;
     let partyName = '';
     let payload = null;
+    // Every Show and Hide press takes a new number. A reveal whose fetch or page callback
+    // settles after a later press is stale: it must not touch the screen, the session key
+    // or the status line (§8 item 10, §5.4).
+    let attempt = 0;
 
     function status(key) {
         document.querySelectorAll('.party-status').forEach((node) => { node.textContent = key ? t(key) : ''; });
@@ -693,6 +697,7 @@ function initPartyToggle(arg, hideArg) {
     }
 
     async function show(announce) {
+        const mine = ++attempt;
         revealed = true;
         label();
         try {
@@ -700,12 +705,19 @@ function initPartyToggle(arg, hideArg) {
                 const response = await fetch(url);
                 if (!response.ok) throw new Error(`party ${response.status}`);
                 payload = await response.json();
+                if (mine !== attempt || !revealed) return;
             }
             fillSpans();
             if (onShow) await onShow(payload);
+            if (mine !== attempt || !revealed) {
+                // A Hide landed while the page callback ran: its fill must not outlive the Hide.
+                if (!revealed && onHide) onHide();
+                return;
+            }
             storageSet('sessionStorage', PARTY_KEY, '1');
             if (announce) status('partyShown');
         } catch (e) {
+            if (mine !== attempt || !revealed) return;   // a later press owns the state now
             // The reveal failed: put the "Show party labels" label back and say nothing.
             // "Party labels hidden" would be a false status after a Show press (§8 item 10),
             // and the spec gives no failure copy for this control.
@@ -717,6 +729,7 @@ function initPartyToggle(arg, hideArg) {
     }
 
     function hide() {
+        attempt++;
         revealed = false;
         label();
         document.querySelectorAll('.party, .speaker-pick').forEach((span) => { span.textContent = ''; });
@@ -777,7 +790,11 @@ function initShare() {
             }
             try {
                 await copyText(data.url);
-                if (statusNode) statusNode.textContent = t('linkCopied');
+                if (statusNode) {
+                    // Empty the line first, so a second copy is a change a screen reader announces.
+                    statusNode.textContent = '';
+                    setTimeout(() => { statusNode.textContent = t('linkCopied'); }, 100);
+                }
             } catch (e) {
                 if (statusNode) statusNode.textContent = data.url;
             }
@@ -819,6 +836,7 @@ function initNotify() {
         if (submit) submit.disabled = true;
         status.textContent = '';
         let ok = false;
+        let rejected = false;
         try {
             const response = await fetch('/api/notify', {
                 method: 'POST',
@@ -826,8 +844,19 @@ function initNotify() {
                 body: JSON.stringify({ email: email.value.trim(), state }),
             });
             ok = response.ok;
+            rejected = response.status === 422;
         } catch (e) {
             ok = false;
+        }
+        if (rejected) {
+            // The server's email check is stricter than the browser's type=email (a@b passes
+            // the browser, not the server), so this is the reader's address, not an outage.
+            if (submit) submit.disabled = false;
+            status.classList.remove('field-error');
+            if (emailError) setEmailError(t('invalidEmail'));
+            else status.textContent = t('invalidEmail');
+            email.focus();
+            return;
         }
         status.textContent = ok ? t('notifyThanks', { state: stateName }) : t('notifyFailed');
         status.classList.toggle('field-error', !ok);
