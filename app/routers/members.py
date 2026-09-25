@@ -3,6 +3,7 @@ import copy
 import logging
 from fastapi import APIRouter, HTTPException, Query
 from app.dependencies import get_data_service
+from app.services.data_service import RECORD_API_MAX_GROUPS
 
 logger = logging.getLogger(__name__)
 
@@ -40,21 +41,50 @@ async def get_member_sponsored_bills(bioguide_id: str):
     return {"bills": bills, "count": len(bills)}
 
 
+_POSITION_PATTERN = "^(yes|no|nv)$"
+
+
 @router.get("/{bioguide_id}/votes")
 async def get_member_votes(
     bioguide_id: str,
     congress: int | None = Query(None, ge=1, le=200),
     limit: int = Query(20, ge=1, le=2000),
     offset: int = Query(0, ge=0),
+    group: str | None = Query(None, pattern="^bill$", description="'bill' returns the record grouped by bill (at most 50 groups)"),
+    plain: bool = Query(False, description="Only votes on bills with a plain-English summary"),
+    policy_area: str | None = Query(None, max_length=120),
+    position: str | None = Query(None, pattern=_POSITION_PATTERN),
 ):
     _validate_bioguide_id(bioguide_id)
     data_service = get_data_service()
+    if group == "bill":
+        record = data_service.get_member_record(
+            bioguide_id, topic=policy_area, position=position, plain=plain, congress=congress)
+        if record is None:
+            raise HTTPException(status_code=404, detail="Member not found")
+        page_size = min(limit, RECORD_API_MAX_GROUPS)
+        return {
+            "member_id": bioguide_id.upper(),
+            "groups": record["groups"][offset:offset + page_size],
+            "total_groups": record["total_groups"],
+            "matching_bills": record["matching_bills"],
+            "limit": page_size,
+            "offset": offset,
+            "topic": record["topic"],
+            "position": record["position"],
+            "plain": record["plain"],
+            "policy_areas": record["policy_areas"],
+            "plain_bills": record["plain_bills"],
+            "total_bills": record["total_bills"],
+        }
     data = data_service.get_member_votes(bioguide_id)
     if not data:
         raise HTTPException(status_code=404, detail="Member not found")
     votes = data["votes"]
     if congress is not None:
         votes = [v for v in votes if v.get("congress") == congress]
+    if policy_area or position or plain:
+        votes = data_service.filter_member_votes(votes, policy_area, position, plain)
     sorted_votes = sorted(votes, key=lambda v: v["date"], reverse=True)
     paginated = sorted_votes[offset:offset + limit]
     return {
@@ -67,6 +97,23 @@ async def get_member_votes(
         "policy_areas": data["policy_areas"],
         "categories": data.get("categories", []),
     }
+
+
+@router.get("/{bioguide_id}/page")
+def get_member_page(
+    bioguide_id: str,
+    page: int = Query(1, ge=1, le=10000),
+    topic: str | None = Query(None, max_length=120),
+    position: str | None = Query(None, pattern=_POSITION_PATTERN),
+    plain: bool = Query(False),
+):
+    """The member page payload (spec §10 #8): the same dict the server-rendered page uses.
+    Registered before /{state_code}/{district}, which would otherwise capture /S000148/page."""
+    _validate_bioguide_id(bioguide_id)
+    result = get_data_service().get_member_page(bioguide_id, page, topic, position, plain)
+    if result is None:
+        raise HTTPException(status_code=404, detail="Member not found")
+    return result
 
 
 @router.get("/{bioguide_id}/summary")
@@ -187,7 +234,10 @@ async def get_member_detail(bioguide_id: str, show_party: bool = False):
     data = data_service.get_member_detail(bioguide_id)
     if not data:
         raise HTTPException(status_code=404, detail="Member not found")
-    return data if show_party else _strip_party(data)
+    if not show_party:
+        return _strip_party(data)
+    # The party reveal (§4.3) also fills each Speaker row's "Voted for {Name}".
+    return {**data, "speaker_votes": data_service.get_speaker_votes(bioguide_id)}
 
 
 @router.get("/{state_code}/{district}")

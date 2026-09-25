@@ -21,6 +21,8 @@ CHECKED_ENDPOINTS = [
     "/api/districts/11201",
     "/api/districts/73949",
     "/api/districts/88430",
+    "/api/members/S000148/page",
+    "/api/members/G000602/page",
 ]
 
 

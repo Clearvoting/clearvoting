@@ -4,6 +4,8 @@ import re
 from datetime import datetime
 from pathlib import Path
 
+from app import render
+
 logger = logging.getLogger(__name__)
 
 # Matches bill documents in vote files, e.g. "H.R. 1", "H.Res. 24", "S.J.Res. 10".
@@ -113,6 +115,253 @@ def state_overview_payload(code: str, members: list[dict], latest_votes: dict[st
     }
 
 
+# ---------------------------------------------------------------------------
+# Member page payload (plan T1.7; spec §4.3 m2, m4, m5, m7, §2.5 B, §10 #8).
+# Pure functions over member_votes rows and votes_index.json entries, so the
+# rules can be tested without a data directory.
+# ---------------------------------------------------------------------------
+
+RECORD_PER_PAGE = 15
+RECORD_API_MAX_GROUPS = 50
+RECENT_VOTES_LIMIT = 8
+SPONSORED_LIMIT = 6
+SPEAKER_QUESTION = "Election of the Speaker"
+_YES_VOTES = frozenset({"Yea", "Aye"})
+_NO_VOTES = frozenset({"Nay", "No"})
+_KNOWN_POSITIONS = frozenset({
+    "Yea", "Aye", "Nay", "No", "Not Voting", "Present", "Present, Giving Live Pair",
+    "Guilty", "Not Guilty",
+})
+_PARTY_KEYS = frozenset({"party", "partyName", "partyCode"})
+_MONEY_TOTAL_KEYS = ("total_receipts", "total_individual", "total_pac", "total_disbursements")
+_BILL_ID_RE = re.compile(r"^(\d{1,3})-([a-z]+)-(\d{1,5})$")
+
+
+def _as_int(value) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return 0
+
+
+def rc_key_or_none(chamber, congress, session, vote_number) -> str | None:
+    """T1.4's roll_call_key for rows that may be incomplete: 'Senate', 119, 2, 228 ->
+    'senate/119_2_00228'. None instead of TypeError/ValueError, and None for a chamber
+    that is neither House nor Senate. roll_call_key itself is not redefined."""
+    name = str(chamber or "").strip().lower()
+    if name.startswith("senate"):
+        prefix = "senate"
+    elif name.startswith("house"):
+        prefix = "house"
+    else:
+        return None
+    try:
+        return roll_call_key(prefix, congress, session, vote_number)
+    except (TypeError, ValueError):
+        return None
+
+
+def _bill_id_parts(bill_id) -> tuple[int, str, int] | None:
+    """'119-hr-6500' -> (119, 'hr', 6500); None for anything else."""
+    match = _BILL_ID_RE.match(str(bill_id or ""))
+    if not match:
+        return None
+    return int(match.group(1)), match.group(2), int(match.group(3))
+
+
+def position_class(vote) -> str:
+    """§7.1 positions: Yea/Aye -> 'yes', Nay/No -> 'no', Not Voting -> 'nv', else 'other'."""
+    vote = str(vote or "")
+    if vote in _YES_VOTES:
+        return "yes"
+    if vote in _NO_VOTES:
+        return "no"
+    if vote == "Not Voting":
+        return "nv"
+    return "other"
+
+
+def is_speaker_vote(row: dict, entry: dict | None) -> bool:
+    """A Speaker election: the index question says so, or the position is a candidate name."""
+    entry = entry or {}
+    if SPEAKER_QUESTION in (entry.get("question"), entry.get("plain")):
+        return True
+    vote = str(row.get("vote") or "")
+    return bool(vote) and vote not in _KNOWN_POSITIONS
+
+
+def _newest_first(votes: list[dict]) -> list[dict]:
+    """Newest first by calendar day, then roll-call number. Some stored times are twelve
+    hours off inside a day, so the roll-call number orders votes within one day."""
+    return sorted(
+        votes,
+        key=lambda v: (str(v.get("date") or "")[:10], _as_int(v.get("congress")),
+                       _as_int(v.get("session")), _as_int(v.get("vote_number"))),
+        reverse=True,
+    )
+
+
+def pick_recent_votes(votes: list[dict], roll_calls: dict, plain_one_liner,
+                      limit: int = RECENT_VOTES_LIMIT) -> list[dict]:
+    """'Recent votes' (§4.3 m2, §2.5 B). `votes` are member_votes rows, newest first.
+
+    Candidates: a bill vote whose index class is D, whose bill has a displayable summary
+    (`plain_one_liner(bill_id)` returns its one-liner), with a non-empty policy area and a
+    Yea/Aye/Nay/No position. Dedupe: the first qualifying vote per bill, newest first; a bill
+    is marked seen only when one of its votes is picked. Spread: round-robin over policy
+    areas in order of each area's newest candidate. Output newest first. The member's
+    position is never a selection criterion."""
+    seen: set[str] = set()
+    candidates: list[dict] = []
+    for row in votes:
+        bill_id = row.get("bill_id")
+        if not bill_id or bill_id in seen:
+            continue
+        position = position_class(row.get("vote"))
+        area = str(row.get("policy_area") or "").strip()
+        key = rc_key_or_none(row.get("chamber"), row.get("congress"), row.get("session"), row.get("vote_number"))
+        entry = roll_calls.get(key) if key else None
+        parts = _bill_id_parts(bill_id)
+        if position not in ("yes", "no") or not area or not entry or entry.get("class") != "D" or not parts:
+            continue
+        one_liner = plain_one_liner(bill_id)
+        if not one_liner:
+            continue
+        seen.add(bill_id)
+        candidates.append({
+            "rc": key,
+            "roll_call": entry,
+            "chamber": "Senate" if key.startswith("senate/") else "House",
+            "bill_id": bill_id,
+            "congress": parts[0],
+            "bill_type": parts[1],
+            "bill_number": parts[2],
+            "one_liner": one_liner,
+            "position": position,
+            "date": str(row.get("date") or ""),
+            "policy_area": area,
+        })
+    by_area: dict[str, list[dict]] = {}
+    for candidate in candidates:
+        by_area.setdefault(candidate["policy_area"], []).append(candidate)
+    queues = list(by_area.values())
+    picked: list[dict] = []
+    while len(picked) < limit and any(queues):
+        for queue in queues:
+            if queue and len(picked) < limit:
+                picked.append(queue.pop(0))
+    order = {candidate["rc"]: i for i, candidate in enumerate(candidates)}
+    picked.sort(key=lambda candidate: order[candidate["rc"]])
+    return picked
+
+
+def filter_record_votes(votes: list[dict], topic, position, plain, plain_one_liner) -> list[dict]:
+    """The record's GET filters (§4.3 m4), applied to vote rows before grouping: `topic`
+    (policy area, exact), `position` ('yes' | 'no' | 'nv'), `plain` (only bills whose
+    summary is displayable)."""
+    kept = []
+    for row in votes:
+        if topic and str(row.get("policy_area") or "") != topic:
+            continue
+        if position and position_class(row.get("vote")) != position:
+            continue
+        if plain and not (row.get("bill_id") and plain_one_liner(row["bill_id"])):
+            continue
+        kept.append(row)
+    return kept
+
+
+def _record_vote(row: dict, roll_calls: dict, bills_by_id: dict) -> dict:
+    """One member_votes row joined to its index entry (§4.3 m4). A Speaker-election row
+    loses the candidate name here: position 'Voted', result 'Speaker elected'; the name
+    returns only through /api/members/detail/{id}?show_party=true (§4.3 party reveal)."""
+    key = rc_key_or_none(row.get("chamber"), row.get("congress"), row.get("session"), row.get("vote_number"))
+    entry = roll_calls.get(key) if key else None
+    parent = None
+    parts = _bill_id_parts((entry or {}).get("parent"))
+    if parts:
+        parent_id = f"{parts[0]}-{parts[1]}-{parts[2]}"
+        parent = {"bill_id": parent_id, "congress": parts[0], "bill_type": parts[1],
+                  "bill_number": parts[2], "in_bills": parent_id in bills_by_id}
+    vote = {
+        "rc": key,
+        "roll_call": entry,
+        "chamber": "Senate" if str(row.get("chamber") or "").lower().startswith("senate") else "House",
+        "vote": str(row.get("vote") or ""),
+        "date": str(row.get("date") or ""),
+        "result": str(row.get("result") or ""),
+        "text": "" if row.get("bill_id") else str(row.get("one_liner") or row.get("bill_number") or "").strip(),
+        "parent": parent,
+    }
+    if is_speaker_vote(row, entry):
+        vote.update({"vote": "Voted", "result": "Speaker elected", "text": ""})
+        if entry:
+            vote["roll_call"] = {**entry, "result": "Speaker elected"}
+    return vote
+
+
+def group_record(votes: list[dict], roll_calls: dict, bills_by_id: dict, plain_one_liner) -> list[dict]:
+    """The record as groups, newest first (§4.3 m4). `votes` are member_votes rows, newest first.
+
+    - bill group (bill_id set): placed at its newest vote; `lead` = its latest class-D roll
+      call, else its latest; `more` = the rest, newest first. `headline` = the displayable
+      one-liner, else the bills.json official title, else the row's own string (never both).
+    - other group (bill_id null): consecutive such votes on one calendar day share a row.
+    - speaker group: one Speaker-election vote, candidate name removed."""
+    groups: list[dict] = []
+    bill_groups: dict[str, dict] = {}
+    for row in votes:
+        vote = _record_vote(row, roll_calls, bills_by_id)
+        bill_id = row.get("bill_id")
+        if bill_id:
+            group = bill_groups.get(bill_id)
+            if group is None:
+                parts = _bill_id_parts(bill_id)
+                one_liner = plain_one_liner(bill_id)
+                title = (bills_by_id.get(bill_id) or {}).get("title")
+                group = {
+                    "kind": "bill",
+                    "bill_id": bill_id,
+                    "congress": parts[0] if parts else row.get("congress"),
+                    "bill_type": parts[1] if parts else "",
+                    "bill_number": parts[2] if parts else None,
+                    "headline": one_liner or title or str(row.get("one_liner") or row.get("bill_number") or ""),
+                    "displayable": bool(one_liner),
+                    "policy_area": str(row.get("policy_area") or ""),
+                    "_votes": [],
+                }
+                bill_groups[bill_id] = group
+                groups.append(group)
+            group["_votes"].append(vote)
+        elif is_speaker_vote(row, roll_calls.get(vote["rc"]) if vote["rc"] else None):
+            groups.append({"kind": "speaker", "vote": vote})
+        else:
+            day = vote["date"][:10]
+            last = groups[-1] if groups else None
+            if last is not None and last["kind"] == "other" and last["date"] == day:
+                last["votes"].append(vote)
+            else:
+                groups.append({"kind": "other", "date": day, "votes": [vote]})
+    for group in bill_groups.values():
+        on_bill = group.pop("_votes")
+        lead = next((v for v in on_bill if (v["roll_call"] or {}).get("class") == "D"), on_bill[0])
+        group["lead"] = lead
+        group["more"] = [v for v in on_bill if v is not lead]
+    return groups
+
+
+def _status_dict(value) -> dict:
+    """render.bill_status() output as {"text", "variant"} — the shape every page renderer reads."""
+    if isinstance(value, dict):
+        text = str(value.get("text") or "")
+        variant = value.get("variant")
+    else:
+        text, variant = str(value or ""), None
+    if variant not in ("final", "moving"):
+        variant = "final" if text == "Became law" or text.startswith("Adopted by the") else "moving"
+    return {"text": text, "variant": variant}
+
+
 class DataService:
     # The bill page (T1.8) and the sync's AI writer choose the same official summary.
     _latest_official_summary = staticmethod(_latest_official_summary)
@@ -142,6 +391,7 @@ class DataService:
         self._senator_ids: dict[str, list[str]] = {}
         # state_overview/{code}.json, read on first use and kept (§10 #7); None = file missing.
         self._state_overviews: dict[str, dict | None] = {}
+        self._bills_by_id: dict[str, dict] | None = None  # bill_id -> bills.json row, built on first use
         self._load()
 
     def _load(self) -> None:
@@ -573,3 +823,188 @@ class DataService:
 
     def get_sync_metadata(self) -> dict:
         return self._metadata
+
+    # ---- Member page payload (plan T1.7) ----
+
+    def _index_roll_calls(self) -> dict:
+        return (self._votes_index or {}).get("roll_calls") or {}
+
+    def _index_bill_keys(self, bill_id: str) -> list[str]:
+        """Roll-call keys for one bill, newest first (votes_index.json `bills`)."""
+        entry = ((self._votes_index or {}).get("bills") or {}).get(bill_id)
+        keys = entry.get("roll_calls") if isinstance(entry, dict) else entry
+        return [key for key in (keys or []) if isinstance(key, str)]
+
+    def _bill_lookup(self) -> dict[str, dict]:
+        if self._bills_by_id is None:
+            self._bills_by_id = {
+                f"{b.get('congress')}-{str(b.get('type') or '').lower()}-{b.get('number')}": b
+                for b in self._bills
+            }
+        return self._bills_by_id
+
+    def _plain_one_liner(self, bill_id) -> str | None:
+        """The AI one-liner only when the summary is displayable (exists, not needs_review)."""
+        if not bill_id or not self.displayable_summary(bill_id):
+            return None
+        return (self._ai_summaries.get(bill_id) or {}).get("one_liner") or None
+
+    def _bill_status_for(self, bill: dict, bill_id: str) -> dict:
+        """§7.2 bill status seal from `laws` and the newest class-D roll call per chamber.
+        The one bill-status path: the member page (sponsored rows), the bill page and
+        T1.9's /api/bills `derived_status` all call this. An impeachment verdict is class D
+        but never a bill seal, so it is skipped and an older decisive vote can stand."""
+        latest_decisive: dict[str, dict | None] = {"house": None, "senate": None}
+        roll_calls = self._index_roll_calls()
+        for key in self._index_bill_keys(bill_id):
+            chamber = key.split("/", 1)[0]
+            entry = roll_calls.get(key)
+            if (entry and entry.get("class") == "D" and latest_decisive.get(chamber, 0) is None
+                    and "Guilty or Not Guilty" not in str(entry.get("question") or "")):
+                latest_decisive[chamber] = entry
+        laws = bill.get("laws") or []
+        bill_type = str(bill.get("type") or "").lower()
+        return _status_dict(render.bill_status(laws, latest_decisive, bill_type))
+
+    def _nominations_since(self, first_day: str) -> int:
+        """Senate roll calls on nominations (PN documents) on or after `first_day` (§4.3 m4)."""
+        count = 0
+        for key, entry in self._index_roll_calls().items():
+            if not key.startswith("senate/"):
+                continue
+            document = str(entry.get("document") or "").strip()
+            if (document.startswith("PN") or document.startswith("P.N.")) and str(entry.get("date") or "")[:10] >= first_day:
+                count += 1
+        return count
+
+    def _complete_donation(self, bioguide_id: str) -> dict | None:
+        """§4.3 m7: only when the four totals and fec_candidate_id exist; top donors never leave."""
+        entry = self.get_member_donations(bioguide_id)
+        if not isinstance(entry, dict):
+            return None
+        totals = entry.get("totals") or {}
+        if not entry.get("fec_candidate_id") or any(totals.get(k) is None for k in _MONEY_TOTAL_KEYS):
+            return None
+        return {
+            "fec_candidate_id": entry["fec_candidate_id"],
+            "cycle": entry.get("cycle"),
+            "last_updated": entry.get("last_updated"),
+            "totals": {k: totals[k] for k in _MONEY_TOTAL_KEYS},
+        }
+
+    def _sponsored_row(self, row: dict) -> dict:
+        """One get_bills_by_sponsor row for the page (§4.3 m5): no raw latest_action string."""
+        bill_id = f"{row.get('congress')}-{str(row.get('type') or '').lower()}-{row.get('number')}"
+        bill = self._bill_lookup().get(bill_id) or {}
+        return {
+            "congress": row.get("congress"),
+            "type": row.get("type"),
+            "number": row.get("number"),
+            "title": row.get("title") or "",
+            "introduced_date": row.get("introduced_date") or "",
+            "policy_area": row.get("policy_area") or "",
+            "one_liner": self._plain_one_liner(bill_id),
+            "status": self._bill_status_for(bill, bill_id),
+        }
+
+    def filter_member_votes(self, votes: list[dict], topic, position, plain) -> list[dict]:
+        return filter_record_votes(votes, topic, position, plain, self._plain_one_liner)
+
+    def _record_from_votes(self, votes: list[dict], policy_areas, topic, position, plain) -> dict:
+        topic = str(topic or "").strip() or None
+        position = position if position in ("yes", "no", "nv") else None
+        plain = bool(plain)
+        bills = self._bill_lookup()
+        chosen = filter_record_votes(votes, topic, position, plain, self._plain_one_liner)
+        groups = group_record(chosen, self._index_roll_calls(), bills, self._plain_one_liner)
+        bill_ids = {row["bill_id"] for row in votes if row.get("bill_id")}
+        return {
+            "groups": groups,
+            "total_groups": len(groups),
+            "matching_bills": sum(1 for group in groups if group["kind"] == "bill"),
+            "topic": topic,
+            "position": position,
+            "plain": plain,
+            "policy_areas": list(policy_areas or []),
+            "plain_bills": sum(1 for bill_id in bill_ids if self._plain_one_liner(bill_id)),
+            "total_bills": len(bill_ids),
+        }
+
+    def get_member_record(self, bioguide_id: str, topic: str | None = None, position: str | None = None,
+                          plain: bool = False, congress: int | None = None) -> dict | None:
+        """The whole grouped record (all pages); None when there is no member_votes file."""
+        data = self.get_member_votes(bioguide_id)
+        if not data:
+            return None
+        votes = _newest_first(data.get("votes") or [])
+        if congress is not None:
+            votes = [v for v in votes if v.get("congress") == congress]
+        return self._record_from_votes(votes, data.get("policy_areas"), topic, position, plain)
+
+    def get_member_page(self, bioguide_id: str, page: int = 1, topic: str | None = None,
+                        position: str | None = None, plain: bool = False) -> dict | None:
+        """Everything the member page renders (§4.3, §10 #8), party-free: header facts,
+        Recent votes, one page of the grouped record, sponsored bills and campaign money.
+        Reads startup data plus this member's one member_votes file. None for unknown ids."""
+        detail = self.get_member_detail(bioguide_id)
+        if not detail:
+            return None
+        raw_member = detail["member"]
+        member_id = raw_member.get("bioguideId", "")
+        sponsored = sorted(self.get_bills_by_sponsor(member_id),
+                           key=lambda b: b.get("introduced_date") or "", reverse=True)
+        result = {
+            "member": {k: v for k, v in raw_member.items() if k not in _PARTY_KEYS},
+            "seat": self.seat_up_2026(raw_member),
+            "has_record": False,
+            "stats": None,
+            "other_count": None,
+            "first_vote_date": None,
+            "last_vote_date": None,
+            "nominations_count": None,
+            "recent_votes": [],
+            "record": None,
+            "sponsored": [self._sponsored_row(row) for row in sponsored[:SPONSORED_LIMIT]],
+            "sponsored_count": len(sponsored),
+            "donation": self._complete_donation(member_id),
+        }
+        data = self.get_member_votes(member_id)
+        if not data:
+            return result
+        votes = _newest_first(data.get("votes") or [])
+        raw_stats = data.get("stats") or {}
+        stats = {k: _as_int(raw_stats.get(k)) for k in ("total_votes", "yea_count", "nay_count", "not_voting_count")}
+        dates = [str(v.get("date")) for v in votes if v.get("date")]
+        first = min(dates) if dates else None
+        record = self._record_from_votes(votes, data.get("policy_areas"), topic, position, plain)
+        pages = max(1, -(-record["total_groups"] // RECORD_PER_PAGE))
+        page_no = min(max(1, _as_int(page) or 1), pages)
+        start = (page_no - 1) * RECORD_PER_PAGE
+        record["groups"] = record["groups"][start:start + RECORD_PER_PAGE]
+        record.update({"page": page_no, "pages": pages, "per_page": RECORD_PER_PAGE})
+        result.update({
+            "has_record": True,
+            "stats": stats,
+            "other_count": stats["total_votes"] - stats["yea_count"] - stats["nay_count"] - stats["not_voting_count"],
+            "first_vote_date": first,
+            "last_vote_date": max(dates) if dates else None,
+            "nominations_count": (self._nominations_since(first[:10])
+                                  if raw_member.get("chamber") == "Senate" and first else None),
+            "recent_votes": pick_recent_votes(votes, self._index_roll_calls(), self._plain_one_liner),
+            "record": record,
+        })
+        return result
+
+    def get_speaker_votes(self, bioguide_id: str) -> dict[str, str]:
+        """Roll-call key -> this member's Speaker-election pick. Served only with the party
+        reveal (/api/members/detail/{id}?show_party=true): a vote for a party's nominee is a party cue."""
+        data = self.get_member_votes(bioguide_id)
+        if not data:
+            return {}
+        roll_calls = self._index_roll_calls()
+        picks: dict[str, str] = {}
+        for row in data.get("votes") or []:
+            key = rc_key_or_none(row.get("chamber"), row.get("congress"), row.get("session"), row.get("vote_number"))
+            if key and is_speaker_vote(row, roll_calls.get(key)):
+                picks[key] = str(row.get("vote") or "")
+        return picks
