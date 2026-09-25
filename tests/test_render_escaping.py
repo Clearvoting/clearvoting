@@ -190,3 +190,91 @@ def test_trust_renderers_escape_hostile_input(hostile):
         assert 'href="javascript:' not in out, name
     if hostile == "&amp;":
         assert "&amp;amp;" in outputs["render_methodology"]
+
+
+# --- Member page blocks (plan T6.1/T6.2) — self-contained hostile-input checks ---
+import re as _re_member
+
+import pytest as _pytest_member
+
+from app import render as _render_member
+
+MEMBER_HOSTILE = ["<script>alert(1)</script>", '"><img src=x>', "&amp;", "javascript:alert(1)"]
+
+
+def _hostile_member_page(s: str) -> dict:
+    """A get_member_page()-shaped dict with every free-text field set to one hostile string."""
+    rc = {"question": s, "plain": s, "class": "P", "result": s,
+          "counts": {"yeas": 1, "nays": 2, "present": 0, "absent": 0}, "date": "2026-08-08",
+          "document": s, "bill": None, "parent": None, "threshold": None, "tallies": {}}
+    vote = {"rc": s, "roll_call": rc, "chamber": "Senate", "vote": "Yea",
+            "date": "2026-08-08T00:00:00", "result": s, "text": s, "parent": None}
+    return {
+        "member": {"bioguideId": s, "name": f"{s}, {s}", "state": s, "stateCode": s,
+                   "district": None, "chamber": "Senate",
+                   "terms": {"item": [{"chamber": "Senate", "startYear": 1999}]},
+                   "depiction": {"imageUrl": s}},
+        "seat": None,
+        "has_record": True,
+        "stats": {"total_votes": 3, "yea_count": 1, "nay_count": 1, "not_voting_count": 0},
+        "first_vote_date": "2021-01-06",
+        "last_vote_date": "2026-08-08",
+        "nominations_count": 3,
+        "recent_votes": [{"rc": s, "roll_call": rc, "chamber": "Senate", "bill_id": "119-hr-1",
+                          "congress": 119, "bill_type": "hr", "bill_number": 1, "one_liner": s,
+                          "position": "yes", "date": "2026-08-08T00:00:00", "policy_area": s}],
+        "record": {
+            "groups": [
+                {"kind": "bill", "bill_id": "119-hr-1", "congress": 119, "bill_type": "hr",
+                 "bill_number": 1, "headline": s, "displayable": False, "lead": vote, "more": [vote]},
+                {"kind": "other", "date": "2026-08-08", "votes": [vote]},
+                {"kind": "speaker", "vote": dict(vote, vote=s)},
+            ],
+            "page": 2, "pages": 3, "per_page": 15, "total_groups": 40, "matching_bills": 7,
+            "topic": s, "position": None, "plain": True, "policy_areas": [s],
+            "plain_bills": 1, "total_bills": 2,
+        },
+        "sponsored": [{"congress": 119, "type": "hr", "number": 1, "title": s, "introduced_date": s,
+                       "one_liner": s, "status": {"text": s, "variant": "moving"}}],
+        "sponsored_count": 1,
+        "donation": {"fec_candidate_id": s, "cycle": s, "last_updated": s,
+                     "totals": {"total_receipts": 1, "total_individual": 1, "total_pac": 1,
+                                "total_disbursements": 1}},
+    }
+
+
+def _assert_member_safe(out: str, s: str, echoes: bool = True) -> None:
+    """echoes=False for an output that rightly drops the hostile value instead of printing it
+    (render_money falls back to its fixed meta line when the cycle or FEC id is not valid)."""
+    if s in ("<script>alert(1)</script>", '"><img src=x>'):
+        assert s not in out
+    if s == "&amp;" and echoes:
+        assert "&amp;amp;" in out
+    assert not _re_member.search(r'(?:href|src)="\s*javascript:', out, _re_member.I)
+
+
+@_pytest_member.mark.parametrize("s", MEMBER_HOSTILE)
+def test_member_t61_blocks_escape_hostile_strings(s):
+    page = _hostile_member_page(s)
+    outputs = [
+        (_render_member.render_member_header(page), True),
+        (_render_member.render_recent_votes(page["recent_votes"]), True),
+        (_render_member.render_sponsored(page["sponsored"], s, s, total=1), True),
+        (_render_member.render_money(page["donation"]), False),   # hostile cycle -> the meta line
+        (_render_member.render_vote_row("/bill?congress=119&type=hr&number=1", "", s, False, [s]), True),
+    ]
+    for out, echoes in outputs:
+        _assert_member_safe(out, s, echoes)
+
+
+@_pytest_member.mark.parametrize("s", MEMBER_HOSTILE)
+def test_member_t61_money_omits_the_fec_link_for_a_hostile_candidate_id(s):
+    """Valid cycle, totals and retrieval date; only fec_candidate_id is hostile. The id never
+    reaches an href: the entry fails the id check and gets the one meta line."""
+    donation = {"fec_candidate_id": s, "cycle": "2024", "last_updated": "2026-03-20T00:10:39.880084+00:00",
+                "totals": {"total_receipts": 2790888, "total_individual": 2345346, "total_pac": 202800,
+                           "total_disbursements": 3349300}}
+    out = _render_member.render_money(donation)
+    assert "fec.gov" not in out
+    assert "Campaign finance isn't in our data for this member yet." in out
+    _assert_member_safe(out, s, echoes=False)

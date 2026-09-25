@@ -8,6 +8,8 @@ vocabularies can never drift apart.
 import html
 import json
 import re
+import unicodedata
+import urllib.parse
 from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
 from urllib.parse import quote
@@ -1610,3 +1612,317 @@ def render_not_found(zip_form: str, state_links: str) -> str:
         '<p><a href="/">Go to the front page →</a></p>'
         "</section>"
     )
+
+
+# ===========================================================================
+# Member page (§4.3) — header, recent votes, sponsored, money      [plan T6.1]
+# Pure functions over DataService.get_member_page() output. Every interpolated
+# value passes through h(); URLs are built only from parsed ints, known bill
+# types and urllib.parse. Private helpers carry the _mp_ prefix.
+# ===========================================================================
+
+_MP_SITE_URL = "https://clearvoting.org"
+# Lower-case position strings the §7.1 table knows (T1.2's _POSITIONS keys); anything
+# else in a member_votes row is a Speaker-election candidate name.
+_MP_KNOWN_POSITIONS = frozenset(_POSITIONS)
+# get_member_page()'s RecentVote rows carry "yes"/"no"; the §7.1 table is keyed by the
+# recorded position, so they are mapped onto it rather than given a table of their own.
+_MP_RECENT_POSITIONS = {"yes": "Yea", "no": "Nay"}
+_MP_RC_KEY = re.compile(r"^(house|senate)/(\d{1,3})_(\d)_(\d{1,5})$")
+_MP_FEC_ID = re.compile(r"^[HSP][0-9A-Z]{8}$")
+_MP_NAME_SUFFIXES = frozenset({"Jr.", "Sr.", "II", "III", "IV"})
+_MP_TOTAL_KEYS = ("total_receipts", "total_individual", "total_pac", "total_disbursements")
+_MP_PENDING = "No plain-English summary yet"
+
+
+def _mp_join(*parts: str) -> str:
+    """Join already-escaped HTML pieces with the site's ' · ' separator, skipping empties."""
+    return " · ".join(p for p in parts if p)
+
+
+def _mp_iso_day(value) -> str:
+    """The YYYY-MM-DD prefix of an ISO date/datetime string, or '' when it is not a real date."""
+    text = str(value or "")[:10]
+    try:
+        date.fromisoformat(text)
+    except ValueError:
+        return ""
+    return text
+
+
+def _mp_month_year(value) -> str:
+    """'2021-01-06' -> 'January 2021' (the record's real start, §7.5)."""
+    day = _mp_iso_day(value)
+    return f"{_MONTHS_LONG[int(day[5:7]) - 1]} {day[:4]}" if day else ""
+
+
+def _mp_short_date(value) -> str:
+    """ISO date/datetime -> 'Aug 8, 2026' through the one date helper (§7.3)."""
+    day = _mp_iso_day(value)
+    return format_date(day, short=True) if day else ""
+
+
+def _mp_chip(vote) -> str:
+    """The member's position as a vote chip (§6.4), through T1.2's position_chip — the one
+    §7.1 table, twinned in site.js chip(). A Speaker-election candidate name becomes the
+    neutral 'Voted'; names appear only on party reveal."""
+    text = str(vote or "")
+    c = position_chip(_MP_RECENT_POSITIONS.get(text, text))
+    return f'<span class="chip chip--{c["variant"]}">{h(c["text"])}</span>'
+
+
+def _mp_bill_href(congress, bill_type, number) -> str | None:
+    """/bill URL for every type in the shared map (resolutions link too, F27); None otherwise."""
+    kind = str(bill_type or "").lower()
+    if kind not in _BILL_TYPE_LABELS:
+        return None
+    try:
+        congress_n, number_n = int(congress), int(number)
+    except (TypeError, ValueError):
+        return None
+    return "/bill?" + urllib.parse.urlencode({"congress": congress_n, "type": kind, "number": number_n})
+
+
+def _mp_source_url(vote: dict) -> str | None:
+    """Official record for one roll call, built from its index key (same URLs the old member.js used)."""
+    match = _MP_RC_KEY.match(str(vote.get("rc") or ""))
+    if not match:
+        return None
+    chamber = match.group(1)
+    congress, session, number = int(match.group(2)), int(match.group(3)), int(match.group(4))
+    if chamber == "senate":
+        return ("https://www.senate.gov/legislative/LIS/roll_call_votes/"
+                f"vote{congress}{session}/vote_{congress}_{session}_{number:05d}.htm")
+    year = _mp_iso_day(vote.get("date"))[:4]
+    return f"https://clerk.house.gov/Votes/{year}{number}" if year else None
+
+
+def _mp_source_anchor(vote: dict) -> str:
+    """'Roll call source →' as its own link (a sibling, never nested in a row link)."""
+    url = _mp_source_url(vote)
+    return f'<a class="rc-source" href="{h(url)}">Roll call source →</a>' if url else ""
+
+
+def _mp_is_speaker(vote: dict) -> bool:
+    """A Speaker election: the index says so, or the position is a candidate name."""
+    plain = str((vote.get("roll_call") or {}).get("plain") or "")
+    return (plain == "Election of the Speaker"
+            or str(vote.get("vote") or "").strip().lower() not in _MP_KNOWN_POSITIONS)
+
+
+def _mp_phrase(vote: dict) -> str:
+    """Seal / result phrase for one roll call (§7.2) from its index entry. Without an entry,
+    the member_votes result before the parenthesis (§7.2 'anything unmatched'). Never
+    called for Speaker elections, whose result string is a candidate name."""
+    rc = vote.get("roll_call")
+    if rc:
+        return result_phrase(rc, str(vote.get("chamber") or ""))
+    return str(vote.get("result") or "").split("(")[0].strip()
+
+def render_vote_row(href, chip_html: str, headline: str, displayable: bool,
+                    meta_parts: list, extra_html: str = "") -> str:
+    """The shared .vote-row (§6.4): the member's chip, the headline (Playfair one-liner,
+    or the official title in Lora 500 when no displayable summary exists), then the meta
+    line. chip_html/extra_html are fragments built by this module; the rest is escaped."""
+    head_class = "row-headline" if displayable else "row-headline row-headline--official"
+    meta = _mp_join(*(h(part) for part in meta_parts if part))
+    inner = (f'{chip_html}<span class="{head_class}">{h(headline)}</span>{extra_html}'
+             f'<span class="meta">{meta}</span>')
+    if href:
+        return f'<a class="vote-row" href="{h(href)}">{inner}</a>'
+    return f'<div class="vote-row">{inner}</div>'
+
+
+def _mp_initials(name: str) -> str:
+    words = [w for w in name.split() if w not in _MP_NAME_SUFFIXES]
+    if not words:
+        return ""
+    return (words[0][:1] + (words[-1][:1] if len(words) > 1 else "")).upper()
+
+
+def _mp_photo(member: dict, name: str) -> str:
+    """64px header photo over the initials block (§6.3): not lazy, alt="" (the name is
+    adjacent). Only congress.gov images pass the CSP, so any other URL shows initials."""
+    url = str((member.get("depiction") or {}).get("imageUrl") or "")
+    img = ""
+    if url.startswith("https://www.congress.gov/"):
+        img = f'<img src="{h(url)}" alt="" width="64" height="64">'
+    return f'<span class="photo photo--header" data-initials="{h(_mp_initials(name))}">{img}</span>'
+
+
+def _mp_congress_gov_member_url(name: str, bioguide: str) -> str:
+    """https://www.congress.gov/member/{slug}/{bioguideId}; slug = display name with accents
+    folded to ASCII ('Velázquez' -> 'velazquez'), lower-cased, hyphenated."""
+    ascii_name = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode("ascii")
+    slug = re.sub(r"[^a-z0-9]+", "-", ascii_name.lower()).strip("-")
+    return (f"https://www.congress.gov/member/{urllib.parse.quote(slug, safe='-')}/"
+            f"{urllib.parse.quote(bioguide, safe='')}")
+
+
+def render_member_header(page: dict) -> str:
+    """Breadcrumb + .member-header (§4.3 fold): photo, kicker, h1, the House/Senate fact line,
+    the seat seal, and the action row (party toggle · Share · Congress.gov) with two
+    role=status nodes that are present and empty. .member-header h1 is the feedback.js hook."""
+    member = page["member"]
+    bioguide = str(member.get("bioguideId") or "")
+    name = display_name(str(member.get("name") or ""))
+    code = str(member.get("stateCode") or "")
+    state_name = str(member.get("state") or code)
+    senate = member.get("chamber") == "Senate"
+    district = member.get("district")
+    if senate:
+        kicker = f"U.S. Senator · {state_name}"
+    elif district:
+        kicker = f"U.S. Representative · {state_name}, District {district}"
+    else:
+        kicker = f"U.S. Representative · {state_name}"
+
+    facts = [tenure_line(member.get("terms") or {})]
+    stats = page.get("stats") or {}
+    since = _mp_month_year(page.get("first_vote_date"))
+    if page.get("has_record") and stats.get("total_votes") and since:
+        total = int(stats["total_votes"])
+        voted = total - int(stats.get("not_voting_count") or 0)
+        scope = ("Senate votes on bills, amendments and motions in our record"
+                 if senate else "House roll calls")
+        facts.append(f"Voted in {voted:,} of the {total:,} {scope} since {since}")
+    fact_line = " · ".join(f for f in facts if f)
+
+    seat_text = seat_seal(page.get("seat"), header=True)
+    seat_html = f'<p class="member-seat">{render_seal(seat_text, "ballot")}</p>' if seat_text else ""
+
+    crumb_href = "/state?" + urllib.parse.urlencode({"code": code})
+    crumb_text = "← " + state_name + "'s representatives"
+    share_url = f"{_MP_SITE_URL}/member?id={urllib.parse.quote(bioguide, safe='')}"
+    share_title = f"{name} ({code}) — Voting Record | ClearVoting"
+    share_text = f"How {name} has voted in Congress"
+    congress_gov = _mp_congress_gov_member_url(name, bioguide)
+    return (
+        '<nav class="crumb" aria-label="Breadcrumb">'
+        f'<a href="{h(crumb_href)}" data-state="{h(code)}">{h(crumb_text)}</a></nav>'
+        f'<header class="member-header" data-bioguide="{h(bioguide)}" data-state="{h(code)}" data-ssr="1">'
+        f'{_mp_photo(member, name)}'
+        '<div class="member-id">'
+        f'<p class="kicker">{h(kicker)} <span class="party"></span></p>'
+        f'<h1>{h(name)}</h1>'
+        f'<p class="meta facts">{h(fact_line)}</p>'
+        f'{seat_html}'
+        '</div>'
+        '<div class="actions">'
+        '<button class="party-toggle" type="button">Show party labels</button>'
+        '<span class="party-status" role="status"></span>'
+        f'<button class="btn--secondary share-btn" type="button" data-share-title="{h(share_title)}" '
+        f'data-share-text="{h(share_text)}" data-share-url="{h(share_url)}">Share</button>'
+        '<span class="share-status" role="status"></span>'
+        f'<a class="btn--secondary" href="{h(congress_gov)}">Congress.gov</a>'
+        '</div>'
+        '</header>'
+    )
+
+def render_recent_votes(rows: list) -> str:
+    """'Recent votes' (§4.3 m2): the rows get_member_page() picked by the published rule,
+    newest first, with the rule printed under them. Omitted when nothing qualifies."""
+    if not rows:
+        return ""
+    items = []
+    for row in rows:
+        href = _mp_bill_href(row.get("congress"), row.get("bill_type"), row.get("bill_number"))
+        meta = [
+            format_bill_code(row.get("bill_type"), row.get("bill_number")),
+            _mp_phrase(row),
+            _mp_short_date(row.get("date")),
+            row.get("policy_area") or "",
+        ]
+        items.append("<li>" + render_vote_row(href, _mp_chip(row.get("position")),
+                                              row.get("one_liner") or "", True, meta) + "</li>")
+    n = len(rows)
+    rule = ("on bills with a plain-English summary, one per topic where possible, "
+            "whatever the member's position.")
+    if n >= 8:
+        caption = "The eight most recent final votes " + rule
+    elif n == 1:
+        caption = "1 recent vote so far. The most recent final votes " + rule
+    else:
+        caption = f"{n} recent votes so far. The most recent final votes " + rule
+    return (
+        '<section class="section" id="recent" aria-labelledby="recent-h">'
+        '<h2 class="kicker" id="recent-h">Recent votes</h2>'
+        f'<ul class="vote-list">{"".join(items)}</ul>'
+        f'<p class="meta recent-caption">{h(caption)} '
+        '<a href="/methodology#recent-votes">How this list is chosen →</a></p>'
+        '</section>'
+    )
+
+
+def render_sponsored(bills: list, name: str, bioguide: str, total: int | None = None) -> str:
+    """'Bills they sponsored that got a floor vote ({n})' (§4.3 m5): at most six .bill-row
+    rows, then — for every member, including n = 0 — the Congress.gov link to everything
+    they sponsored. Never the raw latest_action string."""
+    count = len(bills) if total is None else int(total)
+    rows = []
+    for bill in bills[:6]:
+        kind = str(bill.get("type") or "").lower()
+        href = _mp_bill_href(bill.get("congress"), kind, bill.get("number"))
+        one_liner = bill.get("one_liner")
+        headline = one_liner or bill.get("title") or ""
+        head_class = "row-headline" if one_liner else "row-headline row-headline--official"
+        pending = "" if one_liner else render_seal(_MP_PENDING, "pending")
+        introduced = _mp_short_date(bill.get("introduced_date"))
+        intro = f'<span class="meta">Introduced {h(introduced)}</span>' if introduced else ""
+        status = bill.get("status") or {}
+        seal = render_seal(status["text"], status.get("variant") or "moving") if status.get("text") else ""
+        inner = (f'<span class="kicker">{h(format_bill_code(kind, bill.get("number")))}</span>'
+                 f'<span class="{head_class}">{h(headline)}</span>{pending}{intro}{seal}')
+        if href:
+            rows.append(f'<li><a class="bill-row" href="{h(href)}">{inner}</a></li>')
+        else:
+            rows.append(f'<li><div class="bill-row">{inner}</div></li>')
+    list_html = f'<ul class="sponsored-list">{"".join(rows)}</ul>' if rows else ""
+    link = _mp_congress_gov_member_url(name, bioguide)
+    return (
+        '<section class="section" id="sponsored" aria-labelledby="sponsored-h">'
+        f'<h2 id="sponsored-h">Bills they sponsored that got a floor vote ({count:,})</h2>'
+        f'{list_html}'
+        f'<p class="meta"><a href="{h(link)}">All legislation {h(name)} sponsored, on Congress.gov →</a></p>'
+        '</section>'
+    )
+
+
+def _mp_dollars(value) -> str:
+    """2790888 -> '$2.8 million'; 202800 -> '$202,800' (§4.3 m7 sentence)."""
+    amount = int(round(float(value)))
+    if abs(amount) >= 1_000_000:
+        millions = f"{amount / 1_000_000:.1f}".rstrip("0").rstrip(".")
+        return f"${millions} million"
+    return f"${amount:,}"
+
+
+def render_money(donation) -> str:
+    """'Campaign money' (§4.3 m7, C-4): one dated 2024-cycle sentence with an FEC link, only
+    when the entry has all four totals, a candidate id, a cycle and a retrieval date;
+    otherwise one meta line. No headline number, no bars, no contributor rows."""
+    head = '<section class="section member-money" aria-labelledby="money-h"><h2 id="money-h">Campaign money</h2>'
+    entry = donation or {}
+    totals = entry.get("totals") or {}
+    fec_id = str(entry.get("fec_candidate_id") or "")
+    cycle = str(entry.get("cycle") or "")
+    retrieved_day = _mp_iso_day(entry.get("last_updated"))
+    complete = (
+        all(isinstance(totals.get(k), (int, float)) for k in _MP_TOTAL_KEYS)
+        and _MP_FEC_ID.match(fec_id) is not None
+        and cycle.isdigit()
+        and bool(retrieved_day)
+    )
+    if not complete:
+        return head + '<p class="meta">Campaign finance isn\'t in our data for this member yet.</p></section>'
+    year = int(cycle)
+    sentence = (
+        f"In the {year - 1}–{year} FEC reporting period (the {year} cycle), this member's campaign "
+        f"committee reported {_mp_dollars(totals['total_receipts'])} raised "
+        f"({_mp_dollars(totals['total_individual'])} from individuals, "
+        f"{_mp_dollars(totals['total_pac'])} from PACs) and "
+        f"{_mp_dollars(totals['total_disbursements'])} spent; retrieved {format_date(retrieved_day)}. "
+        f"The {year + 1}–{year + 2} period is not yet in our data."
+    )
+    href = f"https://www.fec.gov/data/candidate/{urllib.parse.quote(fec_id, safe='')}/"
+    return head + f'<p>{h(sentence)} <a href="{h(href)}">Filings on FEC.gov →</a></p></section>'
