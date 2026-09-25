@@ -367,6 +367,90 @@ def _status_dict(value) -> dict:
     return {"text": text, "variant": variant}
 
 
+# ---------------------------------------------------------------------------
+# Bill page payload (plan T1.8; spec §4.4, §7.2, §7.3, §10 #10).
+# ---------------------------------------------------------------------------
+
+CURRENT_CONGRESS = 119
+COVERED_STATES = ("CA", "FL", "NY", "TX")
+_RC_KEY_RE = re.compile(r"^(house|senate)/(\d{1,3})_(\d)_(\d{1,5})$")
+_FULLNAME_PARTY_RE = re.compile(r"\s*\[[^\]]*\]\s*$")
+_PARAGRAPHS_RE = re.compile(r"<p\b[^>]*>(.*?)</p\s*>", re.IGNORECASE | re.DOTALL)
+_TITLE_ONLY_RE = re.compile(r"^\s*<(strong|b)\b[^>]*>.*</\1\s*>\s*$", re.IGNORECASE | re.DOTALL)
+
+
+def relation_text(position, chamber_word: str) -> str:
+    """§4.4 m2: a covered member's relation to one roll call, as chip text. `position` is
+    the row's vote, or None when the member is not in the roll call at all."""
+    if position is None:
+        return f"Not in the {chamber_word} for this vote"
+    position = str(position)
+    if position in _YES_VOTES:
+        return "Voted yes"
+    if position in _NO_VOTES:
+        return "Voted no"
+    if position == "Not Voting":
+        return "Didn't vote"
+    if position in ("Present", "Present, Giving Live Pair"):
+        return "Present"
+    if position in ("Guilty", "Not Guilty"):
+        return position
+    return "Voted"
+
+
+def first_paragraph_text(html_text) -> str:
+    """The first <p> of substance of an official summary as plain text (§4.4 m4): no markup,
+    no href, entities decoded, whitespace collapsed. A leading paragraph that is only a bold
+    element, or at most 12 words with no terminal period, is the bill's short title and is
+    skipped (116 of the 159 unsummarized bills with an official summary open that way).
+    Falls back to the first paragraph, then to the whole input when it has no <p>."""
+    text = str(html_text or "")
+    chunks = _PARAGRAPHS_RE.findall(text)
+    plain = [" ".join(render.strip_tags(chunk).split()) for chunk in chunks]
+    for chunk, words in zip(chunks, plain):
+        if not words:
+            continue
+        if _TITLE_ONLY_RE.match(chunk):
+            continue
+        if len(words.split()) <= 12 and not words.endswith((".", ":", ";")):
+            continue
+        return words
+    if plain:
+        return next((p for p in plain if p), "")
+    return " ".join(render.strip_tags(text).split())
+
+
+def _seal_text(entry: dict | None, chamber_word: str) -> str | None:
+    """§7.2 seal text for one votes_index entry ('Passed the House 237–169')."""
+    return render.result_phrase(entry, chamber_word) if entry else None
+
+
+def _outcome_text(entry: dict | None, chamber_word: str) -> str | None:
+    """§7.3 outcome sentence for one votes_index entry."""
+    return render.outcome_sentence(entry, chamber_word) if entry else None
+
+
+def _sponsor_without_party(sponsor: dict) -> dict:
+    """sponsors[0] without party keys; fullName loses its '[R-AL-6]' suffix (§4.4 m6, §10 #9)."""
+    clean = {k: sponsor.get(k) for k in ("bioguideId", "firstName", "lastName", "state", "district")
+             if sponsor.get(k) is not None}
+    clean["fullName"] = _FULLNAME_PARTY_RE.sub("", str(sponsor.get("fullName") or "")).strip()
+    return clean
+
+
+def _pick_rendered(roll_calls: list[dict]) -> list[dict]:
+    """§4.4 m3: the roll calls the bill page renders — the head (newest decisive, else the
+    newest) and the other chamber's newest decisive one, else that chamber's newest roll call
+    (so a bill voted in both chambers always shows both; G7's slot relies on it); at most two.
+    `roll_calls` are _roll_call_view() dicts, newest first; the same dict objects come back."""
+    if not roll_calls:
+        return []
+    head = next((rc for rc in roll_calls if rc["class"] == "D"), roll_calls[0])
+    other = next((rc for rc in roll_calls if rc["class"] == "D" and rc["chamber"] != head["chamber"]), None) \
+        or next((rc for rc in roll_calls if rc["chamber"] != head["chamber"]), None)
+    return [head, other] if other else [head]
+
+
 class DataService:
     # The bill page (T1.8) and the sync's AI writer choose the same official summary.
     _latest_official_summary = staticmethod(_latest_official_summary)
@@ -397,6 +481,7 @@ class DataService:
         # state_overview/{code}.json, read on first use and kept (§10 #7); None = file missing.
         self._state_overviews: dict[str, dict | None] = {}
         self._bills_by_id: dict[str, dict] | None = None  # bill_id -> bills.json row, built on first use
+        self._members_by_id: dict[str, dict] | None = None  # bioguideId -> members.json row, built on first use
         self._load()
 
     def _load(self) -> None:
@@ -1014,3 +1099,217 @@ class DataService:
             if key and pick not in _KNOWN_POSITIONS and is_speaker_vote(row, roll_calls.get(key)):
                 picks[key] = pick
         return picks
+
+    # ---- Bill page payload (plan T1.8) ----
+
+    def _member_lookup(self) -> dict[str, dict]:
+        if self._members_by_id is None:
+            self._members_by_id = {m["bioguideId"]: m for m in self._members if m.get("bioguideId")}
+        return self._members_by_id
+
+    def _senate_name_index(self) -> dict[tuple[str, str], str]:
+        """(last name lower-cased, state) -> bioguideId for covered senators. Senate roll calls
+        carry names, not ids, so this is the match sync.py build_member_votes uses."""
+        return {
+            (str(m.get("name") or "").split(",")[0].strip().lower(), str(m.get("stateCode") or "").upper()):
+                m["bioguideId"]
+            for m in self._members if m.get("chamber") == "Senate" and m.get("bioguideId")
+        }
+
+    def _row_covered_id(self, row: dict, senate: bool, senate_names: dict) -> str | None:
+        if senate:
+            key = (str(row.get("last_name") or "").strip().lower(), str(row.get("state") or "").upper())
+            return senate_names.get(key)
+        bioguide = str(row.get("bioguide_id") or "")
+        return bioguide if bioguide in self._member_lookup() else None
+
+    def covered_positions(self, chamber: str, roll_call: dict | None) -> dict[str, dict]:
+        """Every covered member of this chamber and their relation to one roll-call file
+        (§4.4 m2): House rows by bioguide_id, Senate rows by last name + state."""
+        senate = str(chamber or "").lower().startswith("senate")
+        word = "Senate" if senate else "House"
+        positions: dict[str, str] = {}
+        if roll_call:
+            names = self._senate_name_index() if senate else {}
+            for row in roll_call.get("members") or []:
+                bioguide = self._row_covered_id(row, senate, names)
+                if bioguide and bioguide not in positions:
+                    positions[bioguide] = str(row.get("vote") or "")
+        covered: dict[str, dict] = {}
+        for member in self._members:
+            bioguide = member.get("bioguideId")
+            # members.json says "House of Representatives"; older fixture rows say "House".
+            chamber_name = str(member.get("chamber") or "")
+            in_chamber = chamber_name == "Senate" if senate else chamber_name.startswith("House")
+            if not bioguide or not in_chamber:
+                continue
+            position = positions.get(bioguide)
+            covered[bioguide] = {
+                "name": render.display_name(member.get("name") or ""),
+                "state": member.get("stateCode"),
+                "district": None if senate else member.get("district"),
+                "chamber": word,
+                "position": position,
+                "relation": relation_text(position, word),
+            }
+        return covered
+
+    def _covered_state_rows(self, roll_call: dict, senate: bool, congress: int) -> list[dict]:
+        """The CA/FL/NY/TX rows of one roll-call file, party removed (§4.4 m3). District only
+        for covered House rows in the current Congress (earlier maps differ)."""
+        names = self._senate_name_index() if senate else {}
+        members = self._member_lookup()
+        rows = []
+        for row in roll_call.get("members") or []:
+            state = str(row.get("state") or "").upper()
+            if state not in COVERED_STATES:
+                continue
+            covered_id = self._row_covered_id(row, senate, names)
+            district = None
+            if not senate and covered_id and congress == CURRENT_CONGRESS:
+                district = (members.get(covered_id) or {}).get("district")
+            rows.append({
+                "first_name": row.get("first_name") or "",
+                "last_name": row.get("last_name") or "",
+                "state": state,
+                "vote": row.get("vote") or "",
+                "bioguide_id": None if senate else (row.get("bioguide_id") or None),
+                "covered_id": covered_id,
+                "district": district,
+            })
+        return rows
+
+    def _roll_call_view(self, key: str) -> dict | None:
+        """One roll call for the bill page, from the index only (no file read)."""
+        entry = self._index_roll_calls().get(key)
+        match = _RC_KEY_RE.match(key)
+        if not entry or not match:
+            return None
+        chamber = match.group(1)
+        word = "Senate" if chamber == "senate" else "House"
+        return {
+            "key": key,
+            "chamber": chamber,
+            "congress": int(match.group(2)),
+            "session": int(match.group(3)),
+            "vote_number": int(match.group(4)),
+            "date": str(entry.get("date") or "")[:10],
+            "question": entry.get("question") or "",
+            "plain": entry.get("plain") or render.plain_question(entry.get("question") or ""),
+            "class": entry.get("class") or "P",
+            "result": entry.get("result") or "",
+            "counts": entry.get("counts") or {},
+            "threshold": entry.get("threshold"),
+            "document": entry.get("document") or "",
+            "seal": _seal_text(entry, word),
+            "outcome": _outcome_text(entry, word),
+            "state_tallies": entry.get("tallies") or {},
+            "rendered": False,
+            "members": [],
+            "covered": {},
+        }
+
+    def _read_roll_call(self, chamber: str, congress, session, vote_number) -> dict | None:
+        try:
+            congress, session, vote_number = int(congress), int(session), int(vote_number)
+        except (TypeError, ValueError):
+            return None
+        if str(chamber or "").lower().startswith("senate"):
+            return self.get_senate_vote(congress, session, vote_number)
+        return self.get_house_vote(congress, session, vote_number)
+
+    def official_summary_for(self, bill: dict) -> str | None:
+        """The official summary the site shows (§4.4 m4-m5): Public Law first, else newest."""
+        return self._latest_official_summary(bill) or None
+
+    def rendered_roll_call_keys(self, bill_id: str) -> frozenset[str]:
+        """Index keys of the at most two roll calls the bill page renders (§4.4 m3). Index only."""
+        views = [view for view in (self._roll_call_view(key) for key in self._index_bill_keys(bill_id)) if view]
+        return frozenset(rc["key"] for rc in _pick_rendered(views))
+
+    def roll_call_extras(self, chamber: str, congress, session, vote_number, question: str = "",
+                         rendered: frozenset[str] = frozenset()) -> dict:
+        """Additive fields for one roll call in /api/bills/{c}/{t}/{n}/votes (§10 #10). The
+        index fields (plain_question, seal, outcome, state_tallies) go on every roll call;
+        `covered` needs the roll-call file, so it is read only for keys in `rendered` (the at
+        most two the bill page renders, §4.4 m3 / §9.6) and is `{}` on the rest."""
+        key = rc_key_or_none(chamber, congress, session, vote_number)
+        entry = self._index_roll_calls().get(key) if key else None
+        word = "Senate" if str(chamber or "").lower().startswith("senate") else "House"
+        raw = self._read_roll_call(chamber, congress, session, vote_number) if key in rendered else None
+        return {
+            "plain_question": (entry or {}).get("plain")
+                              or render.plain_question(str((entry or {}).get("question") or question or "")),
+            "seal": _seal_text(entry, word),
+            "outcome": _outcome_text(entry, word),
+            "state_tallies": (entry or {}).get("tallies") or {},
+            "covered": self.covered_positions(word, raw) if raw else {},
+        }
+
+    def get_bill_votes_payload(self, congress: int, bill_type: str, bill_number: int) -> dict:
+        """/api/bills/{c}/{t}/{n}/votes: the old refs, each with roll_call_extras(). At most
+        two roll-call files are read per request (the ones the bill page renders)."""
+        result = self.get_bill_votes(congress, bill_type, bill_number)
+        if not result:
+            return {"senate": [], "house": []}
+        rendered = self.rendered_roll_call_keys(f"{congress}-{str(bill_type).lower()}-{bill_number}")
+        return {
+            chamber: [
+                {**rc, **self.roll_call_extras(chamber, rc.get("congress"), rc.get("session"),
+                                               rc.get("vote_number"), rc.get("question") or "", rendered)}
+                for rc in result.get(chamber) or []
+            ]
+            for chamber in ("senate", "house")
+        }
+
+    def get_bill_page(self, congress: int, bill_type: str, number: int) -> dict | None:
+        """Everything the bill page renders (§4.4, §10 #10), from startup data plus at most
+        two roll-call files: the head (newest decisive, else newest) and the other chamber's
+        newest decisive roll call, else its newest roll call. None for an unknown bill."""
+        bill_type = str(bill_type or "").lower()
+        try:
+            congress, number = int(congress), int(number)
+        except (TypeError, ValueError):
+            return None
+        detail = self.get_bill_detail(congress, bill_type, number)
+        if not detail:
+            return None
+        bill = detail["bill"]
+        bill_id = f"{congress}-{bill_type}-{number}"
+        has_summary = bool(self.displayable_summary(bill_id))
+        summary = (self._ai_summaries.get(bill_id) or {}) if has_summary else {}
+        official = self.official_summary_for(bill)
+        roll_calls = [view for view in (self._roll_call_view(key) for key in self._index_bill_keys(bill_id)) if view]
+        to_render = _pick_rendered(roll_calls)
+        head = to_render[0] if to_render else None
+        for rc in to_render:
+            raw = self._read_roll_call(rc["chamber"], rc["congress"], rc["session"], rc["vote_number"])
+            if raw is None:
+                continue
+            rc["rendered"] = True
+            rc["members"] = self._covered_state_rows(raw, rc["chamber"] == "senate", rc["congress"])
+            rc["covered"] = self.covered_positions(rc["chamber"], raw)
+        sponsors = bill.get("sponsors") or []
+        sponsor = _sponsor_without_party(sponsors[0]) if sponsors else None
+        return {
+            "bill_id": bill_id,
+            "congress": congress,
+            "bill_type": bill_type,
+            "number": number,
+            "title": bill.get("title") or "",
+            "has_summary": has_summary,
+            "one_liner": (summary.get("one_liner") or None) if has_summary else None,
+            "provisions": list(summary.get("provisions") or []) if has_summary else [],
+            "official_summary": official,
+            "official_first_paragraph": first_paragraph_text(official) if official else None,
+            "status": self._bill_status_for(bill, bill_id),
+            "head": head,
+            "roll_calls": roll_calls,
+            "sponsor": sponsor,
+            "sponsor_covered": bool(sponsor and sponsor.get("bioguideId") in self._member_lookup()),
+            "cosponsors_count": (bill.get("cosponsors") or {}).get("count"),
+            "policy_area": (bill.get("policyArea") or {}).get("name") or None,
+            "introduced_date": bill.get("introducedDate") or None,
+            "laws": [{"type": law.get("type"), "number": law.get("number")} for law in bill.get("laws") or []],
+            "legislation_url": bill.get("legislationUrl") or None,
+        }

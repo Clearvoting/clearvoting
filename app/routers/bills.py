@@ -46,7 +46,9 @@ async def get_bill(congress: int = Path(ge=1, le=200), bill_type: str = Path(), 
     result = data_service.get_bill_detail(congress, bill_type, bill_number)
     if not result:
         raise HTTPException(status_code=404, detail="Bill not found")
-    return result
+    # Additive (spec §10 #10): the official summary the site shows — Public Law first, else the
+    # newest — so the new bill.js no longer reads summaries[0] (the oldest).
+    return {**result, "official_summary": data_service.official_summary_for(result["bill"])}
 
 
 @router.get("/{congress}/{bill_type}/{bill_number}/ai-summary")
@@ -61,10 +63,8 @@ async def get_ai_summary(request: Request, congress: int = Path(ge=1, le=200), b
 
 
 @router.get("/{congress}/{bill_type}/{bill_number}/votes")
-async def get_bill_votes(congress: int = Path(ge=1, le=200), bill_type: str = Path(), bill_number: int = Path()):
+def get_bill_votes(congress: int = Path(ge=1, le=200), bill_type: str = Path(), bill_number: int = Path()):
     _validate_bill_type(bill_type)
-    data_service = get_data_service()
-    result = data_service.get_bill_votes(congress, bill_type, bill_number)
-    if result:
-        return result
-    return {"senate": [], "house": []}
+    # Additive per roll call (spec §10 #10): plain_question, seal, outcome, state_tallies on
+    # every roll call; covered only on the at most two the bill page renders (§4.4 m3, §9.6).
+    return get_data_service().get_bill_votes_payload(congress, bill_type, bill_number)
