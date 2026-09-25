@@ -27,6 +27,13 @@ const STRINGS = {
     noFinalVotes: 'No final votes on bills in our record yet',
     latestFinalVote: 'Latest final vote',
     notInChamber: 'Not in the {chamber} for this vote',
+    noChamberVote: 'The {chamber} has no recorded vote on this bill in our data.',
+    rollCallsBelow: 'Its {chamber} roll calls are listed below',
+    vacantDistrict: 'District {district} — vacant in our data',
+    zipInvalid: 'A ZIP code is five digits.',
+    zipSplitStatus: 'ZIP {zip} spans {count} House districts. Choose yours below.',
+    zipPartialStatus: 'Part of ZIP {zip} is outside the four states we cover. Choose your district below.',
+    zipNoneStatus: "We couldn't match ZIP {zip} to a district in the four states we cover.",
 };
 
 function t(key, values) {
@@ -881,6 +888,218 @@ if (typeof document !== 'undefined') {
     else initSite();
 }
 
+/* bill-slot:start */
+/* ============================================
+   Bill page: "How did your representatives vote?" slot
+   (plan T7.3; spec §4.4 m2, §5.2, §5.4 write rule 3, §8 items 10–11).
+   Called only by bill.js; every entry point returns early when the slot is
+   not on the page. Rows, chips, the remembered line, cv-home and focus all go
+   through the shared helpers above (personRow, chip, rememberedLine, readHome,
+   rememberDistrict, rewriteMastheadLink, focusHeading); DOM via el() only.
+   ============================================ */
+
+const SLOT_ZIP_RE = /^\s*(\d{5})(?:[-\s]?\d{4})?\s*$/;
+const SLOT_BIOGUIDE_RE = /^[A-Z]\d{6}$/;
+const SLOT_HOUSE_GOV = 'https://www.house.gov/representatives/find-your-representative';
+const SLOT_COUNT_WORDS = ['zero', 'one', 'two', 'three', 'four'];
+let slotFormTemplate = null;
+
+// A chamber has a roll call on this bill when any block, rendered or collapsed, names it (T7.2).
+function slotChamberHasRollCall(chamber) {
+    return Boolean(document.querySelector(`[data-chamber="${chamber}"]`));
+}
+
+// This bill's chip for one current member, read from the server-rendered rows (no fetch): the
+// row's position, or the grey "Not in the {chamber} for this vote" chip when the member is absent.
+function slotSignal(member, chamber, label) {
+    const block = document.querySelector(`.rc-block[data-rendered="1"][data-chamber="${chamber}"]`);
+    if (!block) return el('span', { className: 'person-signal meta' }, t('rollCallsBelow', { chamber: label }));
+    const row = block.querySelector(`tr[data-bioguide="${member.bioguideId}"]`);
+    return el('span', { className: 'person-signal' }, chip(row ? row.dataset.position : null, { chamber: label }));
+}
+
+function slotStatus(text, isError) {
+    const status = document.getElementById('reps-zip-status');
+    if (!status) return;
+    status.textContent = text;
+    status.classList.toggle('is-error', Boolean(isError));
+}
+
+function slotLink(href, text) {
+    return el('a', { href, rel: href.startsWith('https://') ? 'noopener' : null }, text);
+}
+
+// Puts the untouched server form back (Forget, or no cv-home); returns the slot body so
+// rememberedLine can focus its first control.
+function slotRestoreForm() {
+    const body = document.getElementById('your-reps-body');
+    if (!body || !slotFormTemplate) return body;
+    const form = slotFormTemplate.cloneNode(true);
+    clear(body);
+    body.appendChild(form);
+    slotBindForm(form);
+    slotStatus('', false);
+    return body;
+}
+
+// Fills the slot from cv-home, or, when storage refused the write, from the reader's pick for
+// this view only (then without a "Remembered" line). Resolves true when the rows were drawn.
+async function fillRepsSlot(picked) {
+    const body = document.getElementById('your-reps-body');
+    if (!body) return false;
+    const stored = readHome();
+    const home = stored || picked || null;
+    if (!home) {
+        if (!body.querySelector('form')) slotRestoreForm();
+        return false;
+    }
+    let overview;
+    try {
+        const res = await fetch(`/api/members/${encodeURIComponent(home.state)}/overview`);
+        if (!res.ok) throw new Error('overview');
+        overview = await res.json();
+    } catch (e) {
+        return false; /* the server-rendered ZIP form stays usable */
+    }
+    const house = (overview.house || []).find(
+        (m) => m.district === home.district && SLOT_BIOGUIDE_RE.test(m.bioguideId || ''));
+    const senators = (overview.senators || []).filter((m) => SLOT_BIOGUIDE_RE.test(m.bioguideId || ''));
+    const list = el('div', { className: 'your-reps-list' });
+    [['house', 'House'], ['senate', 'Senate']].forEach(([chamber, label]) => {
+        if (!slotChamberHasRollCall(chamber)) {
+            list.appendChild(el('p', { className: 'meta' }, t('noChamberVote', { chamber: label })));
+        } else if (chamber === 'house') {
+            list.appendChild(house
+                ? personRow(house, home.state, slotSignal(house, chamber, label))
+                : el('p', { className: 'meta' }, t('vacantDistrict', { district: home.district })));
+        } else {
+            senators.forEach((senator) => list.appendChild(
+                personRow(senator, home.state, slotSignal(senator, chamber, label))));
+        }
+    });
+    if (stored) list.appendChild(rememberedLine(stored, () => slotRestoreForm()));
+    clear(body);
+    body.appendChild(list);
+    return true;
+}
+
+// In-place result (split, partial, none): a one-line summary into the role=status node first,
+// then the note under the form, then focus to the slot heading (§8 items 10–11).
+function slotShowResult(node, statusText) {
+    const body = document.getElementById('your-reps-body');
+    if (!body) return;
+    const previous = body.querySelector('.slot-result');
+    if (previous) previous.remove();
+    slotStatus(statusText, false);
+    body.appendChild(node);
+    focusHeading(document.getElementById('your-reps-h'));
+}
+
+// The reader's own act (a single-match submit or a District button): the only cv-home write here.
+async function slotPick(state, district) {
+    if (!COVERED_STATES[state] || !Number.isInteger(district)) return;
+    rememberDistrict(state, district);
+    rewriteMastheadLink();
+    document.querySelectorAll(`details.state-group[data-state="${state}"]`).forEach((d) => { d.open = true; });
+    const filled = await fillRepsSlot({ state, district, savedAt: '' });
+    if (!filled) slotStatus(t('pageError'), true);
+    focusHeading(document.getElementById('your-reps-h'));
+}
+
+// Same wording as T4.1's server note: "ZIP 11201 spans two House districts — about 72 % of the
+// ZIP's land area (not its residents) is in District 10 and 28 % in District 7."
+function slotShareSentence(zip, matches, multiState) {
+    const word = SLOT_COUNT_WORDS[matches.length] || String(matches.length);
+    const pct = (m) => Math.round(Number(m.share || 0) * 100);
+    const where = (m) => (multiState ? `${COVERED_STATES[m.state]} District ${m.district}` : `District ${m.district}`);
+    const first = `about ${pct(matches[0])} % of the ZIP's land area (not its residents) is in ${where(matches[0])}`;
+    const others = matches.slice(1).map((m) => `${pct(m)} % in ${where(m)}`);
+    const shares = others.length === 1 ? `${first} and ${others[0]}`
+        : `${first}, ${others.slice(0, -1).join(', ')} and ${others[others.length - 1]}`;
+    return `ZIP ${zip} spans ${word} House districts — ${shares}. Your street address decides which is yours; choose it below.`;
+}
+
+function slotShowChoices(zip, data) {
+    const matches = (data.matches || []).filter((m) => COVERED_STATES[m.state] && Number.isInteger(m.district));
+    const multiState = new Set(matches.map((m) => m.state)).size > 1;
+    const box = el('div', { className: 'note slot-result' });
+    if (matches.length >= 2) box.appendChild(el('p', null, slotShareSentence(zip, matches, multiState)));
+    const choices = el('div', { className: 'actions' });
+    matches.forEach((m) => {
+        const button = el('button', { type: 'button', className: 'btn btn--secondary' },
+            multiState ? `${COVERED_STATES[m.state]}, District ${m.district}` : `District ${m.district}`);
+        button.addEventListener('click', () => slotPick(m.state, m.district));
+        choices.appendChild(button);
+    });
+    box.appendChild(choices);
+    if (data.kind === 'partial') {
+        const outside = Math.round((1 - Number(data.covered_share || 0)) * 100);
+        box.appendChild(el('p', null, `About ${outside} % of ZIP ${zip}'s land area is outside California, Florida, New York and Texas; if you live in that part, we don't cover your state yet.`));
+    }
+    box.appendChild(el('p', null, slotLink(SLOT_HOUSE_GOV, 'Not sure? Look up your district by street address on house.gov →')));
+    const count = SLOT_COUNT_WORDS[matches.length] || String(matches.length);
+    slotShowResult(box, data.kind === 'split' ? t('zipSplitStatus', { zip, count }) : t('zipPartialStatus', { zip }));
+}
+
+function slotShowNotFound(zip) {
+    const states = el('ul', { className: 'state-links' }, ...Object.keys(COVERED_STATES).map((code) =>
+        el('li', null, el('a', { className: 'state-link', href: `/state?code=${code}` }, COVERED_STATES[code]))));
+    const box = el('div', { className: 'note slot-result' },
+        el('p', null,
+            `We couldn't match ZIP ${zip} to a congressional district in California, Florida, New York or Texas — the four states ClearVoting covers. If you live in one of them, your ZIP may be a PO-box or business ZIP: choose your state below, or `,
+            slotLink(SLOT_HOUSE_GOV, 'look up your district by street address on house.gov →'),
+            '. ',
+            slotLink(`/state?zip=${zip}`, "Somewhere else? Tell us your state and we'll email you when we add it.")),
+        states);
+    slotShowResult(box, t('zipNoneStatus', { zip }));
+}
+
+function slotBindForm(form) {
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const input = form.querySelector('input[name="zip"]');
+        const match = SLOT_ZIP_RE.exec(input ? input.value : '');
+        slotStatus('', false);
+        if (!match) {
+            slotStatus(t('zipInvalid'), true);
+            return;
+        }
+        const zip = match[1];
+        let data;
+        try {
+            const res = await fetch(`/api/districts/${zip}`);
+            if (res.status === 400) {
+                slotStatus(t('zipInvalid'), true);
+                return;
+            }
+            if (!res.ok) throw new Error('districts');
+            data = await res.json();
+        } catch (e) {
+            slotStatus(t('pageError'), true);
+            return;
+        }
+        if (data.kind === 'single' && Array.isArray(data.matches) && data.matches.length === 1) {
+            await slotPick(data.matches[0].state, data.matches[0].district);
+        } else if (data.kind === 'split' || data.kind === 'partial') {
+            slotShowChoices(zip, data);
+        } else {
+            slotShowNotFound(zip);
+        }
+    });
+}
+
+function initZipInPlace() {
+    if (!document.getElementById('your-reps')) return;
+    const form = document.getElementById('reps-zip-form');
+    if (form) {
+        if (!slotFormTemplate) slotFormTemplate = form.cloneNode(true);
+        slotBindForm(form);
+    }
+    window.addEventListener('pageshow', (event) => { if (event.persisted) fillRepsSlot(); });
+}
+/* bill-slot:end */
+
+
 /* ---- Node export for tests/test_formatter_parity.py (browsers skip this) ---- */
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
@@ -888,5 +1107,6 @@ if (typeof module !== 'undefined' && module.exports) {
         t, formatBillCode, ordinal, displayName, formatDate, questionClass, plainQuestion,
         resultPhrase, outcomeSentence, positionChip, initials,
         readHome, rememberDistrict, forgetHome, homePlace, homeHref, initHome,
+        initZipInPlace, fillRepsSlot, slotBindForm, slotPick,
     };
 }

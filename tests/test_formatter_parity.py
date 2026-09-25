@@ -284,3 +284,187 @@ def test_cv_home_is_written_from_mine_and_only_for_covered_districts():
     assert out["lower"] == {"state": "TX", "district": 7, "savedAt": saved}
     assert out["afterForget"] is None and out["corrupt"] is None
     assert out["blockedRead"] is None and out["blockedWrite"] is None
+
+
+# --- Bill slot (plan T7.3; spec §4.4 m2, §5.4 write rule 3, §8 items 10–11) ---
+
+def _bill_slot_block() -> str:
+    text = _SITE_JS.read_text()
+    return text[text.index("/* bill-slot:start */"):text.index("/* bill-slot:end */")]
+
+
+def test_bill_slot_code_uses_no_html_injection_and_no_inline_handlers():
+    block = _bill_slot_block()
+    assert "innerHTML" not in block and "insertAdjacentHTML" not in block
+    assert "onclick" not in block and "setAttribute('on" not in block
+    assert "document.title" not in block
+
+
+def test_bill_slot_reuses_the_shared_builders_and_cv_home_rules():
+    block = _bill_slot_block()
+    for shared in ("personRow(", "chip(", "rememberedLine(", "readHome()", "rememberDistrict(",
+                   "rewriteMastheadLink()", "focusHeading(", "t('pageError')", "COVERED_STATES"):
+        assert shared in block, shared
+    # No second positions table, storage path, state map, date format or Forget control.
+    for duplicate in ("REP_RELATION", "localStorage", "'cv-home'", "toISOString", "SLOT_STATES",
+                      "Voted yes", "Didn't vote", "linklike", "'Forget'"):
+        assert duplicate not in block, duplicate
+
+
+_SLOT_SCRIPT = r"""
+let focused = null;
+const created = [];
+class FakeNode {
+  constructor(tag) {
+    this.tagName = String(tag).toUpperCase();
+    this.children = []; this.attrs = {}; this.dataset = {}; this.listeners = {};
+    this.className = ''; this.ownText = ''; this.value = ''; this.open = false;
+    this.classList = { add() {}, remove() {}, toggle() {}, contains() { return false; } };
+    created.push(this);
+  }
+  get firstChild() { return this.children[0] || null; }
+  removeChild(child) { this.children.splice(this.children.indexOf(child), 1); return child; }
+  set textContent(value) { this.ownText = String(value); this.children = []; }
+  get textContent() {
+    return this.ownText + this.children.map((c) => (typeof c === 'string' ? c : c.textContent)).join('');
+  }
+  setAttribute(k, v) { this.attrs[k] = String(v); }
+  getAttribute(k) { return k in this.attrs ? this.attrs[k] : null; }
+  hasAttribute(k) { return k in this.attrs; }
+  removeAttribute(k) { delete this.attrs[k]; }
+  append(...nodes) { nodes.forEach((n) => this.children.push(n)); }
+  appendChild(n) { this.children.push(n); return n; }
+  addEventListener(type, fn) { (this.listeners[type] = this.listeners[type] || []).push(fn); }
+  querySelector() { return null; }
+  querySelectorAll() { return []; }
+  remove() {}
+  focus() { focused = this.attrs.id || this.tagName; }
+  scrollIntoView() {}
+  cloneNode() { return this.cloneAs ? this.cloneAs() : new FakeNode(this.tagName); }
+}
+function makeForm() {
+  const form = new FakeNode('form');
+  form.attrs.id = 'reps-zip-form';
+  form.input = new FakeNode('input');
+  form.input.attrs.id = 'reps-zip-form-field';
+  form.querySelector = (sel) => (sel.indexOf('input') !== -1 ? form.input : null);
+  form.cloneAs = makeForm;
+  return form;
+}
+const nodes = {};
+for (const id of ['your-reps', 'your-reps-body', 'your-reps-h', 'reps-zip-status']) {
+  nodes[id] = new FakeNode(id === 'your-reps-h' ? 'h2' : 'div');
+  nodes[id].attrs.id = id;
+}
+const body = nodes['your-reps-body'];
+body.querySelector = (sel) => {
+  const form = body.children.find((c) => c && c.tagName === 'FORM') || null;
+  if (sel === 'form') return form;
+  return form ? form.querySelector(sel) : null;
+};
+const form = makeForm();
+nodes['reps-zip-form'] = form;
+const houseBlock = new FakeNode('section');  // a rendered House roll call where G000602 voted Yea
+houseBlock.querySelector = (sel) => (sel === 'tr[data-bioguide="G000602"]' ? { dataset: { position: 'Yea' } } : null);
+globalThis.document = {
+  readyState: 'loading', addEventListener() {},
+  getElementById: (id) => nodes[id] || null,
+  createElement: (tag) => new FakeNode(tag),
+  createTextNode: (text) => String(text),
+  querySelector: (sel) => (sel.indexOf('data-chamber="house"') !== -1 ? houseBlock : null),
+  querySelectorAll: () => [],
+};
+function memoryStorage() {
+  const data = {};
+  return { getItem: (k) => (k in data ? data[k] : null), setItem: (k, v) => { data[k] = String(v); },
+           removeItem: (k) => { delete data[k]; }, data };
+}
+const local = memoryStorage();
+globalThis.window = { localStorage: local, sessionStorage: memoryStorage(), addEventListener() {},
+                      location: { hash: '', search: '', pathname: '/bill' } };
+const DISTRICTS = {
+  '11570': { zip: '11570', kind: 'single', covered_share: 1, matches: [{ state: 'NY', district: 4, share: 1 }] },
+  '11201': { zip: '11201', kind: 'split', covered_share: 1, matches: [
+    { state: 'NY', district: 10, share: 0.72 }, { state: 'NY', district: 7, share: 0.28 }] },
+  '73949': { zip: '73949', kind: 'partial', covered_share: 0.1367,
+             matches: [{ state: 'TX', district: 13, share: 0.1367 }] },
+};
+const fetched = [];
+globalThis.fetch = async (url) => {
+  fetched.push(url);
+  const zip = (url.match(/^\/api\/districts\/(\d{5})$/) || [])[1];
+  if (zip) return { ok: true, status: 200, json: async () => DISTRICTS[zip] };
+  const state = (url.match(/^\/api\/members\/([A-Z]{2})\/overview$/) || [])[1];
+  if (state) {
+    const house = state === 'NY' ? [{ bioguideId: 'G000602', display_name: 'Test Member', initials: 'TM',
+      seat_line: 'District 4', seat_seal: null, url: '/member?id=G000602', photo: '', district: 4 }] : [];
+    return { ok: true, status: 200, json: async () => ({ state, senators: [], house }) };
+  }
+  return { ok: false, status: 404, json: async () => ({}) };
+};
+const s = require(process.argv[1]);
+const home = () => (local.data['cv-home'] ? JSON.parse(local.data['cv-home']) : null);
+const button = (label) => created.find((n) => n.tagName === 'BUTTON' && n.textContent === label);
+async function submit(zip) {
+  form.input.value = zip;
+  for (const fn of form.listeners.submit) await fn({ preventDefault() {} });
+}
+(async () => {
+  const out = {};
+  s.initZipInPlace();
+  await submit('12');
+  out.invalid = [nodes['reps-zip-status'].textContent, fetched.length];
+  await submit('11201');
+  out.splitStored = home();
+  out.splitStatus = nodes['reps-zip-status'].textContent;
+  out.splitNote = body.textContent;
+  out.focusAfterSplit = focused;
+  await button('District 7').listeners.click[0]();
+  out.splitPicked = home();
+  local.removeItem('cv-home');
+  await submit('73949');
+  out.partialStored = home();
+  out.partialNote = body.textContent;
+  await button('District 13').listeners.click[0]();
+  out.partialPicked = home();
+  local.removeItem('cv-home');
+  await submit('11570');
+  out.single = home();
+  out.filled = body.textContent;
+  out.focusAfterFill = focused;
+  button('Forget').listeners.click[0]();
+  out.afterForget = home();
+  out.focusAfterForget = focused;
+  process.stdout.write(JSON.stringify(out));
+})().catch((e) => { console.error(e); process.exit(1); });
+"""
+
+
+@needs_node
+def test_bill_slot_writes_cv_home_only_on_the_readers_pick():
+    done = subprocess.run([_NODE, "-e", _SLOT_SCRIPT, str(_SITE_JS)], capture_output=True, text=True,
+                          check=True, timeout=60)
+    out = json.loads(done.stdout)
+    assert out["invalid"] == ["A ZIP code is five digits.", 0]
+    # Split: nothing written until a District button is pressed; the note carries the shares.
+    assert out["splitStored"] is None
+    assert out["splitStatus"] == "ZIP 11201 spans two House districts. Choose yours below."
+    assert ("ZIP 11201 spans two House districts — about 72 % of the ZIP's land area (not its residents) "
+            "is in District 10 and 28 % in District 7.") in out["splitNote"]
+    assert out["focusAfterSplit"] == "your-reps-h"
+    assert (out["splitPicked"]["state"], out["splitPicked"]["district"]) == ("NY", 7)
+    # Partial: same rule.
+    assert out["partialStored"] is None
+    assert ("About 86 % of ZIP 73949's land area is outside California, Florida, New York and Texas"
+            in out["partialNote"])
+    assert (out["partialPicked"]["state"], out["partialPicked"]["district"]) == ("TX", 13)
+    # Single: written at once with T2.3's local-date savedAt; rows through the shared builders.
+    assert (out["single"]["state"], out["single"]["district"]) == ("NY", 4)
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", out["single"]["savedAt"])
+    for text in ("Test Member", "Voted yes", "The Senate has no recorded vote on this bill in our data.",
+                 "Remembered: New York, District 4 · Change · Forget"):
+        assert text in out["filled"], text
+    assert out["focusAfterFill"] == "your-reps-h"
+    # Forget: key removed, the server form back, focus on its first control.
+    assert out["afterForget"] is None
+    assert out["focusAfterForget"] == "reps-zip-form-field"
