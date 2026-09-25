@@ -2173,3 +2173,176 @@ def render_member_page(page: dict) -> str:
                                   str(member.get("bioguideId") or ""), total=page.get("sponsored_count")))
     parts.append(render_money(page.get("donation")))
     return "\n".join(p for p in parts if p)
+
+
+# --- Bill page blocks: story head, what it does, official summary, fact box (plan T7.1, spec §4.4) ---
+
+_BIOGUIDE_RE = re.compile(r"[A-Z]\d{6}")
+
+
+def cut_words(text: str, limit: int) -> str:
+    """Public name for T3.2's _cap: at most `limit` characters on a word boundary, "…" when cut
+    (spec §6.2). main.py (T7.4 _bill_meta, T8.1 _og_title) uses this; there is no second truncator."""
+    return _cap(text, limit)[0]
+
+
+def bill_displayable(page: dict) -> bool:
+    """The one "has a displayable plain-English summary" predicate for the bill page (§2.5 C):
+    a summary that is not withheld AND has a one-liner. has_summary is T1.5's summary dict or None."""
+    return bool(page.get("has_summary") and page.get("one_liner"))
+
+
+def _safe_congress_url(url) -> str | None:
+    """Only Congress.gov links are rendered; anything else in the data is dropped."""
+    if isinstance(url, str) and url.startswith("https://www.congress.gov/"):
+        return url
+    return None
+
+
+def _rc_word(rc: dict) -> str:
+    return "Senate" if rc.get("chamber") == "senate" else "House"
+
+
+def _head_outcome(head: dict) -> str:
+    """The head roll call's sentence; prefixed when the bill has no decisive vote (§4.4 m1)."""
+    sentence = str(head.get("outcome") or "")
+    if head.get("class") == "D" or not sentence:
+        return sentence
+    return "The latest recorded vote: " + sentence[:1].lower() + sentence[1:]
+
+
+def render_bill_head(page: dict) -> str:
+    """Story head: kicker with seals, the .bill-header h1, deck, outcome sentence and tally."""
+    title = str(page.get("title") or "")
+    status = page.get("status") or {"text": "No final vote yet", "variant": "moving"}
+    variant = "final" if status.get("variant") == "final" else "moving"
+    displayable = bill_displayable(page)
+    seals = render_seal(str(status.get("text") or ""), variant)
+    if not displayable:
+        seals += " " + render_seal(_PENDING_SEAL_TEXT, "pending")
+    code = format_bill_code(page["bill_type"], page["number"])
+    parts = [
+        '<header class="bill-header">',
+        f'<p class="kicker">{h(code)} · {h(ordinal(int(page["congress"])))} Congress {seals}</p>',
+    ]
+    if displayable:
+        parts.append(f'<h1>{h(page["one_liner"])}</h1>')
+        if title:
+            deck, capped = _cap(title, 140)
+            parts.append(f'<p class="deck">Officially: {h(deck)}</p>')
+            if capped:
+                parts.append(_full_title(title))
+    else:
+        shown, capped = _cap(title, 200)
+        parts.append(f'<h1 class="official">{h(shown)}</h1>')
+        if capped:
+            parts.append(_full_title(title))
+    head = page.get("head")
+    if head:
+        parts.append(f'<p class="outcome">{h(_head_outcome(head))}</p>')
+        parts.append(render_tally(head["counts"], _tally_label(str(head.get("seal") or ""), _rc_word(head))))
+    parts.append("</header>")
+    return "".join(parts)
+
+
+def render_what_it_does(page: dict, ai_summaries_updated: str | None) -> str:
+    """Provisions + dated AI line, or the honest no-summary state with the plain first paragraph."""
+    parts = ['<section class="section what-it-does" aria-labelledby="what-h">',
+             '<h2 id="what-h">What it does</h2>']
+    congress_url = _safe_congress_url(page.get("legislation_url"))
+    if bill_displayable(page):
+        provisions = page.get("provisions") or []
+        if provisions:
+            items = "".join(f"<li>{h(p)}</li>" for p in provisions)
+            parts.append(f'<ul class="provisions">{items}</ul>')
+        # SUMMARY_ATTRIBUTION (T3.2) is the shared stamp; _ai_line is not used because this
+        # line ends with a period and carries two links inside the same paragraph (§4.4 m4).
+        stamp = SUMMARY_ATTRIBUTION
+        if ai_summaries_updated:
+            stamp += f" · summaries last updated {h(format_date(ai_summaries_updated))}"
+        parts.append(
+            f'<p class="meta ai-line">{stamp}. '
+            '<a href="/methodology#ai">How we keep it neutral →</a> · '
+            '<a href="/methodology#report">Something wrong here? Tell us</a></p>'
+        )
+    else:
+        parts.append('<p class="note">We haven\'t written a plain-English summary for this bill yet; '
+                     "the official summary is below.</p>")
+        official = page.get("official_summary")
+        if official:
+            # T1.8 already chose the summary, skipped a title-only first paragraph and stripped
+            # markup (first_paragraph_text); the renderer only escapes it.
+            paragraph = page.get("official_first_paragraph")
+            if paragraph:
+                parts.append(f'<p class="official-para">{h(paragraph)}</p>')
+            parts.append('<details class="official-full" data-summary-slot>'
+                         "<summary>Show the full official summary</summary>"
+                         '<div class="official-summary" id="official-summary-body"></div>')
+            if congress_url:
+                parts.append(f'<noscript><p><a href="{h(congress_url)}" rel="noopener">'
+                             "Read the full summary on Congress.gov →</a></p></noscript>")
+            parts.append("</details>")
+        elif congress_url:
+            parts.append(f'<p><a href="{h(congress_url + "/text")}" rel="noopener">'
+                         "Congress.gov has the bill text →</a></p>")
+    parts.append("</section>")
+    return "".join(parts)
+
+
+def render_official_summary_slot(page: dict) -> str:
+    """Module 5: collapsed official summary, filled by bill.js through sanitizeHtml on first open."""
+    if not (bill_displayable(page) and page.get("official_summary")):
+        return ""
+    congress_url = _safe_congress_url(page.get("legislation_url"))
+    noscript = ""
+    if congress_url:
+        noscript = (f'<noscript><p><a href="{h(congress_url)}" rel="noopener">'
+                    "Read the full summary on Congress.gov →</a></p></noscript>")
+    # Not class="official": that is T2.1's site-wide Lora type role.
+    return ('<section class="section official-summary-section" aria-labelledby="official-h">'
+            '<h2 id="official-h">Official summary</h2>'
+            '<details class="official-full" data-summary-slot>'
+            "<summary>Show the official summary</summary>"
+            f'<div class="official-summary" id="official-summary-body"></div>{noscript}'
+            "</details></section>")
+
+
+def render_fact_box(page: dict) -> str:
+    """Module 6: the hairline <dl> of facts, Congress.gov and Share."""
+    rows = []
+    sponsor = page.get("sponsor")
+    if sponsor:
+        name = h(sponsor_name(sponsor))
+        bioguide = str(sponsor.get("bioguideId") or "")
+        if page.get("sponsor_covered") and _BIOGUIDE_RE.fullmatch(bioguide):
+            rows.append(("Sponsor", f'<a href="/member?id={quote(bioguide)}">{name}</a>'))
+        else:
+            rows.append(("Sponsor", f"{name} — not in ClearVoting's coverage yet"))
+    if page.get("cosponsors_count") is not None:
+        rows.append(("Cosponsors", h(page["cosponsors_count"])))
+    if page.get("policy_area"):
+        rows.append(("Topic", h(page["policy_area"])))
+    if page.get("introduced_date"):
+        rows.append(("Introduced", h(format_date(page["introduced_date"], short=True))))
+    roll_calls = page.get("roll_calls") or []
+    if roll_calls:
+        latest = roll_calls[0]
+        seal = _tally_label(str(latest.get("seal") or ""), _rc_word(latest))
+        rows.append(("Latest floor vote", f'{h(seal)} · {h(format_date(latest["date"], short=True))}'))
+    else:
+        rows.append(("Latest floor vote", "none in our data"))
+    laws = page.get("laws") or []
+    if laws:
+        law_text = ", ".join(f'{law.get("type", "")} {law.get("number", "")}'.strip() for law in laws)
+        rows.append(("Became law", h(law_text)))
+    facts = "".join(f"<dt>{term}</dt><dd>{value}</dd>" for term, value in rows)
+    actions = []
+    congress_url = _safe_congress_url(page.get("legislation_url"))
+    if congress_url:
+        actions.append(f'<a class="btn btn--secondary" href="{h(congress_url)}" rel="noopener">Congress.gov →</a>')
+    # initShare (T2.3) binds .share-btn/[data-share]; the url falls back to <link rel=canonical>.
+    actions.append('<button class="btn btn--secondary share-btn" type="button" data-share>Share</button>')
+    return ('<aside class="section fact-box" aria-labelledby="facts-h">'
+            '<h2 id="facts-h" class="kicker">About this bill</h2>'
+            f'<dl>{facts}</dl><div class="actions">{"".join(actions)}</div>'
+            '<p class="share-status" role="status"></p></aside>')

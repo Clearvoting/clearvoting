@@ -286,3 +286,49 @@ def test_member_t62_record_and_page_escape_hostile_strings(s):
     for out in (_render_member.render_record_section(page), _render_member.render_member_page(page)):
         _assert_member_safe(out, s)
         assert "<select" in out  # the form rendered, so the hostile topic went through an attribute
+
+
+# --- Bill page renderers (plan T7.1; T7.2 adds its entries to BILL_RENDERERS) ---
+
+def _hostile_bill_page(s: str) -> dict:
+    """A get_bill_page()-shaped dict with a hostile string in every data slot."""
+    rc = {
+        "key": "house/119_2_00295", "chamber": "house", "congress": 119, "session": 2,
+        "vote_number": 295, "date": "2026-09-03", "question": s, "plain": s, "class": "D",
+        "result": s, "counts": {"yeas": 1, "nays": 1, "present": 0, "absent": 0},
+        "seal": s, "outcome": s, "state_tallies": {"NY": [1, 1, 0]}, "rendered": True,
+        "members": [{"first_name": s, "last_name": s, "state": "NY", "vote": s,
+                     "bioguide_id": s, "covered_id": s, "district": None}],
+    }
+    return {
+        "bill_id": "119-hr-1", "congress": 119, "bill_type": "hr", "number": 1, "title": s,
+        "has_summary": {"one_liner": s}, "one_liner": s, "provisions": [s], "official_summary": s,
+        "official_first_paragraph": s,
+        "status": {"text": s, "variant": s}, "head": rc, "roll_calls": [rc],
+        "sponsor": {"bioguideId": s, "firstName": s, "lastName": s, "state": s, "fullName": s},
+        "sponsor_covered": True, "cosponsors_count": s, "policy_area": s,
+        "introduced_date": "2025-07-29", "laws": [{"type": s, "number": s}],
+        "legislation_url": s,
+    }
+
+
+# Every entry embeds the payload in its output (assert_escaped requires "&amp;amp;" for "&amp;").
+BILL_RENDERERS = {
+    "render_bill_head": lambda s: render.render_bill_head(_hostile_bill_page(s)),
+    "render_bill_head (official title)":
+        lambda s: render.render_bill_head({**_hostile_bill_page(s), "has_summary": None, "one_liner": None}),
+    "render_what_it_does": lambda s: render.render_what_it_does(_hostile_bill_page(s), "2026-07-07"),
+    "render_what_it_does (no summary)":
+        lambda s: render.render_what_it_does({**_hostile_bill_page(s), "has_summary": None}, "2026-07-07"),
+    # The slot interpolates only legislation_url, and _safe_congress_url drops every bare hostile
+    # string, so the payload is embedded inside a Congress.gov URL here.
+    "render_official_summary_slot": lambda s: render.render_official_summary_slot(
+        {**_hostile_bill_page(s), "legislation_url": "https://www.congress.gov/bill/" + s}),
+    "render_fact_box": lambda s: render.render_fact_box(_hostile_bill_page(s)),
+}
+
+
+@pytest.mark.parametrize("payload", HOSTILE)
+@pytest.mark.parametrize("name", sorted(BILL_RENDERERS))
+def test_bill_renderer_escapes_hostile_input(name, payload):
+    assert_escaped(BILL_RENDERERS[name](payload), payload)
