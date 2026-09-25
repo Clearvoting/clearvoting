@@ -1,6 +1,7 @@
 import logging
 import re
 import time
+from datetime import datetime, timezone
 from html import escape
 from xml.sax.saxutils import escape as xml_escape
 from fastapi import FastAPI, Request
@@ -15,8 +16,10 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(name)s: %(message)s",
 )
+logger = logging.getLogger("app.main")
 
 from app.limiter import limiter
+from app import render
 from app.render import _BILL_TYPE_LABELS, display_name
 from app.routers.members import router as members_router
 from app.routers.bills import router as bills_router
@@ -95,14 +98,41 @@ def _fill_freshness(html: str) -> str:
         lambda _match: f'<span id="data-freshness">{_freshness_text()}</span>', html, count=1)
 
 
-def _serve_html(filename: str, meta: dict | None = None) -> HTMLResponse:
-    """Serve an HTML file with dynamic cache-bust versions and optional SEO meta."""
+def _edition_html() -> str:
+    from app.dependencies import get_data_service
+    data_service = get_data_service()
+    return render.render_edition(
+        data_service.get_sync_metadata().get("last_sync"),
+        data_service.latest_roll_call_date(),
+        datetime.now(timezone.utc),
+    )
+
+
+def _page_content(build, meta: dict) -> tuple[str, int]:
+    """Run a page's server renderer. If the data is missing at request time, log it and
+    return the spec §4 error state with 503, which the cache rules treat as no-store."""
+    try:
+        return build(), 200
+    except Exception:
+        logger.exception("server render failed for %s", meta.get("url"))
+        h1 = meta.get("h1") or meta["title"].split(" | ")[0]
+        return render.render_error(h1), 503
+
+
+def _serve_html(filename: str, meta: dict | None = None, content_html: str | None = None, status_code: int = 200) -> HTMLResponse:
+    """Serve a shell: cache-bust versions, SEO meta, then the edition line and server-rendered content (plan T3.1)."""
     html = (static_dir / filename).read_text()
     html = _version_re.sub(f"?v={_asset_version}", html)
     html = _fill_freshness(html)
     if meta is not None:
         html = _inject_meta(html, meta)
-    return HTMLResponse(html, headers={"Cache-Control": "no-cache, no-store, must-revalidate"})
+    if "<!--edition-->" in html:
+        html = html.replace("<!--edition-->", _edition_html(), 1)
+    # Content last: the ?v= rewrite, <title>/</head> injection and freshness fill never
+    # see server-rendered data (spec §9.1, §9.2).
+    if content_html is not None:
+        html = html.replace("<!--content-->", content_html, 1)
+    return HTMLResponse(html, status_code=status_code, headers={"Cache-Control": "no-cache, no-store, must-revalidate"})
 
 app.include_router(members_router)
 app.include_router(bills_router)

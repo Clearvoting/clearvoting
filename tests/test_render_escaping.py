@@ -8,6 +8,7 @@ import re
 
 import pytest
 
+from app import render
 from app.render import display_name, format_bill_code, h, sponsor_name
 
 HOSTILE = [
@@ -54,3 +55,19 @@ def test_hostile_fixture_title_is_escaped():
     out = h(title)
     assert "<b>" not in out and "&lt;b&gt;" in out
     assert "&amp;" in out and "&quot;" in out and "&#x27;" in out
+
+
+# --- Shared page blocks (plan T3.1) ---
+
+# T1.3's test is parametrized over sorted(RENDERERS) when its decorator runs, so entries
+# added down here would never be collected: this block has its own dict and test.
+SHARED_BLOCKS = {
+    "render_error": lambda p: render.render_error(p),
+    "render_zip_form": lambda p: render.render_zip_form(value=p, error=p, label=p),
+}
+
+
+@pytest.mark.parametrize("payload", HOSTILE)
+@pytest.mark.parametrize("name", sorted(SHARED_BLOCKS))
+def test_shared_blocks_escape_hostile_input(name, payload):
+    assert_escaped(SHARED_BLOCKS[name](payload), payload)

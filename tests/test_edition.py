@@ -1,0 +1,232 @@
+"""Edition line (spec §7.4), the SSR markers in _serve_html (§9.1), the page error
+state (§4 common) and the shared blocks several pages render (§3.2 ZIP form, state
+links, §4.1 m2 notify disclosure)."""
+import json
+import re
+from datetime import datetime, timezone
+from pathlib import Path
+from unittest.mock import patch
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+
+import pytest
+
+from app import main, render
+
+FIXTURES = Path(__file__).parent / "fixtures" / "synced"
+REPO = Path(__file__).parent.parent
+LA = ZoneInfo("America/Los_Angeles")
+SEP_22 = datetime(2026, 9, 22, 12, 0, tzinfo=LA)
+
+
+def _patch_data_dir():
+    return patch("app.dependencies.get_data_dir", return_value=FIXTURES)
+
+
+def _clear_data_service_cache():
+    from app.dependencies import get_data_service
+    get_data_service.cache_clear()
+
+
+# --- Edition line (§7.4) ---
+
+def test_edition_matches_the_spec_example():
+    html = render.render_edition("2026-09-05T06:00:00Z", "2026-09-03", SEP_22)
+    assert html == (
+        '<p class="edition"><span>Data synced September 5, 2026</span>'
+        '<span class="edition-mid"> · Latest roll call September 3</span>'
+        '<span> · Election Day is Tuesday, November 3 — 42 days away</span></p>'
+    )
+
+
+def test_countdown_on_november_2_is_one_day():
+    html = render.render_edition(None, None, datetime(2026, 11, 2, 12, 0, tzinfo=LA))
+    assert "Election Day is Tuesday, November 3 — 1 day away" in html
+
+
+@pytest.mark.parametrize("hour, minute", [(0, 0), (21, 0), (23, 59)])
+def test_election_day_is_today_all_day_pacific(hour, minute):
+    html = render.render_edition(None, None, datetime(2026, 11, 3, hour, minute, tzinfo=LA))
+    assert "<span>Election Day is today</span>" in html
+    assert "days away" not in html
+
+
+def test_countdown_converts_utc_to_pacific():
+    # 2026-11-04 07:59 UTC is 23:59 PST on November 3 (DST ended November 1).
+    today = render.render_edition(None, None, datetime(2026, 11, 4, 7, 59, tzinfo=timezone.utc))
+    assert "Election Day is today" in today
+    # 08:00 UTC is midnight Pacific on November 4: the line is omitted.
+    after = render.render_edition(None, None, datetime(2026, 11, 4, 8, 0, tzinfo=timezone.utc))
+    assert "Election Day" not in after
+
+
+def test_election_line_omitted_from_november_4():
+    html = render.render_edition("2026-11-02T06:00:00Z", None, datetime(2026, 11, 4, 0, 0, tzinfo=LA))
+    assert html == '<p class="edition"><span>Data synced November 2, 2026</span></p>'
+
+
+def test_edition_without_sync_has_no_leading_separator():
+    html = render.render_edition(None, None, SEP_22)
+    assert html == '<p class="edition"><span>Election Day is Tuesday, November 3 — 42 days away</span></p>'
+
+
+def test_edition_is_empty_when_nothing_is_known():
+    assert render.render_edition(None, None, datetime(2026, 11, 10, 12, 0, tzinfo=LA)) == ""
+
+
+def test_countdown_without_a_tz_database(monkeypatch):
+    def _missing(name):
+        raise ZoneInfoNotFoundError(name)
+
+    monkeypatch.setattr(render, "ZoneInfo", _missing)
+    assert "Election Day is today" in render.render_edition(
+        None, None, datetime(2026, 11, 4, 7, 59, tzinfo=timezone.utc))
+    assert "Election Day" not in render.render_edition(
+        None, None, datetime(2026, 11, 4, 8, 0, tzinfo=timezone.utc))
+    # September is PDT (UTC-7): 06:59 UTC on Sep 23 is still Sep 22 in California.
+    assert "42 days away" in render.render_edition(
+        None, None, datetime(2026, 9, 23, 6, 59, tzinfo=timezone.utc))
+
+
+def test_election_day_matches_the_sanctioned_seats_file():
+    seats = json.loads((REPO / "data" / "synced" / "senate_2026.json").read_text())
+    assert seats["election_day"] == render.ELECTION_DAY.isoformat()
+
+
+# --- Error state (§4 common) ---
+
+def test_render_error_uses_the_spec_sentence():
+    html = render.render_error("Your representatives")
+    assert "<h1>Your representatives</h1>" in html
+    assert ("We couldn't load this page right now. Please try again in a moment, "
+            "or use <em>Report an error</em> below to tell us.") in html
+    assert "Congress.gov" not in html
+
+
+# --- ZIP form (§3.2) ---
+
+def test_zip_form_is_a_plain_get_to_state():
+    html = render.render_zip_form()
+    assert '<form class="zip-form" id="find" method="get" action="/state">' in html
+    assert '<label class="zip-label" for="zip">Where do you live?</label>' in html
+    for attr in ('id="zip"', 'name="zip"', 'inputmode="numeric"', 'autocomplete="postal-code"',
+                 'maxlength="10"', " required", r'pattern="\s*[0-9]{5}([\-\s]?[0-9]{4})?\s*"'):
+        assert attr in html
+    assert '<button class="btn" type="submit">Find my representatives</button>' in html
+    assert "aria-describedby" not in html
+    assert "value=" not in html
+
+
+def test_zip_form_error_keeps_the_typed_value_and_describes_the_field():
+    html = render.render_zip_form(compact=True, value="abc", error="A ZIP code is five digits.",
+                                  form_id="state-zip")
+    assert '<form class="zip-form zip-form--compact" id="state-zip" method="get" action="/state">' in html
+    assert 'id="state-zip-field"' in html
+    assert 'value="abc"' in html
+    assert 'aria-describedby="state-zip-field-error" aria-invalid="true"' in html
+    assert '<p class="field-error" id="state-zip-field-error">A ZIP code is five digits.</p>' in html
+
+
+# --- State links (§4.1 fold) ---
+
+def test_state_links_show_real_counts_in_fixed_order():
+    html = render.render_state_links({"CA": 54, "FL": 29, "NY": 28, "TX": 39})
+    assert re.findall(r'href="/state\?code=([A-Z]{2})"', html) == ["CA", "FL", "NY", "TX"]
+    assert '<li><a class="state-link" href="/state?code=NY">New York · 28</a></li>' in html
+    assert html.startswith('<ul class="state-links">')
+
+
+def test_state_link_without_a_count_shows_the_name_only():
+    html = render.render_state_links({"NY": 1})
+    assert '<a class="state-link" href="/state?code=CA">California</a>' in html
+    assert '<a class="state-link" href="/state?code=NY">New York · 1</a>' in html
+
+
+# --- Notify disclosure (§4.1 m2) ---
+
+def test_notify_disclosure_lists_only_uncovered_states_and_dc():
+    html = render.render_notify_disclosure()
+    values = re.findall(r'<option value="([A-Z]{2})">', html)
+    assert len(values) == 47 == len(render.NOTIFY_STATES)
+    assert "DC" in values
+    assert not {"CA", "FL", "NY", "TX"} & set(values)
+    assert '<option value="">Choose your state</option>' in html
+    assert "<summary>Somewhere else?</summary>" in html
+    assert '<select id="notify-state" name="state" required>' in html
+    assert 'id="notify-email" name="email" type="email" autocomplete="email"' in html
+    assert '<button class="btn" type="submit" id="notify-submit">Notify me</button>' in html
+    # /privacy arrives with T5.1 (commit 5); until then the link goes where the old
+    # footer's "Privacy" link went (/about), so no commit links to a 404 (§10.3).
+    assert ('<p class="meta">We store your email, your state and the time you signed up. '
+            '<a href="/about">Privacy →</a></p>') in html
+    assert '<p class="notify-status" id="notify-status" role="status" tabindex="-1"></p>' in html
+    assert '<noscript><p class="meta">Signing up needs JavaScript.</p></noscript>' in html
+
+
+def test_notify_form_cannot_submit_without_js():
+    html = render.render_notify_disclosure()
+    form_tag = re.search(r"<form[^>]*>", html).group(0)
+    assert "action=" not in form_tag and "method=" not in form_tag
+    assert '<fieldset class="notify-fields" disabled>' in html
+
+
+# --- _serve_html markers (§9.1) ---
+
+SHELL = ('<!DOCTYPE html><html lang="en"><head><title>Test</title></head><body>'
+         '<header class="masthead"><!--edition--></header>'
+         '<main id="main-content" tabindex="-1"><!--content--></main></body></html>')
+META = {"title": "Test | ClearVoting", "description": "d", "url": "https://clearvoting.org/t"}
+
+
+def _serve(tmp_path, filename, *args, **kwargs):
+    with patch("app.main.static_dir", tmp_path), _patch_data_dir():
+        _clear_data_service_cache()
+        response = main._serve_html(filename, *args, **kwargs)
+    _clear_data_service_cache()
+    return response
+
+
+def test_serve_html_fills_content_and_edition_markers(tmp_path):
+    (tmp_path / "t.html").write_text(SHELL)
+    content = '<p>Hello <a href="/static/x.css?v=1">x</a></p>'
+    response = _serve(tmp_path, "t.html", META, content)
+    html = response.body.decode()
+    # Content goes in after the ?v= rewrite and the meta injection, untouched.
+    assert f'<main id="main-content" tabindex="-1">{content}</main>' in html
+    assert '<header class="masthead"><p class="edition">' in html
+    assert "<!--content-->" not in html and "<!--edition-->" not in html
+    assert "<title>Test | ClearVoting</title>" in html
+    assert response.status_code == 200
+
+
+def test_serve_html_passes_the_status_code(tmp_path):
+    (tmp_path / "t.html").write_text(SHELL)
+    assert _serve(tmp_path, "t.html", META, "<p>x</p>", status_code=503).status_code == 503
+
+
+def test_shell_without_markers_is_unaffected(tmp_path):
+    (tmp_path / "plain.html").write_text(
+        "<html><head><title>P</title></head><body><main>x</main></body></html>")
+    html = _serve(tmp_path, "plain.html", META).body.decode()
+    assert '<p class="edition">' not in html
+    assert "<main>x</main>" in html
+
+
+# --- Page-level error fallback (§4 common) ---
+
+def test_page_content_returns_rendered_html():
+    assert main._page_content(lambda: "<p>ok</p>", META) == ("<p>ok</p>", 200)
+
+
+def test_page_content_falls_back_to_the_error_state():
+    def boom():
+        raise OSError("votes_index.json missing")
+
+    html, status = main._page_content(boom, {**META, "h1": "Your representatives"})
+    assert status == 503
+    assert "<h1>Your representatives</h1>" in html
+    assert render.PAGE_ERROR_SENTENCE in html
+
+
+def test_page_content_h1_defaults_to_the_title_without_the_site_name():
+    html, _ = main._page_content(lambda: 1 / 0, META)
+    assert "<h1>Test</h1>" in html

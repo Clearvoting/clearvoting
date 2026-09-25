@@ -377,3 +377,17 @@ def test_latest_official_summary_lives_in_data_service():
         {"actionDate": "2022-08-16", "actionDesc": "Public Law", "text": "IRA enacted text"},
     ]}
     assert DataService._latest_official_summary(bill) == "IRA enacted text"
+
+
+# --- Earliest roll-call date (plan T3.1; spec §4.1 m2 coverage sentence) ---
+
+def test_earliest_roll_call_date_reads_the_index(data_service):
+    roll_calls = json.loads((FIXTURES / "votes_index.json").read_text())["roll_calls"]
+    dates = [str(rc.get("date") or "")[:10] for rc in roll_calls.values()]
+    dates = [d for d in dates if d]
+    assert data_service.earliest_roll_call_date() == min(dates)
+    assert data_service.latest_roll_call_date() == max(dates)
+
+
+def test_earliest_roll_call_date_without_an_index(tmp_path):
+    assert DataService(data_dir=tmp_path).earliest_roll_call_date() is None

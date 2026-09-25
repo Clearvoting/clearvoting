@@ -7,8 +7,9 @@ vocabularies can never drift apart.
 """
 import html
 import re
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 # ---------------------------------------------------------------------------
 # §7.1 question classes. Ordered: the first matching pattern wins. Each pattern
@@ -548,3 +549,147 @@ def strip_tags(markup: str | None) -> str:
     parser.feed(markup or "")
     parser.close()
     return re.sub(r"\s+", " ", "".join(parser.parts)).strip()
+
+
+# ---------------------------------------------------------------------------
+# Shared page blocks (plan T3.1). Pure functions: every data value goes through
+# h(); hrefs use only fixed state codes. Constant copy that contains an
+# apostrophe is written literally (h() would turn ' into &#x27;).
+# ---------------------------------------------------------------------------
+
+# Same date as data/synced/senate_2026.json "election_day" (a test asserts it).
+ELECTION_DAY = date(2026, 11, 3)
+
+COVERED_STATES = (("CA", "California"), ("FL", "Florida"), ("NY", "New York"), ("TX", "Texas"))
+
+# The notify form's only options: the 46 states ClearVoting does not cover, plus DC.
+NOTIFY_STATES = {
+    "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas", "CO": "Colorado",
+    "CT": "Connecticut", "DE": "Delaware", "DC": "District of Columbia", "GA": "Georgia",
+    "HI": "Hawaii", "ID": "Idaho", "IL": "Illinois", "IN": "Indiana", "IA": "Iowa",
+    "KS": "Kansas", "KY": "Kentucky", "LA": "Louisiana", "ME": "Maine", "MD": "Maryland",
+    "MA": "Massachusetts", "MI": "Michigan", "MN": "Minnesota", "MS": "Mississippi",
+    "MO": "Missouri", "MT": "Montana", "NE": "Nebraska", "NV": "Nevada", "NH": "New Hampshire",
+    "NJ": "New Jersey", "NM": "New Mexico", "NC": "North Carolina", "ND": "North Dakota",
+    "OH": "Ohio", "OK": "Oklahoma", "OR": "Oregon", "PA": "Pennsylvania", "RI": "Rhode Island",
+    "SC": "South Carolina", "SD": "South Dakota", "TN": "Tennessee", "UT": "Utah",
+    "VT": "Vermont", "VA": "Virginia", "WA": "Washington", "WV": "West Virginia",
+    "WI": "Wisconsin", "WY": "Wyoming",
+}
+
+# Spec §3.2: the browser check mirrors the server rule ^\s*(\d{5})(?:[-\s]?\d{4})?\s*$.
+ZIP_INPUT_PATTERN = r"\s*[0-9]{5}([\-\s]?[0-9]{4})?\s*"
+
+PAGE_ERROR_SENTENCE = (
+    "We couldn't load this page right now. Please try again in a moment, "
+    "or use <em>Report an error</em> below to tell us."
+)
+
+
+def _pacific_today(now: datetime) -> date:
+    """Today's date in America/Los_Angeles, so "Election Day is today" lasts until
+    California polls close (spec §7.4). Falls back to the US DST rule when the host
+    has no tz database (python:3.12-slim may ship without one; no new dependency)."""
+    if now.tzinfo is None:
+        now = now.replace(tzinfo=timezone.utc)
+    try:
+        return now.astimezone(ZoneInfo("America/Los_Angeles")).date()
+    except ZoneInfoNotFoundError:
+        utc = now.astimezone(timezone.utc)
+        # PDT runs from the second Sunday in March, 10:00 UTC, to the first Sunday in November, 09:00 UTC.
+        march_8 = datetime(utc.year, 3, 8, 10, tzinfo=timezone.utc)
+        dst_start = march_8 + timedelta(days=(6 - march_8.weekday()) % 7)
+        nov_1 = datetime(utc.year, 11, 1, 9, tzinfo=timezone.utc)
+        dst_end = nov_1 + timedelta(days=(6 - nov_1.weekday()) % 7)
+        offset = -7 if dst_start <= utc < dst_end else -8
+        return (utc + timedelta(hours=offset)).date()
+
+
+def render_edition(last_sync: str | None, latest_roll_call: str | None, now: datetime) -> str:
+    """The one-line edition under the masthead nav (spec §7.4, §6.4)."""
+    parts: list[tuple[str, str]] = []
+    if last_sync:
+        parts.append(("", f"Data synced {format_date(last_sync[:10])}"))
+    if latest_roll_call:
+        month_day = format_date(latest_roll_call[:10]).rsplit(",", 1)[0]
+        parts.append(("edition-mid", f"Latest roll call {month_day}"))
+    days = (ELECTION_DAY - _pacific_today(now)).days
+    if days == 0:
+        parts.append(("", "Election Day is today"))
+    elif days > 0:
+        weekday = ELECTION_DAY.strftime("%A")
+        month_day = format_date(ELECTION_DAY.isoformat()).rsplit(",", 1)[0]
+        unit = "day" if days == 1 else "days"
+        parts.append(("", f"Election Day is {weekday}, {month_day} — {days} {unit} away"))
+    if not parts:
+        return ""
+    spans = []
+    for i, (cls, text) in enumerate(parts):
+        class_attr = f' class="{cls}"' if cls else ""
+        separator = " · " if i else ""
+        spans.append(f"<span{class_attr}>{h(separator + text)}</span>")
+    return f'<p class="edition">{"".join(spans)}</p>'
+
+
+def render_error(h1: str) -> str:
+    """Spec §4 common: shown when the server cannot render a page's content."""
+    return f'<section class="page-error"><h1>{h(h1)}</h1><p class="deck">{PAGE_ERROR_SENTENCE}</p></section>'
+
+
+def render_zip_form(compact: bool = False, value: str = "", error: str | None = None,
+                    form_id: str = "find", label: str = "Where do you live?") -> str:
+    """The ZIP finder (spec §3.2). A plain GET to /state that JavaScript never intercepts."""
+    input_id = "zip" if form_id == "find" else f"{form_id}-field"
+    error_id = f"{input_id}-error"
+    form_class = "zip-form zip-form--compact" if compact else "zip-form"
+    value_attr = f' value="{h(value)}"' if value else ""
+    described = f' aria-describedby="{h(error_id)}" aria-invalid="true"' if error else ""
+    error_html = f'<p class="field-error" id="{h(error_id)}">{h(error)}</p>' if error else ""
+    return (
+        f'<form class="{form_class}" id="{h(form_id)}" method="get" action="/state">'
+        f'<label class="zip-label" for="{h(input_id)}">{h(label)}</label>'
+        '<div class="zip-row">'
+        f'<input id="{h(input_id)}" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" '
+        f'maxlength="10" pattern="{h(ZIP_INPUT_PATTERN)}" required{value_attr}{described}>'
+        '<button class="btn" type="submit">Find my representatives</button>'
+        "</div>"
+        f"{error_html}</form>"
+    )
+
+
+def render_state_links(counts: dict) -> str:
+    """Four 44px state chips with real member counts ("New York · 28")."""
+    items = []
+    for code, name in COVERED_STATES:
+        count = counts.get(code)
+        label = f"{name} · {int(count)}" if count else name
+        items.append(f'<li><a class="state-link" href="/state?code={code}">{h(label)}</a></li>')
+    return f'<ul class="state-links">{"".join(items)}</ul>'
+
+
+def render_notify_disclosure() -> str:
+    """"Somewhere else?" (spec §4.1 m2). No action/method, and the fields start disabled,
+    so without JavaScript nothing can be typed or submitted (an email must never end up in
+    a GET query string); site.js initNotify enables the fieldset and POSTs JSON."""
+    options = "".join(f'<option value="{code}">{h(name)}</option>' for code, name in NOTIFY_STATES.items())
+    return (
+        '<details class="notify-disclosure">'
+        "<summary>Somewhere else?</summary>"
+        '<form class="notify" id="notify-form">'
+        '<fieldset class="notify-fields" disabled>'
+        '<label for="notify-state">Your state</label>'
+        '<select id="notify-state" name="state" required>'
+        f'<option value="">Choose your state</option>{options}</select>'
+        '<label for="notify-email">Email address</label>'
+        '<input id="notify-email" name="email" type="email" autocomplete="email" maxlength="254" '
+        'required aria-describedby="notify-email-error">'
+        '<p class="field-error" id="notify-email-error"></p>'
+        '<button class="btn" type="submit" id="notify-submit">Notify me</button>'
+        "</fieldset>"
+        '<p class="meta">We store your email, your state and the time you signed up. '
+        '<a href="/about">Privacy →</a></p>'  # T5.1 repoints this to /privacy
+        '<p class="notify-status" id="notify-status" role="status" tabindex="-1"></p>'
+        "</form>"
+        '<noscript><p class="meta">Signing up needs JavaScript.</p></noscript>'
+        "</details>"
+    )

@@ -478,6 +478,7 @@ class DataService:
         self._audit_grades: dict = {}
         # Coverage numbers for /api/health, /about and /methodology; computed once.
         self._coverage: dict | None = None
+        self._earliest_rc: tuple[str | None] | None = None  # (date,) once computed; the index never changes after startup
         self._load()
 
     def _load(self) -> None:
@@ -962,6 +963,15 @@ class DataService:
         """The newest roll-call date in the index (ISO), for the edition line and health."""
         dates = (str(rc.get("date") or "")[:10] for rc in self._index_roll_calls().values())
         return max((d for d in dates if d), default=None)
+
+    def earliest_roll_call_date(self) -> str | None:
+        """The oldest roll-call date in the index (ISO): the "since January 2021" of the home
+        coverage sentence and the Record stamp (spec §4.1). Computed once, then served from
+        memory (§9.1 request path); None without the index."""
+        if self._earliest_rc is None:
+            dates = (str(rc.get("date") or "")[:10] for rc in self._index_roll_calls().values())
+            self._earliest_rc = (min((d for d in dates if d), default=None),)
+        return self._earliest_rc[0]
 
     # ---- Member page payload (plan T1.7) ----
 
