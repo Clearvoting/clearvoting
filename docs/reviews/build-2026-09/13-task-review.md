@@ -1,4 +1,41 @@
-# T2.3 review — site.js behaviours (commit ab0b6f9)
+# T2.3 re-review: site.js behaviours, fix commit 583d5fe
+
+## Summary
+Commit 583d5fe fixes the round-1 P1 and takes up two of the round-1 P2s. The same hunks went into `static/js/site.js` and into the plan's T2.3 code block, and the interface notes now name `attempt` and the share-status reset.
+
+- **Party toggle (P1).** Each press now gets a number: `show()` takes `const mine = ++attempt` and `hide()` runs `attempt++`. The code re-checks `mine !== attempt || !revealed` after the fetch/json, after `onShow`, and in the `catch`. If a Hide lands while an async `onShow` is still running, `onHide()` runs once more, so the page's late fill does not outlast the Hide. That extra call is the implementer's deviation, and I accept it: page `onHide` callbacks only clear spans, so running one twice is harmless.
+- **Share.** The status line is emptied, then "Link copied" is written after 100 ms, so a second copy counts as a change and gets announced. A 100 ms delay is safer than 0 here.
+- **Notify.** A 422 now shows the existing `invalidEmail` copy on the field, sets `aria-invalid` and `aria-describedby`, moves focus to the email field and re-enables submit. Network errors, 429 and 5xx still show `notifyFailed`. In this form the server can only answer 422 because of the email check: the state comes from a select and is ≤50 characters.
+- **Constraints.** All copy comes from `STRINGS`. There is no new innerHTML, cookie, pushState or aria-live, and storage still goes only through the helpers.
+
+## What I verified
+- Full suite: **795 passed**. `node --check` is clean.
+- Throwaway node `vm` race harness (scratchpad only; DOM stubs, fetch promises I resolve by hand). All six scenarios end in the right state:
+  - Show → Hide → fetch resolves: label "Show", status "hidden", session key empty, `onShow` never called.
+  - Show → Hide → Show, first fetch resolves late: the second reveal wins, with "Hide" / "shown" / key=1.
+  - Show → Hide → Show, first fetch **fails** late: the stale catch leaves the newer reveal alone.
+  - Slow async `onShow`, then Hide: ends hidden, with `onHide` called twice.
+  - Remembered reveal (`show(false)` on load), with a press during the load: Hide wins.
+  - Plain Show: works as before.
+- Server on :8011 (port freed first, stopped after, port confirmed free): `/api/health`, `/`, `/state?code=NY`, `/member?id=S000148` and `/static/js/site.js` all return 200. The served site.js contains the guard 3 times. `POST /api/notify {"email":"a@b"}` returns 422, which is the case the new branch handles. `/` still does not load site.js.
+- Scroll-width smoke on `/`: mobile scrollWidth=375, desktop 1280.
+
+## Verdict: pass
+The P1 is fixed and I confirmed the behaviour by running it, not just by reading the code. What remains is P2 and does not block.
+
+## Issues (all P2, non-blocking)
+| Sev | File | Problem | Fix |
+|---|---|---|---|
+| P2 | tests/test_static_assets.py (`test_site_js_storage_rules`) | The new assertions check that source strings exist (`const mine = ++attempt;`, a count of the guard line, `statusNode.textContent = '';`). They do not test behaviour. A refactor that keeps the text but breaks the order, or that reorders correct code, would pass or fail for the wrong reason. | Later task (T11.x), or whenever tests next touch site.js: turn the race harness into a real node test with a small DOM stub. It is about 40 lines and covers the Show→Hide→resolve and Show→Hide→Show→late-fail cases. Keep the T11.3 real-browser walkthrough item. |
+| P2 | static/js/site.js `show()` catch | A stale failure returns early and never calls `onHide`. If a page's async `onShow` filled part of the page, then threw after the reader pressed Hide, that partial fill stays. The success path handles the same case by calling `onHide()` again. | Mirror the success path in the catch: `if (mine !== attempt \|\| !revealed) { if (!revealed && onHide) onHide(); return; }`. It is one line, and the plan block should get it too. It only matters when a page callback both fills and throws. |
+| P2 | static/js/site.js `initShare` | The 100 ms timer is never cancelled. Say one press copies successfully and a second press within 100 ms fails and writes the URL as fallback text. The first timer then overwrites that with "Link copied". | Keep the timer id on the button and `clearTimeout` it before writing either message. Very unlikely in practice. |
+| P2 | static/js/site.js `initNotify` 422 fallback | When `#notify-email-error` is missing, the invalid-email copy goes into `#notify-status`, but the `field-error` class is removed and focus goes to the email field, which is not described by that status. The T3.1 markup contract always renders the error node, so today this code never runs. | If the fallback stays, add `field-error` to the status, or drop the fallback and rely on the contract. |
+| P2 (carried) | static/js/site.js `readHome`/`rememberDistrict` | NY-40 is still accepted. The implementer left this unchanged, as round 1 allowed. | Check the district against the state's count once `districts_expected` reaches the client. |
+| P2 (carried) | static/js/site.js top-level names | New top-level names share one global scope with the page scripts. | T3.3+ should grep for duplicate top-level names when a page first loads site.js. |
+
+---
+
+# Round 1: T2.3 review, site.js behaviours (commit ab0b6f9)
 
 ## Summary
 The commit matches the plan exactly. I checked this by script: the Step 3 behaviours block sits verbatim, and only, above the Node export marker. The export list gained exactly the planned line, and both test appends match the plan byte for byte. All copy comes through `t()` from the T2.2 `STRINGS` (the spec's wording). The one hard-coded string, "Voted for {Name}", is spec §4.3 wording too.
