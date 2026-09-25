@@ -393,3 +393,212 @@ def test_format_date_default_is_long_and_accepts_a_style_string():
 
 def test_format_date_has_no_zero_padding_or_time():
     assert not re.search(r"\b0\d\b|:\d\d", format_date("2026-01-05T17:31:00"))
+
+
+# --- §9.1 escape helper ---
+
+def test_h_escapes_markup_and_quotes():
+    from app.render import h
+    assert h('<b>&"\'') == "&lt;b&gt;&amp;&quot;&#x27;"
+    assert h(4795) == "4795"
+    assert h(None) == ""
+
+
+# --- §7.5 bill codes, ordinals, names, tenure ---
+
+@pytest.mark.parametrize("bill_type, number, code", [
+    ("hr", 4795, "H.R. 4795"),
+    ("s", "5271", "S. 5271"),
+    ("hjres", 20, "H.J.Res. 20"),
+    ("sjres", 11, "S.J.Res. 11"),
+    ("hconres", 108, "H.Con.Res. 108"),
+    ("sconres", 5, "S.Con.Res. 5"),
+    ("hres", 1398, "H.Res. 1398"),
+    ("sres", 417, "S.Res. 417"),
+    ("HJRES", "20", "H.J.Res. 20"),
+    ("xyz", 5, "XYZ 5"),
+])
+def test_format_bill_code(bill_type, number, code):
+    from app.render import format_bill_code
+    assert format_bill_code(bill_type, number) == code
+
+
+def test_main_uses_the_shared_bill_type_map():
+    from app import main
+    assert main._BILL_TYPE_LABELS is render._BILL_TYPE_LABELS
+
+
+@pytest.mark.parametrize("n, text", [
+    (1, "1st"), (2, "2nd"), (3, "3rd"), (4, "4th"), (11, "11th"), (12, "12th"), (13, "13th"),
+    (21, "21st"), (22, "22nd"), (101, "101st"), (111, "111th"), (112, "112th"), (113, "113th"),
+    (117, "117th"), (118, "118th"), (119, "119th"), ("119", "119th"),
+])
+def test_ordinal(n, text):
+    from app.render import ordinal
+    assert ordinal(n) == text
+
+
+@pytest.mark.parametrize("name, shown", [
+    ("Schumer, Charles E.", "Charles E. Schumer"),
+    ("Scott, Rick", "Rick Scott"),
+    ("McMorris Rodgers, Cathy", "Cathy McMorris Rodgers"),
+    ("Madonna", "Madonna"),
+    ("", ""),
+    (None, ""),
+])
+def test_display_name(name, shown):
+    from app.render import display_name
+    assert display_name(name) == shown
+
+
+def test_display_name_over_fixture_members():
+    from app.render import display_name
+    members = json.loads((FIXTURES / "members.json").read_text())["members"]
+    for member in members:
+        shown = display_name(member["name"])
+        assert "," not in shown and shown == shown.strip()
+
+
+def test_tenure_line_from_real_members():
+    from app.render import tenure_line
+    members = {m["bioguideId"]: m for m in json.loads((FIXTURES / "members.json").read_text())["members"]}
+    assert tenure_line(members["S000148"]["terms"]) == (
+        "In Congress since 1981 — House 1981–1999, Senate since 1999")
+    assert tenure_line(members["G000555"]["terms"]) == (
+        "In Congress since 2007 — House 2007–2009, Senate since 2009")
+    assert tenure_line(members["G000602"]["terms"]) == "In Congress since 2025"
+    assert tenure_line(members["S001217"]["terms"]) == "In Congress since 2025"
+
+
+def test_tenure_line_one_chamber_several_terms_and_empty():
+    from app.render import tenure_line
+    terms = {"item": [{"chamber": "House of Representatives", "startYear": 2013, "endYear": 2015},
+                      {"chamber": "House of Representatives", "startYear": 2019}]}
+    assert tenure_line(terms) == "In Congress since 2013"
+    assert tenure_line({"item": []}) == ""
+    assert tenure_line(None) == ""
+
+
+# --- §7.4 seat seals: the seat, never the person ---
+
+def test_seat_seal():
+    from app.render import seat_seal
+    assert seat_seal("regular") == "Seat up Nov 3"
+    assert seat_seal("regular", "row") == "Seat up Nov 3"
+    assert seat_seal("regular", "header") == "This seat is on the ballot Nov 3, 2026"
+    assert seat_seal("regular", header=True) == "This seat is on the ballot Nov 3, 2026"
+    assert seat_seal("special", "row") == "Special election Nov 3"
+    assert seat_seal("special", header=True) == "Special election for this seat Nov 3, 2026"
+    assert seat_seal(None, "row") == ""
+    assert seat_seal(None, header=True) == ""
+
+
+def test_seat_seal_copy_never_names_a_person():
+    from app.render import _SEAT_SEALS
+    for text in _SEAT_SEALS.values():
+        assert not re.search(r"\b(On|Not on) the ballot", text)
+
+
+# --- §4.4 sponsor name: never the fullName string ---
+
+def test_sponsor_name_real_sponsor():
+    from app.render import sponsor_name
+    bills = {f"{b['congress']}-{b['type'].lower()}-{b['number']}": b
+             for b in json.loads((FIXTURES / "bills.json").read_text())["bills"]}
+    sponsor = bills["118-hr-21"]["sponsors"][0]
+    assert sponsor["fullName"] == "Rep. McMorris Rodgers, Cathy [R-WA-5]"
+    assert (sponsor["firstName"], sponsor["lastName"]) == ("Cathy", "Rodgers")
+    # The person comes from fullName, so the compound surname survives.
+    assert sponsor_name(sponsor) == "Rep. Cathy McMorris Rodgers (WA)"
+
+
+def test_sponsor_name_all_caps_parts_in_real_data():
+    from app.render import sponsor_name
+    bills = {f"{b['congress']}-{b['type'].lower()}-{b['number']}": b
+             for b in json.loads((FIXTURES / "bills.json").read_text())["bills"]}
+    sponsor = bills["117-hres-8"]["sponsors"][0]
+    # 176 real sponsors carry ALL-CAPS firstName/lastName; fullName is cased normally.
+    assert (sponsor["firstName"], sponsor["lastName"]) == ("STENY", "HOYER")
+    assert sponsor_name(sponsor) == "Rep. Steny H. Hoyer (MD)"
+
+
+def test_sponsor_name_resident_commissioner_prefixes():
+    from app.render import sponsor_name
+    # Copied from real bills.json (118-hr-359 and 117-hr-2020); neither is in the fixture slice.
+    rescom = {"firstName": "Jenniffer", "lastName": "Gonzalez-Colon", "state": "PR",
+              "fullName": "Rescom. González-Colón, Jenniffer [R-PR-At Large]"}
+    assert sponsor_name(rescom) == "Rescom. Jenniffer González-Colón (PR)"
+    long_form = dict(rescom, fullName="Resident Commissioner González-Colón, Jenniffer [R-PR-At Large]")
+    assert sponsor_name(long_form) == "Resident Commissioner Jenniffer González-Colón (PR)"
+
+
+def test_sponsor_name_never_leaks_party_over_fixture_bills():
+    from app.render import sponsor_name
+    for bill in json.loads((FIXTURES / "bills.json").read_text())["bills"]:
+        for sponsor in bill.get("sponsors", []):
+            shown = sponsor_name(sponsor)
+            assert "[" not in shown and not re.search(r"\b[RDI]-[A-Z]{2}", shown)
+
+
+def test_sponsor_name_senator_and_missing_parts():
+    from app.render import sponsor_name
+    assert sponsor_name({"fullName": "Sen. Schumer, Charles E. [D-NY]", "firstName": "Charles",
+                         "lastName": "Schumer", "state": "NY"}) == "Sen. Charles E. Schumer (NY)"
+    # fullName alone is enough; without a state there is no parenthetical.
+    assert sponsor_name({"fullName": "Rep. Smith, Jason [R-MO-8]"}) == "Rep. Jason Smith"
+    # T1.8's page sponsor has fullName without the suffix; it still parses.
+    assert sponsor_name({"fullName": "Rep. McMorris Rodgers, Cathy", "firstName": "Cathy",
+                         "lastName": "Rodgers", "state": "WA"}) == "Rep. Cathy McMorris Rodgers (WA)"
+    # fullName that does not parse: prefix kept, first/last used, ALL CAPS title-cased.
+    assert sponsor_name({"fullName": "Rep. HOYER", "firstName": "STENY", "lastName": "HOYER",
+                         "state": "MD"}) == "Rep. Steny Hoyer (MD)"
+    assert sponsor_name({"fullName": "", "firstName": "", "lastName": ""}) == ""
+    assert sponsor_name(None) == ""
+
+
+def test_sponsor_name_parses_every_real_sponsor():
+    from app.render import _SPONSOR_FULLNAME_RE, sponsor_name
+    real = Path(__file__).resolve().parent.parent / "data" / "synced" / "bills.json"
+    if not real.exists():
+        pytest.skip("real bills.json not present")
+    for bill in json.loads(real.read_text())["bills"]:
+        for sponsor in bill.get("sponsors", []):
+            match = _SPONSOR_FULLNAME_RE.match(sponsor["fullName"])
+            assert match and "," in match.group(2), sponsor["fullName"]
+            shown = sponsor_name(sponsor)
+            assert "[" not in shown and shown != shown.upper(), shown
+
+
+# --- §10 #10 strip_tags ---
+
+@pytest.mark.parametrize("markup, text", [
+    ("<script>alert(1)</script>Safe", "Safe"),
+    ('<a href="javascript:alert(1)">Click</a>', "Click"),
+    ("<img src=x onerror=alert(1)>ok", "ok"),
+    ("<style>p { color: red }</style>Body", "Body"),
+    ("<script>alert(1)", ""),
+    ("&lt;script&gt;alert(1)&lt;/script&gt;", "<script>alert(1)</script>"),
+    ("Tom &amp; Jerry &#x27;s", "Tom & Jerry 's"),
+    ("<p><b>Strategic Production Response Act</b></p> <p>This bill limits drawdowns.</p>",
+     "Strategic Production Response Act This bill limits drawdowns."),
+    ("", ""),
+    (None, ""),
+])
+def test_strip_tags(markup, text):
+    from app.render import strip_tags
+    assert strip_tags(markup) == text
+
+
+def test_strip_tags_then_h_never_yields_markup():
+    from app.render import h, strip_tags
+    out = h(strip_tags("&lt;script&gt;alert(1)&lt;/script&gt;<a href=\"javascript:x\">y</a>"))
+    assert "<" not in out and "javascript" not in out
+
+
+def test_strip_tags_real_official_summary():
+    from app.render import strip_tags
+    bills = {f"{b['congress']}-{b['type'].lower()}-{b['number']}": b
+             for b in json.loads((FIXTURES / "bills.json").read_text())["bills"]}
+    text = strip_tags(bills["118-hr-21"]["summaries"][0]["text"])
+    assert text.startswith("Strategic Production Response Act This bill limits")
+    assert "<" not in text

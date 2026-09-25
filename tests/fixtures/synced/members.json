@@ -3,7 +3,6 @@
     {
       "bioguideId": "S001217",
       "name": "Scott, Rick",
-      "directOrderName": "Rick Scott",
       "state": "Florida",
       "stateCode": "FL",
       "district": null,
@@ -30,7 +29,6 @@
     {
       "bioguideId": "D000032",
       "name": "Donalds, Byron",
-      "directOrderName": "Byron Donalds",
       "state": "Florida",
       "stateCode": "FL",
       "district": 19,

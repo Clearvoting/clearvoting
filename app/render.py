@@ -5,8 +5,10 @@ tables in this module (QUESTION_CLASSES here; the bill-type map arrives with the
 naming formatters) and a parity test keeps the two in step, so the Python and JS
 vocabularies can never drift apart.
 """
+import html
 import re
 from datetime import date
+from html.parser import HTMLParser
 
 # ---------------------------------------------------------------------------
 # §7.1 question classes. Ordered: the first matching pattern wins. Each pattern
@@ -370,3 +372,179 @@ def position_chip(vote: str | None) -> dict:
     shown only with the party reveal (§4.3)."""
     text, variant, short = _POSITIONS.get((vote or "").strip().lower(), ("Voted", "other", "Voted"))
     return {"text": text, "variant": variant, "short": short}
+
+
+# ---------------------------------------------------------------------------
+# §9.1 escaping, §7.5 codes / names / tenure, §7.4 seat seals, §4.4 sponsor,
+# §10 #10 tag stripping.
+# ---------------------------------------------------------------------------
+def h(value) -> str:
+    """The one escape helper: every interpolated data value in rendered HTML goes
+    through this. None renders as an empty string."""
+    if value is None:
+        return ""
+    return html.escape(str(value), quote=True)
+
+
+# Title-case bill abbreviations, e.g. "hr" -> "H.R." (moved from app/main.py;
+# site.js carries the same map and test_formatter_parity keeps them equal).
+_BILL_TYPE_LABELS = {
+    "hr": "H.R.",
+    "s": "S.",
+    "hjres": "H.J.Res.",
+    "sjres": "S.J.Res.",
+    "hconres": "H.Con.Res.",
+    "sconres": "S.Con.Res.",
+    "hres": "H.Res.",
+    "sres": "S.Res.",
+}
+
+
+def format_bill_code(bill_type: str | None, number) -> str:
+    """('hr', 4795) -> 'H.R. 4795'; unknown types fall back to the upper-cased type."""
+    raw = (bill_type or "").strip()
+    label = _BILL_TYPE_LABELS.get(raw.lower(), raw.upper())
+    return f"{label} {str(number).strip()}".strip()
+
+
+def ordinal(n) -> str:
+    """119 -> '119th', 1 -> '1st', 112 -> '112th' (11–13 always take 'th')."""
+    n = int(n)
+    if 11 <= n % 100 <= 13:
+        suffix = "th"
+    else:
+        suffix = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
+def display_name(name: str | None) -> str:
+    """'Schumer, Charles E.' -> 'Charles E. Schumer'. members.json has no
+    directOrderName, so this is the only path from the stored name to a display name."""
+    text = (name or "").strip()
+    if "," not in text:
+        return text
+    last, first = text.split(",", 1)
+    return f"{first.strip()} {last.strip()}".strip()
+
+
+def _term_chamber(term: dict) -> str:
+    return "Senate" if (term.get("chamber") or "").lower().startswith("senate") else "House"
+
+
+def tenure_line(terms) -> str:
+    """'In Congress since 2025' for one chamber; 'In Congress since 1981 — House
+    1981–1999, Senate since 1999' for two. Accepts members.json `terms` ({'item': [...]})
+    or the bare list."""
+    items = terms.get("item", []) if isinstance(terms, dict) else list(terms or [])
+    spans: dict[str, dict] = {}
+    for term in items:
+        start = term.get("startYear")
+        if not start:
+            continue
+        span = spans.setdefault(_term_chamber(term), {"start": start, "end": None, "current": False})
+        span["start"] = min(span["start"], start)
+        if term.get("endYear"):
+            span["end"] = max(span["end"] or 0, term["endYear"])
+        else:
+            span["current"] = True
+    if not spans:
+        return ""
+    first = min(span["start"] for span in spans.values())
+    if len(spans) == 1:
+        return f"In Congress since {first}"
+    parts = []
+    for chamber, span in sorted(spans.items(), key=lambda item: item[1]["start"]):
+        if span["current"] or not span["end"]:
+            parts.append(f"{chamber} since {span['start']}")
+        else:
+            parts.append(f"{chamber} {span['start']}–{span['end']}")
+    return f"In Congress since {first} — " + ", ".join(parts)
+
+
+# §7.4: ballot copy describes the SEAT, never the person.
+_SEAT_SEALS = {
+    ("regular", "row"): "Seat up Nov 3",
+    ("regular", "header"): "This seat is on the ballot Nov 3, 2026",
+    ("special", "row"): "Special election Nov 3",
+    ("special", "header"): "Special election for this seat Nov 3, 2026",
+}
+
+
+def seat_seal(kind: str | None, context: str = "row", header: bool = False) -> str:
+    """Seat seal text for data_service.seat_up_2026(member) ('regular' | 'special' | None):
+    the row form by default, the member-header form with context="header" or
+    header=True. '' when the seat is not up (no negative ballot copy exists)."""
+    where = "header" if header or context == "header" else "row"
+    return _SEAT_SEALS.get((kind or "", where), "")
+
+
+_SPONSOR_PREFIXES = r"(Rep\.|Sen\.|Del\.|Rescom\.|Resident Commissioner)"
+# The [R-AL-6] suffix is optional: T1.8's page sponsor already carries fullName
+# without it ("Rep. Smith, Jason"), and G7 renders that dict through sponsor_name.
+_SPONSOR_FULLNAME_RE = re.compile(rf"^{_SPONSOR_PREFIXES}\s+(.+?)\s*(?:\[[^\]]*\])?\s*$")
+_SPONSOR_PREFIX_RE = re.compile(rf"^{_SPONSOR_PREFIXES}\s")
+
+
+def _name_part(part: str | None) -> str:
+    """Fallback only: 176 real sponsors carry ALL-CAPS firstName/lastName ('STENY')."""
+    part = (part or "").strip()
+    return part.title() if part.isupper() else part
+
+
+def sponsor_name(sponsor: dict | None) -> str:
+    """'Rep. Gary J. Palmer (AL)' from 'Rep. Palmer, Gary J. [R-AL-6]' + state: the
+    prefix is kept, the 'Last, First M.' part goes through display_name, and the
+    [R-AL-6] suffix (party letter) is dropped. fullName is the primary source
+    because firstName/lastName are ALL CAPS on 176 real bills and lastName halves
+    compound surnames ('Rodgers' for McMorris Rodgers). Falls back to
+    firstName + lastName only when fullName does not parse."""
+    sponsor = sponsor or {}
+    full = (sponsor.get("fullName") or "").strip()
+    match = _SPONSOR_FULLNAME_RE.match(full)
+    if match and "," in match.group(2):
+        prefix, person = match.group(1), display_name(match.group(2))
+    else:
+        prefix_match = _SPONSOR_PREFIX_RE.match(full)
+        prefix = prefix_match.group(1) if prefix_match else ""
+        person = " ".join(p for p in (_name_part(sponsor.get("firstName")),
+                                      _name_part(sponsor.get("lastName"))) if p)
+    if not person:
+        return ""
+    state = (sponsor.get("state") or "").strip()
+    text = " ".join(p for p in (prefix, person) if p)
+    return f"{text} ({state})" if state else text
+
+
+class _TextOnly(HTMLParser):
+    """Collects text nodes only; drops every tag, attribute and the contents of
+    <script>/<style>. Entities are decoded (convert_charrefs), so callers must
+    still pass the result through h() before it reaches HTML."""
+
+    _SKIP = {"script", "style"}
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.parts: list[str] = []
+        self._skip_depth = 0
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self._SKIP:
+            self._skip_depth += 1
+        elif tag in ("p", "br", "li", "div"):
+            self.parts.append(" ")
+
+    def handle_endtag(self, tag):
+        if tag in self._SKIP and self._skip_depth:
+            self._skip_depth -= 1
+
+    def handle_data(self, data):
+        if not self._skip_depth:
+            self.parts.append(data)
+
+
+def strip_tags(markup: str | None) -> str:
+    """Plain text from an HTML fragment, whitespace collapsed (§10 #10)."""
+    parser = _TextOnly()
+    parser.feed(markup or "")
+    parser.close()
+    return re.sub(r"\s+", " ", "".join(parser.parts)).strip()

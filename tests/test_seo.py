@@ -47,6 +47,14 @@ async def test_member_page_meta_injected():
 
 
 @pytest.mark.asyncio
+async def test_member_page_title_uses_display_name():
+    # members.json has no directOrderName; the title is built from "Schumer, Charles E.".
+    response = await _get("/member?id=S000148")
+    assert response.status_code == 200
+    assert "<title>Charles E. Schumer (NY) — Voting Record | ClearVoting</title>" in response.text
+
+
+@pytest.mark.asyncio
 async def test_member_page_unknown_id_falls_back():
     response = await _get("/member?id=X999999")
     assert response.status_code == 200

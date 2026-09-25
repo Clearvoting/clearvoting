@@ -26,7 +26,9 @@ def test_get_members_by_state_not_found(data_service):
 def test_get_member_detail(data_service):
     result = data_service.get_member_detail("S001217")
     assert result["member"]["bioguideId"] == "S001217"
-    assert result["member"]["directOrderName"] == "Rick Scott"
+    # Real members.json has no directOrderName; display names come from render.display_name.
+    assert result["member"]["name"] == "Scott, Rick"
+    assert "directOrderName" not in result["member"]
 
 
 def test_get_member_detail_not_found(data_service):

@@ -17,6 +17,7 @@ logging.basicConfig(
 )
 
 from app.limiter import limiter
+from app.render import _BILL_TYPE_LABELS, display_name
 from app.routers.members import router as members_router
 from app.routers.bills import router as bills_router
 from app.routers.votes import router as votes_router
@@ -38,18 +39,6 @@ _asset_version = str(int(time.time()))
 _version_re = re.compile(r'\?v=\d+')
 
 SITE_URL = "https://clearvoting.org"
-
-# Title-case bill abbreviations for SEO titles, e.g. "hr" -> "H.R.".
-_BILL_TYPE_LABELS = {
-    "hr": "H.R.",
-    "s": "S.",
-    "hjres": "H.J.Res.",
-    "sjres": "S.J.Res.",
-    "hconres": "H.Con.Res.",
-    "sconres": "S.Con.Res.",
-    "hres": "H.Res.",
-    "sres": "S.Res.",
-}
 
 _title_re = re.compile(r"<title>.*?</title>", re.DOTALL)
 _description_re = re.compile(r'<meta\s+name="description"[^>]*>', re.IGNORECASE)
@@ -156,7 +145,7 @@ def _member_meta(member_id: str | None) -> dict:
             "url": f"{SITE_URL}/member",
         }
     member = detail["member"]
-    name = member.get("directOrderName") or member.get("name") or "Representative"
+    name = display_name(member.get("name")) or "Representative"
     state_code = member.get("stateCode", "")
     state = member.get("state", state_code)
     chamber = member.get("chamber", "Congress")
