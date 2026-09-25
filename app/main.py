@@ -20,9 +20,9 @@ logger = logging.getLogger("app.main")
 
 from app.limiter import limiter
 from app import render
-from app.render import _BILL_TYPE_LABELS, display_name
+from app.render import _BILL_TYPE_LABELS, bill_displayable, cut_words, display_name, format_bill_code, render_bill_page
 from app.routers.members import router as members_router
-from app.routers.bills import router as bills_router
+from app.routers.bills import router as bills_router, VALID_BILL_TYPES
 from app.routers.votes import router as votes_router
 from app.routers.search import router as search_router
 from app.routers.feedback import router as feedback_router
@@ -210,34 +210,20 @@ def _member_meta(member: dict) -> dict:
     }
 
 
-def _bill_meta(congress: str | None, bill_type: str | None, number: str | None) -> dict:
-    """SEO meta for a bill page; falls back to generic copy for unknown/garbage params."""
-    from app.dependencies import get_data_service
-    data_service = get_data_service()
-    detail = None
-    try:
-        detail = data_service.get_bill_detail(int(congress), bill_type, int(number))
-    except (TypeError, ValueError):
-        detail = None
-    if not detail:
-        return {
-            "title": "Bill — ClearVoting",
-            "description": "See how Congress voted on this bill — facts only, no opinions.",
-            "og_type": "article",
-            "url": f"{SITE_URL}/bill",
-        }
-    bill = detail["bill"]
-    title_text = bill.get("title", "Untitled Bill")
-    label = _BILL_TYPE_LABELS.get((bill_type or "").lower(), (bill_type or "").upper())
-    bill_label = f"{label} {number}"
-    summary = data_service.get_ai_summary(int(congress), bill_type, int(number)) or {}
-    description = summary.get("one_liner") or title_text
-    canonical = f"{SITE_URL}/bill?congress={congress}&type={bill_type}&number={number}"
+def _bill_meta(page: dict) -> dict:
+    """SEO meta for a bill page (spec §9.2): the one-liner when displayable, else the official title capped at 70."""
+    code = format_bill_code(page["bill_type"], page["number"])
+    official = page.get("title") or ""
+    if bill_displayable(page):  # the same predicate as the page's H1 (T7.1)
+        headline = page["one_liner"]
+    else:
+        headline = cut_words(official, 70)
     return {
-        "title": f"{bill_label}: {title_text} | ClearVoting",
-        "description": description,
+        "title": f"{code} — {headline} | ClearVoting",
+        "og_title": cut_words(f"{code} — {headline}", 90),
+        "description": official or headline,
         "og_type": "article",
-        "url": canonical,
+        "url": f"{SITE_URL}/bill?congress={page['congress']}&type={page['bill_type']}&number={page['number']}",
     }
 
 
@@ -344,10 +330,31 @@ def serve_member(request: Request):
 
 
 @app.get("/bill")
-async def serve_bill(request: Request):
+def serve_bill(request: Request):
+    """Server-rendered bill page (spec §4.4, §9.1). Unknown or malformed bill → 404."""
+    from app.dependencies import get_data_service
     params = request.query_params
-    return _serve_html("bill.html", _bill_meta(
-        params.get("congress"), params.get("type"), params.get("number")))
+    bill_type = (params.get("type") or "").strip().lower()
+    congress_raw = (params.get("congress") or "").strip()
+    number_raw = (params.get("number") or "").strip()
+    if not (congress_raw.isdigit() and number_raw.isdigit()) or bill_type not in VALID_BILL_TYPES:
+        raise HTTPException(status_code=404)
+    congress, number = int(congress_raw), int(number_raw)
+    if not 1 <= congress <= 200:
+        raise HTTPException(status_code=404)
+    data_service = get_data_service()
+    page = data_service.get_bill_page(congress, bill_type, number)
+    if page is None:
+        raise HTTPException(status_code=404)
+    meta = _bill_meta(page)
+    # T3.1: a render failure (a malformed roll-call file, a formatter exception) returns the §4
+    # error state — masthead, the bill code as H1, "We couldn't load this page right now…" — with
+    # 503 (no-store), not a bare 500 (F61).
+    content, status = _page_content(
+        lambda: render_bill_page(page, data_service.get_sync_metadata().get("ai_summaries_updated")),
+        {**meta, "h1": format_bill_code(page["bill_type"], page["number"])},
+    )
+    return _serve_html("bill.html", meta, content, status_code=status)
 
 
 def _trust_counts() -> dict:

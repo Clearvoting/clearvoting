@@ -1,12 +1,18 @@
 """Bill page renderers (plan T7.1, T7.2, T7.4): pure functions over DataService.get_bill_page()."""
+import io
 import json
+import os
 import re
 from html import escape
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
+from httpx import AsyncClient, ASGITransport
 
 from app import render
+from app.dependencies import get_data_service
+from app.main import app
 from app.services.data_service import DataService, first_paragraph_text
 
 FIXTURES = Path(__file__).parent / "fixtures" / "synced"
@@ -544,3 +550,141 @@ def test_bill_page_without_roll_calls_omits_modules_two_and_three():
     assert "How did your representatives vote?" not in html
     assert "The vote, by state" not in html
     assert "none in our data" in html
+
+
+# --- Route, shell and assets (plan T7.4) ---
+
+SANITIZE_BLOCK = """const SAFE_TAGS = new Set(['P', 'EM', 'STRONG', 'B', 'I', 'BR', 'UL', 'OL', 'LI', 'A']);
+function sanitizeHtml(html) {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    doc.body.querySelectorAll('*').forEach(node => {
+        if (!SAFE_TAGS.has(node.tagName)) {
+            node.replaceWith(...node.childNodes);
+        }
+        for (const attr of [...node.attributes]) {
+            if (attr.name !== 'href') node.removeAttribute(attr.name);
+        }
+    });
+    return doc.body.innerHTML;
+}"""
+
+# The one sanctioned HTML sink, byte-identical to baseline bill.js lines 165–168 (June plan
+# constraint 4: the sanitize/insertAdjacentHTML block stays untouched).
+SINK_BLOCK = """        summaryDiv.textContent = '';
+        // Content is sanitized — only safe tags (P, EM, STRONG, B, I, BR, UL, OL, LI, A) remain
+        const sanitized = sanitizeHtml(latestSummary);
+        summaryDiv.insertAdjacentHTML('afterbegin', sanitized);"""
+
+
+async def _get_page(path: str):
+    with patch("app.dependencies.get_data_dir", return_value=FIXTURES):
+        get_data_service.cache_clear()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get(path)
+    get_data_service.cache_clear()
+    return response
+
+
+@pytest.mark.asyncio
+async def test_bill_route_is_fully_server_rendered():
+    response = await _get_page("/bill?congress=119&type=hjres&number=20")
+    assert response.status_code == 200
+    html = response.text
+    assert "<!--content-->" not in html
+    assert '<div class="bill-grid" data-ssr="1" data-bill="119-hjres-20">' in html
+    assert re.search(r'<header class="bill-header">.*?<h1[ >]', html, re.S)
+    for heading in ("How did your representatives vote?", "The vote, by state", "What it does", "About this bill"):
+        assert heading in html
+    for gone in ("Loading bill", "What People Are Saying", "Copy Link", "Generating", "bill-toc"):
+        assert gone not in html
+
+
+@pytest.mark.asyncio
+async def test_roll_call_rows_carry_covered_id_and_district_for_js_built_tables():
+    response = await _get_page("/api/votes/senate/119/1/372")
+    assert response.status_code == 200
+    members = response.json()["members"]
+    assert all("covered_id" in m and "district" in m and "party" not in m for m in members)
+    assert any(m["covered_id"] for m in members if m.get("state") in ("CA", "FL", "NY", "TX"))
+    assert all(m["district"] is None for m in members)  # Senate rows never carry a district
+
+
+@pytest.mark.asyncio
+async def test_bill_route_reads_at_most_two_roll_call_files():
+    with patch("app.dependencies.get_data_dir", return_value=FIXTURES):
+        get_data_service.cache_clear()
+        get_data_service()  # startup loads happen here, outside the count
+        opened = []
+        real_open = io.open
+
+        def counting_open(file, *args, **kwargs):
+            opened.append(str(file))
+            return real_open(file, *args, **kwargs)
+
+        with patch("builtins.open", counting_open), patch("io.open", counting_open):
+            transport = ASGITransport(app=app)
+            async with AsyncClient(transport=transport, base_url="http://test") as client:
+                response = await client.get("/bill?congress=119&type=hjres&number=20")
+    get_data_service.cache_clear()
+    assert response.status_code == 200
+    roll_call_reads = [p for p in opened if f"{os.sep}votes{os.sep}" in p]
+    assert len(roll_call_reads) <= 2
+
+
+def test_bill_shell_links_only_the_new_assets():
+    shell = (ROOT / "static" / "bill.html").read_text()
+    assert "<title>" in shell and "</title>" in shell and "</head>" in shell
+    assert '<main id="main-content" tabindex="-1"><!--content--></main>' in shell
+    assert "/static/css/site.css?v=" in shell
+    assert "styles.css" not in shell and "broadsheet.css" not in shell
+    assert re.findall(r'<script src="/static/js/([a-z]+)\.js\?v=\d+"></script>', shell) == [
+        "site", "vote", "bill", "feedback"]
+    assert "<script>" not in shell and "onclick" not in shell and "onerror" not in shell
+
+
+def test_bill_js_is_a_thin_enhancer_that_keeps_the_sanitize_block():
+    bill_js = (ROOT / "static" / "js" / "bill.js").read_text()
+    assert SANITIZE_BLOCK in bill_js
+    assert SINK_BLOCK in bill_js
+    assert bill_js.count("insertAdjacentHTML") == 1
+    for gone in ("document.title", "renderBill", "arguments", "Copy Link", "localStorage",
+                 "slotReadHome", "SLOT_ERROR", "RC_STATE_NAMES"):
+        assert gone not in bill_js, gone
+
+
+def test_vote_js_has_no_positions_table_and_builds_rows_with_the_shared_builder():
+    vote_js = (ROOT / "static" / "js" / "vote.js").read_text()
+    # [^\n]: under re.S a bare //.* would swallow everything after the first line comment.
+    code = re.sub(r"//[^\n]*|/\*.*?\*/", "", vote_js, flags=re.S)
+    assert "VOTE_COLORS" not in vote_js and "#" not in code
+    assert "innerHTML" not in vote_js and ".style" not in vote_js
+    # One positions table (T1.2 _POSITIONS ↔ site.js POSITIONS, held equal by T2.2's parity test).
+    for duplicate in ("RC_SHORT", "Voted yes", "Didn't vote", "'Yes'", "rcRow("):
+        assert duplicate not in code, duplicate
+    assert "rcTableRow(" in code and "positionChip(" in code
+    assert not hasattr(render, "RC_SHORT_CHIP")
+
+
+def test_bill_css_never_restyles_the_shared_official_role():
+    css = (ROOT / "static" / "css" / "site.css").read_text()
+    bill_block = css.split("/* ---- Bill page (plan T7.4", 1)[1].split("@media", 1)[0]
+    for selectors in re.findall(r"([^{}]+)\{", bill_block):
+        parts = [p.strip() for p in selectors.split(",")]
+        assert ".official" not in parts, selectors
+    # The section rhythm is T2.1's .section role; no second double rule, no font shorthand.
+    assert "3px double" not in bill_block
+    assert not re.search(r"(?:^|[;{\s])font\s*:", bill_block)
+    assert "linklike" not in css
+    for stack in ("Playfair Display", "Lora,", "Inter,"):
+        assert stack not in bill_block, stack
+
+
+@pytest.mark.asyncio
+async def test_bill_route_serves_the_error_state_when_rendering_fails():
+    with patch("app.main.render_bill_page", side_effect=RuntimeError("boom")):
+        response = await _get_page("/bill?congress=119&type=hjres&number=20")
+    assert response.status_code == 503
+    assert "We couldn't load this page right now." in response.text
+    assert "<h1>H.J.Res. 20</h1>" in response.text
+    assert '<header class="masthead">' in response.text

@@ -7,6 +7,7 @@ from unittest.mock import MagicMock, patch
 
 from httpx import AsyncClient, ASGITransport
 from app.main import app
+from app.dependencies import get_data_service
 from app.limiter import limiter
 
 
@@ -350,3 +351,22 @@ async def test_member_header_h1_hook_resolves_on_the_ssr_html():
     js = (_HOOK_STATIC / "js" / "feedback.js").read_text()
     assert ".member-header h1" in js
     assert ".member-header h2" not in js
+
+
+# --- Hook contract: the bill page renders .bill-header h1 (plan T7.4, spec §2.3 C-7) ---
+
+@pytest.mark.asyncio
+async def test_bill_page_renders_the_bill_header_h1_hook():
+    fixtures = Path(__file__).parent / "fixtures" / "synced"
+    with patch("app.dependencies.get_data_dir", return_value=fixtures):
+        get_data_service.cache_clear()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/bill?congress=119&type=hr&number=1")
+    get_data_service.cache_clear()
+    assert response.status_code == 200
+    header = response.text.split('<header class="bill-header">', 1)[1].split("</header>", 1)[0]
+    assert re.search(r"<h1[ >]", header)
+    feedback_js = (Path(__file__).parent.parent / "static" / "js" / "feedback.js").read_text()
+    assert ".bill-header h1" in feedback_js
+    assert ".bill-header h2" not in feedback_js

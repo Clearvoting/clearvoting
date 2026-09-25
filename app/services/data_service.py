@@ -1327,3 +1327,17 @@ class DataService:
             "laws": [{"type": law.get("type"), "number": law.get("number")} for law in bill.get("laws") or []],
             "legislation_url": bill.get("legislationUrl") or None,
         }
+
+    def annotate_roll_call_members(self, members: list[dict], senate: bool, congress: int) -> None:
+        """Add covered_id and district to each /api/votes member row, in place (plan T7.4), with
+        the same match and district rule as _covered_state_rows, so the rows site.js rcTableRow
+        builds link covered members and print "District N" exactly as the server's rows do."""
+        names = self._senate_name_index() if senate else {}
+        lookup = self._member_lookup()
+        for row in members:
+            covered_id = self._row_covered_id(row, senate, names)
+            district = None
+            if not senate and covered_id and int(congress) == CURRENT_CONGRESS:
+                district = (lookup.get(covered_id) or {}).get("district")
+            row["covered_id"] = covered_id
+            row["district"] = district

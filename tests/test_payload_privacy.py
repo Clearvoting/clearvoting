@@ -42,6 +42,12 @@ CHECKED_ENDPOINTS = [
     "/api/members/S001217/votes",
     "/api/members/detail/S000148",
     "/api/members/G000602/page?page=2",
+    # Bill page and the endpoints bill.js reads (plan T7.4; spec §10 #9)
+    "/api/bills/119/hr/1",
+    "/api/bills/119/hjres/20/votes",
+    "/api/bills/119/hr/1/ai-summary",
+    "/api/votes/house/119/1/99",
+    "/api/votes/senate/119/1/372",
 ]
 
 
@@ -167,3 +173,23 @@ async def test_speaker_pick_and_party_only_with_show_party():
     revealed = await _get("/api/members/detail/G000602?show_party=true")
     assert revealed.json()["member"]["partyName"] == "Democratic"
     assert revealed.json()["speaker_votes"]["house/119_1_00002"] == "Jeffries"
+
+
+# --- Bill page HTML and the party reveal (enabled in plan T7.4, spec §10 #9, §10.3 commit 7) ---
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path", [
+    "/bill?congress=119&type=hr&number=1",
+    "/bill?congress=119&type=hjres&number=20",
+])
+async def test_bill_page_html_carries_no_party(path):
+    response = await _get(path)
+    assert response.status_code == 200
+    assert not PARTY_LEAK.search(response.text)
+
+
+@pytest.mark.asyncio
+async def test_roll_call_party_only_with_show_party():
+    response = await _get("/api/votes/house/119/1/99?show_party=true")
+    assert response.status_code == 200
+    assert all("party" in m for m in response.json()["members"])

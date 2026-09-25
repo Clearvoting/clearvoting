@@ -23,10 +23,11 @@ async def get_senate_vote(congress: int = Path(ge=1, le=200), session: int = Pat
     data = data_service.get_senate_vote(congress, session, vote_number)
     if not data:
         raise HTTPException(status_code=404, detail="Vote not found")
+    data = copy.deepcopy(data)  # the cached file is never mutated
     if not show_party:
-        data = copy.deepcopy(data)
         for member in data.get("members", []):
             member.pop("party", None)
+    data_service.annotate_roll_call_members(data.get("members", []), senate=True, congress=congress)
     return data
 
 
@@ -36,8 +37,9 @@ async def get_house_vote(congress: int = Path(ge=1, le=200), session: int = Path
     data = data_service.get_house_vote(congress, session, vote_number)
     if not data:
         raise HTTPException(status_code=404, detail="Vote not found")
+    data = copy.deepcopy(data)  # the cached file is never mutated
     if not show_party:
-        data = copy.deepcopy(data)
         for member in data.get("members", []):
             member.pop("party", None)
+    data_service.annotate_roll_call_members(data.get("members", []), senate=False, congress=congress)
     return data

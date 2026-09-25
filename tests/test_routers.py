@@ -4,6 +4,7 @@ from unittest.mock import patch
 from pathlib import Path
 from httpx import AsyncClient, ASGITransport
 from app.main import app
+from app.limiter import limiter
 
 FIXTURES = Path(__file__).parent / "fixtures" / "synced"
 
@@ -320,3 +321,49 @@ async def test_search_bills_congress_filter():
     assert no_match.status_code == 200
     assert no_match.json()["bills"] == []
     assert no_match.json()["total"] == 0
+
+
+# --- /ai-summary allowlist (plan T7.4, spec §10 #9) ---
+
+async def _get_json(path: str):
+    limiter.reset()
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get(path)
+    _clear_data_service_cache()
+    return response
+
+
+@pytest.mark.asyncio
+async def test_ai_summary_returns_only_one_liner_and_provisions():
+    response = await _get_json("/api/bills/119/hr/1/ai-summary")
+    assert response.status_code == 200
+    assert set(response.json()) == {"one_liner", "provisions"}
+
+
+@pytest.mark.asyncio
+async def test_ai_summary_missing_is_404_unavailable():
+    response = await _get_json("/api/bills/119/s/9999/ai-summary")
+    assert response.status_code == 404
+    assert response.json() == {"available": False}
+
+
+@pytest.mark.asyncio
+async def test_ai_summary_needs_review_is_404_unavailable():
+    summaries = json.loads((FIXTURES / "ai_summaries.json").read_text())
+    bill_id = next(k for k, v in summaries.items() if v.get("needs_review"))
+    congress, bill_type, number = bill_id.split("-")
+    response = await _get_json(f"/api/bills/{congress}/{bill_type}/{number}/ai-summary")
+    assert response.status_code == 404
+    assert response.json() == {"available": False}
+
+
+@pytest.mark.asyncio
+async def test_bill_detail_sponsor_has_built_name_and_no_party():
+    response = await _get_json("/api/bills/119/hr/1")
+    assert response.status_code == 200
+    sponsor = response.json()["bill"]["sponsors"][0]
+    assert "party" not in sponsor
+    assert "[" not in sponsor["fullName"]

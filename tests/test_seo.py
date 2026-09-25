@@ -1,10 +1,13 @@
+import json
 import xml.etree.ElementTree as ET
+from html import escape
 
 import pytest
 from unittest.mock import patch
 from pathlib import Path
 from httpx import AsyncClient, ASGITransport
 from app.main import app
+from app.render import cut_words
 
 FIXTURES = Path(__file__).parent / "fixtures" / "synced"
 
@@ -83,27 +86,55 @@ async def test_bill_page_meta_injected():
     response = await _get("/bill?congress=119&type=hr&number=1")
     assert response.status_code == 200
     html = response.text
-    assert "<title>H.R. 1: One Big Beautiful Bill Act | ClearVoting</title>" in html
-    # Fixture has no AI one_liner for this bill — description falls back to the official title
+    entry = json.loads((FIXTURES / "ai_summaries.json").read_text()).get("119-hr-1") or {}
+    if entry.get("one_liner") and not entry.get("needs_review"):
+        headline = entry["one_liner"]
+    else:
+        headline = "One Big Beautiful Bill Act"
+    assert f"<title>{escape(f'H.R. 1 — {headline} | ClearVoting')}</title>" in html
     assert '<meta name="description" content="One Big Beautiful Bill Act">' in html
-    assert '<meta property="og:title" content="H.R. 1: One Big Beautiful Bill Act | ClearVoting">' in html
+    assert f'<meta property="og:title" content="{escape(cut_words(f"H.R. 1 — {headline}", 90))}">' in html
     # Query-string ampersands must be escaped inside HTML attributes
     assert ('<link rel="canonical" href="https://clearvoting.org/bill'
             '?congress=119&amp;type=hr&amp;number=1">') in html
 
 
+def test_bill_meta_caps_official_title_at_70_and_og_title_at_90():
+    from app.main import _bill_meta
+    title = " ".join(["Providing for consideration of the bill"] * 10)
+    meta = _bill_meta({"bill_type": "hres", "number": 1499, "congress": 119, "title": title,
+                       "has_summary": False, "one_liner": None})
+    headline = meta["title"].removeprefix("H.Res. 1499 — ").removesuffix(" | ClearVoting")
+    assert headline.endswith("…") and len(headline) <= 71
+    assert len(meta["og_title"]) <= 91
+    assert meta["description"] == title
+    assert meta["url"] == "https://clearvoting.org/bill?congress=119&type=hres&number=1499"
+
+
 @pytest.mark.asyncio
-async def test_bill_page_unknown_bill_falls_back():
+async def test_bill_page_unknown_bill_is_404():
     response = await _get("/bill?congress=119&type=hr&number=999999")
-    assert response.status_code == 200
-    assert "<title>Bill — ClearVoting</title>" in response.text
+    assert response.status_code == 404
+    assert "text/html" in response.headers["content-type"]
 
 
 @pytest.mark.asyncio
-async def test_bill_page_garbage_params_fall_back():
-    response = await _get("/bill?congress=abc&type=hr&number=xyz")
+@pytest.mark.parametrize("path", [
+    "/bill?congress=abc&type=hr&number=xyz",
+    "/bill?congress=119&type=zz&number=1",
+    "/bill?congress=0&type=hr&number=1",
+    "/bill",
+])
+async def test_bill_page_garbage_params_are_404(path):
+    response = await _get(path)
+    assert response.status_code == 404
+
+
+@pytest.mark.asyncio
+async def test_bill_page_type_is_case_normalized():
+    response = await _get("/bill?congress=119&type=HR&number=1")
     assert response.status_code == 200
-    assert "<title>Bill — ClearVoting</title>" in response.text
+    assert '?congress=119&amp;type=hr&amp;number=1">' in response.text
 
 
 # --- State page meta ---

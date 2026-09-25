@@ -295,6 +295,31 @@ details[open] > summary::before { content: "–"; }
 .pager { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s3); margin: var(--s6) 0; }
 .pager a { display: inline-flex; align-items: center; min-height: var(--tap); font-size: var(--t-ui); font-weight: 600; }
 
+/* ---- Bill page (plan T7.4, spec §4.4) ---- */
+.bill-header { padding: var(--s6) 0 var(--s4); }
+.bill-header .kicker .seal { margin-left: var(--s2); }
+.bill-header h1 { font-family: var(--font-display); font-weight: 700; font-size: var(--t-display); line-height: 1.15; color: var(--navy); margin: var(--s2) 0 var(--s3); }
+.bill-header h1.official { font-family: var(--font-serif); font-weight: 500; font-size: var(--t-h3); line-height: 1.35; color: var(--ink); }
+.bill-header .deck { font-family: var(--font-serif); font-weight: 500; }
+.bill-header .outcome, .rc-block .outcome, .rc-more .outcome { font-family: var(--font-serif); font-size: var(--t-lede); color: var(--ink); margin: var(--s3) 0; }
+/* Fold (§6.9 #6): the reps heading stays inside 812px. */
+.bill-main .your-reps.section { margin-top: var(--s6); padding-top: var(--s6); }
+.section-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s3); }
+.your-reps-list { display: grid; }
+.your-reps .status.is-error { color: var(--error); }
+.rc-block { margin-top: var(--s8); }
+.rc-block h3, .rc-caption { font-family: var(--font-display); font-weight: 700; font-size: var(--t-h3); color: var(--navy); margin: 0; }
+.rc-more { margin-top: var(--s4); border-top: 1px solid var(--rule); }
+.rc-more summary .rc-caption { display: inline; font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 600; }
+.rc-source a { display: inline-flex; align-items: center; min-height: var(--tap); }
+.rc-all-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s3); margin: var(--s3) 0; }
+.rc-all-controls label { flex-basis: 100%; }
+.state-tallies { list-style: none; padding: 0; margin: var(--s3) 0; font-family: var(--font-ui); font-size: var(--t-meta); color: var(--ink-meta); }
+.full-title p, .official-para, .official-summary { font-family: var(--font-serif); font-size: var(--t-body); color: var(--ink-soft); }
+.fact-box dl { display: grid; grid-template-columns: max-content 1fr; gap: var(--s2) var(--s4); margin: var(--s3) 0 0; padding-top: var(--s3); border-top: 1px solid var(--rule); }
+.fact-box dt { font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 500; color: var(--ink-meta); }
+.fact-box dd { margin: 0; font-family: var(--font-serif); font-size: var(--t-body); overflow-wrap: anywhere; }
+
 @media (min-width: 560px) {
     :root { --t-kicker: 0.75rem; --gutter: 24px; }
     .edition-mid { display: inline; }
@@ -321,4 +346,7 @@ details[open] > summary::before { content: "–"; }
     .member-header { grid-template-columns: 64px minmax(0, 1fr) auto; }
     .member-header .actions { grid-column: 3; justify-content: flex-end; }
     #recent .vote-list { display: grid; grid-auto-flow: column; grid-template-rows: repeat(4, auto); grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--s8); }
+    .bill-grid { display: grid; grid-template-columns: 7fr 5fr; gap: var(--s8); align-items: start; }
+    .bill-main { grid-column: 1; grid-row: 1; min-width: 0; }
+    .bill-grid .fact-box.section { grid-column: 2; grid-row: 1; margin-top: var(--s6); }
 }
