@@ -300,3 +300,73 @@ def test_load_populated_data_logs_no_errors(caplog):
     with caplog.at_level(logging.ERROR, logger="app.services.data_service"):
         DataService(data_dir=FIXTURES)
     assert not caplog.records
+
+
+# --- Withheld summaries, seats and the official summary (plan T1.5; spec §2.5 C, §7.4, §10 #10) ---
+
+def _ai_fixture() -> dict:
+    return json.loads((FIXTURES / "ai_summaries.json").read_text())
+
+
+def test_displayable_summary_withholds_needs_review(data_service):
+    summaries = _ai_fixture()
+    withheld = next(k for k, v in summaries.items() if v.get("needs_review"))
+    shown = next(k for k, v in summaries.items() if not v.get("needs_review"))
+    assert data_service.displayable_summary(shown) == summaries[shown]
+    assert data_service.displayable_summary(withheld) is None
+    assert data_service.displayable_summary("119-hr-999999") is None
+
+
+def _summary_dir(tmp_path: Path) -> Path:
+    d = tmp_path / "synced"
+    d.mkdir()
+    (d / "bills.json").write_text(json.dumps({"bills": [
+        {"congress": 119, "type": "HR", "number": "10", "title": "Shown Act", "latestAction": {"actionDate": "2026-09-01"}},
+        {"congress": 119, "type": "HR", "number": "11", "title": "Withheld Act", "latestAction": {"actionDate": "2026-08-01"}},
+        {"congress": 119, "type": "HR", "number": "12", "title": "Missing Act", "latestAction": {"actionDate": "2026-07-01"}},
+    ]}))
+    (d / "ai_summaries.json").write_text(json.dumps({
+        "119-hr-10": {"one_liner": "Funds rural clinics", "provisions": ["Adds clinics"], "issue_categories": ["Health"]},
+        "119-hr-11": {"one_liner": "Flagged text", "provisions": ["Flagged"], "issue_categories": ["Health"],
+                      "needs_review": True},
+    }))
+    return d
+
+
+def test_withheld_summary_lists_like_a_missing_one(tmp_path):
+    ds = DataService(data_dir=_summary_dir(tmp_path))
+    rows = {b["number"]: b for b in ds.get_bills()["bills"]}
+    assert rows["10"]["one_liner"] == "Funds rural clinics"
+    for number in ("11", "12"):
+        assert not rows[number]["one_liner"]
+        assert rows[number]["provisions"] == []
+        assert rows[number]["issue_categories"] == []
+    assert [b["number"] for b in ds.get_bills(summarized_only=True)["bills"]] == ["10"]
+
+
+@pytest.mark.parametrize("member, expected", [
+    ({"bioguideId": "G000602", "chamber": "House of Representatives"}, "regular"),
+    ({"bioguideId": "D000032", "chamber": "House"}, "regular"),
+    ({"bioguideId": "C001056", "chamber": "Senate"}, "regular"),
+    ({"bioguideId": "M001244", "chamber": "Senate"}, "special"),
+    ({"bioguideId": "S000148", "chamber": "Senate"}, None),
+])
+def test_seat_up_2026(data_service, member, expected):
+    assert data_service.seat_up_2026(member) == expected
+
+
+def test_seat_up_2026_without_the_seats_file(tmp_path):
+    ds = DataService(data_dir=tmp_path)
+    assert ds.seat_up_2026({"bioguideId": "C001056", "chamber": "Senate"}) is None
+    assert ds.seat_up_2026({"bioguideId": "G000602", "chamber": "House of Representatives"}) == "regular"
+
+
+def test_latest_official_summary_lives_in_data_service():
+    import sync
+    from app.services.data_service import _latest_official_summary
+    assert sync._latest_official_summary is _latest_official_summary
+    bill = {"summaries": [
+        {"actionDate": "2021-09-27", "actionDesc": "Introduced in House", "text": "BBB draft text"},
+        {"actionDate": "2022-08-16", "actionDesc": "Public Law", "text": "IRA enacted text"},
+    ]}
+    assert DataService._latest_official_summary(bill) == "IRA enacted text"

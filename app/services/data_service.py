@@ -41,7 +41,37 @@ def roll_call_key(chamber, congress, session, vote_number) -> str:
     return f"{str(chamber).strip().lower()}/{int(congress)}_{int(session)}_{int(vote_number):05d}"
 
 
+# §3.2: five digits, optionally followed by a ZIP+4 suffix; surrounding spaces are ignored.
+ZIP_INPUT_RE = re.compile(r"^\s*(\d{5})(?:[-\s]?\d{4})?\s*$")
+ZIP_MATCH_SHARE = 0.05    # §5.1: a district matches at >= 5 % of the ZCTA's land area
+ZIP_COVERED_SHARE = 0.95  # §5.1: below this, part of the ZIP lies outside the four covered states
+COVERED_STATE_NAMES = {"CA": "California", "FL": "Florida", "NY": "New York", "TX": "Texas"}
+
+
+def normalize_zip(raw: str | None) -> str | None:
+    """The five-digit ZIP from a typed value ('11570-1234', ' 11570 ') or None when malformed."""
+    match = ZIP_INPUT_RE.match(raw or "")
+    return match.group(1) if match else None
+
+
+def _latest_official_summary(bill: dict) -> str:
+    """Congress.gov orders summaries oldest-first, so [0] is the introduced
+    version — which can describe provisions that never became law (e.g. the
+    IRA's introduced summary is Build Back Better). Prefer the Public Law
+    summary; otherwise the newest by actionDate."""
+    summaries = bill.get("summaries")
+    if not isinstance(summaries, list) or not summaries:
+        return ""
+    law = [s for s in summaries if "public law" in (s.get("actionDesc") or "").lower()]
+    pool = law or summaries
+    best = max(pool, key=lambda s: s.get("actionDate") or "")
+    return best.get("text", "") or ""
+
+
 class DataService:
+    # The bill page (T1.8) and the sync's AI writer choose the same official summary.
+    _latest_official_summary = staticmethod(_latest_official_summary)
+
     def __init__(self, data_dir: Path):
         self.data_dir = data_dir
         self._members: list[dict] = []
@@ -58,6 +88,13 @@ class DataService:
         self._latest_vote: dict | None = None
         # Sync-built roll-call index (§10 #3); {} when the file is absent.
         self._votes_index: dict = {}
+        # Sanctioned data (§10 #1, #2): Senate seats up in 2026, and the ZIP crosswalk with
+        # the district counts and member ids derived from it once at startup.
+        self._senate_2026: dict[str, dict] = {}
+        self._zip_districts: dict[str, list[dict]] = {}
+        self._districts_expected: dict[str, int] = {}
+        self._house_ids: dict[tuple[str, int], list[str]] = {}
+        self._senator_ids: dict[str, list[str]] = {}
         self._load()
 
     def _load(self) -> None:
@@ -83,6 +120,27 @@ class DataService:
         metadata_path = self.data_dir / "sync_metadata.json"
         if metadata_path.exists():
             self._metadata = self._read_json("sync_metadata.json")
+        seats = self._read_json("senate_2026.json").get("seats") or []
+        self._senate_2026 = {s["bioguideId"]: s for s in seats if s.get("bioguideId")}
+        # §5.1: keys starting with "_" (the _source block) are metadata, not ZCTAs.
+        self._zip_districts = {
+            key: rows for key, rows in self._read_json("zip_districts.json").items() if not key.startswith("_")
+        }
+        for rows in self._zip_districts.values():
+            for row in rows:
+                state, district = row.get("state"), row.get("district")
+                if state and isinstance(district, int):
+                    self._districts_expected[state] = max(self._districts_expected.get(state, 0), district)
+        for m in self._members:
+            state, bioguide = m.get("stateCode"), m.get("bioguideId")
+            if not state or not bioguide:
+                continue
+            if "Senate" in (m.get("chamber") or ""):
+                self._senator_ids.setdefault(state, []).append(bioguide)
+            elif isinstance(m.get("district"), int):
+                self._house_ids.setdefault((state, m["district"]), []).append(bioguide)
+        for ids in (*self._senator_ids.values(), *self._house_ids.values()):
+            ids.sort()
 
     def _read_json(self, filename: str) -> dict:
         path = self.data_dir / filename
@@ -221,7 +279,7 @@ class DataService:
 
     def _bill_summary(self, bill: dict) -> dict:
         key = f"{bill.get('congress')}-{bill.get('type', '').lower()}-{bill.get('number')}"
-        return self._ai_summaries.get(key, {})
+        return self.displayable_summary(key) or {}
 
     def _with_plain_summary(self, bill: dict) -> dict:
         """Attach the AI one-liner, provisions, and issue categories so lists can
@@ -233,6 +291,60 @@ class DataService:
             "one_liner": summary.get("one_liner") or "",
             "provisions": summary.get("provisions") or [],
             "issue_categories": summary.get("issue_categories") or [],
+        }
+
+    def displayable_summary(self, bill_id: str) -> dict | None:
+        """The AI summary a reader may see (§2.5 C): it exists and needs_review is not true.
+        A withheld summary is treated exactly like a missing one on every surface."""
+        summary = self._ai_summaries.get(str(bill_id or "").lower())
+        if not summary or summary.get("needs_review"):
+            return None
+        return summary
+
+    def seat_up_2026(self, member: dict) -> str | None:
+        """§7.4: every House seat is on the Nov 3, 2026 ballot; a senator's seat is up only when
+        senate_2026.json lists it ("regular" or "special"). Describes the seat, never the person."""
+        if "Senate" not in (member.get("chamber") or ""):
+            return "regular"
+        seat = self._senate_2026.get(member.get("bioguideId") or "")
+        return seat.get("kind") if seat else None
+
+    def districts_expected(self, code: str) -> int:
+        """House districts per state from the crosswalk (NY 26, FL 28, TX 38, CA 52); 0 if absent."""
+        return self._districts_expected.get(str(code or "").upper(), 0)
+
+    def lookup_zip(self, raw: str | None) -> dict | None:
+        """ZIP → district(s) by the §5.1 rule. None when the input is not a ZIP.
+
+        matches = districts with share >= 5 %; covered_share = the sum of every listed share.
+        Precedence: none (no match) → partial (covered_share < 0.95) → single (one match)
+        → split (2–4 matches)."""
+        zip5 = normalize_zip(raw)
+        if zip5 is None:
+            return None
+        rows = self._zip_districts.get(zip5) or []
+        matches = [row for row in rows if (row.get("share") or 0) >= ZIP_MATCH_SHARE]
+        if not matches:
+            return {"zip": zip5, "kind": "none", "matches": []}
+        covered = round(sum(row.get("share") or 0 for row in rows), 4)
+        if covered < ZIP_COVERED_SHARE:
+            kind = "partial"
+        elif len(matches) == 1:
+            kind = "single"
+        else:
+            kind = "split"
+        return {"zip": zip5, "kind": kind, "covered_share": covered,
+                "matches": [self._zip_match(row) for row in matches]}
+
+    def _zip_match(self, row: dict) -> dict:
+        state, district = row["state"], row["district"]
+        return {
+            "state": state,
+            "state_name": COVERED_STATE_NAMES.get(state, state),
+            "district": district,
+            "share": row["share"],
+            "member_ids": list(self._house_ids.get((state, district), [])),
+            "senator_ids": list(self._senator_ids.get(state, [])),
         }
 
     def get_member_counts(self) -> dict:

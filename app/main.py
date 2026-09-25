@@ -24,6 +24,7 @@ from app.routers.votes import router as votes_router
 from app.routers.search import router as search_router
 from app.routers.feedback import router as feedback_router
 from app.routers.notify import router as notify_router
+from app.routers.districts import router as districts_router
 
 app = FastAPI(title="ClearVoting", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None)
 app.state.limiter = limiter
@@ -85,6 +86,7 @@ app.include_router(votes_router)
 app.include_router(search_router)
 app.include_router(feedback_router)
 app.include_router(notify_router)
+app.include_router(districts_router)
 
 
 @app.middleware("http")

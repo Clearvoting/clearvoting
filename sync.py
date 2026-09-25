@@ -42,7 +42,7 @@ load_dotenv()
 from app.render import parse_threshold, plain_question, question_class
 from app.services.cache import CacheService
 from app.services.congress_api import CongressAPIClient
-from app.services.data_service import _parse_vote_date, roll_call_key
+from app.services.data_service import _latest_official_summary, _parse_vote_date, roll_call_key
 from app.services.senate_votes import SenateVoteService
 
 BASE_DIR = Path(__file__).parent
@@ -401,20 +401,6 @@ def run_validation(output_dir: Path) -> int:
         print(f"  FAILURE: {f}")
     print(f"  Validation: {len(failures)} failure(s), {len(warnings)} warning(s)")
     return len(failures)
-
-
-def _latest_official_summary(bill: dict) -> str:
-    """Congress.gov orders summaries oldest-first, so [0] is the introduced
-    version — which can describe provisions that never became law (e.g. the
-    IRA's introduced summary is Build Back Better). Prefer the Public Law
-    summary; otherwise the newest by actionDate."""
-    summaries = bill.get("summaries")
-    if not isinstance(summaries, list) or not summaries:
-        return ""
-    law = [s for s in summaries if "public law" in (s.get("actionDesc") or "").lower()]
-    pool = law or summaries
-    best = max(pool, key=lambda s: s.get("actionDate") or "")
-    return best.get("text", "") or ""
 
 
 def _bill_text_excerpt(bill: dict) -> str:
