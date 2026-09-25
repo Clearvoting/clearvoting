@@ -10,6 +10,7 @@ import pytest
 
 from app import render
 from app.render import display_name, format_bill_code, h, sponsor_name
+from tests.test_state_render import FakeDS, member_raw
 
 HOSTILE = [
     "<script>alert(1)</script>",
@@ -105,3 +106,55 @@ HOME_BLOCKS = {
 @pytest.mark.parametrize("name", sorted(HOME_BLOCKS))
 def test_home_blocks_escape_hostile_input(name, payload):
     assert_escaped(HOME_BLOCKS[name](payload), payload)
+
+
+# --- Delegation renderers (plan T4.1) ---
+
+def _delegation_ds(payload):
+    return FakeDS(
+        summaries={"119-hr-1": {"one_liner": payload}},
+        bills={"119-hr-1": {"title": payload}, "119-hr-2": {"title": payload}},
+        members={"G000602": {"terms": {"item": [{"chamber": "House of Representatives", "startYear": 2025}]}}},
+    )
+
+
+def _delegation_member(payload, bill_id="119-hr-1"):
+    return member_raw("G000602", payload, district=4, photo=payload,
+                      latest_vote={"rc": payload, "bill_id": bill_id, "position": payload,
+                                   "date": "2026-09-03"})
+
+
+def _render_person_rows_hostile(payload):
+    ds = _delegation_ds(payload)
+    rows = []
+    for bill_id in ("119-hr-1", "119-hr-2"):  # a displayable headline, then the official-title fallback
+        fields = render.overview_member_fields(_delegation_member(payload, bill_id), ds)
+        rows.append(render.render_person_row(fields, fields["latest_vote"], state_code=payload))
+        rows.append(render.render_person_row(fields, fields["latest_vote"], split=True, state_code=payload))
+    return "".join(rows)
+
+
+def _render_state_pages_hostile(payload):
+    ds = _delegation_ds(payload)
+    overview = {"state": "NY", "state_name": payload, "roster_as_of": "2026-09-05",
+                "districts_expected": 5, "senators": [], "house": [_delegation_member(payload)]}
+    partial = {"zip": payload, "kind": "partial", "covered_share": 0.5, "matches": [
+        {"state": "NY", "district": 4, "share": 0.3}, {"state": "NY", "district": 5, "share": 0.2}]}
+    return (render.render_state_page(overview, 4, None, payload, ds=ds, zip_value=payload)
+            + render.render_state_page(overview, None, partial, payload, ds=ds, zip_value=payload)
+            + render.render_state_page(overview, 40, None, "", ds=ds))
+
+
+DELEGATION = {
+    "render_person_row": _render_person_rows_hostile,
+    "render_state_page": _render_state_pages_hostile,
+    "render_zip_finder_page":
+        lambda payload: render.render_zip_finder_page({"CA": 1}, value=payload, error=payload),
+    "render_zip_not_found": lambda payload: render.render_zip_not_found(payload, {"CA": 1}),
+}
+
+
+@pytest.mark.parametrize("payload", HOSTILE)
+@pytest.mark.parametrize("name", sorted(DELEGATION))
+def test_delegation_renderer_escapes_hostile_input(name, payload):
+    assert_escaped(DELEGATION[name](payload), payload)

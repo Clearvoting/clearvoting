@@ -6,6 +6,7 @@ naming formatters) and a parity test keeps the two in step, so the Python and JS
 vocabularies can never drift apart.
 """
 import html
+import json
 import re
 from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
@@ -982,3 +983,370 @@ def render_home(counts: dict, coverage: dict, vote: dict | None, bills: list | N
         '<div class="home-reps" id="home-reps"></div>'
         f"{render_record(bills, last_sync, coverage.get('since'), latest_summary, ai_updated)}"
     )
+
+
+# ---------------------------------------------------------------------------
+# Delegation page (T4.1): person rows, the state page, the ZIP finder and the
+# not-found page (spec §4.2, §5.3, §6.4 person row, §7.4 ballot copy)
+# ---------------------------------------------------------------------------
+
+# A lookup view of T3.1's COVERED_STATES tuple (one list of covered states in render.py).
+COVERED_STATE_NAMES = dict(COVERED_STATES)
+HOUSE_LOOKUP_URL = "https://www.house.gov/representatives/find-your-representative"
+_DELEGATION_SITE_URL = "https://clearvoting.org"
+_PENDING_SEAL = "No plain-English summary yet"
+_COUNT_WORDS = {2: "two", 3: "three", 4: "four"}
+_NAME_SUFFIXES = {"jr", "sr", "ii", "iii", "iv"}
+_BILL_ID_RE = re.compile(r"^(\d+)-([a-z]+)-(\d+)$")
+
+
+def _district_int(member: dict) -> int | None:
+    district = member.get("district")
+    return district if isinstance(district, int) and not isinstance(district, bool) else None
+
+
+def _initials(full_name: str) -> str:
+    words = [w for w in full_name.split() if w.strip(".,").lower() not in _NAME_SUFFIXES]
+    letters = [w[0] for w in words if w[:1].isalpha()]
+    if not letters:
+        return ""
+    return (letters[0] + letters[-1]).upper() if len(letters) > 1 else letters[0].upper()
+
+
+def _bill_title(ds, congress: int, bill_type: str, number: int) -> str:
+    # Most roster rows share one bill and get_bill_detail scans, so titles are memoized on
+    # the DataService itself: the memo lives and dies with the data it caches, and a new
+    # DataService (tests' cache_clear, a reload) starts with an empty one.
+    memo = vars(ds).setdefault("_bill_title_memo", {})
+    key = (congress, bill_type, number)
+    if key not in memo:
+        detail = ds.get_bill_detail(congress, bill_type, number)
+        memo[key] = str(((detail or {}).get("bill") or {}).get("title") or "")
+    return memo[key]
+
+
+def _latest_vote_fields(latest: dict | None, ds) -> dict | None:
+    if not latest:
+        return None
+    match = _BILL_ID_RE.match(str(latest.get("bill_id") or ""))
+    if not match:
+        return None
+    congress, bill_type, number = int(match.group(1)), match.group(2), int(match.group(3))
+    summary = ds.displayable_summary(latest["bill_id"]) or {}
+    one_liner = str(summary.get("one_liner") or "")
+    code = format_bill_code(bill_type, number)
+    chip = position_chip(latest.get("position"))  # T1.2: the one §7.1 table
+    date = str(latest.get("date") or "")[:10]
+    return {
+        **latest,
+        "bill_code": code,
+        "bill_url": f"/bill?congress={congress}&type={quote(bill_type)}&number={number}",
+        "headline": one_liner or _bill_title(ds, congress, bill_type, number) or code,
+        "displayable": bool(one_liner),
+        "seal": "" if one_liner else _PENDING_SEAL,
+        "chip": chip["text"],
+        "chip_class": f"chip--{chip['variant']}",
+        "date_short": format_date(date, short=True) if date else "",
+    }
+
+
+def overview_member_fields(member: dict, ds=None) -> dict:
+    """One state_overview member plus the render-ready fields that the delegation page, the
+    home "Your representatives" block and the bill slot use (§10 #7). Raw fields are kept,
+    so the router's party strip still decides whether partyName leaves the server."""
+    if ds is None:
+        from app.dependencies import get_data_service
+        ds = get_data_service()
+    bioguide = str(member.get("bioguideId") or "")
+    name = display_name(str(member.get("name") or ""))
+    record = ((ds.get_member_detail(bioguide) if bioguide else None) or {}).get("member") or {}
+    tenure = tenure_line(record["terms"]) if record.get("terms") else ""
+    senate = "Senate" in str(member.get("chamber") or "")
+    district = _district_int(member)
+    if senate:
+        seat = "U.S. Senator"
+    elif district is not None:
+        seat = f"District {district}"
+    else:
+        seat = "U.S. Representative"
+    photo = str(member.get("photo") or (record.get("depiction") or {}).get("imageUrl") or "")
+    return {
+        **member,
+        "display_name": name,
+        "initials": _initials(name),
+        "seat_line": f"{seat} · {tenure}" if tenure else seat,
+        "seat_seal": seat_seal(ds.seat_up_2026(member), "row"),
+        "url": f"/member?id={quote(bioguide)}",
+        "photo": photo if photo.startswith("https://www.congress.gov/") else "",
+        "latest_vote": _latest_vote_fields(member.get("latest_vote"), ds),
+    }
+
+
+def _photo(member: dict) -> str:
+    src = str(member.get("photo") or "")
+    img = (f'<img src="{h(src)}" alt="" loading="lazy" width="56" height="56">'
+           if src.startswith("https://www.congress.gov/") else "")
+    return f'<span class="photo" data-initials="{h(member.get("initials") or "")}">{img}</span>'
+
+
+def _signal_line(signal: dict | None) -> str:
+    if not signal:
+        return '<span class="person-signal">No final votes on bills in our record yet</span>'
+    if signal.get("displayable"):
+        headline = h(signal.get("headline") or "")
+    else:
+        headline = (f'<span class="official">{h(signal.get("headline") or "")}</span> '
+                    f'<span class="seal seal--pending">{h(signal.get("seal") or _PENDING_SEAL)}</span>')
+    dated = f' · {h(signal["date_short"])}' if signal.get("date_short") else ""
+    chip_class = h(signal.get("chip_class") or "chip--other")
+    return (f'<span class="person-signal">Latest final vote{dated} · {headline} — '
+            f'<span class="chip {chip_class}">{h(signal.get("chip") or "")}</span></span>')
+
+
+def render_person_row(member: dict, signal: dict | None, split: bool = False,
+                      state_code: str = "") -> str:
+    """The §6.4 person row. By default the whole row is one <a>. With split=True (split and
+    partial ZIP pages) the row is a <div> whose name is the link, with a sibling
+    "This is my district →" link, so no link sits inside another (F60). Every row carries
+    an empty .party span that the reveal fills."""
+    bioguide = str(member.get("bioguideId") or "")
+    district = _district_int(member)
+    district_attr = "" if district is None else str(district)
+    href = f"/member?id={quote(bioguide)}"
+    attrs = (f' data-bioguide="{h(bioguide)}" data-state="{h(state_code)}"'
+             f' data-district="{district_attr}"')
+    seal = (f' <span class="seal seal--ballot">{h(member["seat_seal"])}</span>'
+            if member.get("seat_seal") else "")
+    details = (f' <span class="person-seat">{h(member.get("seat_line") or "")}</span>{seal}'
+               f' {_signal_line(signal)} <span class="party"></span>')
+    name = h(member.get("display_name") or "")
+    if not split:
+        return (f'<a class="person" href="{h(href)}"{attrs}>{_photo(member)} '
+                f'<span class="person-body"><span class="person-name">{name}</span>{details}</span></a>')
+    mine = f"/state?code={quote(state_code)}&district={district_attr}#mine"
+    return (f'<div class="person person--split"{attrs}>{_photo(member)} '
+            f'<span class="person-body"><a class="person-name" href="{h(href)}">{name}</a>{details}</span> '
+            f'<a class="btn btn--secondary" href="{h(mine)}">This is my district →</a></div>')
+
+
+def _row_list(rows: list[str], css: str) -> str:
+    return f'<ul class="{css}">' + "".join(f"<li>{row}</li>" for row in rows) + "</ul>"
+
+
+def _vacant_row(state_code: str, district: int, *, report: bool = False, mine: bool = False) -> str:
+    """A district with no member in members.json. In "Your representatives" (report=True) it
+    reads "District 7 — vacant in our data · Tell us if this is wrong" (§4.2, §5.3) as one
+    wrapping line: the inline .person-vacancy wrapper keeps the separator out of the row's
+    grid. The roster's vacancies (report=False) are the name alone (§4.2 "Vacant districts")."""
+    d = int(district)
+    body = f'<span class="person-name">District {d} — vacant in our data</span>'
+    if report:
+        body = (f'<span class="person-vacancy">{body} · <button type="button" class="btn btn--secondary" '
+                'data-feedback-open>Tell us if this is wrong</button></span>')
+    mine_link = ""
+    if mine:
+        target = f"/state?code={quote(state_code)}&district={d}#mine"
+        mine_link = f' <a class="btn btn--secondary" href="{h(target)}">This is my district →</a>'
+    return (f'<div class="person person--vacant" data-state="{h(state_code)}" data-district="{d}">'
+            f'<span class="person-body">{body}</span>{mine_link}</div>')
+
+
+def _zip_note(zip_result: dict, matches: list[dict]) -> str:
+    zip5 = h(zip_result.get("zip") or "")
+    paras = []
+    if len(matches) >= 2:
+        word = _COUNT_WORDS.get(len(matches), str(len(matches)))
+        first = (f"about {round(float(matches[0]['share']) * 100)} % of the ZIP's land area "
+                 f"(not its residents) is in District {int(matches[0]['district'])}")
+        others = [f"{round(float(m['share']) * 100)} % in District {int(m['district'])}"
+                  for m in matches[1:]]
+        if len(others) == 1:
+            shares = f"{first} and {others[0]}"
+        else:
+            shares = f"{first}, " + ", ".join(others[:-1]) + f" and {others[-1]}"
+        shown = "Both are shown" if len(matches) == 2 else f"All {word} are shown"
+        paras.append(f"<p>ZIP {zip5} spans {word} House districts — {shares}. "
+                     f"{shown}; your street address decides which is yours.</p>")
+    if zip_result.get("kind") == "partial":
+        outside = round((1 - float(zip_result.get("covered_share") or 0)) * 100)
+        paras.append(f"<p>About {outside} % of ZIP {zip5}'s land area is outside California, Florida, "
+                     "New York and Texas; if you live in that part, we don't cover your state yet.</p>")
+    paras.append(f'<p><a class="source-link" href="{HOUSE_LOOKUP_URL}" rel="noopener">'
+                 "Not sure? Look up your district by street address on house.gov →</a></p>")
+    return '<div class="note">' + "".join(paras) + "</div>"
+
+
+def _state_header(code: str, state_name: str, count: int, roster_as_of, district: int | None,
+                  personal: bool, zip_value: str, error: str) -> str:
+    kicker = f"{h(state_name)} · {int(count)} members"
+    if roster_as_of:
+        kicker += f" · roster as of {h(format_date(str(roster_as_of)[:10]))}"
+    title = "Your representatives" if personal else f"{h(state_name)}'s representatives"
+    if district is not None:
+        where = (f'<p class="district-line">{h(state_name)}, District {int(district)} · '
+                 '<a href="/#find">Change ZIP</a></p>'
+                 # state.js unhides the button, and after a tap puts site.js's "Remembered: … ·
+                 # Change · Forget" line in this wrapper, whose first control Forget refocuses.
+                 '<div class="remember">'
+                 f'<button type="button" class="btn btn--secondary" id="remember-district" '
+                 f'data-state="{h(code)}" data-state-name="{h(state_name)}" '
+                 f'data-district="{int(district)}" hidden>Remember District {int(district)} as mine</button>'
+                 '</div>')
+    else:
+        # T3.1's compact ZIP form: the same component as home, one row (§4.2 header).
+        where = render_zip_form(compact=True, value=zip_value, error=error or None,
+                                form_id="zip-top", label="Where do you live?")
+    # The place this page is about, for the feedback dialog's "About: …" line (T2.4): the h1
+    # on district and ZIP pages is "Your representatives", which names no state.
+    context_label = f"{state_name}, District {int(district)}" if district is not None else state_name
+    party_url = f"/api/members/{quote(code)}/overview?show_party=true"
+    share_url = f"{_DELEGATION_SITE_URL}/state?code={quote(code)}"
+    share_title = f"{state_name}'s Representatives — Voting Records"
+    share_text = f"How {state_name}'s members of Congress vote"
+    return (f'<section class="state-header" data-state="{h(code)}" data-context-label="{h(context_label)}">'
+            f'<p class="kicker">{kicker}</p>'
+            f'<h1>{title}</h1>'
+            f'{where}'
+            '<div class="actions">'
+            f'<button class="party-toggle" type="button" data-party-url="{h(party_url)}">Show party labels</button>'
+            f'<button class="btn btn--secondary share-btn" type="button" data-share-url="{h(share_url)}" '
+            f'data-share-title="{h(share_title)}" data-share-text="{h(share_text)}">Share</button>'
+            '</div>'
+            '<p class="party-status" role="status"></p>'
+            '<p class="share-status" role="status"></p>'
+            '<p class="meta">Party labels are hidden so the record speaks first.</p>'
+            '<noscript><p class="meta">Party labels and remembering your district need JavaScript'
+            '</p></noscript>'
+            '</section>')
+
+
+def _yours_section(code: str, senators: list[dict], by_district: dict[int, list[dict]],
+                   district: int | None, zip_result: dict | None, matches: list[dict]) -> str:
+    parts = ['<section class="yours" aria-labelledby="yours-h"><h2 id="yours-h">Your representatives</h2>']
+    senator_rows = [render_person_row(m, m.get("latest_vote"), state_code=code) for m in senators]
+    if district is not None:
+        house_rows = [render_person_row(m, m.get("latest_vote"), state_code=code)
+                      for m in by_district.get(district, [])]
+        rows = senator_rows + (house_rows or [_vacant_row(code, district, report=True)])
+        parts.append(_row_list(rows, "reps reps--yours"))
+    else:
+        parts.append(_row_list(senator_rows, "reps"))
+        parts.append(_zip_note(zip_result or {}, matches))
+        house_rows = []
+        for match in matches:
+            d = int(match["district"])
+            members = by_district.get(d, [])
+            house_rows += ([render_person_row(m, m.get("latest_vote"), split=True, state_code=code)
+                            for m in members]
+                           or [_vacant_row(code, d, report=True, mine=True)])
+        parts.append(_row_list(house_rows, "reps"))
+    parts.append("</section>")
+    return "".join(parts)
+
+
+def _senate_section(code: str, state_name: str, senators: list[dict]) -> str:
+    rows = [render_person_row(m, m.get("latest_vote"), state_code=code) for m in senators]
+    return ('<section class="senate" aria-labelledby="senate-h"><h2 id="senate-h">U.S. Senate</h2>'
+            f'<p class="kicker">Both represent all of {h(state_name)}</p>{_row_list(rows, "reps")}</section>')
+
+
+def _house_section(code: str, state_name: str, house: list[dict], by_district: dict[int, list[dict]],
+                   expected: int, personal: bool) -> str:
+    rows = []
+    for d in range(1, expected + 1):
+        members = by_district.get(d)
+        if members:
+            rows += [render_person_row(m, m.get("latest_vote"), state_code=code) for m in members]
+        else:
+            rows.append(_vacant_row(code, d))
+    rows += [render_person_row(m, m.get("latest_vote"), state_code=code) for m in house
+             if not (_district_int(m) is not None and 1 <= _district_int(m) <= expected)]
+    listing = _row_list(rows, "roster")
+    if personal:
+        body = f"<details><summary>All {expected} {h(state_name)} House districts</summary>{listing}</details>"
+    else:
+        body = f'<p class="kicker">By district, 1–{expected}</p>{listing}'
+    return ('<section class="house" id="house" aria-labelledby="house-h">'
+            f'<h2 id="house-h">The House, by district</h2>{body}</section>')
+
+
+def _state_foot(state_name: str, roster_as_of) -> str:
+    roster = "Roster from Congress.gov"
+    if roster_as_of:
+        roster += f", as of {h(format_date(str(roster_as_of)[:10]))}"
+    query = json.dumps({"congress": 119, "member-state": state_name}, separators=(",", ":"))
+    congress_url = f"https://www.congress.gov/members?q={quote(query)}"
+    foot_form = render_zip_form(compact=True, form_id="zip-foot",
+                                label="Don't know your district? Enter your ZIP")
+    return ('<div class="state-foot">'
+            f'{foot_form}'
+            f'<p class="meta">{roster} · Wrong person? '
+            '<button type="button" class="btn btn--secondary" data-feedback-open>Report an error</button></p>'
+            f'<p class="meta"><a class="source-link" href="{h(congress_url)}" rel="noopener">'
+            f"{h(state_name)}'s delegation on Congress.gov →</a></p>"
+            f'{render_notify_disclosure()}'
+            '</div>')
+
+
+def render_state_page(overview: dict, district: int | None = None, zip_result: dict | None = None,
+                      error: str = "", *, ds=None, zip_value: str = "") -> str:
+    """The delegation page body (§4.2): header, Your representatives (district or ZIP URLs
+    only), U.S. Senate (plain URLs only), The House by district, foot. `district` is an int
+    from the query string or None. `zip_result` is a lookup_zip result of kind split or
+    partial for this state, or None."""
+    code = str(overview.get("state") or "").upper()
+    state_name = str(overview.get("state_name") or COVERED_STATE_NAMES.get(code, code))
+    senators = sorted((overview_member_fields(m, ds) for m in overview.get("senators") or []),
+                      key=lambda m: str(m.get("name") or ""))
+    house = sorted((overview_member_fields(m, ds) for m in overview.get("house") or []),
+                   key=lambda m: (_district_int(m) or 0, str(m.get("name") or "")))
+    by_district: dict[int, list[dict]] = {}
+    for member in house:
+        d = _district_int(member)
+        if d is not None:
+            by_district.setdefault(d, []).append(member)
+    expected = int(overview.get("districts_expected") or 0) or max(by_district, default=0)
+    missing_district = None
+    if district is not None and not 1 <= district <= expected:
+        missing_district, district = district, None
+    matches = [m for m in (zip_result or {}).get("matches") or [] if m.get("state") == code]
+    personal = district is not None or bool(matches)
+
+    blocks = [_state_header(code, state_name, len(senators) + len(house), overview.get("roster_as_of"),
+                            district, personal, zip_value, error)]
+    if missing_district is not None:
+        blocks.append(f"<p class=\"note\">We don't have a District {int(missing_district)} in {h(state_name)}</p>")
+    if personal:
+        blocks.append(_yours_section(code, senators, by_district, district, zip_result, matches))
+    else:
+        blocks.append(_senate_section(code, state_name, senators))
+    blocks.append(_house_section(code, state_name, house, by_district, expected, personal))
+    blocks.append(_state_foot(state_name, overview.get("roster_as_of")))
+    return '<div class="delegation">' + "".join(blocks) + "</div>"
+
+
+def render_zip_finder_page(counts: dict, value: str = "", error: str = "") -> str:
+    """/state with no code (§4.2 states): the finder H1, the ZIP form, the four state links."""
+    return ('<div class="delegation"><section class="finder-page">'
+            '<h1>Find your representatives</h1>'
+            f'{render_zip_form(value=value, error=error or None, form_id="zip-top")}'
+            f'<p class="meta">Or choose a state:</p>{render_state_links(counts)}'
+            '</section></div>')
+
+
+def render_zip_not_found(zip5: str, counts: dict) -> str:
+    """/state?zip= with no district at ≥5 % in a covered state (§5.3): the one not-found
+    message, the form, the four state links, then the notify disclosure."""
+    z = h(zip5)
+    message = (f"We couldn't match ZIP {z} to a congressional district in California, Florida, New York or "
+               "Texas — the four states ClearVoting covers. If you live in one of them, your ZIP may be a "
+               "PO-box or business ZIP: choose your state below, or "
+               f'<a href="{HOUSE_LOOKUP_URL}" rel="noopener">look up your district by street address on '
+               "house.gov →</a>. Somewhere else? Tell us your state and we'll email you when we add it.")
+    return ('<div class="delegation"><section class="finder-page">'
+            '<h1>Find your representatives</h1>'
+            f'<div class="note"><p>{message}</p></div>'
+            f'{render_zip_form(value=zip5, form_id="zip-top")}'
+            f'<p class="meta">Or choose a state:</p>{render_state_links(counts)}'
+            f'{render_notify_disclosure()}'
+            '</section></div>')
