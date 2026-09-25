@@ -9,6 +9,7 @@ import html
 import re
 from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
+from urllib.parse import quote
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 # ---------------------------------------------------------------------------
@@ -692,4 +693,290 @@ def render_notify_disclosure() -> str:
         "</form>"
         '<noscript><p class="meta">Signing up needs JavaScript.</p></noscript>'
         "</details>"
+    )
+
+
+# ---------------------------------------------------------------------------
+# Home blocks (plan T3.2, spec §4.1): lead, Latest Vote card, the Record.
+# ---------------------------------------------------------------------------
+
+SUMMARY_ATTRIBUTION = "Summarized by AI from the bill's title, official summary and text excerpt"
+_SEAL_VARIANTS = ("final", "moving", "pending", "ballot")
+# Only texts that are final whatever the bill type. "Adopted by the …" is final only for
+# hres/sres, which the text alone cannot tell (T1.2 bill_status decides it from the type).
+_FINAL_SEAL_PREFIXES = ("Became law", "Passed both chambers")
+_SIMPLE_RESOLUTIONS = ("hres", "sres")
+_PENDING_SEAL_TEXT = "No plain-English summary yet"
+
+
+def _record_href(congress, bill_type, number) -> str:
+    """Bill URL from validated parts only (spec §3.3 canonical form, lowercase type)."""
+    return f"/bill?congress={int(congress)}&type={quote(str(bill_type).lower(), safe='')}&number={int(number)}"
+
+
+def _cap(text: str, limit: int) -> tuple[str, bool]:
+    """Cap official text on a word boundary with an ellipsis; returns (text, was_capped)."""
+    text = " ".join((text or "").split())
+    if len(text) <= limit:
+        return text, False
+    head = text[: limit + 1]
+    cut = head.rsplit(" ", 1)[0] if " " in head else text[:limit]
+    return cut.rstrip(" ,;:") + "…", True
+
+
+def _status_parts(status) -> tuple[str, str]:
+    """A bill's derived_status -> (seal text, variant). T1.2's bill_status always returns
+    {"text", "variant"}, and its variant is trusted (anything else reads as moving). The
+    text-prefix guess is only for a bare string."""
+    if isinstance(status, dict):
+        text = status.get("text") or "No final vote yet"
+        variant = status.get("variant")
+        return text, variant if variant in ("final", "moving") else "moving"
+    text = status or "No final vote yet"
+    return text, "final" if text.startswith(_FINAL_SEAL_PREFIXES) else "moving"
+
+
+def _activity_date(bill: dict) -> str:
+    return bill.get("activity_date") or (bill.get("latestAction") or {}).get("actionDate") or ""
+
+
+def _bill_code(bill: dict) -> str:
+    return format_bill_code(str(bill.get("type", "")).lower(), bill.get("number"))
+
+
+def _month_year(iso: str) -> str:
+    long_form = format_date(iso[:10])  # "January 3, 2021"
+    return f"{long_form.split(' ', 1)[0]} {long_form.rsplit(' ', 1)[1]}"
+
+
+def _ai_line(ai_updated: str | None) -> str:
+    dated = f" · summaries last updated {h(format_date(ai_updated[:10]))}" if ai_updated else ""
+    return f'<p class="meta ai-line">{SUMMARY_ATTRIBUTION}{dated}</p>'
+
+
+def _provisions(provisions) -> str:
+    items = "".join(f"<li>{h(p)}</li>" for p in (provisions or [])[:4])
+    return f'<ul class="provisions">{items}</ul>' if items else ""
+
+
+def _full_title(title: str) -> str:
+    return f'<details class="full-title"><summary>Show full title</summary><p>{h(title)}</p></details>'
+
+
+def _tally_label(seal_text: str, chamber: str) -> str:
+    """"Passed the House 237–169" -> "Passed the House" for the tally's aria-label."""
+    label = re.sub(r"\s*\d+[–-]\d+.*$", "", seal_text or "").strip()
+    return label or (f"{chamber} vote" if chamber else "Vote")
+
+
+def render_seal(text: str, variant: str) -> str:
+    """Status seal (spec §6.4). Variants: final, moving, pending, ballot."""
+    if variant not in _SEAL_VARIANTS:
+        variant = "moving"
+    return f'<span class="seal seal--{variant}">{h(text)}</span>'
+
+
+def render_tally(counts: dict, label: str) -> str:
+    """Tally bar (spec §6.4): a role=img track with a spoken summary, and the visible
+    numbers in a sibling paragraph. Segment widths are server style= (style-src allows it)."""
+    yeas = int(counts.get("yeas") or 0)
+    nays = int(counts.get("nays") or 0)
+    absent = int(counts.get("absent") or 0)
+    total = yeas + nays
+    yes_pct = round(yeas * 100 / total, 1) if total else 0
+    no_pct = round(100 - yes_pct, 1) if total else 0
+    spoken = f"{label}: {yeas} voted yes, {nays} voted no" + (f", {absent} did not vote" if absent else "")
+    didnt = f'<span class="meta"> · {absent} didn\'t vote</span>' if absent else ""
+    return (
+        '<div class="tally">'
+        f'<div class="tally-track" role="img" aria-label="{h(spoken)}">'
+        f'<span class="tally-seg tally-seg--yes" style="width:{yes_pct}%" data-yes="{yeas}"></span>'
+        f'<span class="tally-seg tally-seg--no" style="width:{no_pct}%" data-no="{nays}"></span>'
+        "</div>"
+        f'<p class="tally-text"><span class="tally-yes">{yeas}</span> yes · '
+        f'<span class="tally-no">{nays}</span> no{didnt}</p>'
+        "</div>"
+    )
+
+
+def render_latest_vote_card(vote: dict | None, ai_updated: str | None = None) -> str:
+    """The Latest Vote (spec §4.1 m3): a structured card, never a sentence template.
+    'The latest vote' is an h2 styled as a kicker (§8 item 2). Without data the card
+    keeps its place and says so (C-11)."""
+    heading = '<h2 class="kicker" id="latest-vote-h">The latest vote</h2>'
+    if not vote or not vote.get("bill"):
+        return (
+            '<aside class="vote-card vote-card--empty" aria-labelledby="latest-vote-h" data-ssr="1">'
+            f"{heading}<p class=\"deck\">The latest vote isn't available right now.</p></aside>"
+        )
+    bill = vote["bill"]
+    href = _record_href(bill["congress"], bill["type"], bill["number"])
+    chamber = vote.get("chamber") or ""
+    dateline = " · ".join(part for part in (
+        f"U.S. {chamber}" if chamber else "",
+        format_date(vote["date_iso"]) if vote.get("date_iso") else "",
+        vote.get("plain_question") or "",
+    ) if part)
+    if vote.get("has_summary") and vote.get("one_liner"):
+        headline = f'<p class="card-headline">{h(vote["one_liner"])}</p>'
+        link_text = "What this bill does, in plain English →"
+        attribution = _ai_line(ai_updated)
+    else:
+        title = bill.get("title") or format_bill_code(str(bill["type"]).lower(), bill["number"])
+        headline = (f'<p class="card-headline official clamp2">{h(title)}</p>'
+                    f'<p class="card-seal">{render_seal(_PENDING_SEAL_TEXT, "pending")}</p>')
+        link_text = "See the vote and the official summary →"
+        attribution = ""
+    seal_text = vote.get("outcome") or ""
+    # One roll call's outcome is final only for a simple resolution's adoption (§6.4/§7.2);
+    # result_phrase also says "Adopted by the …" for joint and concurrent resolutions.
+    simple = str(bill.get("type", "")).lower() in _SIMPLE_RESOLUTIONS
+    variant = "final" if simple and seal_text.startswith("Adopted by the") else "moving"
+    seal = f'<p class="card-seal">{render_seal(seal_text, variant)}</p>' if seal_text else ""
+    return (
+        '<aside class="vote-card" aria-labelledby="latest-vote-h" data-ssr="1">'
+        f"{heading}"
+        f'<p class="dateline meta">{h(dateline)}</p>'
+        f"{headline}"
+        f"{render_tally(vote.get('counts') or {}, _tally_label(seal_text, chamber))}"
+        f"{seal}"
+        f'<a class="arrow-link" href="{h(href)}">{link_text}</a>'
+        f"{attribution}"
+        "</aside>"
+    )
+
+
+def _coverage_sentence(coverage: dict) -> str:
+    members = int(coverage.get("members") or 0)
+    since = coverage.get("since")
+    tail = f" since {h(_month_year(since))}" if since else ""
+    return (f"ClearVoting covers California, Florida, New York and Texas today — {members} members "
+            f"and every bill that has had a roll-call vote{tail}.")
+
+
+def render_home_lead(counts: dict, coverage: dict) -> str:
+    """Left column of the home lead (spec §4.1 m2): everything a first visit needs, in
+    fold order. Module 4's mount is not here: render_home places it after the card."""
+    return (
+        '<div class="lead-main">'
+        '<p class="kicker">An independent record of Congress</p>'
+        '<h1 id="home-h1">See how your representatives vote.</h1>'
+        '<p class="deck">Dated votes, party labels hidden until you ask.</p>'
+        f"{render_zip_form()}"
+        '<p class="state-links-label">Or choose a state:</p>'
+        f"{render_state_links(counts)}"
+        f'<p class="coverage">{_coverage_sentence(coverage)}</p>'
+        f"{render_notify_disclosure()}"
+        "</div>"
+    )
+
+
+def _record_lead(bill: dict) -> str:
+    href = _record_href(bill["congress"], bill["type"], bill["number"])
+    code = _bill_code(bill)
+    seal_text, variant = _status_parts(bill.get("derived_status"))
+    date = _activity_date(bill)
+    date_html = f' <span class="meta">{h(format_date(date[:10], short=True))}</span>' if date else ""
+    title = bill.get("title") or code
+    parts = [
+        f'<p class="kicker">{h(code)} · {h(ordinal(int(bill["congress"])))} Congress</p>',
+        f'<p class="row-meta">{render_seal(seal_text, variant)}{date_html}</p>',
+    ]
+    if bill.get("one_liner"):
+        official, capped = _cap(title, 140)
+        parts += [
+            f'<p class="lead-headline"><a href="{h(href)}">{h(bill["one_liner"])}</a></p>',
+            _provisions(bill.get("provisions")),
+            f'<p class="official-line">Officially: {h(official)}</p>',
+            _full_title(title) if capped else "",
+            f'<a class="arrow-link" href="{h(href)}">See who voted →</a>',
+        ]
+    else:
+        headline, capped = _cap(title, 140)
+        parts += [
+            f'<p class="lead-headline official"><a href="{h(href)}">{h(headline)}</a></p>',
+            _full_title(title) if capped else "",
+            f"<p>{render_seal(_PENDING_SEAL_TEXT, 'pending')}</p>",
+        ]
+    return f'<article class="record-lead">{"".join(parts)}</article>'
+
+
+def _record_row(bill: dict) -> str:
+    href = _record_href(bill["congress"], bill["type"], bill["number"])
+    code = _bill_code(bill)
+    seal_text, variant = _status_parts(bill.get("derived_status"))
+    date = _activity_date(bill)
+    date_html = f'<span class="meta">{h(format_date(date[:10], short=True))}</span>' if date else ""
+    if bill.get("one_liner"):
+        headline = f'<span class="row-headline">{h(bill["one_liner"])}</span>'
+    else:
+        headline = (f'<span class="row-headline row-headline--official">{h(bill.get("title") or code)}</span>'
+                    f'<span class="row-seal">{render_seal(_PENDING_SEAL_TEXT, "pending")}</span>')
+    return (
+        f'<li><a class="bill-row" href="{h(href)}">'
+        f'<span class="row-meta"><span class="kicker">{h(code)}</span>'
+        f"{render_seal(seal_text, variant)}{date_html}</span>"
+        f"{headline}</a></li>"
+    )
+
+
+def _latest_summary_block(bill: dict) -> str:
+    href = _record_href(bill["congress"], bill["type"], bill["number"])
+    date = _activity_date(bill)
+    heading = "Most recent plain-English summary" + (f" · {format_date(date[:10], short=True)}" if date else "")
+    return (
+        '<section class="latest-summary" aria-labelledby="latest-summary-h">'
+        f'<h2 id="latest-summary-h">{h(heading)}</h2>'
+        f'<p class="kicker">{h(_bill_code(bill))}</p>'
+        f'<p class="lead-headline"><a href="{h(href)}">{h(bill["one_liner"])}</a></p>'
+        f"{_provisions(bill.get('provisions'))}"
+        f'<a class="arrow-link" href="{h(href)}">See who voted →</a>'
+        "</section>"
+    )
+
+
+def render_record(bills: list | None, last_sync: str | None, since: str | None = None,
+                  latest_summary: dict | None = None, ai_updated: str | None = None) -> str:
+    """The Record (spec §4.1 m5): the seven newest bills by activity date, regardless
+    of summary; the stamp counts the rows that show an official title."""
+    opening = '<section class="record" id="record" aria-labelledby="record-h" data-ssr="1">'
+    head = '<p class="kicker">The Record</p><h2 id="record-h">What Congress voted on</h2>'
+    if not bills:
+        return f"{opening}{head}<p class=\"note\">We couldn't load recent bills right now.</p></section>"
+    rows = bills[:7]
+    missing = sum(1 for b in rows if not b.get("one_liner"))
+    scope = "every bill that has had a roll-call vote"
+    if since:
+        scope += f" since {h(_month_year(since))}"
+    stamp = f"As of {h(format_date(last_sync[:10]))} · {scope}" if last_sync else scope[0].upper() + scope[1:]
+    stamp += ", newest activity first"
+    if missing == 1:
+        stamp += f" · 1 of the {len(rows)} bills below doesn't have a plain-English summary yet and shows its official title"
+    elif missing:
+        stamp += f" · {missing} of the {len(rows)} bills below don't have a plain-English summary yet and show their official title"
+    parts = [opening, head, f'<p class="stamp meta">{stamp}.</p>', _record_lead(rows[0])]
+    if len(rows) > 1:
+        parts.append(f'<ul class="record-list">{"".join(_record_row(b) for b in rows[1:])}</ul>')
+    show_latest = not rows[0].get("one_liner") and latest_summary and latest_summary.get("one_liner")
+    if show_latest:
+        parts.append(_latest_summary_block(latest_summary))
+    if any(b.get("one_liner") for b in rows) or show_latest:
+        parts.append(_ai_line(ai_updated))
+    parts.append("</section>")
+    return "".join(parts)
+
+
+def render_home(counts: dict, coverage: dict, vote: dict | None, bills: list | None,
+                latest_summary: dict | None, last_sync: str | None, ai_updated: str | None) -> str:
+    """Home content for <!--content--> (spec §4.1 order): lead + card (m2, m3), the empty
+    module-4 mount T4.2 fills for a remembered reader, then the Record (m5). The mount is
+    below the finder, so filling it never moves the fold (§9.6). section.lead has no
+    aria-label: a named section is a region landmark, and the spec's aside.vote-card
+    would then be a complementary landmark nested two deep."""
+    return (
+        '<section class="lead">'
+        f"{render_home_lead(counts, coverage)}{render_latest_vote_card(vote, ai_updated)}"
+        "</section>"
+        '<div class="home-reps" id="home-reps"></div>'
+        f"{render_record(bills, last_sync, coverage.get('since'), latest_summary, ai_updated)}"
     )

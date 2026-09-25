@@ -71,3 +71,37 @@ SHARED_BLOCKS = {
 @pytest.mark.parametrize("name", sorted(SHARED_BLOCKS))
 def test_shared_blocks_escape_hostile_input(name, payload):
     assert_escaped(SHARED_BLOCKS[name](payload), payload)
+
+
+# --- Home blocks (plan T3.2) ---
+
+def _hostile_home_bill(p: str) -> dict:
+    return {"congress": 119, "type": "HR", "number": "1", "title": p, "one_liner": p,
+            "provisions": [p], "derived_status": p, "activity_date": "2026-09-03"}
+
+
+def _hostile_latest_vote(p: str, summarized: bool = True) -> dict:
+    return {"chamber": "House", "date": "September 3, 2026", "date_iso": "2026-09-03", "plain_question": p, "outcome": p,
+            "counts": {"yeas": 1, "nays": 2, "absent": 0},
+            "one_liner": p if summarized else None, "has_summary": summarized,
+            "bill": {"congress": 119, "type": "hr", "number": 1, "title": p}}
+
+
+HOME_BLOCKS = {
+    "render_seal": lambda p: render.render_seal(p, "final"),
+    "render_tally": lambda p: render.render_tally({"yeas": 1, "nays": 1}, p),
+    "render_latest_vote_card": lambda p: render.render_latest_vote_card(_hostile_latest_vote(p), "2026-07-07"),
+    "render_latest_vote_card (official title)":
+        lambda p: render.render_latest_vote_card(_hostile_latest_vote(p, summarized=False)),
+    "render_record": lambda p: render.render_record(
+        [_hostile_home_bill(p), dict(_hostile_home_bill(p), one_liner=None)],
+        "2026-09-05", "2021-01-03", _hostile_home_bill(p), "2026-07-07"),
+    "render_record (withheld lead)": lambda p: render.render_record(
+        [dict(_hostile_home_bill(p), one_liner=None)], "2026-09-05", None, _hostile_home_bill(p), None),
+}
+
+
+@pytest.mark.parametrize("payload", HOSTILE)
+@pytest.mark.parametrize("name", sorted(HOME_BLOCKS))
+def test_home_blocks_escape_hostile_input(name, payload):
+    assert_escaped(HOME_BLOCKS[name](payload), payload)
