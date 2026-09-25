@@ -1328,3 +1328,27 @@ async def test_sync_member_summaries_skips_existing(tmp_path):
     stats = await sync_member_summaries(tmp_path)
 
     assert stats["total"] == 0  # No new summaries generated
+
+
+# --- votes index step (plan T1.4, spec §10 #3) ---
+
+async def test_votes_index_step_runs_without_congress_key(monkeypatch, tmp_path):
+    """The index is built from files already on disk, so the step needs no API key."""
+    import sys
+    import sync as sync_module
+
+    _write_json(tmp_path / "votes" / "house" / "119_2_00295.json", {
+        "congress": 119, "session": 2, "vote_number": 295, "vote_date": "2026-09-03",
+        "question": "On Passage", "document": "H.R. 4795", "result": "Passed",
+        "counts": {"yeas": 237, "nays": 169, "present": 0, "absent": 27}, "members": [], "chamber": "House",
+    })
+    _write_json(tmp_path / "bills.json", {"bills": [{"congress": 119, "type": "HR", "number": "4795"}]})
+    monkeypatch.delenv("CONGRESS_API_KEY", raising=False)
+    monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
+    monkeypatch.setattr(sys, "argv", ["sync.py", "--step", "votes-index"])
+
+    await sync_module.main()
+
+    index = json.loads((tmp_path / "votes_index.json").read_text())
+    assert index["latest"] == "house/119_2_00295"
+    assert index["roll_calls"]["house/119_2_00295"]["bill"] == "119-hr-4795"

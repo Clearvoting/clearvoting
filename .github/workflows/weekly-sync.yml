@@ -85,6 +85,19 @@ jobs:
           git add data/synced/
           git diff --cached --quiet || (git commit -m "data: sync bills [automated]" && git push)
 
+      # Derived index of every roll call (spec §10 #3). Runs after the vote and bill
+      # steps so member-vote validation below can check every row resolves in it.
+      - name: Build votes index
+        if: always()
+        timeout-minutes: 5
+        run: python sync.py --step votes-index
+
+      - name: Commit votes index
+        if: always()
+        run: |
+          git add data/synced/votes_index.json
+          git diff --cached --quiet || (git commit -m "data: rebuild votes index [automated]" && git push)
+
       - name: Build member voting records
         if: always()
         timeout-minutes: 5

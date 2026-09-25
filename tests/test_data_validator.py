@@ -34,9 +34,15 @@ def _good_sync_dir(tmp_path: Path) -> Path:
         "stats": {"total_votes": 2, "yea_count": 1, "nay_count": 1, "not_voting_count": 0, "participation_rate": 100.0},
         "scorecard": [{"category": "Immigration", "verdict": "x"}],
         "votes": [
-            {"bill_number": "S. 2", "date": "2026-06-24T22:30:00", "vote": "Yea", "vote_number": 129},
-            {"bill_number": "S. 1", "date": "2025-09-09T18:46:00", "vote": "Nay", "vote_number": 511},
+            {"bill_number": "S. 2", "date": "2026-06-24T22:30:00", "vote": "Yea",
+             "chamber": "Senate", "congress": 119, "session": 2, "vote_number": 129},
+            {"bill_number": "S. 1", "date": "2025-09-09T18:46:00", "vote": "Nay",
+             "chamber": "Senate", "congress": 119, "session": 1, "vote_number": 511},
         ],
+    })
+    _write(d / "votes_index.json", {
+        "roll_calls": {"senate/119_2_00129": {"class": "D"}, "senate/119_1_00511": {"class": "D"}},
+        "bills": {}, "latest": None, "generated_at": "2026-09-22T00:00:00+00:00",
     })
     return d
 
@@ -119,3 +125,20 @@ def test_validate_step_is_wired():
     """sync.py exposes the validate step."""
     import sync
     assert callable(sync.run_validation)
+
+
+def test_member_vote_missing_from_votes_index_fails(tmp_path):
+    """Every member_votes row must resolve in votes_index.json (spec §10 #3)."""
+    d = _good_sync_dir(tmp_path)
+    index = json.loads((d / "votes_index.json").read_text())
+    del index["roll_calls"]["senate/119_1_00511"]
+    _write(d / "votes_index.json", index)
+    failures, _ = validate_synced_data(d)
+    assert any("votes_index.json" in f and "senate/119_1_00511" in f for f in failures)
+
+
+def test_missing_votes_index_fails(tmp_path):
+    d = _good_sync_dir(tmp_path)
+    (d / "votes_index.json").unlink()
+    failures, _ = validate_synced_data(d)
+    assert any("votes_index.json missing" in f for f in failures)

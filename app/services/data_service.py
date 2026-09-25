@@ -33,6 +33,14 @@ def _clean_vote_date(raw: str) -> str:
     return (raw or "").strip()
 
 
+def roll_call_key(chamber, congress, session, vote_number) -> str:
+    """The votes_index.json key of one roll call, e.g. 'house/119_2_00295' (spec §10 #3).
+
+    `chamber` is 'House'/'Senate' in member_votes rows and 'house'/'senate' for the vote
+    directories; both give the same key. A missing part raises TypeError/ValueError."""
+    return f"{str(chamber).strip().lower()}/{int(congress)}_{int(session)}_{int(vote_number):05d}"
+
+
 class DataService:
     def __init__(self, data_dir: Path):
         self.data_dir = data_dir
@@ -48,6 +56,8 @@ class DataService:
         # The single most recent bill-linked vote, built lazily on first request.
         self._latest_vote_loaded = False
         self._latest_vote: dict | None = None
+        # Sync-built roll-call index (§10 #3); {} when the file is absent.
+        self._votes_index: dict = {}
         self._load()
 
     def _load(self) -> None:
@@ -66,6 +76,10 @@ class DataService:
         self._ai_summaries = self._read_json("ai_summaries.json")
         self._member_summaries = self._read_json("member_summaries.json")
         self._donations = self._read_json("donations.json")
+        # One read at startup replaces the per-request scans of votes/ (§9.6).
+        self._votes_index = self._read_json("votes_index.json")
+        if not self._votes_index:
+            logger.warning("votes_index.json missing in %s — run: python sync.py --step votes-index", self.data_dir)
         metadata_path = self.data_dir / "sync_metadata.json"
         if metadata_path.exists():
             self._metadata = self._read_json("sync_metadata.json")

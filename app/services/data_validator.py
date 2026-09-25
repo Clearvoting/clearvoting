@@ -11,6 +11,8 @@ import json
 import re
 from pathlib import Path
 
+from app.services.data_service import roll_call_key
+
 _ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}")
 _PLACEHOLDER_MARKERS = ("temporarily unavailable",)
 
@@ -18,6 +20,14 @@ _PLACEHOLDER_MARKERS = ("temporarily unavailable",)
 def _load(path: Path):
     with open(path) as f:
         return json.load(f)
+
+
+def _row_key(vote: dict) -> str | None:
+    """The votes_index.json key of one member_votes row, or None when the row lacks a part."""
+    try:
+        return roll_call_key(vote.get("chamber"), vote.get("congress"), vote.get("session"), vote.get("vote_number"))
+    except (TypeError, ValueError):
+        return None
 
 
 def validate_synced_data(
@@ -80,6 +90,17 @@ def validate_synced_data(
         if len(lost) > 10:
             failures.append(f"...and {len(lost) - 10} more lost summaries")
 
+    # --- votes_index.json (§10 #3): pages read roll calls only through the index ---
+    index_keys: set | None = None
+    index_path = sync_dir / "votes_index.json"
+    if not index_path.exists():
+        failures.append("votes_index.json missing (run: python sync.py --step votes-index)")
+    else:
+        try:
+            index_keys = set(_load(index_path).get("roll_calls") or {})
+        except json.JSONDecodeError:
+            failures.append("votes_index.json is not valid JSON")
+
     # --- member_votes/*.json ---
     votes_dir = sync_dir / "member_votes"
     scorecard_members: set = set()
@@ -108,6 +129,14 @@ def validate_synced_data(
                 keys.append((date, v.get("vote_number", 0)))
             if keys and keys != sorted(keys, reverse=True):
                 failures.append(f"member_votes/{member_id}.json: votes not sorted newest-first")
+            if index_keys is not None:
+                unindexed = [key or "(row without chamber/congress/session/vote_number)"
+                             for key in map(_row_key, votes) if key not in index_keys]
+                if unindexed:
+                    failures.append(
+                        f"member_votes/{member_id}.json: {len(unindexed)} vote(s) missing from "
+                        f"votes_index.json, first {unindexed[0]}"
+                    )
     missing_files = member_ids - seen_files
     for member_id in sorted(missing_files):
         failures.append(f"member {member_id} has no member_votes file")
