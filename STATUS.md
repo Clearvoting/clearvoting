@@ -28,10 +28,16 @@ screenshots), `plan/index_tasks.py`. Launchable workflow scripts (must live unde
    fixes → "ready with notes". Spec is now 1,107 lines; adds sync-time `votes_index.json`, merge-by **2026-10-13** + cut-first list (§10.3).
 4. Baseline: 370 tests pass from the worktree with the main checkout's venv; app boots locally (`uvicorn app.main:app --port 8011`).
 
-**Not done.** Implementation plan (+ adversarial plan review) → build → QA → push + PR (Joseph merges).
+**Plan done 2026-09-25** (`04d9e39`): `docs/superpowers/plans/2026-09-18-clearvoting-redesign.md` (40 tasks, ids `T<step>.<n>`, 11 phases =
+spec §10.3 commit order) + `docs/reviews/2026-09-18-redesign-plan-review.md` (verdict **Ready**; 141 issues, 2 P0/54 P1 all resolved).
+Task index: `~/.clearvote-worktrees/tools/plan/tasks.json` (build positions n=1..40; cut-first = n 31, 33–37; minimum shippable = the rest).
+Plan working files (fragments, map.json, review-log.json, assemble_plan.py) live in `~/.clearvote-worktrees/tools/plan/` (a git repo).
+Build launched 2026-09-25 with `start: 1` — see `docs/reviews/build-2026-09/` for per-task reviews and `git log` for progress.
+
+**Not done.** Build (+ adversarial plan review) → build → QA → push + PR (Joseph merges).
 
 **Next session, in order (each is one Workflow call; the scripts carry all context).**
-1. ~~Spec critique~~ — done 2026-09-22 (`795b22f`, `5cdc26e`).
+1. ~~Spec critique~~ — done 2026-09-22 (`795b22f`, `5cdc26e`). ~~Plan~~ — done 2026-09-25 (`04d9e39`).
    Plan workflow launched 2026-09-22 as run `wf_4ddf70c2-75c` (resumable only in that session; otherwise relaunch fresh).
 2. Plan: `Workflow({scriptPath: ".../plan-workflow.js"})` — architect map → parallel task writers → assembled plan at
    `docs/superpowers/plans/2026-09-18-clearvoting-redesign.md` → 3 adversarial reviewers → revised plan + review doc at
@@ -52,7 +58,7 @@ in this PR (cold start deferred to ops). (c) The AI "supporters say / critics sa
 campaign money is one dated 2024-cycle sentence with an FEC link for the 80 members who have data. (d) "On the ballot" copy always
 describes the seat, never the person.
 
-**Gotchas that cost days.** Usage-limit windows cut workflows mid-run: resume with `resumeFromRunId` in the SAME session; after a
+**Gotchas that cost days.** Workflow resume replay is keyed by agent-call ORDER: parallel agents that finish in a different order on replay miss the cache, so keep long runs sequential (the build is) and persist results to files; cap live agents (~4); split any agent that cannot finish inside one usage window. Usage-limit windows cut workflows mid-run: resume with `resumeFromRunId` in the SAME session; after a
 session-id rotation the journal is gone — scripts accept `args.done` / `args.start` to skip finished work. Keep verifiers cheap
 (grep/curl first, ≤2 screenshots, effort medium; ~200k tokens per screenshot-heavy agent). Never keep phase artifacts only in the
 scratchpad. `Workflow({scriptPath})` only accepts paths under the vault. Do not use the Playwright MCP inside workflow agents (shared
