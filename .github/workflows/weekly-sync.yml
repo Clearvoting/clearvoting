@@ -116,6 +116,23 @@ jobs:
           git add data/synced/
           git diff --cached --quiet || (git commit -m "data: sync member votes [automated]" && git push)
 
+      # Precomputed delegation files (spec §10 #7): need the votes index and the member
+      # voting records, so they run after both. Gated like "Commit member votes": when
+      # member-vote validation fails, those files are not committed, so overviews built
+      # from them must not be committed either (they would no longer match the
+      # committed member_votes, and test_committed_overviews_match_the_builder would
+      # fail CI on the next PR for a data reason).
+      - name: Build state overviews
+        if: always() && steps.validate_member_votes.outcome == 'success'
+        timeout-minutes: 5
+        run: python sync.py --step state-overview
+
+      - name: Commit state overviews
+        if: always() && steps.validate_member_votes.outcome == 'success'
+        run: |
+          git add data/synced/state_overview/
+          git diff --cached --quiet || (git commit -m "data: rebuild state overviews [automated]" && git push)
+
       - name: Write sync metadata
         if: always()
         run: python sync.py --step metadata

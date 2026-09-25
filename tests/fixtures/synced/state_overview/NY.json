@@ -1,0 +1,91 @@
+{
+  "state": "NY",
+  "state_name": "New York",
+  "roster_as_of": "2026-09-05",
+  "senators": [
+    {
+      "bioguideId": "G000555",
+      "name": "Gillibrand, Kirsten E.",
+      "district": null,
+      "chamber": "Senate",
+      "photo": "https://www.congress.gov/img/member/g000555_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2007,
+          "endYear": 2009
+        },
+        {
+          "chamber": "Senate",
+          "startYear": 2009
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": null
+    },
+    {
+      "bioguideId": "S000148",
+      "name": "Schumer, Charles E.",
+      "district": null,
+      "chamber": "Senate",
+      "photo": "https://www.congress.gov/img/member/s000148_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 1981,
+          "endYear": 1999
+        },
+        {
+          "chamber": "Senate",
+          "startYear": 1999
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "senate/119_2_00228",
+        "bill_id": "119-hr-6500",
+        "position": "Yea",
+        "date": "2026-08-08"
+      }
+    }
+  ],
+  "house": [
+    {
+      "bioguideId": "G000602",
+      "name": "Gillen, Laura",
+      "district": 4,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/677427de0b34857ecc9090ad_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2025
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00295",
+        "bill_id": "119-hr-4795",
+        "position": "Yea",
+        "date": "2026-09-03"
+      }
+    },
+    {
+      "bioguideId": "R000579",
+      "name": "Ryan, Patrick",
+      "district": 18,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/r000579_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2022
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": null
+    }
+  ],
+  "districts_expected": 12,
+  "generated_at": "2026-09-25T13:09:00+00:00"
+}

@@ -42,7 +42,9 @@ load_dotenv()
 from app.render import parse_threshold, plain_question, question_class
 from app.services.cache import CacheService
 from app.services.congress_api import CongressAPIClient
-from app.services.data_service import _latest_official_summary, _parse_vote_date, roll_call_key
+from app.services.data_service import (
+    _latest_official_summary, _parse_vote_date, roll_call_key, state_overview_payload,
+)
 from app.services.senate_votes import SenateVoteService
 
 BASE_DIR = Path(__file__).parent
@@ -1127,6 +1129,70 @@ def build_votes_index(sync_dir: Path) -> int:
     return len(payload["roll_calls"])
 
 
+# --- State overview (spec §10 #7) -----------------------------------------------------
+
+def _latest_decisive_vote(votes_path: Path, roll_calls: dict) -> dict | None:
+    """The member's most recent class-D roll call on a bill (§4.2 signal line), whatever the
+    position. member_votes rows are newest first, so the first qualifying row wins."""
+    if not votes_path.exists():
+        return None
+    with open(votes_path) as f:
+        rows = json.load(f).get("votes", [])
+    for row in rows:
+        if not row.get("bill_id"):
+            continue
+        try:
+            key = roll_call_key(row.get("chamber"), row.get("congress"), row.get("session"), row.get("vote_number"))
+        except (TypeError, ValueError):
+            continue
+        rc = roll_calls.get(key)
+        if rc and rc.get("class") == "D":
+            return {"rc": key, "bill_id": row["bill_id"], "position": row.get("vote") or "",
+                    "date": rc.get("date") or str(row.get("date") or "")[:10]}
+    return None
+
+
+def state_overview_payloads(sync_dir: Path, states: list[str]) -> dict[str, dict]:
+    """state_overview/{code}.json contents without generated_at, per state. Pure: writes nothing."""
+    with open(sync_dir / "members.json") as f:
+        members = json.load(f).get("members", [])
+    with open(sync_dir / "votes_index.json") as f:
+        roll_calls = json.load(f).get("roll_calls") or {}
+    expected: dict[str, int] = {}
+    crosswalk_path = sync_dir / "zip_districts.json"
+    if crosswalk_path.exists():
+        with open(crosswalk_path) as f:
+            for key, rows in json.load(f).items():
+                if key.startswith("_"):
+                    continue
+                for row in rows:
+                    expected[row["state"]] = max(expected.get(row["state"], 0), int(row["district"]))
+    payloads: dict[str, dict] = {}
+    for code in states:
+        state_members = [m for m in members if m.get("stateCode") == code]
+        latest = {
+            m["bioguideId"]: _latest_decisive_vote(sync_dir / "member_votes" / f"{m['bioguideId']}.json", roll_calls)
+            for m in state_members
+        }
+        districts = expected.get(code) or max((m.get("district") or 0 for m in state_members), default=0)
+        payloads[code] = state_overview_payload(code, members, latest, districts)
+    return payloads
+
+
+def build_state_overview(sync_dir: Path, states: list[str] | None = None) -> int:
+    """Write data/synced/state_overview/{code}.json per covered state (§10 #7). Needs
+    votes_index.json (run after --step votes-index); returns the number of states built."""
+    if not (sync_dir / "votes_index.json").exists():
+        print("  No votes_index.json — run --step votes-index first; state overviews not built")
+        return 0
+    states = states or SYNC_STATES
+    for code, payload in state_overview_payloads(sync_dir, states).items():
+        written = _write_derived_json(sync_dir / "state_overview" / f"{code}.json", payload)
+        print(f"  State overview {code}: {len(payload['senators'])} senators, {len(payload['house'])} House "
+              f"members, {payload['districts_expected']} districts ({'written' if written else 'unchanged'})")
+    return len(states)
+
+
 async def generate_scorecard_verdicts(
     output_dir: Path,
     api_key: str | None = None,
@@ -2086,7 +2152,7 @@ async def main() -> None:
                         help="Clear and re-fetch all FEC donation data (fixes bad matches).")
     parser.add_argument("--step", type=str, default=None,
                         choices=["members", "senate-votes", "house-votes", "bills",
-                                 "votes-index", "member-votes", "metadata", "validate"],
+                                 "votes-index", "member-votes", "state-overview", "metadata", "validate"],
                         help="Run a single sync step (for CI incremental workflows).")
     parser.add_argument("--max-text-fetches", type=int, default=300,
                         help="Per-run cap on bill-text downloads (congress.gov rate-limits CI; the fetch is incremental).")
@@ -2108,6 +2174,13 @@ async def main() -> None:
     if args.step == "votes-index":
         print("[step] Building the votes index...")
         build_votes_index(SYNC_DIR)
+        return
+
+    if args.step == "state-overview":
+        states = [s.strip().upper() for s in args.states.split(",")] if args.states else SYNC_STATES
+        print(f"[step] Building state overviews for {', '.join(states)}...")
+        if not build_state_overview(SYNC_DIR, states=states):
+            sys.exit(1)
         return
 
     # --- Single-step mode (for CI incremental workflows) ---
@@ -2475,6 +2548,7 @@ async def main() -> None:
     member_votes_count = await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
     print("[7/12] Building the votes index...")
     build_votes_index(SYNC_DIR)
+    build_state_overview(SYNC_DIR, states=states)
 
     # Step 8: Issue scorecard verdicts
     if not args.skip_ai:

@@ -68,6 +68,51 @@ def _latest_official_summary(bill: dict) -> str:
     return best.get("text", "") or ""
 
 
+_STATE_CODE_RE = re.compile(r"[A-Z]{2}")
+
+
+def overview_member(member: dict, latest_vote: dict | None = None) -> dict:
+    """One delegation row of state_overview/{code}.json: raw members.json fields only (§10 #7).
+    Seals, tenure lines and headlines are formatted at render time, so a formatter fix needs
+    no resync. partyName is kept raw; the API strips it unless show_party=true."""
+    terms = [
+        {key: term[key] for key in ("chamber", "startYear", "endYear") if term.get(key) is not None}
+        for term in ((member.get("terms") or {}).get("item") or [])
+    ]
+    senate = "Senate" in (member.get("chamber") or "")
+    return {
+        "bioguideId": member.get("bioguideId"),
+        "name": member.get("name"),
+        "district": None if senate else member.get("district"),
+        "chamber": member.get("chamber"),
+        "photo": (member.get("depiction") or {}).get("imageUrl"),
+        "terms": terms,
+        "partyName": member.get("partyName"),
+        "latest_vote": latest_vote,
+    }
+
+
+def state_overview_payload(code: str, members: list[dict], latest_votes: dict[str, dict | None],
+                           districts_expected: int) -> dict:
+    """The delegation file for one state, without generated_at. Senators by name; House
+    members by district, then name."""
+    state_members = [m for m in members if m.get("stateCode") == code]
+    senators = sorted((m for m in state_members if "Senate" in (m.get("chamber") or "")),
+                      key=lambda m: str(m.get("name") or ""))
+    house = sorted((m for m in state_members if "Senate" not in (m.get("chamber") or "")),
+                   key=lambda m: (m.get("district") or 0, str(m.get("name") or "")))
+    roster_as_of = max((str(m.get("updateDate") or "")[:10] for m in state_members), default="")
+    return {
+        "state": code,
+        "state_name": COVERED_STATE_NAMES.get(code)
+        or next((m.get("state") for m in state_members if m.get("state")), code),
+        "roster_as_of": roster_as_of or None,
+        "senators": [overview_member(m, latest_votes.get(m.get("bioguideId"))) for m in senators],
+        "house": [overview_member(m, latest_votes.get(m.get("bioguideId"))) for m in house],
+        "districts_expected": districts_expected,
+    }
+
+
 class DataService:
     # The bill page (T1.8) and the sync's AI writer choose the same official summary.
     _latest_official_summary = staticmethod(_latest_official_summary)
@@ -95,6 +140,8 @@ class DataService:
         self._districts_expected: dict[str, int] = {}
         self._house_ids: dict[tuple[str, int], list[str]] = {}
         self._senator_ids: dict[str, list[str]] = {}
+        # state_overview/{code}.json, read on first use and kept (§10 #7); None = file missing.
+        self._state_overviews: dict[str, dict | None] = {}
         self._load()
 
     def _load(self) -> None:
@@ -161,6 +208,30 @@ class DataService:
             if m.get("stateCode") == state_code and m.get("district") == district
         ]
         return {"members": filtered}
+
+    def get_state_overview(self, code: str, fallback: bool = False) -> dict | None:
+        """The precomputed delegation file (§10 #7): one read per state, then served from memory.
+
+        Returns None when the file is missing (a warning is logged). With fallback=True, a missing
+        file gives the members.json roster in the same shape with no latest votes (§4.2 states)."""
+        code = str(code or "").upper()
+        if not _STATE_CODE_RE.fullmatch(code):
+            return None
+        if code not in self._state_overviews:
+            path = self.data_dir / "state_overview" / f"{code}.json"
+            if path.exists():
+                with open(path, "r") as f:
+                    self._state_overviews[code] = json.load(f)
+            else:
+                self._state_overviews[code] = None
+                logger.warning("state_overview/%s.json missing in %s — run: python sync.py --step state-overview",
+                               code, self.data_dir)
+        overview = self._state_overviews[code]
+        if overview is None and fallback:
+            members = self.get_members_by_state(code)["members"]
+            expected = self.districts_expected(code) or max((m.get("district") or 0 for m in members), default=0)
+            return {**state_overview_payload(code, members, {}, expected), "generated_at": None}
+        return overview
 
     def get_member_detail(self, bioguide_id: str) -> dict | None:
         bioguide_id = bioguide_id.upper()
