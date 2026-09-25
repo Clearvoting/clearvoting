@@ -632,9 +632,11 @@ async def test_page_endpoint_hides_speaker_candidate_names_and_party():
 
 
 @pytest.mark.asyncio
-async def test_votes_default_shape_is_unchanged_for_the_old_member_page():
+async def test_votes_default_flat_shape_after_member_switch():
+    """T6.3 trims the flat /votes payload: no scorecard, and stats without participation_rate."""
     data = (await _get("/api/members/S000148/votes?limit=2000")).json()
-    assert set(data) == OLD_VOTES_KEYS
+    assert set(data) == OLD_VOTES_KEYS - {"scorecard"}
+    assert "participation_rate" not in data["stats"]
     assert data["total_count"] == 1061 and len(data["votes"]) == 1061
 
 

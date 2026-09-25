@@ -55,20 +55,25 @@ async def test_member_page_title_uses_display_name():
 
 
 @pytest.mark.asyncio
-async def test_member_page_unknown_id_falls_back():
+async def test_member_page_unknown_id_is_404():
     response = await _get("/member?id=X999999")
-    assert response.status_code == 200
-    html = response.text
-    assert "<title>Representative — ClearVoting</title>" in html
-    assert '<meta name="description"' in html
-    assert '<link rel="canonical" href="https://clearvoting.org/member">' in html
+    assert response.status_code == 404
+    assert response.headers["content-type"].startswith("text/html")
 
 
 @pytest.mark.asyncio
-async def test_member_page_no_id_falls_back():
+async def test_member_page_no_id_is_404():
     response = await _get("/member")
+    assert response.status_code == 404
+
+
+@pytest.mark.asyncio
+async def test_member_title_uses_the_display_name_and_canonical_strips_params():
+    response = await _get("/member?id=s000148&page=2&topic=Health")
     assert response.status_code == 200
-    assert "<title>Representative — ClearVoting</title>" in response.text
+    html = response.text
+    assert "<title>Charles E. Schumer (NY) — Voting Record | ClearVoting</title>" in html
+    assert '<link rel="canonical" href="https://clearvoting.org/member?id=S000148">' in html
 
 
 # --- Bill page meta ---

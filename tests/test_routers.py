@@ -72,7 +72,9 @@ async def test_get_member_detail_shows_party_when_requested():
 
 
 @pytest.mark.asyncio
-async def test_get_member_summary():
+async def test_member_summary_endpoint_is_deleted():
+    """Member narratives are withdrawn (spec §2.5 A). The path now falls through to
+    /{state_code}/{district}, whose int district rejects 'summary' with 422."""
     with _patch_data_dir():
         _clear_data_service_cache()
         transport = ASGITransport(app=app)
@@ -80,23 +82,8 @@ async def test_get_member_summary():
             response = await client.get("/api/members/S001217/summary")
 
     _clear_data_service_cache()
-    assert response.status_code == 200
-    data = response.json()
-    assert data["member_id"] == "S001217"
-    assert "stats" in data
-    assert "top_policy_areas" in data
-
-
-@pytest.mark.asyncio
-async def test_get_member_summary_not_found():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/X999999/summary")
-
-    _clear_data_service_cache()
-    assert response.status_code == 404
+    assert response.status_code == 422
+    assert "narrative" not in response.text
 
 
 # --- Bills Router ---

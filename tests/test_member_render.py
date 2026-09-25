@@ -709,3 +709,153 @@ def test_real_member_pages_carry_no_stance_language(real_service, member_id):
     out = render.render_member_page(page) + _all_pages(real_service, member_id)
     assert not STANCE_LANGUAGE.search(_text(out))
     assert not NARRATIVE_MARKUP.search(out)
+
+
+# ===================== Route, shell and enhancer — plan T6.3 =====================
+
+from unittest.mock import patch  # noqa: E402
+
+from httpx import ASGITransport, AsyncClient  # noqa: E402
+
+from app.main import app  # noqa: E402
+
+STATIC = Path(__file__).parent.parent / "static"
+
+
+async def _get_page(path: str):
+    from app.dependencies import get_data_service
+    with patch("app.dependencies.get_data_dir", return_value=FIXTURES):
+        get_data_service.cache_clear()
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            response = await client.get(path)
+    get_data_service.cache_clear()
+    return response
+
+
+@pytest.mark.asyncio
+async def test_member_route_server_renders_the_page_without_js():
+    response = await _get_page("/member?id=S000148")
+    assert response.status_code == 200
+    body = response.text
+    assert "<title>Charles E. Schumer (NY) — Voting Record | ClearVoting</title>" in body
+    assert "<h1>Charles E. Schumer</h1>" in body
+    assert '<h2 id="record" tabindex="-1">' in body
+    assert body.count('class="vote-row"') >= 1
+    assert "<!--content-->" not in body
+    assert ("Voted in 1,060 of the 1,061 Senate votes on bills, amendments and motions in our record "
+            "since January 2021") in _text(body)
+
+
+@pytest.mark.asyncio
+async def test_member_route_normalizes_the_id_case():
+    response = await _get_page("/member?id=s000148")
+    assert response.status_code == 200
+    assert '<link rel="canonical" href="https://clearvoting.org/member?id=S000148">' in response.text
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("query", ["?id=X999999", "", "?id=abc", "?id=S000148%3Cscript%3E"])
+async def test_member_route_404s_on_missing_malformed_or_unknown_ids(query):
+    response = await _get_page("/member" + query)
+    assert response.status_code == 404
+    assert response.headers["content-type"].startswith("text/html")
+
+
+@pytest.mark.asyncio
+async def test_member_record_paginates_by_links_to_record():
+    response = await _get_page("/member?id=S000148&page=2")
+    assert response.status_code == 200
+    body = response.text
+    assert 'href="/member?id=S000148#record">← Newer votes</a>' in body
+    assert 'href="/member?id=S000148&amp;page=3#record">Older votes →</a>' in body
+
+
+@pytest.mark.asyncio
+async def test_member_filters_work_as_a_get_query():
+    response = await _get_page("/member?id=S000148&position=no&plain=1")
+    body = response.text
+    assert response.status_code == 200
+    assert '<option value="no" selected>Voted no</option>' in body
+    assert 'name="plain" value="1" checked>' in body
+    assert "· Voted no · with a plain-English summary" in _text(body)
+
+
+@pytest.mark.asyncio
+async def test_member_route_ignores_garbage_params():
+    response = await _get_page("/member?id=S000148&page=abc&position=maybe&plain=yes")
+    assert response.status_code == 200
+    body = response.text
+    assert " selected>" not in body.split('id="record-position"')[1].split("</select>")[0]
+    assert 'class="result-line"' not in body
+
+
+@pytest.mark.asyncio
+async def test_house_member_route_renders_seat_seal_and_neutral_speaker_row():
+    first = await _get_page("/member?id=G000602")
+    assert first.status_code == 200
+    assert "U.S. Representative · New York, District 4" in _text(first.text)
+    assert "This seat is on the ballot Nov 3, 2026" in _text(first.text)
+    pages = int(re.search(r"Page 1 of (\d+)", first.text).group(1))
+    last = await _get_page(f"/member?id=G000602&page={pages}")
+    assert '<span class="speaker-pick" data-rc="house/119_1_00002"></span>' in last.text
+    assert "Jeffries" not in last.text
+
+
+@pytest.mark.asyncio
+async def test_member_route_shows_the_error_state_when_rendering_fails(monkeypatch):
+    """§4 common / F61: a render failure (a corrupt member_votes file, a renderer bug) is the
+    error state with 503, never a bare 500. (No-store for 503 is T8.2's cache middleware,
+    asserted there.)"""
+    def boom(page):
+        raise OSError("member_votes/S000148.json unreadable")
+
+    monkeypatch.setattr(render, "render_member_page", boom)
+    response = await _get_page("/member?id=S000148")
+    assert response.status_code == 503
+    assert render.PAGE_ERROR_SENTENCE in response.text
+    assert "<h1>Charles E. Schumer (NY) — Voting Record</h1>" in response.text
+    assert '<header class="masthead">' in response.text
+
+
+@pytest.mark.asyncio
+async def test_served_member_page_carries_no_stance_language_or_narrative():
+    """§7.7 / §10 #22 on the served HTML (fixture data dir); STANCE_LANGUAGE is T6.2's."""
+    response = await _get_page("/member?id=S000148")
+    assert response.status_code == 200
+    assert not STANCE_LANGUAGE.search(_text(response.text))
+    assert not NARRATIVE_MARKUP.search(response.text)
+
+
+def test_member_shell_keeps_the_contract():
+    shell = (STATIC / "member.html").read_text()
+    assert re.search(r"<title>[^<]+</title>", shell)
+    assert "</head>" in shell
+    assert '<main id="main-content" tabindex="-1">' in shell
+    assert "<!--content-->" in shell and "<!--edition-->" in shell
+    assert "/static/css/site.css?v=" in shell and "/static/js/site.js?v=" in shell
+    assert "/static/js/member.js?v=" in shell and "/static/js/feedback.js?v=" in shell
+    for gone in ("styles.css", "broadsheet.css", "vote.js", "viz.js"):
+        assert gone not in shell
+    assert not re.search(r"<script(?![^>]*\bsrc=)[^>]*>", shell)   # no inline scripts
+    assert not re.search(r"\son[a-z]+=", shell)                   # no inline handlers
+    for hook in ('id="feedback-open"', '<dialog id="feedback-modal"', 'id="feedback-overlay"',
+                 'id="feedback-form"', 'id="feedback-message"', 'id="feedback-submit"',
+                 'id="feedback-cancel"', 'id="feedback-status"', 'id="feedback-context"',
+                 'id="data-freshness"', 'href="/methodology"', 'href="/privacy"'):
+        assert hook in shell
+
+
+def test_member_js_is_a_thin_csp_safe_enhancer():
+    js = (STATIC / "js" / "member.js").read_text()
+    assert "innerHTML" not in js and "insertAdjacentHTML" not in js
+    assert "document.title" not in js
+    assert "/summary" not in js and "limit=2000" not in js
+    assert "cv-show-party" not in js           # the reveal's session memory lives in site.js
+    assert "cv-home" not in js                 # site.js readHome()/homeHref() own the remembered district
+    assert "readHome(" in js and "homeHref(" in js
+    assert "initPartyToggle(" in js and "show_party=true" in js
+    # site.js's default fill writes the party name and "Voted for {Name}"; no second copy here.
+    assert "speaker-pick" not in js and "Voted for " not in js and "partyName" not in js
+    # WCAG 3.2.2: changing a filter control never navigates; the Filter button submits.
+    assert "requestSubmit" not in js and ".submit()" not in js
+    assert "addEventListener('change'" not in js

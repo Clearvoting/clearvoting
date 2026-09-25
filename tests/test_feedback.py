@@ -324,3 +324,29 @@ async def test_footer_freshness_is_empty_without_last_sync():
     response = await _get_page("/about", metadata={})
     assert '<span id="data-freshness"></span>' in response.text
     assert "Synced" not in response.text
+
+
+# --- The sanctioned hook change (spec §2.2 #5, C-7) resolves on the server HTML ---
+
+import re as _re_hook
+from pathlib import Path as _HookPath
+
+_HOOK_FIXTURES = _HookPath(__file__).parent / "fixtures" / "synced"
+_HOOK_STATIC = _HookPath(__file__).parent.parent / "static"
+
+
+@pytest.mark.asyncio
+async def test_member_header_h1_hook_resolves_on_the_ssr_html():
+    """feedback.js reads document.querySelector('.member-header h1'); the server HTML must satisfy it."""
+    from app.dependencies import get_data_service
+    with patch("app.dependencies.get_data_dir", return_value=_HOOK_FIXTURES):
+        get_data_service.cache_clear()
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            response = await client.get("/member?id=S000148")
+    get_data_service.cache_clear()
+    match = _re_hook.search(r'<header class="member-header"[^>]*>((?:(?!</header>).)*?)<h1>([^<]+)</h1>',
+                            response.text, _re_hook.S)
+    assert match and match.group(2) == "Charles E. Schumer"
+    js = (_HOOK_STATIC / "js" / "feedback.js").read_text()
+    assert ".member-header h1" in js
+    assert ".member-header h2" not in js

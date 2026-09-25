@@ -14,7 +14,8 @@ from app.main import app
 
 FIXTURES = Path(__file__).parent / "fixtures" / "synced"
 PARTY_LEAK = re.compile(r"Democratic|Republican|Independent|\[[RDI]-")
-FORBIDDEN_KEYS = {"party", "partyName", "partyCode", "arguments", "direction", "scorecard", "participation_rate"}
+FORBIDDEN_KEYS = {"party", "partyName", "partyCode", "arguments", "direction", "scorecard", "participation_rate",
+                  "narrative", "issue_scorecard"}
 
 CHECKED_ENDPOINTS = [
     "/api/districts/11570",
@@ -35,6 +36,12 @@ CHECKED_ENDPOINTS = [
     "/api/members/TX",
     # Delegation (plan T4.2; spec §10 #7, §10 #9)
     "/api/members/NY/overview",
+    # Member page and member payloads (plan T6.3; spec §10 #9)
+    "/api/members/S000148/votes",
+    "/api/members/S000148/votes?group=bill",
+    "/api/members/S001217/votes",
+    "/api/members/detail/S000148",
+    "/api/members/G000602/page?page=2",
 ]
 
 
@@ -75,6 +82,7 @@ async def test_default_payload_has_no_retired_keys(path):
     response = await _get(path)
     assert response.status_code == 200
     assert not _all_keys(response.json()) & FORBIDDEN_KEYS
+    assert not any(key.startswith("cbo_") for key in _all_keys(response.json()))
 
 
 @pytest.mark.asyncio
@@ -121,3 +129,41 @@ async def test_overview_reveals_party_only_on_request():
     assert '"partyName"' not in default.text
     revealed = (await _state_privacy_get("/api/members/NY/overview?show_party=true")).json()
     assert any(m.get("partyName") for m in revealed["senators"] + revealed["house"])
+
+
+# --- Member page and member payloads (plan T6.3) ---
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("member_id", ["S000148", "G000602", "S001217"])
+async def test_member_html_has_no_party_labels_by_default(member_id):
+    response = await _get(f"/member?id={member_id}")
+    assert response.status_code == 200
+    assert not PARTY_LEAK.search(response.text)
+
+
+@pytest.mark.asyncio
+async def test_member_votes_mask_speaker_candidates_by_default():
+    first = await _get("/api/members/G000602/votes?limit=1")
+    total = first.json()["total_count"]
+    tail = await _get(f"/api/members/G000602/votes?limit=50&offset={max(0, total - 50)}")
+    assert "Jeffries" not in tail.text and "Johnson (LA)" not in tail.text
+    speaker = [v for v in tail.json()["votes"] if v["date"].startswith("2025-01-03") and v["vote"] == "Voted"]
+    assert speaker and speaker[0]["result"] == "Speaker elected"
+
+
+@pytest.mark.asyncio
+async def test_member_page_payload_never_names_the_speaker_candidate():
+    first = await _get("/api/members/G000602/page")
+    last = await _get(f"/api/members/G000602/page?page={first.json()['record']['pages']}")
+    assert last.status_code == 200
+    assert "Jeffries" not in last.text and "Johnson (LA)" not in last.text
+
+
+@pytest.mark.asyncio
+async def test_speaker_pick_and_party_only_with_show_party():
+    default = await _get("/api/members/detail/G000602")
+    assert "speaker_votes" not in default.json()
+    assert "Jeffries" not in default.text
+    revealed = await _get("/api/members/detail/G000602?show_party=true")
+    assert revealed.json()["member"]["partyName"] == "Democratic"
+    assert revealed.json()["speaker_votes"]["house/119_1_00002"] == "Jeffries"

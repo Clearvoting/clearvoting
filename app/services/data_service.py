@@ -598,56 +598,6 @@ class DataService:
         data["categories"] = sorted(categories_set)
         return data
 
-    def get_member_vote_summary(self, bioguide_id: str) -> dict | None:
-        data = self.get_member_votes(bioguide_id)
-        if not data:
-            return None
-
-        area_counts: dict[str, dict[str, int]] = {}
-        for vote in data.get("votes", []):
-            area = vote.get("policy_area") or ""
-            if not area:
-                continue
-            if area not in area_counts:
-                area_counts[area] = {"yea": 0, "nay": 0, "total": 0, "in_favor": 0, "against": 0, "neutral": 0}
-            position = vote.get("vote", "").lower()
-            direction = vote.get("direction")
-            is_yea = position in ("yea", "aye")
-            is_nay = position in ("nay", "no")
-            if is_yea:
-                area_counts[area]["yea"] += 1
-            elif is_nay:
-                area_counts[area]["nay"] += 1
-            area_counts[area]["total"] += 1
-
-            # Compute effective stance: Yea on "in_favor" or Nay on "against" = in_favor
-            if direction == "in_favor":
-                if is_yea:
-                    area_counts[area]["in_favor"] += 1
-                elif is_nay:
-                    area_counts[area]["against"] += 1
-            elif direction == "against":
-                if is_yea:
-                    area_counts[area]["against"] += 1
-                elif is_nay:
-                    area_counts[area]["in_favor"] += 1
-            elif direction == "neutral" or direction is None:
-                if is_yea or is_nay:
-                    area_counts[area]["neutral"] += 1
-
-        top_areas = sorted(area_counts.items(), key=lambda x: x[1]["total"], reverse=True)[:6]
-        top_policy_areas = [
-            {"name": name, "yea": counts["yea"], "nay": counts["nay"], "total": counts["total"],
-             "in_favor": counts["in_favor"], "against": counts["against"], "neutral": counts["neutral"]}
-            for name, counts in top_areas
-        ]
-
-        return {
-            "member_id": data["member_id"],
-            "stats": data["stats"],
-            "top_policy_areas": top_policy_areas,
-        }
-
     def get_member_narrative(self, bioguide_id: str) -> dict | None:
         bioguide_id = bioguide_id.upper()
         return self._member_summaries.get(bioguide_id)

@@ -147,7 +147,6 @@ table.rc { width: 100%; border-collapse: collapse; font-family: var(--font-ui); 
 .party-status, .share-status, .remember-status { font-family: var(--font-ui); font-size: var(--t-meta); color: var(--ink-meta); }
 .remembered-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s2); margin-top: var(--s3); }
 .remembered-line a { display: inline-flex; align-items: center; min-height: var(--tap); }
-.pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s4); margin-top: var(--s6); }
 
 /* ---- Forms (§6.4 form field; 16px controls, no iOS zoom) ---- */
 label, .zip-label { display: block; margin-bottom: var(--s1); font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 600; color: var(--navy); }
@@ -261,6 +260,41 @@ details[open] > summary::before { content: "–"; }
 .trust .btn { margin-top: var(--s4); }
 .notfound .deck { margin-bottom: var(--s6); }
 
+/* --- Member page (§4.3; plan T6.3) --- */
+.crumb { margin: var(--s4) 0 var(--s2); }
+.crumb a { display: inline-flex; align-items: center; min-height: var(--tap); font-size: var(--t-ui); font-weight: 500; }
+.member-header { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: var(--s3) var(--s4); align-items: start; padding-bottom: var(--s6); }
+.member-header .photo { width: 64px; height: 64px; }
+.member-header .photo img { width: 64px; height: 64px; }
+.member-header h1 { margin: var(--s1) 0 var(--s2); }
+.member-header .facts { margin: 0 0 var(--s2); }
+.member-header .party:not(:empty)::before { content: "· "; }   /* "U.S. Senator · New York · Democratic" on reveal; site.js writes only the name */
+.member-header .actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); }
+.member-header .actions > a, .member-header .actions > button { display: inline-flex; align-items: center; min-height: var(--tap); }
+.vote-list, .record-list, .sponsored-list { list-style: none; margin: 0; padding: 0; }
+/* One 1px hairline between rows (§6.3): .vote-row/.bill-row carry T2.1's border-top. A record
+   group can be a bill row + <details>, a day's <details> or a Speaker line, so the record
+   list puts the rule on the group instead and drops the row's own. */
+.record-list > li { border-top: 1px solid var(--rule); }
+.record-list .vote-row { border-top: 0; }
+/* §4.3 fold: "Recent votes" is a kicker-styled h2 (the home card's pattern), with a tighter
+   lead-in than a full section so the first row sits inside 812px on a phone. */
+#recent.section { margin-top: var(--s6); padding-top: var(--s6); }
+#recent > h2.kicker { margin: 0 0 var(--s2); }
+.recent-caption { margin-top: var(--s3); }
+.record-filter { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s3); margin: var(--s4) 0; }
+.record-filter .field { display: flex; flex-direction: column; gap: var(--s1); margin: 0; min-width: 0; }
+.record-filter select { min-height: var(--tap); max-width: 100%; font-size: var(--t-body); }
+.record-filter .check { display: flex; align-items: center; gap: var(--s2); min-height: var(--tap); margin: 0; font-size: var(--t-ui); }
+.result-line { margin: var(--s2) 0; font-size: var(--t-ui); font-weight: 600; }
+.group > details > summary, .more-rcs > summary { display: flex; align-items: center; min-height: var(--tap); font-size: var(--t-ui); cursor: pointer; }
+.group ul { list-style: none; margin: 0 0 var(--s3); padding: 0; }
+.group ul > li { padding: var(--s2) 0; font-size: var(--t-meta); color: var(--ink-meta); }
+.group--speaker { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); padding: var(--s4) 0; font-size: var(--t-meta); color: var(--ink-meta); }
+.rc-source { display: inline-flex; align-items: center; min-height: var(--tap); }
+.pager { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s3); margin: var(--s6) 0; }
+.pager a { display: inline-flex; align-items: center; min-height: var(--tap); font-size: var(--t-ui); font-weight: 600; }
+
 @media (min-width: 560px) {
     :root { --t-kicker: 0.75rem; --gutter: 24px; }
     .edition-mid { display: inline; }
@@ -284,4 +318,7 @@ details[open] > summary::before { content: "–"; }
     .vote-card { min-height: 22rem; }
     .reps--yours { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 var(--s6); }
     .house .roster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s8); }
+    .member-header { grid-template-columns: 64px minmax(0, 1fr) auto; }
+    .member-header .actions { grid-column: 3; justify-content: flex-end; }
+    #recent .vote-list { display: grid; grid-auto-flow: column; grid-template-rows: repeat(4, auto); grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--s8); }
 }

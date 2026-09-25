@@ -31,7 +31,7 @@ async def test_get_member_votes_from_data_service():
     assert data["member_id"] == "S001217"
     assert "stats" in data
     assert data["stats"]["total_votes"] > 0
-    assert data["stats"]["participation_rate"] > 0
+    assert "participation_rate" not in data["stats"]
     assert "votes" in data
     assert len(data["votes"]) > 0
     assert "policy_areas" in data
@@ -119,8 +119,7 @@ async def test_get_member_votes_stats_structure():
     assert "yea_count" in stats
     assert "nay_count" in stats
     assert "not_voting_count" in stats
-    assert "participation_rate" in stats
-    assert isinstance(stats["participation_rate"], (int, float))
+    assert "participation_rate" not in stats
 
 
 @pytest.mark.asyncio

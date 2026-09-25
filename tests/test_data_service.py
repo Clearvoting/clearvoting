@@ -109,45 +109,6 @@ def test_get_sync_metadata(data_service):
     assert "last_sync" in result
 
 
-def test_get_member_vote_summary(data_service):
-    result = data_service.get_member_vote_summary("S001217")
-    assert result["member_id"] == "S001217"
-    assert result["stats"]["total_votes"] == 2
-    assert result["stats"]["participation_rate"] == 100.0
-    areas = result["top_policy_areas"]
-    assert len(areas) == 2
-    names = [a["name"] for a in areas]
-    assert "Taxation" in names
-    assert "Armed Forces and National Security" in names
-    tax_area = next(a for a in areas if a["name"] == "Taxation")
-    assert tax_area["yea"] == 1
-    assert tax_area["nay"] == 0
-    assert tax_area["total"] == 1
-    armed_area = next(a for a in areas if a["name"] == "Armed Forces and National Security")
-    assert armed_area["yea"] == 0
-    assert armed_area["nay"] == 1
-    assert armed_area["total"] == 1
-
-
-def test_get_member_vote_summary_direction_stance(data_service):
-    """Verify effective stance: Yea on 'against' = against, Nay on 'in_favor' = against."""
-    result = data_service.get_member_vote_summary("S001217")
-    areas = result["top_policy_areas"]
-    # HR 1 has direction=against, vote=Yea → against Taxation
-    tax_area = next(a for a in areas if a["name"] == "Taxation")
-    assert tax_area["against"] == 1
-    assert tax_area["in_favor"] == 0
-    # S 100 has direction=in_favor, vote=Nay → against Armed Forces
-    armed_area = next(a for a in areas if a["name"] == "Armed Forces and National Security")
-    assert armed_area["against"] == 1
-    assert armed_area["in_favor"] == 0
-
-
-def test_get_member_vote_summary_not_found(data_service):
-    result = data_service.get_member_vote_summary("X999999")
-    assert result is None
-
-
 def test_get_bill_votes(data_service):
     result = data_service.get_bill_votes(119, "hr", 1)
     assert result is not None

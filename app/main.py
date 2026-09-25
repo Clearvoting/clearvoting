@@ -195,29 +195,16 @@ async def health_check() -> dict:
     }
 
 
-def _member_meta(member_id: str | None) -> dict:
-    """SEO meta for a member page; falls back to generic copy for unknown ids."""
-    from app.dependencies import get_data_service
-    detail = get_data_service().get_member_detail(member_id) if member_id else None
-    if not detail:
-        return {
-            "title": "Representative — ClearVoting",
-            "description": "See how this member of Congress votes on bills — facts only, no opinions.",
-            "og_type": "profile",
-            "url": f"{SITE_URL}/member",
-        }
-    member = detail["member"]
-    name = display_name(member.get("name")) or "Representative"
+def _member_meta(member: dict) -> dict:
+    """SEO meta for a member page (spec §9.2): 'Charles E. Schumer (NY) — Voting Record | ClearVoting';
+    canonical is the upper-case id with every additive param stripped (§3.3)."""
+    name = display_name(member.get("name") or "")
     state_code = member.get("stateCode", "")
     state = member.get("state", state_code)
     chamber = member.get("chamber", "Congress")
-    title = f"{name} ({state_code}) — Voting Record | ClearVoting"
     return {
-        "title": title,
-        "description": (
-            f"{name}, {chamber} member from {state}. "
-            "See their voting record on bills before Congress."
-        ),
+        "title": f"{name} ({state_code}) — Voting Record | ClearVoting",
+        "description": f"{name}, {chamber} member from {state}. See their voting record on bills before Congress.",
         "og_type": "profile",
         "url": f"{SITE_URL}/member?id={member.get('bioguideId')}",
     }
@@ -316,9 +303,44 @@ def serve_index():
     return _serve_html("index.html", meta, content, status_code=status)
 
 
+_RECORD_POSITIONS = frozenset({"yes", "no", "nv"})
+
+
 @app.get("/member")
-async def serve_member(request: Request):
-    return _serve_html("member.html", _member_meta(request.query_params.get("id")))
+def serve_member(request: Request):
+    """Server-rendered member page (spec §4.3, §9.1). Plain def: the one member_votes read
+    runs in the threadpool. Unknown or malformed ids are real 404s (§9.4); page/topic/
+    position/plain are additive, validated here, and never reach the canonical. The
+    member_votes read and the render run inside _page_content, so a corrupt file or a
+    renderer error is the §4 error state with 503, not a bare 500 (F61)."""
+    from app.dependencies import get_data_service
+    from app.routers.members import BIOGUIDE_PATTERN
+
+    params = request.query_params
+    member_id = (params.get("id") or "").strip().upper()
+    if not BIOGUIDE_PATTERN.match(member_id):
+        raise StarletteHTTPException(status_code=404)
+    data_service = get_data_service()
+    detail = data_service.get_member_detail(member_id)      # members.json lookup, in memory
+    if detail is None:
+        raise StarletteHTTPException(status_code=404)
+    try:
+        page_no = max(1, int(params.get("page") or 1))
+    except ValueError:
+        page_no = 1
+    topic = (params.get("topic") or "").strip()[:120] or None
+    position = params.get("position") if params.get("position") in _RECORD_POSITIONS else None
+    plain = params.get("plain") == "1"
+    meta = _member_meta(detail["member"])
+
+    def build() -> str:
+        page = data_service.get_member_page(member_id, page_no, topic, position, plain)
+        if page is None:   # the id vanished between the lookup and the read: treat as a failure
+            raise LookupError(f"member {member_id} missing from get_member_page")
+        return render.render_member_page(page)
+
+    content, status = _page_content(build, meta)
+    return _serve_html("member.html", meta, content, status_code=status)
 
 
 @app.get("/bill")

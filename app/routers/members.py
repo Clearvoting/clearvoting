@@ -55,6 +55,7 @@ async def get_member_votes(
     plain: bool = Query(False, description="Only votes on bills with a plain-English summary"),
     policy_area: str | None = Query(None, max_length=120),
     position: str | None = Query(None, pattern=_POSITION_PATTERN),
+    show_party: bool = Query(False, description="Include party labels and Speaker candidate names"),
 ):
     _validate_bioguide_id(bioguide_id)
     data_service = get_data_service()
@@ -64,7 +65,7 @@ async def get_member_votes(
         if record is None:
             raise HTTPException(status_code=404, detail="Member not found")
         page_size = min(limit, RECORD_API_MAX_GROUPS)
-        return {
+        return _allowlist_member_payload({
             "member_id": bioguide_id.upper(),
             "groups": record["groups"][offset:offset + page_size],
             "total_groups": record["total_groups"],
@@ -77,7 +78,7 @@ async def get_member_votes(
             "policy_areas": record["policy_areas"],
             "plain_bills": record["plain_bills"],
             "total_bills": record["total_bills"],
-        }
+        }, show_party)
     data = data_service.get_member_votes(bioguide_id)
     if not data:
         raise HTTPException(status_code=404, detail="Member not found")
@@ -88,16 +89,15 @@ async def get_member_votes(
         votes = data_service.filter_member_votes(votes, policy_area, position, plain)
     sorted_votes = sorted(votes, key=lambda v: v["date"], reverse=True)
     paginated = sorted_votes[offset:offset + limit]
-    return {
+    return _allowlist_member_payload({
         "member_id": data["member_id"],
         "congresses": data.get("congresses", [data["congress"]] if "congress" in data else [119]),
         "stats": data["stats"],
-        "scorecard": data.get("scorecard", []),
         "votes": paginated,
         "total_count": len(sorted_votes),
         "policy_areas": data["policy_areas"],
         "categories": data.get("categories", []),
-    }
+    }, show_party)
 
 
 @router.get("/{bioguide_id}/page")
@@ -114,29 +114,7 @@ def get_member_page(
     result = get_data_service().get_member_page(bioguide_id, page, topic, position, plain)
     if result is None:
         raise HTTPException(status_code=404, detail="Member not found")
-    return result
-
-
-@router.get("/{bioguide_id}/summary")
-async def get_member_summary(bioguide_id: str):
-    _validate_bioguide_id(bioguide_id)
-    data_service = get_data_service()
-    summary = data_service.get_member_vote_summary(bioguide_id)
-    if not summary:
-        raise HTTPException(status_code=404, detail="Member not found")
-
-    # Include AI narrative if available
-    narrative = data_service.get_member_narrative(bioguide_id)
-    if narrative:
-        summary["narrative"] = narrative.get("narrative", "")
-        summary["narrative_top_areas"] = narrative.get("top_areas", [])
-
-    # Include issue scorecard from member votes
-    votes_data = data_service.get_member_votes(bioguide_id)
-    if votes_data:
-        summary["issue_scorecard"] = votes_data.get("scorecard", [])
-
-    return summary
+    return _allowlist_member_payload(result)
 
 
 @router.get("/counts")
@@ -190,9 +168,10 @@ async def get_member_detail(bioguide_id: str, show_party: bool = False):
     if not data:
         raise HTTPException(status_code=404, detail="Member not found")
     if not show_party:
-        return _strip_party(data)
+        return _allowlist_member_payload(data)
     # The party reveal (§4.3) also fills each Speaker row's "Voted for {Name}".
-    return {**data, "speaker_votes": data_service.get_speaker_votes(bioguide_id)}
+    return _allowlist_member_payload(
+        {**data, "speaker_votes": data_service.get_speaker_votes(bioguide_id)}, show_party=True)
 
 
 @router.get("/{state_code}/{district}")
@@ -218,3 +197,46 @@ def _strip_party(data: dict) -> dict:
 
     _remove_party_fields(stripped)
     return stripped
+
+
+# Member payloads carry no scores, stance labels or cost figures, and no party cue unless
+# the reader asked (spec §10 #9). Position strings that are not a candidate name:
+_KNOWN_POSITIONS = frozenset({
+    "Yea", "Aye", "Nay", "No", "Not Voting", "Present", "Present, Giving Live Pair",
+    "Guilty", "Not Guilty", "yes", "no",
+})
+_MEMBER_PAYLOAD_DROP = frozenset({
+    "scorecard", "issue_scorecard", "direction", "participation_rate", "narrative", "narrative_top_areas",
+})
+_PARTY_KEYS = frozenset({"party", "partyName", "partyCode"})
+
+
+def _allowlist_member_payload(data: dict, show_party: bool = False) -> dict:
+    """Copy of a member payload without scorecard/direction/participation_rate/cbo_* and,
+    unless show_party, without party keys and Speaker-election candidate names (a vote for
+    a party's nominee is a party cue): the position becomes 'Voted' and the result
+    'Speaker elected'."""
+    cleaned = copy.deepcopy(data)
+
+    def walk(obj):
+        if isinstance(obj, dict):
+            for key in list(obj):
+                if (key in _MEMBER_PAYLOAD_DROP or key.startswith("cbo_")
+                        or (key in _PARTY_KEYS and not show_party)):
+                    del obj[key]
+            if not show_party:
+                vote = obj.get("vote")
+                if isinstance(vote, str) and vote not in _KNOWN_POSITIONS:
+                    obj["vote"] = "Voted"
+                    if "result" in obj:
+                        obj["result"] = "Speaker elected"
+                if obj.get("question") == "Election of the Speaker" and "result" in obj:
+                    obj["result"] = "Speaker elected"
+            for value in obj.values():
+                walk(value)
+        elif isinstance(obj, list):
+            for item in obj:
+                walk(item)
+
+    walk(cleaned)
+    return cleaned
