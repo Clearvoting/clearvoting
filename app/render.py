@@ -1828,6 +1828,30 @@ def _mp_congress_gov_member_url(name: str, bioguide: str) -> str:
             f"{urllib.parse.quote(bioguide, safe='')}")
 
 
+def _fact_month_year(iso: str) -> str:
+    """'2021-01-06…' → 'Jan 2021', via the one date helper (its short form is 'Jan 6, 2021')."""
+    short = format_date(iso[:10], "short")
+    parts = short.replace(",", "").split(" ")
+    return f"{parts[0]} {parts[2]}" if len(parts) == 3 else short  # non-ISO input: never raise
+
+
+def render_member_fact_strip(voted: int, total: int, first_date: str | None, last_date: str | None) -> str:
+    """Desktop-only three-cell strip (§4.3 desktop fold); hidden under 880px, where the fact line carries these facts.
+    The Party cell holds a second .party-toggle; site.css hides the action-row toggle at ≥880,
+    so exactly one toggle is visible at any width."""
+    cells = []
+    if total:
+        cells.append(f"<div><dt>Roll calls voted</dt><dd>{h(f'{voted:,}')} of {h(f'{total:,}')}</dd></div>")
+    if first_date and last_date:
+        span = f"{_fact_month_year(first_date)} – {format_date(last_date[:10], 'short')}"
+        cells.append(f"<div><dt>Record covers</dt><dd>{h(span)}</dd></div>")
+    cells.append(
+        '<div><dt>Party</dt><dd><span class="party"></span> — '
+        '<button class="party-toggle" type="button">Show party labels</button></dd></div>'
+    )
+    return f'<dl class="fact-strip">{"".join(cells)}</dl>'
+
+
 def render_member_header(page: dict) -> str:
     """Breadcrumb + .member-header (§4.3 fold): photo, kicker, h1, the House/Senate fact line,
     the seat seal, and the action row (party toggle · Share · Congress.gov) with two
@@ -1848,10 +1872,10 @@ def render_member_header(page: dict) -> str:
 
     facts = [tenure_line(member.get("terms") or {})]
     stats = page.get("stats") or {}
+    total = int(stats.get("total_votes") or 0)
+    voted = total - int(stats.get("not_voting_count") or 0) if total else 0
     since = _mp_month_year(page.get("first_vote_date"))
     if page.get("has_record") and stats.get("total_votes") and since:
-        total = int(stats["total_votes"])
-        voted = total - int(stats.get("not_voting_count") or 0)
         scope = ("Senate votes on bills, amendments and motions in our record"
                  if senate else "House roll calls")
         facts.append(f"Voted in {voted:,} of the {total:,} {scope} since {since}")
@@ -1875,6 +1899,7 @@ def render_member_header(page: dict) -> str:
         f'<p class="kicker">{h(kicker)} <span class="party"></span></p>'
         f'<h1>{h(name)}</h1>'
         f'<p class="meta facts">{h(fact_line)}</p>'
+        f'{render_member_fact_strip(voted, total, page.get("first_vote_date"), page.get("last_vote_date"))}'
         f'{seat_html}'
         '</div>'
         '<div class="actions">'

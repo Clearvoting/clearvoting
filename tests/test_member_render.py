@@ -914,3 +914,73 @@ def test_strip_escapes_its_label():
     from app.render import render_strip
     strip = render_strip('<script>alert(1)</script>"><img src=x>', [("record", "Record")])
     assert "<script>" not in strip and "<img" not in strip
+
+
+# --- Desktop fact strip (plan T10.5, spec §4.3 desktop fold) ---
+_FACT_FIXTURES = Path(__file__).parent / "fixtures" / "synced"
+
+
+async def _fact_get(path: str):
+    from app.dependencies import get_data_service
+    from app.main import app
+    with patch("app.dependencies.get_data_dir", return_value=_FACT_FIXTURES):
+        get_data_service.cache_clear()
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            response = await client.get(path)
+    get_data_service.cache_clear()
+    return response
+
+
+@pytest.mark.asyncio
+async def test_member_header_carries_the_three_cell_fact_strip():
+    html = (await _fact_get("/member?id=S000148")).text
+    header = html[html.index('class="member-header'):]
+    strip = header[header.index('<dl class="fact-strip">'): header.index("</dl>") + 5]
+    assert "<div><dt>Roll calls voted</dt><dd>1,060 of 1,061</dd></div>" in strip
+    assert "<div><dt>Record covers</dt><dd>Jan 2021 – Aug 8, 2026</dd></div>" in strip
+    assert '<div><dt>Party</dt><dd><span class="party"></span> — ' in strip
+    assert '<button class="party-toggle" type="button">Show party labels</button>' in strip
+    assert "Democratic" not in strip and "Republican" not in strip
+
+
+@pytest.mark.asyncio
+async def test_action_row_carries_the_layout_hook():
+    html = (await _fact_get("/member?id=S000148")).text
+    header = html[html.index('class="member-header'):]
+    assert re.search(r'class="[^"]*\bactions\b[^"]*"', header)
+
+
+def test_header_without_a_record_renders_only_the_party_cell():
+    # T6.1 assigns voted/total only inside its record branch; the fact strip must not depend on that.
+    from app import render
+    page = _page(has_record=False, stats=None, first_vote_date=None, last_vote_date=None)
+    out = render.render_member_header(page)
+    strip = out[out.index('<dl class="fact-strip">'): out.index("</dl>") + 5]
+    assert "Roll calls voted" not in strip and "Record covers" not in strip
+    assert "<dt>Party</dt>" in strip
+
+
+def test_fact_strip_formats_counts_and_the_record_range():
+    from app.render import render_member_fact_strip
+    strip = render_member_fact_strip(641, 657, "2025-01-03T00:00:00", "2026-09-03T00:00:00")
+    assert "<dd>641 of 657</dd>" in strip
+    assert "<dd>Jan 2025 – Sep 3, 2026</dd>" in strip
+
+
+def test_fact_strip_without_a_record_keeps_only_the_party_cell():
+    from app.render import render_member_fact_strip
+    strip = render_member_fact_strip(0, 0, None, None)
+    assert "Roll calls voted" not in strip and "Record covers" not in strip
+    assert "<dt>Party</dt>" in strip
+
+
+def test_fact_strip_css_is_desktop_only_and_hides_the_second_toggle():
+    css = (Path(__file__).parent.parent / "static" / "css" / "site.css").read_text()
+    base = css[css.index(".fact-strip {"): css.index("}", css.index(".fact-strip {"))]
+    assert "display: none" in base
+    wide = css[css.index("@media (min-width: 880px)"):]
+    assert ".fact-strip {" in wide and "grid-template-columns: repeat(3, minmax(0, 1fr))" in wide
+    assert ".member-header .actions .party-toggle" in wide
+    assert ".member-header .kicker .party" in wide   # the revealed party shows once at >=880
+    assert "recent-list" not in css                  # Recent votes 4 + 4 is T6.3's grid, not columns
+    assert css.count("@media (min-width: 880px)") == 1

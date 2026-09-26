@@ -129,7 +129,7 @@ main { display: block; max-width: var(--max); margin: 0 auto; padding: var(--s6)
 .edition-mid { display: none; }
 
 /* Type roles (§6.2) */
-.kicker { font-family: var(--font-ui); font-size: var(--t-kicker); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-meta); }
+.kicker, .fact-strip dt { font-family: var(--font-ui); font-size: var(--t-kicker); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-meta); }
 a.kicker, .kicker a { color: var(--blue-dim); }
 .deck { font-size: var(--t-lede); line-height: 1.5; color: var(--ink-soft); }
 .meta { font-family: var(--font-ui); font-size: var(--t-meta); color: var(--ink-meta); }
@@ -316,7 +316,6 @@ html:has(> body > .strip) { scroll-padding-top: 56px; }
 
 /* Delegation page (T4.2, §4.2) */
 .delegation [hidden] { display: none; }
-.reps, .roster { list-style: none; margin: 0; padding: 0; }
 .district-line { margin: var(--s2) 0; font-family: var(--font-ui); font-weight: 500; font-size: var(--t-ui); color: var(--ink); }
 .district-line a, .source-link { display: inline-flex; align-items: center; min-height: var(--tap); font-family: var(--font-ui); }
 .yours, .senate, .house, .state-foot { margin-top: var(--s10); }
@@ -344,9 +343,15 @@ html:has(> body > .strip) { scroll-padding-top: 56px; }
 .member-header .photo img { width: 64px; height: 64px; }
 .member-header h1 { margin: var(--s1) 0 var(--s2); }
 .member-header .facts { margin: 0 0 var(--s2); }
-.member-header .party:not(:empty)::before { content: "· "; }  /* site.js writes the name */
+.member-header .kicker .party:not(:empty)::before { content: "· "; }  /* site.js writes the name */
+/* Desktop fact strip: shown only at >=880 */
+.fact-strip { display: none; margin: var(--s4) 0 0; border-block: 1px solid var(--rule); }
+.fact-strip > div { padding: var(--s3) 0; }
+.fact-strip > div + div { padding-left: var(--s4); border-left: 1px solid var(--rule); }
+.fact-strip dd { margin: var(--s1) 0 0; font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 500; }
+.fact-strip .party { display: inline; }
+.fact-strip .party:empty::before { content: "hidden"; }
 .member-header .actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); }
-.vote-list, .record-list, .sponsored-list { list-style: none; margin: 0; padding: 0; }
 /* One hairline per group, not per row (§6.3) */
 .record-list > li { border-top: 1px solid var(--rule); }
 .record-list .vote-row { border-top: 0; }
@@ -356,10 +361,9 @@ html:has(> body > .strip) { scroll-padding-top: 56px; }
 .recent-caption { margin-top: var(--s3); }
 .record-filter { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s3); margin: var(--s4) 0; }
 .record-filter .field { display: flex; flex-direction: column; gap: var(--s1); margin: 0; min-width: 0; }
-.record-filter select { min-height: var(--tap); max-width: 100%; font-size: var(--t-body); }
-.record-filter .check { display: flex; align-items: center; gap: var(--s2); min-height: var(--tap); margin: 0; font-size: var(--t-ui); }
+.record-filter select { min-height: var(--tap); max-width: 100%; }
+.record-filter .check { display: flex; margin: 0; }
 .result-line { margin: var(--s2) 0; font-size: var(--t-ui); font-weight: 600; }
-.group > details > summary, .more-rcs > summary { display: flex; align-items: center; min-height: var(--tap); font-size: var(--t-ui); cursor: pointer; }
 .group ul { list-style: none; margin: 0 0 var(--s3); padding: 0; }
 .group ul > li { padding: var(--s2) 0; font-size: var(--t-meta); color: var(--ink-meta); }
 .group--speaker { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); padding: var(--s4) 0; font-size: var(--t-meta); color: var(--ink-meta); }
@@ -371,7 +375,7 @@ html:has(> body > .strip) { scroll-padding-top: 56px; }
 /* ---- Bill page (plan T7.4, spec §4.4) ---- */
 .bill-header { padding: var(--s6) 0 var(--s4); }
 .bill-header .kicker .seal { margin-left: var(--s2); }
-.bill-header h1 { font-family: var(--font-display); font-weight: 700; font-size: var(--t-display); line-height: 1.15; color: var(--navy); margin: var(--s2) 0 var(--s3); }
+.bill-header h1 { line-height: 1.15; margin: var(--s2) 0 var(--s3); }
 .bill-header h1.official { font-family: var(--font-serif); font-weight: 500; font-size: var(--t-h3); line-height: 1.35; color: var(--ink); }
 .bill-header .deck { font-family: var(--font-serif); font-weight: 500; }
 .bill-header .outcome, .rc-block .outcome, .rc-more .outcome { font-family: var(--font-serif); font-size: var(--t-lede); color: var(--ink); margin: var(--s3) 0; }
@@ -386,7 +390,7 @@ html:has(> body > .strip) { scroll-padding-top: 56px; }
 .rc-more summary .rc-caption { display: inline; font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 600; }
 .rc-all-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s3); margin: var(--s3) 0; }
 .rc-all-controls label { flex-basis: 100%; }
-.state-tallies { list-style: none; padding: 0; margin: var(--s3) 0; font-family: var(--font-ui); font-size: var(--t-meta); color: var(--ink-meta); }
+.state-tallies { margin: var(--s3) 0; font-family: var(--font-ui); font-size: var(--t-meta); color: var(--ink-meta); }
 .full-title p, .official-para, .official-summary { font-family: var(--font-serif); font-size: var(--t-body); color: var(--ink-soft); }
 .fact-box dl { display: grid; grid-template-columns: max-content 1fr; gap: var(--s2) var(--s4); margin: var(--s3) 0 0; padding-top: var(--s3); border-top: 1px solid var(--rule); }
 .fact-box dt { font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 500; color: var(--ink-meta); }
@@ -424,6 +428,8 @@ html:has(> body > .strip) { scroll-padding-top: 56px; }
     .house .roster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s8); }
     .member-header { grid-template-columns: 64px minmax(0, 1fr) auto; }
     .member-header .actions { grid-column: 3; justify-content: flex-end; }
+    .fact-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .member-header .actions .party-toggle, .member-header .kicker .party { display: none; }
     #recent .vote-list { display: grid; grid-auto-flow: column; grid-template-rows: repeat(4, auto); grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--s8); }
     .bill-grid { display: grid; grid-template-columns: 7fr 5fr; gap: var(--s8); align-items: start; }
     .bill-main { grid-column: 1; grid-row: 1; min-width: 0; }
