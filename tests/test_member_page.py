@@ -600,7 +600,7 @@ async def test_page_endpoint_is_registered_before_the_district_route():
     response = await _get("/api/members/S000148/page")
     assert response.status_code == 200
     data = response.json()
-    assert set(data) == PAGE_KEYS
+    assert set(data) == PAGE_KEYS | {"record_tree"}  # T10.2 adds the render tree
     assert data["member"]["bioguideId"] == "S000148"
     assert data["record"]["page"] == 1 and len(data["record"]["groups"]) == 15
 
@@ -686,3 +686,176 @@ def test_real_speaker_not_voting_rows_are_not_shown_as_voted(real_service):
         if raw.get(vote["rc"]) == "Not Voting":
             assert vote["vote"] == "Not Voting"
     assert "Not Voting" not in real_service.get_speaker_votes("H001095").values()
+
+
+# --- In-place record pagination (plan T10.2): one render tree feeds the HTML and the JSON ---
+import json as _json
+import re as _re
+import shutil as _shutil
+import subprocess as _subprocess
+from pathlib import Path as _Path
+from unittest.mock import patch as _patch
+
+import pytest as _pytest
+from httpx import ASGITransport as _ASGITransport, AsyncClient as _AsyncClient
+
+_ROOT = _Path(__file__).parent.parent
+_FIXTURES = _ROOT / "tests" / "fixtures" / "synced"
+_SITE_JS = _ROOT / "static" / "js" / "site.js"
+
+
+async def _paging_get(path: str):
+    from app.dependencies import get_data_service
+    from app.main import app
+    with _patch("app.dependencies.get_data_dir", return_value=_FIXTURES):
+        get_data_service.cache_clear()
+        async with _AsyncClient(transport=_ASGITransport(app=app), base_url="http://test") as client:
+            response = await client.get(path)
+    get_data_service.cache_clear()
+    return response
+
+
+def _record_list_block(html: str, hook: str = "data-record-list") -> str:
+    """The <div {hook}=""> element, balanced on nested divs."""
+    start = html.index(f'<div {hook}="">')
+    depth, i = 0, start
+    while True:
+        next_open, next_close = html.find("<div", i), html.find("</div>", i)
+        if next_open != -1 and next_open < next_close:
+            depth, i = depth + 1, next_open + 4
+        else:
+            depth, i = depth - 1, next_close + 6
+            if depth == 0:
+                return html[start:i]
+
+
+def test_tree_html_escapes_text_and_attributes():
+    from app.render import N, tree_html
+    out = tree_html(N("p", {"class": '"><img src=x>'}, "<script>alert(1)</script>", " &amp; "))
+    assert "<script>" not in out and "<img" not in out
+    assert out == '<p class="&quot;&gt;&lt;img src=x&gt;">&lt;script&gt;alert(1)&lt;/script&gt; &amp;amp; </p>'
+
+
+@_pytest.mark.parametrize("bad", [
+    lambda N: N("script", None, "x"),
+    lambda N: N("a", {"onclick": "x"}),
+    lambda N: N("a", {"href": "javascript:alert(1)"}),
+    lambda N: N("a", {"href": "//evil.example/"}),
+    lambda N: N("span", {"style": "color:red"}),
+])
+def test_tree_nodes_reject_what_the_allowlist_does_not_name(bad):
+    from app.render import N
+    with _pytest.raises(ValueError):
+        bad(N)
+
+
+def test_tree_allowlists_match_site_js():
+    from app.render import TREE_ATTRS, TREE_TAGS
+    source = _SITE_JS.read_text()
+
+    def js_list(name):
+        match = _re.search(rf"const {name} = \[([^\]]*)\]", source)
+        assert match, f"site.js has no const {name} = [...]"
+        return frozenset(_re.findall(r"'([^']+)'", match.group(1)))
+
+    assert js_list("TREE_TAGS") == TREE_TAGS
+    assert js_list("TREE_ATTRS") == TREE_ATTRS
+
+
+@_pytest.mark.asyncio
+@_pytest.mark.parametrize("query", ["", "&page=2", "&position=no", "&plain=1", "&topic=Health", "&position=nv&page=9"])
+async def test_page_api_carries_everything_the_record_renders(query):
+    from app.render import tree_html
+    html = (await _paging_get(f"/member?id=S000148{query}")).text
+    payload = (await _paging_get(f"/api/members/S000148/page?{query.lstrip('&')}")).json()
+    assert set(payload["record_tree"]) == {"result", "list"}
+    assert tree_html(payload["record_tree"]["list"]) == _record_list_block(html)
+    assert tree_html(payload["record_tree"]["result"]) == _record_list_block(html, "data-record-result")
+
+
+@_pytest.mark.asyncio
+async def test_record_keeps_the_section_order_with_two_swap_targets():
+    html = (await _paging_get("/member?id=S000148&position=no")).text
+    order = [html.index(marker) for marker in (
+        'id="record"', '<div data-record-result=""><p class="result-line">', 'class="meta record-count"',
+        'data-record-filter=""', '<div data-record-list="">')]
+    assert order == sorted(order)
+    unfiltered = (await _paging_get("/member?id=S000148")).text
+    assert '<div data-record-result=""></div>' in unfiltered
+
+
+@_pytest.mark.asyncio
+async def test_record_links_keep_the_filters_and_land_on_the_heading():
+    import html as _html
+    from app.render import tree_html
+    payload = (await _paging_get("/api/members/S000148/page?position=no")).json()
+    tags = _re.findall(r'<a [^>]*data-record-nav=""[^>]*>', tree_html(payload["record_tree"]["list"]))
+    nav = [_html.unescape(_re.search(r'href="([^"]+)"', tag).group(1)) for tag in tags]
+    assert nav, "page 1 of a filtered record has an 'Older votes' link"
+    for href in nav:
+        assert href.startswith("/member?id=S000148") and "position=no" in href and href.endswith("#record")
+
+
+_HARNESS = r"""
+const [sitePath, treePath] = process.argv.slice(2);
+const tree = JSON.parse(require('fs').readFileSync(treePath, 'utf8'));
+class Text { constructor(t) { this.data = String(t); } get textContent() { return this.data; } }
+class Elem {
+  constructor(tag) { this.tag = String(tag).toLowerCase(); this.attrs = []; this.kids = [];
+    this.classList = { add: () => {}, remove: () => {}, toggle: () => {}, contains: () => false }; }
+  setAttribute(k, v) { const hit = this.attrs.find(a => a[0] === k); if (hit) hit[1] = String(v); else this.attrs.push([k, String(v)]); }
+  getAttribute(k) { const hit = this.attrs.find(a => a[0] === k); return hit ? hit[1] : null; }
+  set className(v) { this.setAttribute('class', v); }
+  get className() { return this.getAttribute('class') || ''; }
+  appendChild(c) { this.kids.push(c); return c; }
+  append(...cs) { cs.forEach(c => this.appendChild(typeof c === 'string' ? new Text(c) : c)); }
+  set textContent(v) { this.kids = [new Text(v)]; }
+  get textContent() { return this.kids.map(k => k.textContent).join(''); }
+  addEventListener() {}
+}
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;');
+const BOOL = new Set(['hidden', 'open']);
+const html = n => n instanceof Text ? esc(n.data)
+  : `<${n.tag}${n.attrs.map(([k, v]) => (BOOL.has(k) && v === '') ? ` ${k}` : ` ${k}="${esc(v)}"`).join('')}>${n.kids.map(html).join('')}</${n.tag}>`;
+const noop = () => {};
+const store = { getItem: () => null, setItem: noop, removeItem: noop };
+Object.assign(globalThis, {
+  window: globalThis, addEventListener: noop, removeEventListener: noop,
+  document: { readyState: 'loading', addEventListener: noop, createElement: t => new Elem(t), createTextNode: t => new Text(t),
+    querySelector: () => null, querySelectorAll: () => [], getElementById: () => null,
+    documentElement: new Elem('html'), body: new Elem('body') },
+  location: { href: 'http://127.0.0.1/', search: '', hash: '', pathname: '/' },
+  history: { replaceState: noop }, localStorage: store, sessionStorage: store,
+  matchMedia: () => ({ matches: false, addEventListener: noop, addListener: noop }),
+});
+const api = require(sitePath);
+if (typeof api.buildTree !== 'function') { console.error('site.js does not export buildTree'); process.exit(2); }
+process.stdout.write(html(api.buildTree(tree.result)) + html(api.buildTree(tree.list)));
+"""
+
+
+@_pytest.mark.asyncio
+@_pytest.mark.skipif(_shutil.which("node") is None, reason="node not installed")
+async def test_site_js_builds_the_same_record_as_the_server(tmp_path):
+    from app.render import tree_html
+    payload = (await _paging_get("/api/members/S000148/page?page=2&position=no")).json()
+    (tmp_path / "tree.json").write_text(_json.dumps(payload["record_tree"]))
+    (tmp_path / "harness.js").write_text(_HARNESS)
+    result = _subprocess.run(
+        [_shutil.which("node"), str(tmp_path / "harness.js"), str(_SITE_JS), str(tmp_path / "tree.json")],
+        capture_output=True, text=True, timeout=30,
+    )
+    assert result.returncode == 0, result.stderr
+    assert result.stdout == tree_html(payload["record_tree"]["result"]) + tree_html(payload["record_tree"]["list"])
+
+
+def test_site_js_record_paging_uses_replace_state_and_no_html_sinks():
+    source = _SITE_JS.read_text()
+    paging = source[source.index("function initRecordPaging"):]
+    paging = paging[: paging.index("\n}\n") + 3]
+    assert "history.replaceState" in paging and "pushState" not in source
+    assert "innerHTML" not in paging and "insertAdjacentHTML" not in paging and "DOMParser" not in paging
+    assert "focusHeading(" in paging
+    assert "[data-record-result]" in paging and "[data-record-list]" in paging
+    # The call, not the declaration: `function initRecordPaging() {` also contains "initRecordPaging()".
+    assert _re.search(r"^\s+initRecordPaging\(\);", source, _re.M), "initRecordPaging(); is not called at init"

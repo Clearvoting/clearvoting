@@ -9,7 +9,7 @@ import re
 import pytest
 
 from app import render
-from app.render import display_name, format_bill_code, h, sponsor_name
+from app.render import N, display_name, format_bill_code, h, sponsor_name, tree_html
 from tests.test_state_render import FakeDS, member_raw
 
 HOSTILE = [
@@ -25,6 +25,7 @@ RENDERERS = {
     "h(format_bill_code)": lambda p: h(format_bill_code("hr", p)),
     "h(sponsor_name)": lambda p: h(sponsor_name(
         {"fullName": f"Rep. {p}", "firstName": p, "lastName": p, "state": "NY"})),
+    "tree_html": lambda p: tree_html(N("p", {"class": p}, p)),
 }
 
 

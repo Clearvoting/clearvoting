@@ -446,7 +446,7 @@ def test_house_members_have_no_nominations_line():
 
 def test_filter_form_is_a_plain_get_form():
     out = render.render_record_section(_page(record=_record()))
-    assert '<form class="record-filter" id="record-filter" method="get" action="/member#record">' in out
+    assert '<form class="record-filter" id="record-filter" method="get" action="/member#record" data-record-filter="">' in out
     assert '<input type="hidden" name="id" value="S000148">' in out
     assert '<option value="">All topics</option>' in out
     assert '<option value="Health">Health</option>' in out

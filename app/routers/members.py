@@ -114,7 +114,10 @@ def get_member_page(
     result = get_data_service().get_member_page(bioguide_id, page, topic, position, plain)
     if result is None:
         raise HTTPException(status_code=404, detail="Member not found")
-    return _allowlist_member_payload(result)
+    # The record's render tree (plan T10.2) comes from the full page, like the HTML; it holds
+    # no party field, no Speaker candidate name and no stance text.
+    record = render.record_tree(result)   # {"result": node, "list": node}
+    return {**_allowlist_member_payload(result), "record_tree": record}
 
 
 @router.get("/counts")

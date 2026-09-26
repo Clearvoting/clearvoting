@@ -68,6 +68,28 @@ function clear(node) {
     return node;
 }
 
+// Render trees (plan T10.2). Mirrors app/render.py TREE_TAGS / TREE_ATTRS / N / tree_html:
+// the server sends {t, a, c} nodes; this builds DOM from them with el() and text nodes only.
+const TREE_TAGS = ['a', 'details', 'div', 'em', 'li', 'nav', 'ol', 'p', 'span', 'strong', 'summary', 'time', 'ul'];
+const TREE_ATTRS = ['class', 'href', 'rel', 'datetime', 'role', 'hidden', 'open', 'aria-label', 'aria-hidden', 'aria-current', 'data-rc', 'data-short', 'data-record-result', 'data-record-list', 'data-record-nav'];
+
+function safeTreeHref(value) {
+    return value.indexOf('https://') === 0 || (value.charAt(0) === '/' && value.charAt(1) !== '/');
+}
+
+function buildTree(node) {
+    if (typeof node === 'string') return document.createTextNode(node);
+    if (!node || TREE_TAGS.indexOf(node.t) === -1) return document.createTextNode('');
+    const attrs = {};
+    Object.keys(node.a || {}).forEach((key) => {
+        const value = String(node.a[key]);
+        if (TREE_ATTRS.indexOf(key) === -1) return;
+        if (key === 'href' && !safeTreeHref(value)) return;
+        attrs[key] = value;
+    });
+    return el(node.t, attrs, ...(node.c || []).map(buildTree));
+}
+
 /* ---- Bill codes, ordinals, names, dates (spec §7.5, §7.3) ---- */
 /* bill-type-labels:start */
 const BILL_TYPE_LABELS = {"hr": "H.R.", "s": "S.", "hjres": "H.J.Res.", "sjres": "S.J.Res.", "hconres": "H.Con.Res.", "sconres": "S.Con.Res.", "hres": "H.Res.", "sres": "S.Res."};
@@ -751,6 +773,8 @@ function initPartyToggle(arg, hideArg) {
     }
 
     toggles.forEach((button) => button.addEventListener('click', onToggle));
+    // Speaker picks in a record page swapped in place (T10.2) are filled while the reveal is on.
+    document.addEventListener('cv:content-swapped', () => { if (revealed) fillSpeakerPicks(); });
     label();
     if (storageGet('sessionStorage', PARTY_KEY) === '1') show(false);
 }
@@ -874,6 +898,74 @@ function initNotify() {
     });
 }
 
+/* ---- In-place record pagination and filtering (cut-first, spec §4.3 m4 / §3.3 / §8 item 11) ---- */
+// Plain links and the GET form work without JS; with JS the same URL is fetched as JSON,
+// the list is swapped, focus lands on the record heading, and the address bar shows the
+// exact URL the link or form would have loaded (replaceState: no new history entry).
+function initRecordPaging() {
+    const heading = document.getElementById('record');
+    const memberId = new URLSearchParams(window.location.search).get('id');
+    if (!heading || !memberId || !window.fetch || !window.history || !window.history.replaceState) return;
+    const section = heading.closest('section') || heading.parentNode;
+    let busy = false;
+
+    const apiUrl = (pageUrl) => {
+        const params = new URL(pageUrl, window.location.href).searchParams;
+        const query = new URLSearchParams();
+        ['page', 'topic', 'position', 'plain'].forEach((key) => {
+            const value = params.get(key);
+            if (value) query.set(key, value);
+        });
+        const qs = query.toString();
+        return '/api/members/' + encodeURIComponent(memberId) + '/page' + (qs ? '?' + qs : '');
+    };
+
+    const load = (pageUrl) => {
+        if (busy) return;
+        busy = true;
+        fetch(apiUrl(pageUrl), { headers: { Accept: 'application/json' } })
+            .then((response) => {
+                if (!response.ok) throw new Error('record ' + response.status);
+                return response.json();
+            })
+            .then((data) => {
+                // Two swap targets (the result line sits above the count line and form, the list below).
+                const swap = (selector, node) => {
+                    const current = section.querySelector(selector);
+                    const next = buildTree(node);
+                    current.parentNode.replaceChild(next, current);
+                    return next;
+                };
+                swap('[data-record-result]', data.record_tree.result);
+                const next = swap('[data-record-list]', data.record_tree.list);
+                window.history.replaceState(null, '', pageUrl);
+                focusHeading(heading);
+                document.dispatchEvent(new CustomEvent('cv:content-swapped', { detail: { root: next } }));
+            })
+            .catch(() => { window.location.assign(pageUrl); })
+            .finally(() => { busy = false; });
+    };
+
+    section.addEventListener('click', (event) => {
+        const link = event.target.closest('a[data-record-nav]');
+        if (!link || event.defaultPrevented || event.button !== 0
+            || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        load(link.href);
+    });
+
+    const form = section.querySelector('form[data-record-filter]');
+    if (form) {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const url = new URL(form.getAttribute('action') || window.location.pathname, window.location.href);
+            url.search = new URLSearchParams(new FormData(form)).toString();
+            url.hash = 'record';
+            load(url.href);
+        });
+    }
+}
+
 /* ---- Page-independent start-up: run once per page, before page enhancers ---- */
 function initSite() {
     removeLegacyPartyKey();
@@ -881,6 +973,7 @@ function initSite() {
     rewriteMastheadLink();
     initPhotos();
     initNotify();
+    initRecordPaging();
 }
 
 if (typeof document !== 'undefined') {
@@ -1110,3 +1203,4 @@ if (typeof module !== 'undefined' && module.exports) {
         initZipInPlace, fillRepsSlot, slotBindForm, slotPick,
     };
 }
+if (typeof module !== 'undefined' && module.exports) { module.exports.buildTree = buildTree; }

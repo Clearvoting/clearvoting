@@ -391,6 +391,53 @@ def h(value) -> str:
     return html.escape(str(value), quote=True)
 
 
+# --- Render trees (plan T10.2) ------------------------------------------------
+# One description of a block, turned into HTML here (tree_html) and into DOM by
+# site.js buildTree for in-place record paging. Only these tags and attributes
+# exist in a tree; both lists are mirrored verbatim in site.js (a test compares them).
+TREE_TAGS = frozenset({"a", "details", "div", "em", "li", "nav", "ol", "p", "span", "strong", "summary", "time", "ul"})
+TREE_ATTRS = frozenset({
+    "class", "href", "rel", "datetime", "role", "hidden", "open", "aria-label", "aria-hidden",
+    "aria-current", "data-rc", "data-short", "data-record-result", "data-record-list", "data-record-nav",
+})
+_TREE_BOOLEAN = frozenset({"hidden", "open"})
+
+
+def N(tag: str, attrs: dict | None = None, *children) -> dict:
+    """One element of a render tree. None/False attributes and None/"" children are dropped;
+    list children are flattened; True becomes an empty attribute."""
+    if tag not in TREE_TAGS:
+        raise ValueError(f"tag not allowed in a render tree: {tag}")
+    clean: dict[str, str] = {}
+    for key, value in (attrs or {}).items():
+        if value is None or value is False:
+            continue
+        if key not in TREE_ATTRS:
+            raise ValueError(f"attribute not allowed in a render tree: {key}")
+        text = "" if value is True else str(value)
+        if key == "href" and not (text.startswith("https://") or (text.startswith("/") and not text.startswith("//"))):
+            raise ValueError(f"href must be site-relative or https: {text}")
+        clean[key] = text
+    flat: list = []
+    for child in children:
+        if isinstance(child, list):
+            flat.extend(c for c in child if c is not None and c != "")
+        elif child is not None and child != "":
+            flat.append(child)
+    return {"t": tag, "a": clean, "c": flat}
+
+
+def tree_html(node) -> str:
+    """HTML for a render tree; every text and attribute value passes through h()."""
+    if isinstance(node, str):
+        return h(node)
+    attrs = "".join(
+        f" {key}" if (key in _TREE_BOOLEAN and value == "") else f' {key}="{h(value)}"'
+        for key, value in node["a"].items()
+    )
+    return f'<{node["t"]}{attrs}>{"".join(tree_html(child) for child in node["c"])}</{node["t"]}>'
+
+
 # Title-case bill abbreviations, e.g. "hr" -> "H.R." (moved from app/main.py;
 # site.js carries the same map and test_formatter_parity keeps them equal).
 _BILL_TYPE_LABELS = {
@@ -774,11 +821,15 @@ def _tally_label(seal_text: str, chamber: str) -> str:
     return label or (f"{chamber} vote" if chamber else "Vote")
 
 
-def render_seal(text: str, variant: str) -> str:
-    """Status seal (spec §6.4). Variants: final, moving, pending, ballot."""
+def render_seal_node(text: str, variant: str) -> dict:
+    """Status seal (spec §6.4) as a render-tree node. Variants: final, moving, pending, ballot."""
     if variant not in _SEAL_VARIANTS:
         variant = "moving"
-    return f'<span class="seal seal--{variant}">{h(text)}</span>'
+    return N("span", {"class": f"seal seal--{variant}"}, "" if text is None else str(text))
+
+
+def render_seal(text: str, variant: str) -> str:
+    return tree_html(render_seal_node(text, variant))
 
 
 def render_tally(counts: dict, label: str) -> str:
@@ -1662,13 +1713,17 @@ def _mp_short_date(value) -> str:
     return format_date(day, short=True) if day else ""
 
 
-def _mp_chip(vote) -> str:
+def _mp_chip_node(vote) -> dict:
     """The member's position as a vote chip (§6.4), through T1.2's position_chip — the one
     §7.1 table, twinned in site.js chip(). A Speaker-election candidate name becomes the
     neutral 'Voted'; names appear only on party reveal."""
     text = str(vote or "")
     c = position_chip(_MP_RECENT_POSITIONS.get(text, text))
-    return f'<span class="chip chip--{c["variant"]}">{h(c["text"])}</span>'
+    return N("span", {"class": f"chip chip--{c['variant']}"}, c["text"])
+
+
+def _mp_chip(vote) -> str:
+    return tree_html(_mp_chip_node(vote))
 
 
 def _mp_bill_href(congress, bill_type, number) -> str | None:
@@ -1697,10 +1752,10 @@ def _mp_source_url(vote: dict) -> str | None:
     return f"https://clerk.house.gov/Votes/{year}{number}" if year else None
 
 
-def _mp_source_anchor(vote: dict) -> str:
+def _mp_source_anchor_node(vote: dict) -> dict | None:
     """'Roll call source →' as its own link (a sibling, never nested in a row link)."""
     url = _mp_source_url(vote)
-    return f'<a class="rc-source" href="{h(url)}">Roll call source →</a>' if url else ""
+    return N("a", {"class": "rc-source", "href": url}, "Roll call source →") if url else None
 
 
 def _mp_is_speaker(vote: dict) -> bool:
@@ -1732,6 +1787,19 @@ def render_vote_row(href, chip_html: str, headline: str, displayable: bool,
     if href:
         return f'<a class="vote-row" href="{h(href)}">{inner}</a>'
     return f'<div class="vote-row">{inner}</div>'
+
+
+def render_vote_row_node(href, chip: dict | None, headline: str, displayable: bool,
+                         meta_parts: list, extra: dict | None = None) -> dict:
+    """Node twin of render_vote_row for the record's render tree (plan T10.2): the same
+    markup, with the chip and the extra seal as nodes instead of HTML fragments."""
+    head_class = "row-headline" if displayable else "row-headline row-headline--official"
+    meta = " · ".join(str(part) for part in meta_parts if part)
+    children = [chip, N("span", {"class": head_class}, "" if headline is None else str(headline)), extra,
+                N("span", {"class": "meta"}, meta)]
+    if href:
+        return N("a", {"class": "vote-row", "href": href}, children)
+    return N("div", {"class": "vote-row"}, children)
 
 
 def _mp_initials(name: str) -> str:
@@ -1943,19 +2011,32 @@ def _mp_plain(vote: dict) -> str:
     return str(rc.get("plain") or (plain_question(rc["question"]) if rc.get("question") else ""))
 
 
-def _mp_rc_line(vote: dict) -> str:
+def _mp_join_nodes(*parts) -> list:
+    """Render-tree twin of _mp_join: the non-empty parts (text, nodes or lists of both) as one
+    flat child list with ' · ' text between them."""
+    out: list = []
+    for part in parts:
+        if part is None or part == "" or part == []:
+            continue
+        if out:
+            out.append(" · ")
+        out.extend(part if isinstance(part, list) else [part])
+    return out
+
+
+def _mp_rc_line_node(vote: dict) -> list:
     """One extra roll call on a bill: plain question · result phrase · date · chip · source."""
-    return _mp_join(h(_mp_plain(vote)), h(_mp_phrase(vote)), h(_mp_short_date(vote.get("date"))),
-                    _mp_chip(vote.get("vote")), _mp_source_anchor(vote))
+    return _mp_join_nodes(_mp_plain(vote), _mp_phrase(vote), _mp_short_date(vote.get("date")),
+                          _mp_chip_node(vote.get("vote")), _mp_source_anchor_node(vote))
 
 
-def _mp_speaker_line(vote: dict) -> str:
+def _mp_speaker_line_node(vote: dict) -> list:
     """'Election of the Speaker · Jan 3, 2025 · Voted · Roll call source →'. The candidate's
-    name is never rendered; member.js writes 'Voted for {Name}' into the empty pick slot
+    name is never rendered; site.js writes 'Voted for {Name}' into the empty pick slot
     only while the party reveal is on (§4.3 party reveal)."""
-    pick = f'<span class="speaker-pick" data-rc="{h(vote.get("rc") or "")}"></span>'
-    return _mp_join(h("Election of the Speaker"), h(_mp_short_date(vote.get("date"))),
-                    _mp_chip(vote.get("vote")) + " " + pick, _mp_source_anchor(vote))
+    pick = N("span", {"class": "speaker-pick", "data-rc": str(vote.get("rc") or "")})
+    return _mp_join_nodes("Election of the Speaker", _mp_short_date(vote.get("date")),
+                          [_mp_chip_node(vote.get("vote")), " ", pick], _mp_source_anchor_node(vote))
 
 
 _MP_OWN_LABELS = frozenset({"Attendance call", "Election of the Speaker"})
@@ -1978,50 +2059,51 @@ def _mp_other_label(vote: dict) -> str:
     return plain or "Motion"
 
 
-def _mp_other_line(vote: dict, label: str) -> str:
+def _mp_other_line_node(vote: dict, label: str) -> list:
     """One vote without a bill: '{Label} "{text}" to {parent} · {result phrase} · {chip} · source'."""
-    chip = _mp_chip(vote.get("vote"))
-    source = _mp_source_anchor(vote)
+    chip = _mp_chip_node(vote.get("vote"))
+    source = _mp_source_anchor_node(vote)
     if label == "Attendance call":
-        return _mp_join(h(label), h(_mp_short_date(vote.get("date"))), chip, source)
+        return _mp_join_nodes(label, _mp_short_date(vote.get("date")), chip, source)
     text = str(vote.get("text") or "").strip()
     parent = vote.get("parent") or None
     if text or parent:
-        head = h(label)
+        head: list = [label]
         if text:
-            head += " " + h('"' + text + '"')
+            head.append(" " + '"' + text + '"')
         if parent:
             code = format_bill_code(parent.get("bill_type"), parent.get("bill_number"))
             href = (_mp_bill_href(parent.get("congress"), parent.get("bill_type"), parent.get("bill_number"))
                     if parent.get("in_bills") else None)
-            head += " to " + (f'<a href="{h(href)}">{h(code)}</a>' if href else h(code))
+            head += [" to ", N("a", {"href": href}, code) if href else code]
+        head = [part for part in head if part != ""]
     else:
         lead = f"{vote.get('chamber') or 'Congress'} vote" if label in ("Amendment", "Motion") else label
-        head = h(lead + " · no bill or amendment text in our data")
-    return _mp_join(head, h(_mp_phrase(vote)), chip, source)
+        head = lead + " · no bill or amendment text in our data"
+    return _mp_join_nodes(head, _mp_phrase(vote), chip, source)
 
 
-def _mp_bill_group(group: dict) -> str:
+def _mp_bill_group_node(group: dict) -> dict:
     """A bill group: the shared vote row for the lead roll call (latest decisive, else latest),
     then '+ N more roll calls on this bill' as a sibling <details> (never inside the link)."""
     lead = group.get("lead") or {}
     displayable = bool(group.get("displayable"))
     href = _mp_bill_href(group.get("congress"), group.get("bill_type"), group.get("bill_number"))
-    pending = "" if displayable else render_seal(_MP_PENDING, "pending")
+    pending = None if displayable else render_seal_node(_MP_PENDING, "pending")
     meta = [format_bill_code(group.get("bill_type"), group.get("bill_number")),
             _mp_phrase(lead), _mp_short_date(lead.get("date"))]
-    row = render_vote_row(href, _mp_chip(lead.get("vote")), group.get("headline") or "",
-                          displayable, meta, pending)
+    row = render_vote_row_node(href, _mp_chip_node(lead.get("vote")), group.get("headline") or "",
+                               displayable, meta, pending)
     more = group.get("more") or []
-    details = ""
+    details = None
     if more:
         label = f"+ {len(more)} more roll call{'' if len(more) == 1 else 's'} on this bill"
-        items = "".join(f"<li>{_mp_rc_line(v)}</li>" for v in more)
-        details = f'<details class="more-rcs"><summary>{h(label)}</summary><ul>{items}</ul></details>'
-    return f'<li class="group group--bill">{row}{details}</li>'
+        details = N("details", {"class": "more-rcs"}, N("summary", None, label),
+                    N("ul", None, [N("li", None, _mp_rc_line_node(v)) for v in more]))
+    return N("li", {"class": "group group--bill"}, row, details)
 
 
-def _mp_other_group(group: dict) -> str:
+def _mp_other_group_node(group: dict) -> dict:
     """Consecutive votes without a bill, one dated row per day: '14 amendments and motions · Aug 8, 2026'."""
     votes = group.get("votes") or []
     labels = ["Election of the Speaker" if _mp_is_speaker(v) else _mp_other_label(v) for v in votes]
@@ -2036,21 +2118,20 @@ def _mp_other_group(group: dict) -> str:
     else:
         noun = "other vote" if count == 1 else "other votes"
     summary = f"{count:,} {noun} · {_mp_short_date(group.get('date'))}"
-    items = "".join(
-        f"<li>{_mp_speaker_line(v) if label == 'Election of the Speaker' else _mp_other_line(v, label)}</li>"
+    items = [
+        N("li", None, _mp_speaker_line_node(v) if label == "Election of the Speaker" else _mp_other_line_node(v, label))
         for v, label in zip(votes, labels)
-    )
-    return (f'<li class="group group--other"><details><summary>{h(summary)}</summary>'
-            f'<ul>{items}</ul></details></li>')
+    ]
+    return N("li", {"class": "group group--other"}, N("details", None, N("summary", None, summary), N("ul", None, items)))
 
 
-def _mp_group(group: dict) -> str:
+def _mp_group_node(group: dict) -> dict:
     kind = group.get("kind")
     if kind == "bill":
-        return _mp_bill_group(group)
+        return _mp_bill_group_node(group)
     if kind == "speaker":
-        return f'<li class="group group--speaker">{_mp_speaker_line(group.get("vote") or {})}</li>'
-    return _mp_other_group(group)
+        return N("li", {"class": "group group--speaker"}, _mp_speaker_line_node(group.get("vote") or {}))
+    return _mp_other_group_node(group)
 
 
 def _mp_record_href(bioguide: str, record: dict, page_no: int) -> str:
@@ -2065,6 +2146,71 @@ def _mp_record_href(bioguide: str, record: dict, page_no: int) -> str:
     if record.get("plain"):
         params.append(("plain", "1"))
     return "/member?" + urllib.parse.urlencode(params) + "#record"
+
+
+def _record_filters(page: dict) -> tuple[str, str, bool]:
+    """(topic, position, plain) of the record page, position limited to the known filters."""
+    record = page.get("record") or {}
+    position = record.get("position") if record.get("position") in _MP_POSITION_LABELS else ""
+    return str(record.get("topic") or ""), position, bool(record.get("plain"))
+
+
+def _record_result_line_node(page: dict) -> dict | None:
+    """The server result line when filtered (§4.3 m4); None when unfiltered."""
+    topic, position, plain = _record_filters(page)
+    if not (topic or position or plain):
+        return None
+    matching = int((page.get("record") or {}).get("matching_bills") or 0)
+    line = f"{matching:,} bill{'' if matching == 1 else 's'}" + (f" on {topic}" if topic else "")
+    if position:
+        line += f" · {_MP_POSITION_LABELS[position]}"
+    if plain:
+        line += " · with a plain-English summary"
+    return N("p", {"class": "result-line"}, line)
+
+
+def _record_groups_node(page: dict) -> dict:
+    """The grouped rows, or the empty-filter message, or the no-record note."""
+    groups = (page.get("record") or {}).get("groups") or []
+    if groups:
+        return N("ol", {"class": "record-list"}, [_mp_group_node(g) for g in groups])
+    topic, position, plain = _record_filters(page)
+    if topic or position or plain:
+        return N("p", {"class": "note"}, "No votes match these filters.")
+    return N("p", {"class": "note"}, "We don't have this member's roll-call record yet.")
+
+
+def _record_pagination_node(page: dict) -> dict | None:
+    """'← Newer votes · Page N of M · Older votes →' links (each carries data-record-nav)."""
+    record = page.get("record") or {}
+    bioguide = str(page["member"].get("bioguideId") or "")
+    page_no = int(record.get("page") or 1)
+    pages = int(record.get("pages") or 1)
+    if pages <= 1:
+        return None
+    links = []
+    if page_no > 1:
+        links.append(N("a", {"data-record-nav": True, "href": _mp_record_href(bioguide, record, page_no - 1)},
+                       "← Newer votes"))
+    links.append(N("span", {"class": "meta"}, f"Page {page_no:,} of {pages:,}"))
+    if page_no < pages:
+        links.append(N("a", {"data-record-nav": True, "href": _mp_record_href(bioguide, record, page_no + 1)},
+                       "Older votes →"))
+    return N("nav", {"class": "pager", "aria-label": "Record pages"}, links)
+
+
+def record_tree(page: dict) -> dict:
+    """The parts of the member record that change with page/topic/position/plain (§4.3 m4),
+    as two nodes because they are not adjacent in the section: "result" (the result line,
+    above the count line and form; empty when unfiltered) and "list" (grouped rows or the
+    empty message, then the pagination links). Shared by render_record_section (HTML)
+    and GET /api/members/{id}/page (JSON for site.js)."""
+    return {
+        "result": N("div", {"data-record-result": True}, _record_result_line_node(page)),
+        "list": N("div", {"data-record-list": True},
+                  _record_groups_node(page),
+                  _record_pagination_node(page)),
+    }
 
 
 def render_record_section(page: dict) -> str:
@@ -2093,9 +2239,7 @@ def render_record_section(page: dict) -> str:
         scope = f"Senate votes on nominations ({int(nominations):,} since {since}) aren't in this record yet."
         blocks.append(f'<p class="meta">{h(scope)} <a href="/methodology#coverage">Why →</a></p>')
 
-    topic = str(record.get("topic") or "")
-    position = record.get("position") if record.get("position") in _MP_POSITION_LABELS else ""
-    plain = bool(record.get("plain"))
+    topic, position, plain = _record_filters(page)
     topic_options = ['<option value="">All topics</option>'] + [
         f'<option value="{h(area)}"{" selected" if area == topic else ""}>{h(area)}</option>'
         for area in record.get("policy_areas") or []
@@ -2107,7 +2251,7 @@ def render_record_section(page: dict) -> str:
     plain_label = (f"Only bills with a plain-English summary ({int(record.get('plain_bills') or 0):,} "
                    f"of {int(record.get('total_bills') or 0):,} bills)")
     form = (
-        '<form class="record-filter" id="record-filter" method="get" action="/member#record">'
+        '<form class="record-filter" id="record-filter" method="get" action="/member#record" data-record-filter="">'
         f'<input type="hidden" name="id" value="{h(bioguide)}">'
         '<p class="field"><label for="record-topic">Topic</label>'
         f'<select id="record-topic" name="topic">{"".join(topic_options)}</select></p>'
@@ -2119,41 +2263,11 @@ def render_record_section(page: dict) -> str:
         '</form>'
     )
 
-    filtered = bool(topic or position or plain)
-    result = ""
-    if filtered:
-        matching = int(record.get("matching_bills") or 0)
-        line = f"{matching:,} bill{'' if matching == 1 else 's'}" + (f" on {topic}" if topic else "")
-        if position:
-            line += f" · {_MP_POSITION_LABELS[position]}"
-        if plain:
-            line += " · with a plain-English summary"
-        result = f'<p class="result-line">{h(line)}</p>'
-
-    groups = record.get("groups") or []
-    if groups:
-        body = f'<ol class="record-list">{"".join(_mp_group(g) for g in groups)}</ol>'
-    elif filtered:
-        body = '<p class="note">No votes match these filters.</p>'
-    else:
-        body = '<p class="note">We don&#x27;t have this member&#x27;s roll-call record yet.</p>'
-
-    page_no = int(record.get("page") or 1)
-    pages = int(record.get("pages") or 1)
-    pager = ""
-    if pages > 1:
-        links = []
-        if page_no > 1:
-            links.append(f'<a href="{h(_mp_record_href(bioguide, record, page_no - 1))}">← Newer votes</a>')
-        links.append(f'<span class="meta">Page {page_no:,} of {pages:,}</span>')
-        if page_no < pages:
-            links.append(f'<a href="{h(_mp_record_href(bioguide, record, page_no + 1))}">Older votes →</a>')
-        pager = f'<nav class="pager" aria-label="Record pages">{"".join(links)}</nav>'
-
+    tree = record_tree(page)
     return (
         '<section class="section member-record" aria-labelledby="record">'
         f'<h2 id="record" tabindex="-1">{h(heading)}</h2>'
-        f'{result}{"".join(blocks)}{form}{body}{pager}'
+        f'{tree_html(tree["result"])}{"".join(blocks)}{form}{tree_html(tree["list"])}'
         '</section>'
     )
 
