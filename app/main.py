@@ -344,7 +344,7 @@ def _member_meta(member: dict) -> dict:
         "description": f"{name}, {chamber} member from {state}. See their voting record on bills before Congress.",
         "og_type": "profile",
         "url": f"{SITE_URL}/member?id={member.get('bioguideId')}",
-        "image": _og_image("member", member.get("bioguideId")),
+        "image": _og_image("member", member.get("bioguideId"), alt=f"ClearVoting — {name} · {state} · Voting record"),
     }
 
 
@@ -382,7 +382,7 @@ def _state_meta(code: str) -> dict:
             "See how they vote on bills — facts only, no opinions."
         ),
         "url": f"{SITE_URL}/state?code={code}",
-        "image": _og_image("state", code),
+        "image": _og_image("state", code, alt=f"ClearVoting — {state_name} · Voting record"),
     }
 
 
@@ -403,6 +403,26 @@ def _zip_finder_meta() -> dict:
     }
 
 
+_og_dir = static_dir / "og"
+
+
+def _scan_og_entities() -> frozenset[str]:
+    """Phase B share cards present at startup, as 'member/S000148.png' / 'state/NY.png'.
+
+    The weekly sync writes them (scripts/build_og_cards.py --entities) and the deploy
+    restarts the app, so one scan per process is exact. Nothing is rendered per request (C-9).
+    """
+    found: set[str] = set()
+    for kind in ("member", "state"):
+        folder = _og_dir / kind
+        if folder.is_dir():
+            found.update(f"{kind}/{path.name}" for path in folder.glob("*.png"))
+    return frozenset(found)
+
+
+_og_entities = _scan_og_entities()
+
+
 _OG_CARD_ALT = {
     "default": "ClearVoting — Facts only · No opinions · No spin",
     "member": "ClearVoting — Voting record",
@@ -411,13 +431,16 @@ _OG_CARD_ALT = {
 }
 
 
-def _og_image(kind: str, key: str | None = None) -> dict:
-    """The share card for a template (spec §9.3), as the `image` key _inject_meta reads.
+def _og_image(kind: str, key: str | None = None, alt: str | None = None) -> dict:
+    """The share card for a page (spec §9.3), as the `image` key _inject_meta reads.
 
-    Phase A: always the template card static/og/{kind}.png (1200x630). `key` names the
-    entity (bioguide id, state code) so Phase B (T10.1) can pick a per-entity file by
-    changing only `path`. `path` stays site-relative; _inject_meta makes it absolute.
+    Phase B: the entity's own card (static/og/{kind}/{key}.png) when the startup scan found
+    it, described by `alt`; otherwise the Phase A template card static/og/{kind}.png.
+    `path` stays site-relative; _inject_meta makes it absolute.
     """
+    if key and f"{kind}/{key}.png" in _og_entities:
+        return {"path": f"/static/og/{kind}/{key}.png", "width": 1200, "height": 630,
+                "alt": alt or _OG_CARD_ALT[kind]}
     return {"path": f"/static/og/{kind}.png", "width": 1200, "height": 630, "alt": _OG_CARD_ALT[kind]}
 
 

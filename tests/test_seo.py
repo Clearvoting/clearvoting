@@ -462,7 +462,10 @@ _OG_IMAGE_RE = re.compile(r'<meta property="og:image" content="([^"]+)">')
 @pytest.mark.asyncio
 @pytest.mark.parametrize("path,card", OG_PAGES)
 async def test_og_image_points_at_a_committed_card(path, card):
-    response = await _get(path)
+    import app.main as main_module
+    # Phase A fallback only: Phase B per-entity cards (T10.1) are covered by the tests below.
+    with patch.object(main_module, "_og_entities", frozenset()):
+        response = await _get(path)
     assert response.status_code == 200
     html = response.text
     match = _OG_IMAGE_RE.search(html)
@@ -497,6 +500,90 @@ async def test_404_carries_no_share_card():
 @pytest.mark.asyncio
 async def test_og_cards_are_cached_for_a_day_not_immutable():
     response = await _get("/static/og/default.png")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "image/png"
+    assert response.headers["cache-control"] == "public, max-age=86400"
+
+
+# --- og:image Phase B (plan T10.1): per-entity cards when the sync has built them ---
+
+async def _og_get(path: str, entities: frozenset):
+    """GET a page with a chosen set of Phase B cards 'on disk' (main._og_entities is scanned at startup)."""
+    import app.main as main_module
+    from app.dependencies import get_data_service
+    fixtures = Path(__file__).parent / "fixtures" / "synced"
+    with patch.object(main_module, "_og_entities", entities), \
+            patch("app.dependencies.get_data_dir", return_value=fixtures):
+        get_data_service.cache_clear()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get(path)
+    get_data_service.cache_clear()
+    return response
+
+
+@pytest.mark.asyncio
+async def test_member_page_prefers_its_own_card_when_built():
+    response = await _og_get("/member?id=S000148", frozenset({"member/S000148.png"}))
+    assert response.status_code == 200
+    assert 'property="og:image" content="https://clearvoting.org/static/og/member/S000148.png"' in response.text
+    # The alt describes what the per-member card shows: name, state, "Voting record".
+    alt = re.search(r'<meta property="og:image:alt" content="([^"]+)">', response.text).group(1)
+    assert alt.startswith("ClearVoting — ") and "Schumer" in alt
+    assert alt.endswith(" · New York · Voting record")
+
+
+@pytest.mark.asyncio
+async def test_member_page_falls_back_to_the_template_card():
+    response = await _og_get("/member?id=S000148", frozenset())
+    assert 'property="og:image" content="https://clearvoting.org/static/og/member.png"' in response.text
+    assert '<meta property="og:image:alt" content="ClearVoting — Voting record">' in response.text
+    assert "/static/og/member/S000148.png" not in response.text
+
+
+@pytest.mark.asyncio
+async def test_member_card_lookup_uses_the_normalized_id():
+    response = await _og_get("/member?id=s000148", frozenset({"member/S000148.png"}))
+    assert 'content="https://clearvoting.org/static/og/member/S000148.png"' in response.text
+
+
+@pytest.mark.asyncio
+async def test_state_page_prefers_its_own_card_when_built():
+    response = await _og_get("/state?code=ny", frozenset({"state/NY.png"}))
+    assert 'property="og:image" content="https://clearvoting.org/static/og/state/NY.png"' in response.text
+    assert '<meta property="og:image:alt" content="ClearVoting — New York · Voting record">' in response.text
+
+
+@pytest.mark.asyncio
+async def test_state_page_falls_back_to_the_template_card():
+    response = await _og_get("/state?code=NY", frozenset({"member/S000148.png"}))
+    assert 'property="og:image" content="https://clearvoting.org/static/og/state.png"' in response.text
+    assert '<meta property="og:image:alt" content="ClearVoting — Your representatives">' in response.text
+
+
+@pytest.mark.asyncio
+async def test_bill_cards_stay_static():
+    response = await _og_get("/bill?congress=119&type=hr&number=1", frozenset({"member/S000148.png", "state/NY.png"}))
+    assert 'property="og:image" content="https://clearvoting.org/static/og/bill.png"' in response.text
+
+
+def test_og_image_ignores_keys_that_are_not_scanned_files():
+    import app.main as main_module
+    with patch.object(main_module, "_og_entities", frozenset({"member/S000148.png"})):
+        traversal = main_module._og_image("member", "../../etc/passwd", alt="x")
+        assert traversal["path"] == "/static/og/member.png"
+        assert traversal["alt"] == "ClearVoting — Voting record"
+        assert main_module._og_image("member", None)["path"] == "/static/og/member.png"
+        assert main_module._og_image("member")["path"] == "/static/og/member.png"
+        own = main_module._og_image("member", "S000148", alt="ClearVoting — A · B · Voting record")
+        assert own == {"path": "/static/og/member/S000148.png", "width": 1200, "height": 630,
+                       "alt": "ClearVoting — A · B · Voting record"}
+        assert main_module._og_image("member", "S000148")["alt"] == "ClearVoting — Voting record"
+
+
+@pytest.mark.asyncio
+async def test_entity_card_is_served_with_the_one_day_cache():
+    response = await _og_get("/static/og/state/NY.png", frozenset())
     assert response.status_code == 200
     assert response.headers["content-type"] == "image/png"
     assert response.headers["cache-control"] == "public, max-age=86400"

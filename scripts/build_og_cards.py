@@ -6,6 +6,9 @@ Pillow is never added to requirements.txt and nothing renders on the request pat
     /Users/josephgarcia/.clearvote-worktrees/tools/venv-og/bin/python scripts/build_og_cards.py
 """
 import io
+import json
+import re
+import sys
 from pathlib import Path
 
 from fontTools.ttLib import TTFont
@@ -99,5 +102,91 @@ def main() -> None:
         print(f"{path.relative_to(ROOT)}  {path.stat().st_size // 1024} KB")
 
 
+# ---------------------------------------------------------------------------
+# Phase B (cut-first, spec §9.3): one card per member and per state, rebuilt by
+# the weekly sync (`python scripts/build_og_cards.py --entities`). It is the
+# Phase A card (build_card(None): rules, wordmark, tagline, domain) with the
+# descriptor slot holding a kicker line and the member's or state's name.
+# app/main.py _og_image points at these files only when they exist at startup;
+# nothing renders per request.
+# ---------------------------------------------------------------------------
+KICKER_BASELINE = 396
+NAME_BASELINE = 476
+NAME_SIZES = range(76, 43, -4)      # Playfair 700, largest size that fits one line
+_font_cache: dict[tuple[str, int], ImageFont.FreeTypeFont] = {}
+
+
+def cached_font(filename: str, size: int) -> ImageFont.FreeTypeFont:
+    """load_font, decompressed once per (face, size) for the 150-card run."""
+    if (filename, size) not in _font_cache:
+        _font_cache[(filename, size)] = load_font(filename, size)
+    return _font_cache[(filename, size)]
+
+
+def fit_name(draw: ImageDraw.ImageDraw, text: str) -> tuple[ImageFont.FreeTypeFont, bool]:
+    """Largest Playfair 700 size that sets `text` on one line inside the margins; (font, fits)."""
+    for size in NAME_SIZES:
+        font = cached_font("playfair-display-700.woff2", size)
+        if draw.textlength(text, font=font) <= WIDTH - 2 * MARGIN:
+            return font, True
+    return font, False
+
+
+def entity_card(headline: str, kicker: str) -> Image.Image:
+    """Phase A's card with the descriptor line replaced by a tracked kicker and the name."""
+    image = build_card(None)
+    draw = ImageDraw.Draw(image)
+    draw_tracked_centered(draw, KICKER_BASELINE, kicker.upper(), cached_font("inter-700.woff2", 24), INK_META, 3.4)
+    font, _fits = fit_name(draw, headline)
+    draw.text((WIDTH / 2, NAME_BASELINE), headline, font=font, fill=INK, anchor="ms")
+    return image
+
+
+def build_entity_cards(data_dir: Path, out_dir: Path) -> dict[str, int]:
+    """Write member/{id}.png and state/{code}.png for the current roster; delete cards for anyone who left."""
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from app.render import display_name  # stdlib-only module, importable from venv-og
+
+    members = json.loads((data_dir / "members.json").read_text())["members"]
+    member_dir, state_dir = out_dir / "member", out_dir / "state"
+    member_dir.mkdir(parents=True, exist_ok=True)
+    state_dir.mkdir(parents=True, exist_ok=True)
+
+    kept: set[str] = set()
+    states: dict[str, str] = {}
+    for member in members:
+        bioguide = (member.get("bioguideId") or "").upper()
+        code = (member.get("stateCode") or "").upper()
+        if not re.fullmatch(r"[A-Z]\d{6}", bioguide) or not member.get("name") or not re.fullmatch(r"[A-Z]{2}", code):
+            continue
+        state_name = member.get("state") or code
+        name = display_name(member["name"])
+        probe = ImageDraw.Draw(Image.new("RGB", (1, 1)))
+        if not fit_name(probe, name)[1]:
+            print(f"og Phase B: {bioguide} name is wider than the card at 44px: {name}")
+        entity_card(name, f"{state_name} · Voting record").save(member_dir / f"{bioguide}.png", optimize=True)
+        kept.add(bioguide)
+        states[code] = state_name
+    for code, state_name in sorted(states.items()):
+        entity_card(state_name, "Voting record").save(state_dir / f"{code}.png", optimize=True)
+
+    for stale in member_dir.glob("*.png"):
+        if stale.stem not in kept:
+            stale.unlink()
+    for stale in state_dir.glob("*.png"):
+        if stale.stem not in states:
+            stale.unlink()
+    return {"members": len(kept), "states": len(states)}
+
+
+def build_entity_cards_cli() -> int:
+    counts = build_entity_cards(ROOT / "data" / "synced", OUT)
+    print(f"og Phase B: {counts['members']} member cards, {counts['states']} state cards")
+    return 0
+
+
 if __name__ == "__main__":
+    if "--entities" in sys.argv[1:]:
+        sys.exit(build_entity_cards_cli())
     main()

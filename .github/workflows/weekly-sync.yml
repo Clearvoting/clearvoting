@@ -36,7 +36,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt Pillow==12.3.0 fonttools==4.66.0 brotli==1.2.0
 
       - name: Configure git identity
         run: |
@@ -149,3 +149,17 @@ jobs:
         run: |
           git add data/synced/
           git diff --cached --quiet || (git commit -m "data: weekly sync complete [automated]" && git push)
+
+      # og Phase B (cut-first, spec §9.3): per-member and per-state share cards from members.json.
+      # continue-on-error: a card failure must never turn the data sync red or block its commits.
+      - name: Build share cards
+        if: always() && steps.validate_all.outcome == 'success'
+        continue-on-error: true
+        timeout-minutes: 5
+        run: python scripts/build_og_cards.py --entities
+
+      - name: Commit share cards
+        if: always() && steps.validate_all.outcome == 'success'
+        run: |
+          git add static/og/member static/og/state
+          git diff --cached --quiet || (git commit -m "data: rebuild share cards [automated]" && git push)
