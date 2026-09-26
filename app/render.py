@@ -811,8 +811,8 @@ def render_latest_vote_card(vote: dict | None, ai_updated: str | None = None) ->
     heading = '<h2 class="kicker" id="latest-vote-h">The latest vote</h2>'
     if not vote or not vote.get("bill"):
         return (
-            '<aside class="vote-card vote-card--empty" aria-labelledby="latest-vote-h" data-ssr="1">'
-            f"{heading}<p class=\"deck\">The latest vote isn't available right now.</p></aside>"
+            '<section class="vote-card vote-card--empty" aria-labelledby="latest-vote-h" data-ssr="1">'
+            f"{heading}<p class=\"deck\">The latest vote isn't available right now.</p></section>"
         )
     bill = vote["bill"]
     href = _record_href(bill["congress"], bill["type"], bill["number"])
@@ -839,7 +839,7 @@ def render_latest_vote_card(vote: dict | None, ai_updated: str | None = None) ->
     variant = "final" if simple and seal_text.startswith("Adopted by the") else "moving"
     seal = f'<p class="card-seal">{render_seal(seal_text, variant)}</p>' if seal_text else ""
     return (
-        '<aside class="vote-card" aria-labelledby="latest-vote-h" data-ssr="1">'
+        '<section class="vote-card" aria-labelledby="latest-vote-h" data-ssr="1">'
         f"{heading}"
         f'<p class="dateline meta">{h(dateline)}</p>'
         f"{headline}"
@@ -847,7 +847,7 @@ def render_latest_vote_card(vote: dict | None, ai_updated: str | None = None) ->
         f"{seal}"
         f'<a class="arrow-link" href="{h(href)}">{link_text}</a>'
         f"{attribution}"
-        "</aside>"
+        "</section>"
     )
 
 
@@ -976,8 +976,8 @@ def render_home(counts: dict, coverage: dict, vote: dict | None, bills: list | N
     """Home content for <!--content--> (spec §4.1 order): lead + card (m2, m3), the empty
     module-4 mount T4.2 fills for a remembered reader, then the Record (m5). The mount is
     below the finder, so filling it never moves the fold (§9.6). section.lead has no
-    aria-label: a named section is a region landmark, and the spec's aside.vote-card
-    would then be a complementary landmark nested two deep."""
+    aria-label: a named section is a region landmark, and the named section.vote-card
+    would then be a region landmark nested two deep."""
     return (
         '<section class="lead">'
         f"{render_home_lead(counts, coverage)}{render_latest_vote_card(vote, ai_updated)}"
@@ -2342,10 +2342,10 @@ def render_fact_box(page: dict) -> str:
         actions.append(f'<a class="btn btn--secondary" href="{h(congress_url)}" rel="noopener">Congress.gov →</a>')
     # initShare (T2.3) binds .share-btn/[data-share]; the url falls back to <link rel=canonical>.
     actions.append('<button class="btn btn--secondary share-btn" type="button" data-share>Share</button>')
-    return ('<aside class="section fact-box" aria-labelledby="facts-h">'
+    return ('<section class="section fact-box" aria-labelledby="facts-h">'
             '<h2 id="facts-h" class="kicker">About this bill</h2>'
             f'<dl>{facts}</dl><div class="actions">{"".join(actions)}</div>'
-            '<p class="share-status" role="status"></p></aside>')
+            '<p class="share-status" role="status"></p></section>')
 
 
 # --- Bill page roll-call blocks and the reps slot (plan T7.2, spec §4.4 m2–m3, §6.4, §8 item 2) ---

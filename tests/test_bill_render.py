@@ -284,7 +284,7 @@ def test_official_summary_slot_only_with_displayable_summary_and_official_text()
 
 def test_fact_box_uncovered_sponsor_is_plain_text_with_coverage_note():
     html = render.render_fact_box(_page())
-    assert html.startswith('<aside class="section fact-box" aria-labelledby="facts-h">')
+    assert html.startswith('<section class="section fact-box" aria-labelledby="facts-h">')
     assert '<h2 id="facts-h" class="kicker">About this bill</h2>' in html
     assert ("<dt>Sponsor</dt><dd>Rep. Virginia Foxx (NC) — not in ClearVoting's coverage yet</dd>") in html
     assert "[R-" not in html
@@ -535,11 +535,11 @@ def test_bill_page_composition_and_heading_outline():
         "Official summary", "About this bill",
     ]
     assert html.index("How did your representatives vote?") < html.index("The vote, by state")
-    assert html.index('<article class="bill-main">') < html.index('<aside class="section fact-box"')
+    assert html.index('<article class="bill-main">') < html.index('<section class="section fact-box"')
     # The five module wrappers share T2.1's .section role; none uses the .official type role.
     for wrapper in ('<section class="section your-reps"', '<section class="section vote-by-state"',
                     '<section class="section what-it-does"', '<section class="section official-summary-section"',
-                    '<aside class="section fact-box"'):
+                    '<section class="section fact-box"'):
         assert wrapper in html, wrapper
     assert 'class="official"' not in html.split("</header>", 1)[1]
 

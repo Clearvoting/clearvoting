@@ -86,7 +86,7 @@ def test_coverage_sentence_without_the_index_drops_the_since_clause():
 
 def test_card_heading_is_an_h2_styled_as_a_kicker():
     html = render.render_latest_vote_card(VOTE)
-    assert html.startswith('<aside class="vote-card" aria-labelledby="latest-vote-h" data-ssr="1">')
+    assert html.startswith('<section class="vote-card" aria-labelledby="latest-vote-h" data-ssr="1">')
     assert '<h2 class="kicker" id="latest-vote-h">The latest vote</h2>' in html
 
 
@@ -158,7 +158,7 @@ def test_card_order_is_dateline_headline_result_link():
 
 def test_card_unavailable_keeps_the_card_and_heading():
     html = render.render_latest_vote_card(None)
-    assert html.startswith('<aside class="vote-card vote-card--empty"')
+    assert html.startswith('<section class="vote-card vote-card--empty"')
     assert '<h2 class="kicker" id="latest-vote-h">The latest vote</h2>' in html
     assert "The latest vote isn't available right now." in html
 
@@ -273,10 +273,10 @@ def test_record_unavailable_keeps_the_head(bills):
 
 def test_render_home_puts_the_card_after_the_lead_and_the_record_last():
     html = render.render_home(COUNTS, COVERAGE, VOTE, SUMMARIZED, None, LAST_SYNC, AI_UPDATED)
-    # No aria-label: section.lead is not a region landmark, so aside.vote-card nests in main only.
+    # No aria-label: section.lead is not a region landmark, so the named section.vote-card nests in main only.
     assert html.startswith('<section class="lead"><div class="lead-main">')
     assert "aria-label=\"Start here\"" not in html
     # §4.1 modules m2, m3, m4 (mount), m5; §8 item 2 outline.
-    assert (html.index('class="lead-main"') < html.index('<aside class="vote-card"')
+    assert (html.index('class="lead-main"') < html.index('<section class="vote-card"')
             < html.index('</section><div class="home-reps" id="home-reps"></div><section class="record"'))
     assert html.count("<h1") == 1

@@ -49,7 +49,7 @@
 
     /* ---- Latest Vote: "New York: 15 yes · 11 no · 0 didn't vote · Your rep, … — Voted yes" ---- */
     async function addLatestVoteStateLine() {
-        const card = document.querySelector('aside.vote-card[data-ssr="1"]');
+        const card = document.querySelector('section.vote-card[data-ssr="1"]');
         const home = readHome();
         if (!card || card.classList.contains('vote-card--empty') || !home) return;
         let vote;
