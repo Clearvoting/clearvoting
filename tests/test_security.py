@@ -165,6 +165,33 @@ async def test_security_headers_present():
 
 
 @pytest.mark.asyncio
+async def test_csp_allows_only_self_hosted_fonts_and_styles():
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            resp = await client.get("/")
+    _clear_data_service_cache()
+    csp = resp.headers["Content-Security-Policy"]
+    assert "googleapis" not in csp
+    assert "gstatic" not in csp
+    assert "style-src 'self' 'unsafe-inline';" in csp
+    assert "font-src 'self';" in csp
+    assert "img-src 'self' https://www.congress.gov;" in csp
+    assert "script-src 'self';" in csp
+
+
+@pytest.mark.asyncio
+async def test_woff2_is_served_as_a_font_with_immutable_cache():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.get("/static/fonts/inter-400.woff2")
+    assert resp.status_code == 200
+    assert resp.headers["content-type"] == "font/woff2"
+    assert resp.headers["cache-control"] == "public, max-age=31536000, immutable"
+
+
+@pytest.mark.asyncio
 async def test_swagger_and_openapi_disabled():
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:

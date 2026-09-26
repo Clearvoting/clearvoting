@@ -77,7 +77,12 @@ def _contrast(a: str, b: str) -> float:
 # --- site.css (T2.1) ---
 
 def test_site_css_exists_and_stays_under_30_kb():
-    assert SITE_CSS.stat().st_size <= 30 * 1024
+    # The 30 KB budget bounds the stylesheet's rules. T8.3's fixed @font-face preamble
+    # (ten web faces + six metric fallbacks, ~3.1 KB) sits above it and is not counted.
+    css = SITE_CSS.read_text()
+    rules = css[css.index("/* ClearVoting site.css"):]
+    assert "@font-face" not in rules
+    assert len(rules.encode()) <= 30 * 1024
 
 
 def test_one_root_block_holds_the_spec_tokens():
@@ -322,3 +327,100 @@ def test_site_js_binds_the_home_markup_contract():
 def test_person_row_rules_are_declared_once():
     # T2.1 owns the person row; page tasks add deltas, never a second .person rule (plan T4.2).
     assert len(re.findall(r"(?m)^\s*\.person \{", _css())) == 1
+
+
+# --- Self-hosted fonts (T8.3, spec §6.2 / §9.6) ---
+
+FONT_STATIC = Path(__file__).parent.parent / "static"
+FONT_SHELLS = [
+    "index.html", "state.html", "member.html", "bill.html",
+    "about.html", "methodology.html", "privacy.html", "404.html",
+]
+FONT_FILES = [
+    "playfair-display-700.woff2", "playfair-display-800.woff2", "playfair-display-600-italic.woff2",
+    "lora-400.woff2", "lora-400-italic.woff2", "lora-500.woff2",
+    "inter-400.woff2", "inter-500.woff2", "inter-600.woff2", "inter-700.woff2",
+]
+PRELOADED_FONTS = ["playfair-display-700.woff2", "lora-400.woff2", "inter-400.woff2"]
+FONT_STACKS = {
+    '"Playfair Display"': '"Playfair Display", "Playfair Display Fallback", Georgia, serif',
+    '"Lora"': '"Lora", "Lora Fallback", Georgia, serif',
+    '"Inter"': '"Inter", "Inter Fallback", Arial, sans-serif',
+}
+
+
+def _font_css() -> str:
+    return (FONT_STATIC / "css" / "site.css").read_text()
+
+
+def test_font_files_are_committed_woff2_with_the_licence():
+    for name in FONT_FILES:
+        data = (FONT_STATIC / "fonts" / name).read_bytes()
+        assert data[:4] == b"wOF2", name
+        assert len(data) > 5000, name
+    licence = (FONT_STATIC / "fonts" / "OFL.txt").read_text()
+    assert "SIL Open Font License" in licence
+    for family in ("Playfair Display", "Lora", "Inter"):
+        assert family in licence
+
+
+def test_no_google_fonts_reference_anywhere_in_static():
+    for path in FONT_STATIC.rglob("*"):
+        if path.suffix in {".html", ".css", ".js"}:
+            text = path.read_text()
+            assert "fonts.googleapis.com" not in text, path
+            assert "fonts.gstatic.com" not in text, path
+
+
+def test_every_shell_preloads_the_three_first_paint_fonts_before_the_stylesheet():
+    for shell in FONT_SHELLS:
+        html = (FONT_STATIC / shell).read_text()
+        stylesheet_at = html.index("/static/css/site.css")
+        for font in PRELOADED_FONTS:
+            link = f'<link rel="preload" href="/static/fonts/{font}" as="font" type="font/woff2" crossorigin>'
+            assert html.count(link) == 1, (shell, font)
+            assert html.index(link) < stylesheet_at, (shell, font)
+        assert html.count('rel="preload"') == 3, shell
+
+
+def test_site_css_declares_ten_swapped_faces_and_three_fallbacks_first():
+    css = _font_css()
+    assert css.index("@font-face") < css.index(":root")
+    faces = re.findall(r"@font-face\s*\{(.*?)\}", css, re.S)
+    web = [f for f in faces if "url(" in f]
+    fallback = [f for f in faces if "local(" in f]
+    urls = sorted(re.search(r'url\("/static/fonts/([^"]+)"\)', f).group(1) for f in web)
+    assert urls == sorted(FONT_FILES)
+    for face in web:
+        assert "font-display: swap" in face
+        assert 'format("woff2")' in face
+    faces_by_weight = sorted(
+        (re.search(r'font-family:\s*"([^"]+)"', f).group(1), int(re.search(r"font-weight:\s*(\d+)", f).group(1)))
+        for f in fallback
+    )
+    # One fallback per weight the site sets (Inter 600/700 carry kickers, nav, seals,
+    # chips and buttons; Lora 500 the deck), so no swap relies on synthetic bold (F55).
+    assert faces_by_weight == [
+        ("Inter Fallback", 400), ("Inter Fallback", 600), ("Inter Fallback", 700),
+        ("Lora Fallback", 400), ("Lora Fallback", 500),
+        ("Playfair Display Fallback", 700),
+    ]
+    for face in fallback:
+        assert "size-adjust:" in face
+        assert "ascent-override:" in face
+        assert "descent-override:" in face
+        weight = int(re.search(r"font-weight:\s*(\d+)", face).group(1))
+        if '"Inter Fallback"' in face:
+            assert ('local("Arial Bold")' in face) == (weight >= 600), face
+
+
+def test_every_font_stack_names_its_metric_fallback():
+    css = re.sub(r"@font-face\s*\{.*?\}", "", _font_css(), flags=re.S)
+    values = re.findall(r"(?:font-family|--font[\w-]*)\s*:\s*([^;]+);", css)
+    assert values, "site.css declares no font-family"
+    for family, stack in FONT_STACKS.items():
+        assert stack in css, family
+    for value in values:
+        for family, stack in FONT_STACKS.items():
+            if value.strip().startswith(family):
+                assert value.strip() == stack, value

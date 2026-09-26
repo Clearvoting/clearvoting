@@ -1,5 +1,6 @@
 import hashlib
 import logging
+import mimetypes
 import os
 import re
 from datetime import datetime, timezone
@@ -12,6 +13,9 @@ from fastapi.responses import HTMLResponse, PlainTextResponse, RedirectResponse,
 from pathlib import Path
 from slowapi.middleware import SlowAPIMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
+
+# python:3.12-slim has no /etc/mime.types; make sure fonts are served as fonts.
+mimetypes.add_type("font/woff2", ".woff2")
 
 logging.basicConfig(
     level=logging.INFO,
@@ -274,8 +278,8 @@ async def add_security_headers(request: Request, call_next):
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
     response.headers["Content-Security-Policy"] = (
         "default-src 'self'; "
-        "style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; "
-        "font-src 'self' https://fonts.gstatic.com; "
+        "style-src 'self' 'unsafe-inline'; "
+        "font-src 'self'; "
         "img-src 'self' https://www.congress.gov; "
         "script-src 'self'; "
         "connect-src 'self'"
