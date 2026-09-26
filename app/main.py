@@ -344,6 +344,7 @@ def _member_meta(member: dict) -> dict:
         "description": f"{name}, {chamber} member from {state}. See their voting record on bills before Congress.",
         "og_type": "profile",
         "url": f"{SITE_URL}/member?id={member.get('bioguideId')}",
+        "image": _og_image("member", member.get("bioguideId")),
     }
 
 
@@ -360,6 +361,7 @@ def _bill_meta(page: dict) -> dict:
         "description": official or headline,
         "og_type": "article",
         "url": f"{SITE_URL}/bill?congress={page['congress']}&type={page['bill_type']}&number={page['number']}",
+        "image": _og_image("bill"),
     }
 
 
@@ -380,6 +382,7 @@ def _state_meta(code: str) -> dict:
             "See how they vote on bills — facts only, no opinions."
         ),
         "url": f"{SITE_URL}/state?code={code}",
+        "image": _og_image("state", code),
     }
 
 
@@ -396,7 +399,26 @@ def _zip_finder_meta() -> dict:
         ),
         "url": f"{SITE_URL}/state",
         "canonical": False,
+        "image": _og_image("state"),
     }
+
+
+_OG_CARD_ALT = {
+    "default": "ClearVoting — Facts only · No opinions · No spin",
+    "member": "ClearVoting — Voting record",
+    "bill": "ClearVoting — How Congress voted",
+    "state": "ClearVoting — Your representatives",
+}
+
+
+def _og_image(kind: str, key: str | None = None) -> dict:
+    """The share card for a template (spec §9.3), as the `image` key _inject_meta reads.
+
+    Phase A: always the template card static/og/{kind}.png (1200x630). `key` names the
+    entity (bioguide id, state code) so Phase B (T10.1) can pick a per-entity file by
+    changing only `path`. `path` stays site-relative; _inject_meta makes it absolute.
+    """
+    return {"path": f"/static/og/{kind}.png", "width": 1200, "height": 630, "alt": _OG_CARD_ALT[kind]}
 
 
 def _home_content(data_service) -> str:
@@ -433,6 +455,7 @@ def serve_index():
         "description": "Unbiased congressional voting records. See how your representatives vote on bills — facts only, no opinions.",
         "url": f"{SITE_URL}/",
         "h1": "See how your representatives vote.",
+        "image": _og_image("default"),
     }
     content, status = _page_content(lambda: _home_content(get_data_service()), meta)
     return _serve_html("index.html", meta, content, status_code=status)
@@ -546,6 +569,7 @@ def serve_about():
         "h1": "About ClearVoting",
         "description": "Who runs ClearVoting, how it is funded, what it covers and what it does not do.",
         "url": f"{SITE_URL}/about",
+        "image": _og_image("default"),
     }, content, status_code=status)
 
 
@@ -565,6 +589,7 @@ def serve_methodology():
         "description": ("Where ClearVoting's data comes from, what AI writes and the rules it follows, "
                         "what we cover, and a dated corrections log."),
         "url": f"{SITE_URL}/methodology",
+        "image": _og_image("default"),
     }, content, status_code=status)
 
 
@@ -576,6 +601,7 @@ def serve_privacy():
         "description": ("What ClearVoting stores, where and for how long: the notify and feedback forms, "
                         "your browser's storage, logs and the services we use."),
         "url": f"{SITE_URL}/privacy",
+        "image": _og_image("default"),
     })
 
 

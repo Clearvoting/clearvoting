@@ -1,5 +1,6 @@
 import json
 import re
+import struct
 from html import escape
 
 import pytest
@@ -51,7 +52,7 @@ async def test_member_page_meta_injected():
     assert '<meta property="og:description"' in html
     assert '<meta property="og:type" content="profile">' in html
     assert f'<meta property="og:url" content="{SITE}/member?id=S001217">' in html
-    assert '<meta name="twitter:card" content="summary">' in html
+    assert '<meta name="twitter:card" content="summary_large_image">' in html
     assert f'<link rel="canonical" href="{SITE}/member?id=S001217">' in html
     assert html.count("<title>") == 1
 
@@ -436,3 +437,66 @@ async def test_static_html_is_noindex():
     assert response.headers["x-robots-tag"] == "noindex"
     page = await _get("/")
     assert "x-robots-tag" not in page.headers
+
+
+# --- og:image Phase A (T8.4) ---
+
+OG_PAGES = [
+    ("/", "default"),
+    ("/about", "default"),
+    ("/methodology", "default"),
+    ("/privacy", "default"),
+    ("/member?id=S000148", "member"),
+    ("/bill?congress=119&type=hr&number=1", "bill"),
+    ("/state?code=NY", "state"),
+]
+OG_ALT = {
+    "default": "ClearVoting — Facts only · No opinions · No spin",
+    "member": "ClearVoting — Voting record",
+    "bill": "ClearVoting — How Congress voted",
+    "state": "ClearVoting — Your representatives",
+}
+_OG_IMAGE_RE = re.compile(r'<meta property="og:image" content="([^"]+)">')
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path,card", OG_PAGES)
+async def test_og_image_points_at_a_committed_card(path, card):
+    response = await _get(path)
+    assert response.status_code == 200
+    html = response.text
+    match = _OG_IMAGE_RE.search(html)
+    assert match, path
+    assert match.group(1) == f"{SITE}/static/og/{card}.png"
+    data = (STATIC / "og" / f"{card}.png").read_bytes()
+    assert data[:8] == b"\x89PNG\r\n\x1a\n"
+    assert struct.unpack(">II", data[16:24]) == (1200, 630)
+    assert '<meta property="og:image:width" content="1200">' in html
+    assert '<meta property="og:image:height" content="630">' in html
+    assert f'<meta property="og:image:alt" content="{OG_ALT[card]}">' in html
+    assert '<meta name="twitter:card" content="summary_large_image">' in html
+
+
+def test_og_image_path_is_site_relative_and_takes_an_entity_key():
+    from app.main import _og_image
+    # X999999 names no member, so this holds after T10.1's Phase B scan too.
+    assert _og_image("member", "X999999") == {
+        "path": "/static/og/member.png", "width": 1200, "height": 630, "alt": OG_ALT["member"],
+    }
+    for kind in OG_ALT:
+        assert _og_image(kind)["path"] == f"/static/og/{kind}.png"
+
+
+@pytest.mark.asyncio
+async def test_404_carries_no_share_card():
+    response = await _get("/no-such-page")
+    assert response.status_code == 404
+    assert "og:image" not in response.text
+
+
+@pytest.mark.asyncio
+async def test_og_cards_are_cached_for_a_day_not_immutable():
+    response = await _get("/static/og/default.png")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "image/png"
+    assert response.headers["cache-control"] == "public, max-age=86400"
