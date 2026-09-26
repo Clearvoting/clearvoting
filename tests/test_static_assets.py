@@ -5,6 +5,11 @@ Later tasks append their shell and script gates to this file.
 import re
 from pathlib import Path
 
+import pytest
+from httpx import AsyncClient, ASGITransport
+
+from app.main import app
+
 ROOT = Path(__file__).resolve().parent.parent
 STATIC = ROOT / "static"
 SITE_CSS = STATIC / "css" / "site.css"
@@ -424,3 +429,75 @@ def test_every_font_stack_names_its_metric_fallback():
         for family, stack in FONT_STACKS.items():
             if value.strip().startswith(family):
                 assert value.strip() == stack, value
+
+
+# --- Retired assets (plan T9.1; spec §6.7 and §10.3 commit 9) ---
+
+_REPO = Path(__file__).resolve().parent.parent
+_RETIRED_ASSETS = ("static/css/styles.css", "static/css/broadsheet.css", "static/js/viz.js")
+_RETIRED_NAMES = ("styles.css", "broadsheet.css", "viz.js")
+_SHELLS = {
+    "index.html", "state.html", "member.html", "bill.html",
+    "about.html", "methodology.html", "privacy.html", "404.html",
+}
+
+
+def _retired_scan_files():
+    """Every file that could link or load an asset: static HTML/JS/CSS, app code, sync and scripts."""
+    files = [p for p in (_REPO / "static").rglob("*") if p.is_file() and p.suffix in {".html", ".js", ".css"}]
+    files += list((_REPO / "app").rglob("*.py"))
+    files += list((_REPO / "scripts").glob("*.py"))
+    files.append(_REPO / "sync.py")
+    # The retired files themselves name each other in comments; they are what this guard protects against,
+    # not something it scans, so the test passes before and after the deletion.
+    return sorted(p for p in files if p.relative_to(_REPO).as_posix() not in _RETIRED_ASSETS)
+
+
+@pytest.mark.parametrize("rel", _RETIRED_ASSETS)
+def test_retired_asset_is_deleted(rel):
+    assert not (_REPO / rel).exists(), f"retired asset still on disk: {rel}"
+
+
+def test_no_file_references_retired_assets():
+    offenders = []
+    for path in _retired_scan_files():
+        text = path.read_text(encoding="utf-8")
+        for name in _RETIRED_NAMES:
+            if name in text:
+                offenders.append(f"{path.relative_to(_REPO)} mentions {name}")
+    assert offenders == []
+
+
+def test_no_js_calls_the_retired_viz_global():
+    offenders = [
+        str(p.relative_to(_REPO))
+        for p in sorted((_REPO / "static" / "js").glob("*.js"))
+        # viz.js exports window.ClearVoteViz; callers either use it directly or alias it to a local Viz.
+        if p.relative_to(_REPO).as_posix() not in _RETIRED_ASSETS
+        and re.search(r"ClearVoteViz|\bViz\.", p.read_text(encoding="utf-8"))
+    ]
+    assert offenders == []
+
+
+def test_every_shell_links_only_site_css():
+    shells = sorted((_REPO / "static").glob("*.html"))
+    assert {p.name for p in shells} == _SHELLS
+    for shell in shells:
+        text = shell.read_text(encoding="utf-8")
+        tags = re.findall(r"<link\b[^>]*\brel=\"stylesheet\"[^>]*>", text)
+        hrefs = [re.search(r"\bhref=\"([^\"?]+)", tag).group(1) for tag in tags]
+        assert hrefs == ["/static/css/site.css"], f"{shell.name} links {hrefs}"
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("url", [
+    "/static/css/styles.css",
+    "/static/css/broadsheet.css",
+    "/static/js/viz.js",
+])
+async def test_retired_asset_urls_are_not_served(url):
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.get(url)
+    assert response.status_code == 404
+    assert response.headers["cache-control"] == "public, max-age=60"
