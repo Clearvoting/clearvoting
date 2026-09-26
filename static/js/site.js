@@ -966,6 +966,23 @@ function initRecordPaging() {
     }
 }
 
+// Print (cut-first, spec §6.8): open every collapsed <details> that already holds content,
+// and close exactly those again afterwards. Lazy blocks (an empty body until JS fetches
+// their rows, e.g. "All N votes") stay closed, so printing never starts a fetch for them.
+function initPrint() {
+    let opened = [];
+    const hasPrintableBody = (details) => Array.from(details.children).some((child) =>
+        child.tagName !== 'SUMMARY' && child.tagName !== 'NOSCRIPT' && child.textContent.trim() !== '');
+    window.addEventListener('beforeprint', () => {
+        opened = Array.from(document.querySelectorAll('details:not([open])')).filter(hasPrintableBody);
+        opened.forEach((details) => { details.open = true; });
+    });
+    window.addEventListener('afterprint', () => {
+        opened.forEach((details) => { details.open = false; });
+        opened = [];
+    });
+}
+
 /* ---- Page-independent start-up: run once per page, before page enhancers ---- */
 function initSite() {
     removeLegacyPartyKey();
@@ -974,6 +991,7 @@ function initSite() {
     initPhotos();
     initNotify();
     initRecordPaging();
+    initPrint();
 }
 
 if (typeof document !== 'undefined') {

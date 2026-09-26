@@ -501,3 +501,54 @@ async def test_retired_asset_urls_are_not_served(url):
         response = await client.get(url)
     assert response.status_code == 404
     assert response.headers["cache-control"] == "public, max-age=60"
+
+
+# --- Print block (plan T10.3, spec §6.8) ---
+_G10_ROOT = Path(__file__).parent.parent
+_G10_CSS = _G10_ROOT / "static" / "css" / "site.css"
+_G10_JS = _G10_ROOT / "static" / "js" / "site.js"
+_PRINT_HIDDEN = (".masthead-nav", ".edition", ".actions", ".strip", "dialog", ".feedback-btn", ".site-footer nav")
+
+
+def _print_block(css: str) -> str:
+    start = css.find("@media print")
+    assert start != -1, "site.css has no @media print block"
+    depth = 0
+    for i in range(css.index("{", start), len(css)):
+        if css[i] == "{":
+            depth += 1
+        elif css[i] == "}":
+            depth -= 1
+            if depth == 0:
+                return css[start:i + 1]
+    raise AssertionError("unterminated @media print block")
+
+
+def test_print_block_hides_chrome_and_prints_on_white():
+    block = _print_block(_G10_CSS.read_text())
+    for selector in _PRINT_HIDDEN:
+        assert selector in block, selector
+    assert "display: none" in block
+    assert "background: var(--card)" in block
+    assert "a::after" in block and "content: none" in block
+
+
+def test_print_block_has_no_font_size_literals():
+    assert "font-size" not in _print_block(_G10_CSS.read_text())
+
+
+def test_print_block_selectors_match_real_markup():
+    """Every class the print block hides exists in a shell or in a server renderer (the strip is T10.4's)."""
+    sources = "".join(p.read_text() for p in (_G10_ROOT / "static").glob("*.html"))
+    sources += (_G10_ROOT / "app" / "render.py").read_text()
+    for cls in ("masthead-nav", "edition", "actions", "feedback-btn", "site-footer"):
+        assert re.search(rf'class="[^"]*\b{cls}\b', sources), f"no element carries class {cls}"
+
+
+def test_site_js_opens_details_for_print_and_restores_them():
+    source = _G10_JS.read_text()
+    assert "beforeprint" in source and "afterprint" in source
+    # The call inside initSite(), not the declaration: `function initPrint() {` also contains "initPrint()".
+    init_site = source[source.index("function initSite()"):]
+    init_site = init_site[: init_site.index("\n}\n") + 3]
+    assert re.search(r"^\s+initPrint\(\);", init_site, re.M), "initPrint(); is not called from initSite()"

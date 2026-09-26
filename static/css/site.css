@@ -306,8 +306,7 @@ details[open] > summary::before { content: "–"; }
 .results-count { font-family: var(--font-ui); font-size: var(--t-meta); color: var(--ink-meta); }
 .page-error { padding-block: var(--s10); }
 
-/* ---- Delegation page (plan T4.2; spec §4.2). Rows, photos, the ZIP form and field
-   errors are T2.1's rules; this block adds only the lists and the page's own lines. ---- */
+/* ---- Delegation page (plan T4.2; spec §4.2): lists and page lines only ---- */
 .delegation [hidden] { display: none; }
 .reps, .roster { list-style: none; margin: 0; padding: 0; }
 .district-line { margin: var(--s2) 0; font-family: var(--font-ui); font-weight: 500; font-size: var(--t-ui); color: var(--ink); }
@@ -341,13 +340,10 @@ details[open] > summary::before { content: "–"; }
 .member-header .party:not(:empty)::before { content: "· "; }   /* "U.S. Senator · New York · Democratic" on reveal; site.js writes only the name */
 .member-header .actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); }
 .vote-list, .record-list, .sponsored-list { list-style: none; margin: 0; padding: 0; }
-/* One 1px hairline between rows (§6.3): .vote-row/.bill-row carry T2.1's border-top. A record
-   group can be a bill row + <details>, a day's <details> or a Speaker line, so the record
-   list puts the rule on the group instead and drops the row's own. */
+/* One hairline between rows (§6.3): the record puts it on the group, not the row */
 .record-list > li { border-top: 1px solid var(--rule); }
 .record-list .vote-row { border-top: 0; }
-/* §4.3 fold: "Recent votes" is a kicker-styled h2 (the home card's pattern), with a tighter
-   lead-in than a full section so the first row sits inside 812px on a phone. */
+/* §4.3 fold: tighter lead-in so the first recent vote sits inside 812px on a phone */
 #recent.section { margin-top: var(--s6); padding-top: var(--s6); }
 #recent > h2.kicker { margin: 0 0 var(--s2); }
 .recent-caption { margin-top: var(--s3); }
@@ -388,6 +384,13 @@ details[open] > summary::before { content: "–"; }
 .fact-box dl { display: grid; grid-template-columns: max-content 1fr; gap: var(--s2) var(--s4); margin: var(--s3) 0 0; padding-top: var(--s3); border-top: 1px solid var(--rule); }
 .fact-box dt { font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 500; color: var(--ink-meta); }
 .fact-box dd { margin: 0; font-family: var(--font-serif); font-size: var(--t-body); overflow-wrap: anywhere; }
+
+/* Print (cut-first, §6.8): chrome off (!important beats the later 880px rules), white ground, no link suffixes */
+@media print {
+    .masthead-nav, .edition, .actions, .strip, dialog, .feedback-btn, .site-footer nav { display: none !important; }
+    body { background: var(--card); }
+    a::after { content: none; }
+}
 
 @media (min-width: 560px) {
     :root { --t-kicker: 0.75rem; --gutter: 24px; }
