@@ -67,9 +67,7 @@
   line-gap-override: 0.00%;
 }
 
-/* ClearVoting site.css (plan T2.1; spec §6). Mobile-first; tokens in one :root;
-   sizes via var(--t-*), colours via tokens; page rules go above the two
-   breakpoint blocks at the end. */
+/* ClearVoting site.css (T2.1, spec §6): mobile-first, one :root, breakpoints last */
 
 :root {
     --paper: #F5F6FA; --card: #FFFFFF; --ink: #1B1B1B; --ink-soft: #5B616B; --ink-meta: #5F656D;
@@ -82,20 +80,20 @@
     --font-display: "Playfair Display", "Playfair Display Fallback", Georgia, serif;
     --font-serif: "Lora", "Lora Fallback", Georgia, serif;
     --font-ui: "Inter", "Inter Fallback", Arial, sans-serif;
-    /* --t-kicker is the ≤560 value; the 560 block sets 0.75rem (§6.2) */
+    /* ≤560 kicker (§6.2) */
     --t-kicker: 0.8125rem; --t-meta: 0.8rem; --t-ui: 0.875rem; --t-body: 1rem;
     --t-official: 1.05rem; --t-lede: 1.125rem; --t-row: 1.15rem; --t-h3: 1.35rem;
     --t-h2: clamp(1.45rem, 3vw, 2rem);
     --t-display: clamp(2rem, 5vw, 3.2rem);
     --t-logo: clamp(1.6rem, 4.5vw, 2.4rem);
-    /* Spacing (§6.3): a 4px scale */
+    /* 4px scale */
     --s1: 0.25rem; --s2: 0.5rem; --s3: 0.75rem; --s4: 1rem; --s6: 1.5rem;
     --s8: 2rem; --s10: 2.5rem; --s12: 3rem; --s16: 4rem;
     --tap: 44px; --radius-chip: 4px; --radius-ctl: 8px;
     --gutter: 16px; --max: 1100px;
 }
 
-/* ---- Base ---- */
+/* Base */
 *, *::before, *::after { box-sizing: border-box; }
 html { color-scheme: light; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-serif); font-size: var(--t-body); line-height: 1.6; }
@@ -118,7 +116,7 @@ h3 { font-family: var(--font-display); font-weight: 700; font-size: var(--t-h3);
 
 main { display: block; max-width: var(--max); margin: 0 auto; padding: var(--s6) var(--gutter) var(--s12); }
 
-/* ---- Masthead and edition line (§6.3, §7.4) ---- */
+/* Masthead, edition line (§6.3, §7.4) */
 .masthead { padding: var(--s1) var(--gutter) 0; text-align: center; }
 .logo { display: inline-flex; align-items: center; min-height: var(--tap); font-family: var(--font-display); font-weight: 800; font-size: var(--t-logo); line-height: 1; color: var(--navy); text-decoration: none; }
 .logo span { font-style: italic; font-weight: 600; color: var(--blue); }
@@ -130,7 +128,7 @@ main { display: block; max-width: var(--max); margin: 0 auto; padding: var(--s6)
 .edition { max-width: var(--max); margin: 0 auto; padding: var(--s1) var(--gutter); text-align: center; font-family: var(--font-ui); font-size: var(--t-meta); color: var(--ink-meta); }
 .edition-mid { display: none; }
 
-/* ---- Type roles (§6.2) ---- */
+/* Type roles (§6.2) */
 .kicker { font-family: var(--font-ui); font-size: var(--t-kicker); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-meta); }
 a.kicker, .kicker a { color: var(--blue-dim); }
 .deck { font-size: var(--t-lede); line-height: 1.5; color: var(--ink-soft); }
@@ -145,13 +143,13 @@ a.kicker, .kicker a { color: var(--blue-dim); }
 .provisions li::before { content: "§"; position: absolute; left: 0; font-family: var(--font-display); color: var(--blue); }
 .note { margin: var(--s4) 0; padding: var(--s3) var(--s4); background: var(--card); border-left: 3px solid var(--navy); }
 
-/* ---- Status seal (§6.4, §7.2) ---- */
+/* Status seal (§6.4) */
 .seal, .seal--moving { display: inline-block; padding: 0.2rem var(--s2); border: 1px solid var(--navy); border-radius: var(--radius-chip); font-family: var(--font-ui); font-size: var(--t-kicker); font-weight: 700; letter-spacing: 0.06em; line-height: 1.3; text-transform: uppercase; color: var(--navy); background: transparent; }
 .seal--final { background: var(--navy); color: var(--card); }
 .seal--pending { border-style: dashed; border-color: var(--ink-meta); color: var(--ink-meta); }
 .seal--ballot { border-color: var(--ink-meta); color: var(--ink-meta); }
 
-/* ---- Vote chip: the only place red and green text appear (§6.4, §6.5) ---- */
+/* Vote chip: the only red/green text (§6.5) */
 .chip { display: inline-flex; align-items: center; padding: var(--s1) var(--s2); border: 1px solid currentColor; border-radius: var(--radius-chip); font-family: var(--font-ui); font-size: var(--t-kicker); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.2; white-space: nowrap; color: var(--ink); background: var(--paper); }
 .chip--yes { color: var(--yes-text); background: var(--yes-tint); }
 .chip--no { color: var(--no-text); background: var(--no-tint); }
@@ -160,7 +158,7 @@ a.kicker, .kicker a { color: var(--blue-dim); }
 .chip--absent { color: var(--ink-meta); border-style: dotted; background: transparent; }
 .chip[data-short] { padding: 0.15rem var(--s2); }
 
-/* ---- Tally bar (§6.4): the only place the green fill appears ---- */
+/* Tally bar: the only green fill (§6.4) */
 .tally { margin: var(--s2) 0; }
 .tally-track { display: flex; height: 10px; overflow: hidden; background: var(--rule-soft); }
 .tally-seg { display: block; height: 100%; }
@@ -170,7 +168,7 @@ a.kicker, .kicker a { color: var(--blue-dim); }
 .tally-yes { font-weight: 700; color: var(--yes); }
 .tally-no { font-weight: 700; color: var(--no); }
 
-/* ---- Rows: vote, bill, person (§6.4). Rows hold no headings. ---- */
+/* Rows: vote, bill, person (§6.4); no headings */
 .vote-row, .bill-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s1); min-height: var(--tap); padding: var(--s4) 0; border-top: 1px solid var(--rule); color: inherit; text-decoration: none; }
 .vote-row > .chip, .vote-row > .seal { justify-self: start; }
 .row-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1) var(--s2); }
@@ -191,13 +189,13 @@ a.person:hover .person-name, a.person-name:hover { color: var(--blue-dim); text-
 .party, .speaker-pick { font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 600; color: var(--ink-soft); }
 .party:empty, .speaker-pick:empty { display: none; }
 
-/* ---- Photo over the initials block (§6.3) ---- */
+/* Photo over initials (§6.3) */
 .photo { position: relative; display: block; flex: none; width: 56px; height: 56px; overflow: hidden; border: 1px solid var(--rule); border-radius: var(--radius-chip); background: var(--rule-soft); }
 .photo::before { content: attr(data-initials); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: var(--t-row); color: var(--navy); }
 .photo img { position: relative; width: 100%; height: 100%; object-fit: cover; color: transparent; }
 .photo--header { width: 64px; height: 64px; }
 
-/* ---- Roll-call table: one structure at every width (§6.4) ---- */
+/* Roll-call table (§6.4) */
 table.rc { width: 100%; border-collapse: collapse; font-family: var(--font-ui); font-size: var(--t-ui); }
 .rc caption { padding: var(--s2) 0; caption-side: top; text-align: left; font-size: var(--t-meta); color: var(--ink-meta); }
 .rc th, .rc td { padding: var(--s2) 0; border-top: 1px solid var(--rule); text-align: left; vertical-align: top; }
@@ -207,7 +205,7 @@ table.rc { width: 100%; border-collapse: collapse; font-family: var(--font-ui); 
 .rc td, .rc thead th:last-child { padding-left: var(--s3); text-align: right; white-space: nowrap; }
 .rc-seat { display: block; font-size: var(--t-meta); font-weight: 400; color: var(--ink-meta); }
 
-/* ---- Buttons and controls (§6.4) ---- */
+/* Buttons and controls (§6.4) */
 .btn, .btn--secondary { display: inline-flex; align-items: center; justify-content: center; gap: var(--s2); min-height: 48px; padding: 0 var(--s6); border: 1px solid var(--navy); border-radius: var(--radius-ctl); background: var(--navy); color: var(--card); font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 600; line-height: 1.2; text-align: center; text-decoration: none; cursor: pointer; }
 .btn:hover { background: var(--blue-dim); border-color: var(--blue-dim); color: var(--card); }
 .btn:disabled { background: var(--ink-meta); border-color: var(--ink-meta); cursor: default; }
@@ -218,7 +216,7 @@ table.rc { width: 100%; border-collapse: collapse; font-family: var(--font-ui); 
 .party-status, .share-status, .remember-status { font-family: var(--font-ui); font-size: var(--t-meta); color: var(--ink-meta); }
 .remembered-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s2); margin-top: var(--s3); }
 
-/* ---- Forms (§6.4 form field; 16px controls, no iOS zoom) ---- */
+/* Forms: 16px controls, no iOS zoom (§6.4) */
 label, .zip-label { display: block; margin-bottom: var(--s1); font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 600; color: var(--navy); }
 input:not([type="checkbox"]):not([type="radio"]), select, textarea { width: 100%; min-height: 48px; padding: 0 var(--s3); border: 1px solid var(--ink-meta); border-radius: var(--radius-ctl); background: var(--card); color: var(--ink); font-family: var(--font-ui); font-size: var(--t-body); }
 textarea { min-height: 8rem; padding: var(--s3); line-height: 1.5; resize: vertical; }
@@ -231,19 +229,19 @@ input[type="checkbox"] { width: 1.25rem; height: 1.25rem; accent-color: var(--na
 .field-error:empty { display: none; }
 fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
 
-/* ---- Disclosure (§6.4): native details, 44px summary, +/– glyph ---- */
+/* Disclosure: details, 44px summary (§6.4) */
 details > summary { display: flex; align-items: center; gap: var(--s2); min-height: var(--tap); list-style: none; font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 600; color: var(--navy); cursor: pointer; }
 details > summary::-webkit-details-marker { display: none; }
 details > summary::before { content: "+"; display: inline-block; width: 1ch; font-weight: 700; color: var(--ink-meta); }
 details[open] > summary::before { content: "–"; }
 
-/* ---- The two interactive cards: the only box-shadows (§6.3) ---- */
+/* Cards: the only box-shadows (§6.3) */
 .state-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s2); }
 .state-link { display: flex; align-items: center; justify-content: space-between; gap: var(--s2); min-height: var(--tap); padding: var(--s2) var(--s3); background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-ctl); box-shadow: var(--shadow-card); font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 600; color: var(--navy); text-decoration: none; }
 .state-link:hover { border-color: var(--blue); color: var(--navy); }
 .vote-card { padding: var(--s4); background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-ctl); box-shadow: var(--shadow-card); }
 
-/* ---- Footer and feedback (§6.4) ---- */
+/* Footer and feedback (§6.4) */
 .site-footer { margin-top: var(--s12); padding: var(--s6) var(--gutter) var(--s8); border-top: 3px double var(--navy); background: var(--card); text-align: center; color: var(--ink-soft); }
 .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 var(--s2); }
 .footer-links a, .footer-links button, .site-footer #feedback-open { display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 var(--s2); border: 0; background: none; font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 500; color: var(--blue); text-decoration: underline; cursor: pointer; }
@@ -262,12 +260,22 @@ details[open] > summary::before { content: "–"; }
 #feedback-status { margin-top: var(--s3); font-family: var(--font-ui); font-size: var(--t-ui); color: var(--ink); }
 #feedback-status.field-error { color: var(--error); }
 
-/* ---- Motion (§6.6): nothing animates in; reduced motion zeroes the rest ---- */
+/* Sticky strip (§6.4): no CLS */
+.strip { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; gap: var(--s2); min-height: var(--tap); padding: 0 var(--s4); background: var(--paper); border-bottom: 1px solid var(--rule); font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 500; transform: translateY(-100%); visibility: hidden; transition: transform 0.15s ease, visibility 0s linear 0.15s; }
+.strip.is-shown { transform: none; visibility: visible; transition: transform 0.15s ease; }
+.strip-label { flex: auto; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.strip > :not(.strip-label) { flex: none; }
+.strip-sep { color: var(--ink-meta); }
+.strip-links { display: flex; gap: var(--s1); }
+.strip-links a { display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 var(--s2); }
+html:has(> body > .strip) { scroll-padding-top: 56px; }
+
+/* Motion (§6.6): reduced motion zeroes it */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; scroll-behavior: auto !important; }
 }
 
-/* ---- Home (plan T3.3, spec §4.1): only what T2.1 does not already define ---- */
+/* Home (T3.3, §4.1) */
 .lead { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s8); padding-block: 0 var(--s6); }
 .lead-main h1 { margin: var(--s2) 0 var(--s3); }
 .lead-main .deck { margin-bottom: var(--s4); }
@@ -306,15 +314,14 @@ details[open] > summary::before { content: "–"; }
 .results-count { font-family: var(--font-ui); font-size: var(--t-meta); color: var(--ink-meta); }
 .page-error { padding-block: var(--s10); }
 
-/* ---- Delegation page (plan T4.2; spec §4.2): lists and page lines only ---- */
+/* Delegation page (T4.2, §4.2) */
 .delegation [hidden] { display: none; }
 .reps, .roster { list-style: none; margin: 0; padding: 0; }
 .district-line { margin: var(--s2) 0; font-family: var(--font-ui); font-weight: 500; font-size: var(--t-ui); color: var(--ink); }
 .district-line a, .source-link { display: inline-flex; align-items: center; min-height: var(--tap); font-family: var(--font-ui); }
 .yours, .senate, .house, .state-foot { margin-top: var(--s10); }
 
-/* ---- Breakpoints: declared once, here, at the end (§6.3) ---- */
-/* Trust pages: About, Methodology, Privacy, and the 404 body (plan Task T5.1) */
+/* Trust pages and 404 (T5.1) */
 .trust, .notfound { max-width: 42rem; margin-inline: auto; padding-block: var(--s8) var(--s12); overflow-wrap: anywhere; }
 .trust > section { border-top: 3px double var(--navy); margin-top: var(--s10); padding-top: var(--s10); }
 .trust > section > h2 { margin-bottom: var(--s6); }
@@ -323,13 +330,13 @@ details[open] > summary::before { content: "–"; }
 .trust p + p, .trust p + ul, .trust p + ol, .trust ul + p, .trust ol + p { margin-top: var(--s3); }
 .trust ul, .trust ol { padding-left: var(--s6); }
 .trust li + li { margin-top: var(--s2); }
-.trust .rules { list-style: decimal; }  /* ol[class] resets list-style; the rule numbers match the prompt */
+.trust .rules { list-style: decimal; }  /* beats ol[class] */
 .trust .meta { font-size: var(--t-meta); color: var(--ink-meta); }
 .trust code { font-size: var(--t-ui); }
 .trust .btn { margin-top: var(--s4); }
 .notfound .deck { margin-bottom: var(--s6); }
 
-/* --- Member page (§4.3; plan T6.3) --- */
+/* Member page (§4.3, T6.3) */
 .crumb { margin: var(--s4) 0 var(--s2); }
 .crumb a { display: inline-flex; align-items: center; min-height: var(--tap); font-size: var(--t-ui); font-weight: 500; }
 .member-header { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: var(--s3) var(--s4); align-items: start; padding-bottom: var(--s6); }
@@ -337,13 +344,13 @@ details[open] > summary::before { content: "–"; }
 .member-header .photo img { width: 64px; height: 64px; }
 .member-header h1 { margin: var(--s1) 0 var(--s2); }
 .member-header .facts { margin: 0 0 var(--s2); }
-.member-header .party:not(:empty)::before { content: "· "; }   /* "U.S. Senator · New York · Democratic" on reveal; site.js writes only the name */
+.member-header .party:not(:empty)::before { content: "· "; }  /* site.js writes the name */
 .member-header .actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); }
 .vote-list, .record-list, .sponsored-list { list-style: none; margin: 0; padding: 0; }
-/* One hairline between rows (§6.3): the record puts it on the group, not the row */
+/* One hairline per group, not per row (§6.3) */
 .record-list > li { border-top: 1px solid var(--rule); }
 .record-list .vote-row { border-top: 0; }
-/* §4.3 fold: tighter lead-in so the first recent vote sits inside 812px on a phone */
+/* §4.3 fold: first recent vote inside 812px */
 #recent.section { margin-top: var(--s6); padding-top: var(--s6); }
 #recent > h2.kicker { margin: 0 0 var(--s2); }
 .recent-caption { margin-top: var(--s3); }
@@ -368,7 +375,7 @@ details[open] > summary::before { content: "–"; }
 .bill-header h1.official { font-family: var(--font-serif); font-weight: 500; font-size: var(--t-h3); line-height: 1.35; color: var(--ink); }
 .bill-header .deck { font-family: var(--font-serif); font-weight: 500; }
 .bill-header .outcome, .rc-block .outcome, .rc-more .outcome { font-family: var(--font-serif); font-size: var(--t-lede); color: var(--ink); margin: var(--s3) 0; }
-/* Fold (§6.9 #6): the reps heading stays inside 812px. */
+/* Fold (§6.9 #6) */
 .bill-main .your-reps.section { margin-top: var(--s6); padding-top: var(--s6); }
 .section-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s3); }
 .your-reps-list { display: grid; }
@@ -385,7 +392,7 @@ details[open] > summary::before { content: "–"; }
 .fact-box dt { font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 500; color: var(--ink-meta); }
 .fact-box dd { margin: 0; font-family: var(--font-serif); font-size: var(--t-body); overflow-wrap: anywhere; }
 
-/* Print (cut-first, §6.8): chrome off (!important beats the later 880px rules), white ground, no link suffixes */
+/* Print (§6.8): !important beats the later 880px rules */
 @media print {
     .masthead-nav, .edition, .actions, .strip, dialog, .feedback-btn, .site-footer nav { display: none !important; }
     body { background: var(--card); }

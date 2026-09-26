@@ -2659,3 +2659,44 @@ def render_bill_page(page: dict, ai_summaries_updated: str | None) -> str:
             + render_what_it_does(page, ai_summaries_updated) + render_official_summary_slot(page))
     return (f'<div class="bill-grid" data-ssr="1" data-bill="{h(page["bill_id"])}">'
             f'<article class="bill-main">{main}</article>{render_fact_box(page)}</div>')
+
+
+# --- Sticky strip (cut-first, spec §6.4 / C-5) ---------------------------------
+# One per member and bill page, a direct child of <body> (inserted at the shells'
+# <!--strip--> marker). Hidden until site.js initStrip shows it after the header
+# leaves the viewport; transform + visibility only, so it never shifts layout.
+_HEAD_SEAL_RE = re.compile(r'class="seal seal--(?:final|moving)"[^>]*>([^<]+)<')
+
+
+def render_strip(label: str, links=(), share: bool = False) -> str:
+    parts = [f'<p class="strip-label">{h(label)}</p>']
+    if links:
+        items = '<span class="strip-sep" aria-hidden="true">·</span>'.join(
+            f'<a href="#{h(anchor)}">{h(text)}</a>' for anchor, text in links
+        )
+        parts.append('<span class="strip-sep" aria-hidden="true">·</span>')
+        parts.append(f'<nav class="strip-links" aria-label="On this page">{items}</nav>')
+    if share:
+        parts.append('<span class="strip-sep" aria-hidden="true">·</span>')
+        parts.append('<button type="button" class="btn--secondary strip-share" data-strip-share>Share</button>')
+    return f'<div class="strip">{"".join(parts)}</div>'
+
+
+def render_member_strip(name: str, content_html: str) -> str:
+    """'{Name} · Recent votes · Record': links only to modules the page actually rendered."""
+    links = [(anchor, text) for anchor, text in (("recent", "Recent votes"), ("record", "Record"))
+             if f'id="{anchor}"' in content_html]
+    return render_strip(name, links)
+
+
+def _head_seal_text(content_html: str) -> str | None:
+    """The bill head's status seal, read back from the rendered page so the strip says exactly what the head says."""
+    main_start = content_html.find("<main")
+    match = _HEAD_SEAL_RE.search(content_html, main_start if main_start != -1 else 0)
+    return html.unescape(match.group(1)).strip() if match else None
+
+
+def render_bill_strip(code: str, content_html: str) -> str:
+    """'H.R. 4795 · Passed the House 237–169 · Share'."""
+    seal = _head_seal_text(content_html)
+    return render_strip(f"{code} · {seal}" if seal else code, share=True)

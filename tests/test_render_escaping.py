@@ -10,6 +10,7 @@ import pytest
 
 from app import render
 from app.render import N, display_name, format_bill_code, h, sponsor_name, tree_html
+from app.render import render_bill_strip, render_member_strip, render_strip
 from tests.test_state_render import FakeDS, member_raw
 
 HOSTILE = [
@@ -26,6 +27,9 @@ RENDERERS = {
     "h(sponsor_name)": lambda p: h(sponsor_name(
         {"fullName": f"Rep. {p}", "firstName": p, "lastName": p, "state": "NY"})),
     "tree_html": lambda p: tree_html(N("p", {"class": p}, p)),
+    "render_strip": lambda p: render_strip(p, [(p, p)], share=True),
+    "render_member_strip": lambda p: render_member_strip(p, '<h2 id="record" tabindex="-1">'),
+    "render_bill_strip": lambda p: render_bill_strip(p, f'<main><span class="seal seal--final">{h(p)}</span>'),
 }
 
 

@@ -199,7 +199,8 @@ def _page_content(build, meta: dict) -> tuple[str, int]:
         return render.render_error(h1), 503
 
 
-def _serve_html(filename: str, meta: dict | None = None, content_html: str | None = None, status_code: int = 200) -> HTMLResponse:
+def _serve_html(filename: str, meta: dict | None = None, content_html: str | None = None,
+                status_code: int = 200, *, strip_html: str = "") -> HTMLResponse:
     """Serve a shell: cache-bust versions, SEO meta, then the edition line and server-rendered content (plan T3.1)."""
     html = (static_dir / filename).read_text()
     html = _version_re.sub(f"?v={_asset_version}", html)
@@ -209,7 +210,8 @@ def _serve_html(filename: str, meta: dict | None = None, content_html: str | Non
     if "<!--edition-->" in html:
         html = html.replace("<!--edition-->", _edition_html(), 1)
     # Content last: the ?v= rewrite, <title>/</head> injection and freshness fill never
-    # see server-rendered data (spec §9.1, §9.2).
+    # see server-rendered data (spec §9.1, §9.2). The strip (T10.4) carries data too.
+    html = html.replace("<!--strip-->", strip_html, 1)
     if content_html is not None:
         html = html.replace("<!--content-->", content_html, 1)
     return HTMLResponse(html, status_code=status_code)
@@ -521,7 +523,9 @@ def serve_member(request: Request):
         return render.render_member_page(page)
 
     content, status = _page_content(build, meta)
-    return _serve_html("member.html", meta, content, status_code=status)
+    strip = (render.render_member_strip(render.display_name(detail["member"].get("name") or ""), content)
+             if status == 200 else "")
+    return _serve_html("member.html", meta, content, status_code=status, strip_html=strip)
 
 
 @app.get("/bill")
@@ -549,7 +553,9 @@ def serve_bill(request: Request):
         lambda: render_bill_page(page, data_service.get_sync_metadata().get("ai_summaries_updated")),
         {**meta, "h1": format_bill_code(page["bill_type"], page["number"])},
     )
-    return _serve_html("bill.html", meta, content, status_code=status)
+    strip = (render.render_bill_strip(render.format_bill_code(bill_type, number), content)
+             if status == 200 else "")
+    return _serve_html("bill.html", meta, content, status_code=status, strip_html=strip)
 
 
 def _trust_counts() -> dict:

@@ -567,3 +567,30 @@ def test_print_skips_lazy_and_form_details():
         assert re.search(rf'<details class="{cls}"[^>]*data-url=', render), f"{cls} lost its data-url marker"
     assert '<details class="official-full" data-summary-slot>' in render
     assert re.search(r'<details class="notify-disclosure">.{0,80}<form', render, re.S)
+
+
+# --- Sticky strip (plan T10.4) ---
+def test_member_and_bill_shells_carry_the_strip_marker():
+    root = Path(__file__).parent.parent / "static"
+    for shell in ("member.html", "bill.html"):
+        text = (root / shell).read_text()
+        assert text.count("<!--strip-->") == 1
+        assert text.index("<!--strip-->") < text.index("<header")
+
+
+def test_strip_css_shows_without_layout_shift():
+    css = (Path(__file__).parent.parent / "static" / "css" / "site.css").read_text()
+    rule = css[css.index(".strip {"): css.index("}", css.index(".strip {"))]
+    for decl in ("position: fixed", "top: 0", "transform: translateY(-100%)", "visibility: hidden"):
+        assert decl in rule, decl
+    assert ".strip.is-shown" in css
+    assert "scroll-padding-top: 56px" in css
+    assert "box-shadow" not in rule
+
+
+def test_site_js_starts_the_strip_from_init_site():
+    source = (Path(__file__).parent.parent / "static" / "js" / "site.js").read_text()
+    init_site = source[source.index("function initSite()"):]
+    init_site = init_site[: init_site.index("\n}\n") + 3]
+    # The call, not the declaration: `function initStrip() {` also contains "initStrip()".
+    assert re.search(r"^\s+initStrip\(\);", init_site, re.M), "initStrip(); is not called from initSite()"

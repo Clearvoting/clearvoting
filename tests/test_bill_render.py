@@ -688,3 +688,40 @@ async def test_bill_route_serves_the_error_state_when_rendering_fails():
     assert "We couldn't load this page right now." in response.text
     assert "<h1>H.J.Res. 20</h1>" in response.text
     assert '<header class="masthead">' in response.text
+
+
+# --- Sticky strip (plan T10.4, spec §6.4) ---
+_STRIP_FIXTURES = Path(__file__).parent / "fixtures" / "synced"
+
+
+async def _strip_get(path: str):
+    from app.dependencies import get_data_service
+    from app.main import app
+    with patch("app.dependencies.get_data_dir", return_value=_STRIP_FIXTURES):
+        get_data_service.cache_clear()
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            response = await client.get(path)
+    get_data_service.cache_clear()
+    return response
+
+
+def _strip_block(html: str) -> str:
+    start = html.index('<div class="strip"')
+    return html[start: html.index("</div>", start) + len("</div>")]
+
+
+@pytest.mark.asyncio
+async def test_bill_strip_repeats_the_head_seal_and_offers_share():
+    html = (await _strip_get("/bill?congress=119&type=hr&number=1")).text
+    main = html[html.index('<main id="main-content"'):]
+    seal = re.search(r'class="seal seal--(?:final|moving)"[^>]*>([^<]+)<', main).group(1)
+    strip = _strip_block(html)
+    assert f'<p class="strip-label">H.R. 1 · {seal}</p>' in strip
+    assert '<button type="button" class="btn--secondary strip-share" data-strip-share>Share</button>' in strip
+    assert html.index('<div class="strip"') < html.index('<main id="main-content"')
+
+
+def test_bill_strip_without_a_status_seal_shows_the_code_only():
+    from app.render import render_bill_strip
+    strip = render_bill_strip("H.R. 4795", '<main><span class="seal seal--pending">No plain-English summary yet</span></main>')
+    assert '<p class="strip-label">H.R. 4795</p>' in strip

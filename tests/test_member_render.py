@@ -6,8 +6,10 @@ donations.json, roll-call files). Fixture- and real-data tests are added by T6.2
 import html
 import re
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
+from httpx import AsyncClient, ASGITransport
 
 from app import render
 
@@ -859,3 +861,56 @@ def test_member_js_is_a_thin_csp_safe_enhancer():
     # WCAG 3.2.2: changing a filter control never navigates; the Filter button submits.
     assert "requestSubmit" not in js and ".submit()" not in js
     assert "addEventListener('change'" not in js
+
+
+# --- Sticky strip (plan T10.4, spec §6.4) ---
+_STRIP_FIXTURES = Path(__file__).parent / "fixtures" / "synced"
+
+
+async def _strip_get(path: str):
+    from app.dependencies import get_data_service
+    from app.main import app
+    with patch("app.dependencies.get_data_dir", return_value=_STRIP_FIXTURES):
+        get_data_service.cache_clear()
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            response = await client.get(path)
+    get_data_service.cache_clear()
+    return response
+
+
+def _strip_block(html: str) -> str:
+    start = html.index('<div class="strip"')
+    return html[start: html.index("</div>", start) + len("</div>")]
+
+
+@pytest.mark.asyncio
+async def test_member_strip_is_one_body_child_before_the_masthead():
+    html = (await _strip_get("/member?id=S000148")).text
+    assert html.count('<div class="strip"') == 1
+    strip_at = html.index('<div class="strip"')
+    assert html.index("<body") < strip_at < html.index("<header") < html.index('<main id="main-content"')
+
+
+@pytest.mark.asyncio
+async def test_member_strip_names_the_member_and_links_in_page():
+    html = (await _strip_get("/member?id=S000148")).text
+    strip = _strip_block(html)
+    assert '<p class="strip-label">Charles E. Schumer</p>' in strip
+    assert '<a href="#recent">Recent votes</a>' in strip
+    assert '<a href="#record">Record</a>' in strip
+    # T6.1's section id and its labelling heading are unchanged (aria-labelledby still resolves).
+    assert 'id="recent" aria-labelledby="recent-h"' in html and 'id="recent-h"' in html
+    assert 'id="record"' in html
+    assert "Democratic" not in strip and "Share" not in strip
+
+
+def test_member_strip_drops_links_to_modules_that_did_not_render():
+    from app.render import render_member_strip
+    strip = render_member_strip("Charles E. Schumer", '<h2 id="record" tabindex="-1">Votes</h2>')
+    assert 'href="#recent"' not in strip and '<a href="#record">Record</a>' in strip
+
+
+def test_strip_escapes_its_label():
+    from app.render import render_strip
+    strip = render_strip('<script>alert(1)</script>"><img src=x>', [("record", "Record")])
+    assert "<script>" not in strip and "<img" not in strip

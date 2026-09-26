@@ -986,6 +986,27 @@ function initPrint() {
     });
 }
 
+// Sticky strip (cut-first, spec §6.4): shown once the page header has scrolled out of view.
+// The strip's Share forwards to the page's own Share button, so initShare's handler, share data
+// and "Link copied" status line are the only share code (navigator.share keeps the user activation).
+function initStrip() {
+    const strip = document.querySelector('body > .strip');
+    const header = document.querySelector('.member-header, .bill-header');
+    if (!strip || !header || !('IntersectionObserver' in window)) return;
+    const share = strip.querySelector('[data-strip-share]');
+    if (share) {
+        share.addEventListener('click', () => {
+            const target = Array.from(document.querySelectorAll('main button'))
+                .find((button) => button.textContent.trim() === 'Share');
+            if (target) target.click();
+        });
+    }
+    new IntersectionObserver((entries) => {
+        const entry = entries[entries.length - 1];
+        strip.classList.toggle('is-shown', !entry.isIntersecting && entry.boundingClientRect.top < 0);
+    }).observe(header);
+}
+
 /* ---- Page-independent start-up: run once per page, before page enhancers ---- */
 function initSite() {
     removeLegacyPartyKey();
@@ -995,6 +1016,7 @@ function initSite() {
     initNotify();
     initRecordPaging();
     initPrint();
+    initStrip();
 }
 
 if (typeof document !== 'undefined') {
