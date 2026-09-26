@@ -5,7 +5,25 @@
 **URL:** ClearVoting.org
 **Elevated:** Co-primary project (Mar 2026) based on LinkedIn traction
 
-## SESSION HANDOFF (2026-09-22) — REDESIGN IN FLIGHT, read this first
+## SESSION HANDOFF (2026-09-26) — REDESIGN BUILT & VERIFIED; PR next (read this first)
+
+**State.** All 40 plan tasks built and reviewed on branch `redesign/2026-09` (worktree `~/.clearvote-worktrees/redesign-2026-09`),
+plus two QA fixes (district pages no longer repeat their h1 — `71d55b5`; the ZIP finder says "5-digit ZIP code" — `1d4908c`).
+Tests 370 → 1,489 passing. QA report: `docs/reviews/2026-09-26-redesign-qa-report.md` (verdict Pass). `main`'s weekly-sync data
+merged in (`789609e`, merge not rebase — the permission classifier refuses rebases) and derived files regenerated (`1539a7a`).
+All six cut-first extras landed; nothing was cut. Backup ref of the pre-merge head: `backup/pre-main-merge-2026-09-26`.
+
+**Next.** (1) Push `redesign/2026-09` and open the PR with body `~/.clearvote-worktrees/tools/qa/pr-body-final.md` (needs
+Joseph's OK — outward-facing; `gh` was denied by the permission layer on 2026-09-26). (2) Joseph: VoiceOver pass on the branch
+(steps in the PR body), then merge — Render auto-deploys `main`. (3) Joseph at merge: Cloudflare Cache Rule + HIT check (PR
+body "Ops steps"). (4) After the first weekly sync post-merge: confirm the new votes-index / state-overview / share-card steps ran.
+If `main` gains more weekly-sync commits before merge: `git merge --no-ff origin/main`, then `sync.py --step votes-index` and
+`--step state-overview` (CONGRESS_API_KEY=offline-rebuild), pytest, commit.
+
+**Optional cleanup (not this PR).** `data/synced/member_votes/C001127.json` is an orphan (no entry in members.json; on main since
+cb27fb4) — validate warns, does not fail.
+
+## SESSION HANDOFF (2026-09-22) — (previous)
 
 **Where the work lives.** Branch `redesign/2026-09` in the worktree `/Users/josephgarcia/.clearvote-worktrees/redesign-2026-09`
 (off origin/main f1dc535; frontend identical to live). The main checkout at `Projects/Non-Profit/ClearVote` is untouched and
