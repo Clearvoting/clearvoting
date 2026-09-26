@@ -1,7 +1,7 @@
 {
   "state": "FL",
   "state_name": "Florida",
-  "roster_as_of": "2026-09-05",
+  "roster_as_of": "2026-09-19",
   "senators": [
     {
       "bioguideId": "M001244",
@@ -59,10 +59,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -79,10 +79,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Not Voting",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -99,10 +99,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -119,10 +119,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -139,10 +139,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -159,10 +159,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
-        "position": "Yea",
-        "date": "2026-09-03"
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Nay",
+        "date": "2026-09-16"
       }
     },
     {
@@ -179,10 +179,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Not Voting",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -199,10 +199,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -219,10 +219,10 @@
       ],
       "partyName": "Democratic",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -239,10 +239,10 @@
       ],
       "partyName": "Democratic",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
-        "position": "Nay",
-        "date": "2026-09-03"
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
       }
     },
     {
@@ -259,10 +259,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
-        "position": "Yea",
-        "date": "2026-09-03"
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Not Voting",
+        "date": "2026-09-16"
       }
     },
     {
@@ -279,10 +279,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -299,10 +299,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -319,10 +319,10 @@
       ],
       "partyName": "Democratic",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
-        "position": "Yea",
-        "date": "2026-09-03"
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Not Voting",
+        "date": "2026-09-16"
       }
     },
     {
@@ -339,10 +339,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -359,10 +359,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
-        "position": "Yea",
-        "date": "2026-09-03"
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Not Voting",
+        "date": "2026-09-16"
       }
     },
     {
@@ -379,10 +379,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -399,10 +399,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -419,10 +419,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
-        "position": "Not Voting",
-        "date": "2026-09-03"
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
       }
     },
     {
@@ -439,10 +439,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -459,10 +459,10 @@
       ],
       "partyName": "Democratic",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -479,10 +479,10 @@
       ],
       "partyName": "Democratic",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -499,10 +499,10 @@
       ],
       "partyName": "Democratic",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
-        "position": "Nay",
-        "date": "2026-09-03"
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
       }
     },
     {
@@ -519,10 +519,10 @@
       ],
       "partyName": "Democratic",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -539,10 +539,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     },
     {
@@ -559,10 +559,10 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
-        "position": "Yea",
-        "date": "2026-09-03"
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Not Voting",
+        "date": "2026-09-16"
       }
     },
     {
@@ -579,13 +579,13 @@
       ],
       "partyName": "Republican",
       "latest_vote": {
-        "rc": "house/119_2_00295",
-        "bill_id": "119-hr-4795",
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
         "position": "Yea",
-        "date": "2026-09-03"
+        "date": "2026-09-16"
       }
     }
   ],
   "districts_expected": 28,
-  "generated_at": "2026-09-25T13:09:01+00:00"
+  "generated_at": "2026-09-26T11:31:15+00:00"
 }
