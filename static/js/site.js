@@ -967,14 +967,17 @@ function initRecordPaging() {
 }
 
 // Print (cut-first, spec §6.8): open every collapsed <details> that already holds content,
-// and close exactly those again afterwards. Lazy blocks (an empty body until JS fetches
-// their rows, e.g. "All N votes") stay closed, so printing never starts a fetch for them.
+// and close exactly those again afterwards. Lazy blocks fetch on toggle (data-url: rc-all,
+// rc-more; data-summary-slot: official-full), so they are skipped outright and printing never
+// starts a fetch. A <details> holding a form (the notify signup) is chrome and stays closed too.
 function initPrint() {
+    const closedDetails = 'details:not([open]):not([data-url]):not([data-summary-slot])';
     let opened = [];
-    const hasPrintableBody = (details) => Array.from(details.children).some((child) =>
-        child.tagName !== 'SUMMARY' && child.tagName !== 'NOSCRIPT' && child.textContent.trim() !== '');
+    const hasPrintableBody = (details) => !details.querySelector('form') &&
+        Array.from(details.children).some((child) =>
+            child.tagName !== 'SUMMARY' && child.tagName !== 'NOSCRIPT' && child.textContent.trim() !== '');
     window.addEventListener('beforeprint', () => {
-        opened = Array.from(document.querySelectorAll('details:not([open])')).filter(hasPrintableBody);
+        opened = Array.from(document.querySelectorAll(closedDetails)).filter(hasPrintableBody);
         opened.forEach((details) => { details.open = true; });
     });
     window.addEventListener('afterprint', () => {

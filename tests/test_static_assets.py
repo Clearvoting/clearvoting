@@ -552,3 +552,18 @@ def test_site_js_opens_details_for_print_and_restores_them():
     init_site = source[source.index("function initSite()"):]
     init_site = init_site[: init_site.index("\n}\n") + 3]
     assert re.search(r"^\s+initPrint\(\);", init_site, re.M), "initPrint(); is not called from initSite()"
+
+
+def test_print_skips_lazy_and_form_details():
+    """Review T10.3: printing must not open a fetch-on-toggle <details> (rc-all, rc-more,
+    official-full) or one holding a form (the notify signup)."""
+    source = _G10_JS.read_text()
+    body = source[source.index("function initPrint()"):]
+    body = body[: body.index("\n}\n")]
+    for marker in (":not([data-url])", ":not([data-summary-slot])", "querySelector('form')"):
+        assert marker in body, marker
+    render = (_G10_ROOT / "app" / "render.py").read_text()
+    for cls in ("rc-all", "rc-more"):
+        assert re.search(rf'<details class="{cls}"[^>]*data-url=', render), f"{cls} lost its data-url marker"
+    assert '<details class="official-full" data-summary-slot>' in render
+    assert re.search(r'<details class="notify-disclosure">.{0,80}<form', render, re.S)
