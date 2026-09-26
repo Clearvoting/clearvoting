@@ -521,3 +521,37 @@ async def test_api_latest_vote_and_bill_lists_open_only_the_latest_roll_call_fil
     get_data_service.cache_clear()
     reads = [p for p in opened if f"{os.sep}votes{os.sep}" in p]
     assert reads == [str(fixtures / "votes" / chamber / f"{name}.json")]
+
+
+# --- §6.9 #9: no page route scans roll-call files (plan T11.2) ---
+
+_SCAN_FIXTURES = Path(__file__).parent / "fixtures" / "synced"
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path, max_roll_call_reads", [
+    ("/", 1),                                          # at most the latest vote
+    ("/state?code=NY", 0),                             # one state_overview file
+    ("/state?code=NY&district=4", 0),
+    ("/member?id=S000148", 0),                         # one member_votes file, never votes/*
+    ("/bill?congress=119&type=hjres&number=20", 2),    # at most two roll calls
+])
+async def test_page_routes_never_scan_roll_call_files(path, max_roll_call_reads):
+    with patch("app.dependencies.get_data_dir", return_value=_SCAN_FIXTURES):
+        get_data_service.cache_clear()
+        get_data_service()  # startup loads (votes_index.json, crosswalk, seats) happen here, outside the count
+        opened = []
+        real_open = io.open
+
+        def counting_open(file, *args, **kwargs):
+            opened.append(str(file))
+            return real_open(file, *args, **kwargs)
+
+        with patch("builtins.open", counting_open), patch("io.open", counting_open):
+            transport = ASGITransport(app=app)
+            async with AsyncClient(transport=transport, base_url="http://test") as client:
+                response = await client.get(path)
+    get_data_service.cache_clear()
+    assert response.status_code == 200
+    roll_call_reads = [p for p in opened if f"{os.sep}votes{os.sep}" in p]
+    assert len(roll_call_reads) <= max_roll_call_reads, roll_call_reads
