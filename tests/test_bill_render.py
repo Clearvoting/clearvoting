@@ -261,7 +261,7 @@ def test_no_official_summary_either_links_to_the_bill_text():
     html = render.render_what_it_does(
         _unsummarized(official_summary=None, official_first_paragraph=None), None)
     assert "We haven't written a plain-English summary for this bill yet" in html
-    assert ('<a href="https://www.congress.gov/bill/119th-congress/house-bill/4795/text" '
+    assert ('<a class="source-link" href="https://www.congress.gov/bill/119th-congress/house-bill/4795/text" '
             'rel="noopener">Congress.gov has the bill text →</a>') in html
     assert "Show the full official summary" not in html
 

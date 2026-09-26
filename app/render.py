@@ -1424,7 +1424,7 @@ def _trust_long_date(value) -> str | None:
 def _trust_links(url_field, prefix: str) -> str:
     """Anchors for a _source url field ("A and B" allowed); only https URLs under prefix."""
     urls = [u.strip() for u in str(url_field or "").split(" and ")]
-    return " · ".join(f'<a href="{h(u)}">{h(u)}</a>' for u in urls if u.startswith(prefix))
+    return " · ".join(f'<a class="source-link" href="{h(u)}">{h(u)}</a>' for u in urls if u.startswith(prefix))
 
 
 def _trust_section(anchor: str, heading: str, body: str) -> str:
@@ -1609,7 +1609,7 @@ def render_not_found(zip_form: str, state_links: str) -> str:
         '<p class="deck">The link may be old, or the bill or member may be outside our four-state '
         "coverage.</p>"
         f"{zip_form}{state_links}"
-        '<p><a href="/">Go to the front page →</a></p>'
+        '<p><a class="arrow-link" href="/">Go to the front page →</a></p>'
         "</section>"
     )
 
@@ -1885,7 +1885,7 @@ def render_sponsored(bills: list, name: str, bioguide: str, total: int | None = 
         '<section class="section" id="sponsored" aria-labelledby="sponsored-h">'
         f'<h2 id="sponsored-h">Bills they sponsored that got a floor vote ({count:,})</h2>'
         f'{list_html}'
-        f'<p class="meta"><a href="{h(link)}">All legislation {h(name)} sponsored, on Congress.gov →</a></p>'
+        f'<p class="meta"><a class="source-link" href="{h(link)}">All legislation {h(name)} sponsored, on Congress.gov →</a></p>'
         '</section>'
     )
 
@@ -2283,7 +2283,7 @@ def render_what_it_does(page: dict, ai_summaries_updated: str | None) -> str:
                              "Read the full summary on Congress.gov →</a></p></noscript>")
             parts.append("</details>")
         elif congress_url:
-            parts.append(f'<p><a href="{h(congress_url + "/text")}" rel="noopener">'
+            parts.append(f'<p><a class="source-link" href="{h(congress_url + "/text")}" rel="noopener">'
                          "Congress.gov has the bill text →</a></p>")
     parts.append("</section>")
     return "".join(parts)

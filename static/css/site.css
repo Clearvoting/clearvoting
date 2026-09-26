@@ -119,8 +119,8 @@ h3 { font-family: var(--font-display); font-weight: 700; font-size: var(--t-h3);
 main { display: block; max-width: var(--max); margin: 0 auto; padding: var(--s6) var(--gutter) var(--s12); }
 
 /* ---- Masthead and edition line (§6.3, §7.4) ---- */
-.masthead { padding: var(--s4) var(--gutter) 0; text-align: center; }
-.logo { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: var(--t-logo); line-height: 1; color: var(--navy); text-decoration: none; }
+.masthead { padding: var(--s1) var(--gutter) 0; text-align: center; }
+.logo { display: inline-flex; align-items: center; min-height: var(--tap); font-family: var(--font-display); font-weight: 800; font-size: var(--t-logo); line-height: 1; color: var(--navy); text-decoration: none; }
 .logo span { font-style: italic; font-weight: 600; color: var(--blue); }
 .masthead-tagline { margin-top: var(--s1); font-family: var(--font-ui); font-size: var(--t-kicker); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-meta); }
 .masthead-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 var(--s2); max-width: var(--max); margin: var(--s3) auto 0; border-top: 3px double var(--navy); border-bottom: 1px solid var(--navy); }
@@ -184,6 +184,7 @@ a.vote-row:hover .row-headline, a.bill-row:hover .row-headline { color: var(--bl
 a.person:hover .person-name, a.person-name:hover { color: var(--blue-dim); text-decoration: underline; }
 .person-seat { font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 500; color: var(--ink-soft); }
 .person-signal { font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 500; color: var(--ink); }
+.person-signal .chip { white-space: normal; }
 .person-signal .official { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
 .person--split > .btn--secondary { grid-column: 1 / -1; justify-self: start; }
 .person--vacant { grid-template-columns: minmax(0, 1fr); }
@@ -202,6 +203,7 @@ table.rc { width: 100%; border-collapse: collapse; font-family: var(--font-ui); 
 .rc th, .rc td { padding: var(--s2) 0; border-top: 1px solid var(--rule); text-align: left; vertical-align: top; }
 .rc thead th { border-top: 0; border-bottom: 1px solid var(--navy); font-size: var(--t-kicker); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-meta); }
 .rc th[scope="row"] { font-weight: 500; color: var(--ink); }
+.rc th[scope="row"] a { margin-top: calc(-1 * var(--s2)); }
 .rc td, .rc thead th:last-child { padding-left: var(--s3); text-align: right; white-space: nowrap; }
 .rc-seat { display: block; font-size: var(--t-meta); font-weight: 400; color: var(--ink-meta); }
 
@@ -215,7 +217,6 @@ table.rc { width: 100%; border-collapse: collapse; font-family: var(--font-ui); 
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s4); margin-top: var(--s3); }
 .party-status, .share-status, .remember-status { font-family: var(--font-ui); font-size: var(--t-meta); color: var(--ink-meta); }
 .remembered-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s2); margin-top: var(--s3); }
-.remembered-line a { display: inline-flex; align-items: center; min-height: var(--tap); }
 
 /* ---- Forms (§6.4 form field; 16px controls, no iOS zoom) ---- */
 label, .zip-label { display: block; margin-bottom: var(--s1); font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 600; color: var(--navy); }
@@ -339,7 +340,6 @@ details[open] > summary::before { content: "–"; }
 .member-header .facts { margin: 0 0 var(--s2); }
 .member-header .party:not(:empty)::before { content: "· "; }   /* "U.S. Senator · New York · Democratic" on reveal; site.js writes only the name */
 .member-header .actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); }
-.member-header .actions > a, .member-header .actions > button { display: inline-flex; align-items: center; min-height: var(--tap); }
 .vote-list, .record-list, .sponsored-list { list-style: none; margin: 0; padding: 0; }
 /* One 1px hairline between rows (§6.3): .vote-row/.bill-row carry T2.1's border-top. A record
    group can be a bill row + <details>, a day's <details> or a Speaker line, so the record
@@ -360,7 +360,8 @@ details[open] > summary::before { content: "–"; }
 .group ul { list-style: none; margin: 0 0 var(--s3); padding: 0; }
 .group ul > li { padding: var(--s2) 0; font-size: var(--t-meta); color: var(--ink-meta); }
 .group--speaker { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); padding: var(--s4) 0; font-size: var(--t-meta); color: var(--ink-meta); }
-.rc-source { display: inline-flex; align-items: center; min-height: var(--tap); }
+.remembered-line a, .member-header .actions > a, .member-header .actions > button,
+.rc-source, .rc-source a, .lead-headline a, .rc th[scope="row"] a, .fact-box dd a { display: inline-flex; align-items: center; min-height: var(--tap); }
 .pager { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s3); margin: var(--s6) 0; }
 .pager a { display: inline-flex; align-items: center; min-height: var(--tap); font-size: var(--t-ui); font-weight: 600; }
 
@@ -380,7 +381,6 @@ details[open] > summary::before { content: "–"; }
 .rc-block h3, .rc-caption { font-family: var(--font-display); font-weight: 700; font-size: var(--t-h3); color: var(--navy); margin: 0; }
 .rc-more { margin-top: var(--s4); border-top: 1px solid var(--rule); }
 .rc-more summary .rc-caption { display: inline; font-family: var(--font-ui); font-size: var(--t-ui); font-weight: 600; }
-.rc-source a { display: inline-flex; align-items: center; min-height: var(--tap); }
 .rc-all-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s3); margin: var(--s3) 0; }
 .rc-all-controls label { flex-basis: 100%; }
 .state-tallies { list-style: none; padding: 0; margin: var(--s3) 0; font-family: var(--font-ui); font-size: var(--t-meta); color: var(--ink-meta); }
