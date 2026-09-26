@@ -45,7 +45,7 @@ GILLEN = {
     "terms": {"item": [{"chamber": "House of Representatives", "startYear": 2025}]},
     "depiction": {"imageUrl": "https://www.congress.gov/img/member/677427de0b34857ecc9090ad_200.jpg"},
 }
-WAHAB = {  # the one member with no photo in members.json
+WAHAB = {  # no photo in this fixture; since main's 2026-09 syncs every real member has one, so this fixture is what exercises the initials fallback
     "bioguideId": "W000832",
     "name": "Wahab, Aisha",
     "state": "California",

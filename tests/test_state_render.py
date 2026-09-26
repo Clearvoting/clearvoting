@@ -340,7 +340,10 @@ def test_district_page_leads_with_your_representatives():
     assert ('<button type="button" class="btn btn--secondary" id="remember-district" data-state="NY" '
             'data-state-name="New York" data-district="4" hidden>Remember District 4 as mine</button>') in html
     yours = section(html, '<section class="yours"')
-    assert '<h2 id="yours-h">Your representatives</h2>' in yours
+    # The h1 already says "Your representatives"; the block names who is in it, so a
+    # screen reader does not hear the same heading twice (QA 2026-09-26).
+    assert '<h2 id="yours-h">Your senators and House member</h2>' in yours
+    assert html.count(">Your representatives<") == 1
     assert '<ul class="reps reps--yours">' in yours
     for bioguide in ("G000555", "S000148", "G000602"):
         assert f'data-bioguide="{bioguide}"' in yours
@@ -380,6 +383,7 @@ def test_split_zip_offers_each_district_with_land_area_wording():
     html = render.render_state_page(ny_overview(), None, split, ds=make_ds(), zip_value="11201")
     assert "<h1>Your representatives</h1>" in html
     yours = section(html, '<section class="yours"')
+    assert '<h2 id="yours-h">Your senators and House members</h2>' in yours
     assert ("<p>ZIP 11201 spans two House districts — about 72 % of the ZIP's land area (not its residents) "
             "is in District 10 and 28 % in District 7. Both are shown; your street address decides "
             "which is yours.</p>") in yours
@@ -417,6 +421,7 @@ def test_partial_zip_notes_the_share_outside_our_states():
     assert "spans" not in section(html, '<section class="yours"')
     assert 'href="/state?code=TX&amp;district=13#mine">This is my district →</a>' in html
     assert "<h1>Your representatives</h1>" in html
+    assert '<h2 id="yours-h">Your senators and House member</h2>' in html
 
 
 def test_malformed_zip_error_keeps_the_value_and_describes_the_field():

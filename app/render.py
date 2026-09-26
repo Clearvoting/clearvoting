@@ -1275,7 +1275,10 @@ def _state_header(code: str, state_name: str, count: int, roster_as_of, district
 
 def _yours_section(code: str, senators: list[dict], by_district: dict[int, list[dict]],
                    district: int | None, zip_result: dict | None, matches: list[dict]) -> str:
-    parts = ['<section class="yours" aria-labelledby="yours-h"><h2 id="yours-h">Your representatives</h2>']
+    # The page h1 already reads "Your representatives", so the block says who is in it
+    # (plural only when a ZIP offers more than one House district).
+    members = "House members" if district is None and len(matches) > 1 else "House member"
+    parts = [f'<section class="yours" aria-labelledby="yours-h"><h2 id="yours-h">Your senators and {members}</h2>']
     senator_rows = [render_person_row(m, m.get("latest_vote"), state_code=code) for m in senators]
     if district is not None:
         house_rows = [render_person_row(m, m.get("latest_vote"), state_code=code)

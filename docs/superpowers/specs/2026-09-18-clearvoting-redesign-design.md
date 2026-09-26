@@ -248,7 +248,7 @@ On a split-ZIP page, the "spans two districts" block sits between the senators a
 **Modules in order** (server-rendered from `data/synced/state_overview/{code}.json`, §10 #7):
 
 1. **Header** as above. The `<h1>` sits inside `.state-header` (hook kept). The party toggle and Share are 44px controls in one action row, with the meta line "Party labels are hidden so the record speaks first."
-2. **Your representatives** (only with `district` or `zip`): the two senator rows, then the House row(s).
+2. **Your senators and House member** (only with `district` or `zip`; "House members" when a ZIP offers more than one district — the h1 already says "Your representatives", so the block names who is in it): the two senator rows, then the House row(s).
    - **Split ZIP:** a note block: "ZIP 11201 spans two House districts — about 72 % of the ZIP's land area (not its residents) is in District 10 and 28 % in District 7. Both are shown; your street address decides which is yours. *Not sure? Look up your district by street address on house.gov →*". Then each House row with a sibling link "This is my district →" (`/state?code=NY&district=10#mine`). These rows are the one place a person row is a `<div>`, with the name as the link and the district link as a sibling (no link inside a link, F60).
    - **Cross-state ZIP** (covered share < 0.95): add "About {p} % of ZIP {zip}'s land area is outside California, Florida, New York and Texas; if you live in that part, we don't cover your state yet." `cv-home` is not written.
    - **Vacancy:** if the crosswalk names a district with no member in `members.json`, the row reads "District 7 — vacant in our data · *Tell us if this is wrong*".
@@ -803,7 +803,7 @@ No string pairs "On the ballot" or "Not on the ballot" with a person. A case-sen
 1. **1.1.1** Photos have `alt=""` with adjacent names, and the header photo likewise. Tally bars are `role="img"` + `aria-label`, with their visible text in a sibling (§6.4). No other images.
 2. **1.3.1** Landmarks are `header/nav/main/footer`. Lists are `<ul>/<ol>`. Roll-call lists are always `<table>` with `<caption>`, `<th scope="col">` and row-header name cells (§6.4). Rows (vote, person, bill) contain no headings. **Heading outline per template:**
    - home: h1 "See how your representatives vote." → h2 "The latest vote" (card), "Your representatives" (JS), "What Congress voted on", "Most recent plain-English summary", "Browse all bills by topic"
-   - state: h1 → h2 "Your representatives", "U.S. Senate", "The House, by district"
+   - state: h1 → h2 "Your senators and House member(s)" (district/zip only), "U.S. Senate", "The House, by district"
    - member: h1 name → h2 "Recent votes", the record heading, "Bills they sponsored that got a floor vote", "Campaign money"
    - bill: h1 headline → h2 "How did your representatives vote?", "The vote, by state" (h3 per roll-call block), "What it does", "Official summary", "About this bill" (fact box, visually a kicker)
    - about / methodology / privacy: h1 → h2 per section
