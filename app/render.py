@@ -692,16 +692,26 @@ def render_zip_form(compact: bool = False, value: str = "", error: str | None = 
     """The ZIP finder (spec §3.2). A plain GET to /state that JavaScript never intercepts."""
     input_id = "zip" if form_id == "find" else f"{form_id}-field"
     error_id = f"{input_id}-error"
+    hint_id = f"{input_id}-hint"
     form_class = "zip-form zip-form--compact" if compact else "zip-form"
     value_attr = f' value="{h(value)}"' if value else ""
-    described = f' aria-describedby="{h(error_id)}" aria-invalid="true"' if error else ""
+    # A label like "Where do you live?" does not say the field wants a ZIP, so a hint does;
+    # an error, which says the same thing, replaces it as the field's description.
+    hint = "ZIP" not in label
+    hint_html = f'<p class="meta zip-hint" id="{h(hint_id)}">5-digit ZIP code</p>' if hint else ""
+    if error:
+        described = f' aria-describedby="{h(error_id)}" aria-invalid="true"'
+    else:
+        described = f' aria-describedby="{h(hint_id)}"' if hint else ""
     error_html = f'<p class="field-error" id="{h(error_id)}">{h(error)}</p>' if error else ""
     return (
         f'<form class="{form_class}" id="{h(form_id)}" method="get" action="/state">'
         f'<label class="zip-label" for="{h(input_id)}">{h(label)}</label>'
+        f'{hint_html}'
         '<div class="zip-row">'
         f'<input id="{h(input_id)}" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" '
-        f'maxlength="10" pattern="{h(ZIP_INPUT_PATTERN)}" required{value_attr}{described}>'
+        f'maxlength="10" pattern="{h(ZIP_INPUT_PATTERN)}" title="A ZIP code is five digits." '
+        f'required{value_attr}{described}>'
         '<button class="btn" type="submit">Find my representatives</button>'
         "</div>"
         f"{error_html}</form>"

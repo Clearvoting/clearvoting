@@ -112,8 +112,32 @@ def test_zip_form_is_a_plain_get_to_state():
                  'maxlength="10"', " required", r'pattern="\s*[0-9]{5}([\-\s]?[0-9]{4})?\s*"'):
         assert attr in html
     assert '<button class="btn" type="submit">Find my representatives</button>' in html
-    assert "aria-describedby" not in html
+    assert "aria-invalid" not in html
     assert "value=" not in html
+
+
+def test_zip_form_says_it_wants_a_zip_when_the_label_does_not():
+    # QA 2026-09-26: "Where do you live?" alone gave no hint that the field wants a ZIP, and a
+    # typed city met only the browser's generic "match the requested format" message.
+    html = render.render_zip_form()
+    assert ('<label class="zip-label" for="zip">Where do you live?</label>'
+            '<p class="meta zip-hint" id="zip-hint">5-digit ZIP code</p>') in html
+    assert 'aria-describedby="zip-hint"' in html
+    assert 'title="A ZIP code is five digits."' in html
+    # A label that already names the ZIP needs no hint (bill page, delegation footer).
+    labelled = render.render_zip_form(form_id="reps-zip-form",
+                                      label="Enter your ZIP to see how your representatives voted")
+    assert "zip-hint" not in labelled
+    assert "aria-describedby" not in labelled
+    assert 'title="A ZIP code is five digits."' in labelled
+
+
+def test_zip_form_error_replaces_the_hint_as_the_description():
+    html = render.render_zip_form(compact=True, value="Brooklyn", error="A ZIP code is five digits.",
+                                  form_id="zip-top")
+    assert 'aria-describedby="zip-top-field-error" aria-invalid="true"' in html
+    assert "zip-top-field-hint" not in html.split("<input", 1)[1].split(">", 1)[0]
+    assert '<p class="meta zip-hint" id="zip-top-field-hint">5-digit ZIP code</p>' in html
 
 
 def test_zip_form_error_keeps_the_typed_value_and_describes_the_field():

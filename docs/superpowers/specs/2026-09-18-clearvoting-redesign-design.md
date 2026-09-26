@@ -182,7 +182,7 @@ Success measure: two taps from `/` to a member page; three to the bill. Back alw
 - Masthead: logo, tagline, and nav on one 44px row (≈120px).
 - Edition line (one line, ≈24px).
 - Kicker "An independent record of Congress", then H1 "See how your representatives vote.", then a one-line deck.
-- The finder: the visible question "Where do you live?" (Lora italic, `<label for="zip">`), a 48px full-width ZIP field, and a 48px full-width navy button **Find my representatives**. Input and button stack under 560px so the field is never squeezed.
+- The finder: the visible question "Where do you live?" (Lora italic, `<label for="zip">`), a hint line "5-digit ZIP code" (`.meta`, the field's `aria-describedby` until an error replaces it; omitted where the label already says ZIP; the field's `title` is "A ZIP code is five digits." so the browser's own validation message is plain) (QA 2026-09-26), a 48px full-width ZIP field, and a 48px full-width navy button **Find my representatives**. Input and button stack under 560px so the field is never squeezed.
 - The line "Or choose a state:" with four 44px chips "California · 54", "Florida · 29", "New York · 28", "Texas · 39" (counts server-rendered from `get_member_counts()`).
 - The coverage sentence.
 
