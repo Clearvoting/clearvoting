@@ -839,6 +839,37 @@ def test_latest_official_summary_falls_back_to_newest():
     assert _latest_official_summary(bill) == "newer"
 
 
+@pytest.mark.asyncio
+async def test_sync_bill_summaries_grader_sees_bill_text(tmp_path):
+    """The grader must see the same bill text the writer drew from — otherwise
+    true text-sourced details are graded as 'fabricated' and the summary is
+    flagged needs_review (Sept 2026: Lumbee Fairness Act's report to Congress)."""
+    _write_json(tmp_path / "bills.json", {"bills": [{
+        "congress": 118, "type": "HR", "number": "1101", "title": "Lumbee Fairness Act",
+        "summaries": [{"text": "Official summary.", "actionDate": "2024-01-01"}],
+        "textVersions": [{"date": "2024-02-01", "text": "each submit to Congress a written statement"}],
+    }]})
+
+    from app.services.summary_grader import GradeResult
+    with patch("app.services.ai_summary.AISummaryService") as MockWriter, \
+         patch("app.services.summary_grader.SummaryGrader") as MockGrader:
+        mock_writer = MagicMock()
+        mock_writer.generate_summary = AsyncMock(return_value={
+            "one_liner": "Recognize the Lumbee Tribe", "provisions": ["a", "b", "c"],
+            "issue_categories": [], "direction": "neutral"})
+        MockWriter.return_value = mock_writer
+        mock_grader = MagicMock()
+        mock_grader.load_learnings = MagicMock()
+        mock_grader.grade = AsyncMock(return_value=GradeResult(grade="A", passed=True, feedback="Good.", checks={}))
+        MockGrader.return_value = mock_grader
+
+        await sync_bill_summaries(tmp_path, api_key="test")
+
+    context = mock_grader.grade.call_args.kwargs["context"]
+    assert context["bill_text_excerpt"] == "each submit to Congress a written statement"
+    assert mock_writer.generate_summary.call_args.kwargs["bill_text_excerpt"] == context["bill_text_excerpt"]
+
+
 def test_latest_official_summary_handles_missing():
     from sync import _latest_official_summary
     assert _latest_official_summary({}) == ""
