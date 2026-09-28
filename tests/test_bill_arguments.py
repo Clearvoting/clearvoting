@@ -169,3 +169,15 @@ async def test_generate_arguments_validates_structure():
 
     assert isinstance(result["supporters"], list)
     assert isinstance(result["critics"], list)
+
+
+@pytest.mark.asyncio
+async def test_generate_arguments_recovers_stray_quote_after_json():
+    """Real CLI output shape: valid object followed by a stray quote — must not save empty arguments."""
+    service = BillArgumentsService(api_key="test", cache=MagicMock(get=MagicMock(return_value=None)))
+    service._call_llm = AsyncMock(return_value='''{"supporters":["Supporters say this funds 'housing.'"],"critics":["Critics say this costs $2 billion."]}"''')
+
+    result = await service.generate_arguments(bill_id="119-hr-1", title="T", official_summary="S", provisions=["P"])
+
+    assert result["supporters"] == ["Supporters say this funds 'housing.'"]
+    assert result["critics"] == ["Critics say this costs $2 billion."]

@@ -1,21 +1,11 @@
 import json
 import logging
 import anthropic
-from app.services.grader_common import CLAUDE_MODEL
+from app.services.grader_common import CLAUDE_MODEL, parse_llm_json
 from app.services.cache import CacheService
 
 logger = logging.getLogger(__name__)
 
-
-def _strip_code_fences(text: str) -> str:
-    """Remove markdown code fences (```json ... ```) from LLM output."""
-    text = text.strip()
-    if text.startswith("```"):
-        first_newline = text.index("\n") if "\n" in text else len(text)
-        text = text[first_newline + 1:]
-    if text.endswith("```"):
-        text = text[:-3]
-    return text.strip()
 
 ISSUE_CATEGORIES = [
     "Cost of Living",
@@ -128,12 +118,12 @@ Generate a corrected version. Return ONLY valid JSON."""
 
         result = None
         for attempt in range(2):
-            raw_text = _strip_code_fences(await self._call_llm(SYSTEM_PROMPT, prompt))
+            raw_text = await self._call_llm(SYSTEM_PROMPT, prompt)
             try:
-                result = json.loads(raw_text)
+                result = parse_llm_json(raw_text)
                 break
-            except json.JSONDecodeError:
-                logger.warning("AI response was not valid JSON (attempt %d): %s", attempt + 1, raw_text[:200])
+            except json.JSONDecodeError as e:
+                logger.warning("AI response was not valid JSON (attempt %d, %s): %s", attempt + 1, e, raw_text[:200])
         if result is None:
             # Never cache, never persist, never surface the raw official title
             # — titles can carry partisan framing straight onto the page.

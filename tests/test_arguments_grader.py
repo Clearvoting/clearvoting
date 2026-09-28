@@ -104,3 +104,14 @@ async def test_grade_handles_api_error():
     assert result.grade == "F"
     assert result.passed is False
     assert "API timeout" in result.feedback
+
+
+@pytest.mark.asyncio
+async def test_grade_recovers_stray_quote_after_json():
+    """Real CLI output shape: valid object followed by a stray quote — must not become an F."""
+    grader = ArgumentsGrader(api_key="test")
+    grader._call_llm = AsyncMock(return_value='''{"grade":"B","passed":true,"feedback":"Balanced and specific. Critic 2 is vague.","checks":{"balance":"pass: both sides 'specific.'"}}"''')
+
+    result = await grader.grade(summary_type="bill_arguments", summary_text="{}", context={"title": "Test"})
+
+    assert (result.grade, result.passed, result.feedback) == ("B", True, "Balanced and specific. Critic 2 is vague.")

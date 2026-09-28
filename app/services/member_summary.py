@@ -1,20 +1,10 @@
 import json
 import logging
 import anthropic
-from app.services.grader_common import CLAUDE_MODEL
+from app.services.grader_common import CLAUDE_MODEL, parse_llm_json
 
 logger = logging.getLogger(__name__)
 
-
-def _strip_code_fences(text: str) -> str:
-    """Remove markdown code fences (```json ... ```) from LLM output."""
-    text = text.strip()
-    if text.startswith("```"):
-        first_newline = text.index("\n") if "\n" in text else len(text)
-        text = text[first_newline + 1:]
-    if text.endswith("```"):
-        text = text[:-3]
-    return text.strip()
 
 
 MEMBER_SUMMARY_SYSTEM_PROMPT = """You are a nonpartisan legislative analyst. Your job is to summarize a member of Congress's voting record using only observable facts — written at a 7th-8th grade reading level.
@@ -182,12 +172,11 @@ Generate a corrected version. Return ONLY valid JSON."""
         )
 
         raw_text = await self._call_llm(MEMBER_SUMMARY_SYSTEM_PROMPT, prompt)
-        raw_text = _strip_code_fences(raw_text)
 
         try:
-            result = json.loads(raw_text)
-        except json.JSONDecodeError:
-            logger.error("AI member summary was not valid JSON: %s", raw_text[:200])
+            result = parse_llm_json(raw_text)
+        except json.JSONDecodeError as e:
+            logger.error("AI member summary was not valid JSON (%s): %s", e, raw_text[:200])
             area_names = [a["name"] for a in top_areas[:5]] if top_areas else []
             return {
                 "narrative": (

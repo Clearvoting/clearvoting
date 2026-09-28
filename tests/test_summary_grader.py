@@ -128,3 +128,49 @@ async def test_grade_summary_handles_malformed_response():
     assert isinstance(result, GradeResult)
     assert result.passed is False
     assert result.grade == "F"
+
+
+# Real grader output shapes captured from `claude -p` transcripts (2026-09-28):
+# the JSON body is fine but its edges are not. Shortened; boundary glitch kept verbatim.
+STRAY_QUOTE_AFTER_OBJECT = '''{"grade":"B","passed":true,"feedback":"Strong, accurate summary. One issue: Provision 2 runs to approximately 27 words.","checks":{"structure":"fail: Provision 2 is over 25 words","direction_accuracy":"pass: 'in_favor' is correct — the bill expands eligibility, which qualifies as 'expands rules in the issue area.'"}}"'''
+
+FINAL_BRACE_DROPPED = '''{"grade":"C","passed":false,"feedback":"Two provisions exceed the 25-word sentence limit.","checks":{"structure":"fail: Provisions 1 and 3 are over 25 words","direction_accuracy":"pass: the bill creates new requirements, consistent with 'in_favor.'"}'''
+
+PROSE_BEFORE_OBJECT = (
+    "★ Insight ─────────────────────────────────────\n"
+    "Grading this summary requires attention to whether plain-language substitutions hold up.\n"
+    "─────────────────────────────────────────────────\n\n"
+    '{"grade":"A","passed":true,"feedback":"Strong, accurate summary with plain language throughout.","checks":{"structure":"pass"}}'
+)
+
+VALID_BILL_SUMMARY = '{"one_liner": "Raise minimum wage to $15", "provisions": ["Raises wage from $7.25 to $15"], "issue_categories": ["Jobs & Workers"]}'
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("raw, grade, passed, feedback", [
+    (STRAY_QUOTE_AFTER_OBJECT, "B", True, "Strong, accurate summary. One issue: Provision 2 runs to approximately 27 words."),
+    (FINAL_BRACE_DROPPED, "C", False, "Two provisions exceed the 25-word sentence limit."),
+    (PROSE_BEFORE_OBJECT, "A", True, "Strong, accurate summary with plain language throughout."),
+], ids=["stray_quote_after_object", "final_brace_dropped", "prose_before_object"])
+async def test_grade_recovers_real_malformed_grader_output(raw, grade, passed, feedback):
+    grader = SummaryGrader(api_key="test")
+    grader._call_llm = AsyncMock(return_value=raw)
+
+    result = await grader.grade(summary_type="bill_summary", summary_text=VALID_BILL_SUMMARY, context={"title": "Wage Act"})
+
+    assert (result.grade, result.passed, result.feedback) == (grade, passed, feedback)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("raw", [
+    '{"grade":"B","passed":true,"feedback":"Strong, accurate summary. (1) Provision 3 runs to appro',
+    '{"grade":"B","passed":true',
+], ids=["mid_string", "after_complete_value"])
+async def test_grade_still_fails_on_cut_off_output(raw):
+    """Recovery must not invent a grade from a response that stops before the object is done."""
+    grader = SummaryGrader(api_key="test")
+    grader._call_llm = AsyncMock(return_value=raw)
+
+    result = await grader.grade(summary_type="bill_summary", summary_text=VALID_BILL_SUMMARY, context={"title": "Wage Act"})
+
+    assert (result.grade, result.passed) == ("F", False)

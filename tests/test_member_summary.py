@@ -222,3 +222,18 @@ async def test_generate_member_summary_with_grader_feedback():
     )
 
     assert "Too many adjectives" in calls[0]
+
+
+@pytest.mark.asyncio
+async def test_generate_member_summary_recovers_stray_quote_after_json():
+    """Real CLI output shape: valid object followed by a stray quote — must not fall back to the generic line."""
+    service = MemberSummaryService(api_key="test-key")
+    service._call_llm = AsyncMock(return_value='''{"narrative":"Most of Test Member's votes were on 'Healthcare.'","top_areas":["Healthcare"]}"''')
+
+    result = await service.generate_member_summary(
+        member_name="Test Member", chamber="Senate", state="New York", congresses=[119],
+        stats={"total_votes": 10, "yea_count": 5, "nay_count": 5, "participation_rate": 100.0},
+        top_areas=[], top_supported=[], top_opposed=[],
+    )
+
+    assert result["narrative"] == "Most of Test Member's votes were on 'Healthcare.'"
