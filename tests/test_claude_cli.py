@@ -33,3 +33,18 @@ async def test_cli_call_ignores_user_level_settings(monkeypatch):
     # Saved transcripts are the only record of raw LLM output for debugging.
     assert "--no-session-persistence" not in args
 
+
+async def test_cli_call_disables_tools(monkeypatch):
+    """Grader/writer calls are single-shot JSON; none of 895 saved sessions
+    ever used a tool. Tool definitions still cost ~15k prompt tokens a call."""
+    exec_mock = AsyncMock(return_value=_fake_proc())
+    monkeypatch.setattr(asyncio, "create_subprocess_exec", exec_mock)
+
+    await claude_cli.call_claude_cli("system", "user")
+
+    args = list(exec_mock.await_args.args)
+    i = args.index("--tools")
+    assert args[i + 1] == ""
+    # --tools only covers built-ins; the account's claude.ai connectors
+    # (Gmail, Drive, ...) still attach unless MCP config is made strict.
+    assert "--strict-mcp-config" in args
