@@ -15,7 +15,7 @@
     {
       "bill_number": "S. 2403",
       "bill_id": "119-s-2403",
-      "one_liner": "Clarify how retirement plan managers can value private company stock",
+      "one_liner": "Set clearer rules for how Employee Stock Ownership Plans value company shares",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-09-16T00:00:00",
@@ -31,7 +31,7 @@
     {
       "bill_number": "H.R. 9497",
       "bill_id": "119-hr-9497",
-      "one_liner": "Approve Army Corps of Engineers projects for ports, rivers, flood control, and ecosystems",
+      "one_liner": "Approve Army Corps of Engineers water projects for ports, waterways, and flood control",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-09-16T00:00:00",
@@ -47,7 +47,7 @@
     {
       "bill_number": "H.R. 9340",
       "bill_id": "119-hr-9340",
-      "one_liner": "Require large data centers to pay for electric grid upgrades they need",
+      "one_liner": "Require state regulators to consider making large data centers pay for grid upgrades",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-09-16T00:00:00",
@@ -127,7 +127,7 @@
     {
       "bill_number": "H.Con.Res. 93",
       "bill_id": "119-hconres-93",
-      "one_liner": "Order the President to pull U.S. troops out of fighting with Iran",
+      "one_liner": "Order the President to pull U.S. troops out of hostilities with Iran",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-09-15T00:00:00",
@@ -303,7 +303,7 @@
     {
       "bill_number": "H.R. 4219",
       "bill_id": "119-hr-4219",
-      "one_liner": "Set up teams in each region to find and remove invasive species from wildlife refuges",
+      "one_liner": "Create teams in each Fish and Wildlife Service region to find and fight invasive species",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-09-14T00:00:00",
@@ -335,7 +335,7 @@
     {
       "bill_number": "H.R. 1501",
       "bill_id": "119-hr-1501",
-      "one_liner": "Make all mining projects eligible for a faster federal environmental review",
+      "one_liner": "Permanently let qualifying mining and mineral processing projects use a faster federal environmental review",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-09-02T00:00:00",
@@ -343,7 +343,7 @@
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "in_favor",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 294
@@ -351,7 +351,7 @@
     {
       "bill_number": "H.J.Res. 1",
       "bill_id": "119-hjres-1",
-      "one_liner": "Fix the number of Supreme Court justices at nine in the Constitution",
+      "one_liner": "Lock the number of Supreme Court justices at nine in the Constitution",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-09-02T00:00:00",
@@ -431,7 +431,7 @@
     {
       "bill_number": "H.Res. 1499",
       "bill_id": "119-hres-1499",
-      "one_liner": "Set floor debate rules for four House bills on mining, whales, Israel, and socialism",
+      "one_liner": "Schedule House floor votes on bills covering minerals, right whales, socialism, and college funding",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-09-01T00:00:00",
@@ -447,7 +447,7 @@
     {
       "bill_number": "H.Res. 1499",
       "bill_id": "119-hres-1499",
-      "one_liner": "Set floor debate rules for four House bills on mining, whales, Israel, and socialism",
+      "one_liner": "Schedule House floor votes on bills covering minerals, right whales, socialism, and college funding",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-09-01T00:00:00",
@@ -543,7 +543,7 @@
     {
       "bill_number": "H.Con.Res. 113",
       "bill_id": "119-hconres-113",
-      "one_liner": "Set spending and revenue targets for the federal government from 2027 to 2036",
+      "one_liner": "Set the federal government's spending plan for the year starting October 2026",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-07-22T00:00:00",
@@ -591,7 +591,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-07-22T00:00:00",
@@ -607,7 +607,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-07-22T00:00:00",
@@ -623,7 +623,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-22T00:00:00",
@@ -639,7 +639,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-22T00:00:00",
@@ -655,7 +655,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-22T00:00:00",
@@ -671,7 +671,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-22T00:00:00",
@@ -703,7 +703,7 @@
     {
       "bill_number": "H.R. 6955",
       "bill_id": "119-hr-6955",
-      "one_liner": "Reduce rules on smaller banks and loosen requirements for bank mergers",
+      "one_liner": "Reduce banking rules for small banks and ease bank merger approvals",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-07-21T00:00:00",
@@ -719,7 +719,7 @@
     {
       "bill_number": "H.R. 6955",
       "bill_id": "119-hr-6955",
-      "one_liner": "Reduce rules on smaller banks and loosen requirements for bank mergers",
+      "one_liner": "Reduce banking rules for small banks and ease bank merger approvals",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-07-21T00:00:00",
@@ -735,7 +735,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -751,7 +751,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -767,7 +767,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -783,7 +783,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -799,7 +799,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -815,7 +815,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -831,7 +831,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -847,7 +847,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -863,7 +863,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -879,7 +879,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -895,7 +895,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -911,7 +911,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "Aye",
       "date": "2026-07-21T00:00:00",
@@ -927,7 +927,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -943,7 +943,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -959,7 +959,7 @@
     {
       "bill_number": "H.R. 8800",
       "bill_id": "119-hr-8800",
-      "one_liner": "Fund the military and set rules for the Department of Defense for 2027",
+      "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-21T00:00:00",
@@ -1055,7 +1055,7 @@
     {
       "bill_number": "H.R. 9237",
       "bill_id": "119-hr-9237",
-      "one_liner": "Expand VA disability pay, survivor benefits, and health care programs for veterans",
+      "one_liner": "Expand VA benefits, health care options, and pay for veterans and their families",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-07-16T00:00:00",
@@ -1247,7 +1247,7 @@
     {
       "bill_number": "H.Res. 1423",
       "bill_id": "119-hres-1423",
-      "one_liner": "Set House debate rules for four bills on time, defense, veterans, and gun stores",
+      "one_liner": "Set House debate rules for four bills on veterans, guns, time, and spending",
       "has_plain_summary": true,
       "vote": "No",
       "date": "2026-07-14T00:00:00",
@@ -1263,7 +1263,7 @@
     {
       "bill_number": "H.Res. 1423",
       "bill_id": "119-hres-1423",
-      "one_liner": "Set House debate rules for four bills on time, defense, veterans, and gun stores",
+      "one_liner": "Set House debate rules for four bills on veterans, guns, time, and spending",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-07-14T00:00:00",
@@ -1279,7 +1279,7 @@
     {
       "bill_number": "H.R. 8897",
       "bill_id": "119-hr-8897",
-      "one_liner": "Let TSA try separate security lanes for adults traveling with children 12 and under",
+      "one_liner": "Test a new airport security lane for adults traveling with young children",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-07-13T00:00:00",

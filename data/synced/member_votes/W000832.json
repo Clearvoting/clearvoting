@@ -15,7 +15,7 @@
     {
       "bill_number": "S. 2403",
       "bill_id": "119-s-2403",
-      "one_liner": "Clarify how retirement plan managers can value private company stock",
+      "one_liner": "Set clearer rules for how Employee Stock Ownership Plans value company shares",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-09-16T00:00:00",
@@ -31,7 +31,7 @@
     {
       "bill_number": "H.R. 9497",
       "bill_id": "119-hr-9497",
-      "one_liner": "Approve Army Corps of Engineers projects for ports, rivers, flood control, and ecosystems",
+      "one_liner": "Approve Army Corps of Engineers water projects for ports, waterways, and flood control",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-09-16T00:00:00",
@@ -47,7 +47,7 @@
     {
       "bill_number": "H.R. 9340",
       "bill_id": "119-hr-9340",
-      "one_liner": "Require large data centers to pay for electric grid upgrades they need",
+      "one_liner": "Require state regulators to consider making large data centers pay for grid upgrades",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-09-16T00:00:00",
@@ -127,7 +127,7 @@
     {
       "bill_number": "H.Con.Res. 93",
       "bill_id": "119-hconres-93",
-      "one_liner": "Order the President to pull U.S. troops out of fighting with Iran",
+      "one_liner": "Order the President to pull U.S. troops out of hostilities with Iran",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-09-15T00:00:00",
@@ -303,7 +303,7 @@
     {
       "bill_number": "H.R. 4219",
       "bill_id": "119-hr-4219",
-      "one_liner": "Set up teams in each region to find and remove invasive species from wildlife refuges",
+      "one_liner": "Create teams in each Fish and Wildlife Service region to find and fight invasive species",
       "has_plain_summary": true,
       "vote": "Yea",
       "date": "2026-09-14T00:00:00",
@@ -335,7 +335,7 @@
     {
       "bill_number": "H.R. 1501",
       "bill_id": "119-hr-1501",
-      "one_liner": "Make all mining projects eligible for a faster federal environmental review",
+      "one_liner": "Permanently let qualifying mining and mineral processing projects use a faster federal environmental review",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-09-02T00:00:00",
@@ -343,7 +343,7 @@
       "policy_area": "Energy",
       "chamber": "House",
       "cbo_deficit_impact": null,
-      "direction": "in_favor",
+      "direction": "against",
       "congress": 119,
       "session": 2,
       "vote_number": 294
@@ -351,7 +351,7 @@
     {
       "bill_number": "H.J.Res. 1",
       "bill_id": "119-hjres-1",
-      "one_liner": "Fix the number of Supreme Court justices at nine in the Constitution",
+      "one_liner": "Lock the number of Supreme Court justices at nine in the Constitution",
       "has_plain_summary": true,
       "vote": "Nay",
       "date": "2026-09-02T00:00:00",
