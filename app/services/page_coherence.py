@@ -2,7 +2,7 @@ import json
 import logging
 from dataclasses import dataclass, field
 import anthropic
-from app.services.grader_common import CLAUDE_MODEL, strip_code_fences
+from app.services.grader_common import CLAUDE_MODEL, parse_llm_json
 
 logger = logging.getLogger(__name__)
 
@@ -93,16 +93,15 @@ Compare the narrative against the data sections. Are there contradictions? Retur
 
         try:
             raw_text = await self._call_llm(self._build_system_prompt(), user_prompt)
-            raw_text = strip_code_fences(raw_text)
-            result = json.loads(raw_text)
+            result = parse_llm_json(raw_text)
 
             return CoherenceResult(
                 is_coherent=result.get("is_coherent", False),
                 contradictions=result.get("contradictions", []),
                 guidance=result.get("guidance", ""),
             )
-        except json.JSONDecodeError:
-            logger.error("Coherence checker returned invalid JSON: %s", raw_text[:200])
+        except json.JSONDecodeError as e:
+            logger.error("Coherence checker returned invalid JSON (%s): %s", e, raw_text[:200])
             return CoherenceResult(
                 is_coherent=False,
                 contradictions=["Coherence checker returned invalid response"],
