@@ -27,10 +27,16 @@ async def call_claude_cli(
     # which can cause conversational responses instead of raw JSON.
     env = {k: v for k, v in os.environ.items() if k not in ("CLAUDECODE", "ANTHROPIC_API_KEY")}
 
+    # cwd=/tmp alone still loads user-level config: plugin SessionStart hooks
+    # (the explanatory output style prepended "★ Insight" prose to grader JSON)
+    # and ~/.claude/CLAUDE.md. An empty --setting-sources skips all of it while
+    # keeping OAuth auth (keychain locally, CLAUDE_CODE_OAUTH_TOKEN in CI) and
+    # session transcripts. Not --bare: it disables OAuth entirely.
     proc = await asyncio.create_subprocess_exec(
         "claude", "-p",
         "--output-format", "text",
         "--model", model,
+        "--setting-sources", "",
         stdin=asyncio.subprocess.PIPE,
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE,
