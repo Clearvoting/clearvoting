@@ -1,7 +1,7 @@
 {
   "state": "CA",
   "state_name": "California",
-  "roster_as_of": "2026-09-19",
+  "roster_as_of": "2026-10-03",
   "senators": [
     {
       "bioguideId": "P000145",
@@ -17,10 +17,10 @@
       ],
       "partyName": "Democratic",
       "latest_vote": {
-        "rc": "senate/119_2_00228",
-        "bill_id": "119-hr-6500",
+        "rc": "senate/119_2_00250",
+        "bill_id": "119-s-4668",
         "position": "Yea",
-        "date": "2026-08-08"
+        "date": "2026-09-28"
       }
     },
     {
@@ -42,10 +42,10 @@
       ],
       "partyName": "Democratic",
       "latest_vote": {
-        "rc": "senate/119_2_00228",
-        "bill_id": "119-hr-6500",
-        "position": "Yea",
-        "date": "2026-08-08"
+        "rc": "senate/119_2_00250",
+        "bill_id": "119-s-4668",
+        "position": "Nay",
+        "date": "2026-09-28"
       }
     }
   ],
@@ -1107,5 +1107,5 @@
     }
   ],
   "districts_expected": 52,
-  "generated_at": "2026-09-26T11:31:15+00:00"
+  "generated_at": "2026-10-04T16:04:33+00:00"
 }
