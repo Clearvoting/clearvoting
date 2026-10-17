@@ -1,5 +1,6 @@
 """Shared types and utilities for grader services."""
 
+import json
 from dataclasses import dataclass, field
 from typing import Protocol
 
@@ -17,6 +18,31 @@ def strip_code_fences(text: str) -> str:
     if text.endswith("```"):
         text = text[:-3]
     return text.strip()
+
+
+def parse_llm_json(text: str) -> dict:
+    """Parse the JSON object in an LLM response.
+
+    The `claude -p` path wraps otherwise-valid objects in junk at the edges:
+    code fences, prose before the object (user-level output-style hooks leak
+    into CLI calls), a stray quote after it (`...'."}}"`), or a dropped final
+    brace (`...'."}`). Decode from the first "{" and ignore anything after
+    the object; if the text ends right after a nested object closes, add the
+    one missing brace. A response cut off anywhere else still raises
+    json.JSONDecodeError — never guess at a truncated grade.
+    """
+    text = strip_code_fences(text)
+    start = text.find("{")
+    if start == -1:
+        raise json.JSONDecodeError("No JSON object found", text, 0)
+    text = text[start:]
+    decoder = json.JSONDecoder()
+    try:
+        return decoder.raw_decode(text)[0]
+    except json.JSONDecodeError as e:
+        if e.pos != len(text) or not text.endswith("}"):
+            raise
+        return decoder.raw_decode(text + "}")[0]
 
 
 GRADE_ORDER = {"A": 4, "B": 3, "C": 2, "D": 1, "F": 0}

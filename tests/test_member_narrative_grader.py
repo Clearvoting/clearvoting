@@ -203,3 +203,14 @@ async def test_grade_handles_malformed_json():
 
     assert result.grade == "F"
     assert result.passed is False
+
+
+@pytest.mark.asyncio
+async def test_grade_recovers_stray_quote_after_json():
+    """Real CLI output shape: valid object followed by a stray quote — must not become an F."""
+    grader = MemberNarrativeGrader(api_key="test")
+    grader._call_llm = AsyncMock(return_value='''{"grade":"B","passed":true,"feedback":"Matches the vote data.","checks":{"data_alignment":"pass: 'mostly in favor.'"}}"''')
+
+    result = await grader.grade(summary_type="member_narrative", summary_text='{"narrative": "Test"}', context={"top_areas": [], "stats": {}})
+
+    assert (result.grade, result.passed, result.feedback) == ("B", True, "Matches the vote data.")

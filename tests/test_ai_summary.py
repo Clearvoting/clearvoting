@@ -394,3 +394,17 @@ def test_build_prompt_omits_status_line_when_absent():
     service = AISummaryService(api_key="test", cache=MagicMock())
     prompt = service._build_prompt("T", "S", "X")
     assert "Latest Action" not in prompt
+
+
+@pytest.mark.asyncio
+async def test_stray_quote_after_json_parses_without_retry():
+    """Real CLI output shape: valid object followed by a stray quote — no wasted second writer call."""
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = None
+    service = AISummaryService(api_key="test", cache=mock_cache)
+    service._call_llm = AsyncMock(return_value='''{"one_liner":"Require agencies to post the data behind their rules","provisions":["Agencies must post the data they used"],"issue_categories":["Taxes"],"direction":"in_favor"}"''')
+
+    result = await service.generate_summary(bill_id="119-hr-1", title="T", official_summary="S", bill_text_excerpt="X")
+
+    assert result["one_liner"] == "Require agencies to post the data behind their rules"
+    assert service._call_llm.call_count == 1

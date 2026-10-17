@@ -1,7 +1,7 @@
 import json
 import logging
 import anthropic
-from app.services.grader_common import CLAUDE_MODEL, GradeResult, strip_code_fences
+from app.services.grader_common import CLAUDE_MODEL, GradeResult, parse_llm_json
 
 logger = logging.getLogger(__name__)
 
@@ -110,8 +110,7 @@ Evaluate against every check in your checklist. Pay special attention to DATA AL
 
         try:
             raw_text = await self._call_llm(system_prompt, user_prompt)
-            raw_text = strip_code_fences(raw_text)
-            result = json.loads(raw_text)
+            result = parse_llm_json(raw_text)
 
             return GradeResult(
                 grade=result.get("grade", "F"),
@@ -119,8 +118,8 @@ Evaluate against every check in your checklist. Pay special attention to DATA AL
                 feedback=result.get("feedback", "No feedback provided."),
                 checks=result.get("checks", {}),
             )
-        except json.JSONDecodeError:
-            logger.error("Grader response was not valid JSON: %s", raw_text[:200])
+        except json.JSONDecodeError as e:
+            logger.error("Grader response was not valid JSON (%s): %s", e, raw_text[:200])
             return GradeResult(grade="F", passed=False, feedback="Grader returned invalid JSON.", checks={})
         except Exception as e:
             logger.error("Grader API call failed: %s", str(e))

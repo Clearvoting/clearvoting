@@ -1595,9 +1595,8 @@ Return JSON only."""
 
         try:
             raw = await service._call_llm(system_prompt, user_prompt)
-            from app.services.ai_summary import _strip_code_fences
-            raw = _strip_code_fences(raw)
-            result = json.loads(raw)
+            from app.services.grader_common import parse_llm_json
+            result = parse_llm_json(raw)
             direction = result.get("direction", "neutral")
             if direction not in ["in_favor", "against", "neutral"]:
                 direction = "neutral"

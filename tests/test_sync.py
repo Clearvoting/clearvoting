@@ -1221,6 +1221,28 @@ async def test_backfill_adds_direction_to_missing(tmp_path):
 
 
 @pytest.mark.asyncio
+async def test_backfill_recovers_stray_quote_after_json(tmp_path):
+    """Real CLI output shape: valid object followed by a stray quote — must not skip the bill."""
+    _write_json(tmp_path / "bills.json", {"bills": []})
+    _write_json(tmp_path / "members.json", {"members": []})
+    _write_json(tmp_path / "ai_summaries.json", {
+        "119-hr-1": {"one_liner": "Cut taxes on tips", "provisions": ["Cuts taxes on tips"], "issue_categories": ["Taxes"]}
+    })
+
+    import unittest.mock
+    with unittest.mock.patch("app.services.ai_summary.AISummaryService") as MockService:
+        mock_instance = MagicMock()
+        mock_instance._call_llm = AsyncMock(return_value='''{"direction": "against"}"''')
+        MockService.return_value = mock_instance
+
+        stats = await backfill_bill_directions(tmp_path, api_key="test")
+
+    assert stats["updated"] == 1
+    data = json.loads((tmp_path / "ai_summaries.json").read_text())
+    assert data["119-hr-1"]["direction"] == "against"
+
+
+@pytest.mark.asyncio
 async def test_backfill_skips_existing_direction(tmp_path):
     """Backfill skips summaries that already have direction."""
     _write_json(tmp_path / "bills.json", {"bills": []})

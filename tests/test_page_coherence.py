@@ -135,3 +135,14 @@ async def test_handles_api_error_gracefully():
 
     # Default to coherent on error (don't block sync)
     assert result.is_coherent is True
+
+
+@pytest.mark.asyncio
+async def test_recovers_stray_quote_after_json():
+    """Real CLI output shape: valid object followed by a stray quote — must not read as incoherent."""
+    checker = PageCoherenceChecker(api_key="test")
+    checker._call_llm = AsyncMock(return_value='''{"is_coherent":true,"contradictions":[],"guidance":"Narrative matches 'Cost of Living.'"}"''')
+
+    result = await checker.check(narrative="Test", stats={}, top_areas=[], top_supported=[], top_opposed=[])
+
+    assert (result.is_coherent, result.contradictions) == (True, [])
