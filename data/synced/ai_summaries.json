@@ -35486,5 +35486,1542 @@
       "Safety & Crime"
     ],
     "direction": "in_favor"
+  },
+  "118-hr-8663": {
+    "one_liner": "Require federal research into better tools for detecting fentanyl and xylazine",
+    "provisions": [
+      "Gives a Department of Homeland Security science office the legal standing to research and build better drug-detection tools for police departments at every level of government.",
+      "Covers work on portable detectors that can find drugs like fentanyl without officers having to handle the sample directly.",
+      "Covers tools that can separate drug mixtures to find tiny amounts of fentanyl or other drugs mixed in with other substances.",
+      "Covers AI-based technology that can spot new drugs not yet in any reference database.",
+      "Requires the office to follow federal AI safety guidelines set by the National Institute of Standards and Technology.",
+      "Requires the office to base its research priorities on the latest threat reports from the Department of Homeland Security and the Drug Enforcement Administration."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "118-s-1351": {
+    "one_liner": "Order a study on abuse, neglect, and deaths in youth residential programs",
+    "provisions": [
+      "The law hires the National Academies of Sciences, Engineering, and Medicine to study child abuse, neglect, and deaths in youth residential programs.",
+      "Researchers will measure how common and how serious abuse and neglect are in these programs.",
+      "A first report must be ready within 3 years of this law passing.",
+      "After that, a new report comes out every 2 years for the next 10 years.",
+      "Recommendations will cover how to improve health, safety, and care for youth in these programs.",
+      "Training guidance will be recommended for people in healthcare, law enforcement, courts, social work, and child protection."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "118-s-3857": {
+    "one_liner": "Place about 172 acres of land into federal trust for the Jamul Indian Village",
+    "provisions": [
+      "About 172 acres in San Diego County, California, become official reservation land for the Jamul Indian Village.",
+      "The land is placed into federal trust, meaning the U.S. government holds and manages it on behalf of the tribe.",
+      "The tribe already owns this land before this law takes effect.",
+      "The federal government must also accept up to 1.1 more acres from the tribe and add it to federal trust as reservation land, if the tribe transfers it.",
+      "No gambling is allowed on any of the land this law covers."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "118-s-141": {
+    "one_liner": "Expand VA healthcare access, education programs, home loans, and homeless veteran housing services",
+    "provisions": [
+      "Veterans and their doctors can decide together when outside VA care is the best option.",
+      "Spending on home-based care rises from a cap of 65% to 100% of nursing home costs.",
+      "The Fry Scholarship temporarily opens to children and spouses of service members who died within 120 days of leaving the military.",
+      "Up to 4,000 veterans per year can enroll in tech training in coding, software, or data through 2028.",
+      "Through the VA's direct loan program, Native American veterans can now refinance an existing non-VA home loan.",
+      "Daily payments to organizations that house homeless veterans can go up to double the normal limit through 2027.",
+      "Ambulance costs are now covered for veterans with disabilities from their military service who live 100 or more miles from a VA medical center."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor"
+  },
+  "118-s-759": {
+    "one_liner": "Give the government's dog training program for agriculture inspections official legal standing",
+    "provisions": [
+      "Makes the National Detector Dog Training Center an official government program under federal law \u2014 it already existed but now has a legal foundation.",
+      "The center trains dogs to sniff out bugs, plants, and diseases in luggage, mail, packages, and vehicles that could harm U.S. farms and forests.",
+      "Handlers are also trained at the center to work with and select these dogs.",
+      "Retirement-age dogs and dogs that wash out of training can be adopted by private families.",
+      "Within one year of becoming law, the Agriculture Department must send Congress a report on threats from foreign pests and diseases and ways to improve the center."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "118-s-3448": {
+    "one_liner": "Keep funding Holocaust education programs through 2030",
+    "provisions": [
+      "Lets the U.S. Holocaust Memorial Museum keep running its Holocaust education programs through 2030.",
+      "Without this bill, that funding would have expired sooner."
+    ],
+    "issue_categories": [
+      "Education"
+    ],
+    "direction": "in_favor"
+  },
+  "118-s-4077": {
+    "one_liner": "Rename a post office in San Francisco after Dianne Feinstein",
+    "provisions": [
+      "Gives the post office at 180 Steuart Street in San Francisco, California the official name 'Dianne Feinstein Post Office'",
+      "All government documents, maps, and records that mention this building must use the new name",
+      "The change is only to the name \u2014 nothing else about the building or its operations changes"
+    ],
+    "issue_categories": [
+      "Money in Politics"
+    ],
+    "direction": "neutral"
+  },
+  "118-hr-1607": {
+    "one_liner": "Transfer land near Arizona's Salt River to the Bureau of Reclamation for hydropower use",
+    "provisions": [
+      "Moves a section of National Forest land along the Salt River in Arizona to the Bureau of Reclamation for hydropower facilities.",
+      "This land runs from Roosevelt Dam to about 18 miles downstream, on the south side of the river.",
+      "Any power facilities built here must follow Bureau of Reclamation building standards and get federal approval before construction.",
+      "Once the facilities are finished, the federal government takes ownership, but a local water district runs and maintains them.",
+      "No one can sell, mine, or use this land for anything other than hydropower.",
+      "Moving the land to federal control does not require an environmental review, but building the facilities still does."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-115": {
+    "one_liner": "Let Congress cancel multiple last-minute rules at once with one vote",
+    "provisions": [
+      "Right now, Congress can only cancel one rule at a time using a special vote called a Congressional Review Act resolution.",
+      "This bill lets Congress bundle multiple rules into one vote to cancel them all at once.",
+      "It only applies to rules that were sent to Congress during the final year of a president's term.",
+      "This makes it faster for the next Congress to undo rules passed in the final months of the previous administration."
+    ],
+    "issue_categories": [
+      "Money in Politics"
+    ],
+    "direction": "neutral"
+  },
+  "118-hr-1101": {
+    "one_liner": "Give the Lumbee Tribe of North Carolina federal recognition and access to tribal services",
+    "provisions": [
+      "Officially recognizes the Lumbee Tribe of North Carolina as a federally recognized Native American tribe.",
+      "Opens up federal services and benefits to Lumbee tribal members \u2014 the same services available to members of other federally recognized tribes.",
+      "Tribal members living in Robeson, Cumberland, Hoke, and Scotland Counties in North Carolina are counted as part of the service area and can receive federal services locally.",
+      "The federal government must work with the tribe to figure out what services are needed and send a written report of those needs to Congress.",
+      "Federal officials can take land in North Carolina and hold it in trust for the tribe.",
+      "North Carolina keeps the power to handle crimes and lawsuits on tribal lands, unless the tribe and state agree to transfer that power to the federal government."
+    ],
+    "issue_categories": [
+      "Healthcare"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "118-hres-1616": {
+    "one_liner": "Set House floor rules for a vote on bundling multiple regulation cancellations",
+    "provisions": [
+      "Allowed the House to vote on H.R. 115, a bill that would let Congress cancel multiple regulations issued at the end of a president's term under a single vote",
+      "Waived procedural rules that could have blocked H.R. 115 from being considered on the floor",
+      "Set one hour of total debate time, divided equally between supporters and opponents",
+      "Allowed one motion to send the bill back to committee before a final vote",
+      "Made the Judiciary Committee's version of H.R. 115 the official starting text for floor debate"
+    ],
+    "issue_categories": [],
+    "direction": "neutral"
+  },
+  "118-hres-847": {
+    "one_liner": "Set House debate rules for the 2024 Financial Services and General Government spending bill",
+    "provisions": [
+      "This resolution sets the House debate and vote rules for H.R. 4664.",
+      "H.R. 4664 is the spending bill for financial services and general government for the year ending September 30, 2024.",
+      "General debate on the bill is capped at one hour, split equally between both sides of the House spending committee.",
+      "Each amendment then gets its own separate debate time.",
+      "Amendments from the pre-approved list can be bundled together and debated for 20 minutes.",
+      "Both sides can offer up to 10 short speaking slots during the debate."
+    ],
+    "issue_categories": [
+      "Taxes"
+    ],
+    "direction": "neutral"
+  },
+  "118-hres-845": {
+    "one_liner": "Censure Representative Rashida Tlaib for statements about Israel and Hamas",
+    "provisions": [
+      "The House officially censures Representative Rashida Tlaib, a formal rebuke from her fellow members.",
+      "The resolution says Tlaib defended Hamas's October 7, 2023 attack on Israel within 24 hours of the attack.",
+      "It says she spread a false claim that Israel bombed a hospital on October 17, 2023.",
+      "It says she posted a video with the phrase 'from the river to the sea' and called it a peaceful slogan.",
+      "Censure is a formal punishment that does not remove a member from office or take away their voting rights."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "118-hr-3774": {
+    "one_liner": "Sanction foreign people and companies that handle oil from Iran",
+    "provisions": [
+      "Requires the U.S. to block the U.S. bank accounts and property of any foreign person or company that ships, refines, or handles oil from Iran.",
+      "Bans those same foreign people from entering the United States and cancels any visas they already hold.",
+      "Extends the same sanctions to adult family members of the sanctioned person, unless they can prove they cut ties and did not help hide money.",
+      "Also sanctions any company owned by a sanctioned person.",
+      "Sanctions take effect 90 days after the law is passed.",
+      "Does not apply to importing regular goods \u2014 only to oil and oil-related products from Iran."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-359": {
+    "one_liner": "Add Fort San Ger\u00f3nimo del Boquer\u00f3n in Puerto Rico to the National Park System",
+    "provisions": [
+      "Makes Fort San Ger\u00f3nimo del Boquer\u00f3n, a historic fort near Old San Juan, Puerto Rico, part of the National Park System as an affiliated area.",
+      "The Institute of Puerto Rican Culture takes over as the group responsible for running the fort and its grounds.",
+      "The Department of the Interior must write a plan for how the fort will be managed.",
+      "The federal government can give the Institute of Puerto Rican Culture money and help for things like marking, explaining, and preserving the fort site."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-4820": {
+    "one_liner": "Fund transportation agencies and housing programs for the year starting October 2023",
+    "provisions": [
+      "Gives $176.9 million to the main offices of the Department of Transportation to operate for the year starting October 2023.",
+      "Sets aside $41.7 million for transportation research and new technology programs.",
+      "Provides $10.6 million to the bureau that manages federal loans for road and transit projects.",
+      "Funds the Department of Housing and Urban Development, covering public housing, community development, fair housing, and programs to reduce lead hazards in homes.",
+      "Funds related agencies including the National Transportation Safety Board, Amtrak's inspector general, and the U.S. Interagency Council on Homelessness."
+    ],
+    "issue_categories": [
+      "Housing",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-5362": {
+    "one_liner": "Rename a VA clinic in Marietta, Georgia, after Colonel Michael H. Boyce",
+    "provisions": [
+      "The VA clinic at 1263 Cobb Parkway NW in Marietta, Georgia, will be renamed the Colonel Michael H. Boyce VA Clinic.",
+      "All government records, maps, and documents that mention this clinic will use the new name.",
+      "Colonel Boyce was a Marine who served for 30 years and moved to Marietta after retiring.",
+      "He helped create this VA clinic in Cobb County before he died in 2022."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "neutral"
+  },
+  "119-hr-3106": {
+    "one_liner": "Require a government drill for terror attacks during extreme cold weather",
+    "provisions": [
+      "Tells the Department of Homeland Security to run a practice drill that simulates a terrorist attack happening during a polar vortex or extreme cold event.",
+      "The drill must test how power, water, and other critical systems hold up when hit by both extreme cold and a terror attack at the same time.",
+      "The drill must include state, local, tribal, and private groups \u2014 not just federal agencies.",
+      "Within 60 days after the drill ends, DHS must send Congress a report on what was learned and what should change."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-1181": {
+    "one_liner": "Stop credit card networks from tagging gun store purchases with a special code",
+    "provisions": [
+      "Credit card networks cannot give gun stores a special purchase code that marks them as firearms sellers.",
+      "Payment processors also cannot assign gun stores a code that sets them apart from other stores.",
+      "The Department of Justice handles complaints and can take violators to federal court if they don't fix the problem within 30 days.",
+      "State and local laws about these purchase codes for gun stores no longer apply.",
+      "Each year, the DOJ reports to Congress on how many cases it investigated."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "against"
+  },
+  "119-hr-139": {
+    "one_liner": "Make daylight saving time permanent year-round across the United States",
+    "provisions": [
+      "Clocks would stay on daylight saving time all year \u2014 no more switching back in the fall",
+      "States and areas that already opt out of daylight saving time could choose which time to follow",
+      "The bill passed the House on July 14, 2026 and is waiting for a Senate vote"
+    ],
+    "issue_categories": [
+      "Cost of Living"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-8595": {
+    "one_liner": "Fund the State Department and U.S. international programs for the year ending September 2027",
+    "provisions": [
+      "Gives the State Department about $9.8 billion to run U.S. embassies, pay staff, and protect American facilities overseas for the year ending September 2027",
+      "Sets aside $533 million to cut wait times for passports and visas",
+      "Gives $647 million for student and cultural exchange programs between the U.S. and other countries, including at least $287.8 million for the Fulbright Program",
+      "Provides $413.6 million for technology and equipment upgrades at the State Department",
+      "Funds international groups including the Peace Corps, the National Endowment for Democracy, and the Export-Import Bank",
+      "Sets aside $30.9 million to protect foreign diplomats and officials working in the U.S."
+    ],
+    "issue_categories": [
+      "Education"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "119-sjres-198": {
+    "one_liner": "Cancel a Medicare rule requiring AI approval for some treatments in six states",
+    "provisions": [
+      "Cancels a Medicare rule that took effect January 1, 2026 in six states: New Jersey, Ohio, Oklahoma, Texas, Arizona, and Washington.",
+      "Under that rule, private companies use AI to decide whether Medicare will cover certain treatments before a doctor provides them to a patient.",
+      "Those private companies get paid based on how much money Medicare saves under their decisions.",
+      "The rule was set to run for six years.",
+      "If this resolution does not pass, the rule stays in place and Medicare continues running this model in those six states."
+    ],
+    "issue_categories": [
+      "Healthcare"
+    ],
+    "direction": "against"
+  },
+  "119-hr-9237": {
+    "one_liner": "Expand VA benefits, health care options, and pay for veterans and their families",
+    "provisions": [
+      "Would let some military retirees with combat-related disabilities receive both their full retirement pay and VA disability payment at the same time",
+      "Surviving spouses who remarry after a veteran's death would keep certain VA benefits they currently lose when they remarry",
+      "Would increase the monthly payment the VA sends to surviving spouses after a veteran dies",
+      "Veterans could use their GI Bill education benefits for more types of online and independent study programs",
+      "Would raise the monthly housing payment for veterans doing apprenticeships or on-the-job training",
+      "Would extend the Staff Sergeant Parker Gordon Fox Suicide Prevention Grant Program, which funds groups working to prevent veteran suicide",
+      "Would change how the VA rates sleep apnea and tinnitus (ringing in the ears) when deciding disability payments"
+    ],
+    "issue_categories": [
+      "Veterans & Military",
+      "Healthcare"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-8897": {
+    "one_liner": "Test a new airport security lane for adults traveling with young children",
+    "provisions": [
+      "TSA can set up a test program at airports with special security lanes for adults traveling with kids 12 and under.",
+      "The program can run at airports that get a lot of families with children.",
+      "All passengers in the program still get checked the same way as everyone else \u2014 no security steps are skipped.",
+      "Only passengers with TSA PreCheck on their boarding pass can use TSA PreCheck lanes.",
+      "The program runs for two years, and TSA must report to Congress within 270 days of starting it."
+    ],
+    "issue_categories": [
+      "Cost of Living"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "119-s-4784": {
+    "one_liner": "Set military spending levels and troop numbers for the year starting October 2026",
+    "provisions": [
+      "Sets the total amount the military can spend and how many troops it can have for the year starting October 2026",
+      "Lets the Army buy Infantry Squad Vehicles in bulk over several years instead of one year at a time",
+      "Pays for major engine repairs and refueling of two Navy aircraft carriers: the USS John C. Stennis and USS Harry S. Truman",
+      "Gives the Air Force the ability to buy F-35 and F-15EX fighter jets in bulk over several years",
+      "Stops the military from destroying or scrapping any aircraft built during World War II",
+      "Creates new programs to build more air defense missiles",
+      "Adds Army National Guard units to the Army's plans and forces for the Arctic region"
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hres-1423": {
+    "one_liner": "Set House debate rules for four bills on veterans, guns, time, and spending",
+    "provisions": [
+      "This resolution sets the rules for how the House will debate and vote on four separate bills.",
+      "One bill would make daylight saving time permanent, ending the twice-yearly clock change.",
+      "One bill would fund the State Department and national security programs through September 2027.",
+      "One bill would change the rules for veterans' benefits and how the VA is run.",
+      "One bill would stop payment card networks from using a special tracking code for gun store purchases."
+    ],
+    "issue_categories": [
+      "Veterans & Military",
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "119-hconres-89": {
+    "one_liner": "Order the President to stop military attacks on Iran without a war vote from Congress",
+    "provisions": [
+      "Tells the President to pull U.S. troops out of any active fighting against Iran unless Congress first votes to declare war or approves a specific military action.",
+      "Does not stop the U.S. from defending itself, its troops, its embassies, or its allies if they are under immediate attack.",
+      "Lets U.S. troops stay in the region as long as they are not actively fighting Iran.",
+      "Does not change or limit U.S. spy agencies from collecting or sharing intelligence about Iran."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "against"
+  },
+  "118-hr-10515": {
+    "one_liner": "Keep the government funded through March 2025 and extend several health and farm programs",
+    "provisions": [
+      "Keep the government running through March 14, 2025, instead of letting it shut down",
+      "Set aside $90 million for security costs in Washington D.C., with at least $50 million going to the January 2025 Presidential Inauguration",
+      "Continue Medicare payments for rural hospitals, telehealth visits, and ambulance services that were set to expire",
+      "Continue funding for community health centers, diabetes programs, and programs that train doctors",
+      "Temporarily stop planned cuts to hospital payments that serve large numbers of low-income patients",
+      "Continue farm programs that were set to expire",
+      "Temporarily raise the national debt limit so the government can keep paying its bills"
+    ],
+    "issue_categories": [
+      "Healthcare",
+      "Cost of Living"
+    ],
+    "direction": "in_favor"
+  },
+  "119-sjres-180": {
+    "one_liner": "Order the President to pull U.S. troops out of fighting in Iran",
+    "provisions": [
+      "The U.S. has been in combat against Iran since February 28, 2026, without Congress voting to approve it.",
+      "As of April 8, 2026, 13 U.S. troops have been killed and 380 have been wounded in the fighting.",
+      "Tells the President to pull U.S. troops out of the fighting in Iran unless Congress votes to approve it with a war declaration or use-of-force vote.",
+      "Defending against a direct attack on the U.S. or its people would still be allowed.",
+      "The U.S. could still share intelligence and help other countries Iran attacked since February 28, 2026 defend themselves.",
+      "Americans in the area could still be helped to leave safely."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "against"
+  },
+  "118-hr-4664": {
+    "one_liner": "Fund the Treasury, federal courts, and other government agencies for the year ending September 2024",
+    "provisions": [
+      "Gives the Treasury Department $248 million to run its offices for the year ending September 2024",
+      "Puts $207 million toward the group that tracks money used by criminals, drug traffickers, and national security threats",
+      "Sets aside $150 million to improve cybersecurity for Treasury computer systems, with the money available through September 2026",
+      "Gives $21 million to the group that reviews foreign companies trying to buy U.S. businesses",
+      "Funds agencies including the FTC, SEC, Small Business Administration, Consumer Financial Protection Bureau, and U.S. Postal Service",
+      "Sets rules on what each agency can and cannot use the money for"
+    ],
+    "issue_categories": [
+      "Taxes"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "119-hconres-113": {
+    "one_liner": "Set the federal government's spending plan for the year starting October 2026",
+    "provisions": [
+      "Sets the federal government's spending plan for the year starting October 2026, with $6.08 trillion in spending and $4.48 trillion in expected tax revenue.",
+      "Plans for the government to spend $1.6 trillion more than it takes in during the year starting October 2026.",
+      "Projects the national debt to grow from about $41.4 trillion in 2027 to $56.2 trillion by 2036.",
+      "Tells four House committees \u2014 Agriculture, Armed Services, Intelligence, and Administration \u2014 to send budget plans to the Budget Committee by September 11, 2026.",
+      "Those committee plans can then move through the Senate under rules that prevent delays and limit changes, making them faster to pass.",
+      "Also sets spending blueprints for each year from 2028 through 2036, with total spending rising from $6.25 trillion to $7.86 trillion."
+    ],
+    "issue_categories": [
+      "Taxes"
+    ],
+    "direction": "neutral"
+  },
+  "119-hr-1118": {
+    "one_liner": "Let federal agencies pick vendors based on quality, not just lowest price",
+    "provisions": [
+      "Changes one rule so the GSA can pick contractors based on best value, not just lowest cost.",
+      "Best value means the government can weigh quality, reliability, and other factors \u2014 not just price.",
+      "The GSA runs a shopping program that federal agencies use to buy common goods and services at bulk prices."
+    ],
+    "issue_categories": [
+      "Cost of Living"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-7008": {
+    "one_liner": "Stop members of Congress and their families from buying stocks while in office",
+    "provisions": [
+      "Members of Congress cannot buy individual stocks or similar investments while serving in office.",
+      "Before selling a stock, a member must post public notice 7 to 14 days ahead, listing the planned date, what is sold, and how many shares.",
+      "That notice goes online through House or Senate staff and must be pulled back if the member decides not to sell.",
+      "Breaking the rules means paying a fee of $2,000 or 10% of the trade value \u2014 whichever is higher \u2014 plus any profit made.",
+      "Anyone who buys stocks illegally must also sell them.",
+      "Fines cannot come from campaign donations or the member's official office budget.",
+      "Spouses and children are exempt if the trade is part of their job or comes from their employer as pay."
+    ],
+    "issue_categories": [
+      "Money in Politics"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-5334": {
+    "one_liner": "Let pre-K teachers deduct up to $300 in classroom expenses on their taxes",
+    "provisions": [
+      "Pre-kindergarten teachers can now take the same tax deduction that K-12 teachers already get for classroom and professional development costs they pay out of pocket.",
+      "The deduction is worth up to $300 per year (as of 2025) and is adjusted each year.",
+      "To qualify, the school or childcare facility must serve more than 2 children under age 6 and must receive public funding or charge fees.",
+      "This change takes effect starting with the 2026 tax year."
+    ],
+    "issue_categories": [
+      "Education",
+      "Taxes"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-4541": {
+    "one_liner": "Extend breast and cervical cancer screenings and young women's education programs through 2030 and 2031",
+    "provisions": [
+      "Keeps a CDC program running through 2030 that pays for breast and cervical cancer screenings for people with low incomes or no health insurance.",
+      "Sets funding for that program at $235.5 million a year from 2026 through 2030.",
+      "Renews programs through 2031 that educate young women and health care providers about breast cancer and fund research on preventing it.",
+      "Provides grants to organizations helping young women already diagnosed with breast cancer or precancerous conditions.",
+      "Gives states more flexibility in how they spend grant money, including funding navigation help and reducing gaps in who gets screened.",
+      "A government watchdog must report to Congress by September 30, 2027 on program use and barriers to getting screened."
+    ],
+    "issue_categories": [
+      "Healthcare"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-6955": {
+    "one_liner": "Reduce banking rules for small banks and ease bank merger approvals",
+    "provisions": [
+      "New banks get 3 years to build up to the full capital requirements, instead of having to meet them right away.",
+      "Bank regulators must look at each bank's size and risk level before deciding how strict the rules should be for that bank.",
+      "The dollar amounts that determine whether a bank must follow certain rules go up, so more small banks no longer have to follow those rules.",
+      "For certain bank mergers, regulators can approve them without checking whether the merger reduces competition or creates a monopoly.",
+      "The asset limit for when a company needs Federal Reserve approval to buy another company goes up, so more purchases can happen without Fed sign-off.",
+      "Small bank holding companies below a higher asset limit can carry more debt than they could before.",
+      "Regulators must review their own rules more often to see if any should be updated or removed."
+    ],
+    "issue_categories": [
+      "Cost of Living",
+      "Jobs & Workers"
+    ],
+    "direction": "against",
+    "needs_review": true
+  },
+  "119-hr-8800": {
+    "one_liner": "Authorize Defense Department spending and set military policy and troop levels for fiscal 2027",
+    "provisions": [
+      "Sets how many active duty and reserve troops the military can have for the year starting October 2026",
+      "Allows the military to buy planes, ships, submarines, and other weapons and equipment",
+      "Outlines rules for military pay and health care",
+      "Lays out how the Defense Department must buy equipment and manage contracts",
+      "Covers how the U.S. military works with other countries, including Israel, Europe, and the Indo-Pacific region",
+      "Requires the Defense Department to factor in expected foreign weapons sales when planning how much equipment to make",
+      "Creates a faster path for approving new U.S. and allied suppliers of certain metals and materials needed for defense"
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-8884": {
+    "one_liner": "Extend Social Security's ability to test work programs for disabled people through 2031",
+    "provisions": [
+      "Lets the Social Security Administration run test programs for people on disability benefits through 2031 \u2014 this power had expired at the end of 2022.",
+      "Test programs must be designed to help disabled people stay connected to work.",
+      "Joining a test program must be a choice \u2014 no one can be required to participate.",
+      "People who join a test program cannot end up with less total income because of their participation.",
+      "The Social Security Administration must notify Congress 120 days before starting a test program, up from 90 days under current law.",
+      "Any advance notice to Congress must include the specific goals and measures that will be used to judge whether the program worked.",
+      "Changes take effect January 1, 2027."
+    ],
+    "issue_categories": [
+      "Social Security & Retirement",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-8823": {
+    "one_liner": "Let the government stop paying providers convicted of fraud in workers' comp or Medicare",
+    "provisions": [
+      "Lets the Department of Labor cut off payments to doctors, clinics, or suppliers convicted of fraud.",
+      "This covers fraud tied to federal workers' compensation, Medicare, or similar state programs.",
+      "These rules apply to medical providers who treat federal workers injured on the job.",
+      "The Department of Labor must write new rules to carry out these payment suspensions.",
+      "The new rules take effect for payments made starting 180 days after the bill is signed."
+    ],
+    "issue_categories": [
+      "Healthcare",
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hres-1438": {
+    "one_liner": "Schedule House floor votes on six pending bills",
+    "provisions": [
+      "Sets the debate rules for the House to vote on a military spending bill for the year starting October 2026",
+      "Schedules a House vote on extending a Social Security disability test program",
+      "Allows the House to debate a 10-year budget plan covering 2027 through 2036",
+      "Sets up a vote on a bill that limits stock trading by members of Congress, their spouses, and their children",
+      "Schedules a vote on changes to banking rules",
+      "Allows a vote on a short-term government funding bill for the year starting October 2026"
+    ],
+    "issue_categories": [
+      "Veterans & Military",
+      "Social Security & Retirement"
+    ],
+    "direction": "neutral"
+  },
+  "119-hr-9770": {
+    "one_liner": "Keep the federal government funded through December 4, 2026 at current spending levels",
+    "provisions": [
+      "Funds all federal agencies from October 1 through December 4, 2026 \u2014 or until Congress passes a full spending plan, whichever comes first.",
+      "Most programs receive the same amount of money they got in the year ending September 2026.",
+      "Gives extra funding or spending flexibility to WIC food assistance for women and children, FEMA disaster relief, the Indian Health Service, and wildfire fighting.",
+      "The TANF cash assistance program for low-income families stays open.",
+      "People can still buy flood insurance through the National Flood Insurance Program.",
+      "Members of Congress do not get a pay raise during this period.",
+      "Small Business Administration loan programs continue operating."
+    ],
+    "issue_categories": [
+      "Cost of Living"
+    ],
+    "direction": "in_favor"
+  },
+  "119-s-5271": {
+    "one_liner": "Require voters to show photo ID to cast a ballot in federal elections",
+    "provisions": [
+      "Anyone voting in person must show a valid photo ID before getting a ballot for a federal election.",
+      "If a voter doesn't have ID, they can still vote on a backup ballot but must bring ID within 3 days.",
+      "Mail-in voters must include a copy of their photo ID, or their last 4 Social Security digits and a signed statement.",
+      "Accepted IDs include a driver's license, state ID card, passport, military ID, or a tribal government ID \u2014 all must show a photo.",
+      "States must offer free scanners and copiers at government buildings so voters can make copies of their ID at no cost.",
+      "When someone registers to vote, the state must tell them about the photo ID rule."
+    ],
+    "issue_categories": [
+      "Money in Politics"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "119-sjres-199": {
+    "one_liner": "Cancel an HHS rule that changed how states run the federal child care aid program",
+    "provisions": [
+      "Cancels a rule the Department of Health and Human Services published on May 12, 2026 about the Child Care and Development Fund (CCDF).",
+      "The CCDF is a federal program that gives money to states to help low-income families pay for child care.",
+      "The HHS rule was called 'Restoring Flexibility in the CCDF' and changed how states run the program.",
+      "If this resolution had passed, those changes would have had no force \u2014 the rules from before May 2026 would have stayed in place.",
+      "The resolution failed in the Senate, with 47 votes in favor and 52 against."
+    ],
+    "issue_categories": [
+      "Cost of Living",
+      "Education"
+    ],
+    "direction": "against"
+  },
+  "119-sjres-181": {
+    "one_liner": "Order the President to pull U.S. troops out of fighting in Iran",
+    "provisions": [
+      "Tells the President to remove all U.S. troops from fighting in or against Iran.",
+      "The President does not have to pull troops out if Congress has already voted to declare war or approve the military action.",
+      "Does not stop U.S. forces from defending against a direct attack on U.S. troops, ships, or bases.",
+      "More than 50,000 U.S. troops have taken part in Operation Epic Fury, which started on February 28, 2026.",
+      "As of April 8, 2026, seven U.S. troops were killed in combat and 381 were wounded in this operation."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "against"
+  },
+  "119-sres-817": {
+    "one_liner": "Allow the Senate to vote on dozens of presidential nominations all at once",
+    "provisions": [
+      "Lets the Senate consider at least 35 presidential nominees as one group instead of one by one.",
+      "The group includes nominations for at least nine diplomatic posts, including ambassadors to Norway, Australia, Cyprus, Albania, and Tanzania.",
+      "Also included are nominations for three U.S. Attorney posts and four U.S. Marshal posts across several states.",
+      "Three DC Superior Court judge nominations and two National Labor Relations Board nominations are part of the group.",
+      "Other nominations in the group cover the U.S. Archivist, Justice Department Inspector General, and several assistant secretaries."
+    ],
+    "issue_categories": [
+      "Safety & Crime",
+      "Jobs & Workers"
+    ],
+    "direction": "neutral"
+  },
+  "119-sjres-187": {
+    "one_liner": "Block an EPA rule that changed when the PFAS chemical reporting period starts",
+    "provisions": [
+      "This resolution would cancel an EPA rule, published April 13, 2026, that changed when PFAS chemical reporting starts.",
+      "PFAS are a group of synthetic chemicals sometimes called forever chemicals, found in products like nonstick cookware, food packaging, and firefighting foam.",
+      "A federal law called the Toxic Substances Control Act covers how chemical data is reported to the EPA.",
+      "The Senate voted 48\u201350 against moving forward with this resolution, so it did not pass."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "against"
+  },
+  "118-hr-593": {
+    "one_liner": "Rename a VA clinic in Hinesville, Georgia after four individuals",
+    "provisions": [
+      "Changes the official name of the VA clinic in Hinesville, Georgia to the John Gibson, Dan James, William Sapp, and Frankie Smiley VA Clinic.",
+      "All government records, maps, and documents that mention this clinic must use the new name going forward.",
+      "This change only affects the clinic's official name \u2014 its services, staff, and location stay the same."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "neutral"
+  },
+  "118-hr-1105": {
+    "one_liner": "Keep funding grants that help states process DNA evidence from sexual assault cases",
+    "provisions": [
+      "Extends a grant program that pays states and cities to test DNA from sexual assault kits through 2029",
+      "The program was set to expire in 2024 \u2014 this keeps it running for five more years",
+      "Extends audit rules for the grant program through 2029 to check that money is spent correctly"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hres-864": {
+    "one_liner": "Set House debate rules for a Labor, Health, and Education spending bill",
+    "provisions": [
+      "Opens the Labor, Health and Human Services, and Education spending bill for debate in the full House.",
+      "Limits total debate time to one hour, split equally between both sides.",
+      "Only allows specific changes to the bill \u2014 those listed in the Rules Committee report, plus bundled group changes.",
+      "Lets the spending committee chair bundle multiple listed changes together for a single vote.",
+      "Each side's spending committee leader can offer up to 10 short debate-only changes."
+    ],
+    "issue_categories": [
+      "Healthcare",
+      "Education"
+    ],
+    "direction": "neutral"
+  },
+  "118-hres-869": {
+    "one_liner": "Set House debate rules for a spending bill and an Iran funds freeze bill",
+    "provisions": [
+      "Allows the House to start debating a spending bill for the Commerce and Justice departments covering the year ending September 30, 2024.",
+      "Limits debate on that spending bill to one hour, split equally between the two sides.",
+      "Only pre-approved changes to the spending bill can be offered during debate \u2014 no others.",
+      "Allows the House to also vote on a separate bill to freeze Iranian funds connected to a 2023 hostage deal.",
+      "Sets one hour of debate on the Iran funds bill, split equally between both sides.",
+      "Requires a final vote on each bill after debate ends, with no additional delays allowed."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "118-hr-5894": {
+    "one_liner": "Fund the Labor, Health, and Education departments for the year ending September 2024",
+    "provisions": [
+      "Sets aside about $2.8 billion for job training programs, including help for adults and workers who lost their jobs",
+      "Pays for health agencies including the CDC, the National Institutes of Health, and the offices that run Medicare and Medicaid",
+      "Covers school programs for students with disabilities, students from low-income families, and Native American students",
+      "Gives money to colleges \u2014 including historically Black colleges \u2014 and to student financial aid programs",
+      "The Social Security Administration gets money to keep running retirement and disability programs",
+      "Lays out rules for how the money in this bill can and cannot be spent"
+    ],
+    "issue_categories": [
+      "Healthcare",
+      "Education"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-4795": {
+    "one_liner": "Bar colleges that boycott Israel from receiving federal student aid",
+    "provisions": [
+      "Colleges that get federal student aid cannot refuse to do business with Israel or Israeli companies unless there is a specific business reason for it.",
+      "Colleges that get federal foreign language and international education money must submit a yearly form by July 31 saying they allow their students and teachers to join academic programs in Israel on the same terms as programs in other countries.",
+      "Colleges must also confirm that students and teachers from Israeli schools can join their own programs on the same terms as students from other countries.",
+      "A college that does not submit the yearly form by July 31 loses access to that federal funding for the following year, including money from grants already awarded."
+    ],
+    "issue_categories": [
+      "Education"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "119-hr-9436": {
+    "one_liner": "Move the deadline for whale protection rules in lobster fishing from 2028 to 2035",
+    "provisions": [
+      "Gives the National Marine Fisheries Service until 2035 \u2014 instead of 2028 \u2014 to write new rules protecting North Atlantic right whales from lobster and crab fishing gear.",
+      "The delayed rules cover American lobster and Jonah crab fishing operations.",
+      "When the rules are written, they must include ways for fishing boats to use gear that lowers the chance of a whale getting caught or tangled."
+    ],
+    "issue_categories": [
+      "Environment & Energy",
+      "Jobs & Workers"
+    ],
+    "direction": "against"
+  },
+  "119-hres-1490": {
+    "one_liner": "Condemn socialism and call for a law requiring voters to show proof of citizenship",
+    "provisions": [
+      "The House formally condemns socialism in all its forms, including the Democratic Socialists of America.",
+      "The House states that American elections should be for U.S. citizens only.",
+      "The House calls for Congress to pass the SAVE America Act.",
+      "That law would require voters to show proof of citizenship and photo ID, and run database checks.",
+      "The House says it will uphold the U.S. Constitution."
+    ],
+    "issue_categories": [
+      "Immigration",
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hjres-1": {
+    "one_liner": "Lock the number of Supreme Court justices at nine in the Constitution",
+    "provisions": [
+      "Under the amendment, the Supreme Court would have nine justices: one chief justice and eight associate justices.",
+      "To become part of the Constitution, two-thirds of both the House and Senate must first approve it.",
+      "Then three-fourths of state legislatures \u2014 38 of the 50 states \u2014 must vote to accept it within seven years.",
+      "The House voted 212 to 206 in favor \u2014 short of the roughly 279 yes votes needed for two-thirds \u2014 so the resolution failed."
+    ],
+    "issue_categories": [
+      "Money in Politics"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-1501": {
+    "one_liner": "Permanently let qualifying mining and mineral processing projects use a faster federal environmental review",
+    "provisions": [
+      "Adds mining and mineral processing to the types of projects that can apply for a faster federal review process under a law called the FAST Act.",
+      "This change is written into federal law permanently, so an agency cannot reverse it just by changing a rule.",
+      "Stops a federal agency from finalizing a 2023 proposal that would have limited the faster review to only critical minerals mining projects."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "against"
+  },
+  "119-s-307": {
+    "one_liner": "Require federal prisons to track and stop sexual harassment of prison staff",
+    "provisions": [
+      "Federal prison officials must put in place the Inspector General's recommendations on inmate-on-staff sexual harassment within 90 days of this law passing.",
+      "If the Bureau misses that deadline, it must send Congress a written plan explaining what went wrong and when it will finish.",
+      "After those changes are in place, the Inspector General will collect data on sexual harassment in federal prisons from 2022 through 2025.",
+      "Using that data, the Inspector General sends Congress and the Attorney General a report on how often these incidents happen and whether punishments work.",
+      "Within one year of getting that report, the Attorney General must write national rules for preventing and punishing sexual harassment of prison staff."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "118-hr-1547": {
+    "one_liner": "Order a study on commuter rail trips that don't require a transfer",
+    "provisions": [
+      "Tells the Department of Transportation to study why some commuter rail riders have to switch trains to reach their destination.",
+      "The study must look at costs, economic impact, and quality of life for riders.",
+      "The study must include a specific look at the NJ Transit Raritan Valley line and whether trains could run directly during rush hours without passengers transferring.",
+      "The study must also look at how adding direct trips on that line would affect other NJ Transit train lines.",
+      "Results must be reported to Congress within 1 year of the bill becoming law."
+    ],
+    "issue_categories": [
+      "Cost of Living"
+    ],
+    "direction": "neutral"
+  },
+  "119-s-32": {
+    "one_liner": "Add two cities as official court locations in Texas and California",
+    "provisions": [
+      "Adds College Station, Texas as a place where federal court can be held in the Galveston Division of the Southern District of Texas.",
+      "Adds El Centro, California as a place where federal court can be held in the Southern District of California.",
+      "People in those cities can go to a closer federal courthouse instead of traveling to a more distant one."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hres-1498": {
+    "one_liner": "Censure Representative Chuck Edwards of North Carolina",
+    "provisions": [
+      "The House voted to formally censure Representative Chuck Edwards of North Carolina.",
+      "A censure is a formal punishment where the full House publicly condemns a member's behavior.",
+      "Representative Edwards was required to stand in the House chamber while the Speaker read this resolution aloud.",
+      "An Ethics Committee report dated July 22, 2026 was accepted as part of this action, but the details of the allegations are not described in this resolution."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "119-hres-1499": {
+    "one_liner": "Schedule House floor votes on bills covering minerals, right whales, socialism, and college funding",
+    "provisions": [
+      "Opens floor debate on a bill adding certain mineral production activities as covered projects under the FAST Act, with one hour of debate allowed.",
+      "Schedules a vote on a bill extending how long certain federal regulations concerning North Atlantic right whales stay in effect.",
+      "Brings to a vote a resolution condemning socialism in all its forms.",
+      "Sets up floor debate on a bill cutting federal education funds to colleges that join commercial boycotts of Israel or block students from studying in Israel.",
+      "Extends debate time to one hour on a proposal to add a line to the Constitution setting the Supreme Court at nine justices."
+    ],
+    "issue_categories": [
+      "Environment & Energy",
+      "Education"
+    ],
+    "direction": "neutral"
+  },
+  "118-hres-793": {
+    "one_liner": "Call on Hamas to release all hostages taken in the October 2023 attack on Israel",
+    "provisions": [
+      "Demands that Hamas immediately release all hostages taken in its October 7, 2023 attack and return them to safety",
+      "Condemns Hamas for the October 7, 2023 attack on Israel, which the Israeli military said killed more than 1,400 people",
+      "Condemns Hamas for threatening to execute hostages and film the killings",
+      "States that taking hostages breaks international humanitarian law under the 1949 Geneva Conventions",
+      "Expresses sympathy to the hostages, people who were hurt or killed, and their families"
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "118-hr-5961": {
+    "one_liner": "Sanction foreign banks that process $6 billion in Iranian funds held in Qatar",
+    "provisions": [
+      "About $6 billion in Iranian money was moved from South Korea to Qatar to free five Americans held in Iran.",
+      "Any foreign bank that processes, moves, or handles those funds gets its U.S. assets frozen.",
+      "The President must impose these sanctions \u2014 there is no option to skip them.",
+      "Sanctions stay until Iran stops backing terrorism and gives up its nuclear, biological, and chemical weapons.",
+      "Violating the sanctions brings the same penalties as breaking other U.S. emergency economic laws."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "118-hr-5283": {
+    "one_liner": "Stop federal land agencies from housing non-citizens who have not been admitted to the US",
+    "provisions": [
+      "Stops federal money from being used to house non-admitted non-citizens on national parks, forests, or other federal lands.",
+      "Cancels a lease signed in September 2023 between the National Park Service and New York City to use part of Gateway National Recreation Area as migrant housing.",
+      "Requires the Interior and Agriculture departments to report to Congress each year on how many non-admitted non-citizens were housed on federal lands."
+    ],
+    "issue_categories": [
+      "Immigration"
+    ],
+    "direction": "against"
+  },
+  "118-hr-3848": {
+    "one_liner": "Increase daily payments to shelters and programs that house homeless veterans",
+    "provisions": [
+      "Raises the daily payment the VA makes to shelters serving homeless veterans from 115% to 133% of a set base rate.",
+      "From 2024 through 2026, the VA can pay up to 200% of that base rate to up to half of all shelter programs in a given year.",
+      "Sets a cap of 12,000 total daily housing payments the VA can make in any one year.",
+      "Through the end of 2024, the VA can use its existing funds to give homeless veterans food, clothing, rides to appointments, and smartphones.",
+      "Lets the VA work with outside groups to allow homeless veterans to live and sleep on VA-owned land.",
+      "Keeps certain VA home loan fees at their current rates through May 18, 2032."
+    ],
+    "issue_categories": [
+      "Veterans & Military",
+      "Housing"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hres-878": {
+    "one_liner": "Remove Representative George Santos from the House of Representatives",
+    "provisions": [
+      "This resolution removes George Santos from his seat in the House of Representatives.",
+      "A House subcommittee held nine meetings, reviewed over 172,000 pages of documents, and spoke with more than 40 witnesses.",
+      "The subcommittee found substantial evidence that Santos broke federal law and House rules.",
+      "Santos faced federal criminal charges including wire fraud, theft of public money, and filing false financial disclosures.",
+      "Two people connected to his campaign pleaded guilty to federal crimes including wire fraud and identity theft.",
+      "During the investigation, Santos refused requests to provide documents, testify, or submit a written statement."
+    ],
+    "issue_categories": [
+      "Money in Politics",
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "119-hconres-93": {
+    "one_liner": "Order the President to pull U.S. troops out of hostilities with Iran",
+    "provisions": [
+      "Tells the President to remove U.S. Armed Forces from hostilities against Iran.",
+      "Troops needed to defend the U.S. or an ally from an immediate attack do not have to be removed under this resolution.",
+      "For any troops kept in place to defend against an immediate attack, the President must follow the 60-day limit set by the War Powers Resolution.",
+      "The removal requirement does not apply if Congress explicitly authorizes force against Iran through a declaration of war or a specific use-of-force authorization.",
+      "The resolution passed the House on September 15, 2026 and was sent to the Senate."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "against",
+    "needs_review": true
+  },
+  "118-hres-906": {
+    "one_liner": "Set debate rules for bills on EPA vehicle emissions, foreign college money, and student loans",
+    "provisions": [
+      "Sets debate rules for a House vote on a bill that would stop the EPA from enforcing a new car emissions rule.",
+      "Opens a House vote on a bill requiring colleges to report gifts and contracts from foreign governments and companies.",
+      "That bill also blocks colleges from signing contracts with certain foreign companies and countries.",
+      "Colleges would also have to report foreign money held in their investment funds under that bill.",
+      "Allows a House vote on a resolution to cancel a Department of Education rule on student loans.",
+      "Under that rule, borrowers could repay federal student loans based on how much money they earn."
+    ],
+    "issue_categories": [
+      "Education",
+      "Environment & Energy"
+    ],
+    "direction": "neutral"
+  },
+  "119-hjres-210": {
+    "one_liner": "Cancel an EPA decision letting California expand ship pollution rules at ports",
+    "provisions": [
+      "California runs a program where ships docked at its ports must cut engine pollution while sitting at the dock.",
+      "In October 2023, the EPA approved California's plan to expand its ship-in-port emissions rules.",
+      "Those rules added more types of ocean-going ships to California's emissions requirements.",
+      "This bill cancels that EPA approval, so California cannot enforce the new requirements.",
+      "Congress used the Congressional Review Act, a law that lets Congress cancel a federal agency decision within a set time window."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "against"
+  },
+  "118-hres-888": {
+    "one_liner": "Reaffirm Israel's right to exist and condemn the Hamas-led attack on Israel",
+    "provisions": [
+      "States that Israel has the right to exist as a nation.",
+      "Says that denying Israel's right to exist is a form of antisemitism.",
+      "Rejects calls for Israel's destruction.",
+      "Condemns the Hamas-led attack on Israel."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "neutral"
+  },
+  "118-hres-891": {
+    "one_liner": "Set House floor debate rules for three bills on immigration, Iran funds, and lending",
+    "provisions": [
+      "Lets the House floor vote on a bill to block federal money from housing certain non-citizens on federal land.",
+      "Lets the House floor vote on a bill to freeze Iranian funds from a 2023 hostage deal.",
+      "Lets the House floor vote on a resolution to cancel a Consumer Financial Protection Bureau rule on small business lending.",
+      "Each bill gets one hour of debate and one chance to send it back to committee."
+    ],
+    "issue_categories": [
+      "Immigration",
+      "Money in Politics"
+    ],
+    "direction": "neutral"
+  },
+  "119-hr-2140": {
+    "one_liner": "Extend an EPA program that funds diesel engine replacements and upgrades through 2029",
+    "provisions": [
+      "Keeps an EPA program running through 2029 \u2014 it was set to expire after 2024",
+      "Through this program, the EPA gives grants, rebates, or loans to pay for replacing diesel engines",
+      "Diesel engine owners can also get money to add pollution-cutting equipment to engines they already have"
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-3276": {
+    "one_liner": "Give the Urban Bird Treaty Program official legal standing and funding",
+    "provisions": [
+      "Gives the Urban Bird Treaty Program official legal standing, run by the U.S. Fish and Wildlife Service.",
+      "The program works with cities, tribal governments, nonprofits, community groups, and schools to protect birds and their habitats in urban areas.",
+      "Grants are managed by the National Fish and Wildlife Foundation, a congressionally chartered nonprofit.",
+      "Grants can fund research, habitat restoration, removing invasive species, restoring native plants, and training workers.",
+      "Sets aside $200,000 a year for the program from 2027 through 2033 \u2014 $1.4 million total.",
+      "Grant money must be spread across small, mid-size, and large cities."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-2978": {
+    "one_liner": "Let local police use federal grant money to fight elder fraud and crypto scams",
+    "provisions": [
+      "State, local, and tribal police that get certain federal grants can now use that money to investigate scams targeting older people and crypto investment fraud.",
+      "Federal agents can help local police use tools that track cryptocurrency transactions to follow the money in fraud cases.",
+      "Grant money can pay for staff, software, and training to help officers investigate financial fraud.",
+      "Police agencies can name a point of contact to share information with banks and financial companies about fraud cases.",
+      "The Financial Crimes Enforcement Network must publish a report on how well the government is fighting fraud and what new rules might help.",
+      "Agencies that spend grant money on fraud cases must send a report to the federal government within one year showing how the funds were used."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hjres-213": {
+    "one_liner": "Block California from enforcing new emission rules on commercial harbor boats",
+    "provisions": [
+      "California cannot enforce the new engine emission limits it had set for commercial harbor boats.",
+      "The EPA had approved those California rules in January 2025 \u2014 this bill wipes out that approval.",
+      "Commercial fishing boats and other vessel types that California had added under its updated rules go back to the old standards.",
+      "Compliance deadlines tied to boat type and engine model year no longer apply."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "against"
+  },
+  "119-hr-10326": {
+    "one_liner": "Give the Justice Department access to state records to investigate fraud in federal programs",
+    "provisions": [
+      "States must hand over records to the Justice Department when asked, to investigate fraud in programs like Medicaid, food stamps, and welfare.",
+      "The requirement also covers COVID relief funds, emergency rental assistance, school emergency grants, broadband grants, disaster relief grants, and small business programs.",
+      "Records that can be requested include identity documents, payment logs, billing statements, and personal information tied to an active fraud case.",
+      "Federal agencies can only use the information for fraud cases \u2014 not for other government purposes or for businesses.",
+      "Once an investigation or court case ends, the data must be deleted permanently.",
+      "Each year, the Justice Department must report to Congress on how many records requests it sent to states and how many fraud cases or convictions came from those requests.",
+      "This law takes effect 60 days after it is signed."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-8278": {
+    "one_liner": "Require eight banking agencies to review their technology and report to Congress",
+    "provisions": [
+      "Eight banking regulators \u2014 including the Federal Reserve, FDIC, and CFPB \u2014 must each review their current technology within 180 days of this bill passing.",
+      "Each agency must also look at the rules they follow when buying or building new tech, and identify ways to speed up that process.",
+      "Within 18 months after those reviews are done, all eight agencies must send a joint report to Congress.",
+      "The report must cover what software and hardware each agency uses, how many staff work on technology, and how much they rely on outside contractors.",
+      "Every five years after that, the agencies must send Congress an updated report."
+    ],
+    "issue_categories": [
+      "Money in Politics"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "119-hr-4646": {
+    "one_liner": "Extend whistleblower protections to all HUD contracts, including older ones",
+    "provisions": [
+      "Workers at companies with HUD contracts can report wrongdoing to Congress or other officials without being fired or punished \u2014 this bill extends that right to contracts signed before 2013",
+      "Before this bill, workers on older HUD contracts did not have those same legal protections against being fired for reporting problems",
+      "The bill covers all HUD contracts, subcontracts, grants, and personal services agreements, no matter when they were signed"
+    ],
+    "issue_categories": [
+      "Housing",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-9340": {
+    "one_liner": "Require state regulators to consider making large data centers pay for grid upgrades",
+    "provisions": [
+      "State utility regulators must decide within 2 years whether to adopt a federal standard for large data centers.",
+      "Under that standard, data centers using 100 megawatts or more at one site would pay the full cost of grid upgrades built to serve them.",
+      "If a data center stops buying power, it would still owe those upgrade costs under the standard.",
+      "Before any upgrade is built, the data center would have to put up money or guarantees to cover the cost.",
+      "States that have already acted on this issue do not have to go through the review process again."
+    ],
+    "issue_categories": [
+      "Environment & Energy",
+      "Cost of Living"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-4219": {
+    "one_liner": "Create teams in each Fish and Wildlife Service region to find and fight invasive species",
+    "provisions": [
+      "Creates at least one invasive species strike team in each U.S. Fish and Wildlife Service region to find and respond to invasive species on or near National Wildlife Refuge lands.",
+      "Teams work with federal, state, tribal, local governments, nonprofits, and private landowners \u2014 but can only act on private land if the owner asks.",
+      "The teams can give out money, technical help, contracts, or grants to partners working on invasive species problems.",
+      "Lets the government spend up to $10 million per year from 2027 through 2033 to run the program.",
+      "Requires a public report to Congress two years after the law passes and again five years after, showing what the teams did and what progress was made."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-9497": {
+    "one_liner": "Approve Army Corps of Engineers water projects for ports, waterways, and flood control",
+    "provisions": [
+      "The Army Corps of Engineers gets approval to work on water projects including keeping ports open, reducing flood damage, restoring fish habitat, and protecting shorelines.",
+      "A new office is created inside the Army Corps to help water projects get built faster.",
+      "Rules must be written to create a fast-track approval process for small harbor and river improvements that cause little harm to the environment.",
+      "Studies are ordered for specific rivers, lakes, and harbors across more than a dozen states.",
+      "Sunken or abandoned boats blocking waterways can be removed by the Army Corps.",
+      "Some inactive Army Corps projects are canceled, along with other specific project cancellations."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "119-s-2403": {
+    "one_liner": "Set clearer rules for how Employee Stock Ownership Plans value company shares",
+    "provisions": [
+      "Lets the person managing an Employee Stock Ownership Plan (ESOP) rely in good faith on a valuation from an independent valuation expert or business appraiser.",
+      "The appraiser must follow a set of rules from the IRS called Revenue Ruling 59-60, which lists what factors to weigh when pricing stock in a private company.",
+      "This applies to ESOPs that hold stock in companies not listed on a public stock exchange.",
+      "The rule applies to valuations done on or after the date the law passes.",
+      "The Department of Labor can still write new rules about what counts as a fair price, and the fiduciary's other duties stay the same."
+    ],
+    "issue_categories": [
+      "Social Security & Retirement",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hr-9576": {
+    "one_liner": "Put the National Fraud Enforcement Division into federal law",
+    "provisions": [
+      "This bill writes the National Fraud Enforcement Division into federal law \u2014 it was created by the Justice Department in April 2026 but had no law backing it.",
+      "The Division looks into and charges people with fraud against government programs and taxpayer money.",
+      "A leader called the Assistant Attorney General for National Fraud Enforcement will run the Division.",
+      "Workers in this Division are banned from most political activity, the same rule that applies to other DOJ divisions."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "119-hres-1486": {
+    "one_liner": "Vote to impeach President Trump over how ICE and CBP were run",
+    "provisions": [
+      "Contains one charge: that Trump used ICE and CBP in ways that broke rights protected by the First, Fourth, and Fifth Amendments.",
+      "Charges that Trump stopped courts from watching over how ICE and CBP acted.",
+      "Names four people \u2014 Renee Good, Alex Pretti, Lorenzo Salgado Araujo, and Johan Sebastian Duran Guerrero \u2014 as killed by ICE or CBP without a legal reason.",
+      "Notes that Trump was impeached before, on January 13, 2021, under a different set of charges.",
+      "Was introduced on August 24, 2026, and sent to the House Judiciary Committee."
+    ],
+    "issue_categories": [
+      "Immigration",
+      "Safety & Crime"
+    ],
+    "direction": "against"
+  },
+  "119-hres-1530": {
+    "one_liner": "Set debate rules for five House votes on fraud, EPA rules, and educator taxes",
+    "provisions": [
+      "Brings to a House floor vote a bill that would create a new National Fraud Enforcement Division inside the Department of Justice.",
+      "Opens a House vote on a bill that would let federal and state law enforcement share data to catch fraud in federal programs.",
+      "Schedules a vote on canceling an EPA rule about pollution controls on large ships docked at California ports.",
+      "Puts to a vote a resolution to cancel an EPA rule about pollution controls on commercial boats in California harbors.",
+      "Allows the House to vote on accepting Senate changes to a bill giving early childhood teachers a school supply tax deduction."
+    ],
+    "issue_categories": [
+      "Safety & Crime",
+      "Environment & Energy"
+    ],
+    "direction": "neutral"
+  },
+  "119-hr-9500": {
+    "one_liner": "Let fraud and disaster victims claim more losses as tax deductions",
+    "provisions": [
+      "Starting in 2026, lets people deduct personal losses from things like fires, floods, or storms \u2014 not just losses from government-declared disasters.",
+      "Lets fraud victims choose to count their theft loss in the year it happened, rather than the year they discovered it.",
+      "Extends the deadline to file for a tax refund related to a fraud loss to at least 1 year after the loss is discovered.",
+      "Drops the 10% tax penalty for taking money out of a retirement account early if that money was lost to fraud.",
+      "Gives people 1 year from when they discover a fraud to repay money they pulled from a retirement account.",
+      "Applies the fraud-related rules back to losses and early retirement withdrawals that happened on or after January 1, 2021.",
+      "Requires the IRS to process refund claims under these rules within 2 years of receiving them."
+    ],
+    "issue_categories": [
+      "Taxes"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-3224": {
+    "one_liner": "Keep DHS's weapons of mass destruction office running for two more years",
+    "provisions": [
+      "The Department of Homeland Security's office that works to stop chemical, biological, nuclear, and radiological attacks gets to keep running for two more years after this bill passes.",
+      "The Chief Medical Officer and the program that prepares medical responses to attacks are not subject to the two-year shutdown date, so those functions keep running beyond that deadline.",
+      "Within 180 days of this bill passing, the office must send Congress a plan to improve worker morale.",
+      "Within one year, the Government Accountability Office must review the office and report back to Congress on how it sets priorities, works with other agencies, and manages its research programs."
+    ],
+    "issue_categories": [
+      "Safety & Crime",
+      "Veterans & Military"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "118-hjres-88": {
+    "one_liner": "Cancel a 2023 rule that created a new student loan repayment plan",
+    "provisions": [
+      "Cancels a Department of Education rule published on July 10, 2023.",
+      "That rule created a new repayment option called the SAVE (Saving on a Valuable Education) plan for federal student loans.",
+      "SAVE was one type of income-driven repayment plan, meaning payments are tied to how much money a borrower earns.",
+      "The rule covered two federal loan programs: Direct Loans and FFEL (Federal Family Education Loan) loans.",
+      "If this resolution passes, the SAVE plan rule would have no legal effect."
+    ],
+    "issue_categories": [
+      "Education",
+      "Cost of Living"
+    ],
+    "direction": "against"
+  },
+  "118-hr-2365": {
+    "one_liner": "Create a national government project to prevent, diagnose, treat, and cure Parkinson's disease",
+    "provisions": [
+      "Sets up a National Parkinson's Project at HHS to coordinate research, care, and treatment across all federal agencies.",
+      "HHS must create and regularly update a national plan to prevent, diagnose, treat, and cure Parkinson's.",
+      "Each year, HHS must publish a report on the country's progress fighting Parkinson's, starting within 24 months of the law passing.",
+      "An advisory council will include members from federal agencies plus Parkinson's patients, caregivers, and health experts.",
+      "This law ends on December 31, 2035."
+    ],
+    "issue_categories": [
+      "Healthcare"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-1147": {
+    "one_liner": "Let school lunch programs offer whole milk to students",
+    "provisions": [
+      "Schools in the National School Lunch Program can now offer whole milk \u2014 before this bill, only fat-free or low-fat milk was allowed.",
+      "Students can be offered whole, reduced-fat, low-fat, or fat-free milk, flavored or unflavored, organic or not.",
+      "The fat in fluid milk no longer counts toward the cap on saturated fat in school meals.",
+      "Buying or serving milk from companies owned by the Chinese government is not allowed in the school lunch program."
+    ],
+    "issue_categories": [
+      "Education",
+      "Healthcare"
+    ],
+    "direction": "in_favor"
+  },
+  "119-s-4668": {
+    "one_liner": "Set federal rules for college athlete NIL deals, agent fees, and school revenue sharing",
+    "provisions": [
+      "Colleges, conferences, and groups like the NCAA cannot stop student athletes from signing deals to use their name, image, or likeness.",
+      "Any name, image, or likeness payment over $600 must be reported to the athlete's school.",
+      "Sports agents must register with a state and can charge no more than 5% of a contract's value as their fee.",
+      "Athletes can transfer to a new school one time without losing their ability to play.",
+      "Football coaches cannot leave mid-season to take a head coaching job at a different school.",
+      "Schools, conferences, and their affiliated groups cannot get around the House settlement's limit on revenue sharing with athletes. That limit is made permanent and adjusted for inflation each year.",
+      "If at least 75% of Football Bowl Subdivision schools agree, they can pool and sell their TV broadcast rights together without breaking federal competition rules."
+    ],
+    "issue_categories": [
+      "Jobs & Workers",
+      "Education"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "118-hr-5119": {
+    "one_liner": "Give small businesses more time to file ownership reports with the federal government",
+    "provisions": [
+      "Small businesses that already exist must file their first ownership report within 2 years instead of 1 year.",
+      "New businesses must file their first ownership report within 90 days instead of 30 days.",
+      "Any time ownership changes, companies must report it within 90 days instead of 30 days.",
+      "Companies cannot file a report saying they were unable to get ownership information \u2014 they must provide the actual information."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-4468": {
+    "one_liner": "Block an EPA rule setting stricter vehicle emissions limits starting with model year 2027",
+    "provisions": [
+      "Stops the EPA from finishing or enforcing a rule on emissions limits for new cars, light trucks, and medium-duty vehicles.",
+      "That rule would have tightened emissions standards starting with the 2027 model year.",
+      "The EPA cannot write any emissions rule that requires carmakers to use a specific technology.",
+      "Rules that would limit how many vehicles are available based on engine type are also blocked.",
+      "Gives the EPA 24 months to update its existing rules to match these new limits."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "against"
+  },
+  "118-hr-4531": {
+    "one_liner": "Extend federal drug addiction programs and make Medicaid treatment coverage permanent",
+    "provisions": [
+      "Keeps funding going through 2028 for grants that help prevent, treat, and support recovery from drug and alcohol addiction.",
+      "Boosts yearly funding for residential addiction treatment programs for pregnant and postpartum women from about $30 million to $39 million.",
+      "Raises yearly funding for programs that prevent drug overdoses from about $496 million to about $506 million.",
+      "Places illicit xylazine, a veterinary tranquilizer, in Schedule III of the Controlled Substances Act.",
+      "Makes it permanent that Medicaid must pay for medication-assisted treatment for people with substance use disorders.",
+      "Lifts Medicaid's exclusion on paying for substance use disorder treatment in institutions for mental diseases."
+    ],
+    "issue_categories": [
+      "Healthcare"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-357": {
+    "one_liner": "Require that only Senate-confirmed officials can sign off on new federal rules",
+    "provisions": [
+      "Any new federal rule must be signed by an official who was nominated by the President and confirmed by the Senate.",
+      "Starting a new federal rule must also be done by a senior official, such as a top presidential appointee or a non-career government executive.",
+      "An agency head can skip these requirements if following them would get in the way of public safety or security.",
+      "To skip the requirement, the agency head must make that call personally and cannot pass that decision to someone else.",
+      "The agency head must report the reason for the exception to a White House oversight office and publish it publicly.",
+      "The Office of Information and Regulatory Affairs (OIRA) must write guidance to help agencies follow this law and check whether they comply."
+    ],
+    "issue_categories": [
+      "Money in Politics"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-5378": {
+    "one_liner": "Require hospitals, labs, and insurers to post prices and drug middlemen to report fees",
+    "provisions": [
+      "Hospitals must post their prices online for free each year, including cash prices and negotiated rates with insurers.",
+      "Labs, imaging centers, and outpatient surgery centers that take Medicare must also publish their prices each year.",
+      "Drug middlemen must report spending, rebates, and fees to health plan sponsors twice a year.",
+      "Contracts with drug middlemen for employer health plans must let plan fiduciaries audit certain claims and cost information without undue restrictions.",
+      "Under Medicaid, drug middlemen must pass along the exact price they pay for drugs and cannot mark them up before billing health plans.",
+      "Medicare must pay the same rate for giving certain drugs at off-campus hospital outpatient clinics as it pays at doctor offices.",
+      "The Teaching Health Center Graduate Medical Education program is extended through 2030; the National Health Service Corps through December 31, 2025."
+    ],
+    "issue_categories": [
+      "Healthcare",
+      "Cost of Living"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-5933": {
+    "one_liner": "Require colleges to disclose foreign gifts and block contracts with countries like China or Russia",
+    "provisions": [
+      "Lowers the dollar threshold for colleges to report foreign gifts \u2014 from $250,000 to $50,000 per year from most foreign sources.",
+      "Gifts of any amount from countries like China or Russia must be reported, with no minimum dollar threshold.",
+      "Bans colleges from signing contracts with countries like China or Russia without a waiver from the government first.",
+      "Researchers and staff must report any gifts or contracts they personally receive from foreign sources.",
+      "Private universities with large investments must file yearly reports about foreign money held in their funds.",
+      "The Department of Education must investigate violations and can fine colleges that don't comply."
+    ],
+    "issue_categories": [
+      "Education"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-5524": {
+    "one_liner": "Extend a pilot program letting banks share suspicious money reports with overseas partners",
+    "provisions": [
+      "Banks can share reports about suspicious money activity with their overseas branches, subsidiaries, and affiliated companies \u2014 but the program has not started yet.",
+      "The program was set to end January 1, 2024, but this bill changes that deadline to three years after the Treasury Department puts out its rules.",
+      "The Treasury Department still needs to write the rules before the program can begin."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hr-542": {
+    "one_liner": "Expand VA home care for veterans by raising spending limits and adding new support programs",
+    "provisions": [
+      "Raises the VA's spending limit on home care from 65% to 100% of what nursing home care would cost.",
+      "For veterans with amyotrophic lateral sclerosis (ALS), spinal cord injuries, or similar conditions, the VA can spend above 100% if needed.",
+      "In areas where a PACE program (care for elderly people with many health needs) runs, the VA must try to partner with it.",
+      "Creates a program letting veterans use VA funds to hire their own home care workers or buy care supplies.",
+      "Starts a pilot program to bring home health aides to communities where they are in short supply.",
+      "Extends certain VA home loan fees at their current rates through February 4, 2032."
+    ],
+    "issue_categories": [
+      "Veterans & Military",
+      "Healthcare"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hres-894": {
+    "one_liner": "Condemn antisemitism in the United States and around the world",
+    "provisions": [
+      "The House of Representatives says all acts of antisemitism in the US and around the world are wrong.",
+      "Calls on elected officials and world leaders to speak out and act against antisemitism.",
+      "States that anti-Zionism \u2014 opposing the existence of Israel as a Jewish state \u2014 counts as antisemitism.",
+      "Rejects all hate, threats, and attacks directed at Jewish people."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "118-hr-6503": {
+    "one_liner": "Keep FAA airport programs and funding running through March 8, 2024",
+    "provisions": [
+      "Keeps the Airport Improvement Program running through March 8, 2024, with about $1.46 billion set aside for airport grants during that period.",
+      "Continues the Essential Air Service program, which keeps scheduled flights running to small towns, through March 8, 2024.",
+      "Lets the FAA keep paying its staff and running its day-to-day operations through March 8, 2024.",
+      "Keeps drone safety testing programs and drone-tracking technology running through March 8, 2024.",
+      "Sets aside about $17 million for FAA weather reporting programs through March 8, 2024.",
+      "Keeps the taxes on airline tickets and aviation fuel in place through March 8, 2024 to pay for airport and airway programs."
+    ],
+    "issue_categories": [
+      "Taxes",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hres-927": {
+    "one_liner": "Condemn antisemitism on college campuses and three university presidents' testimony",
+    "provisions": [
+      "The House says it condemns the rise of antisemitism on college campuses across the country",
+      "The House says it condemns the answers given by the presidents of UPenn, Harvard, and MIT at a December 5, 2023 hearing",
+      "At that hearing, the three presidents would not clearly say that calls for the killing of Jewish people violate their schools' rules",
+      "The Anti-Defamation League recorded 2,031 antisemitic incidents in the months after October 7, 2023 \u2014 400 of those happened on college campuses",
+      "This is a formal statement of disapproval \u2014 it does not create a law or spend any money"
+    ],
+    "issue_categories": [
+      "Education",
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "118-s-788": {
+    "one_liner": "Let hunters carry a digital duck stamp instead of a paper one",
+    "provisions": [
+      "Hunters can now show a digital stamp on their phone instead of carrying a paper stamp while hunting waterfowl.",
+      "States must give buyers their digital stamp right away at the time of purchase.",
+      "After March 10 each year, the federal government mails a paper stamp to everyone who bought a digital stamp for the previous hunting season.",
+      "Digital stamps stay valid through the next June 30 after the date of purchase.",
+      "The digital stamp can include an image of the physical stamp design."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor"
+  },
+  "118-hres-914": {
+    "one_liner": "Censure Representative Jamaal Bowman for pulling a fire alarm in Congress",
+    "provisions": [
+      "The House of Representatives formally censures Jamaal Bowman, a representative from New York.",
+      "Bowman pulled a fire alarm on September 30, 2023, in the Cannon House Office Building.",
+      "The House was voting at the time on a bill to keep the government from shutting down.",
+      "On October 26, 2023, Bowman pleaded guilty under DC law and paid a $1,000 fine.",
+      "He also wrote an apology letter to Capitol Police and was placed on probation.",
+      "Bowman must appear in the House chamber to receive the censure reading in person."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "118-hres-918": {
+    "one_liner": "Direct three House committees to keep investigating whether to impeach President Biden",
+    "provisions": [
+      "Three House committees \u2014 Oversight and Accountability, Ways and Means, and Judiciary \u2014 must keep investigating whether there are enough reasons to impeach President Biden.",
+      "Legal orders requiring people to appear or turn over documents can be issued as part of the investigation.",
+      "Court cases related to the investigation can be started or joined by these committees.",
+      "Witnesses can be called for closed-door testimony sessions, and the transcripts can be released to the public.",
+      "The minority party on each committee can request its own witnesses within 72 hours after a hearing date is set.",
+      "After finishing, each committee can write a report of its findings and send it to the Judiciary Committee."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral"
+  },
+  "118-hres-922": {
+    "one_liner": "Set House debate rules for two bills on school lunch milk and agency rule-signing",
+    "provisions": [
+      "Lets the House debate and vote on a bill that would allow schools in the federal school lunch program to serve whole milk",
+      "Limits debate on the school milk bill to one hour, split equally between both sides",
+      "Lets the House debate and vote on a bill that would require the head of a government agency to personally sign any rule that agency puts out",
+      "Limits debate on the agency rule-signing bill to one hour, split equally between both sides",
+      "Restricts which changes can be offered to both bills during debate, and names who can offer them"
+    ],
+    "issue_categories": [
+      "Education"
+    ],
+    "direction": "neutral"
   }
 }

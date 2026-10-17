@@ -72,10 +72,20 @@ and live.** One open PR (#24, docs-only: the review report + this STATUS update)
 6. Repo reconciled: April's stranded work (no-overall-stats narratives) committed;
    docs reorganized into docs/archive + docs/reviews.
 
-## Data (live, 2026-07-02)
-4 states (NY, FL, CA, TX), 149 members incl. senators, 1,550 bills, 1,550 AI summaries
-(100%) + argument sets (100%), 149/149 member narratives, vote dates ISO 8601 &
-chronologically sorted, donations 2024 cycle (stale — see open items)
+## Data (2026-09-28)
+4 states (NY, FL, CA, TX), 150 members incl. senators, 1,656 bills, 1,656 AI summaries
+(100%; 128 flagged needs_review), 423 bills without argument sets (redesign drops the
+module), 149 member narratives (withdrawn by the redesign), vote dates ISO 8601 &
+chronologically sorted, donations 2024 cycle (stale — see open items). Votes current
+through House roll call 314 (Sep 16) and Senate 244 (Sep 24).
+
+**2026-09-28 member-profile refresh:** the 106 bills voted on since July had no summaries
+(member profiles showed raw titles for 95%+ of Jul–Sep votes). Generated all 106 via the
+pipeline, then fact-checked every one against its source text (2 lenses + 3 skeptics per
+finding): 34 had verified errors (7 critical, e.g. a rule resolution described as the bill
+it schedules; a "consider adopting" standard described as a mandate). Rewrote with the
+verified errors as feedback and re-checked until clean (34 → 12 → 3 → 0 bills with verified errors). Also
+fixed the grader never seeing the bill text (it flagged true details as "fabricated").
 
 ## Open Items (priority order)
 1. **Add CLAUDE_CODE_OAUTH_TOKEN secret** on GitHub (Settings → Secrets → Actions)
@@ -83,7 +93,9 @@ chronologically sorted, donations 2024 cycle (stale — see open items)
    token from `claude setup-token`, lasts ~1 year). Keeps summaries current as the
    weekly sync adds bills. This is the single biggest remaining infra fix — the
    manual laptop loop won't self-heal. (ANTHROPIC_API_KEY still works as the
-   pay-per-token fallback, ~$5-10/mo.)
+   pay-per-token fallback, ~$5-10/mo.) **Evidence it matters:** ai-sync ran every
+   Sunday Jul–Sep, exited in ~7s as "success" (no secret), and 106 bills went
+   unsummarized for 11 weeks without any alert.
 2. **Analytics** (P1): Plausible/Fathom + Search Console — SEO shipped (server-side
    meta/OG/sitemap/robots), but nothing measures it yet; North Star is unmeasurable.
 3. **Donations**: 2026 cycle + House office-filter bug + monthly CI step (still 2024).
@@ -109,9 +121,13 @@ chronologically sorted, donations 2024 cycle (stale — see open items)
 - `sync.py --step members --states NY,FL,CA,TX` — pass all states (overwrites members.json)
 - Member count floors abort sync on truncated data (vacant seats tolerated)
 - Senate/House votes and bills are incremental; AI steps skip existing items
+- Bill summaries ONLY (skips narratives/scorecards/arguments that `--ai-only` would also run):
+  `python -c "import asyncio, sync; asyncio.run(sync.sync_bill_summaries(sync.SYNC_DIR, None))"`,
+  then `--step member-votes` and `--step validate`. The local CLI needs `claude auth login`
+  when it 401s; Max-plan session limits pause runs (incremental, just rerun).
 
 ## Virtualenv
 `.venv`, Python 3.13 — recreated 2026-06-10 (`python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`)
 
 ## Date Created
-2026-03-05 · Last updated 2026-07-02
+2026-03-05 · Last updated 2026-09-28

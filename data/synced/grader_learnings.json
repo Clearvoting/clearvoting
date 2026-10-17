@@ -29,7 +29,10 @@
       "Strong, accurate summary of a CRA disapproval resolution with good plain-language choices throughout. Two issues to address: (1) Provision 2 uses 'Methane Emissions Reduction Program' without explanation \u2014 most readers won't know what this program is. Introduce it with brief context the first time, such as 'the federal program that charges oil and gas companies for releasing excess methane and other greenhouse gases.' (2) The official summary specifies the fee covered 'methane and other greenhouse gases,' but this summary mentions only methane throughout. This factually narrows the rule's scope. Add 'and other greenhouse gases' to Provisions 1 and 2 to stay accurate. One minor note: Provision 3 says 'canceled by Congress' \u2014 the rule was canceled through a CRA resolution that became Public Law 119-2, meaning it required presidential signature, not just a congressional vote. Consider 'The rule was canceled in March 2025 and has no legal force.' The one-liner is clean, starts with a verb, and lands at 13 words. Direction 'against' is correct per checklist guidance for CRA disapproval resolutions. 'Environment & Energy' is the right category. The three-provision count is at the minimum but appropriate for the scope of this resolution.",
       "Strong, accurate summary of a CRA disapproval resolution that canceled DOE's gas tankless water heater efficiency rule. Plain language throughout, correct 'against' direction, and good inclusion of the December 26, 2024 rule date and the cancellation effect. Two minor issues: (1) The issue_category 'Cost of Living' is a questionable fit \u2014 this is an energy efficiency standards rule, not a consumer pricing or household cost bill. A reader filtering by that category might be misled about the bill's nature. 'Environment & Energy' alone is the accurate primary category; if a second is needed, 'Housing & Infrastructure' (if available) would be more defensible than 'Cost of Living.' (2) The summary has only 3 provisions, which is at the minimum. A fourth provision explaining the CRA mechanism would add useful context \u2014 for example: 'Congress used a law called the Congressional Review Act, which lets lawmakers vote to cancel rules that federal agencies have recently issued.' This would help readers unfamiliar with the CRA understand why Congress can cancel a DOE rule. The one-liner is clean, starts with a verb, and accurately captures the resolution's effect in 14 words. All sentences are well within the 25-word limit. No jargon, no bias, no editorial framing.",
       "Excellent summary. Plain language throughout, accurate provisions, and correct 'in_favor' direction for a bill that creates new requirements protecting a specific group of VA benefit recipients. The one-liner is clean, starts with a verb, and lands at 15 words. Provision 2 correctly captures the VA's enforcement mechanism (disapproving courses) in accessible language ('stop approving that school's courses'). Provision 3 adds useful implementation context \u2014 the effective date and applicable term start date \u2014 which helps readers understand when this takes effect. 'Survivors' and Dependents' program' in Provision 1 is a direct name reference rather than jargon, used in a clear sentence that explains who the program serves. No sentences exceed 25 words. No legislative jargon, no bias, no editorial framing. Issue categories 'Veterans & Military' and 'Education' are both accurate fits. All three provisions map cleanly to the official summary without omission or distortion.",
-      "Strong, accurate summary overall with clear plain-language descriptions of most major provisions. Four issues to address: (1) Provision 4 runs to approximately 30 words \u2014 clearly over the 25-word limit. Split it: 'When a claim takes more than 365 days to decide, the final payment is not locked to the day of injury. Instead, it's based on the benefit amount on the day the claim is approved.' (2) 'Subpoenas' in Provision 5 is unexplained legal jargon. Rewrite as: 'The Department of Justice can now issue legal orders to force outside agencies to hand over records, which speeds up claim decisions.' (3) Two substantive provisions from the official summary are missing: the bill changes the education benefit from optional ('authorizes') to required ('requires') for qualifying children and spouses \u2014 a meaningful policy shift worth including \u2014 and it extends COVID-19 eligibility for first responders who die or are injured. With 7 provisions, at least the COVID-19 extension should be added given its public significance. (4) Provision 3 omits cadets and trainees in candidate-officer training from the expanded eligibility, narrowing the actual scope of the bill. Add: 'Cadets and trainees in officer training programs are also added to the list of eligible workers.' The $3,000 to $6,000 dollar amounts in Provision 1 are not verifiable from the provided official summary text \u2014 if these numbers come from the bill's actual legislative text they are good to include, but their source should be confirmed before publishing. All other provisions are accurate, clearly written, and well-sequenced."
+      "Strong, accurate summary overall with clear plain-language descriptions of most major provisions. Four issues to address: (1) Provision 4 runs to approximately 30 words \u2014 clearly over the 25-word limit. Split it: 'When a claim takes more than 365 days to decide, the final payment is not locked to the day of injury. Instead, it's based on the benefit amount on the day the claim is approved.' (2) 'Subpoenas' in Provision 5 is unexplained legal jargon. Rewrite as: 'The Department of Justice can now issue legal orders to force outside agencies to hand over records, which speeds up claim decisions.' (3) Two substantive provisions from the official summary are missing: the bill changes the education benefit from optional ('authorizes') to required ('requires') for qualifying children and spouses \u2014 a meaningful policy shift worth including \u2014 and it extends COVID-19 eligibility for first responders who die or are injured. With 7 provisions, at least the COVID-19 extension should be added given its public significance. (4) Provision 3 omits cadets and trainees in candidate-officer training from the expanded eligibility, narrowing the actual scope of the bill. Add: 'Cadets and trainees in officer training programs are also added to the list of eligible workers.' The $3,000 to $6,000 dollar amounts in Provision 1 are not verifiable from the provided official summary text \u2014 if these numbers come from the bill's actual legislative text they are good to include, but their source should be confirmed before publishing. All other provisions are accurate, clearly written, and well-sequenced.",
+      "Strong, accurate summary of a simple commemorative naming bill. Plain language throughout, correct neutral direction, and all three provisions accurately reflect the bill's scope without distortion. One clear issue: 'Money in Politics' is the completely wrong issue category \u2014 this bill has no connection to campaign finance, lobbying, or political spending. It is a commemorative post office designation. A category like 'Government & Elections' or 'Commemorations' (if available in the allowed list) would be accurate. A reader filtering by 'Money in Politics' would be entirely misled about what this bill does. One minor suggestion: a brief biographical note about Dianne Feinstein \u2014 longtime U.S. Senator from California, served 1992\u20132023 \u2014 would help readers unfamiliar with her understand why the honor was given. This is less critical than for lesser-known figures, but follows the same principle as including context for Luke Letlow. All other elements are solid: the one-liner is 9 words, starts with a verb, no period; sentences are well within the 25-word limit; and no editorial framing or bias is present.",
+      "Strong, accurate summary that clearly explains a complex foreign-funding disclosure bill in plain language. Three issues to address: (1) Provision 5 uses 'large investments' to describe what the bill calls 'specified assets or investments' \u2014 'large' is editorial and imprecise, since the threshold is set by statute, not by general size. Rewrite as 'Private universities that meet a certain asset or investment size' or simply 'Private universities with sizable endowments must file yearly reports about foreign money held in those funds.' (2) The official summary explicitly includes a disclosure trigger for gifts or contracts with 'undetermined monetary value' \u2014 this case is not captured in any provision. Add to Provision 1: 'Gifts or contracts where the dollar value is unknown must also be reported.' (3) The one-liner omits the researcher/staff personal disclosure requirement, which is a substantive new obligation distinct from institutional disclosure \u2014 but at 15 words the one-liner is at its limit and can't cover everything, so this is acceptable. Direction 'in_favor' is correct \u2014 this bill tightens disclosure rules and bans certain contracts, expanding oversight requirements in the education issue area. 'Education' is the right category. One-liner is exactly 15 words, starts with a verb, no period, and accurately captures both the disclosure and contracting dimensions of the bill.",
+      "Strong, readable summary that accurately captures a simple pilot program extension bill. Plain language throughout, correct direction, and good inclusion of the January 1, 2024 termination date. One factual accuracy issue to address: Provision 1 uses 'overseas branches,' but the official summary and bill text specify the program covers foreign branches, subsidiaries, AND affiliates \u2014 three distinct entity types. 'Overseas branches' undersells the actual scope. Consider: 'Banks can share reports about suspicious money activity with their overseas branches, subsidiaries, and affiliated companies under this program.' The issue category 'Safety & Crime' is a defensible fit for anti-money laundering and financial crime detection, but a category like 'Finance & Banking' or 'Economy & Finance' (if available in the allowed list) would be a more precise primary label \u2014 this is fundamentally a financial regulation bill. The three-provision count is at the minimum but appropriate for a simple, narrow extension bill with limited substantive scope. The one-liner is clean, starts with a verb, and accurately captures the bill's purpose in 13 words."
     ],
     "batch_history": [
       {
@@ -389,6 +392,49 @@
           "117-s-3905",
           "117-s-3168",
           "117-s-5168"
+        ]
+      },
+      {
+        "timestamp": "2026-09-28T16:13:01.330956+00:00",
+        "total": 100,
+        "passed": 78,
+        "failed": 22,
+        "grade_distribution": {
+          "A": 8,
+          "B": 70,
+          "C": 10,
+          "D": 0,
+          "F": 2
+        },
+        "needs_review_ids": [
+          "118-hr-1101",
+          "118-hres-1616",
+          "119-hr-8595",
+          "118-hr-4664",
+          "119-hr-6955",
+          "119-s-5271",
+          "119-sjres-187",
+          "119-hr-4795",
+          "119-s-307",
+          "118-hr-5961",
+          "119-hr-8278",
+          "119-s-2403"
+        ]
+      },
+      {
+        "timestamp": "2026-09-28T18:47:07.097428+00:00",
+        "total": 10,
+        "passed": 9,
+        "failed": 1,
+        "grade_distribution": {
+          "A": 1,
+          "B": 8,
+          "C": 1,
+          "D": 0,
+          "F": 0
+        },
+        "needs_review_ids": [
+          "118-hres-918"
         ]
       }
     ]

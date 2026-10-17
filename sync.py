@@ -586,8 +586,11 @@ async def sync_bill_summaries(
             result = await loop.run(
                 summary_type="bill_summary",
                 writer_kwargs={},
+                # Same text excerpt the writer saw — without it, true
+                # text-sourced details are graded as fabricated.
                 grader_context={"title": title, "official_summary": official_summary,
-                                "latest_action": latest_action},
+                                "latest_action": latest_action,
+                                "bill_text_excerpt": bill_text[:6000]},
             )
 
             summary_data = result.best_summary
@@ -1741,7 +1744,8 @@ async def _run_audit(anthropic_key: str | None) -> None:
                 summary_type="bill_summary",
                 writer_kwargs={},
                 grader_context={"title": title, "official_summary": official,
-                                "latest_action": latest_action},
+                                "latest_action": latest_action,
+                                "bill_text_excerpt": bill_text[:6000]},
             )
 
             new_summary = result.best_summary
