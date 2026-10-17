@@ -1,0 +1,82 @@
+{
+  "congress": 119,
+  "session": 1,
+  "vote_number": 645,
+  "vote_date": "December 11, 2025,  01:05 PM",
+  "question": "On the Resolution S.Res. 532",
+  "document": "S.Res. 532",
+  "result": "Resolution Agreed to (52-47)",
+  "title": "S.Res. 532",
+  "counts": {
+    "yeas": 52,
+    "nays": 47,
+    "present": 0,
+    "absent": 1
+  },
+  "members": [
+    {
+      "first_name": "John",
+      "last_name": "Cornyn",
+      "party": "R",
+      "state": "TX",
+      "vote": "Yea",
+      "lis_member_id": "S287"
+    },
+    {
+      "first_name": "Ted",
+      "last_name": "Cruz",
+      "party": "R",
+      "state": "TX",
+      "vote": "Yea",
+      "lis_member_id": "S355"
+    },
+    {
+      "first_name": "Kirsten",
+      "last_name": "Gillibrand",
+      "party": "D",
+      "state": "NY",
+      "vote": "Nay",
+      "lis_member_id": "S331"
+    },
+    {
+      "first_name": "Ashley",
+      "last_name": "Moody",
+      "party": "R",
+      "state": "FL",
+      "vote": "Yea",
+      "lis_member_id": "S439"
+    },
+    {
+      "first_name": "Alex",
+      "last_name": "Padilla",
+      "party": "D",
+      "state": "CA",
+      "vote": "Nay",
+      "lis_member_id": "S413"
+    },
+    {
+      "first_name": "Adam",
+      "last_name": "Schiff",
+      "party": "D",
+      "state": "CA",
+      "vote": "Nay",
+      "lis_member_id": "S427"
+    },
+    {
+      "first_name": "Charles",
+      "last_name": "Schumer",
+      "party": "D",
+      "state": "NY",
+      "vote": "Nay",
+      "lis_member_id": "S270"
+    },
+    {
+      "first_name": "Rick",
+      "last_name": "Scott",
+      "party": "R",
+      "state": "FL",
+      "vote": "Yea",
+      "lis_member_id": "S404"
+    }
+  ]
+}

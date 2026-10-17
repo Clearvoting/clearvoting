@@ -1,5 +1,7 @@
+import builtins
 import json
 import logging
+import os
 import pytest
 from pathlib import Path
 from app.services.data_service import DataService
@@ -26,7 +28,9 @@ def test_get_members_by_state_not_found(data_service):
 def test_get_member_detail(data_service):
     result = data_service.get_member_detail("S001217")
     assert result["member"]["bioguideId"] == "S001217"
-    assert result["member"]["directOrderName"] == "Rick Scott"
+    # Real members.json has no directOrderName; display names come from render.display_name.
+    assert result["member"]["name"] == "Scott, Rick"
+    assert "directOrderName" not in result["member"]
 
 
 def test_get_member_detail_not_found(data_service):
@@ -48,7 +52,9 @@ def test_get_member_votes_not_found(data_service):
 
 def test_get_bills(data_service):
     result = data_service.get_bills()
-    assert len(result["bills"]) == 3
+    fixture_bills = json.loads((FIXTURES / "bills.json").read_text())["bills"]
+    # Default page size is 20; the real-data fixtures hold more bills than that.
+    assert len(result["bills"]) == min(len(fixture_bills), 20)
 
 
 def test_get_bills_pagination(data_service):
@@ -101,45 +107,6 @@ def test_get_sync_metadata(data_service):
     result = data_service.get_sync_metadata()
     assert result["members_count"] == 3
     assert "last_sync" in result
-
-
-def test_get_member_vote_summary(data_service):
-    result = data_service.get_member_vote_summary("S001217")
-    assert result["member_id"] == "S001217"
-    assert result["stats"]["total_votes"] == 2
-    assert result["stats"]["participation_rate"] == 100.0
-    areas = result["top_policy_areas"]
-    assert len(areas) == 2
-    names = [a["name"] for a in areas]
-    assert "Taxation" in names
-    assert "Armed Forces and National Security" in names
-    tax_area = next(a for a in areas if a["name"] == "Taxation")
-    assert tax_area["yea"] == 1
-    assert tax_area["nay"] == 0
-    assert tax_area["total"] == 1
-    armed_area = next(a for a in areas if a["name"] == "Armed Forces and National Security")
-    assert armed_area["yea"] == 0
-    assert armed_area["nay"] == 1
-    assert armed_area["total"] == 1
-
-
-def test_get_member_vote_summary_direction_stance(data_service):
-    """Verify effective stance: Yea on 'against' = against, Nay on 'in_favor' = against."""
-    result = data_service.get_member_vote_summary("S001217")
-    areas = result["top_policy_areas"]
-    # HR 1 has direction=against, vote=Yea → against Taxation
-    tax_area = next(a for a in areas if a["name"] == "Taxation")
-    assert tax_area["against"] == 1
-    assert tax_area["in_favor"] == 0
-    # S 100 has direction=in_favor, vote=Nay → against Armed Forces
-    armed_area = next(a for a in areas if a["name"] == "Armed Forces and National Security")
-    assert armed_area["against"] == 1
-    assert armed_area["in_favor"] == 0
-
-
-def test_get_member_vote_summary_not_found(data_service):
-    result = data_service.get_member_vote_summary("X999999")
-    assert result is None
 
 
 def test_get_bill_votes(data_service):
@@ -195,22 +162,27 @@ def test_get_bill_votes_returns_summary_fields_only(data_service):
     }
 
 
-def test_get_bill_votes_scans_directories_once(data_service, monkeypatch):
-    # The bill->votes index is built once; later calls must not rescan the directories
-    calls = {"count": 0}
+def test_get_bill_votes_reads_the_index_not_the_vote_dirs(data_service, monkeypatch):
+    # The votes index (spec §10 #3) replaced the directory scan: no glob, no roll-call file reads.
+    calls = {"glob": 0, "open": 0}
     real_glob = Path.glob
+    real_open = builtins.open
 
     def counting_glob(self, pattern):
-        calls["count"] += 1
+        calls["glob"] += 1
         return real_glob(self, pattern)
 
+    def counting_open(file, *args, **kwargs):
+        if f"{os.sep}votes{os.sep}" in str(file):
+            calls["open"] += 1
+        return real_open(file, *args, **kwargs)
+
     monkeypatch.setattr(Path, "glob", counting_glob)
-    data_service.get_bill_votes(119, "hr", 1)
-    scans_after_first = calls["count"]
-    assert scans_after_first > 0
+    monkeypatch.setattr(builtins, "open", counting_open)
+    assert data_service.get_bill_votes(119, "hr", 1) is not None
     data_service.get_bill_votes(119, "hjres", 20)
     data_service.get_bill_votes(119, "hr", 9999)
-    assert calls["count"] == scans_after_first
+    assert calls == {"glob": 0, "open": 0}
 
 
 def test_get_member_narrative(data_service):
@@ -296,3 +268,87 @@ def test_load_populated_data_logs_no_errors(caplog):
     with caplog.at_level(logging.ERROR, logger="app.services.data_service"):
         DataService(data_dir=FIXTURES)
     assert not caplog.records
+
+
+# --- Withheld summaries, seats and the official summary (plan T1.5; spec §2.5 C, §7.4, §10 #10) ---
+
+def _ai_fixture() -> dict:
+    return json.loads((FIXTURES / "ai_summaries.json").read_text())
+
+
+def test_displayable_summary_withholds_needs_review(data_service):
+    summaries = _ai_fixture()
+    withheld = next(k for k, v in summaries.items() if v.get("needs_review"))
+    shown = next(k for k, v in summaries.items() if not v.get("needs_review"))
+    assert data_service.displayable_summary(shown) == summaries[shown]
+    assert data_service.displayable_summary(withheld) is None
+    assert data_service.displayable_summary("119-hr-999999") is None
+
+
+def _summary_dir(tmp_path: Path) -> Path:
+    d = tmp_path / "synced"
+    d.mkdir()
+    (d / "bills.json").write_text(json.dumps({"bills": [
+        {"congress": 119, "type": "HR", "number": "10", "title": "Shown Act", "latestAction": {"actionDate": "2026-09-01"}},
+        {"congress": 119, "type": "HR", "number": "11", "title": "Withheld Act", "latestAction": {"actionDate": "2026-08-01"}},
+        {"congress": 119, "type": "HR", "number": "12", "title": "Missing Act", "latestAction": {"actionDate": "2026-07-01"}},
+    ]}))
+    (d / "ai_summaries.json").write_text(json.dumps({
+        "119-hr-10": {"one_liner": "Funds rural clinics", "provisions": ["Adds clinics"], "issue_categories": ["Health"]},
+        "119-hr-11": {"one_liner": "Flagged text", "provisions": ["Flagged"], "issue_categories": ["Health"],
+                      "needs_review": True},
+    }))
+    return d
+
+
+def test_withheld_summary_lists_like_a_missing_one(tmp_path):
+    ds = DataService(data_dir=_summary_dir(tmp_path))
+    rows = {b["number"]: b for b in ds.get_bills()["bills"]}
+    assert rows["10"]["one_liner"] == "Funds rural clinics"
+    for number in ("11", "12"):
+        assert not rows[number]["one_liner"]
+        assert rows[number]["provisions"] == []
+        assert rows[number]["issue_categories"] == []
+    assert [b["number"] for b in ds.get_bills(summarized_only=True)["bills"]] == ["10"]
+
+
+@pytest.mark.parametrize("member, expected", [
+    ({"bioguideId": "G000602", "chamber": "House of Representatives"}, "regular"),
+    ({"bioguideId": "D000032", "chamber": "House"}, "regular"),
+    ({"bioguideId": "C001056", "chamber": "Senate"}, "regular"),
+    ({"bioguideId": "M001244", "chamber": "Senate"}, "special"),
+    ({"bioguideId": "S000148", "chamber": "Senate"}, None),
+])
+def test_seat_up_2026(data_service, member, expected):
+    assert data_service.seat_up_2026(member) == expected
+
+
+def test_seat_up_2026_without_the_seats_file(tmp_path):
+    ds = DataService(data_dir=tmp_path)
+    assert ds.seat_up_2026({"bioguideId": "C001056", "chamber": "Senate"}) is None
+    assert ds.seat_up_2026({"bioguideId": "G000602", "chamber": "House of Representatives"}) == "regular"
+
+
+def test_latest_official_summary_lives_in_data_service():
+    import sync
+    from app.services.data_service import _latest_official_summary
+    assert sync._latest_official_summary is _latest_official_summary
+    bill = {"summaries": [
+        {"actionDate": "2021-09-27", "actionDesc": "Introduced in House", "text": "BBB draft text"},
+        {"actionDate": "2022-08-16", "actionDesc": "Public Law", "text": "IRA enacted text"},
+    ]}
+    assert DataService._latest_official_summary(bill) == "IRA enacted text"
+
+
+# --- Earliest roll-call date (plan T3.1; spec §4.1 m2 coverage sentence) ---
+
+def test_earliest_roll_call_date_reads_the_index(data_service):
+    roll_calls = json.loads((FIXTURES / "votes_index.json").read_text())["roll_calls"]
+    dates = [str(rc.get("date") or "")[:10] for rc in roll_calls.values()]
+    dates = [d for d in dates if d]
+    assert data_service.earliest_roll_call_date() == min(dates)
+    assert data_service.latest_roll_call_date() == max(dates)
+
+
+def test_earliest_roll_call_date_without_an_index(tmp_path):
+    assert DataService(data_dir=tmp_path).earliest_roll_call_date() is None

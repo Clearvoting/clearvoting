@@ -1,303 +1,61 @@
 /* ============================================
-   ClearVoting — Vote Detail (embedded in bill page)
-   Reusable vote rendering functions
+   ClearVoting — roll-call tables (bill page)
+   Rows come from site.js rcTableRow (one vocabulary with the server, §10 #21);
+   classes only: every colour lives in site.css (spec §6.1, §6.4).
    ============================================ */
 
-const VOTE_COLORS = {
-    yea: '#2E8540',
-    nay: '#CD2026',
-    present: '#0071BC',
-    absent: '#757575',
-};
+const RC_PARTY_NAMES = { D: 'Democratic', R: 'Republican', I: 'Independent', ID: 'Independent' };
 
-const VOTE_DATE_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'];
-
-// Vote dates are stored as ISO 8601; anything else (legacy display strings in
-// raw roll-call files) passes through unchanged.
-function formatVoteDate(raw) {
-    if (!raw) return '';
-    const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(raw);
-    if (!m) return raw;
-    return `${VOTE_DATE_MONTHS[parseInt(m[2], 10) - 1]} ${parseInt(m[3], 10)}, ${m[1]}`;
+// Same key the server writes on each row (render._rc_row) and rcTableRow sets:
+// House by bioguide id, Senate by state + last name.
+function rcMemberKey(member, chamber) {
+    return chamber === 'house'
+        ? (member.bioguide_id || '')
+        : `${member.state || ''}-${member.last_name || ''}`;
 }
 
-// --- SVG Pie Chart ---
-
-function renderVotePieChart(counts, size) {
-    const total = (counts.yeas || 0) + (counts.nays || 0) + (counts.present || 0) + (counts.absent || 0);
-    if (total === 0) return null;
-
-    const segments = [
-        { label: 'Yea', count: counts.yeas || 0, color: VOTE_COLORS.yea },
-        { label: 'Nay', count: counts.nays || 0, color: VOTE_COLORS.nay },
-        { label: 'Present', count: counts.present || 0, color: VOTE_COLORS.present },
-        { label: 'Not Voting', count: counts.absent || 0, color: VOTE_COLORS.absent },
-    ].filter(s => s.count > 0);
-
-    return _buildPieChart(segments, total, size || 160);
+// render._rc_sorted_rows: 119th House by district (unknown last), else last name, first name.
+function rcSortMembers(members, chamber, current) {
+    const byName = (a, b) => (a.last_name || '').localeCompare(b.last_name || '')
+        || (a.first_name || '').localeCompare(b.first_name || '');
+    const rows = members.slice();
+    if (current && chamber === 'house') {
+        const rank = (m) => (Number.isInteger(m.district) ? m.district : Infinity);
+        return rows.sort((a, b) => (rank(a) - rank(b)) || byName(a, b));
+    }
+    return rows.sort(byName);
 }
 
-function renderPartyVotePieCharts(members) {
-    if (!members || members.length === 0) return null;
-
-    const parties = {};
-    members.forEach(m => {
-        const p = m.party || '?';
-        if (!parties[p]) parties[p] = { yea: 0, nay: 0, present: 0, absent: 0, total: 0 };
-        const vote = (m.vote || '').toLowerCase();
-        if (vote === 'yea') parties[p].yea++;
-        else if (vote === 'nay') parties[p].nay++;
-        else if (vote === 'present') parties[p].present++;
-        else parties[p].absent++;
-        parties[p].total++;
-    });
-
-    const PARTY_NAMES = { R: 'Republican', D: 'Democrat', I: 'Independent' };
-    const container = document.createElement('div');
-    container.className = 'party-pie-charts';
-
-    Object.keys(parties).sort().forEach(partyCode => {
-        const data = parties[partyCode];
-        const name = PARTY_NAMES[partyCode] || partyCode;
-
-        const segments = [
-            { label: 'Yea', count: data.yea, color: VOTE_COLORS.yea },
-            { label: 'Nay', count: data.nay, color: VOTE_COLORS.nay },
-            { label: 'Present', count: data.present, color: VOTE_COLORS.present },
-            { label: 'Not Voting', count: data.absent, color: VOTE_COLORS.absent },
-        ].filter(s => s.count > 0);
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'party-pie-wrapper';
-
-        const heading = document.createElement('h5');
-        heading.textContent = `${name} (${data.total})`;
-        wrapper.appendChild(heading);
-
-        wrapper.appendChild(_buildPieChart(segments, data.total, 120));
-
-        const legend = document.createElement('div');
-        legend.className = 'pie-legend';
-        segments.forEach(s => {
-            const item = document.createElement('span');
-            item.className = 'pie-legend-item';
-            const dot = document.createElement('span');
-            dot.className = 'pie-legend-dot';
-            dot.style.background = s.color;
-            item.appendChild(dot);
-            item.appendChild(document.createTextNode(` ${s.label}: ${s.count}`));
-            legend.appendChild(item);
-        });
-        wrapper.appendChild(legend);
-
-        container.appendChild(wrapper);
-    });
-
-    return container;
+// current: a 119th-Congress roll call inside one state's group (district print and order).
+function buildRcTable(captionText, members, chamber, current) {
+    const head = el('thead', null, el('tr', null,
+        el('th', { scope: 'col' }, 'Member'), el('th', { scope: 'col' }, 'Vote')));
+    const body = el('tbody', null, ...rcSortMembers(members, chamber, current)
+        .map((member) => rcTableRow(member, { chamber, current })));
+    return el('table', { className: 'rc' }, el('caption', null, captionText), head, body);
 }
 
-function _buildPieChart(segments, total, size) {
-    const svgNS = 'http://www.w3.org/2000/svg';
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
-    svg.setAttribute('width', String(size));
-    svg.setAttribute('height', String(size));
-    svg.setAttribute('class', 'vote-pie');
-    svg.setAttribute('role', 'img');
-    svg.setAttribute('aria-label', 'Vote breakdown: ' + segments.map(s => s.label + ' ' + s.count).join(', '));
-
-    const cx = size / 2;
-    const cy = size / 2;
-    const outerR = (size / 2) - 2;
-    const strokeW = outerR * 0.55;
-    const r = outerR - (strokeW / 2);
-    const circumference = 2 * Math.PI * r;
-
-    let offset = 0;
-    var circleTargets = [];
-    segments.forEach(function(seg) {
-        var pct = seg.count / total;
-        var dashLen = pct * circumference;
-
-        var circle = document.createElementNS(svgNS, 'circle');
-        circle.setAttribute('cx', String(cx));
-        circle.setAttribute('cy', String(cy));
-        circle.setAttribute('r', String(r));
-        circle.setAttribute('fill', 'none');
-        circle.setAttribute('stroke', seg.color);
-        circle.setAttribute('stroke-width', String(strokeW));
-        // Start with no visible arc
-        circle.setAttribute('stroke-dasharray', '0 ' + circumference);
-        circle.setAttribute('stroke-dashoffset', String(-offset));
-        circle.setAttribute('transform', 'rotate(-90 ' + cx + ' ' + cy + ')');
-        circle.style.transition = 'stroke-dasharray 0.6s ease';
-        svg.appendChild(circle);
-
-        circleTargets.push({ el: circle, dashLen: dashLen });
-        offset += dashLen;
+function filterRcRows(container, query, show) {
+    const needle = (query || '').trim().toLowerCase();
+    container.querySelectorAll('tbody tr').forEach((row) => {
+        const found = positionChip(row.dataset.position);
+        const kindMatches = show === 'all' || (found ? found[0] : 'nv') === show;
+        const cell = row.querySelector('th');
+        const name = cell && cell.firstChild ? cell.firstChild.textContent : '';
+        row.hidden = !(kindMatches && (!needle || name.toLowerCase().includes(needle)));
     });
-
-    // Animate pie arcs filling in
-    requestAnimationFrame(function() {
-        requestAnimationFrame(function() {
-            circleTargets.forEach(function(t) {
-                t.el.setAttribute('stroke-dasharray', t.dashLen + ' ' + (circumference - t.dashLen));
-            });
-        });
-    });
-
-    // Center text
-    var text = document.createElementNS(svgNS, 'text');
-    text.setAttribute('x', String(cx));
-    text.setAttribute('y', String(cy));
-    text.setAttribute('text-anchor', 'middle');
-    text.setAttribute('dominant-baseline', 'central');
-    // Fill is set via CSS (.vote-pie text { fill: var(--text-primary) })
-    // Inline fill removed — design token in stylesheet
-    text.setAttribute('font-size', String(Math.round(size * 0.18)));
-    text.setAttribute('font-weight', '600');
-    text.setAttribute('font-family', 'Inter, system-ui, sans-serif');
-    text.textContent = String(total);
-    svg.appendChild(text);
-
-    return svg;
 }
 
-// --- Vote Bar ---
-
-function renderVoteBar(counts) {
-    var total = (counts.yeas || 0) + (counts.nays || 0) + (counts.present || 0) + (counts.absent || 0);
-    if (total === 0) return null;
-
-    var bar = document.createElement('div');
-    bar.className = 'vote-bar';
-
-    var segments = [
-        { cls: 'yea', count: counts.yeas || 0 },
-        { cls: 'nay', count: counts.nays || 0 },
-        { cls: 'present', count: counts.present || 0 },
-        { cls: 'absent', count: counts.absent || 0 },
-    ];
-
-    var targetWidths = [];
-    segments.forEach(function(seg) {
-        if (seg.count > 0) {
-            var segment = document.createElement('div');
-            segment.className = 'vote-bar-segment ' + seg.cls;
-            segment.style.width = '0%';
-            bar.appendChild(segment);
-            targetWidths.push({ el: segment, width: ((seg.count / total) * 100) + '%' });
-        }
+function fillPartySpans(container, members, chamber) {
+    const partyByKey = new Map(members.map((m) => [rcMemberKey(m, chamber), m.party]));
+    container.querySelectorAll('tbody tr[data-key]').forEach((row) => {
+        const span = row.querySelector('.party');
+        if (!span) return;
+        const code = partyByKey.get(row.dataset.key);
+        span.textContent = code ? ` · ${RC_PARTY_NAMES[code] || code}` : '';
     });
-
-    // Animate bar segments expanding from 0
-    requestAnimationFrame(function() {
-        requestAnimationFrame(function() {
-            targetWidths.forEach(function(t) { t.el.style.width = t.width; });
-        });
-    });
-
-    return bar;
 }
 
-// --- Vote Summary Legend ---
-
-function renderVoteSummary(counts) {
-    var summary = document.createElement('div');
-    summary.className = 'vote-summary';
-
-    var items = [
-        { cls: 'yea', label: 'Yea', count: counts.yeas || 0 },
-        { cls: 'nay', label: 'Nay', count: counts.nays || 0 },
-        { cls: 'present', label: 'Present', count: counts.present || 0 },
-        { cls: 'absent', label: 'Not Voting', count: counts.absent || 0 },
-    ];
-
-    items.forEach(function(item) {
-        if (item.count > 0) {
-            var dot = document.createElement('span');
-            dot.className = 'vote-dot ' + item.cls;
-
-            var countEl = document.createElement('div');
-            countEl.className = 'vote-count';
-            countEl.appendChild(dot);
-            countEl.appendChild(document.createTextNode(' ' + item.label + ': ' + item.count));
-            summary.appendChild(countEl);
-        }
-    });
-
-    return summary;
+function clearPartySpans(container) {
+    container.querySelectorAll('.party').forEach((span) => { span.textContent = ''; });
 }
-
-// --- Vote Table ---
-
-function renderVoteTable(members, showPartyColumn) {
-    var table = document.createElement('table');
-    table.className = 'data-table';
-
-    var thead = document.createElement('thead');
-    var headerRow = document.createElement('tr');
-
-    var headers = ['Name', 'State'];
-    if (showPartyColumn) headers.push('Party');
-    headers.push('Vote');
-
-    headers.forEach(function(h) {
-        var th = document.createElement('th');
-        th.textContent = h;
-        headerRow.appendChild(th);
-    });
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
-
-    var tbody = document.createElement('tbody');
-
-    var voteOrder = { 'Yea': 0, 'Nay': 1, 'Present': 2, 'Not Voting': 3 };
-    var sorted = members.slice().sort(function(a, b) {
-        var aOrder = voteOrder[a.vote] !== undefined ? voteOrder[a.vote] : 4;
-        var bOrder = voteOrder[b.vote] !== undefined ? voteOrder[b.vote] : 4;
-        if (aOrder !== bOrder) return aOrder - bOrder;
-        return (a.last_name || '').localeCompare(b.last_name || '');
-    });
-
-    sorted.forEach(function(member) {
-        var row = document.createElement('tr');
-
-        var nameCell = document.createElement('td');
-        nameCell.textContent = ((member.first_name || '') + ' ' + (member.last_name || '')).trim();
-        row.appendChild(nameCell);
-
-        var stateCell = document.createElement('td');
-        stateCell.textContent = member.state || '';
-        row.appendChild(stateCell);
-
-        if (showPartyColumn) {
-            var partyCell = document.createElement('td');
-            partyCell.textContent = member.party || '';
-            row.appendChild(partyCell);
-        }
-
-        var voteCell = document.createElement('td');
-        var voteBadge = document.createElement('span');
-        var vote = member.vote || 'Not Voting';
-        voteBadge.className = 'vote-label ' + vote.toLowerCase().replace(/\s+/g, '-');
-        voteBadge.textContent = vote;
-        voteCell.appendChild(voteBadge);
-        row.appendChild(voteCell);
-
-        tbody.appendChild(row);
-    });
-
-    table.appendChild(tbody);
-    return table;
-}
-
-// Export for use in other scripts
-window.ClearVotingUI = {
-    renderVoteBar: renderVoteBar,
-    renderVoteSummary: renderVoteSummary,
-    renderVoteTable: renderVoteTable,
-    renderVotePieChart: renderVotePieChart,
-    renderPartyVotePieCharts: renderPartyVotePieCharts,
-};

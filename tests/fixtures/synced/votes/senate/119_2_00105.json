@@ -1,0 +1,82 @@
+{
+  "congress": 119,
+  "session": 2,
+  "vote_number": 105,
+  "vote_date": "April 23, 2026,  03:22 AM",
+  "question": "On the Concurrent Resolution S.Con.Res. 33",
+  "document": "S.Con.Res. 33",
+  "result": "Concurrent Resolution Agreed to (50-48)",
+  "title": "S.Con.Res. 33, As Amended",
+  "counts": {
+    "yeas": 50,
+    "nays": 48,
+    "present": 0,
+    "absent": 2
+  },
+  "members": [
+    {
+      "first_name": "John",
+      "last_name": "Cornyn",
+      "party": "R",
+      "state": "TX",
+      "vote": "Yea",
+      "lis_member_id": "S287"
+    },
+    {
+      "first_name": "Ted",
+      "last_name": "Cruz",
+      "party": "R",
+      "state": "TX",
+      "vote": "Yea",
+      "lis_member_id": "S355"
+    },
+    {
+      "first_name": "Kirsten",
+      "last_name": "Gillibrand",
+      "party": "D",
+      "state": "NY",
+      "vote": "Nay",
+      "lis_member_id": "S331"
+    },
+    {
+      "first_name": "Ashley",
+      "last_name": "Moody",
+      "party": "R",
+      "state": "FL",
+      "vote": "Yea",
+      "lis_member_id": "S439"
+    },
+    {
+      "first_name": "Alex",
+      "last_name": "Padilla",
+      "party": "D",
+      "state": "CA",
+      "vote": "Nay",
+      "lis_member_id": "S413"
+    },
+    {
+      "first_name": "Adam",
+      "last_name": "Schiff",
+      "party": "D",
+      "state": "CA",
+      "vote": "Nay",
+      "lis_member_id": "S427"
+    },
+    {
+      "first_name": "Charles",
+      "last_name": "Schumer",
+      "party": "D",
+      "state": "NY",
+      "vote": "Nay",
+      "lis_member_id": "S270"
+    },
+    {
+      "first_name": "Rick",
+      "last_name": "Scott",
+      "party": "R",
+      "state": "FL",
+      "vote": "Yea",
+      "lis_member_id": "S404"
+    }
+  ]
+}

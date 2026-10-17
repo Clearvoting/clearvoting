@@ -1,6 +1,7 @@
 import logging
 from fastapi import APIRouter, Query
 from app.dependencies import get_data_service
+from app.routers.bills import LIST_FIELDS
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +30,7 @@ def _bill_matches(bill: dict, q_lower: str) -> bool:
     if q_lower in bill.get("title", "").lower():
         return True
     # Check the plain-language one-liner ("stablecoin" should find the GENIUS Act)
-    if q_lower in bill.get("one_liner", "").lower():
+    if q_lower in (bill.get("one_liner") or "").lower():
         return True
     # Check policyArea name
     policy_area = bill.get("policyArea", {})
@@ -56,4 +57,5 @@ async def search_bills(
     q_lower = q.lower()
     filtered = [b for b in all_bills["bills"] if _bill_matches(b, q_lower)]
     paginated = filtered[offset:offset + limit]
-    return {"bills": paginated, "total": len(filtered)}
+    # Same allowlist as /api/bills: the browse panel renders these rows (spec §2.2 #10).
+    return {"bills": [{k: b[k] for k in LIST_FIELDS if k in b} for b in paginated], "total": len(filtered)}

@@ -4,6 +4,9 @@ from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
 import inspect
 from sync import sync_members, sync_senate_votes, sync_bills_from_votes, build_member_votes, _parse_bill_ref, sync_house_votes, _house_leg_to_document, sync_bill_summaries, backfill_bill_directions, sync_member_summaries
+import hashlib
+import sys
+from sync import _ai_summaries_digest, _ai_summaries_stamp
 
 
 def _write_json(path: Path, data: dict | list) -> None:
@@ -1328,3 +1331,133 @@ async def test_sync_member_summaries_skips_existing(tmp_path):
     stats = await sync_member_summaries(tmp_path)
 
     assert stats["total"] == 0  # No new summaries generated
+
+
+# --- votes index step (plan T1.4, spec §10 #3) ---
+
+async def test_votes_index_step_runs_without_congress_key(monkeypatch, tmp_path):
+    """The index is built from files already on disk, so the step needs no API key."""
+    import sys
+    import sync as sync_module
+
+    _write_json(tmp_path / "votes" / "house" / "119_2_00295.json", {
+        "congress": 119, "session": 2, "vote_number": 295, "vote_date": "2026-09-03",
+        "question": "On Passage", "document": "H.R. 4795", "result": "Passed",
+        "counts": {"yeas": 237, "nays": 169, "present": 0, "absent": 27}, "members": [], "chamber": "House",
+    })
+    _write_json(tmp_path / "bills.json", {"bills": [{"congress": 119, "type": "HR", "number": "4795"}]})
+    monkeypatch.delenv("CONGRESS_API_KEY", raising=False)
+    monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
+    monkeypatch.setattr(sys, "argv", ["sync.py", "--step", "votes-index"])
+
+    await sync_module.main()
+
+    index = json.loads((tmp_path / "votes_index.json").read_text())
+    assert index["latest"] == "house/119_2_00295"
+    assert index["roll_calls"]["house/119_2_00295"]["bill"] == "119-hr-4795"
+
+
+# --- ai_summaries_updated survives every sync_metadata writer (spec §7.4, plan T1.10) ---
+
+def _seed_ai_state(tmp_path, summaries: str, metadata: dict | None):
+    (tmp_path / "ai_summaries.json").write_text(summaries)
+    if metadata is not None:
+        (tmp_path / "sync_metadata.json").write_text(json.dumps(metadata))
+
+
+def test_ai_summaries_stamp_carries_the_date_forward(tmp_path):
+    _seed_ai_state(tmp_path, '{"119-hr-1": {"one_liner": "A"}}',
+                   {"last_sync": "2026-09-05T13:05:50+00:00", "ai_summaries_updated": "2026-07-07"})
+    assert _ai_summaries_stamp(tmp_path, today="2026-09-23") == {
+        "ai_summaries_updated": "2026-07-07",
+        "ai_summaries_digest": _ai_summaries_digest(tmp_path),
+    }
+
+
+def test_ai_summaries_stamp_keeps_the_date_when_the_digest_matches(tmp_path):
+    _seed_ai_state(tmp_path, '{"119-hr-1": {"one_liner": "A"}}', None)
+    digest = _ai_summaries_digest(tmp_path)
+    _seed_ai_state(tmp_path, '{"119-hr-1": {"one_liner": "A"}}',
+                   {"ai_summaries_updated": "2026-07-07", "ai_summaries_digest": digest})
+    assert _ai_summaries_stamp(tmp_path, today="2026-09-23")["ai_summaries_updated"] == "2026-07-07"
+
+
+def test_ai_summaries_stamp_dates_a_rewrite_today(tmp_path):
+    _seed_ai_state(tmp_path, '{"119-hr-1": {"one_liner": "B"}}', {"ai_summaries_updated": "2026-07-07"})
+    stamp = _ai_summaries_stamp(tmp_path, rewrote=True, today="2026-09-23")
+    assert stamp["ai_summaries_updated"] == "2026-09-23"
+
+
+def test_ai_summaries_stamp_notices_a_change_made_between_metadata_writes(tmp_path):
+    # e.g. an --audit run rewrote ai_summaries.json but writes no metadata itself
+    old_digest = hashlib.sha256(b'{"119-hr-1": {"one_liner": "A"}}').hexdigest()
+    _seed_ai_state(tmp_path, '{"119-hr-1": {"one_liner": "A, corrected"}}',
+                   {"ai_summaries_updated": "2026-07-07", "ai_summaries_digest": old_digest})
+    assert _ai_summaries_stamp(tmp_path, today="2026-09-23")["ai_summaries_updated"] == "2026-09-23"
+
+
+def test_ai_summaries_stamp_without_history_adds_no_date(tmp_path):
+    assert _ai_summaries_stamp(tmp_path, today="2026-09-23") == {"ai_summaries_digest": None}
+
+
+def test_all_three_metadata_writers_stamp():
+    source = (Path(__file__).parent.parent / "sync.py").read_text()
+    assert source.count("metadata.update(_ai_summaries_stamp(") == 3
+
+
+async def test_step_metadata_keeps_ai_summaries_updated(monkeypatch, tmp_path):
+    import sync as sync_module
+    _seed_ai_state(tmp_path, "{}", {"last_sync": "2026-09-05T13:05:50+00:00",
+                                    "ai_summaries_updated": "2026-07-07"})
+    monkeypatch.setenv("CONGRESS_API_KEY", "test-key")
+    monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
+    monkeypatch.setattr(sync_module, "CACHE_DIR", tmp_path / "cache")
+    monkeypatch.setattr(sys, "argv", ["sync.py", "--step", "metadata"])
+
+    await sync_module.main()
+
+    meta = json.loads((tmp_path / "sync_metadata.json").read_text())
+    assert meta["last_sync"] != "2026-09-05T13:05:50+00:00"
+    assert meta["ai_summaries_updated"] == "2026-07-07"
+    assert meta["ai_summaries_digest"] == hashlib.sha256(b"{}").hexdigest()
+
+
+def _mock_ai_steps(monkeypatch, sync_module, summaries_step):
+    monkeypatch.setattr(sync_module, "_ai_preflight", AsyncMock())
+    monkeypatch.setattr(sync_module, "sync_bill_summaries", summaries_step)
+    for step in ("sync_bill_arguments", "generate_scorecard_verdicts",
+                 "sync_member_summaries", "check_page_coherence"):
+        monkeypatch.setattr(sync_module, step, AsyncMock(return_value={}))
+
+
+async def test_ai_only_that_writes_summaries_dates_them_today(monkeypatch, tmp_path):
+    import sync as sync_module
+    from datetime import datetime, timezone
+    _seed_ai_state(tmp_path, "{}", {"ai_summaries_updated": "2026-07-07"})
+
+    async def writes_summaries(*args, **kwargs):
+        (tmp_path / "ai_summaries.json").write_text('{"119-hr-1": {"one_liner": "New"}}')
+        return {}
+
+    monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
+    _mock_ai_steps(monkeypatch, sync_module, AsyncMock(side_effect=writes_summaries))
+    monkeypatch.setattr(sys, "argv", ["sync.py", "--ai-only"])
+
+    await sync_module.main()
+
+    meta = json.loads((tmp_path / "sync_metadata.json").read_text())
+    assert meta["ai_only"] is True
+    assert meta["ai_summaries_updated"] == datetime.now(timezone.utc).date().isoformat()
+
+
+async def test_ai_only_that_writes_nothing_carries_the_date(monkeypatch, tmp_path):
+    import sync as sync_module
+    _seed_ai_state(tmp_path, "{}", {"ai_summaries_updated": "2026-07-07"})
+    monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
+    _mock_ai_steps(monkeypatch, sync_module, AsyncMock(return_value={}))
+    monkeypatch.setattr(sys, "argv", ["sync.py", "--ai-only"])
+
+    await sync_module.main()
+
+    meta = json.loads((tmp_path / "sync_metadata.json").read_text())
+    assert meta["ai_summaries_updated"] == "2026-07-07"

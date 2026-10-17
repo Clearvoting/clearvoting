@@ -1,9 +1,13 @@
 import json
+import re
+from pathlib import Path
+
 import pytest
 from unittest.mock import MagicMock, patch
 
 from httpx import AsyncClient, ASGITransport
 from app.main import app
+from app.dependencies import get_data_service
 from app.limiter import limiter
 
 
@@ -224,3 +228,145 @@ async def test_feedback_jsonl_fallback_when_no_credentials(tmp_path):
     assert tmp_file.exists()
     entry = json.loads(tmp_file.read_text().strip())
     assert entry["message"] == "No creds feedback"
+
+
+# --- Hooks, dialog and server-filled freshness (plan T2.4; spec §2.2 #5, C-7, §6.4, §6.6, §10 #17) ---
+
+ROOT = Path(__file__).resolve().parent.parent
+STATIC = ROOT / "static"
+FIXTURES = ROOT / "tests" / "fixtures" / "synced"
+
+
+def test_feedback_js_reads_the_promoted_h1_headers():
+    js = (STATIC / "js" / "feedback.js").read_text()
+    assert "document.querySelector('.member-header h1')" in js
+    assert "document.querySelector('.bill-header h1')" in js
+    assert "document.querySelector('.state-header h1')" in js
+    assert ".member-header h2" not in js and ".bill-header h2" not in js
+
+
+def test_old_member_script_renders_the_name_as_h1_inside_member_header():
+    js = (STATIC / "js" / "member.js").read_text()
+    if "member-header-info" not in js:
+        pytest.skip("member header is server-rendered (T6.3 asserts .member-header h1 in the HTML)")
+    assert re.search(r"el\('div', \{ className: 'member-header-info' \},\s*el\('h1', null, name\)", js)
+    assert "el('div', { className: 'member-header' }, photoEl, headerInfo)" in js
+
+
+def test_old_bill_script_renders_the_title_as_h1_inside_bill_header():
+    js = (STATIC / "js" / "bill.js").read_text()
+    if "className: 'bill-header'" not in js:
+        pytest.skip("bill header is server-rendered (T7.4 asserts .bill-header h1 in the HTML)")
+    assert re.search(r"el\('div', \{ className: 'bill-header' \},\s*el\('span', \{ className: 'bill-number' \}[^\n]*\n\s*el\('h1', null, title\)", js)
+
+
+def test_old_stylesheets_style_the_h1_headers():
+    for name in ("styles.css", "broadsheet.css"):
+        path = STATIC / "css" / name
+        if not path.exists():
+            continue  # retired in T9.1
+        css = path.read_text()
+        assert ".member-header h2" not in css and ".bill-header h2" not in css, name
+        assert ".member-header h1" in css and ".bill-header h1" in css, name
+
+
+def test_feedback_js_uses_the_native_dialog_and_owns_its_copy():
+    js = (STATIC / "js" / "feedback.js").read_text()
+    for present in ("modal.showModal()", "modal.close()", "'Thanks — sent.'",
+                    "\"We couldn't send that. Please try again in a few minutes.\"",
+                    "document.querySelectorAll('.feedback-btn')", "getElementById('about-feedback-cta')",
+                    "addEventListener('close'", "opener.focus()",
+                    "[data-feedback-open]", "data-context-label"):
+        assert present in js, present
+    for gone in ("IntersectionObserver", "ClearVotingAnimate", "/api/health", "animate-in",
+                 "modal.hidden", "setTimeout", "innerHTML", "data-freshness",
+                 "e.target === modal"):  # no backdrop-click close: a padding click would discard a draft
+        assert gone not in js, gone
+
+
+def test_nothing_waits_for_an_entrance_animation():
+    about = (STATIC / "about.html").read_text()
+    assert "animate-in" not in about and "animate-scale" not in about
+    styles = STATIC / "css" / "styles.css"
+    if styles.exists():
+        css = styles.read_text()
+        for gone in (".animate-in", ".animate-scale", ".stagger-children", ".hero-animate"):
+            assert gone not in css, gone
+
+
+async def _get_page(path: str, metadata: dict | None = None):
+    from app.dependencies import get_data_service
+    patches = [patch("app.dependencies.get_data_dir", return_value=FIXTURES)]
+    if metadata is not None:
+        patches.append(patch("app.services.data_service.DataService.get_sync_metadata", return_value=metadata))
+    for p in patches:
+        p.start()
+    get_data_service.cache_clear()
+    try:
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            return await client.get(path)
+    finally:
+        for p in patches:
+            p.stop()
+        get_data_service.cache_clear()
+
+
+@pytest.mark.parametrize("path", ["/", "/about", "/no-such-page"])
+async def test_footer_freshness_is_filled_by_the_server(path):
+    from app.render import format_date
+    last_sync = json.loads((FIXTURES / "sync_metadata.json").read_text())["last_sync"]
+    response = await _get_page(path)
+    expected = f'<span id="data-freshness"> · Synced {format_date(last_sync[:10])}</span>'
+    assert expected in response.text
+    assert re.search(r"·\s*<span id=\"data-freshness\">", response.text) is None  # separator lives inside the span
+
+
+async def test_footer_freshness_is_empty_without_last_sync():
+    response = await _get_page("/about", metadata={})
+    assert '<span id="data-freshness"></span>' in response.text
+    assert "Synced" not in response.text
+
+
+# --- The sanctioned hook change (spec §2.2 #5, C-7) resolves on the server HTML ---
+
+import re as _re_hook
+from pathlib import Path as _HookPath
+
+_HOOK_FIXTURES = _HookPath(__file__).parent / "fixtures" / "synced"
+_HOOK_STATIC = _HookPath(__file__).parent.parent / "static"
+
+
+@pytest.mark.asyncio
+async def test_member_header_h1_hook_resolves_on_the_ssr_html():
+    """feedback.js reads document.querySelector('.member-header h1'); the server HTML must satisfy it."""
+    from app.dependencies import get_data_service
+    with patch("app.dependencies.get_data_dir", return_value=_HOOK_FIXTURES):
+        get_data_service.cache_clear()
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            response = await client.get("/member?id=S000148")
+    get_data_service.cache_clear()
+    match = _re_hook.search(r'<header class="member-header"[^>]*>((?:(?!</header>).)*?)<h1>([^<]+)</h1>',
+                            response.text, _re_hook.S)
+    assert match and match.group(2) == "Charles E. Schumer"
+    js = (_HOOK_STATIC / "js" / "feedback.js").read_text()
+    assert ".member-header h1" in js
+    assert ".member-header h2" not in js
+
+
+# --- Hook contract: the bill page renders .bill-header h1 (plan T7.4, spec §2.3 C-7) ---
+
+@pytest.mark.asyncio
+async def test_bill_page_renders_the_bill_header_h1_hook():
+    fixtures = Path(__file__).parent / "fixtures" / "synced"
+    with patch("app.dependencies.get_data_dir", return_value=fixtures):
+        get_data_service.cache_clear()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/bill?congress=119&type=hr&number=1")
+    get_data_service.cache_clear()
+    assert response.status_code == 200
+    header = response.text.split('<header class="bill-header">', 1)[1].split("</header>", 1)[0]
+    assert re.search(r"<h1[ >]", header)
+    feedback_js = (Path(__file__).parent.parent / "static" / "js" / "feedback.js").read_text()
+    assert ".bill-header h1" in feedback_js
+    assert ".bill-header h2" not in feedback_js

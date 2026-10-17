@@ -5,7 +5,84 @@
 **URL:** ClearVoting.org
 **Elevated:** Co-primary project (Mar 2026) based on LinkedIn traction
 
-## SESSION HANDOFF (2026-07-02) — read this first
+## SESSION HANDOFF (2026-09-26) — REDESIGN BUILT & VERIFIED; PR next (read this first)
+
+**State.** All 40 plan tasks built and reviewed on branch `redesign/2026-09` (worktree `~/.clearvote-worktrees/redesign-2026-09`),
+plus two QA fixes (district pages no longer repeat their h1 — `71d55b5`; the ZIP finder says "5-digit ZIP code" — `1d4908c`).
+Tests 370 → 1,489 passing. QA report: `docs/reviews/2026-09-26-redesign-qa-report.md` (verdict Pass). `main`'s weekly-sync data
+merged in (`789609e`, merge not rebase — the permission classifier refuses rebases) and derived files regenerated (`1539a7a`).
+All six cut-first extras landed; nothing was cut. Backup ref of the pre-merge head: `backup/pre-main-merge-2026-09-26`.
+
+**Next.** (1) Push `redesign/2026-09` and open the PR with body `~/.clearvote-worktrees/tools/qa/pr-body-final.md` (needs
+Joseph's OK — outward-facing; `gh` was denied by the permission layer on 2026-09-26). (2) Joseph: VoiceOver pass on the branch
+(steps in the PR body), then merge — Render auto-deploys `main`. (3) Joseph at merge: Cloudflare Cache Rule + HIT check (PR
+body "Ops steps"). (4) After the first weekly sync post-merge: confirm the new votes-index / state-overview / share-card steps ran.
+If `main` gains more weekly-sync commits before merge: `git merge --no-ff origin/main`, then `sync.py --step votes-index` and
+`--step state-overview` (CONGRESS_API_KEY=offline-rebuild), pytest, commit.
+
+**Optional cleanup (not this PR).** `data/synced/member_votes/C001127.json` is an orphan (no entry in members.json; on main since
+cb27fb4) — validate warns, does not fail.
+
+## SESSION HANDOFF (2026-09-22) — (previous)
+
+**Where the work lives.** Branch `redesign/2026-09` in the worktree `/Users/josephgarcia/.clearvote-worktrees/redesign-2026-09`
+(off origin/main f1dc535; frontend identical to live). The main checkout at `Projects/Non-Profit/ClearVote` is untouched and
+~49 commits behind — do not work there. Persistent helper artifacts (outside the repo, survive scratchpad wipes):
+`/Users/josephgarcia/.clearvote-worktrees/tools/` — `shots/shoot.mjs` (Playwright batch screenshots, desktop 1280 + mobile 375,
+prints scrollWidth), `data/zip_districts.json` + `build_zip_crosswalk.py` (+ `raw/` Census files), `data/senate_2026.json`
+(verified against senate.gov 2026-09-19: Cornyn TX regular, Moody FL special), `design/` (four proposals + mockups + judge
+screenshots), `plan/index_tasks.py`. Launchable workflow scripts (must live under the vault): `~/Claude/.claude/workflows/clearvote/`
+— `design-workflow.js`, `spec-critique-workflow.js`, `plan-workflow.js`, `build-workflow.js`.
+
+**Done (all committed on the branch).**
+1. Review — `docs/reviews/2026-09-10-redesign-review.md`: 63 verified findings (2 P0, 18 P1, 35 P2, 8 P3), 18 protect-this items,
+   8 themes, guardrails, Appendix C (independent critic: gaps, unverified claims, contradictions). Brief: `…-review-brief.md`.
+2. Design panel — `docs/superpowers/specs/2026-09-18-design-panel/` (README has the scores): Spine 135, Broadsheet 133, Share 130,
+   Evolve 130; winner votes citizen+PM → Spine, designer → Broadsheet.
+3. Design spec — `docs/superpowers/specs/2026-09-18-clearvoting-redesign-design.md` (659 lines, 12 sections: IA/URLs, page specs
+   with every fallback state, ZIP feature, tokens with computed contrast, glossary, WCAG list, reach, 19 backend touches, F01–F63
+   coverage, deferrals). **Critique done 2026-09-22** (`795b22f`): 4 critics (feasibility/user/trust/F01–F63 traceability) raised
+   115 issues (10 blocker, 52 major), all fixed (9 partial fixes declined with reasons, §2.5); a completeness check made 10 inline
+   fixes → "ready with notes". Spec is now 1,107 lines; adds sync-time `votes_index.json`, merge-by **2026-10-13** + cut-first list (§10.3).
+4. Baseline: 370 tests pass from the worktree with the main checkout's venv; app boots locally (`uvicorn app.main:app --port 8011`).
+
+**Plan done 2026-09-25** (`04d9e39`): `docs/superpowers/plans/2026-09-18-clearvoting-redesign.md` (40 tasks, ids `T<step>.<n>`, 11 phases =
+spec §10.3 commit order) + `docs/reviews/2026-09-18-redesign-plan-review.md` (verdict **Ready**; 141 issues, 2 P0/54 P1 all resolved).
+Task index: `~/.clearvote-worktrees/tools/plan/tasks.json` (build positions n=1..40; cut-first = n 31, 33–37; minimum shippable = the rest).
+Plan working files (fragments, map.json, review-log.json, assemble_plan.py) live in `~/.clearvote-worktrees/tools/plan/` (a git repo).
+Build launched 2026-09-25 with `start: 1` — see `docs/reviews/build-2026-09/` for per-task reviews and `git log` for progress.
+
+**Not done.** Build (+ adversarial plan review) → build → QA → push + PR (Joseph merges).
+
+**Next session, in order (each is one Workflow call; the scripts carry all context).**
+1. ~~Spec critique~~ — done 2026-09-22 (`795b22f`, `5cdc26e`). ~~Plan~~ — done 2026-09-25 (`04d9e39`).
+   Plan workflow launched 2026-09-22 as run `wf_4ddf70c2-75c` (resumable only in that session; otherwise relaunch fresh).
+2. Plan: `Workflow({scriptPath: ".../plan-workflow.js"})` — architect map → parallel task writers → assembled plan at
+   `docs/superpowers/plans/2026-09-18-clearvoting-redesign.md` → 3 adversarial reviewers → revised plan + review doc at
+   `docs/reviews/2026-09-18-redesign-plan-review.md`. Read the review's readiness verdict before building. Commit both.
+3. Build: `python3 ~/.clearvote-worktrees/tools/plan/index_tasks.py <plan.md> > ~/.clearvote-worktrees/tools/plan/tasks.json`, then
+   `Workflow({scriptPath: ".../build-workflow.js", args: {tasks: <contents of tasks.json as a JSON array>, start: 1}})` — sequential:
+   fresh implementer per task (TDD, smoke, commit) → reviewer → up to two fix rounds; stops on ANY task that does not pass review
+   (never builds on a failed task); returns `next_start`. Tasks titled "(cut-first)" can be skipped with `start`/`stop` if behind on Oct 6.
+   Relaunch with `start: <next_start>` after any stop. Per-task reviews land in `docs/reviews/build-2026-09/`.
+4. QA (`/qa` against the local server, all pages at 375/768/1280 + every fallback state), update this STATUS + NOW.md, push the branch,
+   open the PR (Joseph merges; Render auto-deploys main).
+
+**PM decisions — all confirmed by Joseph 2026-09-22 and baked into plan-workflow.js.** Spec §2.5 adds: (A) member narratives withdrawn
+(34/150 used "leans" stance labels) and `/summary` deleted; (B) "Key votes 4 yes + 4 no" → "Recent votes" (8 newest decisive, any position);
+(C) the 115 `needs_review` summaries (failed the site's own grader) withheld; (D) merge-by 2026-10-13, cut extras if behind on Oct 6. Earlier:
+(a) About page names "Joseph Garcia" as maintainer; contact = the feedback form only, no email published. (b) No Render plan change
+in this PR (cold start deferred to ops). (c) The AI "supporters say / critics say" module is removed (unsourced text is not content);
+campaign money is one dated 2024-cycle sentence with an FEC link for the 80 members who have data. (d) "On the ballot" copy always
+describes the seat, never the person.
+
+**Gotchas that cost days.** Workflow resume replay is keyed by agent-call ORDER: parallel agents that finish in a different order on replay miss the cache, so keep long runs sequential (the build is) and persist results to files; cap live agents (~4); split any agent that cannot finish inside one usage window. Usage-limit windows cut workflows mid-run: resume with `resumeFromRunId` in the SAME session; after a
+session-id rotation the journal is gone — scripts accept `args.done` / `args.start` to skip finished work. Keep verifiers cheap
+(grep/curl first, ≤2 screenshots, effort medium; ~200k tokens per screenshot-heavy agent). Never keep phase artifacts only in the
+scratchpad. `Workflow({scriptPath})` only accepts paths under the vault. Do not use the Playwright MCP inside workflow agents (shared
+browser) — use `tools/shots/shoot.mjs`. Deploy is PR → Joseph merges; direct push and self-merge are blocked.
+
+## SESSION HANDOFF (2026-07-02) — (previous)
 
 Full project/UI review + both P0 fixes + votes refresh + AI backfill: **shipped, merged,
 and live.** One open PR (#24, docs-only: the review report + this STATUS update).

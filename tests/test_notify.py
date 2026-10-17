@@ -4,6 +4,7 @@ Signups must survive deploys — Render's filesystem is ephemeral, so JSONL is
 only a local-dev/outage fallback, never the primary store.
 """
 import json
+import logging
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -73,9 +74,65 @@ async def test_notify_jsonl_fallback_when_no_credentials(tmp_path):
 
     with patch("app.routers.notify.NOTIFY_FILE", tmp_file), \
          patch("app.routers.notify._sheets", mock_sheets):
-        resp = await _post_notify({"email": "voter@example.com", "state": ""})
+        resp = await _post_notify({"email": "voter@example.com", "state": "OH"})
 
     assert resp.status_code == 200
     mock_sheets.append_row.assert_not_called()
     entry = json.loads(tmp_file.read_text().strip())
     assert entry["email"] == "voter@example.com"
+    assert entry["state"] == "OH"
+
+
+@pytest.mark.asyncio
+async def test_notify_fallback_log_never_contains_the_email(tmp_path, caplog):
+    """Spec §10 #16: the fallback log names the state, never the address."""
+    tmp_file = tmp_path / "notify_signups.jsonl"
+    limiter.reset()
+
+    with patch("app.routers.notify.NOTIFY_FILE", tmp_file), \
+         patch("app.routers.notify._sheets", _make_sheets(available=False)), \
+         caplog.at_level(logging.INFO, logger="app.routers.notify"):
+        resp = await _post_notify({"email": "voter@example.com", "state": "OH"})
+
+    assert resp.status_code == 200
+    messages = [r.getMessage() for r in caplog.records]
+    assert "signup saved to fallback, state=OH" in messages
+    assert not any("voter@example.com" in m for m in messages)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("payload", [
+    {"email": "voter@example.com"},
+    {"email": "voter@example.com", "state": ""},
+    {"email": "voter@example.com", "state": "CA"},
+    {"email": "voter@example.com", "state": "fl"},
+    {"email": "voter@example.com", "state": "NY"},
+    {"email": "voter@example.com", "state": "TX"},
+    {"email": "voter@example.com", "state": "ZZ"},
+    {"email": "voter@example.com", "state": "Ohio"},
+])
+async def test_notify_requires_an_uncovered_state(tmp_path, payload):
+    """Spec §10 #16: the state is required and must be one we don't cover (46 + DC)."""
+    tmp_file = tmp_path / "notify_signups.jsonl"
+    mock_sheets = _make_sheets(available=True, append_ok=True)
+    limiter.reset()
+    with patch("app.routers.notify.NOTIFY_FILE", tmp_file), \
+         patch("app.routers.notify._sheets", mock_sheets):
+        resp = await _post_notify(payload)
+    assert resp.status_code == 400
+    assert resp.json() == {"detail": "Choose a state ClearVoting doesn't cover yet"}
+    mock_sheets.append_row.assert_not_called()
+    assert not tmp_file.exists()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("state, stored", [("OH", "OH"), ("dc", "DC"), (" wy ", "WY")])
+async def test_notify_accepts_uncovered_states_and_dc(tmp_path, state, stored):
+    tmp_file = tmp_path / "notify_signups.jsonl"
+    mock_sheets = _make_sheets(available=True, append_ok=True)
+    limiter.reset()
+    with patch("app.routers.notify.NOTIFY_FILE", tmp_file), \
+         patch("app.routers.notify._sheets", mock_sheets):
+        resp = await _post_notify({"email": "voter@example.com", "state": state})
+    assert resp.status_code == 200
+    assert mock_sheets.append_row.call_args[0][0][2] == stored

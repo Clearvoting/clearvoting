@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClearVoting — See How Your Representatives Vote</title>
+<meta name="description" content="Mockup, approach “Broadsheet complete”: the front page as today’s edition. Real data from data/synced as of the September 5, 2026 sync.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ClearVoting — broadsheet system, single token set. Mobile-first. */
+:root{
+  --paper:#F5F6FA; --white:#FFFFFF;
+  --ink:#1B1B1B; --ink-soft:#5B616B; --ink-meta:#5F656D;
+  --navy:#112E51; --blue:#0071BC; --blue-dim:#205493;
+  --yes:#2E8540; --no:#CD2026;
+  --rule:#D6D7D9; --rule-soft:#E8E8E8;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-serif:'Lora',Georgia,serif;
+  --font-ui:'Inter',system-ui,-apple-system,sans-serif;
+  --t-kicker:.75rem; --t-meta:.8rem; --t-ui:.875rem; --t-body:1rem; --t-lede:1.125rem;
+  --t-h3:1.35rem; --t-h2:clamp(1.45rem,3vw,2rem); --t-display:clamp(2.3rem,5vw,3.4rem);
+  --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s6:1.5rem; --s8:2rem; --s10:2.5rem; --s12:3rem; --s16:4rem;
+  --tap:44px; --max:1100px; --measure:66ch; --gutter:1rem;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-serif);font-size:var(--t-body);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:var(--blue-dim)}
+a:hover{color:var(--blue)}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:2px}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--navy);color:#fff;padding:var(--s2) var(--s4);font-family:var(--font-ui);z-index:100}
+.skip-link:focus{left:var(--s4)}
+
+/* ---- type roles ---- */
+.kicker{font-family:var(--font-ui);font-size:var(--t-kicker);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-dim)}
+.meta{font-family:var(--font-ui);font-size:var(--t-meta);color:var(--ink-meta);letter-spacing:.01em;line-height:1.5}
+.meta a{color:var(--ink-meta);text-decoration:underline}
+.ui{font-family:var(--font-ui);font-size:var(--t-ui)}
+.display{font-family:var(--font-display);font-weight:700;font-size:var(--t-display);line-height:1.05;letter-spacing:-.01em;color:var(--navy)}
+.h2{font-family:var(--font-display);font-weight:700;font-size:var(--t-h2);line-height:1.15;color:var(--navy)}
+.h3{font-family:var(--font-display);font-weight:700;font-size:var(--t-h3);line-height:1.2;color:var(--navy)}
+.lede{font-size:var(--t-lede);line-height:1.55;color:var(--ink-soft)}
+.headline{font-family:var(--font-display);font-weight:700;color:var(--navy);line-height:1.2}
+.deck{color:var(--ink-soft)}
+
+/* ---- masthead (shared chrome, kept) ---- */
+.masthead{padding:var(--s6) var(--gutter) 0;text-align:center}
+.masthead .logo{font-family:var(--font-display);font-weight:800;font-size:clamp(1.9rem,4.5vw,2.5rem);color:var(--navy);line-height:1;text-decoration:none}
+.masthead .logo span{color:var(--blue);font-style:italic;font-weight:600}
+.masthead-tagline{font-family:var(--font-ui);font-size:var(--t-kicker);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-meta);margin-top:var(--s2)}
+.masthead-nav{max-width:var(--max);margin:var(--s4) auto 0;border-top:3px double var(--navy);border-bottom:1px solid var(--navy);display:flex;justify-content:center;gap:var(--s2) var(--s6);flex-wrap:wrap;padding:0 var(--s2)}
+.masthead-nav a{font-family:var(--font-ui);font-size:var(--t-meta);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;text-decoration:none;min-height:var(--tap);display:inline-flex;align-items:center;padding:0 var(--s1);border-bottom:2px solid transparent}
+.masthead-nav a:hover,.masthead-nav a[aria-current]{color:var(--navy);border-bottom-color:var(--blue)}
+.edition{max-width:var(--max);margin:0 auto;padding:var(--s2) var(--gutter);text-align:center;font-family:var(--font-ui);font-size:var(--t-meta);color:var(--ink-meta);border-bottom:1px solid var(--rule)}
+.edition b{color:var(--ink);font-weight:600}
+
+/* ---- page + sections ---- */
+main{max-width:var(--max);margin:0 auto;padding:0 var(--gutter) var(--s12)}
+.section{border-top:3px double var(--navy);padding-top:var(--s10);margin-top:var(--s10)}
+.section:first-of-type{border-top:0;margin-top:0;padding-top:var(--s8)}
+.section-head{margin-bottom:var(--s6)}
+.section-head .kicker{display:block;margin-bottom:var(--s1)}
+.section-head h2{font-family:var(--font-display);font-weight:700;font-size:var(--t-h2);line-height:1.15;color:var(--navy)}
+.section-head .section-sub{margin-top:var(--s1);color:var(--ink-soft)}
+.section-head .asof{margin-top:var(--s2)}
+.hairline{border:0;border-top:1px solid var(--rule);margin:var(--s6) 0}
+
+/* ---- chips (exactly two) ---- */
+.seal{font-family:var(--font-ui);font-size:var(--t-kicker);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--navy);padding:.2rem .5rem;border-radius:4px;white-space:nowrap;display:inline-block;line-height:1.3}
+.seal.open{background:transparent;color:var(--blue-dim);border:1px solid var(--blue)}
+.seal.pending{background:transparent;color:var(--ink-meta);border:1px dashed var(--ink-meta)}
+.vote{font-family:var(--font-ui);font-size:var(--t-kicker);font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;border:1px solid;border-radius:4px;white-space:nowrap;display:inline-block;line-height:1.3}
+.vote.yes{color:var(--navy);border-color:var(--navy)}
+.vote.no{color:var(--no);border-color:var(--no)}
+.vote.nv{color:var(--ink-meta);border-color:var(--rule)}
+
+/* ---- tally bar: the ONE place green and red appear, always numbered ---- */
+.tally{margin-top:var(--s3)}
+.tally-bar{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--rule-soft)}
+.tally-yes{background:var(--yes)}
+.tally-no{background:var(--no)}
+.tally-labels{display:flex;justify-content:space-between;font-family:var(--font-ui);font-size:var(--t-meta);font-weight:600;margin-top:var(--s2)}
+.tally-labels .yes{color:var(--yes)}
+.tally-labels .no{color:var(--no)}
+
+/* ---- controls ---- */
+.btn{font-family:var(--font-ui);font-size:var(--t-body);font-weight:600;background:var(--navy);color:#fff;border:1px solid var(--navy);border-radius:8px;min-height:var(--tap);padding:0 var(--s6);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn:hover{background:var(--blue-dim);border-color:var(--blue-dim);color:#fff}
+.btn-quiet{background:transparent;color:var(--navy)}
+.btn-quiet:hover{background:var(--white);color:var(--navy)}
+.link-btn{background:none;border:0;padding:0;color:var(--blue-dim);text-decoration:underline;cursor:pointer;font:inherit;min-height:var(--tap);display:inline-flex;align-items:center}
+.input,select.input{font-family:var(--font-ui);font-size:1rem;min-height:var(--tap);padding:0 var(--s3);border:1px solid var(--ink-soft);border-radius:8px;background:var(--white);width:100%}
+.input:focus{border-color:var(--blue)}
+.field label{display:block;font-family:var(--font-ui);font-size:var(--t-ui);font-weight:600;margin-bottom:var(--s1)}
+.arrow{font-family:var(--font-ui);font-size:var(--t-ui);font-weight:600;color:var(--blue-dim);text-decoration:none;min-height:var(--tap);display:inline-flex;align-items:center}
+.arrow:hover{text-decoration:underline}
+.actions{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s6);align-items:center}
+.actions .link-btn,.actions .arrow{min-height:var(--tap)}
+details.disclosure summary{cursor:pointer;list-style:none;font-family:var(--font-ui);font-size:var(--t-ui);font-weight:600;color:var(--blue-dim);min-height:var(--tap);display:inline-flex;align-items:center;gap:var(--s2)}
+details.disclosure summary::-webkit-details-marker{display:none}
+details.disclosure summary::before{content:"+";display:inline-block;width:1em;text-align:center}
+details.disclosure[open] summary::before{content:"–"}
+
+/* ---- rule lists (no cards) ---- */
+.rule-list>li{border-top:1px solid var(--rule);padding:var(--s4) 0}
+.rule-list>li:last-child{border-bottom:1px solid var(--rule)}
+.row-meta{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s3);align-items:center;margin-bottom:var(--s1)}
+.row-head{font-family:var(--font-display);font-weight:700;font-size:1.15rem;line-height:1.3;color:var(--navy)}
+.row-head a{color:inherit;text-decoration:none}
+.row-head a:hover{text-decoration:underline;color:var(--blue-dim)}
+.row-fallback{font-family:var(--font-serif);font-weight:500;font-size:1.05rem;line-height:1.4;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.row-sub{margin-top:var(--s1)}
+.provisions{margin-top:var(--s3)}
+.provisions li{position:relative;padding-left:1.4rem;margin-bottom:var(--s2);line-height:1.5}
+.provisions li::before{content:"§";position:absolute;left:0;top:0;color:var(--blue);font-family:var(--font-display);font-weight:700}
+
+/* ---- person rows (recognition, not comparison) ---- */
+.person{display:grid;grid-template-columns:56px 1fr;gap:var(--s3) var(--s4);align-items:start}
+.person .photo{width:56px;height:56px;border:1px solid var(--rule);background:var(--navy);color:#fff;font-family:var(--font-display);font-weight:700;font-size:1.1rem;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.person .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.person .name{font-family:var(--font-display);font-weight:700;font-size:1.2rem;line-height:1.2;color:var(--navy)}
+.person .name a{color:inherit;text-decoration:none}
+.person .name a:hover{text-decoration:underline}
+.person .seat{margin-top:2px}
+.person .signal{margin-top:var(--s2);font-size:var(--t-ui);line-height:1.45;color:var(--ink-soft)}
+.person .signal .vote{margin-right:var(--s1);vertical-align:1px}
+.person.you{position:relative}
+
+/* ---- footer (shared chrome, kept) ---- */
+.site-footer{background:var(--white);border-top:3px double var(--navy);margin-top:var(--s12);padding:var(--s8) var(--gutter) var(--s10);text-align:center;color:var(--ink-soft);line-height:1.6}
+.footer-links{display:flex;justify-content:center;gap:var(--s2) var(--s8);flex-wrap:wrap;margin-bottom:var(--s3)}
+.footer-links a,.footer-links button{font-family:var(--font-ui);font-size:var(--t-meta);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;background:none;border:0;cursor:pointer;min-height:var(--tap);display:inline-flex;align-items:center;padding:0}
+.footer-links a:hover,.footer-links button:hover{color:var(--blue)}
+.site-footer .meta{display:block}
+.site-footer .credo{font-style:italic;font-size:.95rem;margin-top:var(--s3)}
+
+/* ---- feedback dialog (native <dialog>, same ids feedback.js reads) ---- */
+dialog.feedback{border:1px solid var(--navy);border-top:3px double var(--navy);background:var(--white);padding:var(--s6);max-width:32rem;width:calc(100% - 2rem);border-radius:8px}
+dialog.feedback::backdrop{background:rgba(17,46,81,.45)}
+dialog.feedback textarea{width:100%;min-height:7rem;font-size:1rem;padding:var(--s3);border:1px solid var(--ink-soft);border-radius:8px;margin-top:var(--s2)}
+dialog.feedback .actions{margin-top:var(--s4);justify-content:flex-end}
+
+/* ---- breakpoints: exactly two, declared once ---- */
+@media (min-width:560px){
+  :root{--gutter:1.5rem}
+  .person{grid-template-columns:64px 1fr}
+  .person .photo{width:64px;height:64px}
+}
+@media (min-width:880px){
+  :root{--gutter:2rem}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s12)}
+  .two-col>*:first-child{border-right:1px solid var(--rule);padding-right:var(--s12)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{.masthead-nav,.site-footer .footer-links,.actions,dialog{display:none}body{background:#fff}}
+
+</style>
+</head>
+<body>
+<style>
+/* home-only layout */
+.lead{padding-top:var(--s8)}
+.lead .kicker{display:block;margin-bottom:var(--s2)}
+.lead h1{font-family:var(--font-display);font-weight:700;font-size:var(--t-display);line-height:1.05;letter-spacing:-.01em;color:var(--navy);max-width:14ch}
+.lead .lede{margin-top:var(--s3);max-width:var(--measure)}
+.finder{margin-top:var(--s6);max-width:36rem}
+.finder form{display:grid;grid-template-columns:1fr;gap:var(--s2)}
+.finder .field{display:grid;gap:var(--s1)}
+.finder .hint{margin-top:var(--s2)}
+.state-links{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s3)}
+.state-links a{display:flex;flex-direction:column;justify-content:center;min-height:var(--tap);padding:var(--s2) var(--s3);border:1px solid var(--rule);background:var(--white);text-decoration:none;color:var(--navy);font-family:var(--font-display);font-weight:700;font-size:1.05rem;line-height:1.2}
+.state-links a small{font-family:var(--font-ui);font-size:var(--t-meta);font-weight:400;color:var(--ink-meta);margin-top:2px}
+.state-links a:hover{background:var(--navy);color:#fff}
+.state-links a:hover small{color:#fff}
+.coverage{margin-top:var(--s4)}
+.notify{margin-top:var(--s2)}
+.notify .form{display:grid;gap:var(--s2);margin-top:var(--s2);max-width:30rem}
+.result{margin-top:var(--s8);border-top:1px solid var(--navy);padding-top:var(--s4)}
+.result .split{margin:var(--s2) 0 var(--s4);padding:var(--s3) var(--s4);border-left:3px solid var(--blue);background:var(--white);font-size:var(--t-ui);line-height:1.5}
+.result .group{margin-top:var(--s4)}
+.result .group-head{font-family:var(--font-ui);font-size:var(--t-kicker);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-meta);border-bottom:1px solid var(--rule);padding-bottom:var(--s1);margin-bottom:var(--s2)}
+.result .rule-list>li{border-top:0;border-bottom:1px solid var(--rule-soft)}
+.result .rule-list>li:last-child{border-bottom:0}
+.result .foot{margin-top:var(--s4)}
+.latest .dateline{margin-top:var(--s2)}
+.latest .headline{margin-top:var(--s2);font-size:clamp(1.35rem,3vw,1.8rem)}
+.latest .official{margin-top:var(--s2);font-size:var(--t-lede);line-height:1.4;font-weight:500;color:var(--ink)}
+.latest .facts{margin-top:var(--s4);display:grid;grid-template-columns:1fr 1fr;gap:var(--s2) var(--s4);font-family:var(--font-ui);font-size:var(--t-ui)}
+.latest .facts dt{color:var(--ink-meta);font-size:var(--t-meta)}
+.latest .facts dd{margin:0;font-weight:600;color:var(--ink)}
+.record .coverage-note{margin-top:var(--s2);padding:var(--s2) var(--s3);border-left:3px solid var(--ink-meta);background:var(--white);font-family:var(--font-ui);font-size:var(--t-ui);color:var(--ink-soft)}
+.record .rule-list{margin-top:var(--s4)}
+.record .foot{margin-top:var(--s4);display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s2)}
+@media (min-width:560px){
+  .finder form{grid-template-columns:1fr auto;align-items:end}
+  .state-links{grid-template-columns:repeat(4,1fr)}
+  .notify .form{grid-template-columns:1fr 1fr auto}
+}
+@media (min-width:880px){
+  .lead{display:grid;grid-template-columns:3fr 2fr;column-gap:var(--s12);align-items:start}
+  .lead .latest{border-left:1px solid var(--rule);padding-left:var(--s12)}
+  .lead .finder{grid-column:1}
+  .lead .latest{grid-row:1/span 2;grid-column:2}
+  .lead .result{grid-column:1/-1}
+  .result .cols{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s12)}
+  .record .rule-list{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s12)}
+  .record .rule-list>li{border-top:1px solid var(--rule);border-bottom:0}
+  .record .rule-list>li:nth-last-child(-n+2){border-bottom:1px solid var(--rule)}
+}
+</style>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="masthead">
+  <a href="/" class="logo" aria-label="ClearVoting home">Clear<span>Voting</span></a>
+  <p class="masthead-tagline">Facts only · No opinions · No spin</p>
+  <nav class="masthead-nav" aria-label="Main">
+    <a href="/" aria-current="page">Home</a>
+    <a href="#find">Find my representatives</a>
+    <a href="#record">The Record</a>
+    <a href="/about">About</a>
+  </nav>
+</header>
+<p class="edition">Data synced <b>September 5, 2026</b> · Latest roll call <b>September 3</b> · Midterm elections <b>Tuesday, November 3</b> — 46 days away</p>
+
+<main id="main-content" tabindex="-1">
+
+  <!-- FRONT PAGE LEAD: the task first, the demonstration beside it -->
+  <section class="section lead" aria-labelledby="lead-h1">
+    <div class="lead-left">
+      <p class="kicker">An independent, unbiased record of Congress</p>
+      <h1 id="lead-h1">See how your representatives vote.</h1>
+      <p class="lede">Every vote in Congress, in plain English — with party labels hidden until you ask for them.</p>
+    </div>
+
+    <div class="finder" id="find">
+      <form action="/state" method="get" aria-describedby="zip-hint">
+        <div class="field">
+          <label for="zip">Your ZIP code</label>
+          <input class="input" id="zip" name="zip" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="11570" value="11201">
+        </div>
+        <button class="btn" type="submit">Find my representatives</button>
+      </form>
+      <p class="meta hint" id="zip-hint">Two senators and your House member, from the Census ZIP-to-district file. Or choose a state:</p>
+      <nav class="state-links" aria-label="Choose a state">
+        <a href="/state?code=CA">California <small>54 members</small></a>
+        <a href="/state?code=FL">Florida <small>29 members</small></a>
+        <a href="/state?code=NY">New York <small>28 members</small></a>
+        <a href="/state?code=TX">Texas <small>39 members</small></a>
+      </nav>
+      <p class="meta coverage">Right now ClearVoting covers California, Florida, New York and Texas — 150 members, every roll call since January 2021.</p>
+      <details class="disclosure notify">
+        <summary>Somewhere else? Get an email when your state is added</summary>
+        <form class="form" action="/api/notify" method="post">
+          <label class="visually-hidden" for="notify-state">Your state</label>
+          <select class="input" id="notify-state" name="state" required>
+            <option value="">Your state</option>
+            <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District of Columbia</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+          </select>
+          <label class="visually-hidden" for="notify-email">Email address</label>
+          <input class="input" type="email" id="notify-email" name="email" autocomplete="email" placeholder="you@example.com" required>
+          <button class="btn" type="submit">Notify me</button>
+        </form>
+        <p class="meta">We store your email and state in a private sheet and use them for this one message. <a href="/privacy">Privacy</a></p>
+      </details>
+    </div>
+
+    <!-- THE LATEST VOTE: a structured card, never a sentence template. H.R. 4795 has no plain-English summary, so the official title is the headline in body serif and the link is honest. -->
+    <aside class="latest" aria-labelledby="latest-k">
+      <p class="kicker" id="latest-k">The latest vote</p>
+      <p class="meta dateline">U.S. House · September 3, 2026 · Final vote to pass</p>
+      <p class="official">H.R. 4795 — Protect Economic and Academic Freedom Act of 2026</p>
+      <p class="meta"><span class="seal pending">Plain-English summary coming</span></p>
+      <div class="tally" role="img" aria-label="Passed the House, 237 voted yes, 169 voted no">
+        <div class="tally-bar"><span class="tally-yes" style="width:58.4%"></span><span class="tally-no" style="width:41.6%"></span></div>
+        <div class="tally-labels"><span class="yes">237 voted yes</span><span class="no">169 voted no</span></div>
+      </div>
+      <dl class="facts">
+        <div><dt>Result</dt><dd>Passed the House</dd></div>
+        <div><dt>Sponsor</dt><dd>Rep. Virginia Foxx (NC) · 1 cosponsor</dd></div>
+        <div><dt>Topic</dt><dd>Education</dd></div>
+        <div><dt>New York</dt><dd>13 yes · 11 no · 2 didn't vote</dd></div>
+      </dl>
+      <p><a class="arrow" href="/bill?congress=119&amp;type=hr&amp;number=4795">See the vote and the official summary →</a></p>
+    </aside>
+
+    <!-- YOUR REPRESENTATIVES. Submitting the ZIP navigates to /state?zip=11201 (server-rendered, no JS needed); this block is the top of that page. The front page shows the same block only for a returning visitor whose ZIP is remembered (localStorage cv-zip) — the "local edition". Split-ZIP state shown. -->
+    <div class="result" id="your-reps" aria-labelledby="result-k">
+      <p class="kicker" id="result-k">Your representatives · ZIP 11201, New York <span class="meta" style="letter-spacing:0;text-transform:none;font-weight:400">· remembered from your last visit · <a href="#find">change</a></span></p>
+      <p class="meta" role="status">New York delegation loaded — 2 senators and 2 House districts for this ZIP.</p>
+      <p class="split">ZIP 11201 straddles two House districts (about 72% of its land is in District 10, 28% in District 7). Both are shown; your street decides which is yours. <a href="/state?code=NY">See all 28 New York representatives</a> if neither looks right.</p>
+      <div class="cols">
+        <div class="group">
+          <p class="group-head">Your senators · represent all of New York</p>
+          <ul class="rule-list">
+            <li class="person">
+              <figure class="photo" aria-hidden="true">CS<img src="https://www.congress.gov/img/member/s000148_200.jpg" alt=""></figure>
+              <div>
+                <p class="name"><a href="/member?id=S000148">Charles E. Schumer</a></p>
+                <p class="meta seat">U.S. Senator · In Congress since 1981 · Not on the ballot this November</p>
+                <p class="signal"><span class="vote yes">Yes</span> Extend no-tax imports from 32 African countries through 2028 — H.R. 6500, passed 90–6, Aug 8</p>
+              </div>
+            </li>
+            <li class="person">
+              <figure class="photo" aria-hidden="true">KG<img src="https://www.congress.gov/img/member/g000555_200.jpg" alt=""></figure>
+              <div>
+                <p class="name"><a href="/member?id=G000555">Kirsten E. Gillibrand</a></p>
+                <p class="meta seat">U.S. Senator · In Congress since 2007 · Not on the ballot this November</p>
+                <p class="signal"><span class="vote yes">Yes</span> Extend no-tax imports from 32 African countries through 2028 — H.R. 6500, passed 90–6, Aug 8</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="group">
+          <p class="group-head">Your House member · one of these two districts</p>
+          <ul class="rule-list">
+            <li class="person">
+              <figure class="photo" aria-hidden="true">DG<img src="https://www.congress.gov/img/member/g000599_200.jpg" alt=""></figure>
+              <div>
+                <p class="name"><a href="/member?id=G000599">Daniel S. Goldman</a></p>
+                <p class="meta seat">District 10 · In Congress since 2023 · On the ballot this November</p>
+                <p class="signal"><span class="vote yes">Yes</span> Extend no-tax imports from 32 African countries through 2028 — H.R. 6500, passed the House, Sept 1</p>
+              </div>
+            </li>
+            <li class="person">
+              <figure class="photo" aria-hidden="true">NV<img src="https://www.congress.gov/img/member/v000081_200.jpg" alt=""></figure>
+              <div>
+                <p class="name"><a href="/member?id=V000081">Nydia M. Velázquez</a></p>
+                <p class="meta seat">District 7 · In Congress since 1993 · On the ballot this November</p>
+                <p class="signal"><span class="vote nv">Didn't vote</span> Extend no-tax imports from 32 African countries through 2028 — H.R. 6500, passed the House, Sept 1</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p class="meta foot">Party labels are hidden so the record speaks first. <button class="link-btn" type="button" aria-pressed="false">Show party labels</button> · Every House seat is on the November 3 ballot; Senate seats from a hand-kept list of 2026 races.</p>
+    </div>
+  </section>
+
+  <!-- THE RECORD: today's edition — newest bills by action date, whatever their summary status -->
+  <section class="section record" id="record" aria-labelledby="record-h">
+    <div class="section-head">
+      <p class="kicker">The Record</p>
+      <h2 id="record-h">What Congress did most recently</h2>
+      <p class="section-sub">Each bill translated from the official text by AI — <a href="/methodology">how we keep it neutral</a></p>
+      <p class="meta asof">As of September 5, 2026 · Newest first</p>
+      <p class="coverage-note">Plain-English summaries are current through June 30, 2026. Newer bills show their official title until a summary is written; nothing is left out.</p>
+    </div>
+
+    <ul class="rule-list">
+      <li>
+        <div class="row-meta"><span class="kicker">H.R. 4795</span><span class="seal">Passed the House</span><span class="meta">Sept 3, 2026</span></div>
+        <p class="row-fallback"><a href="/bill?congress=119&amp;type=hr&amp;number=4795">Protect Economic and Academic Freedom Act of 2026</a></p>
+        <p class="meta row-sub"><span class="seal pending">Plain-English summary coming</span> · 237 yes – 169 no · Education</p>
+      </li>
+      <li>
+        <div class="row-meta"><span class="kicker">H.J.Res. 1</span><span class="seal open">Failed in the House</span><span class="meta">Sept 2, 2026</span></div>
+        <p class="row-fallback"><a href="/bill?congress=119&amp;type=hjres&amp;number=1">Proposing an amendment to the Constitution of the United States to require that the Supreme Court of the United States be composed of nine justices.</a></p>
+        <p class="meta row-sub"><span class="seal pending">Plain-English summary coming</span> · 212 yes – 206 no, needed two-thirds · Law</p>
+      </li>
+      <li>
+        <div class="row-meta"><span class="kicker">H.R. 9436</span><span class="seal">Passed the House</span><span class="meta">Sept 1, 2026</span></div>
+        <p class="row-fallback"><a href="/bill?congress=119&amp;type=hr&amp;number=9436">Northeast Lobsterman Protection Act of 2026</a></p>
+        <p class="meta row-sub"><span class="seal pending">Plain-English summary coming</span> · 219 yes – 196 no · Sponsor Rep. Michael Lawler (NY-17) · Animals</p>
+      </li>
+      <li>
+        <div class="row-meta"><span class="kicker">H.Con.Res. 108</span><span class="seal open">Failed in the House</span><span class="meta">June 30, 2026</span></div>
+        <p class="row-head"><a href="/bill?congress=119&amp;type=hconres&amp;number=108">Order U.S. troops out of hostilities in Lebanon within seven days</a></p>
+        <ul class="provisions">
+          <li>Tells the President to pull U.S. military forces out of any active fighting in Lebanon within 7 days of this resolution passing.</li>
+          <li>Does not stop the U.S. from working with Lebanon's own military forces.</li>
+          <li>Does not stop the U.S. from protecting its embassies or other official buildings in Lebanon.</li>
+        </ul>
+        <p class="meta row-sub">189 yes – 235 no · International affairs · Officially: “Directing the President pursuant to section 5(c) of the War Powers Resolution to remove United States Armed Forces from hostilities in Lebanon.”</p>
+      </li>
+      <li>
+        <div class="row-meta"><span class="kicker">H.Res. 1399</span><span class="seal open">Still in Congress</span><span class="meta">June 30, 2026</span></div>
+        <p class="row-head"><a href="/bill?congress=119&amp;type=hres&amp;number=1399">Require the House Ethics Committee to keep and release records on harassment settlements</a></p>
+        <p class="meta row-sub">Congress</p>
+      </li>
+      <li>
+        <div class="row-meta"><span class="kicker">S. 629</span><span class="seal open">Still in Congress</span><span class="meta">June 30, 2026</span></div>
+        <p class="row-head"><a href="/bill?congress=119&amp;type=s&amp;number=629">Expand emergency aid for farmers and forest landowners hit by natural disasters</a></p>
+        <p class="meta row-sub">Agriculture and food</p>
+      </li>
+      <li>
+        <div class="row-meta"><span class="kicker">H.R. 7128</span><span class="seal open">Still in Congress</span><span class="meta">June 29, 2026</span></div>
+        <p class="row-head"><a href="/bill?congress=119&amp;type=hr&amp;number=7128">Extend the terrorism risk insurance program through 2034 and tighten its rules</a></p>
+        <p class="meta row-sub">Finance and financial sector</p>
+      </li>
+      <li>
+        <div class="row-meta"><span class="kicker">H.R. 7757</span><span class="seal open">Still in Congress</span><span class="meta">June 29, 2026</span></div>
+        <p class="row-head"><a href="/bill?congress=119&amp;type=hr&amp;number=7757">Require online platforms to set up safety rules for users under 18</a></p>
+        <p class="meta row-sub">Commerce</p>
+      </li>
+    </ul>
+
+    <div class="foot">
+      <a class="arrow" href="/bills">The full record — 1,610 bills by date and topic →</a>
+      <span class="meta">1,550 of 1,610 bills have plain-English summaries</span>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <nav class="footer-links" aria-label="Footer">
+    <a href="/about">About</a>
+    <a href="/methodology">Methodology &amp; corrections</a>
+    <a href="/privacy">Privacy</a>
+    <button type="button" id="feedback-open">Report an error on this page</button>
+  </nav>
+  <span class="meta">Data from <a href="https://congress.gov">Congress.gov</a> and <a href="https://senate.gov">Senate.gov</a> · <span id="data-freshness">Roll calls synced September 5, 2026</span></span>
+  <p class="credo">ClearVoting does not express opinions on legislation or representatives.</p>
+</footer>
+
+<dialog class="feedback" id="feedback-modal" aria-labelledby="feedback-h">
+  <form id="feedback-form" method="dialog">
+    <p class="kicker">Feedback</p>
+    <h2 class="h3" id="feedback-h">Report an error or tell us what's missing</h2>
+    <p class="meta" id="feedback-context">About: Home page</p>
+    <label for="feedback-message" class="visually-hidden">Your message</label>
+    <textarea id="feedback-message" rows="4" required maxlength="2000" placeholder="What's wrong, or what would help?"></textarea>
+    <div class="actions">
+      <button type="button" class="btn btn-quiet" id="feedback-cancel">Cancel</button>
+      <button type="submit" class="btn" id="feedback-submit">Send</button>
+    </div>
+    <p class="meta" id="feedback-status" role="status" hidden></p>
+  </form>
+</dialog>
+
+</body>
+</html>

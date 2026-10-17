@@ -26,8 +26,10 @@ Usage:
 
 import argparse
 import asyncio
+import hashlib
 import json
 import os
+import re
 import shutil
 import sys
 import tempfile
@@ -38,9 +40,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+from app.render import parse_threshold, plain_question, question_class
 from app.services.cache import CacheService
 from app.services.congress_api import CongressAPIClient
-from app.services.data_service import _parse_vote_date
+from app.services.data_service import (
+    _latest_official_summary, _parse_vote_date, roll_call_key, state_overview_payload,
+)
 from app.services.senate_votes import SenateVoteService
 
 BASE_DIR = Path(__file__).parent
@@ -75,17 +80,75 @@ SYNC_STATES = ["NY", "FL", "CA", "TX"]
 MEMBER_COUNT_FLOORS = {"NY": 26, "FL": 28, "CA": 52, "TX": 38}
 
 
-def _atomic_write_json(path: Path, data: dict | list) -> None:
+def _atomic_write_json(path: Path, data: dict | list, compact: bool = False) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp_path = tempfile.mkstemp(dir=path.parent, suffix=".tmp")
     try:
         with os.fdopen(fd, "w") as f:
-            json.dump(data, f, indent=2)
+            if compact:
+                json.dump(data, f, separators=(",", ":"), sort_keys=True)
+            else:
+                json.dump(data, f, indent=2)
         os.replace(tmp_path, path)
     except Exception:
         if os.path.exists(tmp_path):
             os.unlink(tmp_path)
         raise
+
+
+def _ai_summaries_digest(sync_dir: Path) -> str | None:
+    path = sync_dir / "ai_summaries.json"
+    if not path.exists():
+        return None
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _ai_summaries_stamp(sync_dir: Path, rewrote: bool = False, today: str | None = None) -> dict:
+    """The `ai_summaries_updated` date (spec §7.4) plus the file digest it was stamped
+    against, for the next sync_metadata.json write.
+
+    - The previous date is carried forward.
+    - It becomes today when this run rewrote ai_summaries.json (`rewrote`), or when
+      the file's digest differs from the one stored at the last metadata write. That
+      second case catches --audit and --regenerate runs, which write no metadata.
+    - A first write with no stored digest carries the date and records the digest.
+    """
+    try:
+        previous = json.loads((sync_dir / "sync_metadata.json").read_text())
+    except (OSError, ValueError):
+        previous = {}
+    if not isinstance(previous, dict):
+        previous = {}
+    digest = _ai_summaries_digest(sync_dir)
+    updated = previous.get("ai_summaries_updated")
+    stored = previous.get("ai_summaries_digest")
+    if rewrote or (stored is not None and stored != digest):
+        updated = today or datetime.now(timezone.utc).date().isoformat()
+    stamp: dict = {"ai_summaries_digest": digest}
+    if updated:
+        stamp["ai_summaries_updated"] = updated
+    return stamp
+
+
+def _write_derived_json(path: Path, payload: dict, compact: bool = False) -> bool:
+    """Write a file derived from other synced files, stamped with generated_at.
+
+    When the stamp is the only thing that would change, the file is left alone, so a rebuild
+    from unchanged inputs is byte-identical (the PR's reproducibility gate) and the weekly
+    workflow commits nothing. Returns True when it wrote the file."""
+    if path.exists():
+        try:
+            with open(path) as f:
+                previous = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            previous = None
+        if isinstance(previous, dict):
+            previous.pop("generated_at", None)
+            if previous == payload:
+                return False
+    stamped = {**payload, "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+    _atomic_write_json(path, stamped, compact=compact)
+    return True
 
 
 async def sync_members(client: CongressAPIClient, output_dir: Path, states: list[str] | None = None, rate_limit: float = 0.0) -> int:
@@ -375,20 +438,6 @@ def run_validation(output_dir: Path) -> int:
         print(f"  FAILURE: {f}")
     print(f"  Validation: {len(failures)} failure(s), {len(warnings)} warning(s)")
     return len(failures)
-
-
-def _latest_official_summary(bill: dict) -> str:
-    """Congress.gov orders summaries oldest-first, so [0] is the introduced
-    version — which can describe provisions that never became law (e.g. the
-    IRA's introduced summary is Build Back Better). Prefer the Public Law
-    summary; otherwise the newest by actionDate."""
-    summaries = bill.get("summaries")
-    if not isinstance(summaries, list) or not summaries:
-        return ""
-    law = [s for s in summaries if "public law" in (s.get("actionDesc") or "").lower()]
-    pool = law or summaries
-    best = max(pool, key=lambda s: s.get("actionDate") or "")
-    return best.get("text", "") or ""
 
 
 def _bill_text_excerpt(bill: dict) -> str:
@@ -1005,6 +1054,178 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
 
     print(f"  Built voting records for {count} members")
     return count
+
+
+# --- Votes index (spec §10 #3) --------------------------------------------------------
+# One pass over the roll-call files at sync time; the web runtime reads only this file.
+
+# §4.3 m4: an amendment or motion names the measure it attaches to ("... to S.Con.Res. 5").
+_PARENT_BILL_RE = re.compile(
+    r"\bto (H\.R\.|S\.|H\.J\.Res\.|S\.J\.Res\.|H\.Con\.Res\.|S\.Con\.Res\.|H\.Res\.|S\.Res\.)\s*(\d+)"
+)
+_YES_VOTES = ("Yea", "Aye")
+_NO_VOTES = ("Nay", "No")
+
+
+def _state_tallies(members: list[dict]) -> dict[str, list[int]]:
+    """{state: [yes, no, didn't vote]} for the covered states. Present counts in none of the three."""
+    tallies = {code: [0, 0, 0] for code in sorted(SYNC_STATES)}
+    for member in members:
+        row = tallies.get(str(member.get("state") or "").upper())
+        if row is None:
+            continue
+        vote = member.get("vote") or ""
+        if vote in _YES_VOTES:
+            row[0] += 1
+        elif vote in _NO_VOTES:
+            row[1] += 1
+        elif vote == "Not Voting":
+            row[2] += 1
+    return tallies
+
+
+def votes_index_payload(sync_dir: Path) -> dict:
+    """votes_index.json without generated_at: every roll call under votes/{house,senate}, a
+    per-bill list newest first with the bill's activity date, and the home page's latest vote.
+    Pure: reads files, writes nothing (build_votes_index writes)."""
+    bill_actions: dict[str, str] = {}
+    bills_path = sync_dir / "bills.json"
+    if bills_path.exists():
+        with open(bills_path) as f:
+            for bill in json.load(f).get("bills", []):
+                key = f"{bill.get('congress')}-{str(bill.get('type', '')).lower()}-{bill.get('number')}"
+                bill_actions[key] = str((bill.get("latestAction") or {}).get("actionDate") or "")[:10]
+
+    roll_calls: dict[str, dict] = {}
+    for chamber in ("house", "senate"):
+        vote_dir = sync_dir / "votes" / chamber
+        if not vote_dir.exists():
+            continue
+        for vote_file in sorted(vote_dir.glob("*.json")):
+            with open(vote_file) as f:
+                vote = json.load(f)
+            congress = vote.get("congress")
+            question = vote.get("question") or ""
+            result = vote.get("result") or ""
+            document = vote.get("document") or ""
+            ref = _parse_bill_ref(document)
+            parent = _PARENT_BILL_RE.search(question)
+            parent_ref = _parse_bill_ref(f"{parent.group(1)} {parent.group(2)}") if parent else None
+            parsed_date = _parse_vote_date(vote.get("vote_date") or "")
+            counts = vote.get("counts") or {}
+            key = roll_call_key(chamber, congress, vote.get("session"), vote.get("vote_number"))
+            plain = plain_question(question)
+            roll_calls[key] = {
+                "question": question,
+                "plain": plain,
+                "class": question_class(question),
+                "result": result,
+                "counts": {name: int(counts.get(name) or 0) for name in ("yeas", "nays", "present", "absent")},
+                "date": parsed_date.date().isoformat() if parsed_date else None,
+                "document": document,
+                "bill": f"{congress}-{ref}" if ref else None,
+                "parent": f"{congress}-{parent_ref}" if parent_ref else None,
+                "threshold": parse_threshold(result, plain, question),  # the one §7.2 threshold formatter
+                "tallies": _state_tallies(vote.get("members") or []),
+            }
+
+    def vote_number(key: str) -> int:
+        return int(key.rsplit("_", 1)[1])
+
+    def newest(key: str) -> tuple:
+        return (roll_calls[key]["date"] or "", vote_number(key), key)
+
+    bills: dict[str, dict] = {key: {"roll_calls": [], "activity_date": None} for key in bill_actions}
+    for key, rc in roll_calls.items():
+        if rc["bill"]:
+            bills.setdefault(rc["bill"], {"roll_calls": [], "activity_date": None})["roll_calls"].append(key)
+    for bill_id, entry in bills.items():
+        entry["roll_calls"].sort(key=newest, reverse=True)
+        newest_vote = roll_calls[entry["roll_calls"][0]]["date"] if entry["roll_calls"] else None
+        entry["activity_date"] = max(bill_actions.get(bill_id) or "", newest_vote or "") or None
+
+    # The hero (§4.1 m3): the newest roll call on a bill we hold; within a day a decisive
+    # vote leads a procedural one, then the higher vote number.
+    held = [key for key, rc in roll_calls.items() if rc["bill"] in bill_actions and rc["date"]]
+    latest = max(
+        held,
+        key=lambda key: (roll_calls[key]["date"], roll_calls[key]["class"] == "D", vote_number(key), key),
+        default=None,
+    )
+    return {"roll_calls": roll_calls, "bills": bills, "latest": latest}
+
+
+def build_votes_index(sync_dir: Path) -> int:
+    """Write data/synced/votes_index.json (§10 #3); returns the roll-call count."""
+    payload = votes_index_payload(sync_dir)
+    written = _write_derived_json(sync_dir / "votes_index.json", payload, compact=True)
+    print(f"  Votes index: {len(payload['roll_calls'])} roll calls, {len(payload['bills'])} bills, "
+          f"latest {payload['latest']} ({'written' if written else 'unchanged'})")
+    return len(payload["roll_calls"])
+
+
+# --- State overview (spec §10 #7) -----------------------------------------------------
+
+def _latest_decisive_vote(votes_path: Path, roll_calls: dict) -> dict | None:
+    """The member's most recent class-D roll call on a bill (§4.2 signal line), whatever the
+    position. member_votes rows are newest first, so the first qualifying row wins."""
+    if not votes_path.exists():
+        return None
+    with open(votes_path) as f:
+        rows = json.load(f).get("votes", [])
+    for row in rows:
+        if not row.get("bill_id"):
+            continue
+        try:
+            key = roll_call_key(row.get("chamber"), row.get("congress"), row.get("session"), row.get("vote_number"))
+        except (TypeError, ValueError):
+            continue
+        rc = roll_calls.get(key)
+        if rc and rc.get("class") == "D":
+            return {"rc": key, "bill_id": row["bill_id"], "position": row.get("vote") or "",
+                    "date": rc.get("date") or str(row.get("date") or "")[:10]}
+    return None
+
+
+def state_overview_payloads(sync_dir: Path, states: list[str]) -> dict[str, dict]:
+    """state_overview/{code}.json contents without generated_at, per state. Pure: writes nothing."""
+    with open(sync_dir / "members.json") as f:
+        members = json.load(f).get("members", [])
+    with open(sync_dir / "votes_index.json") as f:
+        roll_calls = json.load(f).get("roll_calls") or {}
+    expected: dict[str, int] = {}
+    crosswalk_path = sync_dir / "zip_districts.json"
+    if crosswalk_path.exists():
+        with open(crosswalk_path) as f:
+            for key, rows in json.load(f).items():
+                if key.startswith("_"):
+                    continue
+                for row in rows:
+                    expected[row["state"]] = max(expected.get(row["state"], 0), int(row["district"]))
+    payloads: dict[str, dict] = {}
+    for code in states:
+        state_members = [m for m in members if m.get("stateCode") == code]
+        latest = {
+            m["bioguideId"]: _latest_decisive_vote(sync_dir / "member_votes" / f"{m['bioguideId']}.json", roll_calls)
+            for m in state_members
+        }
+        districts = expected.get(code) or max((m.get("district") or 0 for m in state_members), default=0)
+        payloads[code] = state_overview_payload(code, members, latest, districts)
+    return payloads
+
+
+def build_state_overview(sync_dir: Path, states: list[str] | None = None) -> int:
+    """Write data/synced/state_overview/{code}.json per covered state (§10 #7). Needs
+    votes_index.json (run after --step votes-index); returns the number of states built."""
+    if not (sync_dir / "votes_index.json").exists():
+        print("  No votes_index.json — run --step votes-index first; state overviews not built")
+        return 0
+    states = states or SYNC_STATES
+    for code, payload in state_overview_payloads(sync_dir, states).items():
+        written = _write_derived_json(sync_dir / "state_overview" / f"{code}.json", payload)
+        print(f"  State overview {code}: {len(payload['senators'])} senators, {len(payload['house'])} House "
+              f"members, {payload['districts_expected']} districts ({'written' if written else 'unchanged'})")
+    return len(states)
 
 
 async def generate_scorecard_verdicts(
@@ -1966,7 +2187,7 @@ async def main() -> None:
                         help="Clear and re-fetch all FEC donation data (fixes bad matches).")
     parser.add_argument("--step", type=str, default=None,
                         choices=["members", "senate-votes", "house-votes", "bills",
-                                 "member-votes", "metadata", "validate"],
+                                 "votes-index", "member-votes", "state-overview", "metadata", "validate"],
                         help="Run a single sync step (for CI incremental workflows).")
     parser.add_argument("--max-text-fetches", type=int, default=300,
                         help="Per-run cap on bill-text downloads (congress.gov rate-limits CI; the fetch is incremental).")
@@ -1983,6 +2204,19 @@ async def main() -> None:
 
     raw_key = os.getenv("ANTHROPIC_API_KEY", "")
     anthropic_key = raw_key if raw_key.startswith("sk-") else ""
+
+    # --- Offline builders: they read data/synced only, so no API key is needed ---
+    if args.step == "votes-index":
+        print("[step] Building the votes index...")
+        build_votes_index(SYNC_DIR)
+        return
+
+    if args.step == "state-overview":
+        states = [s.strip().upper() for s in args.states.split(",")] if args.states else SYNC_STATES
+        print(f"[step] Building state overviews for {', '.join(states)}...")
+        if not build_state_overview(SYNC_DIR, states=states):
+            sys.exit(1)
+        return
 
     # --- Single-step mode (for CI incremental workflows) ---
     if args.step:
@@ -2035,6 +2269,7 @@ async def main() -> None:
                 "states_synced": states,
                 "incremental": True,
             }
+            metadata.update(_ai_summaries_stamp(SYNC_DIR))
             _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
 
         return
@@ -2202,6 +2437,7 @@ async def main() -> None:
     # --ai-only mode: skip government data steps, go straight to AI
     if args.ai_only:
         SYNC_DIR.mkdir(parents=True, exist_ok=True)
+        ai_digest_before = _ai_summaries_digest(SYNC_DIR)
         print("=== ClearVote AI-Only Sync ===")
         print(f"  Mode: {'API' if anthropic_key else 'Claude CLI (Max plan)'}")
         print()
@@ -2252,6 +2488,7 @@ async def main() -> None:
             "member_summary_stats": member_summary_stats,
             "coherence_stats": coherence_stats,
         }
+        metadata.update(_ai_summaries_stamp(SYNC_DIR, rewrote=_ai_summaries_digest(SYNC_DIR) != ai_digest_before))
         _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
 
         print()
@@ -2283,6 +2520,7 @@ async def main() -> None:
         sys.exit(1)
 
     SYNC_DIR.mkdir(parents=True, exist_ok=True)
+    ai_digest_before = _ai_summaries_digest(SYNC_DIR)
     cache = CacheService(cache_dir=CACHE_DIR, ttl_seconds=86400)
     client = CongressAPIClient(api_key=api_key, cache=cache)
 
@@ -2347,6 +2585,9 @@ async def main() -> None:
     print()
     print("[7/12] Building member voting records...")
     member_votes_count = await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
+    print("[7/12] Building the votes index...")
+    build_votes_index(SYNC_DIR)
+    build_state_overview(SYNC_DIR, states=states)
 
     # Step 8: Issue scorecard verdicts
     if not args.skip_ai:
@@ -2414,6 +2655,7 @@ async def main() -> None:
         "arguments_stats": arguments_stats,
         "donations_stats": donations_stats,
     }
+    metadata.update(_ai_summaries_stamp(SYNC_DIR, rewrote=_ai_summaries_digest(SYNC_DIR) != ai_digest_before))
     _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
     print()
     print("=== Sync complete ===")

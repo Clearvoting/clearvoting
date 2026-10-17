@@ -36,7 +36,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt Pillow==12.3.0 fonttools==4.66.0 brotli==1.2.0
 
       - name: Configure git identity
         run: |
@@ -85,6 +85,19 @@ jobs:
           git add data/synced/
           git diff --cached --quiet || (git commit -m "data: sync bills [automated]" && git push)
 
+      # Derived index of every roll call (spec §10 #3). Runs after the vote and bill
+      # steps so member-vote validation below can check every row resolves in it.
+      - name: Build votes index
+        if: always()
+        timeout-minutes: 5
+        run: python sync.py --step votes-index
+
+      - name: Commit votes index
+        if: always()
+        run: |
+          git add data/synced/votes_index.json
+          git diff --cached --quiet || (git commit -m "data: rebuild votes index [automated]" && git push)
+
       - name: Build member voting records
         if: always()
         timeout-minutes: 5
@@ -103,6 +116,23 @@ jobs:
           git add data/synced/
           git diff --cached --quiet || (git commit -m "data: sync member votes [automated]" && git push)
 
+      # Precomputed delegation files (spec §10 #7): need the votes index and the member
+      # voting records, so they run after both. Gated like "Commit member votes": when
+      # member-vote validation fails, those files are not committed, so overviews built
+      # from them must not be committed either (they would no longer match the
+      # committed member_votes, and test_committed_overviews_match_the_builder would
+      # fail CI on the next PR for a data reason).
+      - name: Build state overviews
+        if: always() && steps.validate_member_votes.outcome == 'success'
+        timeout-minutes: 5
+        run: python sync.py --step state-overview
+
+      - name: Commit state overviews
+        if: always() && steps.validate_member_votes.outcome == 'success'
+        run: |
+          git add data/synced/state_overview/
+          git diff --cached --quiet || (git commit -m "data: rebuild state overviews [automated]" && git push)
+
       - name: Write sync metadata
         if: always()
         run: python sync.py --step metadata
@@ -119,3 +149,17 @@ jobs:
         run: |
           git add data/synced/
           git diff --cached --quiet || (git commit -m "data: weekly sync complete [automated]" && git push)
+
+      # og Phase B (cut-first, spec §9.3): per-member and per-state share cards from members.json.
+      # continue-on-error: a card failure must never turn the data sync red or block its commits.
+      - name: Build share cards
+        if: always() && steps.validate_all.outcome == 'success'
+        continue-on-error: true
+        timeout-minutes: 5
+        run: python scripts/build_og_cards.py --entities
+
+      - name: Commit share cards
+        if: always() && steps.validate_all.outcome == 'success'
+        run: |
+          git add static/og/member static/og/state
+          git diff --cached --quiet || (git commit -m "data: rebuild share cards [automated]" && git push)

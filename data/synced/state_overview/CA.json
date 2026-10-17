@@ -1,0 +1,1111 @@
+{
+  "state": "CA",
+  "state_name": "California",
+  "roster_as_of": "2026-10-03",
+  "senators": [
+    {
+      "bioguideId": "P000145",
+      "name": "Padilla, Alex",
+      "district": null,
+      "chamber": "Senate",
+      "photo": "https://www.congress.gov/img/member/p000145_200.jpg",
+      "terms": [
+        {
+          "chamber": "Senate",
+          "startYear": 2021
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "senate/119_2_00250",
+        "bill_id": "119-s-4668",
+        "position": "Yea",
+        "date": "2026-09-28"
+      }
+    },
+    {
+      "bioguideId": "S001150",
+      "name": "Schiff, Adam B.",
+      "district": null,
+      "chamber": "Senate",
+      "photo": "https://www.congress.gov/img/member/677d870dfdb6cf36bbb649b3_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2001,
+          "endYear": 2024
+        },
+        {
+          "chamber": "Senate",
+          "startYear": 2024
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "senate/119_2_00250",
+        "bill_id": "119-s-4668",
+        "position": "Nay",
+        "date": "2026-09-28"
+      }
+    }
+  ],
+  "house": [
+    {
+      "bioguideId": "G000607",
+      "name": "Gallagher, James",
+      "district": 1,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/6a29d4f81c6ce0de6fbae1f7_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2026
+        }
+      ],
+      "partyName": "Republican",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Not Voting",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "H001068",
+      "name": "Huffman, Jared",
+      "district": 2,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/h001068_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2013
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "K000401",
+      "name": "Kiley, Kevin",
+      "district": 3,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/k000401_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2023
+        }
+      ],
+      "partyName": "Independent",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "T000460",
+      "name": "Thompson, Mike",
+      "district": 4,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/116_rp_ca_5_thompson_mike_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 1999
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "M001177",
+      "name": "McClintock, Tom",
+      "district": 5,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/m001177_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2009
+        }
+      ],
+      "partyName": "Republican",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "B001287",
+      "name": "Bera, Ami",
+      "district": 6,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/b001287_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2013
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "M001163",
+      "name": "Matsui, Doris O.",
+      "district": 7,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/m001163_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2005
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "G000559",
+      "name": "Garamendi, John",
+      "district": 8,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/g000559_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2009
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Not Voting",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "H001090",
+      "name": "Harder, Josh",
+      "district": 9,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/h001090_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2019
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "D000623",
+      "name": "DeSaulnier, Mark",
+      "district": 10,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/115_rp_ca_11_desaulnier_mark_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2015
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "P000197",
+      "name": "Pelosi, Nancy",
+      "district": 11,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/p000197_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 1987
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "S001231",
+      "name": "Simon, Lateefah",
+      "district": 12,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/67745f940b34857ecc909197_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2025
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "G000605",
+      "name": "Gray, Adam",
+      "district": 13,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/67742a160b34857ecc9090bf_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2025
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "W000832",
+      "name": "Wahab, Aisha",
+      "district": 14,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/6a986b632a68122e10181e6b_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2026
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "M001225",
+      "name": "Mullin, Kevin",
+      "district": 15,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/m001225_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2023
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "L000607",
+      "name": "Liccardo, Sam T.",
+      "district": 16,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/6774305d0b34857ecc90910d_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2025
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "K000389",
+      "name": "Khanna, Ro",
+      "district": 17,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/k000389_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2017
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "L000397",
+      "name": "Lofgren, Zoe",
+      "district": 18,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/671024d7ec807bca66057fcb_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 1995
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "P000613",
+      "name": "Panetta, Jimmy",
+      "district": 19,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/116_rp_ca_20_panetta_jimmy_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2017
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "F000480",
+      "name": "Fong, Vince",
+      "district": 20,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/669ff04f5d19788d1f2034aa_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2024
+        }
+      ],
+      "partyName": "Republican",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "C001059",
+      "name": "Costa, Jim",
+      "district": 21,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/6973c909ded7781a35cc1fd7_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2005
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "V000129",
+      "name": "Valadao, David G.",
+      "district": 22,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/v000129_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2013,
+          "endYear": 2019
+        },
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2021
+        }
+      ],
+      "partyName": "Republican",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "O000019",
+      "name": "Obernolte, Jay",
+      "district": 23,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/o000019_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2021
+        }
+      ],
+      "partyName": "Republican",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "C001112",
+      "name": "Carbajal, Salud O.",
+      "district": 24,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/115_rp_ca_24_carbajal_salud_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2017
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "R000599",
+      "name": "Ruiz, Raul",
+      "district": 25,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/66e1aec832c796cea99fe06f_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2013
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "B001285",
+      "name": "Brownley, Julia",
+      "district": 26,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/68000188f22eaf56065817e8_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2013
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "W000830",
+      "name": "Whitesides, George",
+      "district": 27,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/68dc43db199559bad714973d_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2025
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "C001080",
+      "name": "Chu, Judy",
+      "district": 28,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/c001080_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2009
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "R000620",
+      "name": "Rivas, Luz M.",
+      "district": 29,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/67745d860b34857ecc90916d_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2025
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "F000483",
+      "name": "Friedman, Laura",
+      "district": 30,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/6a0f0dcb69b12040cf77e337_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2025
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "C001123",
+      "name": "Cisneros, Gilbert Ray",
+      "district": 31,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/6807d8d63e52ea7df920ef05_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2019,
+          "endYear": 2021
+        },
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2025
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "S000344",
+      "name": "Sherman, Brad",
+      "district": 32,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/s000344_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 1997
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "A000371",
+      "name": "Aguilar, Pete",
+      "district": 33,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/a000371_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2015
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "G000585",
+      "name": "Gomez, Jimmy",
+      "district": 34,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/115_rp_ca_34_gomez_jimmy_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2017
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "T000474",
+      "name": "Torres, Norma J.",
+      "district": 35,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/t000474_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2015
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "L000582",
+      "name": "Lieu, Ted",
+      "district": 36,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/l000582_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2015
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "K000400",
+      "name": "Kamlager-Dove, Sydney",
+      "district": 37,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/k000400_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2023
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "S001156",
+      "name": "S\u00e1nchez, Linda T.",
+      "district": 38,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/116_rp_ca_38_snchez_linda_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2003
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "T000472",
+      "name": "Takano, Mark",
+      "district": 39,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/t000472_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2013
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "K000397",
+      "name": "Kim, Young",
+      "district": 40,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/k000397_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2021
+        }
+      ],
+      "partyName": "Republican",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "C000059",
+      "name": "Calvert, Ken",
+      "district": 41,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/c000059_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 1993
+        }
+      ],
+      "partyName": "Republican",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "G000598",
+      "name": "Garcia, Robert",
+      "district": 42,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/g000598_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2023
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "W000187",
+      "name": "Waters, Maxine",
+      "district": 43,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/w000187_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 1991
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "B001300",
+      "name": "Barrag\u00e1n, Nanette Diaz",
+      "district": 44,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/b001300_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2017
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "T000491",
+      "name": "Tran, Derek",
+      "district": 45,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/6774606d0b34857ecc9091a9_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2025
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "C001110",
+      "name": "Correa, J. Luis",
+      "district": 46,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/115_rp_ca_46_correa_j_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2017
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "M001241",
+      "name": "Min, Dave",
+      "district": 47,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/67744ed90b34857ecc909155_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2025
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "I000056",
+      "name": "Issa, Darrell",
+      "district": 48,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/i000056_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2001,
+          "endYear": 2019
+        },
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2021
+        }
+      ],
+      "partyName": "Republican",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "L000593",
+      "name": "Levin, Mike",
+      "district": 49,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/l000593_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2019
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "P000608",
+      "name": "Peters, Scott H.",
+      "district": 50,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/p000608_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2013
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "J000305",
+      "name": "Jacobs, Sara",
+      "district": 51,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/j000305_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2021
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    },
+    {
+      "bioguideId": "V000130",
+      "name": "Vargas, Juan",
+      "district": 52,
+      "chamber": "House of Representatives",
+      "photo": "https://www.congress.gov/img/member/v000130_200.jpg",
+      "terms": [
+        {
+          "chamber": "House of Representatives",
+          "startYear": 2013
+        }
+      ],
+      "partyName": "Democratic",
+      "latest_vote": {
+        "rc": "house/119_2_00314",
+        "bill_id": "119-s-2403",
+        "position": "Yea",
+        "date": "2026-09-16"
+      }
+    }
+  ],
+  "districts_expected": 52,
+  "generated_at": "2026-10-04T16:04:33+00:00"
+}
