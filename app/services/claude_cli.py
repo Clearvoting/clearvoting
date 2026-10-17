@@ -32,11 +32,17 @@ async def call_claude_cli(
     # and ~/.claude/CLAUDE.md. An empty --setting-sources skips all of it while
     # keeping OAuth auth (keychain locally, CLAUDE_CODE_OAUTH_TOKEN in CI) and
     # session transcripts. Not --bare: it disables OAuth entirely.
+    # --tools "": every call is a single JSON reply that never uses a tool, and
+    # the built-in tool definitions tripled per-call prompt overhead (~23k -> ~6k).
+    # --strict-mcp-config: --tools "" doesn't cover the account's claude.ai
+    # connectors (Gmail, Drive, ...), which otherwise attach whenever they load in time.
     proc = await asyncio.create_subprocess_exec(
         "claude", "-p",
         "--output-format", "text",
         "--model", model,
         "--setting-sources", "",
+        "--tools", "",
+        "--strict-mcp-config",
         stdin=asyncio.subprocess.PIPE,
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE,
