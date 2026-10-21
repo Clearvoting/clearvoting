@@ -8,13 +8,13 @@ Usage:
     cd ~/Claude/Projects/Non-Profit/ClearVote
     source .venv/bin/activate
 
-    # Full sync (all 12 steps):
+    # Full sync (all 8 steps):
     python sync.py
 
     # Government data only (for GitHub Actions Saturday cron):
     python sync.py --skip-ai
 
-    # AI generation only (for Sunday /loop via Claude Code):
+    # AI bill summaries only (for the Sunday ai-sync workflow):
     python sync.py --ai-only
 
     # Override default states:
@@ -2184,9 +2184,9 @@ async def main() -> None:
                         help="Specific session number (use with --step senate-votes or house-votes).")
     mode_group = parser.add_mutually_exclusive_group()
     mode_group.add_argument("--skip-ai", action="store_true",
-                            help="Skip AI-dependent steps (5,6,8,9,11). Run government data only.")
+                            help="Skip the AI bill-summary step (5). Run government data only.")
     mode_group.add_argument("--ai-only", action="store_true",
-                            help="Run only AI-dependent steps (5,6,8,9,11). Assumes gov data is fresh.")
+                            help="Run only the AI bill-summary step (5). Assumes gov data is fresh.")
     args = parser.parse_args()
 
     raw_key = os.getenv("ANTHROPIC_API_KEY", "")
@@ -2431,50 +2431,25 @@ async def main() -> None:
 
         await _ai_preflight(anthropic_key)
 
-        # Step 5: AI bill summaries
-        print("[5/12] Generating graded AI bill summaries...")
+        # Step 5: AI bill summaries — the only AI text the site publishes.
+        # Arguments, scorecard verdicts, member narratives and coherence checks
+        # are withdrawn; they run only through their own opt-in flags.
+        print("[5/8] Generating graded AI bill summaries...")
         summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
 
-        # Step 6: Bill arguments
+        # Step 8: Update only the AI keys of the metadata. last_sync,
+        # states_synced and the counts describe the government-data sync (the
+        # footer's "Data synced" date), so an AI run carries them over untouched.
         print()
-        print("[6/12] Generating bill arguments...")
-        args_batch = 10 if not anthropic_key else 5
-        arguments_stats = await sync_bill_arguments(SYNC_DIR, api_key=anthropic_key or None, batch_size=args_batch, rate_limit=1.0)
-
-        # Step 8: Issue scorecard verdicts
-        print()
-        print("[8/12] Generating issue scorecard verdicts...")
-        await generate_scorecard_verdicts(SYNC_DIR, api_key=anthropic_key or None)
-
-        # Step 9: Member summaries
-        print()
-        print("[9/12] Generating AI member summaries...")
-        member_summary_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
-
-        # Step 11: Page coherence check
-        print()
-        print("[11/12] Checking page coherence...")
-        coherence_stats = await check_page_coherence(SYNC_DIR, api_key=anthropic_key or None)
-
-        # Step 12: Write metadata
-        # Include zero-value keys for gov fields so downstream code doesn't break
-        print()
-        print("[12/12] Writing sync metadata...")
-        metadata = {
-            "last_sync": datetime.now(timezone.utc).isoformat(),
-            "states_synced": states,
-            "ai_only": True,
-            "members_count": 0,
-            "bills_count": 0,
-            "senate_votes_count": 0,
-            "house_votes_count": 0,
-            "member_votes_count": 0,
-            "donations_stats": {},
-            "summary_stats": summary_stats,
-            "arguments_stats": arguments_stats,
-            "member_summary_stats": member_summary_stats,
-            "coherence_stats": coherence_stats,
-        }
+        print("[8/8] Writing sync metadata...")
+        try:
+            metadata = json.loads((SYNC_DIR / "sync_metadata.json").read_text())
+        except (OSError, ValueError):
+            metadata = {}
+        if not isinstance(metadata, dict):
+            metadata = {}
+        metadata["ai_synced_at"] = datetime.now(timezone.utc).isoformat()
+        metadata["summary_stats"] = summary_stats
         metadata.update(_ai_summaries_stamp(SYNC_DIR, rewrote=_ai_summaries_digest(SYNC_DIR) != ai_digest_before))
         _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
 
@@ -2482,19 +2457,13 @@ async def main() -> None:
         print("=== AI-only sync complete ===")
         if summary_stats.get("total"):
             print(f"  Bill summaries: {summary_stats['total']} ({summary_stats.get('passed', 0)} passed)")
-        if arguments_stats.get("total"):
-            print(f"  Arguments: {arguments_stats['total']} ({arguments_stats.get('passed', 0)} passed)")
-        if member_summary_stats.get("total"):
-            print(f"  Member narratives: {member_summary_stats['total']} ({member_summary_stats.get('passed', 0)} passed)")
 
         # A run that attempted work but persisted nothing means every call
         # failed (dead credential mid-run, hard outage). Exit non-zero so CI
         # shows red instead of a green run that generated nothing.
         # needs_review entries count as persisted — they are saved, just flagged.
-        attempted = sum(s.get("total", 0) for s in
-                        (summary_stats, arguments_stats, member_summary_stats))
-        persisted = sum(s.get("passed", 0) + len(s.get("needs_review", []))
-                        for s in (summary_stats, arguments_stats, member_summary_stats))
+        attempted = summary_stats.get("total", 0)
+        persisted = summary_stats.get("passed", 0) + len(summary_stats.get("needs_review", []))
         if attempted > 0 and persisted == 0:
             print(f"ERROR: attempted {attempted} generations, persisted none — "
                   "treating as total failure.")
@@ -2518,13 +2487,13 @@ async def main() -> None:
     print()
 
     # Step 1: Members
-    print("[1/12] Syncing members...")
+    print("[1/8] Syncing members...")
     members_count = await sync_members(client, SYNC_DIR, states=states, rate_limit=0.5)
 
     # Step 2: Senate votes (all congresses)
     print()
     senate_service = SenateVoteService(cache=cache)
-    print("[2/12] Syncing Senate votes...")
+    print("[2/8] Syncing Senate votes...")
     senate_count = 0
     for congress, session in CONGRESSES:
         print(f"  Congress {congress}, Session {session}...")
@@ -2533,7 +2502,7 @@ async def main() -> None:
 
     # Step 3: House votes (all congresses)
     print()
-    print("[3/12] Syncing House votes...")
+    print("[3/8] Syncing House votes...")
     house_count = 0
     for congress, session in CONGRESSES:
         print(f"  Congress {congress}, Session {session}...")
@@ -2542,60 +2511,32 @@ async def main() -> None:
 
     # Step 4: Bills (only those referenced in votes from both chambers)
     print()
-    print("[4/12] Syncing voted-on bills...")
+    print("[4/8] Syncing voted-on bills...")
     bills_count = await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
     print("  Fetching bill text for bills missing it...")
     await fetch_bill_texts(client, SYNC_DIR, rate_limit=0.3, max_fetches=args.max_text_fetches)
 
-    # Step 5: AI bill summaries (writer-grader loop)
+    # Step 5: AI bill summaries (writer-grader loop) — the only AI text the
+    # site publishes. Arguments, scorecard verdicts, member narratives and
+    # coherence checks are withdrawn; they run only through their own flags.
     summary_stats = {}
     if not args.skip_ai:
         print()
-        print(f"[5/12] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
+        print(f"[5/8] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
         summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
     else:
         print()
-        print("[5/12] Skipping AI bill summaries (--skip-ai)")
+        print("[5/8] Skipping AI bill summaries (--skip-ai)")
 
-    # Step 6: Bill arguments — both sides (writer-grader loop)
-    arguments_stats = {}
-    if not args.skip_ai:
-        print()
-        print(f"[6/12] Generating bill arguments ({'API' if anthropic_key else 'Claude CLI'})...")
-        args_batch = 10 if not anthropic_key else 5
-        arguments_stats = await sync_bill_arguments(SYNC_DIR, api_key=anthropic_key or None, batch_size=args_batch, rate_limit=1.0)
-    else:
-        print()
-        print("[6/12] Skipping bill arguments (--skip-ai)")
-
-    # Step 7: Member voting records (both chambers)
+    # Step 6: Member voting records (both chambers)
     print()
-    print("[7/12] Building member voting records...")
+    print("[6/8] Building member voting records...")
     member_votes_count = await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
-    print("[7/12] Building the votes index...")
+    print("[6/8] Building the votes index...")
     build_votes_index(SYNC_DIR)
     build_state_overview(SYNC_DIR, states=states)
 
-    # Step 8: Issue scorecard verdicts
-    if not args.skip_ai:
-        print()
-        print(f"[8/12] Generating issue scorecard verdicts ({'API' if anthropic_key else 'Claude CLI'})...")
-        await generate_scorecard_verdicts(SYNC_DIR, api_key=anthropic_key or None)
-    else:
-        print()
-        print("[8/12] Skipping issue scorecard verdicts (--skip-ai)")
-
-    # Step 9: Member summaries
-    member_summary_stats = {}
-    if not args.skip_ai:
-        print()
-        print(f"[9/12] Generating AI member summaries ({'API' if anthropic_key else 'Claude CLI'})...")
-        member_summary_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
-    else:
-        print()
-        print("[9/12] Skipping AI member summaries (--skip-ai)")
-
-    # Step 10: Campaign finance (FEC)
+    # Step 7: Campaign finance (FEC)
     donations_stats = {}
     if not args.skip_donations:
         if args.resync_donations:
@@ -2607,25 +2548,15 @@ async def main() -> None:
                 _atomic_write_json(donations_path, {})
                 print("  Cleared existing donation data for re-sync")
         print()
-        print("[10/12] Syncing campaign finance data (FEC)...")
+        print("[7/8] Syncing campaign finance data (FEC)...")
         donations_stats = await sync_donations(SYNC_DIR, states=states, rate_limit=1.0)
     else:
         print()
-        print("[10/12] Skipping campaign finance sync (--skip-donations)")
+        print("[7/8] Skipping campaign finance sync (--skip-donations)")
 
-    # Step 11: Page coherence check
-    coherence_stats = {}
-    if not args.skip_ai:
-        print()
-        print(f"[11/12] Checking page coherence ({'API' if anthropic_key else 'Claude CLI'})...")
-        coherence_stats = await check_page_coherence(SYNC_DIR, api_key=anthropic_key or None)
-    else:
-        print()
-        print("[11/12] Skipping page coherence check (--skip-ai)")
-
-    # Step 12: Sync summary
+    # Step 8: Sync summary
     print()
-    print("[12/12] Sync summary")
+    print("[8/8] Sync summary")
 
     # Write metadata
     metadata = {
@@ -2636,10 +2567,7 @@ async def main() -> None:
         "senate_votes_count": senate_count,
         "house_votes_count": house_count,
         "member_votes_count": member_votes_count,
-        "member_summary_stats": member_summary_stats,
-        "coherence_stats": coherence_stats,
         "summary_stats": summary_stats,
-        "arguments_stats": arguments_stats,
         "donations_stats": donations_stats,
     }
     metadata.update(_ai_summaries_stamp(SYNC_DIR, rewrote=_ai_summaries_digest(SYNC_DIR) != ai_digest_before))
@@ -2653,13 +2581,8 @@ async def main() -> None:
     print(f"  Member vote records: {member_votes_count}")
     if summary_stats.get("total"):
         print(f"  AI summaries graded: {summary_stats['total']} ({summary_stats.get('passed', 0)} passed)")
-    if arguments_stats.get("total"):
-        print(f"  Bill arguments graded: {arguments_stats['total']} ({arguments_stats.get('passed', 0)} passed)")
-    if member_summary_stats.get("total"):
-        print(f"  Member narratives graded: {member_summary_stats['total']} ({member_summary_stats.get('passed', 0)} passed)")
     if donations_stats.get("total"):
         print(f"  Donations: {donations_stats['total']} members ({donations_stats.get('synced', 0)} new)")
-
 
 if __name__ == "__main__":
     asyncio.run(main())

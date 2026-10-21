@@ -1477,7 +1477,7 @@ async def test_ai_only_that_writes_summaries_dates_them_today(monkeypatch, tmp_p
     await sync_module.main()
 
     meta = json.loads((tmp_path / "sync_metadata.json").read_text())
-    assert meta["ai_only"] is True
+    assert meta["ai_synced_at"].startswith(datetime.now(timezone.utc).date().isoformat())
     assert meta["ai_summaries_updated"] == datetime.now(timezone.utc).date().isoformat()
 
 
@@ -1492,6 +1492,41 @@ async def test_ai_only_that_writes_nothing_carries_the_date(monkeypatch, tmp_pat
 
     meta = json.loads((tmp_path / "sync_metadata.json").read_text())
     assert meta["ai_summaries_updated"] == "2026-07-07"
+
+
+async def test_ai_only_keeps_the_government_sync_metadata(monkeypatch, tmp_path):
+    # F063: a Sunday AI run must not move the footer's "Data synced" date or
+    # zero the counts — those describe Saturday's government-data sync.
+    import sync as sync_module
+    government = {"last_sync": "2026-10-03T14:27:12+00:00", "states_synced": ["NY", "FL"],
+                  "incremental": True, "members_count": 151, "bills_count": 1550}
+    _seed_ai_state(tmp_path, "{}", {**government, "ai_summaries_updated": "2026-07-07"})
+    stats = {"total": 2, "passed": 2, "failed": 0, "needs_review": []}
+    monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
+    _mock_ai_steps(monkeypatch, sync_module, AsyncMock(return_value=stats))
+    monkeypatch.setattr(sys, "argv", ["sync.py", "--ai-only"])
+
+    await sync_module.main()
+
+    meta = json.loads((tmp_path / "sync_metadata.json").read_text())
+    assert {key: meta.get(key) for key in government} == government
+    assert meta["summary_stats"] == stats
+    assert meta["ai_summaries_updated"] == "2026-07-07"
+
+
+async def test_ai_only_survives_unreadable_metadata(monkeypatch, tmp_path):
+    import sync as sync_module
+    (tmp_path / "ai_summaries.json").write_text("{}")
+    (tmp_path / "sync_metadata.json").write_text("[]")
+    monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
+    _mock_ai_steps(monkeypatch, sync_module, AsyncMock(return_value={}))
+    monkeypatch.setattr(sys, "argv", ["sync.py", "--ai-only"])
+
+    await sync_module.main()
+
+    meta = json.loads((tmp_path / "sync_metadata.json").read_text())
+    assert "last_sync" not in meta
+    assert meta["summary_stats"] == {}
 
 
 _EMPTY_SUMMARY = {"one_liner": "", "provisions": [], "issue_categories": [], "direction": "neutral"}
