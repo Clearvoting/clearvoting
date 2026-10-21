@@ -18,12 +18,14 @@ ALL_WORKFLOWS = ("ai-sync.yml", "tests.yml", "weekly-sync.yml")
 # What each data workflow may change on main: everything it legitimately commits, nothing else.
 ALLOWLIST = {
     "ai-sync.yml": "^data/synced/",
-    "weekly-sync.yml": "^(data/synced/|static/og/(member|state)/)",
+    "weekly-sync.yml": r"^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)",
 }
 REMOTE = 'remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"'
 NO_HOOKS = "git -c core.hooksPath=/dev/null"
+# git pull keeps a GIT_REFLOG_ACTION it is given; otherwise it writes its argv (the token URL) to .git/logs.
+NO_URL_REFLOG = 'GIT_REFLOG_ACTION="pull --rebase"'
 GIT_PUSH = re.compile(r"^\s*git\b[^\n]*\spush\b", re.M)
-GIT_PULL = re.compile(r"^\s*git\b[^\n]*\spull\b", re.M)
+GIT_PULL = re.compile(r'^\s*(?:GIT_REFLOG_ACTION="[^"\n]*" )?git\b[^\n]*\spull\b', re.M)
 
 
 def _text(name: str) -> str:
@@ -121,13 +123,13 @@ def test_every_push_rebases_checks_the_allowlist_and_disables_hooks(name):
         adds = [line for line in lines if line.startswith("git add ")]
         assert adds and lines[:len(adds)] == adds, step_name
         for path in (p for line in adds for p in line.split()[2:]):
-            assert re.match(allow, path.rstrip("/") + "/"), (step_name, path)
+            assert re.match(allow, path.rstrip("/") + "/X000001.png"), (step_name, path)  # a sample card
         rest = lines[len(adds):]
         assert re.fullmatch(re.escape(NO_HOOKS) + r' commit -m "data: [a-z ]+ \[automated\]"', rest[2]), step_name
         assert rest[:2] + rest[3:] == [
             "git diff --cached --quiet && exit 0",
             REMOTE,
-            f'{NO_HOOKS} pull --rebase "$remote" main || {{ {NO_HOOKS} rebase --abort; exit 1; }}',
+            f'{NO_URL_REFLOG} {NO_HOOKS} pull --rebase "$remote" main || {{ {NO_HOOKS} rebase --abort; exit 1; }}',
             "outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)",
             f"if printf '%s\\n' \"$outgoing\" | grep -vE '{allow}' | grep -q .; then",
             rest[6],
@@ -290,18 +292,23 @@ def test_commit_step_rebases_onto_a_moved_main_and_pushes(tmp_path, workflow, st
     assert runner.git(runner.remote, "show", "main:app/main.py") == "print('hotfix')"
     assert runner.git(runner.remote, "show", "main:data/synced/a.json") == '{"v": 2}'
     assert not runner.leak.exists()
+    # the replayed commit's reflog entries must not carry the token URL for later steps to read
+    assert subprocess.run(["grep", "-rlF", "FAKE-TOKEN", str(runner.dir / ".git")], capture_output=True).stdout == b""
 
 
 @needs_git
 @pytest.mark.parametrize("workflow, step", DATA_STEPS)
-@pytest.mark.parametrize("smuggle", ["edit", "rename"])
+@pytest.mark.parametrize("smuggle", ["edit", "rename", "page"])
 def test_commit_step_refuses_a_local_commit_outside_the_allowlist(tmp_path, workflow, step, smuggle):
     runner = _Runner(tmp_path)
     before = runner.main()
     if smuggle == "edit":  # an earlier step commits site code locally
         runner.write(runner.dir, "app/main.py", "print('injected')\n")
-    else:  # a rename into data/synced/ must still count as touching app/
+    elif smuggle == "rename":  # a rename into data/synced/ must still count as touching app/
         runner.git(runner.dir, "mv", "app/main.py", "data/synced/main.py")
+    else:  # static/ is served same-origin: only share-card PNGs may land in the card folders
+        runner.write(runner.dir, "static/og/member/vote.html", '<script src="x.js"></script>\n')
+        runner.write(runner.dir, "static/og/member/x.js", "alert(1)\n")
     runner.commit(runner.dir, "sneaky")
     runner.write(runner.dir, "data/synced/a.json", '{"v": 2}\n')
     result = runner.run_step(workflow, step)
@@ -318,6 +325,7 @@ def test_ai_sync_may_not_push_share_cards_but_weekly_sync_may(tmp_path):
         runner = _Runner(tmp_path / workflow)
         before = runner.main()
         runner.write(runner.dir, "static/og/member/X000001.png", "png")
+        runner.write(runner.dir, "static/og/state/NY.png", "png")
         runner.commit(runner.dir, "card")
         runner.write(runner.dir, "data/synced/a.json", '{"v": 2}\n')
         result = runner.run_step(workflow, step)
@@ -338,6 +346,7 @@ def test_commit_step_aborts_a_conflicting_rebase_without_pushing(tmp_path):
     assert not (runner.dir / ".git" / "rebase-apply").exists()
     assert runner.git(runner.dir, "status", "--porcelain") == ""
     assert not runner.leak.exists()
+    assert subprocess.run(["grep", "-rlF", "FAKE-TOKEN", str(runner.dir / ".git")], capture_output=True).stdout == b""
 
 
 @needs_git

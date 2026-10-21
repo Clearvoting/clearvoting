@@ -18,8 +18,9 @@
 #
 # Least privilege: each AI credential is given only to the steps that need it
 # (the credential check and generation), never to the pip/npm installs. The
-# checkout keeps no token; the push token reaches only the commit step, which
-# refuses to push if the outgoing commits change anything outside data/synced/.
+# checkout keeps no token; the push token reaches only the commit step (hooks
+# off, fixed GIT_REFLOG_ACTION so the token URL is not written to .git/logs),
+# which refuses to push if the outgoing commits change anything outside data/synced/.
 
 name: Weekly AI Generation Sync
 
@@ -141,7 +142,7 @@ jobs:
           git -c core.hooksPath=/dev/null commit -m "data: ai sync [automated]"
           # Rebase before pushing: this job can run for hours, so main may have
           # moved (merged PRs, hotfixes) since checkout.
-          git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
           outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
           if printf '%s\n' "$outgoing" | grep -vE '^data/synced/' | grep -q .; then
             echo "::error::Outgoing commits change files outside data/synced/; not pushing."

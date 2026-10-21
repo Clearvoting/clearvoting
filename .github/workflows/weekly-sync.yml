@@ -10,10 +10,11 @@
 # the last one left off.
 #
 # Least privilege: the checkout keeps no token. Only the commit steps get the
-# push token (GH_TOKEN, step env), with git hooks disabled. Each one rebases
-# onto main first (a PR merged mid-run must not make every later push fail)
-# and refuses to push if the outgoing commits change anything outside
-# data/synced/ and the share cards in static/og/member/ and static/og/state/.
+# push token (GH_TOKEN, step env), with git hooks disabled and a fixed
+# GIT_REFLOG_ACTION so the token URL is not written to .git/logs. Each one
+# rebases onto main first (a PR merged mid-run must not make every later push
+# fail) and refuses to push if the outgoing commits change anything outside
+# data/synced/ and the share-card PNGs in static/og/member/ and static/og/state/.
 
 name: Weekly Government Data Sync
 
@@ -63,10 +64,10 @@ jobs:
           git diff --cached --quiet && exit 0
           remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
           git -c core.hooksPath=/dev/null commit -m "data: sync members [automated]"
-          git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
           outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
-          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/)' | grep -q .; then
-            echo "::error::Outgoing commits change files outside data/synced/ and static/og/; not pushing."
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
             exit 1
           fi
           git -c core.hooksPath=/dev/null push "$remote" HEAD:main
@@ -85,10 +86,10 @@ jobs:
           git diff --cached --quiet && exit 0
           remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
           git -c core.hooksPath=/dev/null commit -m "data: sync senate votes [automated]"
-          git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
           outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
-          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/)' | grep -q .; then
-            echo "::error::Outgoing commits change files outside data/synced/ and static/og/; not pushing."
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
             exit 1
           fi
           git -c core.hooksPath=/dev/null push "$remote" HEAD:main
@@ -107,10 +108,10 @@ jobs:
           git diff --cached --quiet && exit 0
           remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
           git -c core.hooksPath=/dev/null commit -m "data: sync house votes [automated]"
-          git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
           outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
-          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/)' | grep -q .; then
-            echo "::error::Outgoing commits change files outside data/synced/ and static/og/; not pushing."
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
             exit 1
           fi
           git -c core.hooksPath=/dev/null push "$remote" HEAD:main
@@ -129,10 +130,10 @@ jobs:
           git diff --cached --quiet && exit 0
           remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
           git -c core.hooksPath=/dev/null commit -m "data: sync bills [automated]"
-          git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
           outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
-          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/)' | grep -q .; then
-            echo "::error::Outgoing commits change files outside data/synced/ and static/og/; not pushing."
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
             exit 1
           fi
           git -c core.hooksPath=/dev/null push "$remote" HEAD:main
@@ -153,10 +154,10 @@ jobs:
           git diff --cached --quiet && exit 0
           remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
           git -c core.hooksPath=/dev/null commit -m "data: rebuild votes index [automated]"
-          git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
           outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
-          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/)' | grep -q .; then
-            echo "::error::Outgoing commits change files outside data/synced/ and static/og/; not pushing."
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
             exit 1
           fi
           git -c core.hooksPath=/dev/null push "$remote" HEAD:main
@@ -182,10 +183,10 @@ jobs:
           git diff --cached --quiet && exit 0
           remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
           git -c core.hooksPath=/dev/null commit -m "data: sync member votes [automated]"
-          git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
           outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
-          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/)' | grep -q .; then
-            echo "::error::Outgoing commits change files outside data/synced/ and static/og/; not pushing."
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
             exit 1
           fi
           git -c core.hooksPath=/dev/null push "$remote" HEAD:main
@@ -210,10 +211,10 @@ jobs:
           git diff --cached --quiet && exit 0
           remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
           git -c core.hooksPath=/dev/null commit -m "data: rebuild state overviews [automated]"
-          git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
           outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
-          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/)' | grep -q .; then
-            echo "::error::Outgoing commits change files outside data/synced/ and static/og/; not pushing."
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
             exit 1
           fi
           git -c core.hooksPath=/dev/null push "$remote" HEAD:main
@@ -248,10 +249,10 @@ jobs:
           git diff --cached --quiet && exit 0
           remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
           git -c core.hooksPath=/dev/null commit -m "data: weekly sync complete [automated]"
-          git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
           outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
-          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/)' | grep -q .; then
-            echo "::error::Outgoing commits change files outside data/synced/ and static/og/; not pushing."
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
             exit 1
           fi
           git -c core.hooksPath=/dev/null push "$remote" HEAD:main
@@ -273,10 +274,10 @@ jobs:
           git diff --cached --quiet && exit 0
           remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
           git -c core.hooksPath=/dev/null commit -m "data: rebuild share cards [automated]"
-          git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
           outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
-          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/)' | grep -q .; then
-            echo "::error::Outgoing commits change files outside data/synced/ and static/og/; not pushing."
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
             exit 1
           fi
           git -c core.hooksPath=/dev/null push "$remote" HEAD:main
