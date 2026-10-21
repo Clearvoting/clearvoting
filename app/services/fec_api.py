@@ -29,15 +29,19 @@ class FECClient:
         self.api_key = api_key
 
     async def _fetch(self, path: str, params: dict | None = None) -> dict:
-        """Make an authenticated request to the FEC API with retry on rate limits."""
-        request_params = {"api_key": self.api_key, "per_page": 20}
+        """Make an authenticated request to the FEC API with retry on rate limits.
+
+        The key travels in the X-Api-Key header (as in congress_api.py), never the query
+        string, so httpx error messages and logs that repeat the URL cannot carry it."""
+        request_params = {"per_page": 20}
         if params:
             request_params.update(params)
+        headers = {"X-Api-Key": self.api_key}
 
         max_retries = 3
         for attempt in range(max_retries + 1):
             async with httpx.AsyncClient(timeout=30.0) as client:
-                response = await client.get(f"{BASE_URL}{path}", params=request_params)
+                response = await client.get(f"{BASE_URL}{path}", params=request_params, headers=headers)
                 if response.status_code == 429 and attempt < max_retries:
                     wait = 2 ** attempt  # 1s, 2s, 4s
                     logger.warning(f"FEC rate limited, retrying in {wait}s (attempt {attempt + 1}/{max_retries})")

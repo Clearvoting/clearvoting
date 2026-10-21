@@ -27,15 +27,19 @@ Usage:
 import argparse
 import asyncio
 import hashlib
+import html
 import json
 import os
 import re
 import shutil
 import sys
 import tempfile
+from contextlib import aclosing
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlsplit
 
+import httpx
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -78,6 +82,15 @@ SYNC_STATES = ["NY", "FL", "CA", "TX"]
 # catching truncated API responses (e.g. an unpaginated single page of 20).
 # States not listed are unchecked.
 MEMBER_COUNT_FLOORS = {"NY": 26, "FL": 28, "CA": 52, "TX": 38}
+
+# Every real bioguide ID is one capital letter and six digits (the app routes and the
+# og-card builder rely on the same shape). Sync turns IDs into file names, so an ID of
+# any other shape from upstream never reaches a path (F050). Always use fullmatch.
+_BIOGUIDE_RE = re.compile(r"^[A-Z]\d{6}$")
+
+
+def _is_bioguide_id(value) -> bool:
+    return isinstance(value, str) and _BIOGUIDE_RE.fullmatch(value) is not None
 
 
 def _atomic_write_json(path: Path, data: dict | list, compact: bool = False) -> None:
@@ -160,7 +173,12 @@ async def sync_members(client: CongressAPIClient, output_dir: Path, states: list
         print(f"  Fetching members for {state}... ({i + 1}/{len(states)})")
         try:
             data = await client.get_members_by_state(state)
-            members = data.get("members", [])
+            members = []
+            for member in data.get("members", []):
+                if not _is_bioguide_id(member.get("bioguideId")):
+                    print(f"  WARNING: dropping {state} member with malformed bioguideId {member.get('bioguideId')!r}")
+                    continue
+                members.append(member)
             for member in members:
                 member["stateCode"] = state
                 terms = member.get("terms", {}).get("item", [])
@@ -188,8 +206,95 @@ async def sync_members(client: CongressAPIClient, output_dir: Path, states: list
     return len(all_members)
 
 
-async def sync_senate_votes(senate_service: SenateVoteService, output_dir: Path, congress: int = 119, session: int = 1, max_vote: int = 1500, rate_limit: float = 0.0) -> int:
-    """Fetch Senate roll call votes. Incremental — skips already-downloaded votes."""
+# --- Roll-call fetch errors (F032) ---------------------------------------------------
+# Only a definite "no such roll call" ends a session's vote loop quietly: api.congress.gov
+# answers 404, and senate.gov answers 301 to this page (both checked 2026-10-21). Any other
+# fetch error (timeout, 403/429/5xx, unparseable body) is retried after each of
+# _VOTE_RETRY_WAITS seconds (a longer Retry-After wins, up to _VOTE_RETRY_MAX_WAIT). An error
+# that outlasts the retries, or a payload _vote_payload_problem rejects, stops that session
+# with an ERROR, and the step exits non-zero once every session has run. The waits keep six
+# failing sessions well inside the workflow's 15/25-minute step timeouts.
+_SENATE_VOTE_MISSING_PAGE = "/legislative/roll-call-vote-not-available.htm"
+_VOTE_RETRY_WAITS = (5, 15)
+_VOTE_RETRY_MAX_WAIT = 30
+
+
+def _error_summary(exc: Exception) -> str:
+    """One printable line for an upstream error. An HTTP error gives its status and URL
+    path only: httpx's own message repeats the full URL, query string included (F047)."""
+    if isinstance(exc, httpx.HTTPStatusError):
+        return f"HTTP {exc.response.status_code} for {exc.request.url.path}"
+    return type(exc).__name__
+
+
+def _vote_not_found(exc: Exception) -> bool:
+    if not isinstance(exc, httpx.HTTPStatusError):
+        return False
+    response = exc.response
+    if response.status_code == 404:
+        return True
+    return response.is_redirect and response.headers.get("location", "").endswith(_SENATE_VOTE_MISSING_PAGE)
+
+
+def _retry_wait(exc: Exception, default: float) -> float:
+    """`default`, or a longer Retry-After (seconds form) capped at _VOTE_RETRY_MAX_WAIT."""
+    if isinstance(exc, httpx.HTTPStatusError):
+        try:
+            asked = float(exc.response.headers.get("retry-after", ""))
+        except ValueError:
+            return default
+        return max(default, min(asked, _VOTE_RETRY_MAX_WAIT))
+    return default
+
+
+async def _fetch_vote(fetch, *args):
+    """`await fetch(*args)` with retries. Returns None when upstream says the roll call does
+    not exist; re-raises the last error once the retries are used up."""
+    for wait in (*_VOTE_RETRY_WAITS, None):
+        try:
+            return await fetch(*args)
+        except Exception as e:
+            if _vote_not_found(e):
+                return None
+            if wait is None:
+                raise
+            delay = _retry_wait(e, wait)
+            print(f"    {_error_summary(e)} — retrying in {delay:g}s")
+            await asyncio.sleep(delay)
+
+
+def _vote_payload_problem(vote) -> str | None:
+    """Why a fetched roll call must not be written, or None. A written file is never
+    fetched again, so a vote with no readable date or no member list stays unwritten."""
+    if not isinstance(vote, dict):
+        return "payload is not an object"
+    if _parse_vote_date(str(vote.get("vote_date") or "")) is None:
+        return f"unreadable vote_date {vote.get('vote_date')!r}"
+    if not isinstance(vote.get("members"), list) or not vote["members"]:
+        return "empty member list"
+    return None
+
+
+def _record_vote_failure(failures: list[str] | None, label: str, reason: str) -> None:
+    print(f"  ERROR: {label}: {reason} — stopping this session; votes saved so far are kept")
+    if failures is not None:
+        failures.append(f"{label}: {reason}")
+
+
+def _exit_on_vote_failures(failures: list[str]) -> None:
+    """Exit 1, after every session has run, when any session stopped on an error."""
+    if failures:
+        print(f"ERROR: {len(failures)} vote session(s) stopped early:")
+        for failure in failures:
+            print(f"  {failure}")
+        sys.exit(1)
+
+
+async def sync_senate_votes(senate_service: SenateVoteService, output_dir: Path, congress: int = 119, session: int = 1, max_vote: int = 1500, rate_limit: float = 0.0, failures: list[str] | None = None) -> int:
+    """Fetch Senate roll call votes. Incremental — skips already-downloaded votes.
+
+    Ends at the first roll call senate.gov does not have. Any other error is retried, then
+    printed as an ERROR and appended to `failures` (see _fetch_vote)."""
     vote_dir = output_dir / "votes" / "senate"
     vote_dir.mkdir(parents=True, exist_ok=True)
     count = 0
@@ -204,14 +309,22 @@ async def sync_senate_votes(senate_service: SenateVoteService, output_dir: Path,
             continue
 
         print(f"  Fetching Senate vote {vote_num}...")
+        label = f"Senate {congress}-{session} vote {vote_num}"
         try:
-            data = await senate_service.get_vote(congress, session, vote_num)
-            _atomic_write_json(filepath, data)
-            count += 1
-            await asyncio.sleep(rate_limit)
-        except Exception:
+            data = await _fetch_vote(senate_service.get_vote, congress, session, vote_num)
+        except Exception as e:
+            _record_vote_failure(failures, label, _error_summary(e))
+            break
+        if data is None:
             print(f"  No more Senate votes after {vote_num - 1}")
             break
+        problem = _vote_payload_problem(data)
+        if problem:
+            _record_vote_failure(failures, label, problem)
+            break
+        _atomic_write_json(filepath, data)
+        count += 1
+        await asyncio.sleep(rate_limit)
 
     print(f"  Saved {count} Senate votes")
     return count
@@ -238,8 +351,11 @@ def _house_leg_to_document(leg_type: str | None, leg_number: str | None) -> str:
     return mapping.get(leg_type.upper(), f"{leg_type} {leg_number}")
 
 
-async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress: int = 119, session: int = 1, max_vote: int = 1500, rate_limit: float = 0.0) -> int:
-    """Fetch House roll call votes from Congress.gov API. Incremental — skips existing files."""
+async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress: int = 119, session: int = 1, max_vote: int = 1500, rate_limit: float = 0.0, failures: list[str] | None = None) -> int:
+    """Fetch House roll call votes from Congress.gov API. Incremental — skips existing files.
+
+    Ends at the first roll call the API answers 404 for. Any other error is retried, then
+    printed as an ERROR and appended to `failures` (see _fetch_vote)."""
     vote_dir = output_dir / "votes" / "house"
     vote_dir.mkdir(parents=True, exist_ok=True)
     count = 0
@@ -253,11 +369,17 @@ async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress
             continue
 
         print(f"  Fetching House vote {vote_num}...")
+        label = f"House {congress}-{session} vote {vote_num}"
         try:
-            detail_resp = await client.get_house_vote_detail(congress, session, vote_num)
+            detail_resp = await _fetch_vote(client.get_house_vote_detail, congress, session, vote_num)
+            if detail_resp is None:
+                print(f"  No more House votes after {vote_num - 1}")
+                break
             vote_data = detail_resp.get("houseRollCallVote", {})
 
-            members_resp = await client.get_house_vote_members(congress, session, vote_num)
+            # A 404 here (detail found, member list not) leaves the list empty, which
+            # _vote_payload_problem then reports.
+            members_resp = await _fetch_vote(client.get_house_vote_members, congress, session, vote_num) or {}
             members_data = members_resp.get("houseRollCallVoteMemberVotes", {}).get("results", [])
 
             # Build counts from votePartyTotal
@@ -277,7 +399,7 @@ async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress
                 "congress": vote_data.get("congress", congress),
                 "session": vote_data.get("sessionNumber", session),
                 "vote_number": vote_data.get("rollCallNumber", vote_num),
-                "vote_date": vote_data.get("startDate", "")[:10],
+                "vote_date": (vote_data.get("startDate") or "")[:10],
                 "question": vote_data.get("voteQuestion", ""),
                 "document": document,
                 "result": vote_data.get("result", ""),
@@ -301,13 +423,16 @@ async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress
                 ],
                 "chamber": "House",
             }
-
-            _atomic_write_json(filepath, normalized)
-            count += 1
-            await asyncio.sleep(rate_limit)
-        except Exception:
-            print(f"  No more House votes after {vote_num - 1}")
+        except Exception as e:
+            _record_vote_failure(failures, label, _error_summary(e))
             break
+        problem = _vote_payload_problem(normalized)
+        if problem:
+            _record_vote_failure(failures, label, problem)
+            break
+        _atomic_write_json(filepath, normalized)
+        count += 1
+        await asyncio.sleep(rate_limit)
 
     print(f"  Saved {count} House votes")
     return count
@@ -453,6 +578,23 @@ def _bill_text_excerpt(bill: dict) -> str:
     return max(with_text, key=lambda v: v.get("date") or "").get("text", "")
 
 
+# Bill text is fetched only from www.congress.gov (every formats[].url today), never from
+# whatever host an API response or a redirect names, and never more than 5 MB (F049).
+_BILL_TEXT_HOSTS = frozenset({"www.congress.gov", "congress.gov"})
+_BILL_TEXT_MAX_BYTES = 5 * 1024 * 1024
+
+
+def _is_bill_text_url(url) -> bool:
+    """https on www.congress.gov or congress.gov, with no user part or non-default port."""
+    try:
+        parts = urlsplit(str(url))
+        port = parts.port
+    except ValueError:
+        return False
+    return (parts.scheme == "https" and parts.hostname in _BILL_TEXT_HOSTS
+            and parts.username is None and port in (None, 443))
+
+
 async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3, max_fetches: int | None = None) -> int:
     """Fetch the LATEST text version for bills with no embedded text.
 
@@ -463,10 +605,10 @@ async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3, ma
     www.congress.gov rate-limits aggressively from CI (July 4 sync failure):
     429s back off and retry twice, persistent 429s end the run with progress
     saved, and max_fetches caps a run so a backlog can't blow the CI step
-    timeout — the next run resumes where this one stopped."""
-    import re
-    import httpx
+    timeout — the next run resumes where this one stopped.
 
+    The URL must pass _is_bill_text_url before the request and again after redirects,
+    and the body is read in chunks up to _BILL_TEXT_MAX_BYTES."""
     bills_path = output_dir / "bills.json"
     if not bills_path.exists():
         print("  No bills.json — skipping text fetch")
@@ -501,13 +643,24 @@ async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3, ma
             or next((f.get("url") for f in formats if f.get("type") == "Formatted XML"), None)
         if not url:
             continue
-        r = None
+        if not _is_bill_text_url(url):
+            print(f"    Skipping text for {congress}-{bt}-{bn}: URL is not on congress.gov over https")
+            continue
+        body = None
         for attempt in range(3):
             try:
                 async with httpx.AsyncClient(timeout=30.0) as http:
-                    candidate = await http.get(url, follow_redirects=True)
-                    candidate.raise_for_status()
-                    r = candidate
+                    async with http.stream("GET", url, follow_redirects=True) as candidate:
+                        if not _is_bill_text_url(candidate.url):
+                            raise ValueError(f"redirected off congress.gov to {candidate.url.host}")
+                        candidate.raise_for_status()
+                        chunks = bytearray()
+                        async with aclosing(candidate.aiter_bytes()) as stream:
+                            async for chunk in stream:
+                                chunks.extend(chunk)
+                                if len(chunks) > _BILL_TEXT_MAX_BYTES:
+                                    raise ValueError(f"body over {_BILL_TEXT_MAX_BYTES} bytes")
+                        body = chunks.decode(candidate.charset_encoding or "utf-8", errors="replace")
                 break
             except httpx.HTTPStatusError as e:
                 status = e.response.status_code if e.response is not None else None
@@ -527,9 +680,10 @@ async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3, ma
         if rate_limited_out:
             print("  Persistent 429s from congress.gov — stopping this run; progress saved, next run resumes")
             break
-        if r is None:
+        if body is None:
             continue
-        clean = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", r.text)).strip()
+        # Unescape after stripping tags: an escaped "&lt;tag&gt;" in the text is content, not markup.
+        clean = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", body))).strip()
         if not clean:
             continue
         latest["text"] = clean[:6000]
@@ -930,7 +1084,11 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
     count = 0
 
     for member in all_members:
-        bioguide_id = member["bioguideId"]
+        bioguide_id = member.get("bioguideId")
+        if not _is_bioguide_id(bioguide_id):
+            # sync_members drops these; this covers an older or hand-edited members.json.
+            print(f"  WARNING: skipping member with malformed bioguideId {bioguide_id!r}")
+            continue
         chamber = member.get("chamber", "")
         member_last = member.get("name", "").split(",")[0].strip().lower()
         member_state = member.get("stateCode", "").upper()
@@ -1208,7 +1366,7 @@ def state_overview_payloads(sync_dir: Path, states: list[str]) -> dict[str, dict
         state_members = [m for m in members if m.get("stateCode") == code]
         latest = {
             m["bioguideId"]: _latest_decisive_vote(sync_dir / "member_votes" / f"{m['bioguideId']}.json", roll_calls)
-            for m in state_members
+            for m in state_members if _is_bioguide_id(m.get("bioguideId"))
         }
         districts = expected.get(code) or max((m.get("district") or 0 for m in state_members), default=0)
         payloads[code] = state_overview_payload(code, members, latest, districts)
@@ -1439,7 +1597,7 @@ async def sync_member_summaries(
         """Process a single member through the writer-grader loop."""
         bioguide_id = member["bioguideId"]
 
-        if bioguide_id in existing:
+        if bioguide_id in existing or not _is_bioguide_id(bioguide_id):
             return
 
         votes_path = member_votes_dir / f"{bioguide_id}.json"
@@ -1604,7 +1762,7 @@ async def check_page_coherence(
 
     for member in members:
         bioguide_id = member["bioguideId"]
-        if bioguide_id not in summaries:
+        if bioguide_id not in summaries or not _is_bioguide_id(bioguide_id):
             continue
 
         summary = summaries[bioguide_id]
@@ -2111,7 +2269,7 @@ async def sync_donations(
                 _atomic_write_json(donations_path, donations)
 
         except Exception as e:
-            print(f"    {full_name} ({state}): error — {e}")
+            print(f"    {full_name} ({state}): error — {_error_summary(e)}")
             errors += 1
 
     _atomic_write_json(donations_path, donations)
@@ -2224,15 +2382,21 @@ async def main() -> None:
         elif args.step == "senate-votes":
             senate_service = SenateVoteService(cache=cache)
             pairs = [(args.congress, args.session)] if args.congress and args.session else CONGRESSES
+            failures: list[str] = []
             for congress, session in pairs:
                 print(f"[step] Syncing Senate votes — Congress {congress}, Session {session}...")
-                await sync_senate_votes(senate_service, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+                await sync_senate_votes(senate_service, SYNC_DIR, congress=congress, session=session, rate_limit=0.3,
+                                        failures=failures)
+            _exit_on_vote_failures(failures)
 
         elif args.step == "house-votes":
             pairs = [(args.congress, args.session)] if args.congress and args.session else CONGRESSES
+            failures = []
             for congress, session in pairs:
                 print(f"[step] Syncing House votes — Congress {congress}, Session {session}...")
-                await sync_house_votes(client, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+                await sync_house_votes(client, SYNC_DIR, congress=congress, session=session, rate_limit=0.3,
+                                       failures=failures)
+            _exit_on_vote_failures(failures)
 
         elif args.step == "bills":
             print("[step] Syncing voted-on bills...")
@@ -2495,9 +2659,11 @@ async def main() -> None:
     senate_service = SenateVoteService(cache=cache)
     print("[2/8] Syncing Senate votes...")
     senate_count = 0
+    vote_failures: list[str] = []  # the run finishes, then exits 1 if any session stopped early
     for congress, session in CONGRESSES:
         print(f"  Congress {congress}, Session {session}...")
-        count = await sync_senate_votes(senate_service, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+        count = await sync_senate_votes(senate_service, SYNC_DIR, congress=congress, session=session, rate_limit=0.3,
+                                        failures=vote_failures)
         senate_count += count
 
     # Step 3: House votes (all congresses)
@@ -2506,7 +2672,8 @@ async def main() -> None:
     house_count = 0
     for congress, session in CONGRESSES:
         print(f"  Congress {congress}, Session {session}...")
-        count = await sync_house_votes(client, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+        count = await sync_house_votes(client, SYNC_DIR, congress=congress, session=session, rate_limit=0.3,
+                                       failures=vote_failures)
         house_count += count
 
     # Step 4: Bills (only those referenced in votes from both chambers)
@@ -2583,6 +2750,7 @@ async def main() -> None:
         print(f"  AI summaries graded: {summary_stats['total']} ({summary_stats.get('passed', 0)} passed)")
     if donations_stats.get("total"):
         print(f"  Donations: {donations_stats['total']} members ({donations_stats.get('synced', 0)} new)")
+    _exit_on_vote_failures(vote_failures)
 
 if __name__ == "__main__":
     asyncio.run(main())

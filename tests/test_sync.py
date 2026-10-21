@@ -15,6 +15,32 @@ def _write_json(path: Path, data: dict | list) -> None:
         json.dump(data, f)
 
 
+def _http_error(status: int, url: str = "https://example.test/vote", headers: dict | None = None):
+    """The httpx.HTTPStatusError raise_for_status() gives for this status."""
+    import httpx
+    request = httpx.Request("GET", url)
+    response = httpx.Response(status, headers=headers or {}, request=request)
+    return httpx.HTTPStatusError(f"HTTP {status}", request=request, response=response)
+
+
+def _house_404():
+    """api.congress.gov's answer for a roll call that does not exist yet."""
+    return _http_error(404, "https://api.congress.gov/v3/house-vote/119/1/9")
+
+
+def _senate_missing():
+    """senate.gov's answer for a roll call that does not exist yet: a 301 to this page."""
+    return _http_error(301, "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1191/vote_119_1_00009.xml",
+                       {"location": "https://www.senate.gov/legislative/roll-call-vote-not-available.htm"})
+
+
+_SENATE_MEMBER = {"first_name": "Test", "last_name": "Sen", "party": "D", "state": "NY", "vote": "Yea"}
+_HOUSE_MEMBERS = {"houseRollCallVoteMemberVotes": {"results": [
+    {"bioguideID": "A000055", "firstName": "Robert", "lastName": "Aderholt",
+     "voteCast": "Yea", "voteParty": "R", "voteState": "AL"},
+]}}
+
+
 # --- sync_members ---
 
 @pytest.mark.asyncio
@@ -113,6 +139,38 @@ async def test_sync_members_floor_state_fetch_failure_aborts(tmp_path):
     assert not (tmp_path / "members.json").exists()
 
 
+async def test_sync_members_drops_malformed_bioguide_ids(tmp_path, capsys):
+    """An ID becomes a file name later (member_votes/{id}.json), so only the real
+    one-letter-six-digit shape is kept (F050)."""
+    bad = ["../ai_summaries", str(tmp_path / "outside"), "h001088", "H001088\n", "H0010888", None, 1234567]
+    mock_client = MagicMock()
+    mock_client.get_members_by_state = AsyncMock(return_value={"members": [
+        {"bioguideId": "H001088", "terms": {"item": [{"chamber": "Senate"}]}},
+        *({"bioguideId": b, "terms": {"item": [{"chamber": "House"}]}} for b in bad),
+    ]})
+
+    count = await sync_members(mock_client, tmp_path, states=["OH"])
+
+    saved = json.loads((tmp_path / "members.json").read_text())["members"]
+    assert count == 1 and [m["bioguideId"] for m in saved] == ["H001088"]
+    assert capsys.readouterr().out.count("WARNING: dropping OH member with malformed bioguideId") == len(bad)
+
+
+async def test_build_member_votes_never_joins_a_malformed_id_into_a_path(tmp_path):
+    """Second layer for a members.json written before the sync_members check (F050)."""
+    _write_json(tmp_path / "members.json", {"members": [
+        {"bioguideId": "A000055", "name": "Aderholt, Robert", "stateCode": "AL", "chamber": "House"},
+        {"bioguideId": "../ai_summaries", "name": "X, Y", "stateCode": "AL", "chamber": "House"},
+        {"bioguideId": str(tmp_path / "outside"), "name": "X, Z", "stateCode": "AL", "chamber": "House"},
+    ]})
+
+    count = await build_member_votes(tmp_path)
+
+    assert count == 1
+    assert sorted(p.name for p in (tmp_path / "member_votes").iterdir()) == ["A000055.json"]
+    assert not (tmp_path / "ai_summaries.json").exists() and not (tmp_path / "outside.json").exists()
+
+
 # --- sync_senate_votes ---
 
 @pytest.mark.asyncio
@@ -125,7 +183,7 @@ async def test_sync_senate_votes(tmp_path):
             "result": "Passed", "counts": {"yeas": 60, "nays": 40, "present": 0, "absent": 0},
             "members": [{"first_name": "Test", "last_name": "Sen", "party": "D", "state": "NY", "vote": "Yea"}],
         },
-        Exception("Vote not found"),
+        _senate_missing(),
     ])
 
     count = await sync_senate_votes(mock_service, tmp_path, congress=119, session=1, max_vote=2)
@@ -149,9 +207,9 @@ async def test_sync_senate_votes_skips_existing(tmp_path):
             "congress": 119, "session": 1, "vote_number": 2,
             "vote_date": "2025-01-16", "question": "On Passage",
             "result": "Failed", "counts": {"yeas": 40, "nays": 60, "present": 0, "absent": 0},
-            "members": [],
+            "members": [_SENATE_MEMBER],
         },
-        Exception("No more"),
+        _senate_missing(),
     ])
 
     count = await sync_senate_votes(mock_service, tmp_path, congress=119, session=1, max_vote=3)
@@ -167,8 +225,8 @@ async def test_sync_senate_votes_rate_limiting(tmp_path):
     mock_service = MagicMock()
     mock_service.get_vote = AsyncMock(side_effect=[
         {"congress": 119, "session": 1, "vote_number": 1, "vote_date": "2025-01-15",
-         "question": "Test", "result": "Passed", "counts": {}, "members": []},
-        Exception("No more"),
+         "question": "Test", "result": "Passed", "counts": {}, "members": [_SENATE_MEMBER]},
+        _senate_missing(),
     ])
 
     import unittest.mock
@@ -181,6 +239,196 @@ def test_vote_sync_default_cap_covers_busy_sessions():
     """Sessions can have 700+ roll calls — the old 500 default silently truncated them."""
     assert inspect.signature(sync_senate_votes).parameters["max_vote"].default == 1500
     assert inspect.signature(sync_house_votes).parameters["max_vote"].default == 1500
+
+
+# --- Vote loops: only a definite not-found ends a session (F032) ---
+
+def _senate_payload(n: int, **overrides) -> dict:
+    return {"congress": 119, "session": 1, "vote_number": n, "vote_date": "January 15, 2025,  02:30 PM",
+            "question": "On Passage", "result": "Passed",
+            "counts": {"yeas": 1, "nays": 0, "present": 0, "absent": 0},
+            "members": [_SENATE_MEMBER], **overrides}
+
+
+def _house_detail(n: int, **overrides) -> dict:
+    return {"houseRollCallVote": {"congress": 119, "sessionNumber": 1, "rollCallNumber": n,
+                                  "voteQuestion": "On Passage", "result": "Passed",
+                                  "startDate": "2025-01-10T14:00:00-05:00", "votePartyTotal": [],
+                                  **overrides}}
+
+
+def _senate_service(*answers):
+    service = MagicMock()
+    service.get_vote = AsyncMock(side_effect=list(answers))
+    return service
+
+
+def _house_client(*details):
+    client = MagicMock()
+    client.get_house_vote_detail = AsyncMock(side_effect=list(details))
+    client.get_house_vote_members = AsyncMock(return_value=_HOUSE_MEMBERS)
+    return client
+
+
+async def test_senate_missing_vote_page_ends_the_session_cleanly(tmp_path):
+    failures: list[str] = []
+    service = _senate_service(_senate_payload(1), _senate_missing())
+    with patch("sync.asyncio.sleep", new_callable=AsyncMock) as sleep:
+        count = await sync_senate_votes(service, tmp_path, congress=119, session=1, max_vote=5, failures=failures)
+    assert count == 1 and failures == []
+    assert service.get_vote.await_count == 2  # no retry of the not-found answer
+    assert all(c.args[0] == 0.0 for c in sleep.call_args_list)  # rate-limit sleeps only
+
+
+async def test_senate_404_also_ends_the_session(tmp_path):
+    failures: list[str] = []
+    service = _senate_service(_http_error(404))
+    count = await sync_senate_votes(service, tmp_path, congress=119, session=1, max_vote=5, failures=failures)
+    assert count == 0 and failures == []
+
+
+async def test_senate_transient_error_is_retried_and_the_session_continues(tmp_path, capsys):
+    import httpx
+    failures: list[str] = []
+    service = _senate_service(_senate_payload(1), httpx.ReadTimeout("slow"), _http_error(503),
+                              _senate_payload(2), _senate_missing())
+    with patch("sync.asyncio.sleep", new_callable=AsyncMock) as sleep:
+        count = await sync_senate_votes(service, tmp_path, congress=119, session=1, max_vote=5, failures=failures)
+    assert count == 2 and failures == []
+    assert (tmp_path / "votes" / "senate" / "119_1_00002.json").exists()
+    assert [c.args[0] for c in sleep.call_args_list if c.args[0]] == [5, 15]
+    assert "No more Senate votes after 2" in capsys.readouterr().out
+
+
+async def test_senate_persistent_error_is_recorded_not_mistaken_for_the_end(tmp_path, capsys):
+    """Regression: a timeout, 429 or 5xx used to print 'No more votes' and exit 0."""
+    failures: list[str] = []
+    service = _senate_service(_senate_payload(1), _http_error(503), _http_error(503), _http_error(503))
+    with patch("sync.asyncio.sleep", new_callable=AsyncMock):
+        count = await sync_senate_votes(service, tmp_path, congress=119, session=1, max_vote=5, failures=failures)
+    assert count == 1
+    assert service.get_vote.await_count == 4  # vote 1, then vote 2 tried three times
+    assert failures == ["Senate 119-1 vote 2: HTTP 503 for /vote"]
+    out = capsys.readouterr().out
+    assert "ERROR: Senate 119-1 vote 2" in out and "No more Senate votes" not in out
+    assert (tmp_path / "votes" / "senate" / "119_1_00001.json").exists()  # progress kept
+
+
+async def test_retry_after_is_honoured_and_capped(tmp_path):
+    failures: list[str] = []
+    service = _senate_service(_http_error(429, headers={"retry-after": "20"}),
+                              _http_error(429, headers={"retry-after": "3600"}),
+                              _senate_payload(1), _senate_missing())
+    with patch("sync.asyncio.sleep", new_callable=AsyncMock) as sleep:
+        await sync_senate_votes(service, tmp_path, congress=119, session=1, max_vote=5, failures=failures)
+    assert [c.args[0] for c in sleep.call_args_list if c.args[0]] == [20, 30]
+    assert failures == []
+
+
+@pytest.mark.parametrize("bad", [{"members": []}, {"vote_date": ""}, {"vote_date": None}, {"vote_date": "soon"}])
+async def test_senate_payload_without_date_or_members_is_not_written(tmp_path, bad):
+    """A written file is never fetched again, so an incomplete payload must stay unwritten."""
+    failures: list[str] = []
+    service = _senate_service(_senate_payload(1, **bad))
+    count = await sync_senate_votes(service, tmp_path, congress=119, session=1, max_vote=5, failures=failures)
+    assert count == 0 and len(failures) == 1
+    assert not (tmp_path / "votes" / "senate" / "119_1_00001.json").exists()
+
+
+async def test_house_404_ends_the_session_cleanly(tmp_path):
+    failures: list[str] = []
+    client = _house_client(_house_detail(1), _house_404())
+    count = await sync_house_votes(client, tmp_path, congress=119, session=1, max_vote=5, failures=failures)
+    assert count == 1 and failures == []
+    assert client.get_house_vote_detail.await_count == 2
+
+
+async def test_house_persistent_timeout_is_recorded(tmp_path, capsys):
+    """Regression: the probe's ReadTimeout at vote 3 printed 'No more House votes after 2'."""
+    import httpx
+    failures: list[str] = []
+    client = _house_client(_house_detail(1), _house_detail(2), *[httpx.ReadTimeout("slow")] * 3)
+    with patch("sync.asyncio.sleep", new_callable=AsyncMock):
+        count = await sync_house_votes(client, tmp_path, congress=119, session=1, max_vote=6, failures=failures)
+    assert count == 2
+    assert failures == ["House 119-1 vote 3: ReadTimeout"]
+    assert "No more House votes" not in capsys.readouterr().out
+
+
+async def test_house_null_start_date_is_a_failure_not_a_stall(tmp_path):
+    failures: list[str] = []
+    client = _house_client(_house_detail(1, startDate=None))
+    count = await sync_house_votes(client, tmp_path, congress=119, session=1, max_vote=5, failures=failures)
+    assert count == 0 and len(failures) == 1 and "vote_date" in failures[0]
+    assert not (tmp_path / "votes" / "house" / "119_1_00001.json").exists()
+
+
+async def test_house_null_party_total_is_a_failure(tmp_path):
+    failures: list[str] = []
+    client = _house_client(_house_detail(1, votePartyTotal=[{"yeaTotal": None}]))
+    count = await sync_house_votes(client, tmp_path, congress=119, session=1, max_vote=5, failures=failures)
+    assert count == 0 and failures == ["House 119-1 vote 1: TypeError"]
+
+
+@pytest.mark.parametrize("members", [{"houseRollCallVoteMemberVotes": {"results": []}}, _house_404()])
+async def test_house_vote_with_no_member_list_is_not_written(tmp_path, members):
+    """Detail found but the member list is empty or 404s: not the end, and not written."""
+    failures: list[str] = []
+    client = _house_client(_house_detail(1))
+    client.get_house_vote_members = AsyncMock(side_effect=[members])
+    count = await sync_house_votes(client, tmp_path, congress=119, session=1, max_vote=5, failures=failures)
+    assert count == 0 and failures == ["House 119-1 vote 1: empty member list"]
+    assert not (tmp_path / "votes" / "house" / "119_1_00001.json").exists()
+
+
+async def test_real_clients_classify_upstream_not_found_answers(tmp_path):
+    """Through the real SenateVoteService / CongressAPIClient: senate.gov's 301 to the
+    not-available page and api.congress.gov's 404 both end the loop with no failure."""
+    import httpx
+    from app.services.congress_api import CongressAPIClient
+    from app.services.senate_votes import SenateVoteService
+
+    def handler(request):
+        if request.url.host == "www.senate.gov":
+            return httpx.Response(301, headers={
+                "location": "https://www.senate.gov/legislative/roll-call-vote-not-available.htm"})
+        return httpx.Response(404, json={"error": "No Vote matches the given query."})
+
+    real = httpx.AsyncClient
+    cache = MagicMock()
+    cache.get.return_value = None
+    failures: list[str] = []
+    with patch("httpx.AsyncClient", lambda **kw: real(transport=httpx.MockTransport(handler), **kw)):
+        senate = await sync_senate_votes(SenateVoteService(cache=cache), tmp_path, max_vote=3, failures=failures)
+        house = await sync_house_votes(CongressAPIClient("k", cache=cache), tmp_path, max_vote=3, failures=failures)
+    assert (senate, house, failures) == (0, 0, [])
+
+
+async def test_vote_step_finishes_every_session_then_exits_1(monkeypatch, tmp_path, capsys):
+    """One failing session must not hide the others, and must turn the CI step red."""
+    import sync as sync_module
+
+    def detail(congress, session, vote_num):
+        if (congress, session) == (118, 1):
+            raise _http_error(503)
+        raise _house_404()
+
+    client = MagicMock()
+    client.get_house_vote_detail = AsyncMock(side_effect=detail)
+    monkeypatch.setenv("CONGRESS_API_KEY", "test-key")
+    monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
+    monkeypatch.setattr(sync_module, "CacheService", MagicMock())
+    monkeypatch.setattr(sync_module, "CongressAPIClient", MagicMock(return_value=client))
+    monkeypatch.setattr(sync_module.asyncio, "sleep", AsyncMock())
+    monkeypatch.setattr(sys, "argv", ["sync.py", "--step", "house-votes"])
+
+    with pytest.raises(SystemExit) as exc:
+        await sync_module.main()
+
+    assert exc.value.code == 1
+    sessions = {c.args[:2] for c in client.get_house_vote_detail.await_args_list}
+    assert sessions == set(sync_module.CONGRESSES)
+    assert "House 118-1 vote 1: HTTP 503" in capsys.readouterr().out
 
 
 # --- sync_bills_from_votes ---
@@ -458,7 +706,7 @@ async def test_sync_house_votes(tmp_path):
                 {"voteParty": "D", "yeaTotal": 180, "nayTotal": 20, "notVotingTotal": 5, "presentTotal": 0},
             ],
         }},
-        Exception("No more votes"),
+        _house_404(),
     ])
     mock_client.get_house_vote_members = AsyncMock(return_value={
         "houseRollCallVoteMemberVotes": {
@@ -502,11 +750,9 @@ async def test_sync_house_votes_skips_existing(tmp_path):
             "voteQuestion": "On Passage", "result": "Failed",
             "startDate": "2025-01-11T10:00:00-05:00", "votePartyTotal": [],
         }},
-        Exception("No more"),
+        _house_404(),
     ])
-    mock_client.get_house_vote_members = AsyncMock(return_value={
-        "houseRollCallVoteMemberVotes": {"results": []},
-    })
+    mock_client.get_house_vote_members = AsyncMock(return_value=_HOUSE_MEMBERS)
 
     count = await sync_house_votes(mock_client, tmp_path, congress=119, session=1, max_vote=3)
 
@@ -524,11 +770,9 @@ async def test_sync_house_votes_rate_limiting(tmp_path):
             "voteQuestion": "Test", "result": "Passed",
             "startDate": "2025-01-10T14:00:00-05:00", "votePartyTotal": [],
         }},
-        Exception("No more"),
+        _house_404(),
     ])
-    mock_client.get_house_vote_members = AsyncMock(return_value={
-        "houseRollCallVoteMemberVotes": {"results": []},
-    })
+    mock_client.get_house_vote_members = AsyncMock(return_value=_HOUSE_MEMBERS)
 
     import unittest.mock
     with unittest.mock.patch("sync.asyncio.sleep", new_callable=AsyncMock) as mock_sleep:
@@ -917,15 +1161,9 @@ async def test_fetch_bill_texts_fetches_missing_text(tmp_path):
     ]})
 
     html_body = "<html><body><p>SECTION 1. " + ("This law does things. " * 400) + "</p></body></html>"
-    mock_resp = MagicMock()
-    mock_resp.text = html_body
-    mock_resp.raise_for_status = MagicMock()
-    mock_http = MagicMock()
-    mock_http.get = AsyncMock(return_value=mock_resp)
-    mock_http.__aenter__ = AsyncMock(return_value=mock_http)
-    mock_http.__aexit__ = AsyncMock(return_value=False)
+    seen: list[str] = []
 
-    with patch("httpx.AsyncClient", return_value=mock_http):
+    with patch("httpx.AsyncClient", _mock_http([_resp_ok(html_body)], seen)):
         count = await fetch_bill_texts(mock_client, tmp_path, rate_limit=0)
 
     assert count == 1
@@ -938,29 +1176,32 @@ async def test_fetch_bill_texts_fetches_missing_text(tmp_path):
     assert "This law does things." in with_text[0]["text"]
     assert "<p>" not in with_text[0]["text"]  # HTML stripped
     assert len(with_text[0]["text"]) <= 6000  # capped
+    assert seen == ["https://congress.gov/text.htm"]
 
 
 def _resp_429():
-    import httpx
-    resp = MagicMock()
-    resp.raise_for_status.side_effect = httpx.HTTPStatusError(
-        "429", request=MagicMock(), response=MagicMock(status_code=429))
-    return resp
+    return 429, {}, ""
 
 
 def _resp_ok(html="<p>SECTION 1. The law does things.</p>"):
-    resp = MagicMock()
-    resp.text = html
-    resp.raise_for_status = MagicMock()
-    return resp
+    return 200, {}, html
 
 
-def _mock_http(responses):
-    http = MagicMock()
-    http.get = AsyncMock(side_effect=responses)
-    http.__aenter__ = AsyncMock(return_value=http)
-    http.__aexit__ = AsyncMock(return_value=False)
-    return http
+def _mock_http(responses, seen: list | None = None):
+    """Stand-in for httpx.AsyncClient: a real client (so streaming and redirects behave as in
+    production) whose requests get the next (status, headers, body) of `responses` through
+    httpx.MockTransport. Each requested URL is appended to `seen`."""
+    import httpx
+    real = httpx.AsyncClient
+    queue = list(responses)
+
+    def handler(request):
+        if seen is not None:
+            seen.append(str(request.url))
+        status, headers, body = queue.pop(0)
+        return httpx.Response(status, headers=headers, text=body)
+
+    return lambda **kwargs: real(transport=httpx.MockTransport(handler), **kwargs)
 
 
 def _text_listing():
@@ -981,7 +1222,7 @@ async def test_fetch_bill_texts_backs_off_and_retries_on_429(tmp_path):
     http = _mock_http([_resp_429(), _resp_ok()])
 
     import unittest.mock
-    with patch("httpx.AsyncClient", return_value=http), \
+    with patch("httpx.AsyncClient", http), \
          unittest.mock.patch("sync.asyncio.sleep", new_callable=AsyncMock) as mock_sleep:
         count = await fetch_bill_texts(mock_client, tmp_path, rate_limit=0)
 
@@ -1007,7 +1248,7 @@ async def test_fetch_bill_texts_stops_run_on_persistent_429(tmp_path):
     http = _mock_http([_resp_429(), _resp_429(), _resp_429()])
 
     import unittest.mock
-    with patch("httpx.AsyncClient", return_value=http), \
+    with patch("httpx.AsyncClient", http), \
          unittest.mock.patch("sync.asyncio.sleep", new_callable=AsyncMock):
         count = await fetch_bill_texts(mock_client, tmp_path, rate_limit=0)
 
@@ -1028,7 +1269,7 @@ async def test_fetch_bill_texts_respects_max_fetches(tmp_path):
     mock_client.get_bill_text = AsyncMock(return_value=_text_listing())
     http = _mock_http([_resp_ok(), _resp_ok(), _resp_ok()])
 
-    with patch("httpx.AsyncClient", return_value=http):
+    with patch("httpx.AsyncClient", http):
         count = await fetch_bill_texts(mock_client, tmp_path, rate_limit=0, max_fetches=2)
 
     assert count == 2
@@ -1664,3 +1905,33 @@ async def test_run_audit_grades_against_latest_summary_and_bill_text(tmp_path, m
     assert context["official_summary"] == "Public Law version."
     assert context["bill_text_excerpt"] == "SEC. 1. SHORT TITLE."
     assert context["latest_action"] == "Became Public Law No: 117-169."
+
+
+# --- sync_donations error output (F047) ---
+
+async def test_donation_errors_print_status_and_path_never_the_query(monkeypatch, tmp_path, capsys):
+    """httpx's own message repeats the full URL; a query-string key must never reach the terminal."""
+    import httpx
+    from app.services import fec_api
+    from sync import sync_donations
+
+    url = "https://api.open.fec.gov/v1/candidates/search/?api_key=SECRET-FEC-KEY&name=X"
+    fake = MagicMock()
+    fake.search_candidate = AsyncMock(side_effect=_http_error(500, url))
+    monkeypatch.setattr(fec_api, "FECClient", MagicMock(return_value=fake))
+    monkeypatch.setenv("FEC_API_KEY", "SECRET-FEC-KEY")
+    _write_json(tmp_path / "members.json", {"members": [
+        {"bioguideId": "A000055", "name": "Aderholt, Robert", "stateCode": "AL", "chamber": "House"}]})
+
+    stats = await sync_donations(tmp_path, rate_limit=0)
+
+    out = capsys.readouterr().out
+    assert stats["errors"] == 1
+    assert "error — HTTP 500 for /v1/candidates/search/" in out
+    assert "SECRET-FEC-KEY" not in out
+
+
+def test_error_summary_names_only_the_exception_type_for_other_errors():
+    import httpx
+    from sync import _error_summary
+    assert _error_summary(httpx.ConnectError("https://x.test/?api_key=SECRET")) == "ConnectError"
