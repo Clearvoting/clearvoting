@@ -1,7 +1,8 @@
 import copy
 import logging
-from fastapi import APIRouter, HTTPException, Path
+from fastapi import APIRouter, HTTPException, Path, Request
 from app.dependencies import get_data_service
+from app.limiter import limiter
 
 logger = logging.getLogger(__name__)
 
@@ -9,7 +10,7 @@ router = APIRouter(prefix="/api/votes", tags=["votes"])
 
 
 @router.get("/latest")
-async def get_latest_vote():
+def get_latest_vote():
     data_service = get_data_service()
     vote = data_service.get_latest_vote()
     if not vote:
@@ -18,7 +19,8 @@ async def get_latest_vote():
 
 
 @router.get("/senate/{congress}/{session}/{vote_number}")
-async def get_senate_vote(congress: int = Path(ge=1, le=200), session: int = Path(ge=1, le=3), vote_number: int = Path(), show_party: bool = False):
+@limiter.limit("60/minute")
+def get_senate_vote(request: Request, congress: int = Path(ge=1, le=200), session: int = Path(ge=1, le=3), vote_number: int = Path(), show_party: bool = False):
     data_service = get_data_service()
     data = data_service.get_senate_vote(congress, session, vote_number)
     if not data:
@@ -32,7 +34,8 @@ async def get_senate_vote(congress: int = Path(ge=1, le=200), session: int = Pat
 
 
 @router.get("/house/{congress}/{session}/{vote_number}")
-async def get_house_vote(congress: int = Path(ge=1, le=200), session: int = Path(ge=1, le=3), vote_number: int = Path(), show_party: bool = False):
+@limiter.limit("60/minute")
+def get_house_vote(request: Request, congress: int = Path(ge=1, le=200), session: int = Path(ge=1, le=3), vote_number: int = Path(), show_party: bool = False):
     data_service = get_data_service()
     data = data_service.get_house_vote(congress, session, vote_number)
     if not data:

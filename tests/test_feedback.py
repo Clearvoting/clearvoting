@@ -28,7 +28,7 @@ def _use_tmp_feedback_file(tmp_path):
         yield tmp_file
 
 
-def _post_feedback(client, **overrides):
+def _post_feedback(client, headers=None, **overrides):
     payload = {
         "message": "Great tool!",
         "page_url": "http://test/",
@@ -37,7 +37,7 @@ def _post_feedback(client, **overrides):
         "context_label": "",
     }
     payload.update(overrides)
-    return client.post("/api/feedback", json=payload)
+    return client.post("/api/feedback", json=payload, headers=headers)
 
 
 # --- Happy path ---
@@ -228,6 +228,41 @@ async def test_feedback_jsonl_fallback_when_no_credentials(tmp_path):
     assert tmp_file.exists()
     entry = json.loads(tmp_file.read_text().strip())
     assert entry["message"] == "No creds feedback"
+
+
+# --- Rate limits (F011, F085) ---
+
+def _ready_sheets():
+    mock = MagicMock()
+    mock.is_available = True
+    mock.append_row.return_value = True
+    return mock
+
+
+@pytest.mark.asyncio
+async def test_sixth_feedback_from_one_client_is_refused_before_any_write():
+    sheets = _ready_sheets()
+    with patch("app.routers.feedback._sheets", sheets):
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            responses = [await _post_feedback(client) for _ in range(6)]
+            other_client = await _post_feedback(client, headers={"X-Forwarded-For": "198.51.100.7"})
+    assert [r.status_code for r in responses] == [200] * 5 + [429]
+    assert responses[5].headers["cache-control"] == "no-store"
+    assert other_client.status_code == 200
+    assert sheets.append_row.call_count == 6  # five from the first client, one from the second
+
+
+@pytest.mark.asyncio
+async def test_feedback_cap_is_shared_by_every_client():
+    """F011: 25 a minute in all, however many addresses send them."""
+    sheets = _ready_sheets()
+    with patch("app.routers.feedback._sheets", sheets):
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            responses = [await _post_feedback(client, headers={"X-Forwarded-For": f"198.51.100.{i}"})
+                         for i in range(1, 27)]
+    assert [r.status_code for r in responses] == [200] * 25 + [429]
+    assert responses[25].headers["cache-control"] == "no-store"
+    assert sheets.append_row.call_count == 25
 
 
 # --- Hooks, dialog and server-filled freshness (plan T2.4; spec §2.2 #5, C-7, §6.4, §6.6, §10 #17) ---

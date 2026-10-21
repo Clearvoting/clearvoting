@@ -631,13 +631,24 @@ async def test_page_endpoint_hides_speaker_candidate_names_and_party():
         assert '"partyName"' not in response.text and '"participation_rate"' not in response.text
 
 
+async def _all_flat_votes(params: str = "") -> list[dict]:
+    """Every row of S000148's flat /votes query, 200 at a time (the route's cap since F006)."""
+    votes: list[dict] = []
+    while True:
+        data = (await _get(f"/api/members/S000148/votes?limit=200&offset={len(votes)}{params}")).json()
+        votes += data["votes"]
+        if not data["votes"] or len(votes) >= data["total_count"]:
+            return votes
+
+
 @pytest.mark.asyncio
 async def test_votes_default_flat_shape_after_member_switch():
     """T6.3 trims the flat /votes payload: no scorecard, and stats without participation_rate."""
-    data = (await _get("/api/members/S000148/votes?limit=2000")).json()
+    data = (await _get("/api/members/S000148/votes?limit=200")).json()
     assert set(data) == OLD_VOTES_KEYS - {"scorecard"}
     assert "participation_rate" not in data["stats"]
-    assert data["total_count"] == 1061 and len(data["votes"]) == 1061
+    assert data["total_count"] == 1061 and len(data["votes"]) == 200
+    assert len(await _all_flat_votes()) == 1061
 
 
 @pytest.mark.asyncio
@@ -652,11 +663,12 @@ async def test_votes_group_bill_honours_limit_and_offset_and_caps_at_fifty():
 
 @pytest.mark.asyncio
 async def test_votes_flat_mode_honours_the_new_filters():
-    data = (await _get("/api/members/S000148/votes?position=no&limit=2000")).json()
+    data = (await _get("/api/members/S000148/votes?position=no&limit=200")).json()
     assert data["total_count"] == 540
-    assert all(v["vote"] in ("Nay", "No") for v in data["votes"])
-    topic = (await _get("/api/members/S000148/votes?policy_area=Health&limit=2000")).json()
-    assert topic["votes"] and all(v["policy_area"] == "Health" for v in topic["votes"])
+    no_votes = await _all_flat_votes("&position=no")
+    assert len(no_votes) == 540 and all(v["vote"] in ("Nay", "No") for v in no_votes)
+    topic = await _all_flat_votes("&policy_area=Health")
+    assert topic and all(v["policy_area"] == "Health" for v in topic)
 
 
 @pytest.mark.asyncio

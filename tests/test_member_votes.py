@@ -156,14 +156,16 @@ async def test_get_member_votes_default_returns_all_congresses():
 
 @pytest.mark.asyncio
 async def test_get_member_votes_high_limit():
-    """High limit (up to 2000) returns all votes."""
+    """The highest limit (200, F006) returns all of a short record; anything above it is a 422."""
     with _patch_data_dir():
         _clear_data_service_cache()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/S001217/votes?limit=2000")
+            response = await client.get("/api/members/S001217/votes?limit=200")
+            too_high = await client.get("/api/members/S001217/votes?limit=201")
 
     _clear_data_service_cache()
     assert response.status_code == 200
     data = response.json()
     assert len(data["votes"]) == data["total_count"]
+    assert too_high.status_code == 422

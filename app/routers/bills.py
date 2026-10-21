@@ -46,7 +46,7 @@ LIST_FIELDS = ("congress", "type", "number", "title", "introducedDate", "latestA
 
 
 @router.get("")
-async def list_bills(
+def list_bills(
     congress: int | None = Query(None, ge=1, le=200),
     offset: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=50),
@@ -60,7 +60,8 @@ async def list_bills(
 
 
 @router.get("/{congress}/{bill_type}/{bill_number}")
-async def get_bill(congress: int = Path(ge=1, le=200), bill_type: str = Path(), bill_number: int = Path()):
+@limiter.limit("60/minute")
+def get_bill(request: Request, congress: int = Path(ge=1, le=200), bill_type: str = Path(), bill_number: int = Path()):
     _validate_bill_type(bill_type)
     data_service = get_data_service()
     result = data_service.get_bill_detail(congress, bill_type, bill_number)
@@ -74,7 +75,7 @@ async def get_bill(congress: int = Path(ge=1, le=200), bill_type: str = Path(), 
 
 @router.get("/{congress}/{bill_type}/{bill_number}/ai-summary")
 @limiter.limit("10/minute")
-async def get_ai_summary(request: Request, congress: int = Path(ge=1, le=200), bill_type: str = Path(), bill_number: int = Path()):
+def get_ai_summary(request: Request, congress: int = Path(ge=1, le=200), bill_type: str = Path(), bill_number: int = Path()):
     _validate_bill_type(bill_type)
     data_service = get_data_service()
     bill_id = f"{congress}-{bill_type.lower()}-{bill_number}"
@@ -85,7 +86,8 @@ async def get_ai_summary(request: Request, congress: int = Path(ge=1, le=200), b
 
 
 @router.get("/{congress}/{bill_type}/{bill_number}/votes")
-def get_bill_votes(congress: int = Path(ge=1, le=200), bill_type: str = Path(), bill_number: int = Path()):
+@limiter.limit("60/minute")
+def get_bill_votes(request: Request, congress: int = Path(ge=1, le=200), bill_type: str = Path(), bill_number: int = Path()):
     _validate_bill_type(bill_type)
     # Additive per roll call (spec §10 #10): plain_question, seal, outcome, state_tallies on
     # every roll call; covered only on the at most two the bill page renders (§4.4 m3, §9.6).

@@ -9,7 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from app.config import BASE_DIR, GOOGLE_SHEETS_CREDENTIALS_JSON, GOOGLE_SHEETS_SPREADSHEET_ID
 from app.dependencies import require_site_json
-from app.limiter import limiter
+from app.limiter import all_clients, limiter
 from app.services.sheets import SheetsService
 
 logger = logging.getLogger(__name__)
@@ -44,7 +44,8 @@ class FeedbackSubmission(BaseModel):
 
 
 @router.post("", dependencies=[Depends(require_site_json)])
-@limiter.limit("5/minute")
+@limiter.limit("25/minute", key_func=all_clients)  # every client together (F011)
+@limiter.limit("5/minute")  # per client, checked first: a refused client spends none of the cap
 async def submit_feedback(feedback: FeedbackSubmission, request: Request) -> dict:
     timestamp = datetime.now(timezone.utc).isoformat()
     entry = {

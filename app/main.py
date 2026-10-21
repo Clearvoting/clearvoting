@@ -411,7 +411,8 @@ app.add_middleware(BodySizeLimitMiddleware)
 
 
 @app.get("/api/health")
-async def health_check(response: Response) -> dict:
+@limiter.exempt
+def health_check(response: Response) -> dict:
     """Ops and deploy check. 503 when the load left no members or no bills: a sync that wiped
     either still loads without an exception, and must not read as a healthy deploy (F028)."""
     from app.dependencies import get_data_service
@@ -835,6 +836,7 @@ _FAVICON_SVG = (static_dir / "favicon.svg").read_bytes()
 
 
 @app.get("/favicon.ico", include_in_schema=False)
+@limiter.exempt
 def serve_favicon() -> Response:
     return Response(
         content=_FAVICON_SVG,
@@ -901,6 +903,7 @@ def serve_sitemap() -> Response:
 
 
 @app.get("/robots.txt")
+@limiter.exempt
 async def serve_robots() -> PlainTextResponse:
     body = f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n"
     return PlainTextResponse(body)

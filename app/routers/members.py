@@ -1,9 +1,10 @@
 import re
 import copy
 import logging
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, Request
 from app import render
 from app.dependencies import get_data_service
+from app.limiter import limiter
 from app.services.data_service import RECORD_API_MAX_GROUPS
 
 logger = logging.getLogger(__name__)
@@ -25,7 +26,7 @@ def _validate_state_code(state_code: str) -> str:
 
 
 @router.get("/{bioguide_id}/donations")
-async def get_member_donations(bioguide_id: str):
+def get_member_donations(bioguide_id: str):
     _validate_bioguide_id(bioguide_id)
     data_service = get_data_service()
     donations = data_service.get_member_donations(bioguide_id)
@@ -35,7 +36,8 @@ async def get_member_donations(bioguide_id: str):
 
 
 @router.get("/{bioguide_id}/sponsored")
-async def get_member_sponsored_bills(bioguide_id: str):
+@limiter.limit("60/minute")
+def get_member_sponsored_bills(request: Request, bioguide_id: str):
     _validate_bioguide_id(bioguide_id)
     data_service = get_data_service()
     bills = data_service.get_bills_by_sponsor(bioguide_id)
@@ -46,10 +48,12 @@ _POSITION_PATTERN = "^(yes|no|nv)$"
 
 
 @router.get("/{bioguide_id}/votes")
-async def get_member_votes(
+@limiter.limit("60/minute")
+def get_member_votes(
+    request: Request,
     bioguide_id: str,
     congress: int | None = Query(None, ge=1, le=200),
-    limit: int = Query(20, ge=1, le=2000),
+    limit: int = Query(20, ge=1, le=200),
     offset: int = Query(0, ge=0),
     group: str | None = Query(None, pattern="^bill$", description="'bill' returns the record grouped by bill (at most 50 groups)"),
     plain: bool = Query(False, description="Only votes on bills with a plain-English summary"),
@@ -101,7 +105,9 @@ async def get_member_votes(
 
 
 @router.get("/{bioguide_id}/page")
+@limiter.limit("60/minute")
 def get_member_page(
+    request: Request,
     bioguide_id: str,
     page: int = Query(1, ge=1, le=10000),
     topic: str | None = Query(None, max_length=120),
@@ -121,7 +127,7 @@ def get_member_page(
 
 
 @router.get("/counts")
-async def get_member_counts():
+def get_member_counts():
     """Members synced per state — powers the homepage state cards with real
     numbers rather than theoretical seat totals."""
     data_service = get_data_service()
@@ -154,7 +160,7 @@ def get_state_overview(
 
 
 @router.get("/{state_code}")
-async def get_members_by_state(
+def get_members_by_state(
     state_code: str,
     show_party: bool = Query(False, description="Include party labels (hidden by default)"),
 ):
@@ -164,7 +170,8 @@ async def get_members_by_state(
 
 
 @router.get("/detail/{bioguide_id}")
-async def get_member_detail(bioguide_id: str, show_party: bool = False):
+@limiter.limit("60/minute")
+def get_member_detail(request: Request, bioguide_id: str, show_party: bool = False):
     _validate_bioguide_id(bioguide_id)
     data_service = get_data_service()
     data = data_service.get_member_detail(bioguide_id)
@@ -178,7 +185,7 @@ async def get_member_detail(bioguide_id: str, show_party: bool = False):
 
 
 @router.get("/{state_code}/{district}")
-async def get_members_by_district(state_code: str, district: int):
+def get_members_by_district(state_code: str, district: int):
     state_code = _validate_state_code(state_code)
     data = get_data_service().get_members_by_district(state_code, district)
     return _strip_party(data)

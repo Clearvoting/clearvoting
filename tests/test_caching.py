@@ -135,6 +135,32 @@ async def test_429_is_never_stored():
 
 
 @pytest.mark.asyncio
+async def test_site_wide_limit_is_never_stored_and_spares_static_and_health():
+    """F007: routes without a limit of their own share one per-client budget of 600 a minute.
+    Its 429 is no-store, another client is unaffected, and /static, /favicon.ico, /robots.txt
+    and /api/health stay open."""
+    limiter.reset()
+    try:
+        with _patch_data_dir():
+            _clear_data_service_cache()
+            async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+                codes = [(await client.get(("/privacy", "/api/members/counts")[i % 2])).status_code
+                         for i in range(600)]
+                limited = await client.get("/about")
+                other_client = await client.get("/about", headers={"X-Forwarded-For": "198.51.100.7"})
+                exempt = [(await client.get(path)).status_code for path in (
+                    f"/static/css/site.css?v={main._asset_version}", "/favicon.ico", "/robots.txt", "/api/health")]
+        assert codes == [200] * 600
+        assert limited.status_code == 429
+        assert limited.headers["cache-control"] == "no-store"
+        assert other_client.status_code == 200
+        assert exempt == [200] * 4
+    finally:
+        limiter.reset()
+        _clear_data_service_cache()
+
+
+@pytest.mark.asyncio
 async def test_500_is_never_stored():
     with patch(
         "app.services.data_service.DataService.get_sync_metadata",

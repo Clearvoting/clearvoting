@@ -1,6 +1,7 @@
 import logging
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Request
 from app.dependencies import get_data_service
+from app.limiter import limiter
 from app.routers.bills import LIST_FIELDS
 
 logger = logging.getLogger(__name__)
@@ -46,7 +47,9 @@ def _bill_matches(bill: dict, q_lower: str) -> bool:
 
 
 @router.get("/bills")
-async def search_bills(
+@limiter.limit("60/minute")
+def search_bills(
+    request: Request,
     q: str = Query(..., min_length=1),
     congress: int | None = Query(None, ge=1, le=200),
     offset: int = Query(0, ge=0),

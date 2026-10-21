@@ -136,3 +136,81 @@ async def test_notify_accepts_uncovered_states_and_dc(tmp_path, state, stored):
         resp = await _post_notify({"email": "voter@example.com", "state": state})
     assert resp.status_code == 200
     assert mock_sheets.append_row.call_args[0][0][2] == stored
+
+
+# --- Rate limits (F011, F085) ---
+
+CF_EDGE = "172.70.12.34"  # inside Cloudflare's 172.64.0.0/13
+SIGNUP = {"email": "voter@example.com", "state": "OH"}
+
+
+def _via_cloudflare(ip: str, edge: str = CF_EDGE) -> dict:
+    return {"CF-Connecting-IP": ip, "X-Forwarded-For": f"{ip}, {edge}"}
+
+
+async def _post_each(headers_list):
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        return [await client.post("/api/notify", json=SIGNUP, headers=headers) for headers in headers_list]
+
+
+@pytest.mark.asyncio
+async def test_sixth_signup_from_one_client_is_refused_before_any_write(tmp_path):
+    tmp_file = tmp_path / "notify_signups.jsonl"
+    mock_sheets = _make_sheets()
+    with patch("app.routers.notify.NOTIFY_FILE", tmp_file), \
+         patch("app.routers.notify._sheets", mock_sheets):
+        responses = await _post_each([{}] * 6)
+    assert [r.status_code for r in responses] == [200] * 5 + [429]
+    assert responses[5].headers["cache-control"] == "no-store"
+    assert mock_sheets.append_row.call_count == 5
+    assert not tmp_file.exists()
+
+
+@pytest.mark.asyncio
+async def test_spoofed_cf_connecting_ip_gets_no_fresh_bucket(tmp_path):
+    """F011: sent straight to the origin, a new CF-Connecting-IP on every request is still one
+    client, keyed by the hop Render's proxy saw."""
+    mock_sheets = _make_sheets()
+    with patch("app.routers.notify.NOTIFY_FILE", tmp_path / "notify_signups.jsonl"), \
+         patch("app.routers.notify._sheets", mock_sheets):
+        responses = await _post_each([_via_cloudflare(f"203.0.113.{i}", edge="198.51.100.7") for i in range(6)])
+    assert [r.status_code for r in responses] == [200] * 5 + [429]
+    assert mock_sheets.append_row.call_count == 5
+
+
+@pytest.mark.asyncio
+async def test_cf_connecting_ip_through_cloudflare_is_honoured(tmp_path):
+    """Six visitors behind one Cloudflare edge are six clients; each still gets only five."""
+    mock_sheets = _make_sheets()
+    visitors = [_via_cloudflare(f"203.0.113.{i}") for i in range(6)]
+    with patch("app.routers.notify.NOTIFY_FILE", tmp_path / "notify_signups.jsonl"), \
+         patch("app.routers.notify._sheets", mock_sheets):
+        first = await _post_each(visitors)
+        repeat = await _post_each([visitors[0]] * 5)
+    assert [r.status_code for r in first] == [200] * 6
+    assert [r.status_code for r in repeat] == [200] * 4 + [429]
+
+
+@pytest.mark.asyncio
+async def test_signups_inside_one_ipv6_64_share_a_bucket(tmp_path):
+    mock_sheets = _make_sheets()
+    edge = "2606:4700:10::1"
+    with patch("app.routers.notify.NOTIFY_FILE", tmp_path / "notify_signups.jsonl"), \
+         patch("app.routers.notify._sheets", mock_sheets):
+        same_64 = await _post_each([_via_cloudflare(f"2001:db8:1:2::{i + 1:x}", edge) for i in range(6)])
+        next_64 = await _post_each([_via_cloudflare("2001:db8:1:3::1", edge)])
+    assert [r.status_code for r in same_64] == [200] * 5 + [429]
+    assert next_64[0].status_code == 200
+
+
+@pytest.mark.asyncio
+async def test_notify_cap_is_shared_by_every_client(tmp_path):
+    """F011: 25 a minute in all, however many addresses send them."""
+    mock_sheets = _make_sheets()
+    with patch("app.routers.notify.NOTIFY_FILE", tmp_path / "notify_signups.jsonl"), \
+         patch("app.routers.notify._sheets", mock_sheets):
+        responses = await _post_each([_via_cloudflare(f"203.0.113.{i}") for i in range(1, 27)])
+    assert [r.status_code for r in responses] == [200] * 25 + [429]
+    assert responses[25].headers["cache-control"] == "no-store"
+    assert mock_sheets.append_row.call_count == 25

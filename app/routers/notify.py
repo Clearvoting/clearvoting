@@ -10,7 +10,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from app.config import BASE_DIR, GOOGLE_SHEETS_CREDENTIALS_JSON, GOOGLE_SHEETS_SPREADSHEET_ID
 from app.dependencies import require_site_json
-from app.limiter import limiter
+from app.limiter import all_clients, limiter
 from app.render import NOTIFY_STATES
 from app.services.sheets import SheetsService
 
@@ -63,7 +63,8 @@ class NotifySignup(BaseModel):
 
 
 @router.post("", dependencies=[Depends(require_site_json)])
-@limiter.limit("5/minute")
+@limiter.limit("25/minute", key_func=all_clients)  # every client together (F011)
+@limiter.limit("5/minute")  # per client, checked first: a refused client spends none of the cap
 async def submit_signup(signup: NotifySignup, request: Request) -> dict:
     # Spec §10 #16: the form lists only the 46 uncovered states + DC; anything else
     # (missing, a covered state, a name, a typo) is refused before anything is stored.
