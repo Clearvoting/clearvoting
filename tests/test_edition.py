@@ -73,6 +73,36 @@ def test_edition_is_empty_when_nothing_is_known():
     assert render.render_edition(None, None, datetime(2026, 11, 10, 12, 0, tzinfo=LA)) == ""
 
 
+@pytest.mark.parametrize("last_sync", [20261001, 2026.5, ["2026-10-01"], {"at": "2026-10-01"}, "garbage"])
+def test_edition_drops_a_last_sync_that_is_not_a_date(last_sync):
+    # F067: an int last_sync raised in format_date and 500ed every page, 404s included; a
+    # string that is not a date printed as "Data synced garbage". Both now drop the part.
+    html = render.render_edition(last_sync, "2026-09-03", SEP_22)
+    assert "Data synced" not in html
+    assert "Latest roll call September 3" in html
+
+
+def test_edition_failure_drops_only_the_line():
+    with _patch_data_dir(), patch("app.render.render_edition", side_effect=RuntimeError("boom")):
+        assert main._edition_html() == ""
+
+
+@pytest.mark.parametrize("metadata", ['{"last_sync": 20261001}', "[]", '"2026-10-01"', "{not json"])
+def test_pages_survive_a_malformed_sync_metadata_file(tmp_path, metadata):
+    from fastapi.testclient import TestClient
+    for entry in FIXTURES.iterdir():
+        if entry.name != "sync_metadata.json":
+            (tmp_path / entry.name).symlink_to(entry)
+    (tmp_path / "sync_metadata.json").write_text(metadata)
+    client = TestClient(main.app)
+    with patch("app.dependencies.get_data_dir", return_value=tmp_path):
+        for path, status in (("/about", 200), ("/privacy", 200), ("/state?code=NY", 200),
+                             ("/no-such-page", 404), ("/api/health", 200)):
+            response = client.get(path)
+            assert response.status_code == status, path
+            assert "Data synced" not in response.text
+
+
 def test_countdown_without_a_tz_database(monkeypatch):
     def _missing(name):
         raise ZoneInfoNotFoundError(name)

@@ -1,8 +1,10 @@
+import gc
 import hashlib
 import logging
 import mimetypes
 import os
 import re
+from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from html import escape
 from xml.sax.saxutils import escape as xml_escape
@@ -35,7 +37,24 @@ from app.routers.notify import router as notify_router
 from app.routers.districts import router as districts_router
 from app.services.ai_summary import SYSTEM_PROMPT
 
-app = FastAPI(title="ClearVoting", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None)
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    """Load the data once, before uvicorn opens the port (F003, F030). Requests never race
+    on the first load, and a data file that cannot be loaded fails startup, so Render fails
+    the deploy and keeps the previous one serving. The loaded data lives as long as the
+    process, so it is frozen out of the garbage collector's full scans (F072); collecting
+    first keeps import-time garbage from being frozen with it."""
+    from app.dependencies import get_data_service
+    data_service = get_data_service()
+    logger.info("data loaded: %d members, %d bills", len(data_service._members), len(data_service._bills))
+    gc.collect()
+    gc.freeze()
+    yield
+
+
+app = FastAPI(title="ClearVoting", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None,
+              lifespan=lifespan)
 app.state.limiter = limiter
 app.add_middleware(SlowAPIMiddleware)
 
@@ -179,13 +198,19 @@ def _fill_freshness(html: str) -> str:
 
 
 def _edition_html() -> str:
+    """The masthead edition line. It sits outside every page's _page_content, so a failure
+    here logs and drops the line instead of turning every page, 404s included, into a 500 (F067)."""
     from app.dependencies import get_data_service
-    data_service = get_data_service()
-    return render.render_edition(
-        data_service.get_sync_metadata().get("last_sync"),
-        data_service.latest_roll_call_date(),
-        datetime.now(timezone.utc),
-    )
+    try:
+        data_service = get_data_service()
+        return render.render_edition(
+            data_service.get_sync_metadata().get("last_sync"),
+            data_service.latest_roll_call_date(),
+            datetime.now(timezone.utc),
+        )
+    except Exception:
+        logger.exception("edition line failed")
+        return ""
 
 
 def _page_content(build, meta: dict) -> tuple[str, int]:
@@ -302,7 +327,9 @@ async def add_security_headers(request: Request, call_next):
 
 
 @app.get("/api/health")
-async def health_check() -> dict:
+async def health_check(response: Response) -> dict:
+    """Ops and deploy check. 503 when the load left no members or no bills: a sync that wiped
+    either still loads without an exception, and must not read as a healthy deploy (F028)."""
     from app.dependencies import get_data_service
     data_service = get_data_service()
     metadata = data_service.get_sync_metadata()
@@ -316,11 +343,15 @@ async def health_check() -> dict:
         for b in data_service._bills
     }
     covered = len(bill_keys & set(data_service._ai_summaries))
+    members = len(data_service._members)
+    healthy = members > 0 and bills > 0
+    if not healthy:
+        response.status_code = 503
     return {
-        "status": "ok",
+        "status": "ok" if healthy else "error",
         "version": "0.1.0",
         "last_sync": metadata.get("last_sync"),
-        "members": len(data_service._members),
+        "members": members,
         "bills": bills,
         "ai_summaries": ai_summaries,
         "member_summaries": len(data_service._member_summaries),

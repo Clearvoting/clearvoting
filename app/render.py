@@ -657,10 +657,12 @@ def _pacific_today(now: datetime) -> date:
 
 
 def render_edition(last_sync: str | None, latest_roll_call: str | None, now: datetime) -> str:
-    """The one-line edition under the masthead nav (spec §7.4, §6.4)."""
+    """The one-line edition under the masthead nav (spec §7.4, §6.4). A last_sync that is not
+    a date string (a hand edit, an int) drops the "Data synced" part rather than raising (F067)."""
     parts: list[tuple[str, str]] = []
-    if last_sync:
-        parts.append(("", f"Data synced {format_date(last_sync[:10])}"))
+    synced_day = _trust_iso(last_sync) if isinstance(last_sync, str) else None
+    if synced_day:
+        parts.append(("", f"Data synced {format_date(synced_day)}"))
     if latest_roll_call:
         month_day = format_date(latest_roll_call[:10]).rsplit(",", 1)[0]
         parts.append(("edition-mid", f"Latest roll call {month_day}"))

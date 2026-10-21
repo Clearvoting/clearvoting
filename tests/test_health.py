@@ -66,11 +66,31 @@ async def test_health_check_zero_bills_coverage(tmp_path):
             response = await client.get("/api/health")
 
     _clear_data_service_cache()
-    assert response.status_code == 200
+    # An empty load is not a healthy deploy (F028): 503, never cached, same body.
+    assert response.status_code == 503
+    assert response.headers["cache-control"] == "no-store"
     data = response.json()
+    assert data["status"] == "error"
     assert data["members"] == 0
     assert data["bills"] == 0
     assert data["summary_coverage"] == 0
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("emptied", ["members.json", "bills.json"])
+async def test_health_check_fails_when_members_or_bills_are_empty(tmp_path, emptied):
+    for name in ("members.json", "bills.json"):
+        (tmp_path / name).write_text((FIXTURES / name).read_text())
+    (tmp_path / emptied).write_text(json.dumps({emptied.removesuffix(".json"): []}))
+    with _patch_data_dir(tmp_path):
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/health")
+    assert response.status_code == 503
+    data = response.json()
+    assert data["status"] == "error"
+    assert (data["members"] == 0) == (emptied == "members.json")
+    assert (data["bills"] == 0) == (emptied == "bills.json")
 
 
 # --- Freshness and coverage facts (spec §7.4, §4.6, §10 #11; plan T1.10) ---

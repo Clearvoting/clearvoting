@@ -483,6 +483,7 @@ class DataService:
         # Coverage numbers for /api/health, /about and /methodology; computed once.
         self._coverage: dict | None = None
         self._earliest_rc: tuple[str | None] | None = None  # (date,) once computed; the index never changes after startup
+        self._newest_rc: tuple[str | None] | None = None  # (date,) once computed, as _earliest_rc
         self._load()
 
     def _load(self) -> None:
@@ -493,29 +494,35 @@ class DataService:
         if not self._bills:
             logger.error("Loaded 0 bills from %s — site will serve empty bill data", self.data_dir / "bills.json")
         self._ai_summaries = self._read_json("ai_summaries.json")
-        self._member_summaries = self._read_json("member_summaries.json")
-        self._donations = self._read_json("donations.json")
-        self._audit_grades = self._read_json("audit_grades.json")
+        self._member_summaries = self._read_optional_json("member_summaries.json")
+        self._donations = self._read_optional_json("donations.json")
+        self._audit_grades = self._read_optional_json("audit_grades.json")
         # One read at startup replaces the per-request scans of votes/ (§9.6).
         self._votes_index = self._read_json("votes_index.json")
         self._index_bills()
         if not self._votes_index:
             logger.warning("votes_index.json missing in %s — run: python sync.py --step votes-index", self.data_dir)
-        metadata_path = self.data_dir / "sync_metadata.json"
-        if metadata_path.exists():
-            self._metadata = self._read_json("sync_metadata.json")
-        self._senate_file = self._read_json("senate_2026.json")
-        seats = self._senate_file.get("seats") or []
-        self._senate_2026 = {s["bioguideId"]: s for s in seats if s.get("bioguideId")}
+        self._metadata = self._read_optional_json("sync_metadata.json")
+        self._senate_file = self._read_optional_json("senate_2026.json")
+        try:
+            seats = self._senate_file.get("seats") or []
+            self._senate_2026 = {s["bioguideId"]: s for s in seats if s.get("bioguideId")}
+        except (AttributeError, TypeError) as exc:
+            logger.error("senate_2026.json seats are malformed — serving without them: %s", exc)
+            self._senate_file, self._senate_2026 = {}, {}
         # §5.1: keys starting with "_" (the _source block) are metadata, not ZCTAs.
-        crosswalk = self._read_json("zip_districts.json")
-        self._crosswalk_source = crosswalk.get("_source") or {}
-        self._zip_districts = {key: rows for key, rows in crosswalk.items() if not key.startswith("_")}
-        for rows in self._zip_districts.values():
-            for row in rows:
-                state, district = row.get("state"), row.get("district")
-                if state and isinstance(district, int):
-                    self._districts_expected[state] = max(self._districts_expected.get(state, 0), district)
+        crosswalk = self._read_optional_json("zip_districts.json")
+        try:
+            self._crosswalk_source = crosswalk.get("_source") or {}
+            self._zip_districts = {key: rows for key, rows in crosswalk.items() if not key.startswith("_")}
+            for rows in self._zip_districts.values():
+                for row in rows:
+                    state, district = row.get("state"), row.get("district")
+                    if state and isinstance(district, int):
+                        self._districts_expected[state] = max(self._districts_expected.get(state, 0), district)
+        except (AttributeError, TypeError) as exc:
+            logger.error("zip_districts.json rows are malformed — serving without the ZIP lookup: %s", exc)
+            self._crosswalk_source, self._zip_districts, self._districts_expected = {}, {}, {}
         for m in self._members:
             state, bioguide = m.get("stateCode"), m.get("bioguideId")
             if not state or not bioguide:
@@ -533,6 +540,22 @@ class DataService:
             return {}
         with open(path, "r") as f:
             return json.load(f)
+
+    def _read_optional_json(self, filename: str) -> dict:
+        """A file the site can serve without (F030). When it is malformed or not a JSON object,
+        log an error and load {}, so one bad file drops its own feature instead of failing the
+        whole load. members.json, bills.json, ai_summaries.json and votes_index.json go through
+        _read_json and still fail it, which fails startup and keeps the previous deploy live."""
+        try:
+            data = self._read_json(filename)
+        except (OSError, ValueError) as exc:
+            logger.error("Could not load %s — serving without it: %s", self.data_dir / filename, exc)
+            return {}
+        if not isinstance(data, dict):
+            logger.error("%s holds a JSON %s, not an object — serving without it",
+                         self.data_dir / filename, type(data).__name__)
+            return {}
+        return data
 
     def get_members_by_state(self, state_code: str) -> dict:
         state_code = state_code.upper()
@@ -915,9 +938,12 @@ class DataService:
         return dict(self._coverage)
 
     def latest_roll_call_date(self) -> str | None:
-        """The newest roll-call date in the index (ISO), for the edition line and health."""
-        dates = (str(rc.get("date") or "")[:10] for rc in self._index_roll_calls().values())
-        return max((d for d in dates if d), default=None)
+        """The newest roll-call date in the index (ISO), for the edition line on every page and
+        health. Computed once, then served from memory (§9.1 request path), as the earliest."""
+        if self._newest_rc is None:
+            dates = (str(rc.get("date") or "")[:10] for rc in self._index_roll_calls().values())
+            self._newest_rc = (max((d for d in dates if d), default=None),)
+        return self._newest_rc[0]
 
     def earliest_roll_call_date(self) -> str | None:
         """The oldest roll-call date in the index (ISO): the "since January 2021" of the home

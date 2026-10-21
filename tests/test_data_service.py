@@ -352,3 +352,65 @@ def test_earliest_roll_call_date_reads_the_index(data_service):
 
 def test_earliest_roll_call_date_without_an_index(tmp_path):
     assert DataService(data_dir=tmp_path).earliest_roll_call_date() is None
+
+
+def test_latest_roll_call_date_scans_the_index_once(data_service, monkeypatch):
+    # F091: the edition line asks on every page; the index never changes after startup.
+    first = data_service.latest_roll_call_date()
+    monkeypatch.setattr(data_service, "_index_roll_calls", lambda: pytest.fail("rescanned the index"))
+    assert data_service.latest_roll_call_date() == first
+
+
+# --- Malformed files at load (F030): non-essential ones degrade, core ones fail the load ---
+
+def _fixtures_with(tmp_path, filename, text):
+    """The fixture data dir with one file replaced (the rest are symlinks)."""
+    for entry in FIXTURES.iterdir():
+        if entry.name != filename:
+            (tmp_path / entry.name).symlink_to(entry)
+    (tmp_path / filename).write_text(text)
+    return tmp_path
+
+
+@pytest.mark.parametrize("filename, text, attr", [
+    ("donations.json", '{"S000148": {"cycle": "2024"', "_donations"),        # truncated
+    ("audit_grades.json", "[]", "_audit_grades"),                             # not an object
+    ("member_summaries.json", "<<<<<<< HEAD\n{}", "_member_summaries"),       # merge markers
+    ("sync_metadata.json", "[]", "_metadata"),
+    ("senate_2026.json", '{"seats": "C001056"}', "_senate_2026"),
+    ("zip_districts.json", '{"11570": "NY-4"}', "_zip_districts"),
+])
+def test_a_malformed_non_essential_file_loads_as_empty(tmp_path, caplog, filename, text, attr):
+    with caplog.at_level(logging.ERROR, logger="app.services.data_service"):
+        ds = DataService(data_dir=_fixtures_with(tmp_path, filename, text))
+    assert getattr(ds, attr) == {}
+    assert filename in caplog.text
+    assert ds._members and ds._bills and ds._votes_index
+
+
+def test_a_malformed_crosswalk_drops_the_whole_zip_lookup(tmp_path):
+    # The good row before the bad one must not leave a half-built district count behind.
+    crosswalk = '{"11570": [{"state": "NY", "district": 4, "share": 1.0}, "NY-4"]}'
+    ds = DataService(data_dir=_fixtures_with(tmp_path, "zip_districts.json", crosswalk))
+    assert ds.lookup_zip("11570") == {"zip": "11570", "kind": "none", "matches": []}
+    assert ds.districts_expected("NY") == 0
+    assert ds._crosswalk_source == {}
+
+
+def test_malformed_senate_seats_answer_as_if_the_file_were_absent(tmp_path):
+    seats = '{"seats": [{"bioguideId": "C001056", "kind": "regular"}, 7]}'
+    ds = DataService(data_dir=_fixtures_with(tmp_path, "senate_2026.json", seats))
+    assert ds.seat_up_2026({"bioguideId": "C001056", "chamber": "Senate"}) is None
+    assert ds._senate_file == {}
+
+
+@pytest.mark.parametrize("filename, text", [
+    ("members.json", '{"members": [{"bioguideId": "S000148"'),
+    ("bills.json", '{"bills": null}'),
+    ("ai_summaries.json", "{"),
+    ("votes_index.json", "<<<<<<< HEAD\n{}"),
+])
+def test_a_malformed_core_file_still_fails_the_load(tmp_path, filename, text):
+    # Startup then fails and Render keeps the previous deploy serving (main.lifespan).
+    with pytest.raises((ValueError, TypeError, AttributeError)):
+        DataService(data_dir=_fixtures_with(tmp_path, filename, text))
