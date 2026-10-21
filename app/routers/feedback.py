@@ -1,8 +1,10 @@
 import json
 import logging
+import threading
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, Request
+from fastapi.concurrency import run_in_threadpool
 from pydantic import BaseModel, ConfigDict, Field
 
 from app.config import BASE_DIR, GOOGLE_SHEETS_CREDENTIALS_JSON, GOOGLE_SHEETS_SPREADSHEET_ID
@@ -17,6 +19,17 @@ router = APIRouter(prefix="/api/feedback", tags=["feedback"])
 FEEDBACK_FILE = BASE_DIR / "data" / "feedback.jsonl"
 
 _sheets = SheetsService(GOOGLE_SHEETS_CREDENTIALS_JSON, GOOGLE_SHEETS_SPREADSHEET_ID)
+
+# The fallback write runs in threadpool threads (F005); the lock keeps two lines
+# written at once from interleaving.
+_file_lock = threading.Lock()
+
+
+def _save_to_file(entry: dict) -> None:
+    with _file_lock:
+        FEEDBACK_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(FEEDBACK_FILE, "a", encoding="utf-8") as f:
+            f.write(json.dumps(entry) + "\n")
 
 
 class FeedbackSubmission(BaseModel):
@@ -46,12 +59,12 @@ async def submit_feedback(feedback: FeedbackSubmission, request: Request) -> dic
     row = [timestamp, feedback.message, feedback.page_url,
            feedback.page_type, feedback.context_id, feedback.context_label]
 
-    if _sheets.is_available and _sheets.append_row(row):
+    # gspread and the file write are synchronous — run them off the event loop (F005).
+    if _sheets.is_available and await run_in_threadpool(_sheets.append_row, row):
         logger.info("Feedback saved to Google Sheets: page_type=%s", feedback.page_type)
     else:
-        FEEDBACK_FILE.parent.mkdir(parents=True, exist_ok=True)
-        with open(FEEDBACK_FILE, "a", encoding="utf-8") as f:
-            f.write(json.dumps(entry) + "\n")
-        logger.info("Feedback saved to JSONL: page_type=%s", feedback.page_type)
+        await run_in_threadpool(_save_to_file, entry)
+        # WARNING: the file does not survive a deploy, so this needs to be seen (F031).
+        logger.warning("Feedback saved to JSONL fallback: page_type=%s", feedback.page_type)
 
     return {"status": "ok"}

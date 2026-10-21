@@ -1,6 +1,7 @@
 import json
 import logging
 import re
+import threading
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException, Request
@@ -27,6 +28,18 @@ _sheets = SheetsService(
     worksheet_title="Notify Signups",
     headers=["Timestamp", "Email", "State"],
 )
+
+# The fallback write runs in threadpool threads (F005); the lock keeps two lines
+# written at once from interleaving.
+_file_lock = threading.Lock()
+
+
+def _save_to_file(entry: dict) -> None:
+    with _file_lock:
+        NOTIFY_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(NOTIFY_FILE, "a", encoding="utf-8") as f:
+            f.write(json.dumps(entry) + "\n")
+
 
 # Pragmatic email shape check — we have no email-validator dependency and don't
 # need RFC-perfect validation to collect a launch waitlist.
@@ -67,9 +80,7 @@ async def submit_signup(signup: NotifySignup, request: Request) -> dict:
         return {"status": "ok"}
 
     entry = {"timestamp": timestamp, "email": signup.email, "state": state}
-    NOTIFY_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with open(NOTIFY_FILE, "a", encoding="utf-8") as f:
-        f.write(json.dumps(entry) + "\n")
+    await run_in_threadpool(_save_to_file, entry)
     # Never log the email (spec §10 #16); the JSONL copy is the fallback record.
     logger.warning("signup saved to fallback, state=%s", state)
     return {"status": "ok"}

