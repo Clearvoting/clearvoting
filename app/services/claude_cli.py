@@ -8,10 +8,28 @@ subscription — no API billing required.
 import asyncio
 import logging
 import os
+import shutil
+import tempfile
 
 from app.services.grader_common import CLAUDE_MODEL
 
 logger = logging.getLogger(__name__)
+
+# Never passed to the CLI. CLAUDECODE blocks a nested run and ANTHROPIC_API_KEY
+# would pull it off the Max-plan login. The rest (plus any ACTIONS_* runner
+# token) are credentials it never uses, kept out of a process whose prompts carry
+# third-party bill text. Its own login (CLAUDE_CODE_OAUTH_TOKEN in CI, the
+# keychain locally) stays.
+_ENV_NOT_FOR_CLI = frozenset({
+    "CLAUDECODE",
+    "ANTHROPIC_API_KEY",
+    "CONGRESS_API_KEY",
+    "FEC_API_KEY",
+    "GOOGLE_SHEETS_CREDENTIALS_JSON",
+    "GOOGLE_SHEETS_SPREADSHEET_ID",
+    "GITHUB_TOKEN",
+    "GH_TOKEN",
+})
 
 
 async def call_claude_cli(
@@ -23,11 +41,17 @@ async def call_claude_cli(
     full_prompt = f"INSTRUCTIONS:\n{system_prompt}\n\nTASK:\n{user_prompt}\n\nCRITICAL: Your entire response must be ONLY the raw JSON object. Do not write ANY text before or after the JSON. No introduction, no explanation, no commentary, no markdown code fences. Start your response with {{ and end with }}."
 
     # Remove CLAUDECODE env var to allow nested CLI invocation.
-    # Run from /tmp to avoid picking up project CLAUDE.md and hooks
-    # which can cause conversational responses instead of raw JSON.
-    env = {k: v for k, v in os.environ.items() if k not in ("CLAUDECODE", "ANTHROPIC_API_KEY")}
+    # Run from a fresh private temp dir (not the project, not the shared /tmp)
+    # to avoid picking up project CLAUDE.md and hooks which can cause
+    # conversational responses instead of raw JSON. Session transcripts land in
+    # ~/.claude/projects/*clearvote-claude-*/, one folder per call.
+    env = {
+        k: v for k, v in os.environ.items()
+        if k not in _ENV_NOT_FOR_CLI and not k.startswith("ACTIONS_")
+    }
+    workdir = tempfile.mkdtemp(prefix="clearvote-claude-")
 
-    # cwd=/tmp alone still loads user-level config: plugin SessionStart hooks
+    # The temp cwd alone still loads user-level config: plugin SessionStart hooks
     # (the explanatory output style prepended "★ Insight" prose to grader JSON)
     # and ~/.claude/CLAUDE.md. An empty --setting-sources skips all of it while
     # keeping OAuth auth (keychain locally, CLAUDE_CODE_OAUTH_TOKEN in CI) and
@@ -36,31 +60,34 @@ async def call_claude_cli(
     # the built-in tool definitions tripled per-call prompt overhead (~23k -> ~6k).
     # --strict-mcp-config: --tools "" doesn't cover the account's claude.ai
     # connectors (Gmail, Drive, ...), which otherwise attach whenever they load in time.
-    proc = await asyncio.create_subprocess_exec(
-        "claude", "-p",
-        "--output-format", "text",
-        "--model", model,
-        "--setting-sources", "",
-        "--tools", "",
-        "--strict-mcp-config",
-        stdin=asyncio.subprocess.PIPE,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
-        env=env,
-        cwd="/tmp",
-    )
-    # 360s: grader calls regularly exceeded the old 120s under parallel batches,
-    # which discarded the writer's (already-billed) output and burned usage
-    # windows producing nothing.
     try:
-        stdout, stderr = await asyncio.wait_for(
-            proc.communicate(input=full_prompt.encode("utf-8")),
-            timeout=360,
+        proc = await asyncio.create_subprocess_exec(
+            "claude", "-p",
+            "--output-format", "text",
+            "--model", model,
+            "--setting-sources", "",
+            "--tools", "",
+            "--strict-mcp-config",
+            stdin=asyncio.subprocess.PIPE,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+            env=env,
+            cwd=workdir,
         )
-    except asyncio.TimeoutError:
-        proc.kill()
-        await proc.wait()
-        raise RuntimeError("claude CLI timed out after 360 seconds")
+        # 360s: grader calls regularly exceeded the old 120s under parallel batches,
+        # which discarded the writer's (already-billed) output and burned usage
+        # windows producing nothing.
+        try:
+            stdout, stderr = await asyncio.wait_for(
+                proc.communicate(input=full_prompt.encode("utf-8")),
+                timeout=360,
+            )
+        except asyncio.TimeoutError:
+            proc.kill()
+            await proc.wait()
+            raise RuntimeError("claude CLI timed out after 360 seconds")
+    finally:
+        shutil.rmtree(workdir, ignore_errors=True)
 
     if proc.returncode != 0:
         error_msg = stderr.decode("utf-8").strip()
