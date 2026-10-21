@@ -486,7 +486,7 @@ async def test_sync_bills_from_votes_no_votes(tmp_path):
 
 @pytest.mark.asyncio
 async def test_sync_bills_from_votes_skips_existing(tmp_path):
-    """Skips bills already in bills.json (incremental)."""
+    """Skips bills already in bills.json that are fresh (incremental)."""
     vote_dir = tmp_path / "votes" / "senate"
     vote_dir.mkdir(parents=True)
     _write_json(vote_dir / "119_1_00001.json", {
@@ -496,18 +496,262 @@ async def test_sync_bills_from_votes_skips_existing(tmp_path):
         "counts": {}, "members": [],
     })
 
-    # Pre-existing bills.json with HR 1 already synced
+    # Pre-existing bills.json with HR 1 synced yesterday, after its only roll call
     _write_json(tmp_path / "bills.json", {"bills": [
-        {"number": "1", "type": "HR", "congress": 119, "title": "Already Here", "summaries": []},
+        {"number": "1", "type": "HR", "congress": 119, "title": "Already Here", "summaries": [],
+         "latestAction": {"actionDate": "2025-01-15"}, "fetchedDate": "2025-01-15"},
     ]})
 
     mock_client = MagicMock()
     mock_client.get_bill = AsyncMock()  # Should not be called
 
-    count = await sync_bills_from_votes(mock_client, tmp_path)
+    count = await sync_bills_from_votes(mock_client, tmp_path, today="2025-01-16")
 
     assert count == 1  # 1 bill total (the existing one)
     assert mock_client.get_bill.call_count == 0  # No new fetches
+
+
+# --- sync_bills_from_votes: refreshing stored records (F002) ---
+
+def _bill_vote(tmp_path, chamber, name, document, vote_date, congress=119):
+    _write_json(tmp_path / "votes" / chamber / name, {
+        "congress": congress, "session": 2, "vote_number": int(name.split("_")[-1].split(".")[0]),
+        "document": document, "vote_date": vote_date,
+        "question": "On Passage", "result": "Passed", "counts": {}, "members": [],
+    })
+
+
+def _bill_client(fresh: dict, summaries: dict | None = None):
+    """A client whose get_bill answers from `fresh` ((congress, type, number) -> bill
+    record, or an exception to raise) and get_bill_summary from `summaries`."""
+    def get_bill(congress, bill_type, number):
+        answer = fresh[(congress, bill_type, number)]
+        if isinstance(answer, Exception):
+            raise answer
+        return {"bill": answer}
+
+    def get_bill_summary(congress, bill_type, number):
+        answer = (summaries or {}).get((congress, bill_type, number), [])
+        if isinstance(answer, Exception):
+            raise answer
+        return {"summaries": answer}
+
+    client = MagicMock()
+    client.get_bill = AsyncMock(side_effect=get_bill)
+    client.get_bill_summary = AsyncMock(side_effect=get_bill_summary)
+    return client
+
+
+_STORED_VERSIONS = [
+    {"type": "Engrossed in House", "date": "2026-01-20T05:00:00Z", "text": "SECTION 1. Engrossed text."},
+    {"type": "Introduced in House", "date": "2026-01-05T05:00:00Z"},
+]
+
+
+def _stale_hjres_140() -> dict:
+    """The real stale record: the Senate passed H.J.Res. 140 on 2026-04-16 and it became
+    law, but bills.json still says 'Received in the Senate' with the introduced summary."""
+    return {
+        "congress": 119, "type": "HJRES", "number": "140", "title": "Joint resolution",
+        "latestAction": {"actionDate": "2026-01-26", "text": "Received in the Senate."},
+        "updateDate": "2026-01-27T12:00:00Z",
+        "summaries": [{"actionDate": "2026-01-05", "actionDesc": "Introduced in House", "text": "Intro."}],
+        "textVersions": list(_STORED_VERSIONS),
+        "cosponsors": {"count": 3, "url": "https://api.congress.gov/v3/bill/119/hjres/140/cosponsors"},
+    }
+
+
+def _enacted_hjres_140(text_version_count: int = 2) -> dict:
+    return {
+        "congress": 119, "type": "HJRES", "number": "140", "title": "Joint resolution",
+        "latestAction": {"actionDate": "2026-04-28", "text": "Became Public Law No: 119-99."},
+        "laws": [{"number": "119-99", "type": "Public Law"}],
+        "updateDate": "2026-04-29T12:00:00Z",
+        "summaries": {"count": 2, "url": "https://api.congress.gov/v3/bill/119/hjres/140/summaries"},
+        "textVersions": {"count": text_version_count,
+                         "url": "https://api.congress.gov/v3/bill/119/hjres/140/text"},
+    }
+
+
+_HJRES_140_SUMMARIES = [
+    {"actionDate": "2026-01-05", "actionDesc": "Introduced in House", "text": "Intro."},
+    {"actionDate": "2026-04-28", "actionDesc": "Public Law", "text": "Enacted."},
+]
+
+
+async def test_refresh_bill_with_a_roll_call_newer_than_its_latest_action(tmp_path):
+    """A stored record whose latestAction predates a roll call is re-fetched and replaced in
+    place: laws, latestAction and summaries come from Congress.gov, the embedded text stays."""
+    _bill_vote(tmp_path, "senate", "119_2_00100.json", "H.J.Res. 140", "April 16, 2026,  02:15 PM")
+    _bill_vote(tmp_path, "senate", "118_1_00001.json", "S. 5", "2023-02-01", congress=118)
+    older = {"congress": 118, "type": "S", "number": "5", "title": "Old", "summaries": [],
+             "latestAction": {"actionDate": "2023-01-30"}}
+    newer = {"congress": 119, "type": "HR", "number": "9", "title": "Fresh", "summaries": [],
+             "latestAction": {"actionDate": "2026-04-01"}, "fetchedDate": "2026-04-25"}
+    _write_json(tmp_path / "bills.json", {"bills": [older, _stale_hjres_140(), newer]})
+    client = _bill_client({(119, "hjres", 140): _enacted_hjres_140()},
+                          {(119, "hjres", 140): _HJRES_140_SUMMARIES})
+
+    count = await sync_bills_from_votes(client, tmp_path, today="2026-04-30")
+
+    bills = json.loads((tmp_path / "bills.json").read_text())["bills"]
+    assert count == 3 and len(bills) == 3
+    assert bills[0] == older and bills[2] == newer  # an earlier Congress and a fresh record are left alone
+    refreshed = bills[1]
+    assert refreshed["laws"] == [{"number": "119-99", "type": "Public Law"}]
+    assert refreshed["latestAction"]["actionDate"] == "2026-04-28"
+    assert refreshed["summaries"] == _HJRES_140_SUMMARIES
+    assert refreshed["textVersions"] == _STORED_VERSIONS  # no newer version: keep the embedded text
+    assert refreshed["cosponsors"]["count"] == 3  # fields the API did not send are kept
+    assert refreshed["fetchedDate"] == "2026-04-30"
+    client.get_bill.assert_awaited_once_with(119, "hjres", 140)
+    client.get_bill_summary.assert_awaited_once_with(119, "hjres", 140)
+
+
+async def test_refresh_drops_embedded_text_when_a_newer_text_version_exists(tmp_path):
+    """When Congress.gov counts more text versions than the stored list holds, the stale text
+    goes so fetch_bill_texts fetches the newest version (the Public Law) in the same step."""
+    import sync as sync_module
+    _bill_vote(tmp_path, "senate", "119_2_00100.json", "H.J.Res. 140", "2026-04-16")
+    _write_json(tmp_path / "bills.json", {"bills": [_stale_hjres_140()]})
+    client = _bill_client({(119, "hjres", 140): _enacted_hjres_140(text_version_count=3)})
+
+    await sync_bills_from_votes(client, tmp_path, today="2026-04-30")
+
+    bill = json.loads((tmp_path / "bills.json").read_text())["bills"][0]
+    assert bill["textVersions"] == _enacted_hjres_140(3)["textVersions"]
+    assert sync_module._bill_text_excerpt(bill) == ""
+    assert bill["summaries"] == _stale_hjres_140()["summaries"]  # no summaries returned: keep the stored ones
+
+
+async def test_refresh_bill_with_enrolled_text_but_no_law(tmp_path):
+    """An enrolled or public-law text version on a bill with no law is re-fetched even when
+    it was checked recently; a concurrent resolution, which never becomes law, is not."""
+    _bill_vote(tmp_path, "house", "119_2_00200.json", "H.R. 6644", "2026-06-23")
+    _bill_vote(tmp_path, "house", "119_2_00201.json", "H.Con.Res. 86", "2026-06-23")
+    enrolled = [{"type": "Enrolled Bill", "date": None}, *_STORED_VERSIONS]
+    hr = {"congress": 119, "type": "HR", "number": "6644", "title": "Bill", "summaries": [],
+          "latestAction": {"actionDate": "2026-06-23"}, "fetchedDate": "2026-06-29", "textVersions": enrolled}
+    hconres = {"congress": 119, "type": "HCONRES", "number": "86", "title": "Res", "summaries": [],
+               "latestAction": {"actionDate": "2026-06-23"}, "fetchedDate": "2026-06-29", "textVersions": enrolled}
+    _write_json(tmp_path / "bills.json", {"bills": [hr, hconres]})
+    signed = {**hr, "laws": [{"number": "119-120", "type": "Public Law"}],
+              "latestAction": {"actionDate": "2026-06-30", "text": "Became Public Law No: 119-120."},
+              "textVersions": {"count": 3, "url": "https://api.congress.gov/v3/bill/119/hr/6644/text"}}
+    del signed["fetchedDate"], signed["summaries"]
+    client = _bill_client({(119, "hr", 6644): signed})
+
+    await sync_bills_from_votes(client, tmp_path, today="2026-07-01")
+
+    bills = json.loads((tmp_path / "bills.json").read_text())["bills"]
+    assert bills[0]["laws"] == [{"number": "119-120", "type": "Public Law"}]
+    assert bills[0]["textVersions"] == enrolled
+    assert bills[1] == hconres
+    client.get_bill.assert_awaited_once_with(119, "hr", 6644)
+
+
+async def test_refresh_sweep_rechecks_current_congress_bills_without_a_law_weekly(tmp_path):
+    """The sweep re-fetches current-Congress records with no law last checked a week or more
+    ago (fetchedDate, else updateDate), and the fetchedDate stamp moves each one to the back."""
+    _bill_vote(tmp_path, "house", "119_2_00001.json", "H.R. 1", "2026-03-01")
+    _bill_vote(tmp_path, "house", "119_2_00002.json", "H.R. 2", "2026-03-01")
+    _bill_vote(tmp_path, "house", "119_2_00003.json", "H.R. 3", "2026-03-01")
+    _bill_vote(tmp_path, "house", "118_2_00004.json", "H.R. 4", "2024-03-01", congress=118)
+    action = {"actionDate": "2026-03-02"}
+    stored = [
+        {"congress": 119, "type": "HR", "number": "1", "title": "Old", "summaries": [],
+         "latestAction": action, "updateDate": "2026-03-02T00:00:00Z"},
+        {"congress": 119, "type": "HR", "number": "2", "title": "Checked", "summaries": [],
+         "latestAction": action, "updateDate": "2026-03-02T00:00:00Z", "fetchedDate": "2026-10-19"},
+        {"congress": 119, "type": "HR", "number": "3", "title": "Law", "summaries": [],
+         "latestAction": action, "updateDate": "2026-03-02T00:00:00Z", "laws": [{"number": "119-1"}]},
+        {"congress": 118, "type": "HR", "number": "4", "title": "Ended", "summaries": [],
+         "latestAction": {"actionDate": "2024-03-02"}, "updateDate": "2025-01-02T00:00:00Z"},
+    ]
+    _write_json(tmp_path / "bills.json", {"bills": stored})
+    fresh = {(119, "hr", n): {"congress": 119, "type": "HR", "number": str(n), "title": f"Fresh {n}",
+                              "latestAction": action, "updateDate": "2026-03-02T00:00:00Z"} for n in (1, 2)}
+    client = _bill_client(fresh)
+
+    await sync_bills_from_votes(client, tmp_path, today="2026-10-21")
+    bills = json.loads((tmp_path / "bills.json").read_text())["bills"]
+    assert [c.args for c in client.get_bill.await_args_list] == [(119, "hr", 1)]
+    assert bills[0]["title"] == "Fresh 1" and bills[0]["fetchedDate"] == "2026-10-21"
+    assert bills[1:] == stored[1:]
+
+    client.get_bill.reset_mock()
+    await sync_bills_from_votes(client, tmp_path, today="2026-10-25")
+    assert client.get_bill.await_count == 0  # both were checked within the week
+
+    await sync_bills_from_votes(client, tmp_path, today="2026-10-28")
+    assert [c.args for c in client.get_bill.await_args_list] == [(119, "hr", 2), (119, "hr", 1)]  # oldest check first
+
+
+async def test_refresh_is_capped_most_urgent_first(tmp_path):
+    """At most max_refreshes stored records are re-fetched: a roll call newer than the latest
+    action first, then enrolled text without a law, then the sweep's oldest check."""
+    for n in (1, 2, 3, 4):
+        _bill_vote(tmp_path, "house", f"119_2_0000{n}.json", f"H.R. {n}", "2026-09-01")
+    def record(n, **extra):
+        return {"congress": 119, "type": "HR", "number": str(n), "title": f"Bill {n}", "summaries": [],
+                "latestAction": {"actionDate": "2026-09-01"}, **extra}
+    stored = [
+        record(1, fetchedDate="2026-08-01"),                                       # sweep, newer check
+        record(2, fetchedDate="2026-06-01"),                                       # sweep, oldest check
+        record(3, fetchedDate="2026-10-20", textVersions=[{"type": "Public Law"}]),  # law text, no law
+        record(4, fetchedDate="2026-10-20", latestAction={"actionDate": "2026-08-15"}),  # vote after action
+    ]
+    _write_json(tmp_path / "bills.json", {"bills": stored})
+    client = _bill_client({(119, "hr", n): record(n, title=f"Fresh {n}") for n in (1, 2, 3, 4)})
+
+    await sync_bills_from_votes(client, tmp_path, max_refreshes=3, today="2026-10-21")
+
+    assert [c.args[2] for c in client.get_bill.await_args_list] == [4, 3, 2]
+    titles = [b["title"] for b in json.loads((tmp_path / "bills.json").read_text())["bills"]]
+    assert titles == ["Bill 1", "Fresh 2", "Fresh 3", "Fresh 4"]
+
+
+async def test_refresh_failure_keeps_the_stored_record(tmp_path):
+    """A failed or wrong re-fetch leaves the stored record exactly as it was; a failed summary
+    fetch keeps the stored summaries but still takes the fresh bill fields."""
+    for n in (1, 2, 3, 4):
+        _bill_vote(tmp_path, "house", f"119_2_0000{n}.json", f"H.R. {n}", "2026-09-01")
+    def record(n, **extra):
+        return {"congress": 119, "type": "HR", "number": str(n), "title": f"Bill {n}",
+                "summaries": [{"text": f"Stored {n}"}], "latestAction": {"actionDate": "2026-08-01"},
+                "textVersions": list(_STORED_VERSIONS), **extra}
+    stored = [record(n) for n in (1, 2, 3, 4)]
+    _write_json(tmp_path / "bills.json", {"bills": stored})
+    fresh_4 = {"congress": 119, "type": "HR", "number": "4", "title": "Fresh 4",
+               "latestAction": {"actionDate": "2026-09-01"}}
+    client = _bill_client(
+        {(119, "hr", 1): RuntimeError("HTTP 503"),
+         (119, "hr", 2): {},                                                       # empty answer
+         (119, "hr", 3): {"congress": 119, "type": "HR", "number": "33"},          # some other bill
+         (119, "hr", 4): fresh_4},
+        {(119, "hr", 4): RuntimeError("HTTP 500")},
+    )
+
+    count = await sync_bills_from_votes(client, tmp_path, today="2026-10-21")
+
+    bills = json.loads((tmp_path / "bills.json").read_text())["bills"]
+    assert count == 4
+    assert bills[:3] == stored[:3]
+    assert bills[3]["title"] == "Fresh 4" and bills[3]["latestAction"]["actionDate"] == "2026-09-01"
+    assert bills[3]["summaries"] == [{"text": "Stored 4"}]
+    assert bills[3]["textVersions"] == _STORED_VERSIONS
+    assert client.get_bill_summary.await_count == 1  # only after a good bill fetch
+
+
+async def test_new_bills_get_a_fetched_date(tmp_path):
+    """A first fetch is stamped too, so the sweep knows when the record was last checked."""
+    _bill_vote(tmp_path, "house", "119_2_00001.json", "H.R. 1", "2026-10-20")
+    client = _bill_client({(119, "hr", 1): {"congress": 119, "type": "HR", "number": "1", "title": "New"}})
+
+    await sync_bills_from_votes(client, tmp_path, today="2026-10-21")
+
+    bill = json.loads((tmp_path / "bills.json").read_text())["bills"][0]
+    assert bill["fetchedDate"] == "2026-10-21"
 
 
 # --- build_member_votes ---

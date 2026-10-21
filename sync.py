@@ -35,7 +35,7 @@ import shutil
 import sys
 import tempfile
 from contextlib import aclosing
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -48,7 +48,7 @@ from app.render import parse_threshold, plain_question, question_class
 from app.services.cache import CacheService
 from app.services.congress_api import CongressAPIClient
 from app.services.data_service import (
-    _latest_official_summary, _parse_vote_date, roll_call_key, state_overview_payload,
+    CURRENT_CONGRESS, _latest_official_summary, _parse_vote_date, roll_call_key, state_overview_payload,
 )
 from app.services.senate_votes import SenateVoteService
 
@@ -438,12 +438,82 @@ async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress
     return count
 
 
-async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rate_limit: float = 0.0) -> int:
-    """Fetch only bills referenced in Senate and House vote documents. Incremental."""
-    bills_path = output_dir / "bills.json"
+# Stored bill records are re-fetched too (F002). A record used to be fetched once, so its
+# laws, latestAction and summaries kept their first values and enacted bills never showed
+# "Became law". Every record from an earlier Congress was first fetched after that Congress
+# ended, so only current-Congress records can be stale.
+BILL_REFRESH_CAP = 80   # re-fetches per run, most urgent first; new bills are not capped
+BILL_REFRESH_DAYS = 7   # the sweep re-checks a current-Congress bill with no law after a week
+_LAW_TYPES = frozenset({"hr", "s", "hjres", "sjres"})  # simple and concurrent resolutions never become law
+_FINAL_TEXT_TYPES = frozenset({"Enrolled Bill", "Public Law"})
 
-    # Collect unique bill references as (congress, ref) tuples from both chambers
+
+def _bill_key(bill: dict) -> str:
+    """bills.json key of a bill record, e.g. '119-hr-1'."""
+    return f"{bill.get('congress', 119)}-{str(bill.get('type', '')).lower()}-{bill.get('number', '')}"
+
+
+def _bill_refresh_rank(bill: dict, newest_vote: str, sweep_cutoff: str) -> tuple | None:
+    """Sort key of a stored record that needs re-fetching (most urgent first), or None.
+
+    Tier 0: a roll call on the bill is newer than its latestAction.
+    Tier 1: a bill with no law has an enrolled or public-law text version.
+    Tier 2, the sweep: no law, and last checked on or before sweep_cutoff, oldest first.
+    "Checked" is fetchedDate (ClearVote's own stamp of the last fetch) or, on a record
+    fetched before that stamp existed, Congress.gov's updateDate."""
+    if bill.get("congress") != CURRENT_CONGRESS:
+        return None
+    checked = str(bill.get("fetchedDate") or bill.get("updateDate") or "")[:10]
+    action = str((bill.get("latestAction") or {}).get("actionDate") or "")[:10]
+    if newest_vote > action:
+        return (0, checked)
+    if bill.get("laws"):
+        return None
+    versions = bill.get("textVersions")
+    if str(bill.get("type", "")).lower() in _LAW_TYPES and isinstance(versions, list) and any(
+            isinstance(v, dict) and v.get("type") in _FINAL_TEXT_TYPES for v in versions):
+        return (1, checked)
+    if checked <= sweep_cutoff:
+        return (2, checked)
+    return None
+
+
+def _merge_refreshed_bill(stored: dict, fresh: dict, summaries, today: str) -> dict:
+    """A re-fetched record merged over the stored one (F002), stamped fetchedDate=today.
+
+    Fields Congress.gov sent replace the stored ones. Two fields ClearVote fills itself
+    survive: summaries, unless the summary fetch returned some, and the textVersions list
+    carrying the text fetch_bill_texts embedded. The bill-detail API sends textVersions
+    only as a {count, url} reference, so the stored list stays unless the API now counts
+    more versions than it holds; then the reference replaces it and fetch_bill_texts
+    fetches the newer text in the same step."""
+    merged = {**stored, **fresh, "fetchedDate": today}
+    stored_versions = stored.get("textVersions")
+    if isinstance(stored_versions, list):
+        fresh_versions = fresh.get("textVersions")
+        count = (fresh_versions.get("count") if isinstance(fresh_versions, dict)
+                 else len(fresh_versions) if isinstance(fresh_versions, list) else None)
+        if not isinstance(count, int) or count <= len(stored_versions):
+            merged["textVersions"] = stored_versions
+    summaries = [s for s in summaries if isinstance(s, dict)] if isinstance(summaries, list) else []
+    merged["summaries"] = summaries or stored.get("summaries") or []
+    return merged
+
+
+async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rate_limit: float = 0.0,
+                                max_refreshes: int = BILL_REFRESH_CAP, today: str | None = None) -> int:
+    """Fetch bills referenced in Senate and House vote documents. Incremental: new bills
+    are fetched in full, and up to max_refreshes stored records that look stale
+    (_bill_refresh_rank) are re-fetched and merged in place (F002). A failed re-fetch
+    keeps the stored record."""
+    bills_path = output_dir / "bills.json"
+    today = today or datetime.now(timezone.utc).date().isoformat()
+    sweep_cutoff = (datetime.strptime(today, "%Y-%m-%d") - timedelta(days=BILL_REFRESH_DAYS)).date().isoformat()
+
+    # Collect unique bill references as (congress, ref) tuples from both chambers,
+    # and each bill's newest roll-call date
     bill_refs: set[tuple[int, str]] = set()
+    newest_votes: dict[str, str] = {}
     for chamber_dir in ["senate", "house"]:
         vote_dir = output_dir / "votes" / chamber_dir
         if not vote_dir.exists():
@@ -455,6 +525,10 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rat
             if ref:
                 vote_congress = vote.get("congress", 119)
                 bill_refs.add((vote_congress, ref))
+                parsed = _parse_vote_date(vote.get("vote_date") or "")
+                key = f"{vote_congress}-{ref}"
+                if parsed and parsed.date().isoformat() > newest_votes.get(key, ""):
+                    newest_votes[key] = parsed.date().isoformat()
 
     if not bill_refs:
         print("  No bill references found in votes — skipping")
@@ -462,16 +536,14 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rat
 
     print(f"  Found {len(bill_refs)} unique bills referenced in votes")
 
-    # Load existing bills to skip already-fetched ones
+    # Load existing bills to skip already-fetched ones (key -> position, for in-place refresh)
     existing_bills: list[dict] = []
-    existing_keys: set[str] = set()
+    existing_keys: dict[str, int] = {}
     if bills_path.exists():
         with open(bills_path) as f:
             existing_bills = json.load(f).get("bills", [])
-        for b in existing_bills:
-            congress = b.get("congress", 119)
-            key = f"{congress}-{b.get('type', '').lower()}-{b.get('number', '')}"
-            existing_keys.add(key)
+        for pos, b in enumerate(existing_bills):
+            existing_keys[_bill_key(b)] = pos
 
     # Fetch new bills
     new_bills = []
@@ -498,14 +570,48 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rat
             except Exception:
                 bill["summaries"] = []
 
+            bill["fetchedDate"] = today
             new_bills.append(bill)
         except Exception as e:
             print(f"  WARNING: Failed to fetch {ref}: {e}")
         await asyncio.sleep(rate_limit)
 
+    # Re-fetch stored records that may be stale, most urgent first, replacing each in place
+    due = []
+    for key, pos in existing_keys.items():
+        rank = _bill_refresh_rank(existing_bills[pos], newest_votes.get(key, ""), sweep_cutoff)
+        if rank is not None:
+            due.append((rank, key))
+    to_refresh = [key for _, key in sorted(due)][:max_refreshes]
+    if due:
+        print(f"  Re-fetching {len(to_refresh)} of {len(due)} stored bills that may be stale (cap {max_refreshes})")
+    refreshed = 0
+    for i, key in enumerate(to_refresh):
+        stored = existing_bills[existing_keys[key]]
+        bill_congress = stored.get("congress")
+        bill_type = str(stored.get("type", "")).lower()
+        print(f"  Re-fetching {bill_type.upper()} {stored.get('number')} (congress {bill_congress})... ({i + 1}/{len(to_refresh)})")
+        try:
+            bill_number = int(stored.get("number"))
+            data = await client.get_bill(bill_congress, bill_type, bill_number)
+            fresh = data.get("bill") if isinstance(data, dict) else None
+            if not isinstance(fresh, dict) or _bill_key(fresh) != key:
+                raise ValueError("response is not this bill")
+        except Exception as e:
+            print(f"  WARNING: Failed to re-fetch {key}, keeping the stored record: {e}")
+            await asyncio.sleep(rate_limit)
+            continue
+        try:
+            summaries = (await client.get_bill_summary(bill_congress, bill_type, bill_number)).get("summaries")
+        except Exception:
+            summaries = None
+        existing_bills[existing_keys[key]] = _merge_refreshed_bill(stored, fresh, summaries, today)
+        refreshed += 1
+        await asyncio.sleep(rate_limit)
+
     all_bills = existing_bills + new_bills
     _atomic_write_json(bills_path, {"bills": all_bills})
-    print(f"  Saved {len(all_bills)} bills ({len(new_bills)} new)")
+    print(f"  Saved {len(all_bills)} bills ({len(new_bills)} new, {refreshed} refreshed)")
     return len(all_bills)
 
 
