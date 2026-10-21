@@ -1,13 +1,18 @@
+import json
+import re
 import pytest
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 from pathlib import Path
 from defusedxml.common import EntitiesForbidden
 from httpx import AsyncClient, ASGITransport
-from app.main import app
+from app.main import app, MAX_BODY_BYTES
 from app.routers.bills import _is_safe_url
+from app.routers.feedback import FeedbackSubmission
+from app.routers.notify import NotifySignup
 from app.services.senate_votes import parse_senate_vote_xml
 
 FIXTURES = Path(__file__).parent / "fixtures" / "synced"
+STATIC = Path(__file__).parent.parent / "static"
 
 
 def _patch_data_dir():
@@ -213,6 +218,155 @@ async def test_health_no_demo_mode_leak():
     data = resp.json()
     assert "demo_mode" not in data
     assert data["status"] == "ok"
+
+
+# --- Write routes: body cap, JSON from the site only, no echo (F004, F036) ---
+
+FEEDBACK = {"message": "Great tool!", "page_url": "http://test/", "page_type": "home",
+            "context_id": "", "context_label": ""}
+NOTIFY = {"email": "voter@example.com", "state": "OH"}
+WRITES = [("/api/feedback", FEEDBACK), ("/api/notify", NOTIFY)]
+
+
+@pytest.fixture
+def stored(tmp_path):
+    """Both write routes store to temp files with Sheets off; yields a reader of what landed."""
+    sheets = MagicMock()
+    sheets.is_available = False
+    files = {"/api/feedback": tmp_path / "feedback.jsonl", "/api/notify": tmp_path / "notify.jsonl"}
+    with patch("app.routers.feedback.FEEDBACK_FILE", files["/api/feedback"]), \
+         patch("app.routers.notify.NOTIFY_FILE", files["/api/notify"]), \
+         patch("app.routers.feedback._sheets", sheets), \
+         patch("app.routers.notify._sheets", sheets):
+        yield lambda path: files[path].read_text().splitlines() if files[path].exists() else []
+
+
+async def _post(path, **kwargs):
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        return await client.post(path, **kwargs)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path,payload", WRITES)
+async def test_body_over_the_cap_is_refused_unread(stored, path, payload):
+    body = json.dumps({**payload, "padding": "A" * MAX_BODY_BYTES}).encode()
+    resp = await _post(path, content=body, headers={"content-type": "application/json"})
+    assert resp.status_code == 413
+    assert resp.headers["cache-control"] == "no-store"
+    assert resp.json() == {"detail": "Request body too large"}
+    assert stored(path) == []
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path,payload", WRITES)
+@pytest.mark.parametrize("headers", [{}, {"content-length": "64"}], ids=["chunked", "lying-length"])
+async def test_streamed_body_over_the_cap_is_cut_off(stored, path, payload, headers):
+    """A chunked body, or one longer than its Content-Length, is stopped at the cap."""
+    pulled = 0
+
+    async def chunks():
+        nonlocal pulled
+        for _ in range(16):
+            pulled += 1
+            yield b"A" * 65536
+
+    resp = await _post(path, content=chunks(), headers={"content-type": "application/json", **headers})
+    assert resp.status_code == 413
+    assert resp.headers["cache-control"] == "no-store"
+    assert resp.json() == {"detail": "Request body too large"}
+    assert pulled == 1
+    assert stored(path) == []
+
+
+@pytest.mark.asyncio
+async def test_largest_real_feedback_fits_under_the_cap(stored):
+    """2000 non-Latin characters, every one escaped, plus full-length URL and labels: ~16 KB."""
+    payload = {"message": "選" * 2000, "page_url": "http://test/" + "a" * 488, "page_type": "b" * 50,
+               "context_id": "c" * 200, "context_label": "議" * 500}
+    body = json.dumps(payload).encode()
+    assert 15_000 < len(body) < MAX_BODY_BYTES
+    resp = await _post("/api/feedback", content=body, headers={"content-type": "application/json"})
+    assert resp.status_code == 200
+    assert len(stored("/api/feedback")) == 1
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path,payload", WRITES)
+@pytest.mark.parametrize("content_type", [None, "", "text/plain", "application/x-www-form-urlencoded"])
+async def test_write_routes_take_only_json(stored, path, payload, content_type):
+    headers = {} if content_type is None else {"content-type": content_type}
+    resp = await _post(path, content=json.dumps(payload).encode(), headers=headers)
+    assert resp.status_code == 415
+    assert resp.headers["cache-control"] == "no-store"
+    assert stored(path) == []
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path,payload", WRITES)
+@pytest.mark.parametrize("headers", [
+    {"origin": "https://evil.example"},
+    {"origin": "null"},
+    {"origin": "http://localhost.evil.example"},
+    {"origin": "https://clearvoting.org.evil.example"},
+    {"sec-fetch-site": "cross-site"},
+    {"origin": "https://clearvoting.org", "sec-fetch-site": "cross-site"},
+])
+async def test_cross_site_writes_are_refused(stored, path, payload, headers):
+    resp = await _post(path, json=payload, headers=headers)
+    assert resp.status_code == 403
+    assert resp.headers["cache-control"] == "no-store"
+    assert stored(path) == []
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path,payload", WRITES)
+@pytest.mark.parametrize("headers", [
+    {},
+    {"origin": "https://clearvoting.org", "sec-fetch-site": "same-origin"},
+    {"origin": "https://www.clearvoting.org", "sec-fetch-site": "same-origin"},
+    {"origin": "http://localhost:8000", "sec-fetch-site": "same-origin"},
+    {"origin": "http://127.0.0.1:8000"},
+    {"content-type": "application/json; charset=utf-8"},
+])
+async def test_same_site_json_writes_still_succeed(stored, path, payload, headers):
+    resp = await _post(path, content=json.dumps(payload).encode(),
+                       headers={"content-type": "application/json", **headers})
+    assert resp.status_code == 200
+    assert resp.json() == {"status": "ok"}
+    assert len(stored(path)) == 1
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path,payload,bad", [
+    ("/api/feedback", FEEDBACK, {"message": "SECRET-" + "x" * 2001}),
+    ("/api/feedback", FEEDBACK, {"SECRET-field": "SECRET-value"}),
+    ("/api/notify", NOTIFY, {"email": "SECRET-not-an-email"}),
+    ("/api/notify", NOTIFY, {"SECRET-field": "SECRET-value"}),
+])
+async def test_422_names_the_field_without_echoing_the_input(stored, path, payload, bad):
+    resp = await _post(path, json={**payload, **bad})
+    assert resp.status_code == 422
+    assert resp.headers["cache-control"] == "no-store"
+    assert "SECRET-value" not in resp.text and "SECRET-x" not in resp.text
+    assert "SECRET-not-an-email" not in resp.text
+    for error in resp.json()["detail"]:
+        assert set(error) == {"loc", "msg", "type"}
+    assert stored(path) == []
+
+
+@pytest.mark.parametrize("js,path,model", [
+    ("feedback.js", "/api/feedback", FeedbackSubmission),
+    ("site.js", "/api/notify", NotifySignup),
+])
+def test_site_js_posts_json_with_declared_fields_only(js, path, model):
+    """415 and extra='forbid' must never refuse the site's own forms."""
+    source = (STATIC / "js" / js).read_text()
+    call = re.search(rf"fetch\('{path}',\s*\{{(?P<opts>.*?)JSON\.stringify\(\{{(?P<body>.*?)\}}\)", source, re.S)
+    assert call, f"{js} no longer posts to {path}"
+    assert "headers: { 'Content-Type': 'application/json' }" in call["opts"]
+    sent = {part.split(":")[0].strip() for part in call["body"].split(",") if part.strip()}
+    assert sent and sent <= set(model.model_fields)
 
 
 # --- XML Safety ---

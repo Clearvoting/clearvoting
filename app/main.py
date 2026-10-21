@@ -10,8 +10,9 @@ from html import escape
 from xml.sax.saxutils import escape as xml_escape
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exception_handlers import http_exception_handler
+from fastapi.exceptions import RequestValidationError
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse, PlainTextResponse, RedirectResponse, Response
+from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse, Response
 from pathlib import Path
 from slowapi.middleware import SlowAPIMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -324,6 +325,89 @@ async def add_security_headers(request: Request, call_next):
     if cache_control:
         response.headers["Cache-Control"] = cache_control
     return response
+
+
+MAX_BODY_BYTES = 32 * 1024
+_BODY_METHODS = frozenset({"POST", "PUT", "PATCH"})
+_BODY_TOO_LARGE = "Request body too large"
+
+
+class _BodyTooLarge(Exception):
+    """Raised from receive() once a streamed body passes the cap, so nothing reads on."""
+
+
+class BodySizeLimitMiddleware:
+    """Refuse POST/PUT/PATCH bodies over 32 KiB before anything buffers them (F004).
+
+    FastAPI reads and JSON-parses the whole body before the rate limiter runs, so an
+    uncapped body let a few requests run the instance out of memory. The largest real
+    feedback is about 16 KB (2000 characters, every one escaped); a signup is under 400 B.
+    A declared Content-Length over the cap gets 413 without calling the app; a chunked or
+    under-declared body is counted as it arrives and stopped at the same cap. Added last,
+    so it is the outermost middleware."""
+
+    def __init__(self, app, max_bytes: int = MAX_BODY_BYTES):
+        self.app = app
+        self.max_bytes = max_bytes
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http" or scope["method"] not in _BODY_METHODS:
+            await self.app(scope, receive, send)
+            return
+        for name, value in scope["headers"]:
+            if name == b"content-length":
+                try:
+                    too_large = int(value) > self.max_bytes
+                except ValueError:
+                    too_large = True
+                if too_large:
+                    await self._too_large(scope, receive, send)
+                    return
+                break
+
+        received = 0
+        over_cap = False
+        response_started = False
+
+        async def capped_receive():
+            nonlocal received, over_cap
+            message = await receive()
+            if message["type"] == "http.request":
+                received += len(message.get("body", b""))
+                if received > self.max_bytes:
+                    over_cap = True
+                    raise _BodyTooLarge()
+            return message
+
+        async def capped_send(message):
+            nonlocal response_started
+            if over_cap:
+                # The app answers the cut-off body with an error of its own (the
+                # BaseHTTPMiddleware layers wrap the exception, so FastAPI makes it a 400):
+                # send the 413 in its place and drop the rest of the app's response.
+                if message["type"] == "http.response.start" and not response_started:
+                    response_started = True
+                    await self._too_large(scope, receive, send)
+                return
+            if message["type"] == "http.response.start":
+                response_started = True
+            await send(message)
+
+        try:
+            await self.app(scope, capped_receive, capped_send)
+        except Exception:
+            if not over_cap or response_started:
+                raise
+            await self._too_large(scope, receive, send)
+
+    @staticmethod
+    async def _too_large(scope, receive, send) -> None:
+        response = JSONResponse({"detail": _BODY_TOO_LARGE}, status_code=413,
+                                headers={"Cache-Control": CACHE_NO_STORE})
+        await response(scope, receive, send)
+
+
+app.add_middleware(BodySizeLimitMiddleware)
 
 
 @app.get("/api/health")
@@ -830,6 +914,21 @@ async def server_error_handler(request: Request, exc: Exception) -> PlainTextRes
         status_code=500,
         headers={"Cache-Control": CACHE_NO_STORE},
     )
+
+
+_MAX_VALIDATION_ERRORS = 10
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_error_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
+    """422 as FastAPI sends it, minus each error's input, ctx and url (F004). The default
+    handler echoed the submitted value back, so a large invalid body came back whole. The
+    site's JS only reads the status; the first ten errors are plenty to debug with."""
+    errors = [
+        {"loc": err.get("loc", ()), "msg": err.get("msg", ""), "type": err.get("type", "")}
+        for err in exc.errors()[:_MAX_VALIDATION_ERRORS]
+    ]
+    return JSONResponse({"detail": errors}, status_code=422)
 
 
 @app.exception_handler(StarletteHTTPException)

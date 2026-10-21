@@ -3,11 +3,12 @@ import logging
 import re
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.concurrency import run_in_threadpool
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from app.config import BASE_DIR, GOOGLE_SHEETS_CREDENTIALS_JSON, GOOGLE_SHEETS_SPREADSHEET_ID
+from app.dependencies import require_site_json
 from app.limiter import limiter
 from app.render import NOTIFY_STATES
 from app.services.sheets import SheetsService
@@ -33,6 +34,9 @@ _EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 
 class NotifySignup(BaseModel):
+    # site.js sends exactly email and state; anything else is refused (F004).
+    model_config = ConfigDict(extra="forbid")
+
     email: str = Field(..., min_length=3, max_length=254)
     state: str = Field(default="", max_length=50)
 
@@ -45,7 +49,7 @@ class NotifySignup(BaseModel):
         return value
 
 
-@router.post("")
+@router.post("", dependencies=[Depends(require_site_json)])
 @limiter.limit("5/minute")
 async def submit_signup(signup: NotifySignup, request: Request) -> dict:
     # Spec §10 #16: the form lists only the 46 uncovered states + DC; anything else

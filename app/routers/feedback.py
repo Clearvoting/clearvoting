@@ -2,10 +2,11 @@ import json
 import logging
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, Request
-from pydantic import BaseModel, Field
+from fastapi import APIRouter, Depends, Request
+from pydantic import BaseModel, ConfigDict, Field
 
 from app.config import BASE_DIR, GOOGLE_SHEETS_CREDENTIALS_JSON, GOOGLE_SHEETS_SPREADSHEET_ID
+from app.dependencies import require_site_json
 from app.limiter import limiter
 from app.services.sheets import SheetsService
 
@@ -19,6 +20,9 @@ _sheets = SheetsService(GOOGLE_SHEETS_CREDENTIALS_JSON, GOOGLE_SHEETS_SPREADSHEE
 
 
 class FeedbackSubmission(BaseModel):
+    # feedback.js sends exactly these five fields; anything else is refused (F004).
+    model_config = ConfigDict(extra="forbid")
+
     message: str = Field(..., min_length=1, max_length=2000)
     page_url: str = Field(..., max_length=500)
     page_type: str = Field(..., max_length=50)
@@ -26,7 +30,7 @@ class FeedbackSubmission(BaseModel):
     context_label: str = Field(default="", max_length=500)
 
 
-@router.post("")
+@router.post("", dependencies=[Depends(require_site_json)])
 @limiter.limit("5/minute")
 async def submit_feedback(feedback: FeedbackSubmission, request: Request) -> dict:
     timestamp = datetime.now(timezone.utc).isoformat()
