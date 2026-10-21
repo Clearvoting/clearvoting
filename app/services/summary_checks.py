@@ -25,14 +25,33 @@ PLACEHOLDER_MARKERS = ("temporarily unavailable",)
 
 ONE_LINER_MAX_WORDS = 15
 PROVISION_MAX_WORDS = 30
+PROVISIONS_MIN = 3
+PROVISIONS_MAX = 7
+
+# Reader-facing text never needs a link, a number to call or text, or code
+# characters; one that appears was steered in by the inputs or hallucinated.
+# Bare .gov names stay allowed: bills name official sites (USAspending.gov),
+# and .gov registration is restricted to government bodies.
+WEB_ADDRESS_RE = re.compile(r"https?://|www\.|\b[a-z0-9-]{2,}\.(?!gov\b)[a-z]{2,}\b(?!\.[a-z0-9])", re.I)
+PHONE_RE = re.compile(r"(?:\(\d{3}\)\s?|\b\d{3}[-.\s])\d{3}[-.\s]\d{4}\b|\btext\s+\S+\s+to\s+\d{5,6}\b", re.I)
+MARKUP_RE = re.compile(r"[<>{}]")
 
 
 def structural_violations(summary: dict, title: str = "") -> list[str]:
     """Return a list of objective rule violations (empty = structurally clean)."""
     violations: list[str] = []
 
-    one_liner = (summary.get("one_liner") or "").strip()
-    provisions = [str(p) for p in (summary.get("provisions") or [])]
+    one_liner = summary.get("one_liner") or ""
+    provisions = summary.get("provisions") or []
+    # Types first: a string of provisions renders one letter per bullet, and
+    # a non-string one_liner would crash the checks below.
+    if not isinstance(one_liner, str):
+        violations.append("one_liner must be a string")
+        one_liner = ""
+    if not (isinstance(provisions, list) and all(isinstance(p, str) for p in provisions)):
+        violations.append("provisions must be a list of strings")
+        provisions = []
+    one_liner = one_liner.strip()
 
     if not one_liner:
         violations.append("one_liner is empty")
@@ -47,6 +66,8 @@ def structural_violations(summary: dict, title: str = "") -> list[str]:
 
     if not provisions:
         violations.append("provisions is empty")
+    elif not PROVISIONS_MIN <= len(provisions) <= PROVISIONS_MAX:
+        violations.append(f"provisions must have {PROVISIONS_MIN} to {PROVISIONS_MAX} items (has {len(provisions)})")
 
     for i, p in enumerate(provisions):
         words = len(p.split())
@@ -60,5 +81,10 @@ def structural_violations(summary: dict, title: str = "") -> list[str]:
     for marker in PLACEHOLDER_MARKERS:
         if marker in text:
             violations.append("placeholder text present in reader-facing content")
+    for rx, what in ((WEB_ADDRESS_RE, "web address"), (PHONE_RE, "phone or text number"),
+                     (MARKUP_RE, "markup character")):
+        m = rx.search(text)
+        if m:
+            violations.append(f'{what} "{m.group(0)}" in reader-facing content — remove it')
 
     return violations

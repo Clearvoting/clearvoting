@@ -585,9 +585,11 @@ async def sync_bill_summaries(
     writer_service = AISummaryService(api_key=api_key, cache=cache)
     grader = SummaryGrader(api_key=api_key)
 
-    # Load learnings
+    # The store keeps batch history only. Saved "learnings" are not fed to the
+    # grader: they were raw per-bill feedback (mostly praise) promoted to
+    # standing grading rules with no review.
     learnings_store = GraderLearnings(learnings_path)
-    grader.load_learnings(learnings_store.get_learnings(content_type="bill_summary"))
+    grader.load_learnings([])
 
     # Find bills needing summaries
     to_process = []
@@ -607,7 +609,6 @@ async def sync_bill_summaries(
 
     stats: dict = {"total": 0, "passed": 0, "failed": 0, "needs_review": []}
     grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
-    all_feedback: list[str] = []
 
     async def _process_one_bill(key: str, bill: dict) -> None:
         """Process a single bill through the writer-grader loop."""
@@ -650,6 +651,15 @@ async def sync_bill_summaries(
                 stats["failed"] += 1
                 stats["total"] += 1
                 return
+            one_liner = summary_data.get("one_liner")
+            if not (isinstance(one_liner, str) and one_liner.strip()) or not summary_data.get("provisions"):
+                # Same for a structurally empty result: the data validator
+                # fails it (blocking the next weekly sync's commits), and a
+                # saved key is never retried. Absent, the next run retries it.
+                print(f"    NOT SAVED — empty one_liner or provisions for {key}")
+                stats["failed"] += 1
+                stats["total"] += 1
+                return
             if result.needs_review:
                 summary_data["needs_review"] = True
                 stats["needs_review"].append(key)
@@ -660,7 +670,6 @@ async def sync_bill_summaries(
             existing[key] = summary_data
             stats["total"] += 1
             grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
-            all_feedback.append(result.best_grade.feedback)
         except Exception as e:
             print(f"    SKIPPED — {e}")
             stats["failed"] += 1
@@ -675,11 +684,6 @@ async def sync_bill_summaries(
 
         # Save after each batch (crash-safe)
         _atomic_write_json(summaries_path, existing)
-
-    # Extract new learnings
-    new_patterns = learnings_store.extract_patterns(all_feedback, content_type="bill_summary")
-    for pattern in new_patterns:
-        learnings_store.add_learning(pattern, content_type="bill_summary")
 
     learnings_store.record_batch(
         total=stats["total"],
@@ -747,9 +751,10 @@ async def sync_bill_arguments(
     writer_service = BillArgumentsService(api_key=api_key, cache=cache)
     grader = ArgumentsGrader(api_key=api_key)
 
-    # Load learnings
+    # Batch history only — saved learnings are not fed to the grader (see
+    # sync_bill_summaries).
     learnings_store = GraderLearnings(learnings_path)
-    grader.load_learnings(learnings_store.get_learnings(content_type="bill_arguments"))
+    grader.load_learnings([])
 
     # Find summaries needing arguments (incremental)
     to_process = []
@@ -765,7 +770,6 @@ async def sync_bill_arguments(
 
     stats: dict = {"total": 0, "passed": 0, "failed": 0, "needs_review": []}
     grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
-    all_feedback: list[str] = []
 
     async def _process_one_bill(key: str, summary: dict, bill: dict) -> None:
         title = bill.get("title", "")
@@ -804,7 +808,6 @@ async def sync_bill_arguments(
             summaries[key]["arguments"] = arguments_data
             stats["total"] += 1
             grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
-            all_feedback.append(result.best_grade.feedback)
         except Exception as e:
             print(f"    SKIPPED — {e}")
             stats["failed"] += 1
@@ -818,11 +821,6 @@ async def sync_bill_arguments(
 
         # Save after each batch (crash-safe)
         _atomic_write_json(summaries_path, summaries)
-
-    # Extract new learnings
-    new_patterns = learnings_store.extract_patterns(all_feedback, content_type="bill_arguments")
-    for pattern in new_patterns:
-        learnings_store.add_learning(pattern, content_type="bill_arguments")
 
     learnings_store.record_batch(
         total=stats["total"],
@@ -1429,13 +1427,13 @@ async def sync_member_summaries(
     service = MemberSummaryService(api_key=api_key)
     grader = MemberNarrativeGrader(api_key=api_key)
 
-    # Load learnings
+    # Batch history only — saved learnings are not fed to the grader (see
+    # sync_bill_summaries).
     learnings_store = GraderLearnings(learnings_path)
-    grader.load_learnings(learnings_store.get_learnings(content_type="member_narrative"))
+    grader.load_learnings([])
 
     stats: dict = {"total": 0, "passed": 0, "failed": 0, "needs_review": []}
     grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
-    all_feedback: list[str] = []
 
     async def _process_one_member(member: dict) -> None:
         """Process a single member through the writer-grader loop."""
@@ -1536,7 +1534,6 @@ async def sync_member_summaries(
             existing[bioguide_id] = summary_data
             stats["total"] += 1
             grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
-            all_feedback.append(result.best_grade.feedback)
         except Exception as e:
             print(f"  WARNING: Failed to generate summary for {member_name}: {e}")
 
@@ -1548,11 +1545,6 @@ async def sync_member_summaries(
         await asyncio.gather(*[_process_one_member(m) for m in batch])
         _atomic_write_json(summaries_path, existing)
         print(f"  Narratives: {stats['total']}/{len(to_process)} processed...")
-
-    # Extract new learnings
-    new_patterns = learnings_store.extract_patterns(all_feedback, content_type="member_narrative")
-    for pattern in new_patterns:
-        learnings_store.add_learning(pattern, content_type="member_narrative")
 
     learnings_store.record_batch(
         total=stats["total"],
@@ -1587,12 +1579,10 @@ async def check_page_coherence(
     """
     from app.services.page_coherence import PageCoherenceChecker
     from app.services.member_summary import MemberSummaryService
-    from app.services.grader_learnings import GraderLearnings
 
     members_path = output_dir / "members.json"
     member_votes_dir = output_dir / "member_votes"
     summaries_path = output_dir / "member_summaries.json"
-    learnings_path = output_dir / "grader_learnings.json"
 
     if not members_path.exists() or not summaries_path.exists():
         print("  No members or summaries — skipping coherence check")
@@ -1607,9 +1597,8 @@ async def check_page_coherence(
     checker = PageCoherenceChecker(api_key=api_key)
     writer = MemberSummaryService(api_key=api_key)
 
-    # Load learnings
-    learnings_store = GraderLearnings(learnings_path)
-    checker.load_learnings(learnings_store.get_learnings(content_type="page_coherence"))
+    # Saved learnings are not fed to the checker (see sync_bill_summaries).
+    checker.load_learnings([])
 
     stats: dict = {"total": 0, "coherent": 0, "incoherent": 0, "fixed": 0, "contradictions": []}
 
@@ -1848,14 +1837,12 @@ async def _run_audit(anthropic_key: str | None) -> None:
     from app.services.ai_summary import AISummaryService
     from app.services.summary_grader import SummaryGrader
     from app.services.writer_grader_loop import WriterGraderLoop
-    from app.services.grader_learnings import GraderLearnings
 
     SYNC_DIR.mkdir(parents=True, exist_ok=True)
     api_key = anthropic_key or None
 
     bills_path = SYNC_DIR / "bills.json"
     summaries_path = SYNC_DIR / "ai_summaries.json"
-    learnings_path = SYNC_DIR / "grader_learnings.json"
 
     if not bills_path.exists():
         print("No bills.json — nothing to audit")
@@ -1894,32 +1881,34 @@ async def _run_audit(anthropic_key: str | None) -> None:
     cache = CacheService(cache_dir=CACHE_DIR, ttl_seconds=86400)
     grader = SummaryGrader(api_key=api_key)
     writer_service = AISummaryService(api_key=api_key, cache=cache)
-
-    learnings_store = GraderLearnings(learnings_path)
-    grader.load_learnings(learnings_store.get_learnings(content_type="bill_summary"))
+    # Saved learnings are not fed to the grader (see sync_bill_summaries).
+    grader.load_learnings([])
 
     grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
     failures: list[tuple[str, dict]] = []
-    all_feedback: list[str] = []
 
     # Phase 1: Grade existing summaries
     print("[1/3] Grading existing summaries...")
     for i, (key, summary) in enumerate(to_audit):
         bill = bill_by_key[key]
         title = bill.get("title", "")
-        summaries_list = bill.get("summaries", [])
-        official = summaries_list[0].get("text", "") if summaries_list else ""
+        # Grade against the same inputs Phase 2 and the weekly path write
+        # from: the latest official summary (summaries[0] is the introduced
+        # version) and the bill text excerpt.
+        official = _latest_official_summary(bill)
+        latest_action = (bill.get("latestAction") or {}).get("text", "")
 
         print(f"  [{i + 1}/{len(to_audit)}] {title[:60]}...")
 
         grade_result = await grader.grade(
             summary_type="bill_summary",
             summary_text=json.dumps(summary),
-            context={"title": title, "official_summary": official},
+            context={"title": title, "official_summary": official,
+                     "latest_action": latest_action,
+                     "bill_text_excerpt": _bill_text_excerpt(bill)[:6000]},
         )
 
         grade_dist[grade_result.grade] = grade_dist.get(grade_result.grade, 0) + 1
-        all_feedback.append(grade_result.feedback)
 
         if not grade_result.passed:
             failures.append((key, bill))
@@ -1995,12 +1984,6 @@ async def _run_audit(anthropic_key: str | None) -> None:
     print()
     print("[3/3] Rebuilding member voting records...")
     await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
-
-    # Save learnings
-    new_patterns = learnings_store.extract_patterns(all_feedback, content_type="bill_summary")
-    for pattern in new_patterns:
-        learnings_store.add_learning(pattern, content_type="bill_summary")
-    learnings_store.save()
 
     print()
     print("=== Audit complete ===")

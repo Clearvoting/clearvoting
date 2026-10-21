@@ -100,7 +100,7 @@ async def test_grade_summary_returns_grade_result():
 
     result = await grader.grade(
         summary_type="bill_summary",
-        summary_text='{"one_liner": "Raise minimum wage to $15", "provisions": ["Raises wage from $7.25 to $15"], "issue_categories": ["Jobs & Workers"]}',
+        summary_text='{"one_liner": "Raise minimum wage to $15", "provisions": ["Raises wage from $7.25 to $15", "Phases it in over 5 years", "Raises it with prices after that"], "issue_categories": ["Jobs & Workers"]}',
         context={"title": "Wage Act"}
     )
 
@@ -128,3 +128,56 @@ async def test_grade_summary_handles_malformed_response():
     assert isinstance(result, GradeResult)
     assert result.passed is False
     assert result.grade == "F"
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("reply, grade, passed", [
+    ({"grade": "C", "passed": True}, "C", False),        # self-contradicting reply
+    ({"grade": "D", "passed": "false"}, "D", False),     # truthy string
+    ({"grade": "F", "passed": 1}, "F", False),
+    ({"grade": "a", "passed": False}, "A", True),        # pass/fail follows the letter
+    ({"grade": " B+ "}, "B", True),
+    ({"grade": "Z", "passed": True}, "F", False),        # outside A-F
+    ({"grade": "Approved", "passed": True}, "F", False),
+    ({"passed": True}, "F", False),                      # no grade at all
+    ([{"grade": "A", "passed": True}], "F", False),      # not a JSON object
+])
+async def test_grade_passed_comes_only_from_the_normalised_grade(reply, grade, passed):
+    """Only an A or B publishes; the model's own "passed" field is ignored."""
+    grader = SummaryGrader(api_key="test")
+    mock_response = MagicMock()
+    mock_response.content = [MagicMock(text=json.dumps(reply))]
+    grader.client = MagicMock()
+    grader.client.messages.create = AsyncMock(return_value=mock_response)
+
+    result = await grader.grade(
+        summary_type="vote_one_liner",
+        summary_text="Cancel an EPA rule limiting methane fees",
+        context={"title": "H.J.Res. 35"},
+    )
+
+    assert result.grade == grade
+    assert result.passed is passed
+
+
+@pytest.mark.asyncio
+async def test_self_contradicting_grade_is_withheld_by_the_loop():
+    """{"grade": "C", "passed": true} on every round must leave needs_review set."""
+    from app.services.writer_grader_loop import WriterGraderLoop
+
+    grader = SummaryGrader(api_key="test")
+    mock_response = MagicMock()
+    mock_response.content = [MagicMock(text='{"grade": "C", "passed": true, "feedback": "Meh."}')]
+    grader.client = MagicMock()
+    grader.client.messages.create = AsyncMock(return_value=mock_response)
+
+    async def writer_fn(grader_feedback=None):
+        return {"one_liner": "Raise the minimum wage", "provisions": ["One", "Two", "Three"],
+                "issue_categories": [], "direction": "neutral"}
+
+    result = await WriterGraderLoop(writer_fn=writer_fn, grader=grader).run(
+        summary_type="bill_summary", writer_kwargs={}, grader_context={"title": "Wage Act"},
+    )
+
+    assert result.best_grade.grade == "C"
+    assert result.needs_review is True
