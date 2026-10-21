@@ -36,7 +36,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt Pillow==12.3.0 fonttools==4.66.0 brotli==1.2.0
+        run: pip install --require-hashes -r requirements.txt -r requirements-sync.txt
 
       - name: Configure git identity
         run: |
