@@ -1,5 +1,5 @@
 """Tests for the homepage redesign: state counts, latest vote, bill plain-language
-enrichment, party reveal, and the notify signup endpoint."""
+enrichment, and the notify signup endpoint."""
 import json
 import re
 import pytest
@@ -36,12 +36,9 @@ async def _get(path):
 
 # --- Member counts ---
 
-@pytest.mark.asyncio
-async def test_member_counts():
-    response = await _get("/api/members/counts")
-    assert response.status_code == 200
+def test_member_counts():
     # Real synced members per state — fixtures hold FL x2, NY x4, TX x1.
-    assert response.json()["counts"] == {"FL": 2, "NY": 4, "TX": 1}
+    assert DataService(FIXTURES).get_member_counts() == {"FL": 2, "NY": 4, "TX": 1}
 
 
 # --- Latest vote ---
@@ -116,25 +113,6 @@ async def test_summarized_only_excludes_bills_without_one_liner():
     bills = response.json()["bills"]
     # Every returned bill must carry a usable plain-language headline.
     assert all(b["one_liner"] for b in bills)
-
-
-# --- Party reveal ---
-
-@pytest.mark.asyncio
-async def test_state_members_hide_party_by_default():
-    response = await _get("/api/members/FL")
-    assert response.status_code == 200
-    for member in response.json()["members"]:
-        assert "partyName" not in member
-
-
-@pytest.mark.asyncio
-async def test_state_members_show_party_when_requested():
-    response = await _get("/api/members/FL?show_party=true")
-    assert response.status_code == 200
-    members = response.json()["members"]
-    assert members
-    assert all("partyName" in m for m in members)
 
 
 # --- Notify signup ---
@@ -294,13 +272,3 @@ async def test_other_pages_serve_their_own_shell(path, shell):
     for sheet in ("/static/css/styles.css", "/static/css/broadsheet.css", "/static/css/site.css"):
         assert (sheet in response.text) == (sheet in on_disk), sheet
     assert "/static/css/" in response.text
-
-
-@pytest.mark.asyncio
-async def test_state_members_ignore_include_stats():
-    for path in ("/api/members/FL?include_stats=true", "/api/members/FL/19?include_stats=true"):
-        response = await _get(path)
-        assert response.status_code == 200
-        for member in response.json()["members"]:
-            assert "stats" not in member
-            assert "narrative_snippet" not in member

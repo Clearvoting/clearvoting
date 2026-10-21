@@ -1,7 +1,6 @@
 import logging
 from urllib.parse import urlparse
 from fastapi import APIRouter, HTTPException, Path, Query, Request
-from fastapi.responses import JSONResponse
 from app.dependencies import get_data_service
 from app.limiter import limiter
 from app.render import sponsor_name
@@ -71,24 +70,3 @@ def get_bill(request: Request, congress: int = Path(ge=1, le=200), bill_type: st
     # so bill.js no longer reads summaries[0] (the oldest).
     result = {**result, "official_summary": data_service.official_summary_for(result["bill"])}
     return _bill_payload(result)
-
-
-@router.get("/{congress}/{bill_type}/{bill_number}/ai-summary")
-@limiter.limit("10/minute")
-def get_ai_summary(request: Request, congress: int = Path(ge=1, le=200), bill_type: str = Path(), bill_number: int = Path()):
-    _validate_bill_type(bill_type)
-    data_service = get_data_service()
-    bill_id = f"{congress}-{bill_type.lower()}-{bill_number}"
-    summary = data_service.get_ai_summary(congress, bill_type, bill_number)
-    if not summary or not data_service.displayable_summary(bill_id):
-        return JSONResponse(status_code=404, content={"available": False})
-    return {"one_liner": summary.get("one_liner"), "provisions": summary.get("provisions") or []}
-
-
-@router.get("/{congress}/{bill_type}/{bill_number}/votes")
-@limiter.limit("60/minute")
-def get_bill_votes(request: Request, congress: int = Path(ge=1, le=200), bill_type: str = Path(), bill_number: int = Path()):
-    _validate_bill_type(bill_type)
-    # Additive per roll call (spec §10 #10): plain_question, seal, outcome, state_tallies on
-    # every roll call; covered only on the at most two the bill page renders (§4.4 m3, §9.6).
-    return get_data_service().get_bill_votes_payload(congress, bill_type, bill_number)

@@ -5,7 +5,6 @@ from fastapi import APIRouter, HTTPException, Query, Request
 from app import render
 from app.dependencies import get_data_service
 from app.limiter import limiter
-from app.services.data_service import RECORD_API_MAX_GROUPS
 
 logger = logging.getLogger(__name__)
 
@@ -25,83 +24,7 @@ def _validate_state_code(state_code: str) -> str:
     return state_code.upper()
 
 
-@router.get("/{bioguide_id}/donations")
-def get_member_donations(bioguide_id: str):
-    _validate_bioguide_id(bioguide_id)
-    data_service = get_data_service()
-    donations = data_service.get_member_donations(bioguide_id)
-    if not donations:
-        raise HTTPException(status_code=404, detail="Donation data not available for this member")
-    return donations
-
-
-@router.get("/{bioguide_id}/sponsored")
-@limiter.limit("60/minute")
-def get_member_sponsored_bills(request: Request, bioguide_id: str):
-    _validate_bioguide_id(bioguide_id)
-    data_service = get_data_service()
-    bills = data_service.get_bills_by_sponsor(bioguide_id)
-    return {"bills": bills, "count": len(bills)}
-
-
 _POSITION_PATTERN = "^(yes|no|nv)$"
-
-
-@router.get("/{bioguide_id}/votes")
-@limiter.limit("60/minute")
-def get_member_votes(
-    request: Request,
-    bioguide_id: str,
-    congress: int | None = Query(None, ge=1, le=200),
-    limit: int = Query(20, ge=1, le=200),
-    offset: int = Query(0, ge=0),
-    group: str | None = Query(None, pattern="^bill$", description="'bill' returns the record grouped by bill (at most 50 groups)"),
-    plain: bool = Query(False, description="Only votes on bills with a plain-English summary"),
-    policy_area: str | None = Query(None, max_length=120),
-    position: str | None = Query(None, pattern=_POSITION_PATTERN),
-    show_party: bool = Query(False, description="Include party labels and Speaker candidate names"),
-):
-    _validate_bioguide_id(bioguide_id)
-    data_service = get_data_service()
-    if group == "bill":
-        record = data_service.get_member_record(
-            bioguide_id, topic=policy_area, position=position, plain=plain, congress=congress)
-        if record is None:
-            raise HTTPException(status_code=404, detail="Member not found")
-        page_size = min(limit, RECORD_API_MAX_GROUPS)
-        return _allowlist_member_payload({
-            "member_id": bioguide_id.upper(),
-            "groups": record["groups"][offset:offset + page_size],
-            "total_groups": record["total_groups"],
-            "matching_bills": record["matching_bills"],
-            "limit": page_size,
-            "offset": offset,
-            "topic": record["topic"],
-            "position": record["position"],
-            "plain": record["plain"],
-            "policy_areas": record["policy_areas"],
-            "plain_bills": record["plain_bills"],
-            "total_bills": record["total_bills"],
-        }, show_party)
-    data = data_service.get_member_votes(bioguide_id)
-    if not data:
-        raise HTTPException(status_code=404, detail="Member not found")
-    votes = data["votes"]
-    if congress is not None:
-        votes = [v for v in votes if v.get("congress") == congress]
-    if policy_area or position or plain:
-        votes = data_service.filter_member_votes(votes, policy_area, position, plain)
-    sorted_votes = sorted(votes, key=lambda v: v["date"], reverse=True)
-    paginated = sorted_votes[offset:offset + limit]
-    return _allowlist_member_payload({
-        "member_id": data["member_id"],
-        "congresses": data.get("congresses", [data["congress"]] if "congress" in data else [119]),
-        "stats": data["stats"],
-        "votes": paginated,
-        "total_count": len(sorted_votes),
-        "policy_areas": data["policy_areas"],
-        "categories": data.get("categories", []),
-    }, show_party)
 
 
 @router.get("/{bioguide_id}/page")
@@ -114,8 +37,7 @@ def get_member_page(
     position: str | None = Query(None, pattern=_POSITION_PATTERN),
     plain: bool = Query(False),
 ):
-    """The member page payload (spec §10 #8): the same dict the server-rendered page uses.
-    Registered before /{state_code}/{district}, which would otherwise capture /S000148/page."""
+    """The member page payload (spec §10 #8): the same dict the server-rendered page uses."""
     _validate_bioguide_id(bioguide_id)
     result = get_data_service().get_member_page(bioguide_id, page, topic, position, plain)
     if result is None:
@@ -124,14 +46,6 @@ def get_member_page(
     # no party field, no Speaker candidate name and no stance text.
     record = render.record_tree(result)   # {"result": node, "list": node}
     return {**_allowlist_member_payload(result), "record_tree": record}
-
-
-@router.get("/counts")
-def get_member_counts():
-    """Members synced per state — powers the homepage state cards with real
-    numbers rather than theoretical seat totals."""
-    data_service = get_data_service()
-    return {"counts": data_service.get_member_counts()}
 
 
 @router.get("/{state_code}/overview")
@@ -159,16 +73,6 @@ def get_state_overview(
     return payload if show_party else _strip_party(payload)
 
 
-@router.get("/{state_code}")
-def get_members_by_state(
-    state_code: str,
-    show_party: bool = Query(False, description="Include party labels (hidden by default)"),
-):
-    state_code = _validate_state_code(state_code)
-    data = get_data_service().get_members_by_state(state_code)
-    return data if show_party else _strip_party(data)
-
-
 @router.get("/detail/{bioguide_id}")
 @limiter.limit("60/minute")
 def get_member_detail(request: Request, bioguide_id: str, show_party: bool = False):
@@ -182,13 +86,6 @@ def get_member_detail(request: Request, bioguide_id: str, show_party: bool = Fal
     # The party reveal (§4.3) also fills each Speaker row's "Voted for {Name}".
     return _allowlist_member_payload(
         {**data, "speaker_votes": data_service.get_speaker_votes(bioguide_id)}, show_party=True)
-
-
-@router.get("/{state_code}/{district}")
-def get_members_by_district(state_code: str, district: int):
-    state_code = _validate_state_code(state_code)
-    data = get_data_service().get_members_by_district(state_code, district)
-    return _strip_party(data)
 
 
 def _strip_party(data: dict) -> dict:

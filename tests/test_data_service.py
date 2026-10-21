@@ -1,7 +1,5 @@
-import builtins
 import json
 import logging
-import os
 import pytest
 from pathlib import Path
 from app.services.data_service import DataService
@@ -73,18 +71,6 @@ def test_get_bill_detail_not_found(data_service):
     assert result is None
 
 
-def test_get_ai_summary(data_service):
-    result = data_service.get_ai_summary(119, "hr", 1)
-    assert result is not None
-    assert len(result["provisions"]) == 2
-    assert "Taxes" in result["issue_categories"]
-
-
-def test_get_ai_summary_not_found(data_service):
-    result = data_service.get_ai_summary(119, "s", 9999)
-    assert result is None
-
-
 def test_get_senate_vote(data_service):
     result = data_service.get_senate_vote(119, 1, 372)
     assert result is not None
@@ -97,92 +83,17 @@ def test_get_senate_vote_not_found(data_service):
     assert result is None
 
 
-def test_get_members_by_district(data_service):
-    result = data_service.get_members_by_district("FL", 19)
-    assert len(result["members"]) == 1
-    assert result["members"][0]["bioguideId"] == "D000032"
-
-
 def test_get_sync_metadata(data_service):
     result = data_service.get_sync_metadata()
     assert result["members_count"] == 3
     assert "last_sync" in result
 
 
-def test_get_bill_votes(data_service):
-    result = data_service.get_bill_votes(119, "hr", 1)
-    assert result is not None
-    assert len(result["senate"]) == 1
-    assert result["senate"][0]["vote_number"] == 372
-    assert len(result["house"]) == 1
-    assert result["house"][0]["vote_number"] == 99
-
-
-def test_get_bill_votes_hjres(data_service):
-    result = data_service.get_bill_votes(119, "hjres", 20)
-    assert result is not None
-    assert len(result["senate"]) == 1
-    assert len(result["house"]) == 1
-
-
-def test_get_bill_votes_not_found(data_service):
-    result = data_service.get_bill_votes(119, "hr", 9999)
-    assert result is None
-
-
-def test_get_bill_votes_exact_number_match(data_service):
-    # H.R. 1 must not match H.R. 1002 (substring collision)
-    result = data_service.get_bill_votes(119, "hr", 1)
-    senate_numbers = [v["vote_number"] for v in result["senate"]]
-    assert 400 not in senate_numbers
-    # And H.R. 1002 resolves to only its own vote
-    result = data_service.get_bill_votes(119, "hr", 1002)
-    assert [v["vote_number"] for v in result["senate"]] == [400]
-    assert result["house"] == []
-
-
-def test_get_bill_votes_filters_by_congress(data_service):
-    # 119th H.R. 1 must exclude the 118th congress's H.R. 1 vote
-    result = data_service.get_bill_votes(119, "hr", 1)
-    for vote in result["senate"]:
-        assert vote["congress"] == 119
-    # 118th H.R. 1 returns only its own vote
-    result = data_service.get_bill_votes(118, "hr", 1)
-    assert [v["vote_number"] for v in result["senate"]] == [100]
-    assert result["house"] == []
-
-
-def test_get_bill_votes_returns_summary_fields_only(data_service):
-    # Bill page only needs vote refs; member positions come from the votes API
-    result = data_service.get_bill_votes(119, "hr", 1)
-    vote = result["senate"][0]
-    assert "members" not in vote
-    assert set(vote.keys()) == {
-        "congress", "session", "vote_number", "vote_date", "question", "result", "counts"
-    }
-
-
-def test_get_bill_votes_reads_the_index_not_the_vote_dirs(data_service, monkeypatch):
-    # The votes index (spec §10 #3) replaced the directory scan: no glob, no roll-call file reads.
-    calls = {"glob": 0, "open": 0}
-    real_glob = Path.glob
-    real_open = builtins.open
-
-    def counting_glob(self, pattern):
-        calls["glob"] += 1
-        return real_glob(self, pattern)
-
-    def counting_open(file, *args, **kwargs):
-        if f"{os.sep}votes{os.sep}" in str(file):
-            calls["open"] += 1
-        return real_open(file, *args, **kwargs)
-
-    monkeypatch.setattr(Path, "glob", counting_glob)
-    monkeypatch.setattr(builtins, "open", counting_open)
-    assert data_service.get_bill_votes(119, "hr", 1) is not None
-    data_service.get_bill_votes(119, "hjres", 20)
-    data_service.get_bill_votes(119, "hr", 9999)
-    assert calls == {"glob": 0, "open": 0}
+def test_bill_page_roll_calls_are_the_bills_own(data_service):
+    # The bill page lists only its own bill's roll calls: H.R. 1 must not pick up
+    # H.R. 1002 (senate 400) or the 118th Congress's H.R. 1 (senate 100).
+    page = data_service.get_bill_page(119, "hr", 1)
+    assert sorted(rc["key"] for rc in page["roll_calls"]) == ["house/119_1_00099", "senate/119_1_00372"]
 
 
 def test_get_member_narrative(data_service):

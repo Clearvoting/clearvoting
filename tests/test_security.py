@@ -57,26 +57,6 @@ def test_safe_url_rejects_empty_and_malformed():
     assert _is_safe_url("ftp://congress.gov/file") is False
 
 
-# --- Rate Limiting ---
-
-@pytest.mark.asyncio
-async def test_rate_limit_ai_summary():
-    """AI summary endpoint returns 429 after exceeding rate limit."""
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            responses = []
-            for _ in range(12):
-                resp = await client.get("/api/bills/119/hr/1/ai-summary")
-                responses.append(resp.status_code)
-
-    _clear_data_service_cache()
-    assert 429 in responses, "Rate limiter should reject requests after limit exceeded"
-    success_count = sum(1 for s in responses if s == 200)
-    assert success_count == 10
-
-
 # --- Input Validation ---
 
 @pytest.mark.asyncio
@@ -126,7 +106,7 @@ async def test_valid_bioguide_id_accepted():
 async def test_non_alpha_state_code_returns_400():
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
-        resp = await client.get("/api/members/!!")
+        resp = await client.get("/api/members/!!/overview")
     assert resp.status_code == 400
     assert "2 letters" in resp.json()["detail"]
 
@@ -135,7 +115,7 @@ async def test_non_alpha_state_code_returns_400():
 async def test_numeric_state_code_returns_400():
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
-        resp = await client.get("/api/members/12")
+        resp = await client.get("/api/members/12/overview")
     assert resp.status_code == 400
 
 

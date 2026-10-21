@@ -114,7 +114,6 @@ def state_overview_payload(code: str, members: list[dict], latest_votes: dict[st
 # ---------------------------------------------------------------------------
 
 RECORD_PER_PAGE = 15
-RECORD_API_MAX_GROUPS = 50
 RECENT_VOTES_LIMIT = 8
 SPONSORED_LIMIT = 6
 SPEAKER_QUESTION = "Election of the Speaker"
@@ -562,14 +561,6 @@ class DataService:
         filtered = [m for m in self._members if m.get("stateCode") == state_code]
         return {"members": filtered}
 
-    def get_members_by_district(self, state_code: str, district: int) -> dict:
-        state_code = state_code.upper()
-        filtered = [
-            m for m in self._members
-            if m.get("stateCode") == state_code and m.get("district") == district
-        ]
-        return {"members": filtered}
-
     def get_state_overview(self, code: str, fallback: bool = False) -> dict | None:
         """The precomputed delegation file (§10 #7): one read per state, then served from memory.
 
@@ -607,19 +598,7 @@ class DataService:
         if not path.exists():
             return None
         with open(path, "r") as f:
-            data = json.load(f)
-
-        # Enrich each vote with simplified issue_categories from AI summaries
-        categories_set: set[str] = set()
-        for vote in data.get("votes", []):
-            bill_id = vote.get("bill_id", "")
-            summary = self._ai_summaries.get(bill_id, {})
-            cats = summary.get("issue_categories", [])
-            vote["issue_categories"] = cats
-            categories_set.update(cats)
-
-        data["categories"] = sorted(categories_set)
-        return data
+            return json.load(f)
 
     def get_member_narrative(self, bioguide_id: str) -> dict | None:
         bioguide_id = bioguide_id.upper()
@@ -817,7 +796,7 @@ class DataService:
             "result": rc.get("result"),
             "counts": rc.get("counts"),
             # On this endpoint `outcome` is the §7.2 seal (G3 reads it); `seal` names it the
-            # way /api/bills/…/votes does, where `outcome` is the §7.3 sentence instead.
+            # way the bill page's roll calls do, where `outcome` is the §7.3 sentence instead.
             "seal": seal,
             "outcome": seal,
             "state_tallies": rc.get("tallies") or {},
@@ -843,10 +822,6 @@ class DataService:
                     and int(b.get("number", 0)) == bill_number):
                 return {"bill": b, "subjects": b.get("subjects", {"legislativeSubjects": []})}
         return None
-
-    def get_ai_summary(self, congress: int, bill_type: str, bill_number: int) -> dict | None:
-        key = f"{congress}-{bill_type.lower()}-{bill_number}"
-        return self._ai_summaries.get(key)
 
     def get_senate_vote(self, congress: int, session: int, vote_number: int) -> dict | None:
         filename = f"{congress}_{session}_{vote_number:05d}.json"
@@ -876,31 +851,6 @@ class DataService:
             return None
         bill_type = match.group(1).replace(".", "").replace(" ", "").lower()
         return bill_type, int(match.group(2))
-
-    def get_bill_votes(self, congress: int, bill_type: str, bill_number: int) -> dict | None:
-        """Roll-call refs for a bill from the votes index (T1.7's _index_bill_keys); no file
-        I/O. Oldest first per chamber (the order the old bill.js renders); the seven summary
-        keys only."""
-        keys = self._index_bill_keys(f"{congress}-{bill_type.lower()}-{bill_number}")
-        if not keys:
-            return None
-        refs: dict[str, list[dict]] = {"senate": [], "house": []}
-        roll_calls = self._index_roll_calls()
-        for key in reversed(keys):
-            parts, rc = self._split_rc_key(key), roll_calls.get(key)
-            if not parts or rc is None:
-                continue
-            chamber, rc_congress, session, number = parts
-            refs[chamber].append({
-                "congress": rc_congress,
-                "session": session,
-                "vote_number": number,
-                "vote_date": rc.get("date"),
-                "question": rc.get("question"),
-                "result": rc.get("result"),
-                "counts": rc.get("counts"),
-            })
-        return refs
 
     def get_member_donations(self, bioguide_id: str) -> dict | None:
         bioguide_id = bioguide_id.upper()
@@ -1037,9 +987,6 @@ class DataService:
             "status": self._bill_status_for(bill, bill_id),
         }
 
-    def filter_member_votes(self, votes: list[dict], topic, position, plain) -> list[dict]:
-        return filter_record_votes(votes, topic, position, plain, self._plain_one_liner)
-
     def _record_from_votes(self, votes: list[dict], policy_areas, topic, position, plain) -> dict:
         topic = str(topic or "").strip() or None
         position = position if position in ("yes", "no", "nv") else None
@@ -1059,17 +1006,6 @@ class DataService:
             "plain_bills": sum(1 for bill_id in bill_ids if self._plain_one_liner(bill_id)),
             "total_bills": len(bill_ids),
         }
-
-    def get_member_record(self, bioguide_id: str, topic: str | None = None, position: str | None = None,
-                          plain: bool = False, congress: int | None = None) -> dict | None:
-        """The whole grouped record (all pages); None when there is no member_votes file."""
-        data = self.get_member_votes(bioguide_id)
-        if not data:
-            return None
-        votes = _newest_first(data.get("votes") or [])
-        if congress is not None:
-            votes = [v for v in votes if v.get("congress") == congress]
-        return self._record_from_votes(votes, data.get("policy_areas"), topic, position, plain)
 
     def get_member_page(self, bioguide_id: str, page: int = 1, topic: str | None = None,
                         position: str | None = None, plain: bool = False) -> dict | None:
@@ -1261,46 +1197,6 @@ class DataService:
     def official_summary_for(self, bill: dict) -> str | None:
         """The official summary the site shows (§4.4 m4-m5): Public Law first, else newest."""
         return self._latest_official_summary(bill) or None
-
-    def rendered_roll_call_keys(self, bill_id: str) -> frozenset[str]:
-        """Index keys of the at most two roll calls the bill page renders (§4.4 m3). Index only."""
-        views = [view for view in (self._roll_call_view(key) for key in self._index_bill_keys(bill_id)) if view]
-        return frozenset(rc["key"] for rc in _pick_rendered(views))
-
-    def roll_call_extras(self, chamber: str, congress, session, vote_number, question: str = "",
-                         rendered: frozenset[str] = frozenset()) -> dict:
-        """Additive fields for one roll call in /api/bills/{c}/{t}/{n}/votes (§10 #10). The
-        index fields (plain_question, seal, outcome, state_tallies) go on every roll call;
-        `covered` needs the roll-call file, so it is read only for keys in `rendered` (the at
-        most two the bill page renders, §4.4 m3 / §9.6) and is `{}` on the rest."""
-        key = rc_key_or_none(chamber, congress, session, vote_number)
-        entry = self._index_roll_calls().get(key) if key else None
-        word = "Senate" if str(chamber or "").lower().startswith("senate") else "House"
-        raw = self._read_roll_call(chamber, congress, session, vote_number) if key in rendered else None
-        return {
-            "plain_question": (entry or {}).get("plain")
-                              or render.plain_question(str((entry or {}).get("question") or question or "")),
-            "seal": _seal_text(entry, word),
-            "outcome": _outcome_text(entry, word),
-            "state_tallies": (entry or {}).get("tallies") or {},
-            "covered": self.covered_positions(word, raw) if raw else {},
-        }
-
-    def get_bill_votes_payload(self, congress: int, bill_type: str, bill_number: int) -> dict:
-        """/api/bills/{c}/{t}/{n}/votes: the old refs, each with roll_call_extras(). At most
-        two roll-call files are read per request (the ones the bill page renders)."""
-        result = self.get_bill_votes(congress, bill_type, bill_number)
-        if not result:
-            return {"senate": [], "house": []}
-        rendered = self.rendered_roll_call_keys(f"{congress}-{str(bill_type).lower()}-{bill_number}")
-        return {
-            chamber: [
-                {**rc, **self.roll_call_extras(chamber, rc.get("congress"), rc.get("session"),
-                                               rc.get("vote_number"), rc.get("question") or "", rendered)}
-                for rc in result.get(chamber) or []
-            ]
-            for chamber in ("senate", "house")
-        }
 
     def get_bill_page(self, congress: int, bill_type: str, number: int) -> dict | None:
         """Everything the bill page renders (§4.4, §10 #10), from startup data plus at most

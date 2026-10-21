@@ -43,7 +43,7 @@ async def _request(method: str, path: str, **kwargs):
 
 @pytest.mark.parametrize("method,path,query,status,existing,expected", [
     ("GET", "/", {}, 500, None, "no-store"),
-    ("GET", "/api/members/NY", {}, 503, None, "no-store"),
+    ("GET", "/api/members/NY/overview", {}, 503, None, "no-store"),
     ("GET", "/api/districts/abc", {}, 400, DISTRICTS, "no-store"),
     ("GET", "/api/bills/999/hr/1", {}, 422, None, "no-store"),
     ("GET", "/api/districts/11570", {}, 429, None, "no-store"),
@@ -144,7 +144,7 @@ async def test_site_wide_limit_is_never_stored_and_spares_static_and_health():
         with _patch_data_dir():
             _clear_data_service_cache()
             async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
-                codes = [(await client.get(("/privacy", "/api/members/counts")[i % 2])).status_code
+                codes = [(await client.get(("/privacy", "/api/votes/latest")[i % 2])).status_code
                          for i in range(600)]
                 limited = await client.get("/about")
                 other_client = await client.get("/about", headers={"X-Forwarded-For": "198.51.100.7"})

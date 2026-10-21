@@ -10,6 +10,7 @@ from httpx import AsyncClient, ASGITransport
 from app.main import app
 from app.services.data_service import (
     DataService,
+    _newest_first,
     filter_record_votes,
     group_record,
     pick_recent_votes,
@@ -485,11 +486,17 @@ def _no_bill_count(groups):
     return sum(len(g["votes"]) if g["kind"] == "other" else 1 for g in groups if g["kind"] != "bill")
 
 
+def _whole_record(service, member_id):
+    """The member's grouped record on every page at once: the record get_member_page pages."""
+    data = service.get_member_votes(member_id)
+    return service._record_from_votes(_newest_first(data["votes"]), data.get("policy_areas"), None, None, False)
+
+
 def test_schumer_record_accounts_for_every_fixture_vote(fixture_service):
     rows = json.loads((FIXTURES / "member_votes" / "S000148.json").read_text())["votes"]
     assert len(rows) == 1061
     assert sum(1 for r in rows if r.get("bill_id") is None) == 478
-    record = fixture_service.get_member_record("S000148")
+    record = _whole_record(fixture_service, "S000148")
     assert _vote_count(record["groups"]) == 1061
     assert _no_bill_count(record["groups"]) == 478
     assert record["total_bills"] == len({r["bill_id"] for r in rows if r.get("bill_id")})
@@ -498,7 +505,7 @@ def test_schumer_record_accounts_for_every_fixture_vote(fixture_service):
 def test_schumer_fixture_amendment_row_carries_its_parent_bill(fixture_service):
     # Spec §10 #22: the parent parsed for the fixture's amendment. T1.1 cut senate/119_2_00223
     # ("S.Amdt. 6715 to S.Amdt. 6711 to H.R. 5334"; the S000148 row has bill_id null) for this.
-    record = fixture_service.get_member_record("S000148")
+    record = _whole_record(fixture_service, "S000148")
     others = [v for g in record["groups"] if g["kind"] == "other" for v in g["votes"]]
     vote = next(v for v in others if v["rc"] == "senate/119_2_00223")
     assert vote["parent"] == {"bill_id": "119-hr-5334", "congress": 119, "bill_type": "hr",
@@ -570,7 +577,7 @@ def test_real_schumer_recent_votes_follow_the_published_rule(real_service):
 
 
 def test_real_schumer_amendment_rows_carry_their_parent_bill(real_service):
-    record = real_service.get_member_record("S000148")
+    record = _whole_record(real_service, "S000148")
     others = [v for g in record["groups"] if g["kind"] == "other" for v in g["votes"]]
     with_parent = [v for v in others if (v["roll_call"] or {}).get("parent")]
     assert with_parent, "S000148 has amendment roll calls whose question names a parent bill"
@@ -579,10 +586,6 @@ def test_real_schumer_amendment_rows_carry_their_parent_bill(real_service):
 
 
 # --- Routers (fixture data dir, the pattern of tests/test_routers.py) ---
-
-OLD_VOTES_KEYS = {"member_id", "congresses", "stats", "scorecard", "votes", "total_count",
-                  "policy_areas", "categories"}
-
 
 async def _get(path):
     from app.dependencies import get_data_service
@@ -596,7 +599,7 @@ async def _get(path):
 
 
 @pytest.mark.asyncio
-async def test_page_endpoint_is_registered_before_the_district_route():
+async def test_page_endpoint_returns_the_page_payload():
     response = await _get("/api/members/S000148/page")
     assert response.status_code == 200
     data = response.json()
@@ -629,52 +632,6 @@ async def test_page_endpoint_hides_speaker_candidate_names_and_party():
         assert response.status_code == 200
         assert "Jeffries" not in response.text
         assert '"partyName"' not in response.text and '"participation_rate"' not in response.text
-
-
-async def _all_flat_votes(params: str = "") -> list[dict]:
-    """Every row of S000148's flat /votes query, 200 at a time (the route's cap since F006)."""
-    votes: list[dict] = []
-    while True:
-        data = (await _get(f"/api/members/S000148/votes?limit=200&offset={len(votes)}{params}")).json()
-        votes += data["votes"]
-        if not data["votes"] or len(votes) >= data["total_count"]:
-            return votes
-
-
-@pytest.mark.asyncio
-async def test_votes_default_flat_shape_after_member_switch():
-    """T6.3 trims the flat /votes payload: no scorecard, and stats without participation_rate."""
-    data = (await _get("/api/members/S000148/votes?limit=200")).json()
-    assert set(data) == OLD_VOTES_KEYS - {"scorecard"}
-    assert "participation_rate" not in data["stats"]
-    assert data["total_count"] == 1061 and len(data["votes"]) == 200
-    assert len(await _all_flat_votes()) == 1061
-
-
-@pytest.mark.asyncio
-async def test_votes_group_bill_honours_limit_and_offset_and_caps_at_fifty():
-    data = (await _get("/api/members/S000148/votes?group=bill&limit=200")).json()
-    assert data["limit"] == 50 and len(data["groups"]) == 50
-    assert data["member_id"] == "S000148"
-    page2 = (await _get("/api/members/S000148/votes?group=bill&limit=15&offset=15")).json()
-    assert (page2["limit"], page2["offset"]) == (15, 15)
-    assert page2["groups"] == data["groups"][15:30]
-
-
-@pytest.mark.asyncio
-async def test_votes_flat_mode_honours_the_new_filters():
-    data = (await _get("/api/members/S000148/votes?position=no&limit=200")).json()
-    assert data["total_count"] == 540
-    no_votes = await _all_flat_votes("&position=no")
-    assert len(no_votes) == 540 and all(v["vote"] in ("Nay", "No") for v in no_votes)
-    topic = await _all_flat_votes("&policy_area=Health")
-    assert topic and all(v["policy_area"] == "Health" for v in topic)
-
-
-@pytest.mark.asyncio
-async def test_votes_rejects_unknown_group_and_position():
-    assert (await _get("/api/members/S000148/votes?group=topic")).status_code == 422
-    assert (await _get("/api/members/S000148/votes?position=maybe")).status_code == 422
 
 
 @pytest.mark.asyncio
