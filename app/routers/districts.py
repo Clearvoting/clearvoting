@@ -18,7 +18,7 @@ DAY_CACHE = "public, max-age=86400, s-maxage=86400"
 
 @router.get("/{zip_code}")
 @limiter.limit("60/minute")
-async def get_districts(request: Request, response: Response, zip_code: str):
+def get_districts(request: Request, response: Response, zip_code: str):
     zip5 = normalize_zip(zip_code)
     if zip5 is None:
         return JSONResponse(status_code=400, content={"detail": ZIP_ERROR}, headers={"Cache-Control": "no-store"})

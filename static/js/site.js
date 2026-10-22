@@ -73,7 +73,10 @@ function clear(node) {
 const TREE_TAGS = ['a', 'details', 'div', 'em', 'li', 'nav', 'ol', 'p', 'span', 'strong', 'summary', 'time', 'ul'];
 const TREE_ATTRS = ['class', 'href', 'rel', 'datetime', 'role', 'hidden', 'open', 'aria-label', 'aria-hidden', 'aria-current', 'data-rc', 'data-short', 'data-record-result', 'data-record-list', 'data-record-nav'];
 
+// Mirrors render._safe_tree_href (F040): a backslash, control character or whitespace anywhere is
+// refused, because browsers drop tabs/newlines and read '\' as '/', so '/\host' leaves the site.
 function safeTreeHref(value) {
+    if (/[\\\u0000-\u0020\u007f]/.test(value)) return false;
     return value.indexOf('https://') === 0 || (value.charAt(0) === '/' && value.charAt(1) !== '/');
 }
 
@@ -435,7 +438,8 @@ function signalLine(vote) {
 // member = one T4.1 overview_member_fields object (bioguideId, display_name, initials,
 // seat_line, seat_seal, url, photo — already congress.gov-only or "" — district, latest_vote).
 // trailing (optional Element) replaces the latest-vote signal: the bill page's reps slot
-// (T7.3) passes chip(position, {chamber}) for this bill's vote instead.
+// (T7.3) passes chip(position, {chamber}) for this bill's vote instead. The href is built
+// from bioguideId, as the server builds url, rather than taken from the payload (F040).
 function personRow(member, stateCode, trailing) {
     const bioguide = String(member.bioguideId || '');
     const name = member.display_name || '';
@@ -449,7 +453,7 @@ function personRow(member, stateCode, trailing) {
     body.append(' ', trailing || signalLine(member.latest_vote || null), ' ', el('span', { className: 'party' }));
     return el('a', {
         className: 'person',
-        href: member.url || `/member?id=${encodeURIComponent(bioguide)}`,
+        href: `/member?id=${encodeURIComponent(bioguide)}`,
         'data-bioguide': bioguide,
         'data-state': stateCode || member.state || '',
         'data-district': member.district === null || member.district === undefined ? '' : String(member.district),
@@ -611,13 +615,28 @@ function rememberedLine(home, onForget) {
     return line;
 }
 
+// True when a page on this site sent the reader here. The ZIP finder's redirect keeps the form
+// page as the referrer and "This is my district" is a link here; Referrer-Policy
+// strict-origin-when-cross-origin sends a same-origin referrer in full.
+function cameFromThisSite() {
+    try {
+        return !!document.referrer && new URL(document.referrer).origin === window.location.origin;
+    } catch (e) {
+        return false;
+    }
+}
+
 // The #mine fragment is the only automatic trigger (§3.3): write cv-home from the URL's own
-// code and district, then drop the fragment with history.replaceState.
+// code and district, then drop the fragment with history.replaceState. Only a landing this
+// site sent the reader to writes (F043): a #mine link on another site, in an email or a text
+// writes nothing (the Remember button still can), and its fragment is dropped all the same.
 function initHome() {
     if (!once('home')) return readHome();
     if (window.location.hash === '#mine') {
         const params = new URLSearchParams(window.location.search);
-        if (params.get('code') && params.get('district')) rememberDistrict(params.get('code'), params.get('district'));
+        if (cameFromThisSite() && params.get('code') && params.get('district')) {
+            rememberDistrict(params.get('code'), params.get('district'));
+        }
         try {
             history.replaceState(history.state, '', window.location.pathname + window.location.search);
         } catch (e) {
@@ -1246,4 +1265,4 @@ if (typeof module !== 'undefined' && module.exports) {
         initZipInPlace, fillRepsSlot, slotBindForm, slotPick,
     };
 }
-if (typeof module !== 'undefined' && module.exports) { module.exports.buildTree = buildTree; }
+if (typeof module !== 'undefined' && module.exports) { module.exports.buildTree = buildTree; module.exports.safeTreeHref = safeTreeHref; }

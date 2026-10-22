@@ -244,7 +244,9 @@ function memoryStorage() {
 }
 const local = memoryStorage();
 globalThis.window = { localStorage: local, sessionStorage: memoryStorage(),
-  location: { hash: '#mine', search: '?code=NY&district=4', pathname: '/state' } };
+  location: { hash: '#mine', search: '?code=NY&district=4', pathname: '/state', origin: 'https://clearvoting.org' } };
+// The ZIP finder's 302 keeps the form page as the referrer (F043).
+globalThis.document = { referrer: 'https://clearvoting.org/', readyState: 'loading', addEventListener() {} };
 globalThis.history = { state: null, replaced: null, replaceState(state, title, url) { this.replaced = url; } };
 const s = require(process.argv[1]);
 const out = {};
@@ -284,6 +286,42 @@ def test_cv_home_is_written_from_mine_and_only_for_covered_districts():
     assert out["lower"] == {"state": "TX", "district": 7, "savedAt": saved}
     assert out["afterForget"] is None and out["corrupt"] is None
     assert out["blockedRead"] is None and out["blockedWrite"] is None
+
+
+_MINE_REFERRER_SCRIPT = r"""
+const data = {};
+const local = { getItem: (k) => (k in data ? data[k] : null), setItem: (k, v) => { data[k] = String(v); },
+                removeItem: (k) => { delete data[k]; } };
+globalThis.window = { localStorage: local, sessionStorage: local,
+  location: { hash: '#mine', search: '?code=TX&district=7', pathname: '/state', origin: 'https://clearvoting.org' } };
+globalThis.document = { referrer: process.argv[2], readyState: 'loading', addEventListener() {} };
+globalThis.history = { state: null, replaced: null, replaceState(state, title, url) { this.replaced = url; } };
+const s = require(process.argv[1]);
+const home = s.initHome();
+process.stdout.write(JSON.stringify({ home, stored: data['cv-home'] || null, replaced: history.replaced }));
+"""
+
+
+@needs_node
+@pytest.mark.parametrize("referrer, writes", [
+    ("https://clearvoting.org/", True),                          # the ZIP finder on the home page
+    ("https://clearvoting.org/state?code=TX&district=13", True),  # "This is my district" on /state
+    ("https://evil.example/state?code=TX&district=7", False),
+    ("https://clearvoting.org.evil.example/", False),
+    ("http://clearvoting.org/", False),
+    ("", False),                                                  # typed, bookmarked, or no-referrer
+    ("not a url", False),
+])
+def test_mine_writes_cv_home_only_when_this_site_sent_the_reader(referrer, writes):
+    # F043: a cross-site /state?code=..&district=..#mine link cannot set the remembered district.
+    done = subprocess.run([_NODE, "-e", _MINE_REFERRER_SCRIPT, str(_SITE_JS), referrer], capture_output=True,
+                          text=True, check=True, timeout=60)
+    out = json.loads(done.stdout)
+    assert out["replaced"] == "/state?code=TX&district=7"  # the fragment is dropped either way
+    if writes:
+        assert (out["home"]["state"], out["home"]["district"]) == ("TX", 7) and out["stored"]
+    else:
+        assert out["home"] is None and out["stored"] is None
 
 
 # --- Bill slot (plan T7.3; spec §4.4 m2, §5.4 write rule 3, §8 items 10–11) ---

@@ -447,19 +447,6 @@ def test_withheld_and_missing_summaries_have_a_null_one_liner(tmp_path):
     assert [b["number"] for b in summarized] == ["4795"]
 
 
-def test_get_bill_votes_reads_refs_from_the_index(tmp_path):
-    service = DataService(data_dir=_t19_data_dir(tmp_path))
-    refs = service.get_bill_votes(119, "HR", 4795)
-    assert refs["senate"] == []
-    # Oldest first per chamber, as the old directory scan listed them
-    assert [(r["session"], r["vote_number"]) for r in refs["house"]] == [(2, 209), (2, 210)]
-    assert set(refs["house"][0]) == {"congress", "session", "vote_number", "vote_date",
-                                     "question", "result", "counts"}
-    assert refs["house"][1]["vote_date"] == "2026-08-19"
-    assert service.get_bill_votes(119, "hr", 6500)["senate"][0]["vote_number"] == 227
-    assert service.get_bill_votes(118, "hr", 21) is None
-
-
 def test_latest_vote_is_the_index_hero_with_card_fields(tmp_path):
     service = DataService(data_dir=_t19_data_dir(tmp_path))
     vote = service.get_latest_vote()
@@ -522,8 +509,6 @@ def test_service_reads_only_the_latest_roll_call_file_once(tmp_path, monkeypatch
     service.get_latest_vote()
     service.get_bills(limit=10)
     service.get_bills(summarized_only=True)
-    for number in (6500, 4795):
-        service.get_bill_votes(119, "hr", number)
     reads = [p for p in opened if f"{os.sep}votes{os.sep}" in p]
     assert reads == [str(tmp_path / "votes" / "senate" / "119_2_00227.json")]
 

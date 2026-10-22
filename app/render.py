@@ -383,12 +383,20 @@ def position_chip(vote: str | None) -> dict:
 # §9.1 escaping, §7.5 codes / names / tenure, §7.4 seat seals, §4.4 sponsor,
 # §10 #10 tag stripping.
 # ---------------------------------------------------------------------------
+# G1-021: bidi controls (U+061C, U+200E-200F, U+202A-202E, U+2066-2069) and zero-width or
+# invisible format characters (U+200B-200D, U+2060-2064, U+FEFF). No name, title or summary
+# needs one, and one inside a data value can reorder the site's own text after it or hide an
+# edit, so h() drops them. Other text, accented letters included, is escaped as before.
+_INVISIBLE = dict.fromkeys([0x061C, *range(0x200B, 0x2010), *range(0x202A, 0x202F),
+                            *range(0x2060, 0x2065), *range(0x2066, 0x206A), 0xFEFF])
+
+
 def h(value) -> str:
     """The one escape helper: every interpolated data value in rendered HTML goes
     through this. None renders as an empty string."""
     if value is None:
         return ""
-    return html.escape(str(value), quote=True)
+    return html.escape(str(value).translate(_INVISIBLE), quote=True)
 
 
 # --- Render trees (plan T10.2) ------------------------------------------------
@@ -401,6 +409,16 @@ TREE_ATTRS = frozenset({
     "aria-current", "data-rc", "data-short", "data-record-result", "data-record-list", "data-record-nav",
 })
 _TREE_BOOLEAN = frozenset({"hidden", "open"})
+_HREF_UNSAFE = re.compile(r"[\\\x00-\x20\x7f]")
+
+
+def _safe_tree_href(text: str) -> bool:
+    """https://… or a path on this site (site.js safeTreeHref mirrors it). No backslash, control
+    character or whitespace anywhere: browsers drop tabs and newlines and read '\\' as '/', so
+    '/\\evil.example' or '/<tab>/evil.example' would resolve off-site like '//evil.example' (F040)."""
+    if _HREF_UNSAFE.search(text):
+        return False
+    return text.startswith("https://") or (text.startswith("/") and not text.startswith("//"))
 
 
 def N(tag: str, attrs: dict | None = None, *children) -> dict:
@@ -415,7 +433,7 @@ def N(tag: str, attrs: dict | None = None, *children) -> dict:
         if key not in TREE_ATTRS:
             raise ValueError(f"attribute not allowed in a render tree: {key}")
         text = "" if value is True else str(value)
-        if key == "href" and not (text.startswith("https://") or (text.startswith("/") and not text.startswith("//"))):
+        if key == "href" and not _safe_tree_href(text):
             raise ValueError(f"href must be site-relative or https: {text}")
         clean[key] = text
     flat: list = []
@@ -517,15 +535,33 @@ def tenure_line(terms) -> str:
 _SEAT_SEALS = {
     ("regular", "row"): "Seat up Nov 3",
     ("regular", "header"): "This seat is on the ballot Nov 3, 2026",
+    ("regular_new_map", "row"): "Seat up Nov 3 · new district lines",
+    ("regular_new_map", "header"): "This seat is on the ballot Nov 3, 2026, with new district lines",
     ("special", "row"): "Special election Nov 3",
     ("special", "header"): "Special election for this seat Nov 3, 2026",
 }
 
+# G1-013: the covered states that elect their House members on new district lines on Nov 3,
+# 2026 (the cheat-sheet research sets house.map_same_as_119th false for exactly these). The
+# ZIP crosswalk and members.json are 119th-Congress districts, so a district shown there may
+# not be the reader's 2026 district, and its seal says the lines are new.
+NEW_MAP_STATES = frozenset({"CA", "FL", "TX"})
 
-def seat_seal(kind: str | None, context: str = "row", header: bool = False) -> str:
-    """Seat seal text for data_service.seat_up_2026(member) ('regular' | 'special' | None):
-    the row form by default, the member-header form with context="header" or
-    header=True. '' when the seat is not up (no negative ballot copy exists)."""
+
+def house_seat_2026(state_code: str | None) -> str:
+    """§7.4: every House seat is on the Nov 3, 2026 ballot, a vacant one too (G1-025):
+    'regular', or 'regular_new_map' in a NEW_MAP_STATES state (G1-013)."""
+    return "regular_new_map" if str(state_code or "").upper() in NEW_MAP_STATES else "regular"
+
+
+def seat_seal(kind: str | None, context: str = "row", header: bool = False,
+              now: datetime | None = None) -> str:
+    """Seat seal text for data_service.seat_up_2026(member) ('regular' | 'regular_new_map' |
+    'special' | None): the row form by default, the member-header form with context="header"
+    or header=True. '' when the seat is not up (no negative ballot copy exists), and '' once
+    `now` (the request clock) is past Election Day: the seal names a ballot still to come (F066)."""
+    if _election_over(now):
+        return ""
     where = "header" if header or context == "header" else "row"
     return _SEAT_SEALS.get((kind or "", where), "")
 
@@ -637,41 +673,73 @@ PAGE_ERROR_SENTENCE = (
 )
 
 
-def _pacific_today(now: datetime) -> date:
-    """Today's date in America/Los_Angeles, so "Election Day is today" lasts until
-    California polls close (spec §7.4). Falls back to the US DST rule when the host
+# The edition line's zones, east to west (G1-024): {zone: (standard UTC offset in hours,
+# observes US daylight time)}, for the fallback when the host has no tz database.
+_EDITION_ZONES = {
+    "America/New_York": (-5, True),
+    "America/Los_Angeles": (-8, True),
+    "Pacific/Honolulu": (-10, False),
+}
+
+
+def _zone_today(now: datetime, zone: str) -> date:
+    """Today's date in one of _EDITION_ZONES. Falls back to the US DST rule when the host
     has no tz database (python:3.12-slim may ship without one; no new dependency)."""
     if now.tzinfo is None:
         now = now.replace(tzinfo=timezone.utc)
     try:
-        return now.astimezone(ZoneInfo("America/Los_Angeles")).date()
+        return now.astimezone(ZoneInfo(zone)).date()
     except ZoneInfoNotFoundError:
         utc = now.astimezone(timezone.utc)
-        # PDT runs from the second Sunday in March, 10:00 UTC, to the first Sunday in November, 09:00 UTC.
-        march_8 = datetime(utc.year, 3, 8, 10, tzinfo=timezone.utc)
-        dst_start = march_8 + timedelta(days=(6 - march_8.weekday()) % 7)
-        nov_1 = datetime(utc.year, 11, 1, 9, tzinfo=timezone.utc)
-        dst_end = nov_1 + timedelta(days=(6 - nov_1.weekday()) % 7)
-        offset = -7 if dst_start <= utc < dst_end else -8
+        standard, daylight = _EDITION_ZONES[zone]
+        offset = standard
+        if daylight:
+            # Daylight time runs from 2:00 local on the second Sunday in March to 2:00 local on
+            # the first Sunday in November (Pacific: 10:00 UTC to 09:00 UTC).
+            march_8 = datetime(utc.year, 3, 8, 2 - standard, tzinfo=timezone.utc)
+            dst_start = march_8 + timedelta(days=(6 - march_8.weekday()) % 7)
+            nov_1 = datetime(utc.year, 11, 1, 1 - standard, tzinfo=timezone.utc)
+            dst_end = nov_1 + timedelta(days=(6 - nov_1.weekday()) % 7)
+            offset += 1 if dst_start <= utc < dst_end else 0
         return (utc + timedelta(hours=offset)).date()
 
 
+def _pacific_today(now: datetime) -> date:
+    """Today's date in America/Los_Angeles: the day after Election Day there, polls have
+    closed in all four covered states (spec §7.4)."""
+    return _zone_today(now, "America/Los_Angeles")
+
+
+def _election_over(now: datetime | None) -> bool:
+    """True from November 4 in California (F066). None means the caller passed no clock, and
+    the pre-election ballot copy stands."""
+    return now is not None and _pacific_today(now) > ELECTION_DAY
+
+
 def render_edition(last_sync: str | None, latest_roll_call: str | None, now: datetime) -> str:
-    """The one-line edition under the masthead nav (spec §7.4, §6.4)."""
+    """The one-line edition under the masthead nav (spec §7.4, §6.4). A last_sync that is not
+    a date string (a hand edit, an int) drops the "Data synced" part rather than raising (F067)."""
     parts: list[tuple[str, str]] = []
-    if last_sync:
-        parts.append(("", f"Data synced {format_date(last_sync[:10])}"))
+    synced_day = _trust_iso(last_sync) if isinstance(last_sync, str) else None
+    if synced_day:
+        parts.append(("", f"Data synced {format_date(synced_day)}"))
     if latest_roll_call:
         month_day = format_date(latest_roll_call[:10]).rsplit(",", 1)[0]
         parts.append(("edition-mid", f"Latest roll call {month_day}"))
-    days = (ELECTION_DAY - _pacific_today(now)).days
-    if days == 0:
+    # G1-024: one cached line serves every reader, so it counts days only while New York, Los
+    # Angeles and Honolulu share a date. Otherwise it names the date alone, which is true in
+    # every zone, and it drops once Honolulu is past Election Day.
+    counts = {(ELECTION_DAY - _zone_today(now, zone)).days for zone in _EDITION_ZONES}
+    weekday = ELECTION_DAY.strftime("%A")
+    month_day = format_date(ELECTION_DAY.isoformat()).rsplit(",", 1)[0]
+    if counts == {0}:
         parts.append(("", "Election Day is today"))
-    elif days > 0:
-        weekday = ELECTION_DAY.strftime("%A")
-        month_day = format_date(ELECTION_DAY.isoformat()).rsplit(",", 1)[0]
+    elif len(counts) == 1 and min(counts) > 0:
+        days = min(counts)
         unit = "day" if days == 1 else "days"
         parts.append(("", f"Election Day is {weekday}, {month_day} — {days} {unit} away"))
+    elif len(counts) > 1 and max(counts) >= 0:
+        parts.append(("", f"Election Day is {weekday}, {month_day}"))
     if not parts:
         return ""
     spans = []
@@ -1113,10 +1181,13 @@ def _latest_vote_fields(latest: dict | None, ds) -> dict | None:
     }
 
 
-def overview_member_fields(member: dict, ds=None) -> dict:
+def overview_member_fields(member: dict, ds=None, now: datetime | None = None,
+                           state_code: str = "") -> dict:
     """One state_overview member plus the render-ready fields that the delegation page, the
     home "Your representatives" block and the bill slot use (§10 #7). Raw fields are kept,
-    so the router's party strip still decides whether partyName leaves the server."""
+    so the router's party strip still decides whether partyName leaves the server. `now` is
+    the request clock for the seat seal (F066); `state_code` is the overview's state, which
+    a row does not carry, for the new-map House seal (G1-013)."""
     if ds is None:
         from app.dependencies import get_data_service
         ds = get_data_service()
@@ -1138,7 +1209,7 @@ def overview_member_fields(member: dict, ds=None) -> dict:
         "display_name": name,
         "initials": _initials(name),
         "seat_line": f"{seat} · {tenure}" if tenure else seat,
-        "seat_seal": seat_seal(ds.seat_up_2026(member), "row"),
+        "seat_seal": seat_seal(ds.seat_up_2026(member, state_code), "row", now=now),
         "url": f"/member?id={quote(bioguide)}",
         "photo": photo if photo.startswith("https://www.congress.gov/") else "",
         "latest_vote": _latest_vote_fields(member.get("latest_vote"), ds),
@@ -1196,16 +1267,22 @@ def _row_list(rows: list[str], css: str) -> str:
     return f'<ul class="{css}">' + "".join(f"<li>{row}</li>" for row in rows) + "</ul>"
 
 
-def _vacant_row(state_code: str, district: int, *, report: bool = False, mine: bool = False) -> str:
+def _vacant_row(state_code: str, district: int, *, report: bool = False, mine: bool = False,
+                now: datetime | None = None) -> str:
     """A district with no member in members.json. In "Your representatives" (report=True) it
     reads "District 7 — vacant in our data · Tell us if this is wrong" (§4.2, §5.3) as one
     wrapping line: the inline .person-vacancy wrapper keeps the separator out of the row's
-    grid. The roster's vacancies (report=False) are the name alone (§4.2 "Vacant districts")."""
+    grid. The roster's vacancies (report=False) are the name alone (§4.2 "Vacant districts").
+    Either way the seat carries the same seal as a filled House seat, since it is on the
+    ballot too (G1-025); `now` is the request clock that drops it after Election Day (F066)."""
     d = int(district)
     body = f'<span class="person-name">District {d} — vacant in our data</span>'
     if report:
         body = (f'<span class="person-vacancy">{body} · <button type="button" class="btn btn--secondary" '
                 'data-feedback-open>Tell us if this is wrong</button></span>')
+    seal = seat_seal(house_seat_2026(state_code), "row", now=now)
+    if seal:
+        body += f' <span class="seal seal--ballot">{h(seal)}</span>'
     mine_link = ""
     if mine:
         target = f"/state?code={quote(state_code)}&district={d}#mine"
@@ -1284,7 +1361,8 @@ def _state_header(code: str, state_name: str, count: int, roster_as_of, district
 
 
 def _yours_section(code: str, senators: list[dict], by_district: dict[int, list[dict]],
-                   district: int | None, zip_result: dict | None, matches: list[dict]) -> str:
+                   district: int | None, zip_result: dict | None, matches: list[dict],
+                   now: datetime | None = None) -> str:
     # The page h1 already reads "Your representatives", so the block says who is in it
     # (plural only when a ZIP offers more than one House district).
     members = "House members" if district is None and len(matches) > 1 else "House member"
@@ -1293,7 +1371,7 @@ def _yours_section(code: str, senators: list[dict], by_district: dict[int, list[
     if district is not None:
         house_rows = [render_person_row(m, m.get("latest_vote"), state_code=code)
                       for m in by_district.get(district, [])]
-        rows = senator_rows + (house_rows or [_vacant_row(code, district, report=True)])
+        rows = senator_rows + (house_rows or [_vacant_row(code, district, report=True, now=now)])
         parts.append(_row_list(rows, "reps reps--yours"))
     else:
         parts.append(_row_list(senator_rows, "reps"))
@@ -1304,7 +1382,7 @@ def _yours_section(code: str, senators: list[dict], by_district: dict[int, list[
             members = by_district.get(d, [])
             house_rows += ([render_person_row(m, m.get("latest_vote"), split=True, state_code=code)
                             for m in members]
-                           or [_vacant_row(code, d, report=True, mine=True)])
+                           or [_vacant_row(code, d, report=True, mine=True, now=now)])
         parts.append(_row_list(house_rows, "reps"))
     parts.append("</section>")
     return "".join(parts)
@@ -1317,14 +1395,14 @@ def _senate_section(code: str, state_name: str, senators: list[dict]) -> str:
 
 
 def _house_section(code: str, state_name: str, house: list[dict], by_district: dict[int, list[dict]],
-                   expected: int, personal: bool) -> str:
+                   expected: int, personal: bool, now: datetime | None = None) -> str:
     rows = []
     for d in range(1, expected + 1):
         members = by_district.get(d)
         if members:
             rows += [render_person_row(m, m.get("latest_vote"), state_code=code) for m in members]
         else:
-            rows.append(_vacant_row(code, d))
+            rows.append(_vacant_row(code, d, now=now))
     rows += [render_person_row(m, m.get("latest_vote"), state_code=code) for m in house
              if not (_district_int(m) is not None and 1 <= _district_int(m) <= expected)]
     listing = _row_list(rows, "roster")
@@ -1355,16 +1433,16 @@ def _state_foot(state_name: str, roster_as_of) -> str:
 
 
 def render_state_page(overview: dict, district: int | None = None, zip_result: dict | None = None,
-                      error: str = "", *, ds=None, zip_value: str = "") -> str:
+                      error: str = "", *, ds=None, zip_value: str = "", now: datetime | None = None) -> str:
     """The delegation page body (§4.2): header, Your representatives (district or ZIP URLs
     only), U.S. Senate (plain URLs only), The House by district, foot. `district` is an int
     from the query string or None. `zip_result` is a lookup_zip result of kind split or
-    partial for this state, or None."""
+    partial for this state, or None. `now` is the request clock for the seat seals (F066)."""
     code = str(overview.get("state") or "").upper()
     state_name = str(overview.get("state_name") or COVERED_STATE_NAMES.get(code, code))
-    senators = sorted((overview_member_fields(m, ds) for m in overview.get("senators") or []),
+    senators = sorted((overview_member_fields(m, ds, now, code) for m in overview.get("senators") or []),
                       key=lambda m: str(m.get("name") or ""))
-    house = sorted((overview_member_fields(m, ds) for m in overview.get("house") or []),
+    house = sorted((overview_member_fields(m, ds, now, code) for m in overview.get("house") or []),
                    key=lambda m: (_district_int(m) or 0, str(m.get("name") or "")))
     by_district: dict[int, list[dict]] = {}
     for member in house:
@@ -1383,10 +1461,10 @@ def render_state_page(overview: dict, district: int | None = None, zip_result: d
     if missing_district is not None:
         blocks.append(f"<p class=\"note\">We don't have a District {int(missing_district)} in {h(state_name)}</p>")
     if personal:
-        blocks.append(_yours_section(code, senators, by_district, district, zip_result, matches))
+        blocks.append(_yours_section(code, senators, by_district, district, zip_result, matches, now))
     else:
         blocks.append(_senate_section(code, state_name, senators))
-    blocks.append(_house_section(code, state_name, house, by_district, expected, personal))
+    blocks.append(_house_section(code, state_name, house, by_district, expected, personal, now))
     blocks.append(_state_foot(state_name, overview.get("roster_as_of")))
     return '<div class="delegation">' + "".join(blocks) + "</div>"
 
@@ -1612,11 +1690,14 @@ def _methodology_zip(sources: dict) -> str:
     ))
 
 
-def _methodology_ballot(counts: dict, senate: dict) -> str:
+def _methodology_ballot(counts: dict, senate: dict, now: datetime | None = None) -> str:
     day = _trust_long_date(senate.get("election_day"))
     if not day:
         return _trust_section("ballot", "Seats on the ballot",
                               "<p>Ballot details aren't available right now.</p>")
+    # Past tense once the request clock is past Election Day (F066).
+    over = _election_over(now)
+    verb = "was" if over else "is"
     clauses = []
     for seat in senate.get("seats", []):
         state = _TRUST_STATE_NAMES.get(seat.get("state"))
@@ -1624,41 +1705,43 @@ def _methodology_ballot(counts: dict, senate: dict) -> str:
             continue
         name = h(display_name(seat.get("name") or ""))
         if seat.get("kind") == "special":
-            clauses.append(f"the {state} seat held by {name} is up in a special election")
+            clauses.append(f"the {state} seat held by {name} {verb} up in a special election")
         else:
-            clauses.append(f"the {state} seat held by {name} is up for its regular election")
+            clauses.append(f"the {state} seat held by {name} {verb} up for its regular election")
     senators = _trust_number_word(int(counts.get("senators", 0)))
     if clauses:
         joined = clauses[0] if len(clauses) == 1 else ", ".join(clauses[:-1]) + " and " + clauses[-1]
         senate_txt = f"Of the {senators} senators we cover, {joined}."
     else:
-        senate_txt = f"None of the Senate seats held by the {senators} senators we cover is up in this election."
+        senate_txt = f"None of the Senate seats held by the {senators} senators we cover {verb} up in this election."
     source = senate.get("_source") or {}
     retrieved = _trust_long_date(source.get("retrieved"))
     source_txt = " Source: senate.gov class lists" + (f", retrieved {h(retrieved)}" if retrieved else "") + "."
     links = _trust_links(source.get("url"), _TRUST_SENATE_PREFIX)
     # _source.method names party letters; it is never rendered.
     return _trust_section("ballot", "Seats on the ballot", (
-        f"<p>Every House seat is on the ballot on {h(day)}. {senate_txt}{source_txt}</p>"
+        f"<p>Every House seat {verb} on the ballot on {h(day)}. {senate_txt}{source_txt}</p>"
         + (f'<p class="meta">{links}</p>' if links else "")
         + "<p>These are facts about the seats, not about the people in them: our data does not say "
-        "who is running.</p>"
+        + ("who ran.</p>" if over else "who is running.</p>")
     ))
 
 
-def render_methodology(counts: dict, sources: dict, rules: dict[str, list[str]], senate_source: dict) -> str:
+def render_methodology(counts: dict, sources: dict, rules: dict[str, list[str]], senate_source: dict,
+                       now: datetime | None = None) -> str:
     """The server-filled run of /methodology, #coverage through #ballot (spec §4.6).
 
     counts: main._trust_counts(); sources: DataService._crosswalk_source (the _source block of
     zip_districts.json); rules: prompt_rules(SYSTEM_PROMPT); senate_source: DataService._senate_file
-    (the whole senate_2026.json). All three data inputs were loaded at startup."""
+    (the whole senate_2026.json). All three data inputs were loaded at startup. now: the
+    request clock, which puts the ballot block in the past tense after Election Day (F066)."""
     return "".join([
         _methodology_coverage(counts),
         _methodology_ai(counts, rules),
         _methodology_recent_votes(),
         _methodology_counts(),
         _methodology_zip(sources),
-        _methodology_ballot(counts, senate_source),
+        _methodology_ballot(counts, senate_source, now),
     ])
 
 
@@ -1865,10 +1948,11 @@ def render_member_fact_strip(voted: int, total: int, first_date: str | None, las
     return f'<dl class="fact-strip">{"".join(cells)}</dl>'
 
 
-def render_member_header(page: dict) -> str:
+def render_member_header(page: dict, now: datetime | None = None) -> str:
     """Breadcrumb + .member-header (§4.3 fold): photo, kicker, h1, the House/Senate fact line,
-    the seat seal, and the action row (party toggle · Share · Congress.gov) with two
-    role=status nodes that are present and empty. .member-header h1 is the feedback.js hook."""
+    the seat seal (gone after Election Day by `now`, the request clock: F066), and the action
+    row (party toggle · Share · Congress.gov) with two role=status nodes that are present and
+    empty. .member-header h1 is the feedback.js hook."""
     member = page["member"]
     bioguide = str(member.get("bioguideId") or "")
     name = display_name(str(member.get("name") or ""))
@@ -1894,7 +1978,7 @@ def render_member_header(page: dict) -> str:
         facts.append(f"Voted in {voted:,} of the {total:,} {scope} since {since}")
     fact_line = " · ".join(f for f in facts if f)
 
-    seat_text = seat_seal(page.get("seat"), header=True)
+    seat_text = seat_seal(page.get("seat"), header=True, now=now)
     seat_html = f'<p class="member-seat">{render_seal(seat_text, "ballot")}</p>' if seat_text else ""
 
     crumb_href = "/state?" + urllib.parse.urlencode({"code": code})
@@ -2198,8 +2282,11 @@ def _record_result_line_node(page: dict) -> dict | None:
     topic, position, plain = _record_filters(page)
     if not (topic or position or plain):
         return None
-    matching = int((page.get("record") or {}).get("matching_bills") or 0)
-    line = f"{matching:,} bill{'' if matching == 1 else 's'}" + (f" on {topic}" if topic else "")
+    record = page.get("record") or {}
+    matching = int(record.get("matching_bills") or 0)
+    # Only a topic from the member's own list is named (F009; the data layer already drops others).
+    named = topic and topic in (record.get("policy_areas") or [])
+    line = f"{matching:,} bill{'' if matching == 1 else 's'}" + (f" on {topic}" if named else "")
     if position:
         line += f" · {_MP_POSITION_LABELS[position]}"
     if plain:
@@ -2310,12 +2397,13 @@ def render_record_section(page: dict) -> str:
     )
 
 
-def render_member_page(page: dict) -> str:
+def render_member_page(page: dict, now: datetime | None = None) -> str:
     """The whole member page body (§4.3 modules in order): header, recent votes, the record,
     sponsored, money. The AI narrative is withdrawn (§2.5 A): nothing renders in its place.
-    Without a member_votes file: the header plus one sentence, then sponsored and money."""
+    Without a member_votes file: the header plus one sentence, then sponsored and money.
+    `now` is the request clock for the header's seat seal (F066)."""
     member = page["member"]
-    parts = [render_member_header(page)]
+    parts = [render_member_header(page, now)]
     if page.get("has_record"):
         parts.append(render_recent_votes(page.get("recent_votes") or []))
         parts.append(render_record_section(page))
@@ -2329,7 +2417,7 @@ def render_member_page(page: dict) -> str:
 
 # --- Bill page blocks: story head, what it does, official summary, fact box (plan T7.1, spec §4.4) ---
 
-_BIOGUIDE_RE = re.compile(r"[A-Z]\d{6}")
+_BIOGUIDE_RE = re.compile(r"[A-Z][0-9]{6}")   # fullmatch; ASCII digits only (F044)
 
 
 def cut_words(text: str, limit: int) -> str:
@@ -2550,12 +2638,22 @@ def _rc_tally(rc: dict) -> str:
     return render_tally(rc["counts"], _tally_label(str(rc.get("seal") or ""), _rc_word(rc)))
 
 
+def _fold(text: str | None) -> str:
+    """Accent- and case-blind sort key: 'Cárdenas' sorts as 'cardenas', between Carbajal and
+    Costa, not after 'z' (F065). The cheat sheet's candidates.fold is the same rule; it is
+    not imported here because candidates imports this module."""
+    decomposed = unicodedata.normalize("NFKD", text or "")
+    return "".join(c for c in decomposed if not unicodedata.combining(c)).casefold()
+
+
 def _rc_sorted_rows(rows: list[dict], rc: dict) -> list[dict]:
-    """119th House: district order; earlier Congresses and the Senate: last-name order (§4.4 m3)."""
+    """119th House: district order; earlier Congresses and the Senate: last-name order (§4.4 m3).
+    Names compare accent-blind, last then first, like vote.js rcSortMembers (localeCompare)."""
+    def by_name(m: dict) -> tuple[str, str]:
+        return _fold(m.get("last_name")), _fold(m.get("first_name"))
     if int(rc["congress"]) == _CURRENT_CONGRESS and _rc_chamber(rc) == "house":
-        return sorted(rows, key=lambda m: (m.get("district") is None, m.get("district") or 0,
-                                           (m.get("last_name") or "").lower()))
-    return sorted(rows, key=lambda m: ((m.get("last_name") or "").lower(), (m.get("first_name") or "").lower()))
+        return sorted(rows, key=lambda m: (m.get("district") is None, m.get("district") or 0, by_name(m)))
+    return sorted(rows, key=by_name)
 
 
 def _rc_row(member: dict, rc: dict) -> str:
@@ -2564,7 +2662,7 @@ def _rc_row(member: dict, rc: dict) -> str:
     covered = str(member.get("covered_id") or "")
     if _BIOGUIDE_RE.fullmatch(covered):
         name_html = f'<a href="/member?id={quote(covered)}">{name}</a>'
-        bioguide_attr = f' data-bioguide="{covered}"'
+        bioguide_attr = f' data-bioguide="{h(covered)}"'   # h() like every attribute, not only the regex (F084)
     else:
         name_html, bioguide_attr = name, ""
     if chamber == "house":
@@ -2583,12 +2681,19 @@ def _rc_row(member: dict, rc: dict) -> str:
             f'<td><span class="chip chip--{h(chip["variant"])}" data-short>{h(chip["short"])}</span></td></tr>')
 
 
+def _rc_tally_words(rc: dict) -> tuple[str, str]:
+    """The two position words of a state's tally line: "guilty" / "not guilty" on an
+    impeachment verdict, whose rows read Guilty / Not Guilty, else "yes" / "no" (F064)."""
+    return ("guilty", "not guilty") if _row(rc)["id"] == "impeach" else ("yes", "no")
+
+
 def _rc_state_groups(rc: dict) -> str:
     by_state: dict[str, list[dict]] = {}
     for member in rc.get("members") or []:
         by_state.setdefault(member.get("state"), []).append(member)
     tallies = rc.get("state_tallies") or {}
     _, _, number = _rc_numbers(rc)
+    yes_word, no_word = _rc_tally_words(rc)
     groups = []
     for code, name in _STATE_ORDER:
         tally = tallies.get(code)
@@ -2598,7 +2703,7 @@ def _rc_state_groups(rc: dict) -> str:
         body = "".join(_rc_row(m, rc) for m in _rc_sorted_rows(by_state.get(code, []), rc))
         groups.append(
             f'<details class="state-group" data-state="{code}">'
-            f"<summary>{h(name)}: {yes} yes · {no} no · {not_voting} didn't vote</summary>"
+            f"<summary>{h(name)}: {yes} {yes_word} · {no} {no_word} · {not_voting} didn't vote</summary>"
             f'<table class="rc"><caption>{h(name)} — {_rc_word(rc)} roll call {number}</caption>'
             '<thead><tr><th scope="col">Member</th><th scope="col">Vote</th></tr></thead>'
             f"<tbody>{body}</tbody></table></details>"
@@ -2645,9 +2750,11 @@ def _rc_more(rc: dict) -> str:
     """A roll call from the index only: collapsed, state groups fetched by bill.js on first open."""
     _, _, number = _rc_numbers(rc)
     tallies = rc.get("state_tallies") or {}
+    yes_word, no_word = _rc_tally_words(rc)
     # data-state lets bill.js reuse each line as the summary of the group it builds (§4.4 m3).
     items = "".join(
-        f'<li data-state="{code}">{h(name)}: {int(t[0])} yes · {int(t[1])} no · {int(t[2])} didn\'t vote</li>'
+        f'<li data-state="{code}">{h(name)}: {int(t[0])} {yes_word} · {int(t[1])} {no_word} · '
+        f'{int(t[2])} didn\'t vote</li>'
         for code, name in _STATE_ORDER if (t := tallies.get(code))
     )
     return (f'<details class="rc-more" data-chamber="{_rc_chamber(rc)}" data-rc="{h(rc["key"])}" '

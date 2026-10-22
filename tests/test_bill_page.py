@@ -25,8 +25,6 @@ RC_KEYS = {
     "rendered", "members", "covered",
 }
 ROW_KEYS = {"first_name", "last_name", "state", "vote", "bioguide_id", "covered_id", "district"}
-OLD_VOTE_KEYS = {"congress", "session", "vote_number", "vote_date", "question", "result", "counts"}
-NEW_VOTE_KEYS = {"plain_question", "seal", "outcome", "state_tallies", "covered"}
 
 
 def _vote_file_reads(fn):
@@ -363,34 +361,6 @@ def test_real_118_hr_21_reads_at_most_two_of_its_roll_call_files():
     assert sum(rc["rendered"] for rc in page["roll_calls"]) == len(reads)
 
 
-def test_fixture_bill_votes_payload_reads_at_most_two_roll_call_files(fixture_service):
-    # Warm up first: until T1.9, the old get_bill_votes scans every vote file on its first call.
-    fixture_service.get_bill_votes(118, "hr", 21)
-    payload, reads = _vote_file_reads(lambda: fixture_service.get_bill_votes_payload(118, "hr", 21))
-    calls = payload["senate"] + payload["house"]
-    assert calls and len(reads) <= 2
-    for rc in calls:
-        assert OLD_VOTE_KEYS | NEW_VOTE_KEYS <= set(rc)
-        assert isinstance(rc["outcome"], str) and rc["outcome"]
-    # covered only on the roll calls the bill page renders; {} on the rest.
-    assert sum(1 for rc in calls if rc["covered"]) == len(reads)
-    assert len(fixture_service.rendered_roll_call_keys("118-hr-21")) <= 2
-
-
-def test_real_118_hr_21_votes_endpoint_reads_at_most_two_roll_call_files():
-    if not (REAL / "votes_index.json").exists():
-        pytest.skip("data/synced/votes_index.json not built")
-    service = DataService(data_dir=REAL)
-    service.get_bill_votes(118, "hr", 21)  # warm the pre-T1.9 directory scan (none after T1.9)
-    payload, reads = _vote_file_reads(lambda: service.get_bill_votes_payload(118, "hr", 21))
-    calls = payload["senate"] + payload["house"]
-    assert len(calls) >= 50
-    assert len(reads) <= 2
-    assert sum(1 for rc in calls if rc["covered"]) == len(reads)
-    # 57 covered maps made this response 1,106 KB; two keep it near the old 11 KB.
-    assert len(json.dumps(payload)) < 200_000
-
-
 # --- Routers: additive fields only ---
 
 async def _get(path):
@@ -409,22 +379,3 @@ async def test_bill_payload_gains_official_summary_and_keeps_its_old_keys():
     data = (await _get("/api/bills/119/hjres/20")).json()
     assert {"bill", "subjects", "official_summary"} <= set(data)
     assert "sponsors" in data["bill"]
-
-
-@pytest.mark.asyncio
-async def test_bill_votes_gain_additive_fields_per_roll_call():
-    response = await _get("/api/bills/119/hjres/20/votes")
-    data = response.json()
-    assert set(data) == {"senate", "house"}
-    calls = data["senate"] + data["house"]
-    assert len(calls) == 2
-    for rc in calls:
-        assert OLD_VOTE_KEYS | NEW_VOTE_KEYS <= set(rc)
-        assert isinstance(rc["outcome"], str) and rc["outcome"]
-        assert all("relation" in entry and "party" not in entry for entry in rc["covered"].values())
-    assert "partyName" not in response.text and '"party"' not in response.text
-
-
-@pytest.mark.asyncio
-async def test_bill_votes_for_an_unknown_bill_stay_empty():
-    assert (await _get("/api/bills/119/hr/99999/votes")).json() == {"senate": [], "house": []}

@@ -183,7 +183,7 @@ FIXTURES = Path(__file__).parent / "fixtures" / "synced"
 
 
 @pytest.mark.asyncio
-async def test_ai_summary_endpoint_never_serves_arguments_or_direction():
+async def test_bill_page_and_payload_never_serve_arguments_or_direction():
     summaries = json.loads((FIXTURES / "ai_summaries.json").read_text())
     bill_id = next(k for k, v in summaries.items() if v.get("arguments") and not v.get("needs_review"))
     congress, bill_type, number = bill_id.split("-")
@@ -193,9 +193,10 @@ async def test_ai_summary_endpoint_never_serves_arguments_or_direction():
         get_data_service.cache_clear()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get(f"/api/bills/{congress}/{bill_type}/{number}/ai-summary")
+            page = await client.get(f"/bill?congress={congress}&type={bill_type}&number={number}")
+            payload = await client.get(f"/api/bills/{congress}/{bill_type}/{number}")
     get_data_service.cache_clear()
-    assert response.status_code == 200
-    body = response.json()
-    assert "arguments" not in body and "direction" not in body
-    assert "Supporters say" not in response.text and "Critics say" not in response.text
+    for response in (page, payload):
+        assert response.status_code == 200
+        assert "Supporters say" not in response.text and "Critics say" not in response.text
+    assert '"arguments"' not in payload.text and '"direction"' not in payload.text

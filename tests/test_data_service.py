@@ -1,7 +1,5 @@
-import builtins
 import json
 import logging
-import os
 import pytest
 from pathlib import Path
 from app.services.data_service import DataService
@@ -73,18 +71,6 @@ def test_get_bill_detail_not_found(data_service):
     assert result is None
 
 
-def test_get_ai_summary(data_service):
-    result = data_service.get_ai_summary(119, "hr", 1)
-    assert result is not None
-    assert len(result["provisions"]) == 2
-    assert "Taxes" in result["issue_categories"]
-
-
-def test_get_ai_summary_not_found(data_service):
-    result = data_service.get_ai_summary(119, "s", 9999)
-    assert result is None
-
-
 def test_get_senate_vote(data_service):
     result = data_service.get_senate_vote(119, 1, 372)
     assert result is not None
@@ -97,92 +83,17 @@ def test_get_senate_vote_not_found(data_service):
     assert result is None
 
 
-def test_get_members_by_district(data_service):
-    result = data_service.get_members_by_district("FL", 19)
-    assert len(result["members"]) == 1
-    assert result["members"][0]["bioguideId"] == "D000032"
-
-
 def test_get_sync_metadata(data_service):
     result = data_service.get_sync_metadata()
     assert result["members_count"] == 3
     assert "last_sync" in result
 
 
-def test_get_bill_votes(data_service):
-    result = data_service.get_bill_votes(119, "hr", 1)
-    assert result is not None
-    assert len(result["senate"]) == 1
-    assert result["senate"][0]["vote_number"] == 372
-    assert len(result["house"]) == 1
-    assert result["house"][0]["vote_number"] == 99
-
-
-def test_get_bill_votes_hjres(data_service):
-    result = data_service.get_bill_votes(119, "hjres", 20)
-    assert result is not None
-    assert len(result["senate"]) == 1
-    assert len(result["house"]) == 1
-
-
-def test_get_bill_votes_not_found(data_service):
-    result = data_service.get_bill_votes(119, "hr", 9999)
-    assert result is None
-
-
-def test_get_bill_votes_exact_number_match(data_service):
-    # H.R. 1 must not match H.R. 1002 (substring collision)
-    result = data_service.get_bill_votes(119, "hr", 1)
-    senate_numbers = [v["vote_number"] for v in result["senate"]]
-    assert 400 not in senate_numbers
-    # And H.R. 1002 resolves to only its own vote
-    result = data_service.get_bill_votes(119, "hr", 1002)
-    assert [v["vote_number"] for v in result["senate"]] == [400]
-    assert result["house"] == []
-
-
-def test_get_bill_votes_filters_by_congress(data_service):
-    # 119th H.R. 1 must exclude the 118th congress's H.R. 1 vote
-    result = data_service.get_bill_votes(119, "hr", 1)
-    for vote in result["senate"]:
-        assert vote["congress"] == 119
-    # 118th H.R. 1 returns only its own vote
-    result = data_service.get_bill_votes(118, "hr", 1)
-    assert [v["vote_number"] for v in result["senate"]] == [100]
-    assert result["house"] == []
-
-
-def test_get_bill_votes_returns_summary_fields_only(data_service):
-    # Bill page only needs vote refs; member positions come from the votes API
-    result = data_service.get_bill_votes(119, "hr", 1)
-    vote = result["senate"][0]
-    assert "members" not in vote
-    assert set(vote.keys()) == {
-        "congress", "session", "vote_number", "vote_date", "question", "result", "counts"
-    }
-
-
-def test_get_bill_votes_reads_the_index_not_the_vote_dirs(data_service, monkeypatch):
-    # The votes index (spec §10 #3) replaced the directory scan: no glob, no roll-call file reads.
-    calls = {"glob": 0, "open": 0}
-    real_glob = Path.glob
-    real_open = builtins.open
-
-    def counting_glob(self, pattern):
-        calls["glob"] += 1
-        return real_glob(self, pattern)
-
-    def counting_open(file, *args, **kwargs):
-        if f"{os.sep}votes{os.sep}" in str(file):
-            calls["open"] += 1
-        return real_open(file, *args, **kwargs)
-
-    monkeypatch.setattr(Path, "glob", counting_glob)
-    monkeypatch.setattr(builtins, "open", counting_open)
-    assert data_service.get_bill_votes(119, "hr", 1) is not None
-    data_service.get_bill_votes(119, "hjres", 20)
-    data_service.get_bill_votes(119, "hr", 9999)
-    assert calls == {"glob": 0, "open": 0}
+def test_bill_page_roll_calls_are_the_bills_own(data_service):
+    # The bill page lists only its own bill's roll calls: H.R. 1 must not pick up
+    # H.R. 1002 (senate 400) or the 118th Congress's H.R. 1 (senate 100).
+    page = data_service.get_bill_page(119, "hr", 1)
+    assert sorted(rc["key"] for rc in page["roll_calls"]) == ["house/119_1_00099", "senate/119_1_00372"]
 
 
 def test_get_member_narrative(data_service):
@@ -352,3 +263,65 @@ def test_earliest_roll_call_date_reads_the_index(data_service):
 
 def test_earliest_roll_call_date_without_an_index(tmp_path):
     assert DataService(data_dir=tmp_path).earliest_roll_call_date() is None
+
+
+def test_latest_roll_call_date_scans_the_index_once(data_service, monkeypatch):
+    # F091: the edition line asks on every page; the index never changes after startup.
+    first = data_service.latest_roll_call_date()
+    monkeypatch.setattr(data_service, "_index_roll_calls", lambda: pytest.fail("rescanned the index"))
+    assert data_service.latest_roll_call_date() == first
+
+
+# --- Malformed files at load (F030): non-essential ones degrade, core ones fail the load ---
+
+def _fixtures_with(tmp_path, filename, text):
+    """The fixture data dir with one file replaced (the rest are symlinks)."""
+    for entry in FIXTURES.iterdir():
+        if entry.name != filename:
+            (tmp_path / entry.name).symlink_to(entry)
+    (tmp_path / filename).write_text(text)
+    return tmp_path
+
+
+@pytest.mark.parametrize("filename, text, attr", [
+    ("donations.json", '{"S000148": {"cycle": "2024"', "_donations"),        # truncated
+    ("audit_grades.json", "[]", "_audit_grades"),                             # not an object
+    ("member_summaries.json", "<<<<<<< HEAD\n{}", "_member_summaries"),       # merge markers
+    ("sync_metadata.json", "[]", "_metadata"),
+    ("senate_2026.json", '{"seats": "C001056"}', "_senate_2026"),
+    ("zip_districts.json", '{"11570": "NY-4"}', "_zip_districts"),
+])
+def test_a_malformed_non_essential_file_loads_as_empty(tmp_path, caplog, filename, text, attr):
+    with caplog.at_level(logging.ERROR, logger="app.services.data_service"):
+        ds = DataService(data_dir=_fixtures_with(tmp_path, filename, text))
+    assert getattr(ds, attr) == {}
+    assert filename in caplog.text
+    assert ds._members and ds._bills and ds._votes_index
+
+
+def test_a_malformed_crosswalk_drops_the_whole_zip_lookup(tmp_path):
+    # The good row before the bad one must not leave a half-built district count behind.
+    crosswalk = '{"11570": [{"state": "NY", "district": 4, "share": 1.0}, "NY-4"]}'
+    ds = DataService(data_dir=_fixtures_with(tmp_path, "zip_districts.json", crosswalk))
+    assert ds.lookup_zip("11570") == {"zip": "11570", "kind": "none", "matches": []}
+    assert ds.districts_expected("NY") == 0
+    assert ds._crosswalk_source == {}
+
+
+def test_malformed_senate_seats_answer_as_if_the_file_were_absent(tmp_path):
+    seats = '{"seats": [{"bioguideId": "C001056", "kind": "regular"}, 7]}'
+    ds = DataService(data_dir=_fixtures_with(tmp_path, "senate_2026.json", seats))
+    assert ds.seat_up_2026({"bioguideId": "C001056", "chamber": "Senate"}) is None
+    assert ds._senate_file == {}
+
+
+@pytest.mark.parametrize("filename, text", [
+    ("members.json", '{"members": [{"bioguideId": "S000148"'),
+    ("bills.json", '{"bills": null}'),
+    ("ai_summaries.json", "{"),
+    ("votes_index.json", "<<<<<<< HEAD\n{}"),
+])
+def test_a_malformed_core_file_still_fails_the_load(tmp_path, filename, text):
+    # Startup then fails and Render keeps the previous deploy serving (main.lifespan).
+    with pytest.raises((ValueError, TypeError, AttributeError)):
+        DataService(data_dir=_fixtures_with(tmp_path, filename, text))

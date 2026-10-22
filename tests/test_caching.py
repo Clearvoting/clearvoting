@@ -14,6 +14,8 @@ FIXTURES = Path(__file__).parent / "fixtures" / "synced"
 HTML = "public, max-age=0, s-maxage=600, stale-while-revalidate=3600"
 API = "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400"
 STATIC = "public, max-age=31536000, immutable"
+STATIC_OTHER_VERSION = "public, max-age=60"
+STATIC_UNVERSIONED = "public, max-age=86400"
 OG = "public, max-age=86400"
 ZIP_REDIRECT = "public, max-age=0, s-maxage=86400"
 NOT_FOUND = "public, max-age=60"
@@ -43,13 +45,18 @@ async def _request(method: str, path: str, **kwargs):
 
 @pytest.mark.parametrize("method,path,query,status,existing,expected", [
     ("GET", "/", {}, 500, None, "no-store"),
-    ("GET", "/api/members/NY", {}, 503, None, "no-store"),
+    ("GET", "/api/members/NY/overview", {}, 503, None, "no-store"),
     ("GET", "/api/districts/abc", {}, 400, DISTRICTS, "no-store"),
     ("GET", "/api/bills/999/hr/1", {}, 422, None, "no-store"),
     ("GET", "/api/districts/11570", {}, 429, None, "no-store"),
     ("GET", "/member", {"id": "X999999"}, 404, None, NOT_FOUND),
-    ("GET", "/static/css/site.css", {"v": "abc"}, 200, None, STATIC),
-    ("GET", "/static/fonts/inter-400.woff2", {}, 304, None, STATIC),
+    ("GET", "/static/css/site.css", {"v": main._asset_version}, 200, None, STATIC),
+    ("GET", "/static/js/bill.js", {"v": main._asset_version}, 304, None, STATIC),
+    ("GET", "/static/css/site.css", {"v": "abc"}, 200, None, STATIC_OTHER_VERSION),
+    ("GET", "/static/js/bill.js", {"v": "1"}, 200, None, STATIC_OTHER_VERSION),
+    ("GET", "/static/fonts/inter-400.woff2", {}, 304, None, STATIC_UNVERSIONED),
+    ("GET", "/static/favicon.svg", {}, 200, None, STATIC_UNVERSIONED),
+    ("GET", "/static/og/member.png", {"v": "abc"}, 200, None, OG),
     ("GET", "/static/og/member.png", {}, 200, None, OG),
     ("GET", "/favicon.ico", {}, 200, "public, max-age=31536000", "public, max-age=31536000"),
     ("GET", "/", {}, 200, None, HTML),
@@ -135,6 +142,32 @@ async def test_429_is_never_stored():
 
 
 @pytest.mark.asyncio
+async def test_site_wide_limit_is_never_stored_and_spares_static_and_health():
+    """F007: routes without a limit of their own share one per-client budget of 600 a minute.
+    Its 429 is no-store, another client is unaffected, and /static, /favicon.ico, /robots.txt
+    and /api/health stay open."""
+    limiter.reset()
+    try:
+        with _patch_data_dir():
+            _clear_data_service_cache()
+            async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+                codes = [(await client.get(("/privacy", "/api/votes/latest")[i % 2])).status_code
+                         for i in range(600)]
+                limited = await client.get("/about")
+                other_client = await client.get("/about", headers={"X-Forwarded-For": "198.51.100.7"})
+                exempt = [(await client.get(path)).status_code for path in (
+                    f"/static/css/site.css?v={main._asset_version}", "/favicon.ico", "/robots.txt", "/api/health")]
+        assert codes == [200] * 600
+        assert limited.status_code == 429
+        assert limited.headers["cache-control"] == "no-store"
+        assert other_client.status_code == 200
+        assert exempt == [200] * 4
+    finally:
+        limiter.reset()
+        _clear_data_service_cache()
+
+
+@pytest.mark.asyncio
 async def test_500_is_never_stored():
     with patch(
         "app.services.data_service.DataService.get_sync_metadata",
@@ -172,6 +205,47 @@ async def test_static_assets_are_immutable_and_favicon_is_long_lived():
     assert css.headers["cache-control"] == STATIC
     favicon = await _request("GET", "/favicon.ico")
     assert favicon.headers["cache-control"] == "public, max-age=31536000"
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path,expected", [
+    ("/static/js/bill.js?v=deadbeef0000", STATIC_OTHER_VERSION),
+    ("/static/js/bill.js?v=8", STATIC_OTHER_VERSION),
+    ("/static/js/bill.js", STATIC_UNVERSIONED),
+    ("/static/fonts/inter-400.woff2", STATIC_UNVERSIONED),
+])
+async def test_only_this_deploys_version_is_immutable(path, expected):
+    """F008: StaticFiles ignores the query, so an instance asked for another deploy's ?v=
+    (mid-rollout) must not label its own bytes immutable under that URL. The file is
+    still served."""
+    response = await _request("GET", path)
+    assert response.status_code == 200
+    assert response.headers["cache-control"] == expected
+
+
+# --- A crafted Host header does not steer the rules (F035) ---
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path,host,expected", [
+    ("/", "clearvoting.org/static/x.html?", HTML),
+    ("/about", "clearvoting.org/static/x.html?", HTML),
+    ("/api/health", "x/static/a", "no-store"),
+    ("/member?id=S000148", "evil.example/static/og/x", HTML),
+])
+async def test_cache_rules_follow_the_request_path_not_the_host(path, host, expected):
+    """Starlette 0.38 rebuilds request.url from the Host header, so a Host carrying a path
+    used to turn a page or /api/health into a year-long immutable (and noindex) response."""
+    response = await _request("GET", path, headers={"host": host})
+    assert response.status_code == 200
+    assert response.headers["cache-control"] == expected
+    assert "x-robots-tag" not in response.headers
+
+
+@pytest.mark.asyncio
+async def test_a_crafted_host_does_not_turn_an_api_404_into_the_html_page():
+    response = await _request("GET", "/api/no-such-endpoint", headers={"host": "x/about?"})
+    assert response.status_code == 404
+    assert response.headers["content-type"] == "application/json"
 
 
 # --- Asset version ---

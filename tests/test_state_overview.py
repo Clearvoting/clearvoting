@@ -1,10 +1,13 @@
 import pytest
+from datetime import datetime, timezone
 from unittest.mock import patch
 from pathlib import Path
 from httpx import AsyncClient, ASGITransport
 from app.main import app
 import json
 import logging
+import shutil
+import subprocess
 
 from app.services.data_service import DataService
 from sync import build_state_overview, build_votes_index, state_overview_payloads
@@ -51,7 +54,9 @@ async def _get(path: str):
 
 @pytest.mark.asyncio
 async def test_overview_is_the_precomputed_file_plus_render_ready_fields():
-    response = await _get("/api/members/NY/overview")
+    # The seat seal is gone after Election Day (F066), so the request clock is pinned before it.
+    with patch("app.main._now", return_value=datetime(2026, 10, 22, 18, 0, tzinfo=timezone.utc)):
+        response = await _get("/api/members/NY/overview")
     assert response.status_code == 200
     data = response.json()
     assert data["state"] == "NY"
@@ -71,6 +76,64 @@ async def test_overview_is_the_precomputed_file_plus_render_ready_fields():
     assert gillen["display_name"] == "Laura Gillen"
     assert gillen["seat_line"].startswith("District 4 · In Congress since ")
     assert gillen["seat_seal"] == "Seat up Nov 3"
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("now, shown", [
+    (datetime(2026, 10, 22, 18, 0, tzinfo=timezone.utc), True),
+    (datetime(2026, 11, 4, 8, 0, tzinfo=timezone.utc), False),   # midnight Pacific, Nov 4 (F066)
+])
+async def test_overview_carries_the_vacant_seal_and_the_new_lines_wording(now, shown):
+    # G1-025: the home block's vacant row prints vacant_seal, so the wording stays on the server.
+    # G1-013: Florida (fixture: no state_overview file) drew new House lines; New York did not.
+    with patch("app.main._now", return_value=now):
+        florida = (await _get("/api/members/FL/overview")).json()
+        new_york = (await _get("/api/members/NY/overview")).json()
+    new_lines = "Seat up Nov 3 · new district lines" if shown else ""
+    assert florida["vacant_seal"] == new_lines
+    assert next(m for m in florida["house"] if m["bioguideId"] == "D000032")["seat_seal"] == new_lines
+    assert new_york["vacant_seal"] == ("Seat up Nov 3" if shown else "")
+    assert all("new district lines" not in m["seat_seal"] for m in new_york["senators"] + new_york["house"])
+
+
+_HOME_VACANT_SCRIPT = r"""
+const fs = require('fs');
+const vm = require('vm');
+class FakeNode {
+  constructor(tag) { this.tagName = tag.toUpperCase(); this.className = ''; this.attrs = {}; this.children = []; }
+  setAttribute(name, value) { this.attrs[name] = String(value); }
+  appendChild(child) { this.children.push(child); return child; }
+  append(...items) { items.forEach((c) => this.children.push(typeof c === 'string' ? { text: c } : c)); }
+  addEventListener() {}
+  get textContent() { return this.children.map((c) => (c.text !== undefined ? c.text : c.textContent)).join(''); }
+}
+const document = { readyState: 'loading', createElement: (tag) => new FakeNode(tag),
+                   createTextNode: (text) => ({ text }), addEventListener() {}, getElementById: () => null };
+const context = { document, URLSearchParams,
+                  window: { addEventListener() {}, location: { search: '', hash: '', pathname: '/' } } };
+vm.createContext(context);
+for (const file of process.argv.slice(1)) vm.runInContext(fs.readFileSync(file, 'utf8'), context);
+const seals = (node) => (node.children || []).flatMap((c) => (c.className === 'seal seal--ballot'
+  ? [c.textContent] : seals(c)));
+const out = JSON.parse(fs.readFileSync(0, 'utf8')).map((vacantSeal) => {
+  const row = context.homeVacantRow({ state: 'FL', district: 20 }, vacantSeal);
+  return { text: row.textContent, seals: seals(row) };
+});
+process.stdout.write(JSON.stringify(out));
+"""
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (CI runs without it)")
+def test_home_vacant_row_prints_the_servers_vacant_seal():
+    static = Path(__file__).parent.parent / "static" / "js"
+    done = subprocess.run([shutil.which("node"), "-e", _HOME_VACANT_SCRIPT, str(static / "site.js"),
+                           str(static / "app.js")], input=json.dumps(["Seat up Nov 3 · new district lines", ""]),
+                          capture_output=True, text=True, check=True, timeout=60)
+    with_seal, after_election = json.loads(done.stdout)
+    assert with_seal == {"text": "District 20 — vacant in our data · Tell us if this is wrong "
+                                 "Seat up Nov 3 · new district lines",
+                         "seals": ["Seat up Nov 3 · new district lines"]}
+    assert after_election == {"text": "District 20 — vacant in our data · Tell us if this is wrong", "seals": []}
 
 
 @pytest.mark.asyncio

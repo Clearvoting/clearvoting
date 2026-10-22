@@ -323,6 +323,17 @@ def test_app_js_is_a_thin_enhancer():
     assert "Adopted by the" not in js  # final-vs-moving comes from derived_status.variant
 
 
+def test_home_search_never_echoes_a_crafted_query():
+    # F042: the results line is fixed copy, a ?q= over the API's 100 characters is ignored,
+    # and the box takes no more than the API accepts.
+    js = (STATIC / "js" / "app.js").read_text()
+    assert "${query}" not in js and "found for" not in js
+    assert "if (q && q.length <= 100) {" in js
+    assert "'No bills match that search. Try a broader term or pick a topic above.'" in js
+    html = (STATIC / "index.html").read_text()
+    assert '<input type="search" id="bill-search" name="q" maxlength="100" autocomplete="off">' in html
+
+
 def test_site_js_binds_the_home_markup_contract():
     js = (STATIC / "js" / "site.js").read_text()
     for hook in ("notify-form", "notify-state", "notify-email", "notify-status", "notify-fields", "nav-mine"):

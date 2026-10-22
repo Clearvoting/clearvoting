@@ -3,6 +3,9 @@ import io
 import json
 import os
 import re
+import shutil
+import subprocess
+import unicodedata
 from html import escape
 from pathlib import Path
 from unittest.mock import patch
@@ -425,13 +428,50 @@ def test_earlier_congress_rows_sort_by_last_name_and_show_state_only():
     assert ny.count('<span class="rc-seat">NY</span>') == 2
 
 
+def _rc_names(group: str) -> list[str]:
+    return re.findall(r'<th scope="row">(?:<a [^>]+>)?([^<]+)', group)
+
+
+def test_accented_last_names_sort_where_a_reader_looks_for_them():
+    # F065: code-point order put "Cárdenas" after "Costa" and "Sánchez" after "Swalwell" in
+    # H.R. 1319's California table. Accents and case are ignored, last name then first, like
+    # vote.js rcSortMembers (localeCompare) for the groups bill.js builds.
+    names = [("Mark", "Takano"), ("Linda", "Sánchez"), ("Eric", "Swalwell"), ("Jim", "Costa"),
+             ("Tony", "Cárdenas"), ("Mark", "DeSaulnier"), ("Ken", "Calvert"), ("Nanette", "Barragán"),
+             ("Ángela", "Zeta"), ("Bob", "zeta"), ("Ami", "Bera")]
+    members = [{"first_name": first, "last_name": last, "state": "CA", "vote": "Yea",
+                "bioguide_id": f"X{i:06d}", "covered_id": None, "district": None}
+               for i, (first, last) in enumerate(names)]
+    rc = _rc(key="house/117_1_00080", congress=117, session=1, vote_number=80, date="2021-03-11",
+             rendered=True, members=members, state_tallies={"CA": [11, 0, 0]})
+    ca = _group(render.render_vote_by_state(_page(congress=117, head=rc, roll_calls=[rc])), "CA")
+    assert _rc_names(ca) == [escape(n) for n in (
+        "Nanette Barragán", "Ami Bera", "Ken Calvert", "Tony Cárdenas", "Jim Costa", "Mark DeSaulnier",
+        "Linda Sánchez", "Eric Swalwell", "Mark Takano", "Ángela Zeta", "Bob zeta")]
+
+
+def test_119th_house_rows_in_one_district_fall_back_to_the_folded_name():
+    members = [{"first_name": first, "last_name": last, "state": "CA", "vote": "Yea",
+                "bioguide_id": bid, "covered_id": None, "district": district}
+               for first, last, bid, district in (("Ed", "Swift", "S000001", 5), ("Lia", "Sánchez", "S000002", 5),
+                                                  ("Al", "Young", "Y000001", 2))]
+    rc = _rc(rendered=True, members=members, state_tallies={"CA": [3, 0, 0]})
+    ca = _group(render.render_vote_by_state(_page(head=rc, roll_calls=[rc])), "CA")
+    assert _rc_names(ca) == ["Al Young", "Lia Sánchez", "Ed Swift"]
+
+
+def _fold(text):
+    decomposed = unicodedata.normalize("NFKD", text or "")
+    return "".join(c for c in decomposed if not unicodedata.combining(c)).casefold()
+
+
 def test_fixture_117th_house_roll_call_rows_are_last_name_ordered():
     page = DataService(data_dir=FIXTURES).get_bill_page(117, "hres", 8)
     assert page is not None
     rendered = next(rc for rc in page["roll_calls"] if rc["rendered"])
     ny_members = [m for m in rendered["members"] if m["state"] == "NY"]
     expected = [escape(f'{m["first_name"]} {m["last_name"]}'.strip()) for m in sorted(
-        ny_members, key=lambda m: ((m["last_name"] or "").lower(), (m["first_name"] or "").lower()))]
+        ny_members, key=lambda m: (_fold(m["last_name"]), _fold(m["first_name"])))]
     ny = _group(render.render_vote_by_state(page), "NY")
     names = re.findall(r'<th scope="row">(?:<a [^>]+>)?([^<]+)', ny)
     assert names == expected
@@ -449,6 +489,44 @@ def test_senate_block_uses_the_senate_source_page_and_state_seat():
     assert "Senate roll call 372 · September 3, 2026 · Final vote to pass · Passed 51–49" in html
     assert '<tr data-key="NY-Example" data-bioguide="E000001" data-position="Yea">' in html
     assert '<span class="rc-seat">NY</span>' in html
+
+
+def _verdict_rc(**overrides):
+    """A synthetic impeachment verdict shaped like senate/117_1_00059 (H.Res. 24)."""
+    members = [{"first_name": first, "last_name": last, "state": state, "vote": vote,
+                "bioguide_id": None, "covered_id": None, "district": None}
+               for first, last, state, vote in (("Ann", "Alpha", "NY", "Guilty"), ("Bo", "Beta", "NY", "Not Guilty"),
+                                                ("Cy", "Gamma", "CA", "Guilty"), ("Di", "Delta", "CA", "Not Voting"))]
+    return _rc(**{"key": "senate/117_1_00059", "chamber": "senate", "congress": 117, "session": 1,
+                  "vote_number": 59, "date": "2021-02-13", "question": "Guilty or Not Guilty",
+                  "plain": "Verdict on an article of impeachment (needed two-thirds)", "class": "D",
+                  "result": "Not Guilty", "counts": {"yeas": 57, "nays": 43, "present": 0, "absent": 0},
+                  "seal": "Not guilty 57–43 (two-thirds needed)", "members": members,
+                  "state_tallies": {"CA": [1, 0, 1], "NY": [1, 1, 0]}, **overrides})
+
+
+def test_verdict_state_groups_count_guilty_and_not_guilty():
+    # F064: the rows read Guilty / Not Guilty, so the group summary names the same positions.
+    rc = _verdict_rc(rendered=True)
+    html = render.render_vote_by_state(_page(congress=117, bill_type="hres", number=24, head=rc, roll_calls=[rc]))
+    summaries = re.findall(r'<details class="state-group" data-state="(\w\w)"><summary>([^<]*)</summary>', html)
+    assert summaries == [("CA", "California: 1 guilty · 0 not guilty · 1 didn't vote"),
+                         ("NY", "New York: 1 guilty · 1 not guilty · 0 didn't vote")]
+    assert " yes · " not in html.split('<details class="rc-all"')[0].split("</h3>", 1)[1]
+    assert '<span class="chip chip--other" data-short>Guilty</span>' in _group(html, "NY")
+
+
+def test_collapsed_verdict_tally_lines_count_guilty_and_not_guilty():
+    # bill.js reuses each <li> as the summary of the group it builds, so this one line covers both.
+    head = _rc(rendered=True, members=_members_119())
+    rc = _verdict_rc(rendered=False, members=[])
+    html = render.render_vote_by_state(_page(head=head, roll_calls=[head, rc]))
+    more = html.split('<details class="rc-more"', 1)[1].split("</details>", 1)[0]
+    assert '<li data-state="CA">California: 1 guilty · 0 not guilty · 1 didn\'t vote</li>' in more
+    assert '<li data-state="NY">New York: 1 guilty · 1 not guilty · 0 didn\'t vote</li>' in more
+    # Any other roll call keeps yes / no.
+    assert '<li data-state="NY">New York: 13 yes · 11 no · 2 didn\'t vote</li>' in render.render_vote_by_state(
+        _page(head=head, roll_calls=[head, _rc(key="house/119_2_00100", vote_number=100)]))
 
 
 def test_many_roll_calls_render_two_blocks_and_collapse_the_rest_newest_first():
@@ -651,6 +729,102 @@ def test_bill_js_is_a_thin_enhancer_that_keeps_the_sanitize_block():
     for gone in ("document.title", "renderBill", "arguments", "Copy Link", "localStorage",
                  "slotReadHome", "SLOT_ERROR", "RC_STATE_NAMES"):
         assert gone not in bill_js, gone
+
+
+def test_bill_js_filters_summary_links_right_after_the_sink():
+    # F010: the filter runs on what the pinned sink inserted, inside the same if.
+    bill_js = (ROOT / "static" / "js" / "bill.js").read_text()
+    assert SINK_BLOCK + "\n        billFilterSummaryLinks(summaryDiv);\n    }\n}" in bill_js
+
+
+# bill.js runs in a node vm with stand-in nodes; URL is node's WHATWG parser, as in browsers.
+_SUMMARY_LINKS_SCRIPT = r"""
+const fs = require('fs');
+const vm = require('vm');
+class FakeNode {
+  constructor(tag, href) { this.tagName = tag; this.attrs = { href }; }
+  getAttribute(name) { return name in this.attrs ? this.attrs[name] : null; }
+  setAttribute(name, value) { this.attrs[name] = String(value); }
+  removeAttribute(name) { delete this.attrs[name]; }
+}
+const nodes = JSON.parse(fs.readFileSync(0, 'utf8')).map(([tag, href]) => new FakeNode(tag, href));
+const root = { querySelectorAll: (sel) => (sel === '[href]' ? nodes.filter((n) => 'href' in n.attrs) : []) };
+const context = { URL, Map, Set, window: { location: { origin: 'https://clearvoting.org' } },
+                  document: { addEventListener() {} } };
+vm.createContext(context);
+vm.runInContext(fs.readFileSync(process.argv[1], 'utf8'), context);
+context.billFilterSummaryLinks(root);
+process.stdout.write(JSON.stringify(nodes.map((n) => n.attrs)));
+"""
+
+_SUMMARY_LINKS_KEPT = [
+    "https://www.congress.gov/bill/119th-congress/house-bill/1",
+    "https://crsreports.congress.gov/product/pdf/LSB/LSB10001",
+    "https://www.gao.gov/products/gao-24-106001",
+    "https://obamawhitehouse.archives.gov/briefing-room",
+    "HTTPS://WWW.CONGRESS.GOV/public-laws/119th-congress",
+]
+_SUMMARY_LINKS_DROPPED = [
+    "javascript:alert(document.domain)", " JaVaScRiPt:alert(1)", "java\tscript:alert(1)",
+    "data:text/html,<script>alert(1)</script>", "//evil.example/register", "/\\evil.example/polling-place",
+    "https://evil.example/", "http://www.congress.gov/bill/119", "https://www.congress.gov@evil.example/",
+    "https://evil.example/.gov", "https://congress.gov.evil.example/", "https://evil.example\\.gov/",
+    "/bill?congress=119&type=hr&number=1", "", "https://[::1]/",
+]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (CI runs without it)")
+def test_summary_links_keep_only_https_gov_hrefs_on_anchors():
+    cases = ([["A", href] for href in _SUMMARY_LINKS_KEPT + _SUMMARY_LINKS_DROPPED]
+             + [["P", "javascript:alert(2)"], ["LI", "https://www.congress.gov/"]])
+    done = subprocess.run([shutil.which("node"), "-e", _SUMMARY_LINKS_SCRIPT, str(ROOT / "static" / "js" / "bill.js")],
+                          input=json.dumps(cases), capture_output=True, text=True, check=True, timeout=60)
+    out = json.loads(done.stdout)
+    kept = len(_SUMMARY_LINKS_KEPT)
+    assert len(out) == len(cases)
+    for href, attrs in zip(_SUMMARY_LINKS_KEPT, out[:kept]):
+        assert attrs == {"href": href, "rel": "noopener noreferrer nofollow"}, href
+    for (tag, href), attrs in zip(cases[kept:], out[kept:]):
+        assert attrs == {}, (tag, href)   # the href is gone; the element and its text stay
+
+
+# vote.js filterRcRows under node, with site.js's positionChip and stand-in rows (G1-022).
+_RC_FILTER_SCRIPT = r"""
+const fs = require('fs');
+const vm = require('vm');
+const context = { document: { readyState: 'loading', addEventListener() {} }, window: { addEventListener() {} } };
+vm.createContext(context);
+for (const file of process.argv.slice(1)) vm.runInContext(fs.readFileSync(file, 'utf8'), context);
+const { names, queries } = JSON.parse(fs.readFileSync(0, 'utf8'));
+const out = queries.map((query) => {
+  const rows = names.map((name) => ({ name, hidden: false, dataset: { position: 'Yea' },
+    querySelector: (sel) => (sel === 'th' ? { firstChild: { textContent: name } } : null) }));
+  context.filterRcRows({ querySelectorAll: (sel) => (sel === 'tbody tr' ? rows : []) }, query, 'all');
+  return rows.filter((row) => !row.hidden).map((row) => row.name);
+});
+process.stdout.write(JSON.stringify(out));
+"""
+
+_RC_NAMES = ["Nydia Velázquez", "Linda Sánchez", "Nanette Barragán", "Tony Cárdenas", "Jesús García",
+             "Sylvia Garcia", "Mike Garcia", "André Carson", "Jenniffer González-Colón"]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (CI runs without it)")
+def test_roll_call_name_search_ignores_accents_and_case():
+    # The roll-call names are precomposed (NFC) from the House feed; a reader on a US keyboard
+    # types none of the accents, and one who does may send them decomposed.
+    assert all(unicodedata.is_normalized("NFC", name) for name in _RC_NAMES)
+    queries = ["velazquez", "  Sanchez ", "BARRAGAN", "cardenas", "garcia", "García",
+               unicodedata.normalize("NFD", "Velázquez"), "gonzalez-colon", "andre", "", "zzz"]
+    js = ROOT / "static" / "js"
+    done = subprocess.run([shutil.which("node"), "-e", _RC_FILTER_SCRIPT, str(js / "site.js"), str(js / "vote.js")],
+                          input=json.dumps({"names": _RC_NAMES, "queries": queries}),
+                          capture_output=True, text=True, check=True, timeout=60)
+    garcias = ["Jesús García", "Sylvia Garcia", "Mike Garcia"]
+    assert json.loads(done.stdout) == [
+        ["Nydia Velázquez"], ["Linda Sánchez"], ["Nanette Barragán"], ["Tony Cárdenas"], garcias, garcias,
+        ["Nydia Velázquez"], ["Jenniffer González-Colón"], ["André Carson"], _RC_NAMES, [],
+    ]
 
 
 def test_vote_js_has_no_positions_table_and_builds_rows_with_the_shared_builder():

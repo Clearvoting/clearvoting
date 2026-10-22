@@ -35,14 +35,20 @@ function buildRcTable(captionText, members, chamber, current) {
     return el('table', { className: 'rc' }, el('caption', null, captionText), head, body);
 }
 
+// Accent- and case-blind text for the name search (G1-022): 'velazquez' finds 'Nydia Velázquez'
+// (the roll-call names are precomposed), and an accent the reader types still matches.
+function rcFold(text) {
+    return String(text || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
 function filterRcRows(container, query, show) {
-    const needle = (query || '').trim().toLowerCase();
+    const needle = rcFold((query || '').trim());
     container.querySelectorAll('tbody tr').forEach((row) => {
         const found = positionChip(row.dataset.position);
         const kindMatches = show === 'all' || (found ? found[0] : 'nv') === show;
         const cell = row.querySelector('th');
         const name = cell && cell.firstChild ? cell.firstChild.textContent : '';
-        row.hidden = !(kindMatches && (!needle || name.toLowerCase().includes(needle)));
+        row.hidden = !(kindMatches && (!needle || rcFold(name).includes(needle)));
     });
 }
 

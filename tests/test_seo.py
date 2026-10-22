@@ -135,10 +135,28 @@ async def test_bill_page_unknown_bill_is_404():
     "/bill?congress=119&type=zz&number=1",
     "/bill?congress=0&type=hr&number=1",
     "/bill",
+    # F060: "²".isdigit() is True but int("²") raises; int() refuses 4,300+ digits; other
+    # scripts' digits ("١١٩", "①") were a second URL for a real bill.
+    "/bill?congress=%C2%B2&type=hr&number=1",
+    "/bill?congress=119&type=hr&number=%C2%B9",
+    "/bill?congress=%D9%A1%D9%A1%D9%A9&type=hr&number=1",
+    "/bill?congress=119&type=hr&number=%E2%91%A0",
+    "/bill?congress=119&type=hr&number=" + "9" * 5000,
+    "/bill?congress=" + "9" * 4301 + "&type=hr&number=1",
+    "/bill?congress=0119&type=hr&number=1",
+    "/bill?congress=119&type=hr&number=0000001",
 ])
 async def test_bill_page_garbage_params_are_404(path):
     response = await _get(path)
     assert response.status_code == 404
+
+
+@pytest.mark.parametrize("congress,number", [("²", "1"), ("119", "١"), ("119", "9" * 5000), ("1000", "1"),
+                                             ("119", "1234567"), ("11 9", "1")])
+def test_sitemap_bill_params_follow_the_route_rule(congress, number):
+    from app.main import _normalize_bill_params
+    assert _normalize_bill_params(congress, "hr", number) is None
+    assert _normalize_bill_params(119, "HR", 1) == (119, "hr", 1)
 
 
 @pytest.mark.asyncio
