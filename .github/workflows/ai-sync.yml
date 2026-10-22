@@ -12,8 +12,15 @@
 # If neither secret is configured, the run exits cleanly with a notice instead
 # of failing — the owner can add a secret later.
 # Generation is incremental (skips covered bills), so a timeout or usage-limit
-# mid-run is fine: the commit step still pushes partial progress and the next
-# run picks up where the last one left off.
+# mid-run is fine: the commit step still pushes partial progress (once it passes
+# the data validator and the test suite) and the next run picks up where the
+# last one left off.
+#
+# Least privilege: each AI credential is given only to the steps that need it
+# (the credential check and generation), never to the pip/npm installs. The
+# checkout keeps no token; the push token reaches only the commit step (hooks
+# off, fixed GIT_REFLOG_ACTION so the token URL is not written to .git/logs),
+# which refuses to push if the outgoing commits change anything outside data/synced/.
 
 name: Weekly AI Generation Sync
 
@@ -33,15 +40,17 @@ concurrency:
 
 jobs:
   ai-sync:
+    # Only main's own copy of this file may run with the AI credentials: a manual
+    # dispatch on any other branch is skipped (review G1-004).
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-
-    env:
-      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
 
     steps:
       - name: Check for credentials
         id: key-check
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
           if [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
             echo "::notice::Using Claude Max subscription (claude CLI) for AI generation."
@@ -60,21 +69,26 @@ jobs:
 
       - name: Check out repo
         if: steps.key-check.outputs.mode != 'none'
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: main
+          persist-credentials: false
 
       - name: Set up Python 3.12
         if: steps.key-check.outputs.mode != 'none'
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: '3.12'
 
       - name: Install dependencies
         if: steps.key-check.outputs.mode != 'none'
-        run: pip install -r requirements.txt
+        run: pip install --require-hashes -r requirements.txt -r requirements-dev.txt
 
+      # Pinned to the version tested locally (claude_cli.py relies on its flag
+      # semantics). Bump deliberately, never implicitly via the latest tag.
       - name: Install Claude Code CLI
         if: steps.key-check.outputs.mode == 'subscription'
-        run: npm install -g @anthropic-ai/claude-code
+        run: npm install -g @anthropic-ai/claude-code@2.1.159
 
       - name: Configure git identity
         if: steps.key-check.outputs.mode != 'none'
@@ -82,24 +96,60 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      # 340 of the job's 360 minutes, so the validate, test and commit steps
+      # below still run after a generation timeout.
       - name: Run AI generation (subscription)
         if: steps.key-check.outputs.mode == 'subscription'
-        timeout-minutes: 350
+        timeout-minutes: 340
         env:
           # Must be empty so the AI services fall back to the claude CLI,
           # which authenticates with CLAUDE_CODE_OAUTH_TOKEN.
           ANTHROPIC_API_KEY: ''
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: python sync.py --ai-only
 
       - name: Run AI generation (API)
         if: steps.key-check.outputs.mode == 'api'
-        timeout-minutes: 350
+        timeout-minutes: 340
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python sync.py --ai-only
 
-      - name: Commit AI content
+      # Gate: generated content that fails the data validator (blank or lost
+      # summaries, wiped scorecards) must never reach main, where it would also
+      # block the next weekly sync's commits. Runs before the commit, so the
+      # validator compares against the previously committed data at HEAD.
+      - name: Validate synced data
+        id: validate_ai
         if: always() && steps.key-check.outputs.mode != 'none'
+        env:
+          # --step validate refuses to start without a key but never calls the API.
+          CONGRESS_API_KEY: offline-validate
+        run: python sync.py --step validate
+
+      # Pushes made with the workflow token never trigger tests.yml, so the
+      # suite runs here before anything is pushed.
+      - name: Run tests
+        id: tests
+        if: always() && steps.validate_ai.outcome == 'success'
+        timeout-minutes: 10
+        run: python -m pytest -q -p no:cacheprovider
+
+      - name: Commit AI content
+        if: always() && steps.validate_ai.outcome == 'success' && steps.tests.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git add data/synced/
+          git diff --cached --quiet && exit 0
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+          git -c core.hooksPath=/dev/null commit -m "data: ai sync [automated]"
           # Rebase before pushing: this job can run for hours, so main may have
           # moved (merged PRs, hotfixes) since checkout.
-          git diff --cached --quiet || (git commit -m "data: ai sync [automated]" && git pull --rebase origin main && git push)
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
+          if printf '%s\n' "$outgoing" | grep -vE '^data/synced/' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/; not pushing."
+            exit 1
+          fi
+          git -c core.hooksPath=/dev/null push "$remote" HEAD:main
