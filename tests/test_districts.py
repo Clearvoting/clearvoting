@@ -91,7 +91,8 @@ def test_zip_plus_four_and_spaces_normalize_to_five_digits(ds, raw):
     assert ds.lookup_zip(raw)["zip"] == "11570"
 
 
-@pytest.mark.parametrize("raw", ["", "abc", "1157", "115700", "11570-12", "11570--1234", "_source", None])
+@pytest.mark.parametrize("raw", ["", "abc", "1157", "115700", "11570-12", "11570--1234", "_source", None,
+                                 "١١٥٧٠", "１１５７０", "11570-١٢٣٤"])   # other scripts' digits (F044)
 def test_malformed_input_is_rejected(ds, raw):
     assert normalize_zip(raw) is None
     assert ds.lookup_zip(raw) is None

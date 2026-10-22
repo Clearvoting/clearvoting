@@ -96,7 +96,11 @@ _h1_re = re.compile(r"(<h1\b[^>]*>).*?(</h1>)", re.DOTALL)
 
 _TITLE_SUFFIX = " | ClearVoting"
 _OG_TITLE_MAX = 90
-_ISO_DAY_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+_ISO_DAY_RE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}\Z")   # fullmatch, ASCII digits (F044)
+# /bill's congress and number: ASCII digits, bounded (F060). Not str.isdigit(): it is True for
+# "²" (int() raises, a 500) and for other scripts' digits, and int() refuses 4,300+ digits.
+_BILL_CONGRESS_RE = re.compile(r"[0-9]{1,3}")
+_BILL_NUMBER_RE = re.compile(r"[0-9]{1,6}")
 
 
 def _og_title(title: str) -> str:
@@ -116,7 +120,8 @@ def _normalize_bill_params(congress, bill_type, number) -> tuple[int, str, int] 
     congress_raw = str(congress if congress is not None else "").strip()
     number_raw = str(number if number is not None else "").strip()
     type_lower = str(bill_type or "").strip().lower()
-    if not (congress_raw.isdigit() and number_raw.isdigit()) or type_lower not in VALID_BILL_TYPES:
+    if (not (_BILL_CONGRESS_RE.fullmatch(congress_raw) and _BILL_NUMBER_RE.fullmatch(number_raw))
+            or type_lower not in VALID_BILL_TYPES):
         return None
     congress_int, number_int = int(congress_raw), int(number_raw)
     if not 1 <= congress_int <= 200 or number_int < 1:
@@ -126,7 +131,7 @@ def _normalize_bill_params(congress, bill_type, number) -> tuple[int, str, int] 
 
 def _iso_day(value) -> str | None:
     day = str(value or "")[:10]
-    return day if _ISO_DAY_RE.match(day) else None
+    return day if _ISO_DAY_RE.fullmatch(day) else None
 
 
 def _inject_meta(html: str, meta: dict) -> str:
@@ -667,9 +672,11 @@ def serve_member(request: Request):
     from app.routers.members import BIOGUIDE_PATTERN
 
     params = request.query_params
-    member_id = (params.get("id") or "").strip().upper()
-    if not BIOGUIDE_PATTERN.match(member_id):
+    member_id = (params.get("id") or "").strip()
+    # ASCII before .upper(), which folds "ſ" to "S" and "ı" to "I" into an alias URL (F044).
+    if not (member_id.isascii() and BIOGUIDE_PATTERN.fullmatch(member_id.upper())):
         raise StarletteHTTPException(status_code=404)
+    member_id = member_id.upper()
     data_service = get_data_service()
     detail = data_service.get_member_detail(member_id)      # members.json lookup, in memory
     if detail is None:
@@ -703,7 +710,8 @@ def serve_bill(request: Request):
     bill_type = (params.get("type") or "").strip().lower()
     congress_raw = (params.get("congress") or "").strip()
     number_raw = (params.get("number") or "").strip()
-    if not (congress_raw.isdigit() and number_raw.isdigit()) or bill_type not in VALID_BILL_TYPES:
+    if (not (_BILL_CONGRESS_RE.fullmatch(congress_raw) and _BILL_NUMBER_RE.fullmatch(number_raw))
+            or bill_type not in VALID_BILL_TYPES):
         raise HTTPException(status_code=404)
     congress, number = int(congress_raw), int(number_raw)
     if not 1 <= congress <= 200:
@@ -827,9 +835,14 @@ def _zip_target(result: dict) -> str | None:
     return None
 
 
+_DISTRICT_RE = re.compile(r"[0-9]{1,3}")
+
+
 def _parse_district(raw: str | None) -> int | None:
+    """A district number from the query string: 1-3 ASCII digits, else None (junk is ignored).
+    Not str.isdigit(): it is True for "²" (int() raises) and for digits of other scripts."""
     value = (raw or "").strip()
-    return int(value) if value.isdigit() and len(value) <= 3 else None
+    return int(value) if _DISTRICT_RE.fullmatch(value) else None
 
 
 def _serve_state_page(code: str | None, h1: str, build) -> HTMLResponse:
@@ -857,12 +870,15 @@ def serve_state(request: Request):
     if raw_zip:
         lookup = data_service.lookup_zip(raw_zip)  # T1.5: None when the input is not a ZIP
         if lookup is None:
+            # The field keeps what was typed, but no more than its maxlength="10" allows: a
+            # crafted link cannot put a sentence of its own into the ZIP box (F041).
+            zip_echo = raw_zip[:10]
             if not code:
                 return _serve_state_page(None, _FINDER_H1, lambda: render.render_zip_finder_page(
-                    data_service.get_member_counts(), value=raw_zip, error=_ZIP_ERROR))
+                    data_service.get_member_counts(), value=zip_echo, error=_ZIP_ERROR))
             return _serve_state_page(code, state_h1, lambda: render.render_state_page(
                 data_service.get_state_overview(code, fallback=True), None, None, _ZIP_ERROR,
-                ds=data_service, zip_value=raw_zip))
+                ds=data_service, zip_value=zip_echo))
         target = _zip_target(lookup)
         if target is None:
             return _serve_state_page(None, _FINDER_H1, lambda: render.render_zip_not_found(
@@ -923,7 +939,7 @@ def serve_sitemap() -> Response:
 
     for member in data_service._members:
         bioguide = str(member.get("bioguideId") or "").strip().upper()
-        if BIOGUIDE_PATTERN.match(bioguide):
+        if BIOGUIDE_PATTERN.fullmatch(bioguide):
             entries.append((f"{SITE_URL}/member?id={bioguide}", member_last_vote.get(bioguide)))
 
     index_bills = (data_service._votes_index or {}).get("bills", {})

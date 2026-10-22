@@ -398,7 +398,9 @@ def test_record_filters_and_bill_counts(tmp_path):
     assert plain["groups"][0]["headline"] == "Plain one"
 
     assert ds.get_member_page("X000001", 1, None, "maybe")["record"]["position"] is None
-    assert ds.get_member_page("X000001", 1, "Nothing here")["record"]["groups"] == []
+    # A topic that is not one of the member's policy areas is dropped, not echoed (F009).
+    unknown = ds.get_member_page("X000001", 1, "Nothing here")["record"]
+    assert (unknown["topic"], unknown["total_groups"]) == (None, everything["total_groups"])
 
 
 def test_recent_votes_on_the_page_use_the_index_and_withheld_summaries(tmp_path):
@@ -740,6 +742,22 @@ async def test_page_api_carries_everything_the_record_renders(query):
     assert set(payload["record_tree"]) == {"result", "list"}
     assert tree_html(payload["record_tree"]["list"]) == _record_list_block(html)
     assert tree_html(payload["record_tree"]["result"]) == _record_list_block(html, "data-record-result")
+
+
+@_pytest.mark.asyncio
+async def test_a_topic_outside_the_members_policy_areas_is_never_echoed():
+    """?topic= is not free text (F009): words that are not one of the member's policy areas
+    never reach the HTML or the page API, which both show the unfiltered record."""
+    import urllib.parse
+    spoof = "Voted to cut Social Security; see the corrections log at example.test"
+    query = urllib.parse.urlencode({"topic": spoof, "position": "yes"})
+    html = (await _paging_get(f"/member?id=S000148&{query}")).text
+    payload = (await _paging_get(f"/api/members/S000148/page?{query}")).json()
+    for out in (html, _json.dumps(payload)):
+        assert "Voted to cut" not in out and "example.test" not in out
+    assert payload["record"]["topic"] is None and payload["record"]["position"] == "yes"
+    health = (await _paging_get("/member?id=S000148&topic=Health")).text
+    assert " bills on Health</p>" in health or " bill on Health</p>" in health
 
 
 @_pytest.mark.asyncio

@@ -10,11 +10,13 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/members", tags=["members"])
 
-BIOGUIDE_PATTERN = re.compile(r"^[A-Z]\d{6}$")
+# Use .fullmatch (F044): ASCII digits only, and '\Z' because '$' also matches before a final newline.
+BIOGUIDE_PATTERN = re.compile(r"^[A-Z][0-9]{6}\Z")
 
 
 def _validate_bioguide_id(bioguide_id: str) -> None:
-    if not BIOGUIDE_PATTERN.match(bioguide_id.upper()):
+    # ASCII before .upper(), which folds "ſ" to "S" and "ı" to "I": an alias would pass (F044).
+    if not (bioguide_id.isascii() and BIOGUIDE_PATTERN.fullmatch(bioguide_id.upper())):
         raise HTTPException(status_code=400, detail="Invalid member ID format")
 
 

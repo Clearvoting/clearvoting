@@ -42,8 +42,12 @@ def _save_to_file(entry: dict) -> None:
 
 
 # Pragmatic email shape check — we have no email-validator dependency and don't
-# need RFC-perfect validation to collect a launch waitlist.
-_EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+# need RFC-perfect validation to collect a launch waitlist. The browser's own type=email
+# rule (WHATWG), ASCII only, plus a dot in the domain: no control, zero-width or bidi
+# characters, and no empty or hyphen-edged domain labels (F019).
+_EMAIL_LABEL = r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?"
+_EMAIL_RE = re.compile(
+    r"^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@" + _EMAIL_LABEL + r"(?:\." + _EMAIL_LABEL + r")+\Z", re.ASCII)
 
 
 class NotifySignup(BaseModel):
@@ -59,7 +63,9 @@ class NotifySignup(BaseModel):
         value = value.strip()
         if not _EMAIL_RE.match(value):
             raise ValueError("Invalid email address")
-        return value
+        # The domain is case-insensitive; the local part is left exactly as typed.
+        local, _, domain = value.rpartition("@")
+        return f"{local}@{domain.lower()}"
 
 
 @router.post("", dependencies=[Depends(require_site_json)])

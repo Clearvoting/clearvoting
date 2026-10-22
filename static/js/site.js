@@ -73,7 +73,10 @@ function clear(node) {
 const TREE_TAGS = ['a', 'details', 'div', 'em', 'li', 'nav', 'ol', 'p', 'span', 'strong', 'summary', 'time', 'ul'];
 const TREE_ATTRS = ['class', 'href', 'rel', 'datetime', 'role', 'hidden', 'open', 'aria-label', 'aria-hidden', 'aria-current', 'data-rc', 'data-short', 'data-record-result', 'data-record-list', 'data-record-nav'];
 
+// Mirrors render._safe_tree_href (F040): a backslash, control character or whitespace anywhere is
+// refused, because browsers drop tabs/newlines and read '\' as '/', so '/\host' leaves the site.
 function safeTreeHref(value) {
+    if (/[\\\u0000-\u0020\u007f]/.test(value)) return false;
     return value.indexOf('https://') === 0 || (value.charAt(0) === '/' && value.charAt(1) !== '/');
 }
 
@@ -1246,4 +1249,4 @@ if (typeof module !== 'undefined' && module.exports) {
         initZipInPlace, fillRepsSlot, slotBindForm, slotPick,
     };
 }
-if (typeof module !== 'undefined' && module.exports) { module.exports.buildTree = buildTree; }
+if (typeof module !== 'undefined' && module.exports) { module.exports.buildTree = buildTree; module.exports.safeTreeHref = safeTreeHref; }

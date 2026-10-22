@@ -401,6 +401,16 @@ TREE_ATTRS = frozenset({
     "aria-current", "data-rc", "data-short", "data-record-result", "data-record-list", "data-record-nav",
 })
 _TREE_BOOLEAN = frozenset({"hidden", "open"})
+_HREF_UNSAFE = re.compile(r"[\\\x00-\x20\x7f]")
+
+
+def _safe_tree_href(text: str) -> bool:
+    """https://… or a path on this site (site.js safeTreeHref mirrors it). No backslash, control
+    character or whitespace anywhere: browsers drop tabs and newlines and read '\\' as '/', so
+    '/\\evil.example' or '/<tab>/evil.example' would resolve off-site like '//evil.example' (F040)."""
+    if _HREF_UNSAFE.search(text):
+        return False
+    return text.startswith("https://") or (text.startswith("/") and not text.startswith("//"))
 
 
 def N(tag: str, attrs: dict | None = None, *children) -> dict:
@@ -415,7 +425,7 @@ def N(tag: str, attrs: dict | None = None, *children) -> dict:
         if key not in TREE_ATTRS:
             raise ValueError(f"attribute not allowed in a render tree: {key}")
         text = "" if value is True else str(value)
-        if key == "href" and not (text.startswith("https://") or (text.startswith("/") and not text.startswith("//"))):
+        if key == "href" and not _safe_tree_href(text):
             raise ValueError(f"href must be site-relative or https: {text}")
         clean[key] = text
     flat: list = []
@@ -2200,8 +2210,11 @@ def _record_result_line_node(page: dict) -> dict | None:
     topic, position, plain = _record_filters(page)
     if not (topic or position or plain):
         return None
-    matching = int((page.get("record") or {}).get("matching_bills") or 0)
-    line = f"{matching:,} bill{'' if matching == 1 else 's'}" + (f" on {topic}" if topic else "")
+    record = page.get("record") or {}
+    matching = int(record.get("matching_bills") or 0)
+    # Only a topic from the member's own list is named (F009; the data layer already drops others).
+    named = topic and topic in (record.get("policy_areas") or [])
+    line = f"{matching:,} bill{'' if matching == 1 else 's'}" + (f" on {topic}" if named else "")
     if position:
         line += f" · {_MP_POSITION_LABELS[position]}"
     if plain:
@@ -2331,7 +2344,7 @@ def render_member_page(page: dict) -> str:
 
 # --- Bill page blocks: story head, what it does, official summary, fact box (plan T7.1, spec §4.4) ---
 
-_BIOGUIDE_RE = re.compile(r"[A-Z]\d{6}")
+_BIOGUIDE_RE = re.compile(r"[A-Z][0-9]{6}")   # fullmatch; ASCII digits only (F044)
 
 
 def cut_words(text: str, limit: int) -> str:
@@ -2566,7 +2579,7 @@ def _rc_row(member: dict, rc: dict) -> str:
     covered = str(member.get("covered_id") or "")
     if _BIOGUIDE_RE.fullmatch(covered):
         name_html = f'<a href="/member?id={quote(covered)}">{name}</a>'
-        bioguide_attr = f' data-bioguide="{covered}"'
+        bioguide_attr = f' data-bioguide="{h(covered)}"'   # h() like every attribute, not only the regex (F084)
     else:
         name_html, bioguide_attr = name, ""
     if chamber == "house":

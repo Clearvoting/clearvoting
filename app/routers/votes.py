@@ -34,9 +34,11 @@ def get_latest_vote():
     return vote
 
 
+# vote_number is bounded (F068): vote files pad it to five digits, and a ~300-digit number made
+# the file-name check raise OSError (name too long), a 500 with a logged traceback.
 @router.get("/senate/{congress}/{session}/{vote_number}")
 @limiter.limit("60/minute")
-def get_senate_vote(request: Request, congress: int = Path(ge=1, le=200), session: int = Path(ge=1, le=3), vote_number: int = Path(), show_party: bool = False):
+def get_senate_vote(request: Request, congress: int = Path(ge=1, le=200), session: int = Path(ge=1, le=3), vote_number: int = Path(ge=1, le=99999), show_party: bool = False):
     data_service = get_data_service()
     data = data_service.get_senate_vote(congress, session, vote_number)
     if not data:
@@ -50,7 +52,7 @@ def get_senate_vote(request: Request, congress: int = Path(ge=1, le=200), sessio
 
 @router.get("/house/{congress}/{session}/{vote_number}")
 @limiter.limit("60/minute")
-def get_house_vote(request: Request, congress: int = Path(ge=1, le=200), session: int = Path(ge=1, le=3), vote_number: int = Path(), show_party: bool = False):
+def get_house_vote(request: Request, congress: int = Path(ge=1, le=200), session: int = Path(ge=1, le=3), vote_number: int = Path(ge=1, le=99999), show_party: bool = False):
     data_service = get_data_service()
     data = data_service.get_house_vote(congress, session, vote_number)
     if not data:

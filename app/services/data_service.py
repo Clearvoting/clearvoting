@@ -36,7 +36,8 @@ def roll_call_key(chamber, congress, session, vote_number) -> str:
 
 
 # §3.2: five digits, optionally followed by a ZIP+4 suffix; surrounding spaces are ignored.
-ZIP_INPUT_RE = re.compile(r"^\s*(\d{5})(?:[-\s]?\d{4})?\s*$")
+# ASCII digits and fullmatch (F044): \d also takes other scripts' digits, and '$' a trailing newline.
+ZIP_INPUT_RE = re.compile(r"^\s*([0-9]{5})(?:[-\s]?[0-9]{4})?\s*\Z")
 ZIP_MATCH_SHARE = 0.05    # §5.1: a district matches at >= 5 % of the ZCTA's land area
 ZIP_COVERED_SHARE = 0.95  # §5.1: below this, part of the ZIP lies outside the four covered states
 COVERED_STATE_NAMES = {"CA": "California", "FL": "Florida", "NY": "New York", "TX": "Texas"}
@@ -44,7 +45,7 @@ COVERED_STATE_NAMES = {"CA": "California", "FL": "Florida", "NY": "New York", "T
 
 def normalize_zip(raw: str | None) -> str | None:
     """The five-digit ZIP from a typed value ('11570-1234', ' 11570 ') or None when malformed."""
-    match = ZIP_INPUT_RE.match(raw or "")
+    match = ZIP_INPUT_RE.fullmatch(raw or "")
     return match.group(1) if match else None
 
 
@@ -988,7 +989,12 @@ class DataService:
         }
 
     def _record_from_votes(self, votes: list[dict], policy_areas, topic, position, plain) -> dict:
+        areas = list(policy_areas or [])
         topic = str(topic or "").strip() or None
+        # Only one of the member's own policy areas is a topic: any other ?topic= text would be
+        # echoed into the result line and the page links as if ClearVoting had written it (F009).
+        if topic not in areas:
+            topic = None
         position = position if position in ("yes", "no", "nv") else None
         plain = bool(plain)
         bills = self._bill_lookup()
@@ -1002,7 +1008,7 @@ class DataService:
             "topic": topic,
             "position": position,
             "plain": plain,
-            "policy_areas": list(policy_areas or []),
+            "policy_areas": areas,
             "plain_bills": sum(1 for bill_id in bill_ids if self._plain_one_liner(bill_id)),
             "total_bills": len(bill_ids),
         }

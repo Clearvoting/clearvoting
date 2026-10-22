@@ -5,6 +5,7 @@ callable that embeds the hostile payload it is given somewhere in its output
 (as a name, title, headline, …). Each later render task appends its block
 renderers here, so one test covers every renderer against every payload."""
 import re
+from html.parser import HTMLParser
 
 import pytest
 
@@ -18,7 +19,23 @@ HOSTILE = [
     '"><img src=x>',
     "&amp;",
     "javascript:alert(1)",
+    # Attribute breakouts without '<' (F087): only a quote-unsafe attribute lets these through,
+    # and the tag checks below cannot see them.
+    'x" onmouseover="alert(1)',
+    "x' style='display:none",
 ]
+
+
+class _AttributeNames(HTMLParser):
+    """Every attribute name on every start tag, as a browser's tokenizer reads them."""
+
+    def __init__(self):
+        super().__init__()
+        self.names: list[str] = []
+
+    def handle_starttag(self, tag, attrs):
+        self.names.extend(name for name, _ in attrs)
+
 
 RENDERERS = {
     "h": lambda p: h(p),
@@ -41,10 +58,16 @@ def assert_escaped(out: str, payload: str) -> None:
     if payload == "&amp;":
         # The literal entity text was escaped, not passed through as markup.
         assert "&amp;amp;" in out
-    if payload.startswith('"'):
-        # The attribute-breaking payload never appears raw. (Not '"><' in general: every
-        # block renderer's own markup, e.g. class="page-error"><h1>, contains that.)
+    if '"' in payload or "'" in payload:
+        # An attribute-breaking payload never appears raw: h() turns both quotes into entities.
+        # (Not '"><' in general: every block renderer's own markup, e.g.
+        # class="page-error"><h1>, contains that.)
         assert payload not in out
+    # No payload became an attribute of its own. (Not style=: some renderers set one themselves.)
+    parser = _AttributeNames()
+    parser.feed(out)
+    parser.close()
+    assert not [name for name in parser.names if name.startswith("on") or name == "formaction"]
 
 
 @pytest.mark.parametrize("payload", HOSTILE)
@@ -169,7 +192,7 @@ def test_delegation_renderer_escapes_hostile_input(name, payload):
 import pytest  # noqa: E402,F811
 from app import render as _trust_render  # noqa: E402
 
-_TRUST_HOSTILE = ["<script>alert(1)</script>", '"><img src=x>', "&amp;", "javascript:alert(1)"]
+_TRUST_HOSTILE = HOSTILE   # one payload list for every block (F087)
 
 
 def _trust_outputs(s: str) -> dict[str, str]:
@@ -193,6 +216,8 @@ def test_trust_renderers_escape_hostile_input(hostile):
         assert "<script>alert(1)</script>" not in out, name
         assert '"><img src=x>' not in out, name
         assert 'href="javascript:' not in out, name
+        if '"' in hostile or "'" in hostile:
+            assert hostile not in out, name
     if hostile == "&amp;":
         assert "&amp;amp;" in outputs["render_methodology"]
 
@@ -204,7 +229,7 @@ import pytest as _pytest_member
 
 from app import render as _render_member
 
-MEMBER_HOSTILE = ["<script>alert(1)</script>", '"><img src=x>', "&amp;", "javascript:alert(1)"]
+MEMBER_HOSTILE = HOSTILE   # one payload list for every block (F087)
 
 
 def _hostile_member_page(s: str) -> dict:
@@ -251,7 +276,7 @@ def _hostile_member_page(s: str) -> dict:
 def _assert_member_safe(out: str, s: str, echoes: bool = True) -> None:
     """echoes=False for an output that rightly drops the hostile value instead of printing it
     (render_money falls back to its fixed meta line when the cycle or FEC id is not valid)."""
-    if s in ("<script>alert(1)</script>", '"><img src=x>'):
+    if s == "<script>alert(1)</script>" or '"' in s or "'" in s:
         assert s not in out
     if s == "&amp;" and echoes:
         assert "&amp;amp;" in out
@@ -341,3 +366,57 @@ BILL_RENDERERS = {
 @pytest.mark.parametrize("name", sorted(BILL_RENDERERS))
 def test_bill_renderer_escapes_hostile_input(name, payload):
     assert_escaped(BILL_RENDERERS[name](payload), payload)
+
+
+def test_vote_by_state_escapes_data_bioguide_even_past_a_looser_id_check(monkeypatch):
+    """F084: the data-bioguide attribute goes through h() itself, not only through _BIOGUIDE_RE."""
+    monkeypatch.setattr(render, "_BIOGUIDE_RE", re.compile(r".+", re.S))
+    payload = 'x" onmouseover="alert(1)'
+    out = render.render_vote_by_state(_hostile_bill_page(payload))
+    assert 'data-bioguide="x&quot; onmouseover=&quot;alert(1)"' in out
+    assert_escaped(out, payload)
+
+
+# --- Render-tree href guard (F040): render.N and site.js safeTreeHref ---
+import json as _json  # noqa: E402
+import shutil as _shutil  # noqa: E402
+import subprocess as _subprocess  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+
+_NODE = _shutil.which("node")
+_SITE_JS = _Path(__file__).resolve().parent.parent / "static" / "js" / "site.js"
+
+# Browsers drop tabs and newlines and read '\' as '/', so each of these leaves the site.
+_OFF_SITE_HREFS = [
+    "//evil.example/x", "/\\evil.example/x", "/\t/evil.example/x", "/\n/evil.example",
+    "/\r/evil.example", "/\\/evil", "\\\\evil.example", " //evil.example", "/ /evil.example",
+    "https://evil.example\\@clearvoting.org/", "/x\x00", "/x\x7f", "javascript:alert(1)",
+    "http://evil.example/", "",
+]
+_SITE_HREFS = [
+    "/member?id=S000148&page=2#record", "/bill?congress=119&type=hr&number=1",
+    "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00295.htm",
+    "https://clerk.house.gov/Votes/2026295",
+]
+
+
+@pytest.mark.parametrize("href", _OFF_SITE_HREFS)
+def test_tree_href_guard_refuses_what_a_browser_resolves_off_site(href):
+    with pytest.raises(ValueError):
+        N("a", {"href": href}, "x")
+
+
+@pytest.mark.parametrize("href", _SITE_HREFS)
+def test_tree_href_guard_keeps_site_paths_and_https_links(href):
+    assert N("a", {"href": href}, "x")["a"]["href"] == href
+
+
+@pytest.mark.skipif(_NODE is None, reason="node is not installed (CI runs without it)")
+def test_site_js_safe_tree_href_matches_the_server_guard():
+    hrefs = _OFF_SITE_HREFS + _SITE_HREFS
+    script = ("const s = require(process.argv[1]);"
+              "const hrefs = JSON.parse(require('fs').readFileSync(0, 'utf8'));"
+              "process.stdout.write(JSON.stringify(hrefs.map((href) => s.safeTreeHref(href))));")
+    done = _subprocess.run([_NODE, "-e", script, str(_SITE_JS)], input=_json.dumps(hrefs),
+                           capture_output=True, text=True, check=True, timeout=120)
+    assert _json.loads(done.stdout) == [render._safe_tree_href(href) for href in hrefs]

@@ -138,6 +138,43 @@ async def test_notify_accepts_uncovered_states_and_dc(tmp_path, state, stored):
     assert mock_sheets.append_row.call_args[0][0][2] == stored
 
 
+# --- Email shape: the browser's type=email rule, ASCII, with a dot in the domain (F019) ---
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("email", [
+    "a\x00b@c.de", "a\x07@b.co", "x@ev\u200bil.com", "x@\u202eevil.com", "vot\u200ber@example.com",
+    "a@b..c", "a@-.-", "a@-b.co", "a@b-.co", "a@b", "@b.co", "a@.co", "a b@c.de", "a@b.co\x00",
+    "<script>alert(1)</script>@a.bc", '=HYPERLINK("https://evil.example","x")@a.bc', "ünï@example.com",
+])
+async def test_notify_refuses_addresses_a_browser_email_field_would(tmp_path, email):
+    tmp_file = tmp_path / "notify_signups.jsonl"
+    mock_sheets = _make_sheets(available=True, append_ok=True)
+    limiter.reset()
+    with patch("app.routers.notify.NOTIFY_FILE", tmp_file), \
+         patch("app.routers.notify._sheets", mock_sheets):
+        resp = await _post_notify({"email": email, "state": "OH"})
+    assert resp.status_code == 422
+    mock_sheets.append_row.assert_not_called()
+    assert not tmp_file.exists()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("email, stored", [
+    ("Voter@EXAMPLE.com", "Voter@example.com"),
+    (" o'brien+news@Mail.Example.org\n", "o'brien+news@mail.example.org"),
+    ("a@b.c", "a@b.c"),
+])
+async def test_notify_stores_the_address_with_only_the_domain_lowercased(tmp_path, email, stored):
+    tmp_file = tmp_path / "notify_signups.jsonl"
+    mock_sheets = _make_sheets(available=True, append_ok=True)
+    limiter.reset()
+    with patch("app.routers.notify.NOTIFY_FILE", tmp_file), \
+         patch("app.routers.notify._sheets", mock_sheets):
+        resp = await _post_notify({"email": email, "state": "OH"})
+    assert resp.status_code == 200
+    assert mock_sheets.append_row.call_args[0][0][1] == stored
+
+
 # --- Rate limits (F011, F085) ---
 
 CF_EDGE = "172.70.12.34"  # inside Cloudflare's 172.64.0.0/13

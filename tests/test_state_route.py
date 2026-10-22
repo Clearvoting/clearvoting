@@ -138,6 +138,16 @@ async def test_malformed_zip_on_a_state_url_keeps_the_roster():
 
 
 @pytest.mark.asyncio
+@pytest.mark.parametrize("path", ["/state?zip=", "/state?code=NY&zip="])
+async def test_a_malformed_zip_is_echoed_only_up_to_the_fields_maxlength(path):
+    """F041: a crafted link cannot put its own sentence into the ZIP box; the field takes 10."""
+    response = await _get(path + "Qqqqqzzzzz%20Wwwww%20vote%20Wednesday")
+    assert response.status_code == 200
+    assert 'value="Qqqqqzzzzz"' in response.text
+    assert "Wwwww" not in response.text
+
+
+@pytest.mark.asyncio
 @pytest.mark.parametrize("path", ["/state", "/state?zip=", "/state?zip=%20%20"])
 async def test_finder_page_without_code_or_zip(path):
     response = await _get(path)
@@ -219,6 +229,18 @@ async def test_non_numeric_district_is_ignored():
     response = await _get("/state?code=NY&district=abc")
     assert response.status_code == 200
     assert "<h1>New York's representatives</h1>" in response.text
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("code", ["NY", "CA"])
+@pytest.mark.parametrize("junk", ["%C2%B2", "%D9%A3", "%E2%91%A0"])   # "²", Arabic-Indic 3, "①"
+async def test_non_ascii_digit_district_is_ignored_like_any_junk(code, junk):
+    """"²".isdigit() is True but int("²") raises: the district parse must treat it as junk, not 500."""
+    plain = await _get(f"/state?code={code}")
+    other = await _get(f"/state?code={code}&district=abc")
+    response = await _get(f"/state?code={code}&district={junk}")
+    assert response.status_code == other.status_code == plain.status_code
+    assert response.text == other.text == plain.text
 
 
 @pytest.mark.asyncio

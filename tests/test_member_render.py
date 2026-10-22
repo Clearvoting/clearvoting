@@ -756,7 +756,9 @@ async def test_member_route_normalizes_the_id_case():
 
 
 @pytest.mark.asyncio
-@pytest.mark.parametrize("query", ["?id=X999999", "", "?id=abc", "?id=S000148%3Cscript%3E"])
+@pytest.mark.parametrize("query", ["?id=X999999", "", "?id=abc", "?id=S000148%3Cscript%3E",
+                                   # Aliases of a real id (F044): "ſ".upper() == "S", other scripts' digits
+                                   "?id=%C5%BF000148", "?id=S%D9%A0%D9%A0%D9%A0148", "?id=S000148%0AX"])
 async def test_member_route_404s_on_missing_malformed_or_unknown_ids(query):
     response = await _get_page("/member" + query)
     assert response.status_code == 404
