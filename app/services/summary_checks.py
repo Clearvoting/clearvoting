@@ -31,8 +31,9 @@ PROVISIONS_MAX = 7
 # Reader-facing text never needs a link, a number to call or text, or code
 # characters; one that appears was steered in by the inputs or hallucinated.
 # Bare .gov names stay allowed: bills name official sites (USAspending.gov),
-# and .gov registration is restricted to government bodies.
-WEB_ADDRESS_RE = re.compile(r"https?://|www\.|\b[a-z0-9-]{2,}\.(?!gov\b)[a-z]{2,}\b(?!\.[a-z0-9])", re.I)
+# and .gov registration is restricted to government bodies. "Con.Res" in a
+# concurrent-resolution citation (H.Con.Res. 14) is not an address either.
+WEB_ADDRESS_RE = re.compile(r"https?://|www\.|\b[a-z0-9-]{2,}\.(?!gov\b|res\b)[a-z]{2,}\b(?!\.[a-z0-9])", re.I)
 PHONE_RE = re.compile(r"(?:\(\d{3}\)\s?|\b\d{3}[-.\s])\d{3}[-.\s]\d{4}\b|\btext\s+\S+\s+to\s+\d{5,6}\b", re.I)
 MARKUP_RE = re.compile(r"[<>{}]")
 

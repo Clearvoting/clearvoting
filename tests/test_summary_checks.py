@@ -140,6 +140,8 @@ def test_flags_links_numbers_and_markup_in_reader_text(injected, what):
     "Posts each award on USAspending.gov within 30 days",
     "Posts a summary of each rule on regulations.gov",
     "Changes the rules for H.J.Res. 100 under 5 U.S.C. 801",
+    "Sets the budget levels agreed in H.Con.Res. 14",
+    "Adopts the budget framework in S.Con.Res. 33",
     "Spends $1.5 billion in Washington, D.C. over 10 years",
     "Lets people send text messages to 911",
     "Funds the 988 crisis line through 2030",
