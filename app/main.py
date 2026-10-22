@@ -254,6 +254,8 @@ app.include_router(districts_router)
 CACHE_NO_STORE = "no-store"
 CACHE_404 = "public, max-age=60"
 CACHE_STATIC = "public, max-age=31536000, immutable"
+CACHE_STATIC_OTHER_VERSION = "public, max-age=60"
+CACHE_STATIC_UNVERSIONED = "public, max-age=86400"
 CACHE_OG = "public, max-age=86400"
 CACHE_FAVICON = "public, max-age=31536000"
 CACHE_HTML = "public, max-age=0, s-maxage=600, stale-while-revalidate=3600"
@@ -286,7 +288,14 @@ def _cache_control_for(method: str, path: str, query, status: int, existing: str
     if path.startswith("/static/og/"):
         return CACHE_OG
     if path.startswith("/static/"):
-        return CACHE_STATIC
+        # Immutable only under this deploy's own ?v= (F008). StaticFiles ignores the query,
+        # so under any other v these bytes may not be the ones that URL names (an old
+        # instance asked for the next deploy's ?v= mid-rollout); unversioned files (fonts,
+        # favicon.svg) have no URL change to refresh them.
+        version = query.get("v")
+        if version is None:
+            return CACHE_STATIC_UNVERSIONED
+        return CACHE_STATIC if version == _asset_version else CACHE_STATIC_OTHER_VERSION
     if path == "/favicon.ico":
         return CACHE_FAVICON
     if path.startswith("/api/"):
@@ -297,27 +306,44 @@ def _cache_control_for(method: str, path: str, query, status: int, existing: str
     return existing
 
 
-@app.middleware("http")
-async def add_security_headers(request: Request, call_next):
-    response = await call_next(request)
-    response.headers["X-Content-Type-Options"] = "nosniff"
-    response.headers["X-Frame-Options"] = "DENY"
-    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
-    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
-    response.headers["Content-Security-Policy"] = (
+# Sent on every response (F086): add_security_headers covers what the app answers, and the
+# 500 handler and the body cap's 413, which answer from outside it, add the same set.
+SECURITY_HEADERS = {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    # base-uri, form-action and object-src do not fall back to default-src (F037); every
+    # form posts to this site, and nothing uses <base>, plugins or framing.
+    "Content-Security-Policy": (
         "default-src 'self'; "
         "style-src 'self' 'unsafe-inline'; "
         "font-src 'self'; "
         "img-src 'self' https://www.congress.gov; "
         "script-src 'self'; "
-        "connect-src 'self'"
-    )
-    path = request.url.path
+        "connect-src 'self'; "
+        "base-uri 'none'; "
+        "form-action 'self'; "
+        "object-src 'none'; "
+        "frame-ancestors 'none'"
+    ),
+    # A day to start (F038); browsers act on it only over HTTPS, which Cloudflare serves.
+    "Strict-Transport-Security": "max-age=86400",
+}
+
+
+@app.middleware("http")
+async def add_security_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers.update(SECURITY_HEADERS)
+    # scope["path"], not request.url.path: Starlette 0.38 rebuilds request.url from the Host
+    # header, so a Host such as "x/static/a" would pick these rules (F035).
+    path = request.scope["path"]
     if path.startswith("/static/") and path.endswith(".html"):
         response.headers["X-Robots-Tag"] = "noindex"
     cache_control = _cache_control_for(
         request.method,
-        request.url.path,
+        path,
         request.query_params,
         response.status_code,
         response.headers.get("cache-control"),
@@ -325,6 +351,31 @@ async def add_security_headers(request: Request, call_next):
     if cache_control:
         response.headers["Cache-Control"] = cache_control
     return response
+
+
+class ForwardedProtoMiddleware:
+    """Take the request scheme from X-Forwarded-Proto (F038). TLS ends before the app, so it
+    saw http, and Starlette's trailing-slash redirects (/about/ to /about) sent visitors to
+    http://. Only the scheme is taken, and only http or https, from the rightmost entry (the
+    nearest proxy's). uvicorn's ProxyHeadersMiddleware with every proxy trusted would also
+    swap the socket peer for the leftmost, client-written X-Forwarded-For entry, and
+    limiter.client_key falls back to that peer. In the app, so no start command is needed."""
+
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] == "http":
+            values = [value.decode("latin-1") for name, value in scope["headers"]
+                      if name == b"x-forwarded-proto"]
+            if values:
+                proto = ",".join(values).rsplit(",", 1)[-1].strip().lower()
+                if proto in ("http", "https"):
+                    scope["scheme"] = proto
+        await self.app(scope, receive, send)
+
+
+app.add_middleware(ForwardedProtoMiddleware)
 
 
 MAX_BODY_BYTES = 32 * 1024
@@ -403,7 +454,7 @@ class BodySizeLimitMiddleware:
     @staticmethod
     async def _too_large(scope, receive, send) -> None:
         response = JSONResponse({"detail": _BODY_TOO_LARGE}, status_code=413,
-                                headers={"Cache-Control": CACHE_NO_STORE})
+                                headers={"Cache-Control": CACHE_NO_STORE, **SECURITY_HEADERS})
         await response(scope, receive, send)
 
 
@@ -911,11 +962,12 @@ async def serve_robots() -> PlainTextResponse:
 
 @app.exception_handler(Exception)
 async def server_error_handler(request: Request, exc: Exception) -> PlainTextResponse:
-    """Generic 500 that is never cached (§9.5). Starlette still logs the traceback."""
+    """Generic 500 that is never cached (§9.5). Starlette still logs the traceback. It is sent
+    from outside add_security_headers, so it carries the security headers itself (F086)."""
     return PlainTextResponse(
         "Internal Server Error",
         status_code=500,
-        headers={"Cache-Control": CACHE_NO_STORE},
+        headers={"Cache-Control": CACHE_NO_STORE, **SECURITY_HEADERS},
     )
 
 
@@ -936,8 +988,10 @@ async def validation_error_handler(request: Request, exc: RequestValidationError
 
 @app.exception_handler(StarletteHTTPException)
 async def custom_exception_handler(request: Request, exc: StarletteHTTPException):
-    """Serve the "Not in this edition" page for page routes; keep JSON for the API."""
-    if exc.status_code == 404 and not request.url.path.startswith("/api"):
+    """Serve the "Not in this edition" page for page routes; keep JSON for the API.
+    The path is scope["path"], not the Host-derived request.url.path (F035)."""
+    path = request.scope["path"]
+    if exc.status_code == 404 and not path.startswith("/api"):
         from app.dependencies import get_data_service
         try:
             member_counts = get_data_service().get_member_counts()
@@ -953,7 +1007,7 @@ async def custom_exception_handler(request: Request, exc: StarletteHTTPException
             "title": "Page Not Found — ClearVoting",
             "h1": "We don't have that page",
             "description": "The link may be old, or the bill or member may be outside our four-state coverage.",
-            "url": f"{SITE_URL}{request.url.path}",
+            "url": f"{SITE_URL}{path}",
             "canonical": False,
         }, content)
         response.status_code = 404

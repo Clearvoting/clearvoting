@@ -1,5 +1,5 @@
 /* Self-hosted faces (SIL OFL 1.1, static/fonts/OFL.txt), latin subset.
-   Files are cached for a year without ?v=; replace a face under a new file name. */
+   Files are cached for a day without ?v=; replace a face under a new file name. */
 @font-face { font-family: "Playfair Display"; font-style: normal; font-weight: 700; font-display: swap; src: url("/static/fonts/playfair-display-700.woff2") format("woff2"); }
 @font-face { font-family: "Playfair Display"; font-style: normal; font-weight: 800; font-display: swap; src: url("/static/fonts/playfair-display-800.woff2") format("woff2"); }
 @font-face { font-family: "Playfair Display"; font-style: italic; font-weight: 600; font-display: swap; src: url("/static/fonts/playfair-display-600-italic.woff2") format("woff2"); }

@@ -8,7 +8,7 @@ from unittest.mock import MagicMock, patch
 from pathlib import Path
 from defusedxml.common import EntitiesForbidden
 from httpx import AsyncClient, ASGITransport
-from app.main import app, MAX_BODY_BYTES
+from app.main import app, ForwardedProtoMiddleware, MAX_BODY_BYTES
 from app.routers.bills import _is_safe_url
 from app.routers.feedback import FeedbackSubmission
 from app.routers.notify import NotifySignup
@@ -170,14 +170,116 @@ async def test_csp_allows_only_self_hosted_fonts_and_styles():
     assert "script-src 'self';" in csp
 
 
+# Every response type carries the same headers (F086). The values are written out here, not
+# imported from app.main, so a weakened or path-dependent policy fails.
+EXPECTED_SECURITY_HEADERS = {
+    "content-security-policy": (
+        "default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; "
+        "img-src 'self' https://www.congress.gov; script-src 'self'; connect-src 'self'; "
+        "base-uri 'none'; form-action 'self'; object-src 'none'; frame-ancestors 'none'"
+    ),
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "permissions-policy": "camera=(), microphone=(), geolocation=()",
+    "strict-transport-security": "max-age=86400",
+}
+
+
+async def _response_of_type(client, case):
+    if case == "413":
+        return await client.post("/api/feedback", content=b"{" + b" " * MAX_BODY_BYTES + b"}",
+                                  headers={"content-type": "application/json"})
+    if case == "429":
+        for _ in range(80):
+            response = await client.get("/api/districts/11570")
+            if response.status_code == 429:
+                return response
+        raise AssertionError("the 60/minute limit on /api/districts should trip within 80 calls")
+    if case == "500":
+        with patch("app.services.data_service.DataService.get_sync_metadata",
+                   side_effect=RuntimeError("boom")):
+            return await client.get("/sitemap.xml")
+    method, path = case.split(" ", 1)
+    return await client.request(method, path)
+
+
 @pytest.mark.asyncio
-async def test_woff2_is_served_as_a_font_with_immutable_cache():
+@pytest.mark.parametrize("case,status", [
+    ("GET /", 200), ("GET /about", 200), ("GET /methodology", 200), ("GET /privacy", 200),
+    ("GET /state?code=NY", 200), ("GET /member?id=S000148", 200),
+    ("GET /bill?congress=119&type=hr&number=1", 200),
+    ("GET /api/health", 200), ("GET /api/bills/119/hr/1", 200),
+    ("GET /state?zip=11570", 302), ("GET /about/", 307),
+    ("GET /no-such-page", 404), ("GET /api/no-such-endpoint", 404),
+    ("POST /about", 405), ("GET /api/bills/999/hr/1", 422),
+    ("413", 413), ("429", 429), ("500", 500),
+    ("GET /static/js/site.js?v=1", 200), ("GET /static/css/site.css?v=1", 200),
+    ("GET /static/fonts/inter-400.woff2", 200), ("GET /static/bill.html", 200),
+    ("GET /favicon.ico", 200), ("GET /sitemap.xml", 200), ("GET /robots.txt", 200),
+])
+async def test_every_response_type_carries_the_security_headers(case, status):
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app, raise_app_exceptions=False)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await _response_of_type(client, case)
+    _clear_data_service_cache()
+    assert response.status_code == status
+    for name, value in EXPECTED_SECURITY_HEADERS.items():
+        assert response.headers.get(name) == value, name
+
+
+# --- The visitor's scheme behind the proxy (F038) ---
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("forwarded,location", [
+    ({"X-Forwarded-Proto": "https"}, "https://test/about"),
+    ({"X-Forwarded-Proto": "http"}, "http://test/about"),
+    ({}, "http://test/about"),
+])
+async def test_trailing_slash_redirect_keeps_the_visitors_scheme(forwarded, location):
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.get("/about/", headers=forwarded)
+    assert resp.status_code == 307
+    assert resp.headers["location"] == location
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("headers,scheme", [
+    ([(b"x-forwarded-proto", b"https")], "https"),
+    ([(b"x-forwarded-proto", b" HTTPS ")], "https"),
+    ([(b"x-forwarded-proto", b"http, https")], "https"),
+    ([(b"x-forwarded-proto", b"https"), (b"x-forwarded-proto", b"http")], "http"),
+    ([(b"x-forwarded-proto", b"javascript")], "http"),
+    ([], "http"),
+])
+async def test_forwarded_proto_sets_only_the_scheme(headers, scheme):
+    """Only the scheme changes: the socket peer, which limiter.client_key falls back to,
+    stays the peer whatever X-Forwarded-For says."""
+    seen = {}
+
+    async def inner(scope, receive, send):
+        seen.update(scope)
+
+    peer = ("10.0.0.1", 50000)
+    scope = {"type": "http", "scheme": "http", "client": peer,
+             "headers": headers + [(b"x-forwarded-for", b"198.51.100.1, garbage")]}
+    await ForwardedProtoMiddleware(inner)(scope, None, None)
+    assert seen["scheme"] == scheme
+    assert seen["client"] == peer
+
+
+@pytest.mark.asyncio
+async def test_woff2_is_served_as_a_font_cached_for_a_day():
+    """Unversioned files are cached for a day, not a year: no ?v= change can refresh them (F008)."""
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
         resp = await client.get("/static/fonts/inter-400.woff2")
     assert resp.status_code == 200
     assert resp.headers["content-type"] == "font/woff2"
-    assert resp.headers["cache-control"] == "public, max-age=31536000, immutable"
+    assert resp.headers["cache-control"] == "public, max-age=86400"
 
 
 @pytest.mark.asyncio
