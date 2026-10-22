@@ -98,6 +98,26 @@ def test_tests_workflow_token_is_read_only():
     assert "write" not in text and "secrets." not in text and not GIT_PUSH.search(_code(text))
 
 
+@pytest.mark.parametrize("name", ("ai-sync.yml", "weekly-sync.yml"))
+def test_data_jobs_run_only_from_main(name):
+    # G1-004: a dispatch on any other branch would run that branch's copy of the file with the secrets.
+    assert re.search(r"^    if: github\.ref == 'refs/heads/main'\n    runs-on: ", _text(name), re.M)
+
+
+def test_ai_sync_checks_out_main():
+    checkout = next(text for _, text in _steps(_text("ai-sync.yml")) if "uses: actions/checkout@" in text)
+    assert "          ref: main\n" in checkout
+
+
+def test_server_runs_without_websockets_and_with_httptools():
+    # G1-023: no WebSocket routes exist; G1-031: never fall back to h11, which accepts Content-Length with
+    # Transfer-Encoding. Both the Render start command and the Dockerfile carry the flags.
+    root = WORKFLOWS.parent.parent
+    start = re.search(r"^    startCommand: (.*)$", (root / "render.yaml").read_text(), re.M).group(1)
+    assert start.endswith("--ws none --http httptools")
+    assert '"--ws", "none", "--http", "httptools"]' in (root / "Dockerfile").read_text()
+
+
 # --- The push token reaches only the commit steps, which rebase, check paths and push (F015, F071) ---
 
 @pytest.mark.parametrize("name", sorted(ALLOWLIST))

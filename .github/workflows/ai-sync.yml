@@ -40,6 +40,9 @@ concurrency:
 
 jobs:
   ai-sync:
+    # Only main's own copy of this file may run with the AI credentials: a manual
+    # dispatch on any other branch is skipped (review G1-004).
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -68,6 +71,7 @@ jobs:
         if: steps.key-check.outputs.mode != 'none'
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
+          ref: main
           persist-credentials: false
 
       - name: Set up Python 3.12

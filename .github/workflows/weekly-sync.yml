@@ -28,6 +28,8 @@ permissions:
 
 jobs:
   sync:
+    # Only main's own copy of this file may run with the API key (review G1-004).
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     env:
