@@ -309,6 +309,20 @@ def test_client_key_falls_back_to_the_peer():
     assert client_key(_request({}, client=None)) == "127.0.0.1"
 
 
+def test_client_key_trusts_cf_connecting_ip_only_with_the_origin_secret_once_it_is_set(monkeypatch):
+    """F011: with CV_ORIGIN_SECRET set, CF-Connecting-IP counts only on requests carrying the secret
+    Cloudflare adds; a request sent straight to the origin is keyed by the hop Render appended."""
+    direct = {"CF-Connecting-IP": "203.0.113.9", "X-Forwarded-For": "198.51.100.66"}
+    monkeypatch.delenv("CV_ORIGIN_SECRET", raising=False)
+    assert client_key(_request(direct)) == "203.0.113.9"  # unset: today's behaviour
+    monkeypatch.setenv("CV_ORIGIN_SECRET", "")
+    assert client_key(_request(direct)) == "203.0.113.9"  # empty counts as unset
+    monkeypatch.setenv("CV_ORIGIN_SECRET", "s3cret-value")
+    assert client_key(_request(direct)) == "198.51.100.66"
+    assert client_key(_request({**direct, "X-Origin-Auth": "wrong"})) == "198.51.100.66"
+    assert client_key(_request({**direct, "X-Origin-Auth": "s3cret-value"})) == "203.0.113.9"
+
+
 def test_site_limit_reads_cv_site_rate_limit_and_ignores_garbage(caplog):
     """F007: the site-wide per-client limit; a value the limiter cannot parse falls back to the default."""
     from app.limiter import DEFAULT_SITE_LIMIT, _site_limit

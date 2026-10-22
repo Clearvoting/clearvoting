@@ -6,7 +6,8 @@ entry (the hop the nearest proxy appended; entries left of it are client-written
 socket peer. The key does not depend on which proxy hops sit between Cloudflare and the app,
 so a Render hop cannot fold every visitor into one bucket. Traffic sent straight to the
 origin can set CF-Connecting-IP; the shared cap on the write routes below bounds what that
-can do. A candidate that does not parse as an IP address moves on to the next one. IPv6
+can do, and CV_ORIGIN_SECRET (see _from_cloudflare) closes it once it is set. A candidate
+that does not parse as an IP address moves on to the next one. IPv6
 visitors are keyed by their /64 (the block one subscriber gets), IPv4-mapped IPv6 by the
 IPv4 address.
 
@@ -15,6 +16,7 @@ number does not start a fresh count. Routes without a limit of their own share o
 per-client limit (CV_SITE_RATE_LIMIT, default 600/minute, F007). /static, /favicon.ico,
 /robots.txt, /api/health and paths no route matches are exempt."""
 import hashlib
+import hmac
 import ipaddress
 import logging
 import os
@@ -42,8 +44,23 @@ def _bucket(address: ipaddress.IPv4Address | ipaddress.IPv6Address) -> str:
     return str(address)
 
 
+# Opt-in proof that a request came through Cloudflare (F011). A Cloudflare Transform Rule adds
+# X-Origin-Auth: <secret> to every request it forwards, and CV_ORIGIN_SECRET holds the same value
+# on Render. Unset (the default), CF-Connecting-IP counts whenever it is an address. Set, it counts
+# only on requests carrying the secret, so traffic sent straight to the origin is keyed by the hop
+# Render's proxy appended. Add the Cloudflare rule first, confirm it reaches the app, then set it.
+ORIGIN_SECRET_HEADER = "x-origin-auth"
+
+
+def _from_cloudflare(request: Request) -> bool:
+    secret = os.environ.get("CV_ORIGIN_SECRET", "")
+    if not secret:
+        return True
+    return hmac.compare_digest(request.headers.get(ORIGIN_SECRET_HEADER, "").encode(), secret.encode())
+
+
 def client_key(request: Request) -> str:
-    visitor = _parse_ip(request.headers.get("cf-connecting-ip", ""))
+    visitor = _parse_ip(request.headers.get("cf-connecting-ip", "")) if _from_cloudflare(request) else None
     if visitor is not None:
         return _bucket(visitor)  # Cloudflare overwrites it, so through Cloudflare no client sets it
     hops = ",".join(request.headers.getlist("x-forwarded-for")).split(",")
