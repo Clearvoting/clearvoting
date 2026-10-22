@@ -1,12 +1,14 @@
 """Per-client rate limiting (spec §10 #18; F011, F062, F007, F054).
 
-The key is the visitor's address, chosen so a client cannot pick it (F011). Render's proxy
-appends the address it saw to X-Forwarded-For, so the rightmost hop is the one entry a client
-cannot write. When that hop is a Cloudflare edge, CF-Connecting-IP (which Cloudflare
-overwrites) is the visitor. Otherwise the rightmost hop is the visitor, and any
-CF-Connecting-IP the client sent is ignored. With no usable X-Forwarded-For, the socket peer.
-A candidate that does not parse as an IP address moves on to the next one. IPv6 visitors are
-keyed by their /64 (the block one subscriber gets), IPv4-mapped IPv6 by the IPv4 address.
+The key is the visitor's address (F011). CF-Connecting-IP comes first: Cloudflare overwrites
+it, so a client cannot set it through Cloudflare. Without it, the rightmost X-Forwarded-For
+entry (the hop the nearest proxy appended; entries left of it are client-written), then the
+socket peer. The key does not depend on which proxy hops sit between Cloudflare and the app,
+so a Render hop cannot fold every visitor into one bucket. Traffic sent straight to the
+origin can set CF-Connecting-IP; the shared cap on the write routes below bounds what that
+can do. A candidate that does not parse as an IP address moves on to the next one. IPv6
+visitors are keyed by their /64 (the block one subscriber gets), IPv4-mapped IPv6 by the
+IPv4 address.
 
 Buckets are per route, not per URL (key_style="endpoint", F062), so varying a ZIP or a bill
 number does not start a fresh count. Routes without a limit of their own share one site-wide
@@ -22,18 +24,6 @@ from slowapi import Limiter
 from starlette.requests import Request
 
 logger = logging.getLogger(__name__)
-
-# Cloudflare's published edge ranges, from https://www.cloudflare.com/ips-v4 and
-# https://www.cloudflare.com/ips-v6 (2026-10-21). A range missing here only keys visitors
-# behind it by the edge address; it never lets a client choose its own key.
-_CLOUDFLARE_NETWORKS = tuple(ipaddress.ip_network(net) for net in (
-    "173.245.48.0/20", "103.21.244.0/22", "103.22.200.0/22", "103.31.4.0/22",
-    "141.101.64.0/18", "108.162.192.0/18", "190.93.240.0/20", "188.114.96.0/20",
-    "197.234.240.0/22", "198.41.128.0/17", "162.158.0.0/15", "104.16.0.0/13",
-    "104.24.0.0/14", "172.64.0.0/13", "131.0.72.0/22",
-    "2400:cb00::/32", "2606:4700::/32", "2803:f800::/32", "2405:b500::/32",
-    "2405:8100::/32", "2a06:98c0::/29", "2c0f:f248::/32",
-))
 
 
 def _parse_ip(value: str) -> ipaddress.IPv4Address | ipaddress.IPv6Address | None:
@@ -53,13 +43,12 @@ def _bucket(address: ipaddress.IPv4Address | ipaddress.IPv6Address) -> str:
 
 
 def client_key(request: Request) -> str:
+    visitor = _parse_ip(request.headers.get("cf-connecting-ip", ""))
+    if visitor is not None:
+        return _bucket(visitor)  # Cloudflare overwrites it, so through Cloudflare no client sets it
     hops = ",".join(request.headers.getlist("x-forwarded-for")).split(",")
-    proxy_saw = _parse_ip(hops[-1])  # the hop Render's proxy appended
+    proxy_saw = _parse_ip(hops[-1])  # the hop the nearest proxy appended
     if proxy_saw is not None:
-        if any(proxy_saw in network for network in _CLOUDFLARE_NETWORKS):
-            visitor = _parse_ip(request.headers.get("cf-connecting-ip", ""))
-            if visitor is not None:
-                return _bucket(visitor)
         return _bucket(proxy_saw)
     peer = request.client.host if request.client else "127.0.0.1"
     address = _parse_ip(peer)

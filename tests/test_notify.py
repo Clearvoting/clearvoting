@@ -205,13 +205,15 @@ async def test_sixth_signup_from_one_client_is_refused_before_any_write(tmp_path
 
 
 @pytest.mark.asyncio
-async def test_spoofed_cf_connecting_ip_gets_no_fresh_bucket(tmp_path):
-    """F011: sent straight to the origin, a new CF-Connecting-IP on every request is still one
-    client, keyed by the hop Render's proxy saw."""
+async def test_cf_connecting_ip_that_is_not_an_address_gets_no_fresh_bucket(tmp_path):
+    """F011: a new CF-Connecting-IP on every request that is not an IP address is skipped, so
+    the requests are still one client, keyed by the hop the nearest proxy appended."""
     mock_sheets = _make_sheets()
+    headers = [{"CF-Connecting-IP": f"client-{i}", "X-Forwarded-For": f"203.0.113.{i}, 198.51.100.7"}
+               for i in range(6)]
     with patch("app.routers.notify.NOTIFY_FILE", tmp_path / "notify_signups.jsonl"), \
          patch("app.routers.notify._sheets", mock_sheets):
-        responses = await _post_each([_via_cloudflare(f"203.0.113.{i}", edge="198.51.100.7") for i in range(6)])
+        responses = await _post_each(headers)
     assert [r.status_code for r in responses] == [200] * 5 + [429]
     assert mock_sheets.append_row.call_count == 5
 

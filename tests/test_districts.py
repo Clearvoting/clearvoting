@@ -261,30 +261,34 @@ def _request(headers, client=("10.0.0.1", 1234)) -> Request:
     })
 
 
-def test_client_key_trusts_cf_connecting_ip_only_from_a_cloudflare_hop():
+def test_client_key_trusts_a_valid_cf_connecting_ip_whatever_x_forwarded_for_holds():
+    """Cloudflare overwrites CF-Connecting-IP, so it is the visitor whichever proxy hops sit
+    between Cloudflare and the app (F011)."""
     assert client_key(_request(_via_cloudflare("203.0.113.9"))) == "203.0.113.9"
-    assert client_key(_request({"CF-Connecting-IP": "203.0.113.9", "X-Forwarded-For": "173.245.48.1"})) == "203.0.113.9"
+    # A Render-internal hop last in X-Forwarded-For does not fold two visitors into one bucket.
     assert client_key(_request({"CF-Connecting-IP": "203.0.113.9",
-                                "X-Forwarded-For": "2606:4700:10::6816:1"})) == "203.0.113.9"
-    # Sent straight to the origin, the header is the client's own: the hop Render saw is the key.
-    spoofed = {"CF-Connecting-IP": "203.0.113.9", "X-Forwarded-For": "203.0.113.9, 198.51.100.7"}
-    assert client_key(_request(spoofed)) == "198.51.100.7"
-    # 173.245.64.1 is just past Cloudflare's 173.245.48.0/20.
-    outside = {"CF-Connecting-IP": "203.0.113.9", "X-Forwarded-For": "173.245.64.1"}
-    assert client_key(_request(outside)) == "173.245.64.1"
-    # With no X-Forwarded-For the header is never trusted.
-    assert client_key(_request({"CF-Connecting-IP": "203.0.113.9"})) == "10.0.0.1"
+                                "X-Forwarded-For": f"203.0.113.9, {CF_EDGE}, 10.204.5.6"})) == "203.0.113.9"
+    assert client_key(_request({"CF-Connecting-IP": "198.51.100.77",
+                                "X-Forwarded-For": f"198.51.100.77, {CF_EDGE}, 10.204.5.6"})) == "198.51.100.77"
+    # Nor does a hop with a port, a hop outside Cloudflare's ranges, or no X-Forwarded-For at all.
+    assert client_key(_request({"CF-Connecting-IP": "203.0.113.9",
+                                "X-Forwarded-For": f"203.0.113.9, {CF_EDGE}:443"})) == "203.0.113.9"
+    assert client_key(_request({"CF-Connecting-IP": "203.0.113.9", "X-Forwarded-For": "198.51.100.7"})) == "203.0.113.9"
+    assert client_key(_request({"CF-Connecting-IP": "203.0.113.9"})) == "203.0.113.9"
 
 
 def test_client_key_uses_the_rightmost_forwarded_for_entry():
-    """The entry Render's proxy appended; everything to its left is written by the client (F011)."""
-    assert client_key(_request({"X-Forwarded-For": "198.51.100.1, 10.0.0.2"})) == "10.0.0.2"
+    """With no CF-Connecting-IP, the entry the nearest proxy appended; everything to its left is
+    written by the client (F011)."""
+    assert client_key(_request({"X-Forwarded-For": "198.51.100.1, 203.0.113.2"})) == "203.0.113.2"
     # Two header lines read as one list, in order.
-    assert client_key(_request([("X-Forwarded-For", "198.51.100.1"), ("X-Forwarded-For", "10.0.0.3")])) == "10.0.0.3"
+    assert client_key(_request([("X-Forwarded-For", "198.51.100.1"), ("X-Forwarded-For", "203.0.113.3")])) == "203.0.113.3"
 
 
 def test_client_key_skips_values_that_are_not_ip_addresses():
-    assert client_key(_request({"CF-Connecting-IP": "lol-1", "X-Forwarded-For": f"1.2.3.4, {CF_EDGE}"})) == CF_EDGE
+    # A CF-Connecting-IP that is not an address falls through to the last X-Forwarded-For entry.
+    assert client_key(_request({"CF-Connecting-IP": "lol-1", "X-Forwarded-For": "1.2.3.4, 198.51.100.7"})) == "198.51.100.7"
+    assert client_key(_request({"CF-Connecting-IP": "lol-1"})) == "10.0.0.1"
     assert client_key(_request({"X-Forwarded-For": "198.51.100.1, garbage"})) == "10.0.0.1"
     assert client_key(_request({"X-Forwarded-For": "198.51.100.1, 198.51.100.7:443"})) == "10.0.0.1"
     assert client_key(_request({}, client=("testclient", 50000))) == "testclient"
@@ -297,9 +301,6 @@ def test_client_key_buckets_ipv6_by_64_and_unmaps_ipv4():
     assert key("2001:db8:1:3::1") == "2001:db8:1:3::/64"
     assert key("::ffff:203.0.113.9") == "203.0.113.9"
     assert client_key(_request({"X-Forwarded-For": "::ffff:198.51.100.7"})) == "198.51.100.7"
-    # An IPv4-mapped Cloudflare hop is still a Cloudflare hop.
-    mapped_edge = {"CF-Connecting-IP": "203.0.113.9", "X-Forwarded-For": f"::ffff:{CF_EDGE}"}
-    assert client_key(_request(mapped_edge)) == "203.0.113.9"
     assert client_key(_request({}, client=("2001:db8:9::5", 1234))) == "2001:db8:9::/64"
 
 
