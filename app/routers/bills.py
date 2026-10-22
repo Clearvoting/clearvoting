@@ -1,5 +1,4 @@
 import logging
-from urllib.parse import urlparse
 from fastapi import APIRouter, HTTPException, Path, Query, Request
 from fastapi.responses import JSONResponse
 from app.dependencies import get_data_service
@@ -11,17 +10,7 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/bills", tags=["bills"])
 
-ALLOWED_FETCH_DOMAINS = {"congress.gov", "www.congress.gov", "api.congress.gov"}
 VALID_BILL_TYPES = {"hr", "s", "hjres", "sjres", "hconres", "sconres", "hres", "sres"}
-
-
-def _is_safe_url(url: str) -> bool:
-    parsed = urlparse(url)
-    return (
-        parsed.scheme == "https"
-        and parsed.hostname in ALLOWED_FETCH_DOMAINS
-        and "@" not in url
-    )
 
 
 def _validate_bill_type(bill_type: str) -> None:
