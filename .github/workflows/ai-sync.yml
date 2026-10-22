@@ -1,7 +1,8 @@
 # Automated weekly AI generation sync for ClearVote.
 # Runs every Sunday at 10:00 UTC, the day after the government data sync.
-# Generates bill summaries, arguments, scorecard verdicts, member narratives,
-# and coherence checks (sync.py --ai-only).
+# Generates plain-language bill summaries only (sync.py --ai-only). The
+# withdrawn generators (arguments, scorecard verdicts, member narratives,
+# coherence checks) run only through their own opt-in sync.py flags.
 #
 # Two credential modes, checked in order:
 #   1. CLAUDE_CODE_OAUTH_TOKEN secret (preferred) — runs on the owner's Claude

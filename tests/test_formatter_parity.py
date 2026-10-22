@@ -1,7 +1,7 @@
 """Python ↔ site.js formatter parity (plan T2.2; spec §7.1–§7.5, §10 #12, §10 #21).
 
 app/render.py is the source of truth. The tables site.js mirrors are compared
-structurally on every run (CI has no node). The formatter outputs are compared by
+structurally on every run, with or without node. The formatter outputs are compared by
 running static/js/site.js under node when node is on PATH; otherwise those tests skip.
 """
 import json
@@ -17,7 +17,7 @@ from app import render
 ROOT = Path(__file__).resolve().parent.parent
 _SITE_JS = ROOT / "static" / "js" / "site.js"
 _NODE = shutil.which("node")
-needs_node = pytest.mark.skipif(_NODE is None, reason="node is not installed (CI runs without it)")
+needs_node = pytest.mark.skipif(_NODE is None, reason="node is not installed (tests.yml sets it up in CI)")
 
 FIXTURE_INDEX = ROOT / "tests" / "fixtures" / "synced" / "votes_index.json"
 REAL_INDEX = ROOT / "data" / "synced" / "votes_index.json"

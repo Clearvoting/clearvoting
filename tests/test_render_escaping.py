@@ -411,7 +411,7 @@ def test_tree_href_guard_keeps_site_paths_and_https_links(href):
     assert N("a", {"href": href}, "x")["a"]["href"] == href
 
 
-@pytest.mark.skipif(_NODE is None, reason="node is not installed (CI runs without it)")
+@pytest.mark.skipif(_NODE is None, reason="node is not installed (tests.yml sets it up in CI)")
 def test_site_js_safe_tree_href_matches_the_server_guard():
     hrefs = _OFF_SITE_HREFS + _SITE_HREFS
     script = ("const s = require(process.argv[1]);"

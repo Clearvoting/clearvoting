@@ -80,8 +80,14 @@ def test_each_action_has_one_pin_across_workflows():
     for name in ALL_WORKFLOWS:
         for action, ref in re.findall(r"uses: ([\w.-]+/[\w.-]+)@(\S+ # \S+)", _text(name)):
             pins.setdefault(action, set()).add(ref)
-    assert set(pins) == {"actions/checkout", "actions/setup-python"}
+    assert set(pins) == {"actions/checkout", "actions/setup-python", "actions/setup-node"}
     assert all(len(refs) == 1 for refs in pins.values()), pins
+
+
+def test_tests_workflow_sets_up_node_before_the_suite():
+    # The JS behaviour tests skip without node, so CI must install it or they silently stop running.
+    names = [name for name, _ in _steps(_text("tests.yml"))]
+    assert names.index("Set up Node 22") < names.index("Run tests")
 
 
 @pytest.mark.parametrize("name", ALL_WORKFLOWS)

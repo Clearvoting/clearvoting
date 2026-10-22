@@ -773,7 +773,7 @@ _SUMMARY_LINKS_DROPPED = [
 ]
 
 
-@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (CI runs without it)")
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (tests.yml sets it up in CI)")
 def test_summary_links_keep_only_https_gov_hrefs_on_anchors():
     cases = ([["A", href] for href in _SUMMARY_LINKS_KEPT + _SUMMARY_LINKS_DROPPED]
              + [["P", "javascript:alert(2)"], ["LI", "https://www.congress.gov/"]])
@@ -809,7 +809,7 @@ _RC_NAMES = ["Nydia Velázquez", "Linda Sánchez", "Nanette Barragán", "Tony C�
              "Sylvia Garcia", "Mike Garcia", "André Carson", "Jenniffer González-Colón"]
 
 
-@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (CI runs without it)")
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (tests.yml sets it up in CI)")
 def test_roll_call_name_search_ignores_accents_and_case():
     # The roll-call names are precomposed (NFC) from the House feed; a reader on a US keyboard
     # types none of the accents, and one who does may send them decomposed.

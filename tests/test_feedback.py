@@ -408,7 +408,7 @@ setTimeout(() => process.stdout.write(JSON.stringify({ sent, status: ids['feedba
 """
 
 
-@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (CI runs without it)")
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (tests.yml sets it up in CI)")
 @pytest.mark.parametrize("status, shown", [
     (200, "Thanks — sent."),
     (422, "We couldn't accept that message. Please shorten it and try again."),

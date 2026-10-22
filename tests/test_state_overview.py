@@ -123,7 +123,7 @@ process.stdout.write(JSON.stringify(out));
 """
 
 
-@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (CI runs without it)")
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (tests.yml sets it up in CI)")
 def test_home_vacant_row_prints_the_servers_vacant_seal():
     static = Path(__file__).parent.parent / "static" / "js"
     done = subprocess.run([shutil.which("node"), "-e", _HOME_VACANT_SCRIPT, str(static / "site.js"),
