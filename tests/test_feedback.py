@@ -1,5 +1,7 @@
 import json
 import re
+import shutil
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -376,6 +378,52 @@ def test_feedback_js_uses_the_native_dialog_and_owns_its_copy():
                  "modal.hidden", "setTimeout", "innerHTML", "data-freshness",
                  "e.target === modal"):  # no backdrop-click close: a padding click would discard a draft
         assert gone not in js, gone
+
+
+# F070: feedback.js run under node with a stand-in DOM; the page URL carries a long ?q=, a
+# tracking parameter and a fragment, and the server answers with the given status.
+_FEEDBACK_SUBMIT_SCRIPT = r"""
+function elem() {
+  return { value: '', textContent: '', hidden: false, disabled: false, open: false, listeners: {},
+    classList: { toggle() {}, add() {}, remove() {}, contains() { return false; } },
+    addEventListener(type, fn) { this.listeners[type] = fn; }, focus() {}, setAttribute() {},
+    showModal() { this.open = true; }, close() { this.open = false; } };
+}
+const ids = {};
+['feedback-modal', 'feedback-open', 'feedback-cancel', 'feedback-overlay', 'feedback-form', 'feedback-message',
+ 'feedback-submit', 'feedback-status', 'feedback-context'].forEach((id) => { ids[id] = elem(); });
+globalThis.window = { location: { origin: 'https://clearvoting.org', pathname: '/',
+  search: '?q=' + 'x'.repeat(600) + '&fbclid=IwAR0abc', hash: '#browse',
+  href: 'https://clearvoting.org/?q=' + 'x'.repeat(600) + '&fbclid=IwAR0abc#browse' } };
+globalThis.document = { getElementById: (id) => ids[id] || null, querySelector: () => null,
+  querySelectorAll: () => [], addEventListener() {}, activeElement: null, body: { contains: () => true } };
+let sent = null;
+const status = Number(process.argv[2]);
+globalThis.fetch = async (url, options) => { sent = JSON.parse(options.body); return { ok: status < 300, status }; };
+require(process.argv[1]);
+ids['feedback-message'].value = 'The date on this page is wrong.';
+ids['feedback-form'].listeners.submit({ preventDefault() {} });
+setTimeout(() => process.stdout.write(JSON.stringify({ sent, status: ids['feedback-status'].textContent,
+  disabled: ids['feedback-submit'].disabled })), 20);
+"""
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (CI runs without it)")
+@pytest.mark.parametrize("status, shown", [
+    (200, "Thanks — sent."),
+    (422, "We couldn't accept that message. Please shorten it and try again."),
+    (429, "We couldn't send that. Please try again in a few minutes."),
+    (503, "We couldn't send that. Please try again in a few minutes."),
+])
+def test_feedback_js_sends_a_bounded_page_url_and_names_a_refusal(status, shown):
+    done = subprocess.run([shutil.which("node"), "-e", _FEEDBACK_SUBMIT_SCRIPT, str(STATIC / "js" / "feedback.js"),
+                           str(status)], capture_output=True, text=True, check=True, timeout=60)
+    out = json.loads(done.stdout)
+    page_url = out["sent"]["page_url"]
+    # Origin + path + query, cut to the server's 500 characters; never the #fragment.
+    assert page_url == ("https://clearvoting.org/?q=" + "x" * 600)[:500]
+    assert "#" not in page_url
+    assert out["status"] == shown and out["disabled"] is False
 
 
 def test_nothing_waits_for_an_entrance_animation():

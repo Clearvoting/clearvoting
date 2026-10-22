@@ -3,6 +3,8 @@ import io
 import json
 import os
 import re
+import shutil
+import subprocess
 from html import escape
 from pathlib import Path
 from unittest.mock import patch
@@ -651,6 +653,63 @@ def test_bill_js_is_a_thin_enhancer_that_keeps_the_sanitize_block():
     for gone in ("document.title", "renderBill", "arguments", "Copy Link", "localStorage",
                  "slotReadHome", "SLOT_ERROR", "RC_STATE_NAMES"):
         assert gone not in bill_js, gone
+
+
+def test_bill_js_filters_summary_links_right_after_the_sink():
+    # F010: the filter runs on what the pinned sink inserted, inside the same if.
+    bill_js = (ROOT / "static" / "js" / "bill.js").read_text()
+    assert SINK_BLOCK + "\n        billFilterSummaryLinks(summaryDiv);\n    }\n}" in bill_js
+
+
+# bill.js runs in a node vm with stand-in nodes; URL is node's WHATWG parser, as in browsers.
+_SUMMARY_LINKS_SCRIPT = r"""
+const fs = require('fs');
+const vm = require('vm');
+class FakeNode {
+  constructor(tag, href) { this.tagName = tag; this.attrs = { href }; }
+  getAttribute(name) { return name in this.attrs ? this.attrs[name] : null; }
+  setAttribute(name, value) { this.attrs[name] = String(value); }
+  removeAttribute(name) { delete this.attrs[name]; }
+}
+const nodes = JSON.parse(fs.readFileSync(0, 'utf8')).map(([tag, href]) => new FakeNode(tag, href));
+const root = { querySelectorAll: (sel) => (sel === '[href]' ? nodes.filter((n) => 'href' in n.attrs) : []) };
+const context = { URL, Map, Set, window: { location: { origin: 'https://clearvoting.org' } },
+                  document: { addEventListener() {} } };
+vm.createContext(context);
+vm.runInContext(fs.readFileSync(process.argv[1], 'utf8'), context);
+context.billFilterSummaryLinks(root);
+process.stdout.write(JSON.stringify(nodes.map((n) => n.attrs)));
+"""
+
+_SUMMARY_LINKS_KEPT = [
+    "https://www.congress.gov/bill/119th-congress/house-bill/1",
+    "https://crsreports.congress.gov/product/pdf/LSB/LSB10001",
+    "https://www.gao.gov/products/gao-24-106001",
+    "https://obamawhitehouse.archives.gov/briefing-room",
+    "HTTPS://WWW.CONGRESS.GOV/public-laws/119th-congress",
+]
+_SUMMARY_LINKS_DROPPED = [
+    "javascript:alert(document.domain)", " JaVaScRiPt:alert(1)", "java\tscript:alert(1)",
+    "data:text/html,<script>alert(1)</script>", "//evil.example/register", "/\\evil.example/polling-place",
+    "https://evil.example/", "http://www.congress.gov/bill/119", "https://www.congress.gov@evil.example/",
+    "https://evil.example/.gov", "https://congress.gov.evil.example/", "https://evil.example\\.gov/",
+    "/bill?congress=119&type=hr&number=1", "", "https://[::1]/",
+]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (CI runs without it)")
+def test_summary_links_keep_only_https_gov_hrefs_on_anchors():
+    cases = ([["A", href] for href in _SUMMARY_LINKS_KEPT + _SUMMARY_LINKS_DROPPED]
+             + [["P", "javascript:alert(2)"], ["LI", "https://www.congress.gov/"]])
+    done = subprocess.run([shutil.which("node"), "-e", _SUMMARY_LINKS_SCRIPT, str(ROOT / "static" / "js" / "bill.js")],
+                          input=json.dumps(cases), capture_output=True, text=True, check=True, timeout=60)
+    out = json.loads(done.stdout)
+    kept = len(_SUMMARY_LINKS_KEPT)
+    assert len(out) == len(cases)
+    for href, attrs in zip(_SUMMARY_LINKS_KEPT, out[:kept]):
+        assert attrs == {"href": href, "rel": "noopener noreferrer nofollow"}, href
+    for (tag, href), attrs in zip(cases[kept:], out[kept:]):
+        assert attrs == {}, (tag, href)   # the href is gone; the element and its text stay
 
 
 def test_vote_js_has_no_positions_table_and_builds_rows_with_the_shared_builder():

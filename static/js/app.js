@@ -83,8 +83,10 @@
         const panel = document.getElementById('browse-panel');
         if (!toggle || !panel) return;
         toggle.addEventListener('click', () => setPanelOpen(toggle, panel, panel.hidden, ''));
+        // A ?q= over 100 characters is a crafted message, not a search (the API refuses it
+        // too), so the panel ignores it rather than put it in the search box (F042).
         const q = (new URLSearchParams(window.location.search).get('q') || '').trim();
-        if (q) {
+        if (q && q.length <= 100) {
             setPanelOpen(toggle, panel, true, q);
             toggle.scrollIntoView({ block: 'start', behavior: 'auto' });
         }
@@ -188,9 +190,11 @@
             const res = await fetch(`/api/search/bills?q=${encodeURIComponent(query)}&limit=50`);
             if (!res.ok) throw new Error(String(res.status));
             const bills = (await res.json()).bills || [];
+            // Fixed copy: the query is never echoed, so a crafted ?q= link cannot put its own
+            // sentence on the page (F042). The search box above still shows what was searched.
             results.textContent = bills.length
-                ? `${bills.length} bill${bills.length !== 1 ? 's' : ''} found for “${query}”`
-                : `No bills found for “${query}”. Try a broader term or pick a topic above.`;
+                ? `${bills.length} bill${bills.length !== 1 ? 's' : ''} found`
+                : 'No bills match that search. Try a broader term or pick a topic above.';
             bills.forEach(b => list.appendChild(createBillRow(b)));
         } catch (e) {
             results.textContent = "We couldn't search the record right now. Please try again in a moment.";

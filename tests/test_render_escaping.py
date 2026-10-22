@@ -420,3 +420,12 @@ def test_site_js_safe_tree_href_matches_the_server_guard():
     done = _subprocess.run([_NODE, "-e", script, str(_SITE_JS)], input=_json.dumps(hrefs),
                            capture_output=True, text=True, check=True, timeout=120)
     assert _json.loads(done.stdout) == [render._safe_tree_href(href) for href in hrefs]
+
+
+def test_person_row_builds_its_href_from_the_bioguide_id():
+    # F040: the row never links to whatever url the overview payload carries.
+    source = _SITE_JS.read_text()
+    row = source[source.index("function personRow("):]
+    row = row[: row.index("\n}\n")]
+    assert "member.url" not in row
+    assert "href: `/member?id=${encodeURIComponent(bioguide)}`," in row

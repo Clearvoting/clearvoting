@@ -45,15 +45,42 @@ function billOpenHomeState(scope) {
     scope.querySelectorAll(`details.state-group[data-state="${home.state}"]`).forEach(group => { group.open = true; });
 }
 
-// The one sanctioned HTML sink. The four lines inside the if are byte-identical to baseline
-// bill.js lines 165–168 (June plan constraint 4); only the source changed: T1.8's
+// Official-summary links (F010). sanitizeHtml keeps every href as written, so after the sink
+// only an <a> keeps one, and only an https link to a .gov host (congress.gov,
+// crsreports.congress.gov, gao.gov…), with rel="noopener noreferrer nofollow". Any other href
+// (javascript:, data:, //host, /\host, an off-site page) is removed and the link text stays.
+// The raw attribute is resolved the way a click would resolve it.
+function billSafeSummaryHref(value) {
+    let url;
+    try {
+        url = new URL(value, window.location.origin);
+    } catch (e) {
+        return false;
+    }
+    return url.protocol === 'https:' && url.hostname.endsWith('.gov');
+}
+
+function billFilterSummaryLinks(root) {
+    root.querySelectorAll('[href]').forEach(node => {
+        if (node.tagName === 'A' && billSafeSummaryHref(node.getAttribute('href'))) {
+            node.setAttribute('rel', 'noopener noreferrer nofollow');
+        } else {
+            node.removeAttribute('href');
+        }
+    });
+}
+
+// The one sanctioned HTML sink. The first four lines inside the if are byte-identical to
+// baseline bill.js lines 165–168 (June plan constraint 4); only the source changed: T1.8's
 // official_summary (Public Law first, else newest) instead of summaries[0] (the oldest).
+// The link filter runs on what the sink inserted.
 function billFillOfficialSummary(summaryDiv, latestSummary) {
     if (latestSummary) {
         summaryDiv.textContent = '';
         // Content is sanitized — only safe tags (P, EM, STRONG, B, I, BR, UL, OL, LI, A) remain
         const sanitized = sanitizeHtml(latestSummary);
         summaryDiv.insertAdjacentHTML('afterbegin', sanitized);
+        billFilterSummaryLinks(summaryDiv);
     }
 }
 
