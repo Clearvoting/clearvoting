@@ -122,6 +122,34 @@ def test_election_day_matches_the_sanctioned_seats_file():
     assert seats["election_day"] == render.ELECTION_DAY.isoformat()
 
 
+# --- After Election Day: one request clock for the edition line and the ballot copy (F066) ---
+
+@pytest.mark.parametrize("now, up", [
+    (datetime(2026, 11, 2, 12, 0, tzinfo=LA), True),
+    (datetime(2026, 11, 3, 23, 59, tzinfo=LA), True),
+    (datetime(2026, 11, 4, 0, 0, tzinfo=LA), False),
+    (datetime(2026, 11, 20, 12, 0, tzinfo=LA), False),
+])
+def test_pages_stop_announcing_the_ballot_after_election_day(now, up):
+    from fastapi.testclient import TestClient
+    client = TestClient(main.app)
+    with _patch_data_dir(), patch("app.main._now", return_value=now):
+        _clear_data_service_cache()
+        member = client.get("/member?id=G000602").text
+        state = client.get("/state?code=NY").text
+        overview = client.get("/api/members/NY/overview").json()
+        methodology = client.get("/methodology").text
+    _clear_data_service_cache()
+    assert ("Election Day is today" in member) is (now.date() == render.ELECTION_DAY)
+    assert ("This seat is on the ballot Nov 3, 2026" in member) is up
+    assert ("Seat up Nov 3" in state) is up
+    assert ("seal--ballot" in state) is up
+    gillen = next(m for m in overview["house"] if m["bioguideId"] == "G000602")
+    assert gillen["seat_seal"] == ("Seat up Nov 3" if up else "")
+    verb = "is" if up else "was"
+    assert f"Every House seat {verb} on the ballot on November 3, 2026." in methodology
+
+
 # --- Error state (§4 common) ---
 
 def test_render_error_uses_the_spec_sentence():

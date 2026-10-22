@@ -1,4 +1,5 @@
 import pytest
+from datetime import datetime, timezone
 from unittest.mock import patch
 from pathlib import Path
 from httpx import AsyncClient, ASGITransport
@@ -51,7 +52,9 @@ async def _get(path: str):
 
 @pytest.mark.asyncio
 async def test_overview_is_the_precomputed_file_plus_render_ready_fields():
-    response = await _get("/api/members/NY/overview")
+    # The seat seal is gone after Election Day (F066), so the request clock is pinned before it.
+    with patch("app.main._now", return_value=datetime(2026, 10, 22, 18, 0, tzinfo=timezone.utc)):
+        response = await _get("/api/members/NY/overview")
     assert response.status_code == 200
     data = response.json()
     assert data["state"] == "NY"

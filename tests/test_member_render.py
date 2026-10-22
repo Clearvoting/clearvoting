@@ -5,6 +5,7 @@ unit tests build that dict directly from real values (S000148, G000602, W000832,
 donations.json, roll-call files). Fixture- and real-data tests are added by T6.2/T6.3."""
 import html
 import re
+from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -139,6 +140,20 @@ def test_no_seat_seal_when_the_seat_is_not_up():
     out = render.render_member_header(_page(seat=None))
     assert "ballot" not in out.lower()
     assert "Special election" not in out
+
+
+@pytest.mark.parametrize("now, shown", [
+    (datetime(2026, 11, 2, 20, 0, tzinfo=timezone.utc), True),
+    (datetime(2026, 11, 4, 7, 59, tzinfo=timezone.utc), True),   # 23:59 on Nov 3 in California
+    (datetime(2026, 11, 4, 8, 0, tzinfo=timezone.utc), False),
+])
+def test_header_seat_seal_follows_the_request_clock(now, shown):
+    # F066: the header names an upcoming ballot only until Election Day ends in California.
+    for seat, text in (("regular", "This seat is on the ballot Nov 3, 2026"),
+                       ("special", "Special election for this seat Nov 3, 2026")):
+        out = render.render_member_page(_house_page(seat=seat), now)
+        assert (text in _text(out)) is shown
+        assert ('class="member-seat"' in out) is shown
 
 
 def test_header_photo_is_not_lazy_and_has_empty_alt():
@@ -795,7 +810,9 @@ async def test_member_route_ignores_garbage_params():
 
 @pytest.mark.asyncio
 async def test_house_member_route_renders_seat_seal_and_neutral_speaker_row():
-    first = await _get_page("/member?id=G000602")
+    # The seal is gone after Election Day (F066), so the request clock is pinned before it.
+    with patch("app.main._now", return_value=datetime(2026, 10, 22, 18, 0, tzinfo=timezone.utc)):
+        first = await _get_page("/member?id=G000602")
     assert first.status_code == 200
     assert "U.S. Representative · New York, District 4" in _text(first.text)
     assert "This seat is on the ballot Nov 3, 2026" in _text(first.text)

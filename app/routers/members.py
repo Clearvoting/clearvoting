@@ -60,17 +60,19 @@ def get_state_overview(
     state_code = _validate_state_code(state_code)
     if state_code not in render.COVERED_STATE_NAMES:
         raise HTTPException(status_code=404, detail="State not covered")
+    from app.main import _now   # the one request clock (F066); main imports this module
     data_service = get_data_service()
     # The committed file; if it is missing, T1.6's members.json roster without signal lines.
     overview = data_service.get_state_overview(state_code, fallback=True) or {}
+    now = _now()   # seat seals drop after Election Day, as on the server-rendered rows
     payload = {
         "state": overview.get("state") or state_code,
         "state_name": overview.get("state_name"),
         "roster_as_of": overview.get("roster_as_of"),
         "generated_at": overview.get("generated_at"),
         "districts_expected": overview.get("districts_expected"),
-        "senators": [render.overview_member_fields(m, data_service) for m in overview.get("senators") or []],
-        "house": [render.overview_member_fields(m, data_service) for m in overview.get("house") or []],
+        "senators": [render.overview_member_fields(m, data_service, now) for m in overview.get("senators") or []],
+        "house": [render.overview_member_fields(m, data_service, now) for m in overview.get("house") or []],
     }
     return payload if show_party else _strip_party(payload)
 

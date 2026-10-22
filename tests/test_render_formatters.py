@@ -1,7 +1,9 @@
 """Unit tests for the pure formatters in app/render.py (spec §7.1-§7.5)."""
 import json
 import re
+from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pytest
 
@@ -491,6 +493,30 @@ def test_seat_seal():
     assert seat_seal("special", header=True) == "Special election for this seat Nov 3, 2026"
     assert seat_seal(None, "row") == ""
     assert seat_seal(None, header=True) == ""
+
+
+_LA = ZoneInfo("America/Los_Angeles")
+
+
+@pytest.mark.parametrize("now, shown", [
+    (datetime(2026, 10, 22, 12, 0, tzinfo=_LA), True),
+    (datetime(2026, 11, 2, 12, 0, tzinfo=_LA), True),
+    (datetime(2026, 11, 3, 0, 0, tzinfo=_LA), True),
+    (datetime(2026, 11, 3, 23, 59, tzinfo=_LA), True),
+    (datetime(2026, 11, 4, 7, 59, tzinfo=timezone.utc), True),   # 23:59 PST, still Nov 3 in California
+    (datetime(2026, 11, 4, 8, 0, tzinfo=timezone.utc), False),   # midnight Pacific, Nov 4
+    (datetime(2026, 11, 20, 12, 0, tzinfo=_LA), False),
+    (datetime(2027, 1, 2, 12, 0, tzinfo=_LA), False),
+])
+def test_seat_seal_is_gone_after_election_day(now, shown):
+    # F066: from Nov 4 (Pacific) no seal says a seat is up on Nov 3; the edition countdown's rule.
+    from app.render import seat_seal
+    for kind, header, text in (("regular", False, "Seat up Nov 3"),
+                               ("regular", True, "This seat is on the ballot Nov 3, 2026"),
+                               ("special", False, "Special election Nov 3"),
+                               ("special", True, "Special election for this seat Nov 3, 2026")):
+        assert seat_seal(kind, header=header, now=now) == (text if shown else "")
+    assert seat_seal(None, now=now) == ""
 
 
 def test_seat_seal_copy_never_names_a_person():

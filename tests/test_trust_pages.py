@@ -4,6 +4,7 @@ Counts are asserted against the DataService, never hard-coded, so these tests ho
 when the fixtures or the real data change (spec §4.6; "115" is approximate)."""
 import inspect
 import re
+from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from unittest.mock import patch
@@ -187,6 +188,26 @@ def test_methodology_zip_and_ballot_sections():
     assert not PARTY_LEAK.search(out)
 
 
+@pytest.mark.parametrize("now, over", [
+    (datetime(2026, 11, 2, 20, 0, tzinfo=timezone.utc), False),
+    (datetime(2026, 11, 4, 7, 59, tzinfo=timezone.utc), False),   # 23:59 on Nov 3 in California
+    (datetime(2026, 11, 4, 8, 0, tzinfo=timezone.utc), True),
+    (datetime(2026, 12, 1, 20, 0, tzinfo=timezone.utc), True),
+])
+def test_methodology_ballot_turns_past_tense_after_election_day(now, over):
+    # F066: the request clock decides the tense, by the edition countdown's Pacific rule.
+    out = render.render_methodology(COUNTS, CROSSWALK_SOURCE, render.prompt_rules(SYSTEM_PROMPT), SENATE, now)
+    verb = "was" if over else "is"
+    assert f"Every House seat {verb} on the ballot on November 3, 2026." in out
+    assert (f"Of the eight senators we cover, the Texas seat held by John Cornyn {verb} up for its regular "
+            f"election and the Florida seat held by Ashley Moody {verb} up in a special election.") in out
+    assert ("our data does not say who ran.</p>" in out) is over
+    assert ("who is running" in out) is not over
+    none_up = render.render_methodology(COUNTS, CROSSWALK_SOURCE, render.prompt_rules(SYSTEM_PROMPT),
+                                        {**SENATE, "seats": []}, now)
+    assert f"None of the Senate seats held by the eight senators we cover {verb} up in this election." in none_up
+
+
 def test_methodology_links_only_https_sources():
     hostile = {**CROSSWALK_SOURCE, "url": "javascript:alert(1)"}
     senate = {**SENATE, "_source": {**SENATE["_source"], "url": "http://evil.example/x"}}
@@ -261,7 +282,9 @@ async def test_about_page():
 
 
 async def test_methodology_page():
-    response = await _get("/methodology")
+    # The ballot block is past tense after Election Day (F066), so the request clock is pinned before it.
+    with patch("app.main._now", return_value=datetime(2026, 10, 22, 18, 0, tzinfo=timezone.utc)):
+        response = await _get("/methodology")
     assert response.status_code == 200
     html = response.text
     counts = _fixture_counts()

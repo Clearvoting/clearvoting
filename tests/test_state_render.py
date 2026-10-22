@@ -4,6 +4,7 @@
 The renderers are pure string builders over an overview dict; FakeDS supplies the five
 DataService reads they make, so every expected string here is exact."""
 import re
+from datetime import datetime, timezone
 from html.parser import HTMLParser
 
 import pytest
@@ -192,6 +193,21 @@ def test_overview_member_fields_for_a_senator_whose_seat_is_not_up():
 def test_special_election_seat_is_described_as_the_seat():
     raw = member_raw("M001244", "Moody, Ashley", chamber="Senate")
     assert render.overview_member_fields(raw, make_ds())["seat_seal"] == "Special election Nov 3"
+
+
+@pytest.mark.parametrize("now, shown", [
+    (datetime(2026, 11, 2, 20, 0, tzinfo=timezone.utc), True),
+    (datetime(2026, 11, 3, 20, 0, tzinfo=timezone.utc), True),
+    (datetime(2026, 11, 4, 8, 0, tzinfo=timezone.utc), False),   # midnight Pacific, Nov 4
+])
+def test_seat_seals_follow_the_request_clock(now, shown):
+    # F066: rows stop saying "Seat up Nov 3" once Election Day is over in California.
+    moody = member_raw("M001244", "Moody, Ashley", chamber="Senate")
+    assert render.overview_member_fields(moody, make_ds(), now)["seat_seal"] == (
+        "Special election Nov 3" if shown else "")
+    html = render.render_state_page(ny_overview(), ds=make_ds(), now=now)
+    assert ('<span class="seal seal--ballot">Seat up Nov 3</span>' in html) is shown
+    assert ("seal--ballot" in html) is shown
 
 
 def test_withheld_summary_falls_back_to_the_official_title():

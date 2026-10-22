@@ -203,6 +203,12 @@ def _fill_freshness(html: str) -> str:
         lambda _match: f'<span id="data-freshness">{_freshness_text()}</span>', html, count=1)
 
 
+def _now() -> datetime:
+    """The request clock, in one place so tests can pin it: the edition line and the ballot
+    copy that changes after Election Day (seat seals, /methodology, the overview API) read it (F066)."""
+    return datetime.now(timezone.utc)
+
+
 def _edition_html() -> str:
     """The masthead edition line. It sits outside every page's _page_content, so a failure
     here logs and drops the line instead of turning every page, 404s included, into a 500 (F067)."""
@@ -212,7 +218,7 @@ def _edition_html() -> str:
         return render.render_edition(
             data_service.get_sync_metadata().get("last_sync"),
             data_service.latest_roll_call_date(),
-            datetime.now(timezone.utc),
+            _now(),
         )
     except Exception:
         logger.exception("edition line failed")
@@ -694,7 +700,7 @@ def serve_member(request: Request):
         page = data_service.get_member_page(member_id, page_no, topic, position, plain)
         if page is None:   # the id vanished between the lookup and the read: treat as a failure
             raise LookupError(f"member {member_id} missing from get_member_page")
-        return render.render_member_page(page)
+        return render.render_member_page(page, _now())
 
     content, status = _page_content(build, meta)
     strip = (render.render_member_strip(render.display_name(detail["member"].get("name") or ""), content)
@@ -784,7 +790,8 @@ def serve_methodology():
     def build() -> str:
         ds = get_data_service()
         return render.render_methodology(
-            _trust_counts(), ds._crosswalk_source, render.prompt_rules(SYSTEM_PROMPT), ds._senate_file)
+            _trust_counts(), ds._crosswalk_source, render.prompt_rules(SYSTEM_PROMPT), ds._senate_file,
+            _now())
 
     content, status = _trust_block(build)
     return _serve_html("methodology.html", {
@@ -878,7 +885,7 @@ def serve_state(request: Request):
                     data_service.get_member_counts(), value=zip_echo, error=_ZIP_ERROR))
             return _serve_state_page(code, state_h1, lambda: render.render_state_page(
                 data_service.get_state_overview(code, fallback=True), None, None, _ZIP_ERROR,
-                ds=data_service, zip_value=zip_echo))
+                ds=data_service, zip_value=zip_echo, now=_now()))
         target = _zip_target(lookup)
         if target is None:
             return _serve_state_page(None, _FINDER_H1, lambda: render.render_zip_not_found(
@@ -896,7 +903,7 @@ def serve_state(request: Request):
     h1 = _YOURS_H1 if (lookup is not None or district is not None) else state_h1
     return _serve_state_page(code, h1, lambda: render.render_state_page(
         data_service.get_state_overview(code, fallback=True), district, lookup, "",
-        ds=data_service, zip_value=lookup["zip"] if lookup else ""))
+        ds=data_service, zip_value=lookup["zip"] if lookup else "", now=_now()))
 
 
 _FAVICON_SVG = (static_dir / "favicon.svg").read_bytes()

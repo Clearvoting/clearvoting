@@ -5,6 +5,7 @@ import os
 import re
 import shutil
 import subprocess
+import unicodedata
 from html import escape
 from pathlib import Path
 from unittest.mock import patch
@@ -427,13 +428,50 @@ def test_earlier_congress_rows_sort_by_last_name_and_show_state_only():
     assert ny.count('<span class="rc-seat">NY</span>') == 2
 
 
+def _rc_names(group: str) -> list[str]:
+    return re.findall(r'<th scope="row">(?:<a [^>]+>)?([^<]+)', group)
+
+
+def test_accented_last_names_sort_where_a_reader_looks_for_them():
+    # F065: code-point order put "Cárdenas" after "Costa" and "Sánchez" after "Swalwell" in
+    # H.R. 1319's California table. Accents and case are ignored, last name then first, like
+    # vote.js rcSortMembers (localeCompare) for the groups bill.js builds.
+    names = [("Mark", "Takano"), ("Linda", "Sánchez"), ("Eric", "Swalwell"), ("Jim", "Costa"),
+             ("Tony", "Cárdenas"), ("Mark", "DeSaulnier"), ("Ken", "Calvert"), ("Nanette", "Barragán"),
+             ("Ángela", "Zeta"), ("Bob", "zeta"), ("Ami", "Bera")]
+    members = [{"first_name": first, "last_name": last, "state": "CA", "vote": "Yea",
+                "bioguide_id": f"X{i:06d}", "covered_id": None, "district": None}
+               for i, (first, last) in enumerate(names)]
+    rc = _rc(key="house/117_1_00080", congress=117, session=1, vote_number=80, date="2021-03-11",
+             rendered=True, members=members, state_tallies={"CA": [11, 0, 0]})
+    ca = _group(render.render_vote_by_state(_page(congress=117, head=rc, roll_calls=[rc])), "CA")
+    assert _rc_names(ca) == [escape(n) for n in (
+        "Nanette Barragán", "Ami Bera", "Ken Calvert", "Tony Cárdenas", "Jim Costa", "Mark DeSaulnier",
+        "Linda Sánchez", "Eric Swalwell", "Mark Takano", "Ángela Zeta", "Bob zeta")]
+
+
+def test_119th_house_rows_in_one_district_fall_back_to_the_folded_name():
+    members = [{"first_name": first, "last_name": last, "state": "CA", "vote": "Yea",
+                "bioguide_id": bid, "covered_id": None, "district": district}
+               for first, last, bid, district in (("Ed", "Swift", "S000001", 5), ("Lia", "Sánchez", "S000002", 5),
+                                                  ("Al", "Young", "Y000001", 2))]
+    rc = _rc(rendered=True, members=members, state_tallies={"CA": [3, 0, 0]})
+    ca = _group(render.render_vote_by_state(_page(head=rc, roll_calls=[rc])), "CA")
+    assert _rc_names(ca) == ["Al Young", "Lia Sánchez", "Ed Swift"]
+
+
+def _fold(text):
+    decomposed = unicodedata.normalize("NFKD", text or "")
+    return "".join(c for c in decomposed if not unicodedata.combining(c)).casefold()
+
+
 def test_fixture_117th_house_roll_call_rows_are_last_name_ordered():
     page = DataService(data_dir=FIXTURES).get_bill_page(117, "hres", 8)
     assert page is not None
     rendered = next(rc for rc in page["roll_calls"] if rc["rendered"])
     ny_members = [m for m in rendered["members"] if m["state"] == "NY"]
     expected = [escape(f'{m["first_name"]} {m["last_name"]}'.strip()) for m in sorted(
-        ny_members, key=lambda m: ((m["last_name"] or "").lower(), (m["first_name"] or "").lower()))]
+        ny_members, key=lambda m: (_fold(m["last_name"]), _fold(m["first_name"])))]
     ny = _group(render.render_vote_by_state(page), "NY")
     names = re.findall(r'<th scope="row">(?:<a [^>]+>)?([^<]+)', ny)
     assert names == expected
@@ -451,6 +489,44 @@ def test_senate_block_uses_the_senate_source_page_and_state_seat():
     assert "Senate roll call 372 · September 3, 2026 · Final vote to pass · Passed 51–49" in html
     assert '<tr data-key="NY-Example" data-bioguide="E000001" data-position="Yea">' in html
     assert '<span class="rc-seat">NY</span>' in html
+
+
+def _verdict_rc(**overrides):
+    """A synthetic impeachment verdict shaped like senate/117_1_00059 (H.Res. 24)."""
+    members = [{"first_name": first, "last_name": last, "state": state, "vote": vote,
+                "bioguide_id": None, "covered_id": None, "district": None}
+               for first, last, state, vote in (("Ann", "Alpha", "NY", "Guilty"), ("Bo", "Beta", "NY", "Not Guilty"),
+                                                ("Cy", "Gamma", "CA", "Guilty"), ("Di", "Delta", "CA", "Not Voting"))]
+    return _rc(**{"key": "senate/117_1_00059", "chamber": "senate", "congress": 117, "session": 1,
+                  "vote_number": 59, "date": "2021-02-13", "question": "Guilty or Not Guilty",
+                  "plain": "Verdict on an article of impeachment (needed two-thirds)", "class": "D",
+                  "result": "Not Guilty", "counts": {"yeas": 57, "nays": 43, "present": 0, "absent": 0},
+                  "seal": "Not guilty 57–43 (two-thirds needed)", "members": members,
+                  "state_tallies": {"CA": [1, 0, 1], "NY": [1, 1, 0]}, **overrides})
+
+
+def test_verdict_state_groups_count_guilty_and_not_guilty():
+    # F064: the rows read Guilty / Not Guilty, so the group summary names the same positions.
+    rc = _verdict_rc(rendered=True)
+    html = render.render_vote_by_state(_page(congress=117, bill_type="hres", number=24, head=rc, roll_calls=[rc]))
+    summaries = re.findall(r'<details class="state-group" data-state="(\w\w)"><summary>([^<]*)</summary>', html)
+    assert summaries == [("CA", "California: 1 guilty · 0 not guilty · 1 didn't vote"),
+                         ("NY", "New York: 1 guilty · 1 not guilty · 0 didn't vote")]
+    assert " yes · " not in html.split('<details class="rc-all"')[0].split("</h3>", 1)[1]
+    assert '<span class="chip chip--other" data-short>Guilty</span>' in _group(html, "NY")
+
+
+def test_collapsed_verdict_tally_lines_count_guilty_and_not_guilty():
+    # bill.js reuses each <li> as the summary of the group it builds, so this one line covers both.
+    head = _rc(rendered=True, members=_members_119())
+    rc = _verdict_rc(rendered=False, members=[])
+    html = render.render_vote_by_state(_page(head=head, roll_calls=[head, rc]))
+    more = html.split('<details class="rc-more"', 1)[1].split("</details>", 1)[0]
+    assert '<li data-state="CA">California: 1 guilty · 0 not guilty · 1 didn\'t vote</li>' in more
+    assert '<li data-state="NY">New York: 1 guilty · 1 not guilty · 0 didn\'t vote</li>' in more
+    # Any other roll call keeps yes / no.
+    assert '<li data-state="NY">New York: 13 yes · 11 no · 2 didn\'t vote</li>' in render.render_vote_by_state(
+        _page(head=head, roll_calls=[head, _rc(key="house/119_2_00100", vote_number=100)]))
 
 
 def test_many_roll_calls_render_two_blocks_and_collapse_the_rest_newest_first():
