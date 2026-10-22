@@ -3,7 +3,7 @@ state (§4 common) and the shared blocks several pages render (§3.2 ZIP form, s
 links, §4.1 m2 notify disclosure)."""
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import patch
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
@@ -15,6 +15,8 @@ from app import main, render
 FIXTURES = Path(__file__).parent / "fixtures" / "synced"
 REPO = Path(__file__).parent.parent
 LA = ZoneInfo("America/Los_Angeles")
+NEW_YORK = ZoneInfo("America/New_York")
+HONOLULU = ZoneInfo("Pacific/Honolulu")
 SEP_22 = datetime(2026, 9, 22, 12, 0, tzinfo=LA)
 
 
@@ -43,24 +45,49 @@ def test_countdown_on_november_2_is_one_day():
     assert "Election Day is Tuesday, November 3 — 1 day away" in html
 
 
-@pytest.mark.parametrize("hour, minute", [(0, 0), (21, 0), (23, 59)])
-def test_election_day_is_today_all_day_pacific(hour, minute):
-    html = render.render_edition(None, None, datetime(2026, 11, 3, hour, minute, tzinfo=LA))
+@pytest.mark.parametrize("now", [
+    datetime(2026, 11, 3, 0, 0, tzinfo=HONOLULU),   # 05:00 in New York
+    datetime(2026, 11, 3, 12, 0, tzinfo=LA),
+    datetime(2026, 11, 3, 20, 59, tzinfo=LA),       # 23:59 in New York, after California polls close
+])
+def test_election_day_is_today_while_new_york_to_honolulu_share_the_date(now):
+    html = render.render_edition(None, None, now)
     assert "<span>Election Day is today</span>" in html
-    assert "days away" not in html
+    assert "away" not in html
 
 
-def test_countdown_converts_utc_to_pacific():
-    # 2026-11-04 07:59 UTC is 23:59 PST on November 3 (DST ended November 1).
-    today = render.render_edition(None, None, datetime(2026, 11, 4, 7, 59, tzinfo=timezone.utc))
-    assert "Election Day is today" in today
-    # 08:00 UTC is midnight Pacific on November 4: the line is omitted.
-    after = render.render_edition(None, None, datetime(2026, 11, 4, 8, 0, tzinfo=timezone.utc))
-    assert "Election Day" not in after
+# G1-024: one cached line serves every reader. While New York, Los Angeles and Honolulu are on
+# different dates, any count or "today" is false somewhere, so the line names the date alone.
+@pytest.mark.parametrize("now", [
+    datetime(2026, 10, 22, 0, 30, tzinfo=NEW_YORK),  # the Pacific count (13) is 12 by Eastern time
+    datetime(2026, 11, 3, 0, 30, tzinfo=NEW_YORK),   # was "1 day away" on Election Day
+    datetime(2026, 11, 3, 2, 59, tzinfo=NEW_YORK),
+    datetime(2026, 11, 2, 22, 30, tzinfo=HONOLULU),  # was "Election Day is today" on Nov 2
+    datetime(2026, 11, 2, 23, 30, tzinfo=ZoneInfo("America/Anchorage")),
+    datetime(2026, 11, 3, 21, 0, tzinfo=LA),         # midnight in New York
+    datetime(2026, 11, 4, 0, 0, tzinfo=LA),          # 22:00 on Nov 3 in Honolulu
+])
+def test_countdown_names_only_the_date_while_the_zones_disagree(now):
+    html = render.render_edition(None, None, now)
+    assert html == '<p class="edition"><span>Election Day is Tuesday, November 3</span></p>'
 
 
-def test_election_line_omitted_from_november_4():
-    html = render.render_edition("2026-11-02T06:00:00Z", None, datetime(2026, 11, 4, 0, 0, tzinfo=LA))
+def test_countdown_converts_utc_to_each_zone():
+    def line(hour, minute, day):
+        return render.render_edition(None, None, datetime(2026, 11, day, hour, minute, tzinfo=timezone.utc))
+    # 10:00 UTC on November 3 is midnight in Honolulu: every zone is on Election Day.
+    assert "today" not in line(9, 59, 3) and "Election Day is Tuesday, November 3" in line(9, 59, 3)
+    assert "Election Day is today" in line(10, 0, 3)
+    # 05:00 UTC on November 4 is midnight in New York (EST after November 1).
+    assert "Election Day is today" in line(4, 59, 4)
+    assert "today" not in line(5, 0, 4) and "Election Day is Tuesday, November 3" in line(5, 0, 4)
+    # 10:00 UTC on November 4 is midnight in Honolulu: the line is omitted.
+    assert "Election Day is Tuesday, November 3" in line(9, 59, 4)
+    assert "Election Day" not in line(10, 0, 4)
+
+
+def test_election_line_omitted_once_honolulu_reaches_november_4():
+    html = render.render_edition("2026-11-02T06:00:00Z", None, datetime(2026, 11, 4, 0, 0, tzinfo=HONOLULU))
     assert html == '<p class="edition"><span>Data synced November 2, 2026</span></p>'
 
 
@@ -107,14 +134,20 @@ def test_countdown_without_a_tz_database(monkeypatch):
     def _missing(name):
         raise ZoneInfoNotFoundError(name)
 
+    hours = [datetime(2026, 1, 1, tzinfo=timezone.utc) + timedelta(hours=i) for i in range(366 * 24)]
+    real = [[render._zone_today(t, zone) for zone in render._EDITION_ZONES] for t in hours]
     monkeypatch.setattr(render, "ZoneInfo", _missing)
+    # The fallback's US DST rule gives each zone's date at every hour of 2026, both switches included.
+    assert [[render._zone_today(t, zone) for zone in render._EDITION_ZONES] for t in hours] == real
     assert "Election Day is today" in render.render_edition(
-        None, None, datetime(2026, 11, 4, 7, 59, tzinfo=timezone.utc))
+        None, None, datetime(2026, 11, 4, 4, 59, tzinfo=timezone.utc))
     assert "Election Day" not in render.render_edition(
-        None, None, datetime(2026, 11, 4, 8, 0, tzinfo=timezone.utc))
-    # September is PDT (UTC-7): 06:59 UTC on Sep 23 is still Sep 22 in California.
+        None, None, datetime(2026, 11, 4, 10, 0, tzinfo=timezone.utc))
+    # September is EDT (UTC-4): 03:59 UTC on Sep 23 is still Sep 22 in New York.
     assert "42 days away" in render.render_edition(
-        None, None, datetime(2026, 9, 23, 6, 59, tzinfo=timezone.utc))
+        None, None, datetime(2026, 9, 23, 3, 59, tzinfo=timezone.utc))
+    assert "away" not in render.render_edition(
+        None, None, datetime(2026, 9, 23, 4, 0, tzinfo=timezone.utc))
 
 
 def test_election_day_matches_the_sanctioned_seats_file():
@@ -124,13 +157,14 @@ def test_election_day_matches_the_sanctioned_seats_file():
 
 # --- After Election Day: one request clock for the edition line and the ballot copy (F066) ---
 
-@pytest.mark.parametrize("now, up", [
-    (datetime(2026, 11, 2, 12, 0, tzinfo=LA), True),
-    (datetime(2026, 11, 3, 23, 59, tzinfo=LA), True),
-    (datetime(2026, 11, 4, 0, 0, tzinfo=LA), False),
-    (datetime(2026, 11, 20, 12, 0, tzinfo=LA), False),
+@pytest.mark.parametrize("now, up, today", [
+    (datetime(2026, 11, 2, 12, 0, tzinfo=LA), True, False),
+    (datetime(2026, 11, 3, 12, 0, tzinfo=LA), True, True),
+    (datetime(2026, 11, 3, 23, 59, tzinfo=LA), True, False),   # November 4 in New York (G1-024)
+    (datetime(2026, 11, 4, 0, 0, tzinfo=LA), False, False),
+    (datetime(2026, 11, 20, 12, 0, tzinfo=LA), False, False),
 ])
-def test_pages_stop_announcing_the_ballot_after_election_day(now, up):
+def test_pages_stop_announcing_the_ballot_after_election_day(now, up, today):
     from fastapi.testclient import TestClient
     client = TestClient(main.app)
     with _patch_data_dir(), patch("app.main._now", return_value=now):
@@ -140,7 +174,7 @@ def test_pages_stop_announcing_the_ballot_after_election_day(now, up):
         overview = client.get("/api/members/NY/overview").json()
         methodology = client.get("/methodology").text
     _clear_data_service_cache()
-    assert ("Election Day is today" in member) is (now.date() == render.ELECTION_DAY)
+    assert ("Election Day is today" in member) is today
     assert ("This seat is on the ballot Nov 3, 2026" in member) is up
     assert ("Seat up Nov 3" in state) is up
     assert ("seal--ballot" in state) is up

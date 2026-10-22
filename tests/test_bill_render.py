@@ -788,6 +788,45 @@ def test_summary_links_keep_only_https_gov_hrefs_on_anchors():
         assert attrs == {}, (tag, href)   # the href is gone; the element and its text stay
 
 
+# vote.js filterRcRows under node, with site.js's positionChip and stand-in rows (G1-022).
+_RC_FILTER_SCRIPT = r"""
+const fs = require('fs');
+const vm = require('vm');
+const context = { document: { readyState: 'loading', addEventListener() {} }, window: { addEventListener() {} } };
+vm.createContext(context);
+for (const file of process.argv.slice(1)) vm.runInContext(fs.readFileSync(file, 'utf8'), context);
+const { names, queries } = JSON.parse(fs.readFileSync(0, 'utf8'));
+const out = queries.map((query) => {
+  const rows = names.map((name) => ({ name, hidden: false, dataset: { position: 'Yea' },
+    querySelector: (sel) => (sel === 'th' ? { firstChild: { textContent: name } } : null) }));
+  context.filterRcRows({ querySelectorAll: (sel) => (sel === 'tbody tr' ? rows : []) }, query, 'all');
+  return rows.filter((row) => !row.hidden).map((row) => row.name);
+});
+process.stdout.write(JSON.stringify(out));
+"""
+
+_RC_NAMES = ["Nydia Velázquez", "Linda Sánchez", "Nanette Barragán", "Tony Cárdenas", "Jesús García",
+             "Sylvia Garcia", "Mike Garcia", "André Carson", "Jenniffer González-Colón"]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (CI runs without it)")
+def test_roll_call_name_search_ignores_accents_and_case():
+    # The roll-call names are precomposed (NFC) from the House feed; a reader on a US keyboard
+    # types none of the accents, and one who does may send them decomposed.
+    assert all(unicodedata.is_normalized("NFC", name) for name in _RC_NAMES)
+    queries = ["velazquez", "  Sanchez ", "BARRAGAN", "cardenas", "garcia", "García",
+               unicodedata.normalize("NFD", "Velázquez"), "gonzalez-colon", "andre", "", "zzz"]
+    js = ROOT / "static" / "js"
+    done = subprocess.run([shutil.which("node"), "-e", _RC_FILTER_SCRIPT, str(js / "site.js"), str(js / "vote.js")],
+                          input=json.dumps({"names": _RC_NAMES, "queries": queries}),
+                          capture_output=True, text=True, check=True, timeout=60)
+    garcias = ["Jesús García", "Sylvia Garcia", "Mike Garcia"]
+    assert json.loads(done.stdout) == [
+        ["Nydia Velázquez"], ["Linda Sánchez"], ["Nanette Barragán"], ["Tony Cárdenas"], garcias, garcias,
+        ["Nydia Velázquez"], ["Jenniffer González-Colón"], ["André Carson"], _RC_NAMES, [],
+    ]
+
+
 def test_vote_js_has_no_positions_table_and_builds_rows_with_the_shared_builder():
     vote_js = (ROOT / "static" / "js" / "vote.js").read_text()
     # [^\n]: under re.S a bare //.* would swallow everything after the first line comment.

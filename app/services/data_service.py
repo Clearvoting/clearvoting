@@ -671,11 +671,13 @@ class DataService:
             return None
         return summary
 
-    def seat_up_2026(self, member: dict) -> str | None:
-        """§7.4: every House seat is on the Nov 3, 2026 ballot; a senator's seat is up only when
-        senate_2026.json lists it ("regular" or "special"). Describes the seat, never the person."""
+    def seat_up_2026(self, member: dict, state_code: str | None = None) -> str | None:
+        """§7.4: every House seat is on the Nov 3, 2026 ballot ("regular", or "regular_new_map"
+        in CA, FL and TX, G1-013); a senator's seat is up only when senate_2026.json lists it
+        ("regular" or "special"). Describes the seat, never the person. `state_code` names the
+        state for a state_overview row, which carries no stateCode."""
         if "Senate" not in (member.get("chamber") or ""):
-            return "regular"
+            return render.house_seat_2026(member.get("stateCode") or state_code)
         seat = self._senate_2026.get(member.get("bioguideId") or "")
         return seat.get("kind") if seat else None
 

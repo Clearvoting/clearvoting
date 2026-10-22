@@ -3,6 +3,7 @@ mismatch, invalid codes, district URLs, and the new shell and thin enhancers
 (plan T4.2; spec §3.1, §3.2, §4.2, §5.3, §10 #5)."""
 import json
 import re
+from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -213,6 +214,42 @@ async def test_vacant_district_is_named_with_a_correction_link():
     yours = _section(response.text, '<section class="yours"')
     assert "District 3 — vacant in our data</span> · <button" in yours
     assert "data-feedback-open>Tell us if this is wrong</button>" in yours
+
+
+# The seat seals drop after Election Day (F066), so these pin the request clock before it.
+OCT_22 = datetime(2026, 10, 22, 18, 0, tzinfo=timezone.utc)
+
+
+@pytest.mark.asyncio
+async def test_vacant_district_is_on_the_ballot_too():
+    # G1-025: an empty House seat carries the same seal as a filled one.
+    with patch("app.main._now", return_value=OCT_22):
+        new_york = await _get("/state?code=NY&district=3")
+        texas = await _get("/state?code=TX&district=13")
+        partial = await _get("/state?code=TX&zip=73949")
+    yours = _section(new_york.text, '<section class="yours"')
+    assert ('Tell us if this is wrong</button></span> <span class="seal seal--ballot">Seat up Nov 3</span>'
+            in yours)
+    for html in (texas.text, partial.text):
+        yours = _section(html, '<section class="yours"')
+        assert "District 13 — vacant in our data" in yours
+        assert '<span class="seal seal--ballot">Seat up Nov 3 · new district lines</span>' in yours
+
+
+@pytest.mark.asyncio
+async def test_house_seal_names_new_district_lines_in_california_florida_and_texas():
+    # G1-013: the ZIP crosswalk and the roster are 119th-Congress districts; in CA, FL and TX the
+    # 2026 House lines are new, so "Seat up Nov 3" alone would read as this reader's 2026 race.
+    with patch("app.main._now", return_value=OCT_22):
+        florida = await _get("/state?code=FL&district=19")
+        new_york = await _get("/state?code=NY&district=4")
+        member = await _get("/member?id=D000032")
+    yours = _section(florida.text, '<section class="yours"')
+    row = yours.split('data-bioguide="D000032"', 1)[1].split("</a>", 1)[0]
+    assert '<span class="seal seal--ballot">Seat up Nov 3 · new district lines</span>' in row
+    assert "This seat is on the ballot Nov 3, 2026, with new district lines" in member.text
+    assert '<span class="seal seal--ballot">Seat up Nov 3</span>' in new_york.text
+    assert "new district lines" not in new_york.text
 
 
 @pytest.mark.asyncio

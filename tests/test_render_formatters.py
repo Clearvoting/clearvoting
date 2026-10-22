@@ -406,6 +406,35 @@ def test_h_escapes_markup_and_quotes():
     assert h(None) == ""
 
 
+# G1-021: bidi controls (embeddings, overrides, isolates, directional marks) and zero-width or
+# invisible format characters, written as escapes so this file shows each one.
+_BIDI_AND_INVISIBLE = ["\u061c", "\u200b", "\u200c", "\u200d", "\u200e", "\u200f", "\u202a", "\u202b",
+                       "\u202c", "\u202d", "\u202e", "\u2060", "\u2061", "\u2062", "\u2063", "\u2064",
+                       "\u2066", "\u2067", "\u2068", "\u2069", "\ufeff"]
+
+
+@pytest.mark.parametrize("char", _BIDI_AND_INVISIBLE)
+def test_h_drops_bidi_controls_and_invisible_characters(char):
+    # An override in a title would reverse the site's own text after it; a zero-width space
+    # makes "Ken Pax\u200bton" look like "Ken Paxton" while it is stored differently.
+    from app.render import h
+    assert h(f"Ken Pax{char}ton") == "Ken Paxton"
+    assert h(f"{char}Set the rules <b>{char}") == "Set the rules &lt;b&gt;"
+
+
+def test_h_leaves_ordinary_text_unchanged():
+    from app.render import h
+    for text in ("Nydia Velázquez", "Jenniffer González-Colón", "Raúl Grijalva — District 7 · ½ § 3",
+                 "non\u00a0breaking\u2011hyphen", "line\nbreak\ttab", "שלום", "日本語"):
+        assert h(text) == text
+
+
+def test_person_row_drops_a_right_to_left_override():
+    row = render.render_person_row({"bioguideId": "S001217", "display_name": "\u202eRick Scott",
+                                    "seat_line": "U.S. Senator\u2067", "seat_seal": ""}, None)
+    assert "Rick Scott" in row and "\u202e" not in row and "\u2067" not in row
+
+
 # --- §7.5 bill codes, ordinals, names, tenure ---
 
 @pytest.mark.parametrize("bill_type, number, code", [
@@ -489,10 +518,25 @@ def test_seat_seal():
     assert seat_seal("regular", "row") == "Seat up Nov 3"
     assert seat_seal("regular", "header") == "This seat is on the ballot Nov 3, 2026"
     assert seat_seal("regular", header=True) == "This seat is on the ballot Nov 3, 2026"
+    assert seat_seal("regular_new_map") == "Seat up Nov 3 · new district lines"
+    assert seat_seal("regular_new_map", header=True) == (
+        "This seat is on the ballot Nov 3, 2026, with new district lines")
     assert seat_seal("special", "row") == "Special election Nov 3"
     assert seat_seal("special", header=True) == "Special election for this seat Nov 3, 2026"
     assert seat_seal(None, "row") == ""
     assert seat_seal(None, header=True) == ""
+
+
+def test_house_seats_in_the_new_map_states_say_the_lines_are_new():
+    # G1-013: CA, FL and TX elect their House members on new district lines on Nov 3, 2026 (the
+    # cheat-sheet research sets house.map_same_as_119th false for exactly these), so a ZIP's
+    # 119th-Congress district may not be the reader's 2026 one. New York keeps its map.
+    assert render.NEW_MAP_STATES == {"CA", "FL", "TX"}
+    assert render.NEW_MAP_STATES < set(render.COVERED_STATE_NAMES)
+    for code in ("CA", "FL", "TX", "tx"):
+        assert render.house_seat_2026(code) == "regular_new_map"
+    for code in ("NY", "OH", "", None):
+        assert render.house_seat_2026(code) == "regular"
 
 
 _LA = ZoneInfo("America/Los_Angeles")
@@ -509,10 +553,13 @@ _LA = ZoneInfo("America/Los_Angeles")
     (datetime(2027, 1, 2, 12, 0, tzinfo=_LA), False),
 ])
 def test_seat_seal_is_gone_after_election_day(now, shown):
-    # F066: from Nov 4 (Pacific) no seal says a seat is up on Nov 3; the edition countdown's rule.
+    # F066: from Nov 4 (Pacific) no seal says a seat is up on Nov 3.
     from app.render import seat_seal
     for kind, header, text in (("regular", False, "Seat up Nov 3"),
                                ("regular", True, "This seat is on the ballot Nov 3, 2026"),
+                               ("regular_new_map", False, "Seat up Nov 3 · new district lines"),
+                               ("regular_new_map", True,
+                                "This seat is on the ballot Nov 3, 2026, with new district lines"),
                                ("special", False, "Special election Nov 3"),
                                ("special", True, "Special election for this seat Nov 3, 2026")):
         assert seat_seal(kind, header=header, now=now) == (text if shown else "")

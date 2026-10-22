@@ -494,9 +494,13 @@ def health_check(response: Response) -> dict:
     healthy = members > 0 and bills > 0
     if not healthy:
         response.status_code = 503
+    # The deployed commit, so a correction can be confirmed live before a cache purge (G1-015);
+    # "" off Render. Every page's ?v= already carries the same 12 characters.
+    commit = str(os.environ.get("RENDER_GIT_COMMIT") or "").strip()
     return {
         "status": "ok" if healthy else "error",
         "version": "0.1.0",
+        "commit": commit[:12].lower() if _COMMIT_RE.match(commit) else "",
         "last_sync": metadata.get("last_sync"),
         "members": members,
         "bills": bills,

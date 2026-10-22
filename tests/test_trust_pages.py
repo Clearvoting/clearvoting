@@ -195,7 +195,7 @@ def test_methodology_zip_and_ballot_sections():
     (datetime(2026, 12, 1, 20, 0, tzinfo=timezone.utc), True),
 ])
 def test_methodology_ballot_turns_past_tense_after_election_day(now, over):
-    # F066: the request clock decides the tense, by the edition countdown's Pacific rule.
+    # F066: the request clock decides the tense, by the Pacific date (render._election_over).
     out = render.render_methodology(COUNTS, CROSSWALK_SOURCE, render.prompt_rules(SYSTEM_PROMPT), SENATE, now)
     verb = "was" if over else "is"
     assert f"Every House seat {verb} on the ballot on November 3, 2026." in out

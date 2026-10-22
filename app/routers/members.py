@@ -71,8 +71,13 @@ def get_state_overview(
         "roster_as_of": overview.get("roster_as_of"),
         "generated_at": overview.get("generated_at"),
         "districts_expected": overview.get("districts_expected"),
-        "senators": [render.overview_member_fields(m, data_service, now) for m in overview.get("senators") or []],
-        "house": [render.overview_member_fields(m, data_service, now) for m in overview.get("house") or []],
+        "senators": [render.overview_member_fields(m, data_service, now, state_code)
+                     for m in overview.get("senators") or []],
+        "house": [render.overview_member_fields(m, data_service, now, state_code)
+                  for m in overview.get("house") or []],
+        # A district with no member is on the ballot too (G1-025): the home block's vacant
+        # row prints this, so the wording stays on the server.
+        "vacant_seal": render.seat_seal(render.house_seat_2026(state_code), "row", now=now),
     }
     return payload if show_party else _strip_party(payload)
 

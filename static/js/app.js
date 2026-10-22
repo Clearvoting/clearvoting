@@ -209,16 +209,20 @@
    section.lead (after the Latest Vote card) and before the Record, so it never moves the
    fold. If the fetch fails, one "Remembered from your last visit" line appears under the
    Find button instead. Forget clears either one and focuses the ZIP field (form#find). */
-function homeVacantRow(home) {
+function homeVacantRow(home, vacantSeal) {
     // Spec §5.3: the crosswalk names this district, but members.json has no one in it.
     // The button is opened by feedback.js's delegated [data-feedback-open] listener (T2.4).
+    // vacantSeal is the overview's vacant_seal: the seat is on the ballot too, in the
+    // server's wording (G1-025).
+    const body = el('span', { className: 'person-body' },
+        el('span', { className: 'person-vacancy' },
+            el('span', { className: 'person-name' }, `District ${home.district} — vacant in our data`),
+            ' · ',
+            el('button', { type: 'button', className: 'btn btn--secondary', 'data-feedback-open': true },
+                'Tell us if this is wrong')));
+    if (vacantSeal) body.append(' ', seal(vacantSeal, 'ballot'));
     return el('div', { className: 'person person--vacant', 'data-state': home.state, 'data-district': String(home.district) },
-        el('span', { className: 'person-body' },
-            el('span', { className: 'person-vacancy' },
-                el('span', { className: 'person-name' }, `District ${home.district} — vacant in our data`),
-                ' · ',
-                el('button', { type: 'button', className: 'btn btn--secondary', 'data-feedback-open': true },
-                    'Tell us if this is wrong'))));
+        body);
 }
 
 function forgetHomeBlock(clearBlock) {
@@ -252,7 +256,7 @@ async function initYourRepresentatives() {
         (data.senators || []).forEach((m) => list.appendChild(el('li', null, personRow(m, home.state))));
         const house = (data.house || []).filter((m) => m.district === home.district);
         if (house.length) house.forEach((m) => list.appendChild(el('li', null, personRow(m, home.state))));
-        else list.appendChild(el('li', null, homeVacantRow(home)));
+        else list.appendChild(el('li', null, homeVacantRow(home, data.vacant_seal)));
         const forget = el('button', { type: 'button', className: 'btn--secondary' }, 'Forget');
         forget.addEventListener('click', () => forgetHomeBlock(() => mount.replaceChildren()));
         mount.appendChild(el('section', { className: 'yours home-yours', 'aria-labelledby': 'home-yours-h' },

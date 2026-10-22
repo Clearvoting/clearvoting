@@ -183,3 +183,23 @@ def test_coverage_counts_with_no_data(tmp_path):
     assert service.coverage_counts() == {"bills": 0, "shown": 0, "missing": 0, "withheld": 0,
                                          "audited": 0, "nominations_excluded": 0}
     assert service.latest_roll_call_date() is None
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("env, commit", [
+    ("0A1B2C3D4E5F67890123456789abcdef01234567", "0a1b2c3d4e5f"),
+    ("", ""),
+    ("not-a-commit<script>", ""),
+])
+async def test_health_names_the_deployed_commit(monkeypatch, env, commit):
+    # G1-015: after a correction merges, ops can confirm the new deploy is live before purging
+    # the edge cache. The same 12 characters every page already carries as ?v=.
+    monkeypatch.setenv("RENDER_GIT_COMMIT", env)
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/health")
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    assert response.json()["commit"] == commit
