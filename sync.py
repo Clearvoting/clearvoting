@@ -1333,16 +1333,18 @@ _NO_VOTES = ("Nay", "No")
 
 
 def _state_tallies(members: list[dict]) -> dict[str, list[int]]:
-    """{state: [yes, no, didn't vote]} for the covered states. Present counts in none of the three."""
+    """{state: [yes, no, didn't vote]} for the covered states. Present counts in none of the three.
+    An impeachment verdict's Guilty / Not Guilty count as yes / no, as senate.gov's own yeas /
+    nays do (F064); only here, so _YES_VOTES / _NO_VOTES keep their meaning."""
     tallies = {code: [0, 0, 0] for code in sorted(SYNC_STATES)}
     for member in members:
         row = tallies.get(str(member.get("state") or "").upper())
         if row is None:
             continue
         vote = member.get("vote") or ""
-        if vote in _YES_VOTES:
+        if vote in _YES_VOTES or vote == "Guilty":
             row[0] += 1
-        elif vote in _NO_VOTES:
+        elif vote in _NO_VOTES or vote == "Not Guilty":
             row[1] += 1
         elif vote == "Not Voting":
             row[2] += 1
