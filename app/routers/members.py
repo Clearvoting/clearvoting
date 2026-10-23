@@ -1,18 +1,22 @@
 import re
 import copy
 import logging
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, Request
+from app import render
 from app.dependencies import get_data_service
+from app.limiter import limiter
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/members", tags=["members"])
 
-BIOGUIDE_PATTERN = re.compile(r"^[A-Z]\d{6}$")
+# Use .fullmatch (F044): ASCII digits only, and '\Z' because '$' also matches before a final newline.
+BIOGUIDE_PATTERN = re.compile(r"^[A-Z][0-9]{6}\Z")
 
 
 def _validate_bioguide_id(bioguide_id: str) -> None:
-    if not BIOGUIDE_PATTERN.match(bioguide_id.upper()):
+    # ASCII before .upper(), which folds "ſ" to "S" and "ı" to "I": an alias would pass (F044).
+    if not (bioguide_id.isascii() and BIOGUIDE_PATTERN.fullmatch(bioguide_id.upper())):
         raise HTTPException(status_code=400, detail="Invalid member ID format")
 
 
@@ -22,194 +26,75 @@ def _validate_state_code(state_code: str) -> str:
     return state_code.upper()
 
 
-@router.get("/{bioguide_id}/donations")
-async def get_member_donations(bioguide_id: str):
-    _validate_bioguide_id(bioguide_id)
-    data_service = get_data_service()
-    donations = data_service.get_member_donations(bioguide_id)
-    if not donations:
-        raise HTTPException(status_code=404, detail="Donation data not available for this member")
-    return donations
+_POSITION_PATTERN = "^(yes|no|nv)$"
 
 
-@router.get("/{bioguide_id}/sponsored")
-async def get_member_sponsored_bills(bioguide_id: str):
-    _validate_bioguide_id(bioguide_id)
-    data_service = get_data_service()
-    bills = data_service.get_bills_by_sponsor(bioguide_id)
-    return {"bills": bills, "count": len(bills)}
-
-
-@router.get("/{bioguide_id}/votes")
-async def get_member_votes(
+@router.get("/{bioguide_id}/page")
+@limiter.limit("60/minute")
+def get_member_page(
+    request: Request,
     bioguide_id: str,
-    congress: int | None = Query(None, ge=1, le=200),
-    limit: int = Query(20, ge=1, le=2000),
-    offset: int = Query(0, ge=0),
+    page: int = Query(1, ge=1, le=10000),
+    topic: str | None = Query(None, max_length=120),
+    position: str | None = Query(None, pattern=_POSITION_PATTERN),
+    plain: bool = Query(False),
 ):
+    """The member page payload (spec §10 #8): the same dict the server-rendered page uses."""
     _validate_bioguide_id(bioguide_id)
-    data_service = get_data_service()
-    data = data_service.get_member_votes(bioguide_id)
-    if not data:
+    result = get_data_service().get_member_page(bioguide_id, page, topic, position, plain)
+    if result is None:
         raise HTTPException(status_code=404, detail="Member not found")
-    votes = data["votes"]
-    if congress is not None:
-        votes = [v for v in votes if v.get("congress") == congress]
-    sorted_votes = sorted(votes, key=lambda v: v["date"], reverse=True)
-    paginated = sorted_votes[offset:offset + limit]
-    return {
-        "member_id": data["member_id"],
-        "congresses": data.get("congresses", [data["congress"]] if "congress" in data else [119]),
-        "stats": data["stats"],
-        "scorecard": data.get("scorecard", []),
-        "votes": paginated,
-        "total_count": len(sorted_votes),
-        "policy_areas": data["policy_areas"],
-        "categories": data.get("categories", []),
-    }
-
-
-@router.get("/{bioguide_id}/summary")
-async def get_member_summary(bioguide_id: str):
-    _validate_bioguide_id(bioguide_id)
-    data_service = get_data_service()
-    summary = data_service.get_member_vote_summary(bioguide_id)
-    if not summary:
-        raise HTTPException(status_code=404, detail="Member not found")
-
-    # Include AI narrative if available
-    narrative = data_service.get_member_narrative(bioguide_id)
-    if narrative:
-        summary["narrative"] = narrative.get("narrative", "")
-        summary["narrative_top_areas"] = narrative.get("top_areas", [])
-
-    # Include issue scorecard from member votes
-    votes_data = data_service.get_member_votes(bioguide_id)
-    if votes_data:
-        summary["issue_scorecard"] = votes_data.get("scorecard", [])
-
-    return summary
-
-
-@router.get("/counts")
-async def get_member_counts():
-    """Members synced per state — powers the homepage state cards with real
-    numbers rather than theoretical seat totals."""
-    data_service = get_data_service()
-    return {"counts": data_service.get_member_counts()}
+    # The record's render tree (plan T10.2) comes from the full page, like the HTML; it holds
+    # no party field, no Speaker candidate name and no stance text.
+    record = render.record_tree(result)   # {"result": node, "list": node}
+    return {**_allowlist_member_payload(result), "record_tree": record}
 
 
 @router.get("/{state_code}/overview")
-async def get_state_overview(state_code: str):
-    state_code = _validate_state_code(state_code)
-    data_service = get_data_service()
-    members_data = data_service.get_members_by_state(state_code)
-    members = members_data.get("members", [])
-
-    enriched = []
-    total_participation = 0.0
-    total_support = 0.0
-    total_votes_all = 0
-    count_with_stats = 0
-
-    for m in members:
-        bio_id = m.get("bioguideId", "")
-        votes_data = data_service.get_member_votes(bio_id)
-        stats = votes_data.get("stats", {}) if votes_data else {}
-        narrative_data = data_service.get_member_narrative(bio_id)
-        narrative_snippet = ""
-        if narrative_data:
-            full = narrative_data.get("narrative", "")
-            narrative_snippet = full[:150] + "..." if len(full) > 150 else full
-
-        participation = stats.get("participation_rate", 0)
-        yea = stats.get("yea_count", 0)
-        nay = stats.get("nay_count", 0)
-        total_v = stats.get("total_votes", 0)
-        support_rate = round(yea / (yea + nay) * 100) if (yea + nay) > 0 else 0
-
-        enriched.append({
-            **m,
-            "participation_rate": participation,
-            "support_rate": support_rate,
-            "total_votes": total_v,
-            "yea_count": yea,
-            "nay_count": nay,
-            "narrative_snippet": narrative_snippet,
-        })
-
-        if total_v > 0:
-            total_participation += participation
-            total_support += support_rate
-            total_votes_all += total_v
-            count_with_stats += 1
-
-    avg_participation = round(total_participation / count_with_stats) if count_with_stats else 0
-    avg_support = round(total_support / count_with_stats) if count_with_stats else 0
-
-    return _strip_party({
-        "members": enriched,
-        "aggregate": {
-            "total_members": len(members),
-            "avg_participation": avg_participation,
-            "avg_support_rate": avg_support,
-            "total_votes": total_votes_all,
-        },
-    })
-
-
-@router.get("/{state_code}")
-async def get_members_by_state(
+def get_state_overview(
     state_code: str,
-    include_stats: bool = Query(False, description="Include vote stats and narrative snippet per member"),
     show_party: bool = Query(False, description="Include party labels (hidden by default)"),
 ):
+    """One state's delegation for the home block, the bill slot and the party reveal:
+    one cached file read, no per-member vote files (F05)."""
     state_code = _validate_state_code(state_code)
+    if state_code not in render.COVERED_STATE_NAMES:
+        raise HTTPException(status_code=404, detail="State not covered")
+    from app.main import _now   # the one request clock (F066); main imports this module
     data_service = get_data_service()
-    data = data_service.get_members_by_state(state_code)
-    if include_stats:
-        for m in data.get("members", []):
-            bio_id = m.get("bioguideId", "")
-            votes_data = data_service.get_member_votes(bio_id)
-            if votes_data:
-                m["stats"] = votes_data.get("stats", {})
-            narrative_data = data_service.get_member_narrative(bio_id)
-            if narrative_data:
-                full = narrative_data.get("narrative", "")
-                m["narrative_snippet"] = full[:150] + "..." if len(full) > 150 else full
-    return data if show_party else _strip_party(data)
+    # The committed file; if it is missing, T1.6's members.json roster without signal lines.
+    overview = data_service.get_state_overview(state_code, fallback=True) or {}
+    now = _now()   # seat seals drop after Election Day, as on the server-rendered rows
+    payload = {
+        "state": overview.get("state") or state_code,
+        "state_name": overview.get("state_name"),
+        "roster_as_of": overview.get("roster_as_of"),
+        "generated_at": overview.get("generated_at"),
+        "districts_expected": overview.get("districts_expected"),
+        "senators": [render.overview_member_fields(m, data_service, now, state_code)
+                     for m in overview.get("senators") or []],
+        "house": [render.overview_member_fields(m, data_service, now, state_code)
+                  for m in overview.get("house") or []],
+        # A district with no member is on the ballot too (G1-025): the home block's vacant
+        # row prints this, so the wording stays on the server.
+        "vacant_seal": render.seat_seal(render.house_seat_2026(state_code), "row", now=now),
+    }
+    return payload if show_party else _strip_party(payload)
 
 
 @router.get("/detail/{bioguide_id}")
-async def get_member_detail(bioguide_id: str, show_party: bool = False):
+@limiter.limit("60/minute")
+def get_member_detail(request: Request, bioguide_id: str, show_party: bool = False):
     _validate_bioguide_id(bioguide_id)
     data_service = get_data_service()
     data = data_service.get_member_detail(bioguide_id)
     if not data:
         raise HTTPException(status_code=404, detail="Member not found")
-    return data if show_party else _strip_party(data)
-
-
-@router.get("/{state_code}/{district}")
-async def get_members_by_district(
-    state_code: str,
-    district: int,
-    include_stats: bool = Query(False, description="Include vote stats and narrative snippet per member"),
-):
-    state_code = _validate_state_code(state_code)
-    data_service = get_data_service()
-    data = data_service.get_members_by_district(state_code, district)
-    if include_stats:
-        for m in data.get("members", []):
-            bio_id = m.get("bioguideId", "")
-            votes_data = data_service.get_member_votes(bio_id)
-            if votes_data:
-                m["stats"] = votes_data.get("stats", {})
-            narrative_data = data_service.get_member_narrative(bio_id)
-            if narrative_data:
-                full = narrative_data.get("narrative", "")
-                m["narrative_snippet"] = full[:150] + "..." if len(full) > 150 else full
-    return _strip_party(data)
+    if not show_party:
+        return _allowlist_member_payload(data)
+    # The party reveal (§4.3) also fills each Speaker row's "Voted for {Name}".
+    return _allowlist_member_payload(
+        {**data, "speaker_votes": data_service.get_speaker_votes(bioguide_id)}, show_party=True)
 
 
 def _strip_party(data: dict) -> dict:
@@ -228,3 +113,46 @@ def _strip_party(data: dict) -> dict:
 
     _remove_party_fields(stripped)
     return stripped
+
+
+# Member payloads carry no scores, stance labels or cost figures, and no party cue unless
+# the reader asked (spec §10 #9). Position strings that are not a candidate name:
+_KNOWN_POSITIONS = frozenset({
+    "Yea", "Aye", "Nay", "No", "Not Voting", "Present", "Present, Giving Live Pair",
+    "Guilty", "Not Guilty", "yes", "no",
+})
+_MEMBER_PAYLOAD_DROP = frozenset({
+    "scorecard", "issue_scorecard", "direction", "participation_rate", "narrative", "narrative_top_areas",
+})
+_PARTY_KEYS = frozenset({"party", "partyName", "partyCode"})
+
+
+def _allowlist_member_payload(data: dict, show_party: bool = False) -> dict:
+    """Copy of a member payload without scorecard/direction/participation_rate/cbo_* and,
+    unless show_party, without party keys and Speaker-election candidate names (a vote for
+    a party's nominee is a party cue): the position becomes 'Voted' and the result
+    'Speaker elected'."""
+    cleaned = copy.deepcopy(data)
+
+    def walk(obj):
+        if isinstance(obj, dict):
+            for key in list(obj):
+                if (key in _MEMBER_PAYLOAD_DROP or key.startswith("cbo_")
+                        or (key in _PARTY_KEYS and not show_party)):
+                    del obj[key]
+            if not show_party:
+                vote = obj.get("vote")
+                if isinstance(vote, str) and vote not in _KNOWN_POSITIONS:
+                    obj["vote"] = "Voted"
+                    if "result" in obj:
+                        obj["result"] = "Speaker elected"
+                if obj.get("question") == "Election of the Speaker" and "result" in obj:
+                    obj["result"] = "Speaker elected"
+            for value in obj.values():
+                walk(value)
+        elif isinstance(obj, list):
+            for item in obj:
+                walk(item)
+
+    walk(cleaned)
+    return cleaned

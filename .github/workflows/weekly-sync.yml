@@ -1,12 +1,20 @@
 # Automated weekly government data sync for ClearVote.
 # Runs every Saturday at 10:00 UTC (~6 AM ET summer / 5 AM ET winter).
-# Pulls members, votes, bills, and campaign finance data from public APIs.
+# Pulls members, votes, and bills from public APIs (campaign finance is not
+# synced here: no step reads FEC_API_KEY, so the job does not get it).
 # AI generation is handled separately via local Claude Code /loop on Sundays.
 #
 # Each step commits its progress independently. All steps use if: always()
 # so a timeout in one step doesn't skip remaining steps. Each sync function
 # is incremental (skips existing files), so the next run picks up where
 # the last one left off.
+#
+# Least privilege: the checkout keeps no token. Only the commit steps get the
+# push token (GH_TOKEN, step env), with git hooks disabled and a fixed
+# GIT_REFLOG_ACTION so the token URL is not written to .git/logs. Each one
+# rebases onto main first (a PR merged mid-run must not make every later push
+# fail) and refuses to push if the outgoing commits change anything outside
+# data/synced/ and the share-card PNGs in static/og/member/ and static/og/state/.
 
 name: Weekly Government Data Sync
 
@@ -20,23 +28,26 @@ permissions:
 
 jobs:
   sync:
+    # Only main's own copy of this file may run with the API key (review G1-004).
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     env:
       CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
-      FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
 
     steps:
       - name: Check out repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
 
       - name: Set up Python 3.12
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install --require-hashes -r requirements.txt -r requirements-sync.txt -r requirements-dev.txt
 
       - name: Configure git identity
         run: |
@@ -48,9 +59,20 @@ jobs:
 
       - name: Commit members
         if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git add data/synced/
-          git diff --cached --quiet || (git commit -m "data: sync members [automated]" && git push)
+          git diff --cached --quiet && exit 0
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+          git -c core.hooksPath=/dev/null commit -m "data: sync members [automated]"
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
+            exit 1
+          fi
+          git -c core.hooksPath=/dev/null push "$remote" HEAD:main
 
       - name: Sync Senate votes
         if: always()
@@ -59,9 +81,20 @@ jobs:
 
       - name: Commit Senate votes
         if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git add data/synced/
-          git diff --cached --quiet || (git commit -m "data: sync senate votes [automated]" && git push)
+          git diff --cached --quiet && exit 0
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+          git -c core.hooksPath=/dev/null commit -m "data: sync senate votes [automated]"
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
+            exit 1
+          fi
+          git -c core.hooksPath=/dev/null push "$remote" HEAD:main
 
       - name: Sync House votes
         if: always()
@@ -70,9 +103,20 @@ jobs:
 
       - name: Commit House votes
         if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git add data/synced/
-          git diff --cached --quiet || (git commit -m "data: sync house votes [automated]" && git push)
+          git diff --cached --quiet && exit 0
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+          git -c core.hooksPath=/dev/null commit -m "data: sync house votes [automated]"
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
+            exit 1
+          fi
+          git -c core.hooksPath=/dev/null push "$remote" HEAD:main
 
       - name: Sync bills
         if: always()
@@ -81,9 +125,44 @@ jobs:
 
       - name: Commit bills
         if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git add data/synced/
-          git diff --cached --quiet || (git commit -m "data: sync bills [automated]" && git push)
+          git diff --cached --quiet && exit 0
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+          git -c core.hooksPath=/dev/null commit -m "data: sync bills [automated]"
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
+            exit 1
+          fi
+          git -c core.hooksPath=/dev/null push "$remote" HEAD:main
+
+      # Derived index of every roll call (spec §10 #3). Runs after the vote and bill
+      # steps so member-vote validation below can check every row resolves in it.
+      - name: Build votes index
+        if: always()
+        timeout-minutes: 5
+        run: python sync.py --step votes-index
+
+      - name: Commit votes index
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add data/synced/votes_index.json
+          git diff --cached --quiet && exit 0
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+          git -c core.hooksPath=/dev/null commit -m "data: rebuild votes index [automated]"
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
+            exit 1
+          fi
+          git -c core.hooksPath=/dev/null push "$remote" HEAD:main
 
       - name: Build member voting records
         if: always()
@@ -99,9 +178,48 @@ jobs:
 
       - name: Commit member votes
         if: always() && steps.validate_member_votes.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git add data/synced/
-          git diff --cached --quiet || (git commit -m "data: sync member votes [automated]" && git push)
+          git diff --cached --quiet && exit 0
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+          git -c core.hooksPath=/dev/null commit -m "data: sync member votes [automated]"
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
+            exit 1
+          fi
+          git -c core.hooksPath=/dev/null push "$remote" HEAD:main
+
+      # Precomputed delegation files (spec §10 #7): need the votes index and the member
+      # voting records, so they run after both. Gated like "Commit member votes": when
+      # member-vote validation fails, those files are not committed, so overviews built
+      # from them must not be committed either (they would no longer match the
+      # committed member_votes, and test_committed_overviews_match_the_builder would
+      # fail CI on the next PR for a data reason).
+      - name: Build state overviews
+        if: always() && steps.validate_member_votes.outcome == 'success'
+        timeout-minutes: 5
+        run: python sync.py --step state-overview
+
+      - name: Commit state overviews
+        if: always() && steps.validate_member_votes.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add data/synced/state_overview/
+          git diff --cached --quiet && exit 0
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+          git -c core.hooksPath=/dev/null commit -m "data: rebuild state overviews [automated]"
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
+            exit 1
+          fi
+          git -c core.hooksPath=/dev/null push "$remote" HEAD:main
 
       - name: Write sync metadata
         if: always()
@@ -114,8 +232,54 @@ jobs:
         if: always()
         run: python sync.py --step validate
 
-      - name: Final commit
+      # Pushes made with the workflow token never trigger tests.yml, so the suite
+      # runs here and gates the last two pushes (final commit and share cards).
+      - name: Run tests
+        id: tests
         if: always() && steps.validate_all.outcome == 'success'
+        timeout-minutes: 10
+        env:
+          CONGRESS_API_KEY: ''
+        run: python -m pytest -q -p no:cacheprovider
+
+      - name: Final commit
+        if: always() && steps.validate_all.outcome == 'success' && steps.tests.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git add data/synced/
-          git diff --cached --quiet || (git commit -m "data: weekly sync complete [automated]" && git push)
+          git diff --cached --quiet && exit 0
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+          git -c core.hooksPath=/dev/null commit -m "data: weekly sync complete [automated]"
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
+            exit 1
+          fi
+          git -c core.hooksPath=/dev/null push "$remote" HEAD:main
+
+      # og Phase B (cut-first, spec §9.3): per-member and per-state share cards from members.json.
+      # continue-on-error: a card failure must never turn the data sync red or block its commits.
+      - name: Build share cards
+        if: always() && steps.validate_all.outcome == 'success' && steps.tests.outcome == 'success'
+        continue-on-error: true
+        timeout-minutes: 5
+        run: python scripts/build_og_cards.py --entities
+
+      - name: Commit share cards
+        if: always() && steps.validate_all.outcome == 'success' && steps.tests.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add static/og/member static/og/state
+          git diff --cached --quiet && exit 0
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+          git -c core.hooksPath=/dev/null commit -m "data: rebuild share cards [automated]"
+          GIT_REFLOG_ACTION="pull --rebase" git -c core.hooksPath=/dev/null pull --rebase "$remote" main || { git -c core.hooksPath=/dev/null rebase --abort; exit 1; }
+          outgoing=$(git diff --no-renames --name-only FETCH_HEAD HEAD)
+          if printf '%s\n' "$outgoing" | grep -vE '^(data/synced/|static/og/(member|state)/[A-Z0-9]+\.png$)' | grep -q .; then
+            echo "::error::Outgoing commits change files outside data/synced/ and the share-card PNGs; not pushing."
+            exit 1
+          fi
+          git -c core.hooksPath=/dev/null push "$remote" HEAD:main

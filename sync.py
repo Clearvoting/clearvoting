@@ -8,13 +8,13 @@ Usage:
     cd ~/Claude/Projects/Non-Profit/ClearVote
     source .venv/bin/activate
 
-    # Full sync (all 12 steps):
+    # Full sync (all 8 steps):
     python sync.py
 
     # Government data only (for GitHub Actions Saturday cron):
     python sync.py --skip-ai
 
-    # AI generation only (for Sunday /loop via Claude Code):
+    # AI bill summaries only (for the Sunday ai-sync workflow):
     python sync.py --ai-only
 
     # Override default states:
@@ -26,21 +26,30 @@ Usage:
 
 import argparse
 import asyncio
+import hashlib
+import html
 import json
 import os
+import re
 import shutil
 import sys
 import tempfile
-from datetime import datetime, timezone
+from contextlib import aclosing
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import urlsplit
 
+import httpx
 from dotenv import load_dotenv
 
 load_dotenv()
 
+from app.render import parse_threshold, plain_question, question_class
 from app.services.cache import CacheService
 from app.services.congress_api import CongressAPIClient
-from app.services.data_service import _parse_vote_date
+from app.services.data_service import (
+    CURRENT_CONGRESS, _latest_official_summary, _parse_vote_date, roll_call_key, state_overview_payload,
+)
 from app.services.senate_votes import SenateVoteService
 
 BASE_DIR = Path(__file__).parent
@@ -74,18 +83,85 @@ SYNC_STATES = ["NY", "FL", "CA", "TX"]
 # States not listed are unchecked.
 MEMBER_COUNT_FLOORS = {"NY": 26, "FL": 28, "CA": 52, "TX": 38}
 
+# Every real bioguide ID is one capital letter and six digits (the app routes and the
+# og-card builder rely on the same shape). Sync turns IDs into file names, so an ID of
+# any other shape from upstream never reaches a path (F050). Always use fullmatch.
+_BIOGUIDE_RE = re.compile(r"^[A-Z]\d{6}$")
 
-def _atomic_write_json(path: Path, data: dict | list) -> None:
+
+def _is_bioguide_id(value) -> bool:
+    return isinstance(value, str) and _BIOGUIDE_RE.fullmatch(value) is not None
+
+
+def _atomic_write_json(path: Path, data: dict | list, compact: bool = False) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp_path = tempfile.mkstemp(dir=path.parent, suffix=".tmp")
     try:
         with os.fdopen(fd, "w") as f:
-            json.dump(data, f, indent=2)
+            if compact:
+                json.dump(data, f, separators=(",", ":"), sort_keys=True)
+            else:
+                json.dump(data, f, indent=2)
         os.replace(tmp_path, path)
     except Exception:
         if os.path.exists(tmp_path):
             os.unlink(tmp_path)
         raise
+
+
+def _ai_summaries_digest(sync_dir: Path) -> str | None:
+    path = sync_dir / "ai_summaries.json"
+    if not path.exists():
+        return None
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _ai_summaries_stamp(sync_dir: Path, rewrote: bool = False, today: str | None = None) -> dict:
+    """The `ai_summaries_updated` date (spec §7.4) plus the file digest it was stamped
+    against, for the next sync_metadata.json write.
+
+    - The previous date is carried forward.
+    - It becomes today when this run rewrote ai_summaries.json (`rewrote`), or when
+      the file's digest differs from the one stored at the last metadata write. That
+      second case catches --audit and --regenerate runs, which write no metadata.
+    - A first write with no stored digest carries the date and records the digest.
+    """
+    try:
+        previous = json.loads((sync_dir / "sync_metadata.json").read_text())
+    except (OSError, ValueError):
+        previous = {}
+    if not isinstance(previous, dict):
+        previous = {}
+    digest = _ai_summaries_digest(sync_dir)
+    updated = previous.get("ai_summaries_updated")
+    stored = previous.get("ai_summaries_digest")
+    if rewrote or (stored is not None and stored != digest):
+        updated = today or datetime.now(timezone.utc).date().isoformat()
+    stamp: dict = {"ai_summaries_digest": digest}
+    if updated:
+        stamp["ai_summaries_updated"] = updated
+    return stamp
+
+
+def _write_derived_json(path: Path, payload: dict, compact: bool = False) -> bool:
+    """Write a file derived from other synced files, stamped with generated_at.
+
+    When the stamp is the only thing that would change, the file is left alone, so a rebuild
+    from unchanged inputs is byte-identical (the PR's reproducibility gate) and the weekly
+    workflow commits nothing. Returns True when it wrote the file."""
+    if path.exists():
+        try:
+            with open(path) as f:
+                previous = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            previous = None
+        if isinstance(previous, dict):
+            previous.pop("generated_at", None)
+            if previous == payload:
+                return False
+    stamped = {**payload, "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+    _atomic_write_json(path, stamped, compact=compact)
+    return True
 
 
 async def sync_members(client: CongressAPIClient, output_dir: Path, states: list[str] | None = None, rate_limit: float = 0.0) -> int:
@@ -97,7 +173,12 @@ async def sync_members(client: CongressAPIClient, output_dir: Path, states: list
         print(f"  Fetching members for {state}... ({i + 1}/{len(states)})")
         try:
             data = await client.get_members_by_state(state)
-            members = data.get("members", [])
+            members = []
+            for member in data.get("members", []):
+                if not _is_bioguide_id(member.get("bioguideId")):
+                    print(f"  WARNING: dropping {state} member with malformed bioguideId {member.get('bioguideId')!r}")
+                    continue
+                members.append(member)
             for member in members:
                 member["stateCode"] = state
                 terms = member.get("terms", {}).get("item", [])
@@ -125,8 +206,95 @@ async def sync_members(client: CongressAPIClient, output_dir: Path, states: list
     return len(all_members)
 
 
-async def sync_senate_votes(senate_service: SenateVoteService, output_dir: Path, congress: int = 119, session: int = 1, max_vote: int = 1500, rate_limit: float = 0.0) -> int:
-    """Fetch Senate roll call votes. Incremental — skips already-downloaded votes."""
+# --- Roll-call fetch errors (F032) ---------------------------------------------------
+# Only a definite "no such roll call" ends a session's vote loop quietly: api.congress.gov
+# answers 404, and senate.gov answers 301 to this page (both checked 2026-10-21). Any other
+# fetch error (timeout, 403/429/5xx, unparseable body) is retried after each of
+# _VOTE_RETRY_WAITS seconds (a longer Retry-After wins, up to _VOTE_RETRY_MAX_WAIT). An error
+# that outlasts the retries, or a payload _vote_payload_problem rejects, stops that session
+# with an ERROR, and the step exits non-zero once every session has run. The waits keep six
+# failing sessions well inside the workflow's 15/25-minute step timeouts.
+_SENATE_VOTE_MISSING_PAGE = "/legislative/roll-call-vote-not-available.htm"
+_VOTE_RETRY_WAITS = (5, 15)
+_VOTE_RETRY_MAX_WAIT = 30
+
+
+def _error_summary(exc: Exception) -> str:
+    """One printable line for an upstream error. An HTTP error gives its status and URL
+    path only: httpx's own message repeats the full URL, query string included (F047)."""
+    if isinstance(exc, httpx.HTTPStatusError):
+        return f"HTTP {exc.response.status_code} for {exc.request.url.path}"
+    return type(exc).__name__
+
+
+def _vote_not_found(exc: Exception) -> bool:
+    if not isinstance(exc, httpx.HTTPStatusError):
+        return False
+    response = exc.response
+    if response.status_code == 404:
+        return True
+    return response.is_redirect and response.headers.get("location", "").endswith(_SENATE_VOTE_MISSING_PAGE)
+
+
+def _retry_wait(exc: Exception, default: float) -> float:
+    """`default`, or a longer Retry-After (seconds form) capped at _VOTE_RETRY_MAX_WAIT."""
+    if isinstance(exc, httpx.HTTPStatusError):
+        try:
+            asked = float(exc.response.headers.get("retry-after", ""))
+        except ValueError:
+            return default
+        return max(default, min(asked, _VOTE_RETRY_MAX_WAIT))
+    return default
+
+
+async def _fetch_vote(fetch, *args):
+    """`await fetch(*args)` with retries. Returns None when upstream says the roll call does
+    not exist; re-raises the last error once the retries are used up."""
+    for wait in (*_VOTE_RETRY_WAITS, None):
+        try:
+            return await fetch(*args)
+        except Exception as e:
+            if _vote_not_found(e):
+                return None
+            if wait is None:
+                raise
+            delay = _retry_wait(e, wait)
+            print(f"    {_error_summary(e)} — retrying in {delay:g}s")
+            await asyncio.sleep(delay)
+
+
+def _vote_payload_problem(vote) -> str | None:
+    """Why a fetched roll call must not be written, or None. A written file is never
+    fetched again, so a vote with no readable date or no member list stays unwritten."""
+    if not isinstance(vote, dict):
+        return "payload is not an object"
+    if _parse_vote_date(str(vote.get("vote_date") or "")) is None:
+        return f"unreadable vote_date {vote.get('vote_date')!r}"
+    if not isinstance(vote.get("members"), list) or not vote["members"]:
+        return "empty member list"
+    return None
+
+
+def _record_vote_failure(failures: list[str] | None, label: str, reason: str) -> None:
+    print(f"  ERROR: {label}: {reason} — stopping this session; votes saved so far are kept")
+    if failures is not None:
+        failures.append(f"{label}: {reason}")
+
+
+def _exit_on_vote_failures(failures: list[str]) -> None:
+    """Exit 1, after every session has run, when any session stopped on an error."""
+    if failures:
+        print(f"ERROR: {len(failures)} vote session(s) stopped early:")
+        for failure in failures:
+            print(f"  {failure}")
+        sys.exit(1)
+
+
+async def sync_senate_votes(senate_service: SenateVoteService, output_dir: Path, congress: int = 119, session: int = 1, max_vote: int = 1500, rate_limit: float = 0.0, failures: list[str] | None = None) -> int:
+    """Fetch Senate roll call votes. Incremental — skips already-downloaded votes.
+
+    Ends at the first roll call senate.gov does not have. Any other error is retried, then
+    printed as an ERROR and appended to `failures` (see _fetch_vote)."""
     vote_dir = output_dir / "votes" / "senate"
     vote_dir.mkdir(parents=True, exist_ok=True)
     count = 0
@@ -141,14 +309,22 @@ async def sync_senate_votes(senate_service: SenateVoteService, output_dir: Path,
             continue
 
         print(f"  Fetching Senate vote {vote_num}...")
+        label = f"Senate {congress}-{session} vote {vote_num}"
         try:
-            data = await senate_service.get_vote(congress, session, vote_num)
-            _atomic_write_json(filepath, data)
-            count += 1
-            await asyncio.sleep(rate_limit)
-        except Exception:
+            data = await _fetch_vote(senate_service.get_vote, congress, session, vote_num)
+        except Exception as e:
+            _record_vote_failure(failures, label, _error_summary(e))
+            break
+        if data is None:
             print(f"  No more Senate votes after {vote_num - 1}")
             break
+        problem = _vote_payload_problem(data)
+        if problem:
+            _record_vote_failure(failures, label, problem)
+            break
+        _atomic_write_json(filepath, data)
+        count += 1
+        await asyncio.sleep(rate_limit)
 
     print(f"  Saved {count} Senate votes")
     return count
@@ -175,8 +351,11 @@ def _house_leg_to_document(leg_type: str | None, leg_number: str | None) -> str:
     return mapping.get(leg_type.upper(), f"{leg_type} {leg_number}")
 
 
-async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress: int = 119, session: int = 1, max_vote: int = 1500, rate_limit: float = 0.0) -> int:
-    """Fetch House roll call votes from Congress.gov API. Incremental — skips existing files."""
+async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress: int = 119, session: int = 1, max_vote: int = 1500, rate_limit: float = 0.0, failures: list[str] | None = None) -> int:
+    """Fetch House roll call votes from Congress.gov API. Incremental — skips existing files.
+
+    Ends at the first roll call the API answers 404 for. Any other error is retried, then
+    printed as an ERROR and appended to `failures` (see _fetch_vote)."""
     vote_dir = output_dir / "votes" / "house"
     vote_dir.mkdir(parents=True, exist_ok=True)
     count = 0
@@ -190,11 +369,17 @@ async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress
             continue
 
         print(f"  Fetching House vote {vote_num}...")
+        label = f"House {congress}-{session} vote {vote_num}"
         try:
-            detail_resp = await client.get_house_vote_detail(congress, session, vote_num)
+            detail_resp = await _fetch_vote(client.get_house_vote_detail, congress, session, vote_num)
+            if detail_resp is None:
+                print(f"  No more House votes after {vote_num - 1}")
+                break
             vote_data = detail_resp.get("houseRollCallVote", {})
 
-            members_resp = await client.get_house_vote_members(congress, session, vote_num)
+            # A 404 here (detail found, member list not) leaves the list empty, which
+            # _vote_payload_problem then reports.
+            members_resp = await _fetch_vote(client.get_house_vote_members, congress, session, vote_num) or {}
             members_data = members_resp.get("houseRollCallVoteMemberVotes", {}).get("results", [])
 
             # Build counts from votePartyTotal
@@ -214,7 +399,7 @@ async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress
                 "congress": vote_data.get("congress", congress),
                 "session": vote_data.get("sessionNumber", session),
                 "vote_number": vote_data.get("rollCallNumber", vote_num),
-                "vote_date": vote_data.get("startDate", "")[:10],
+                "vote_date": (vote_data.get("startDate") or "")[:10],
                 "question": vote_data.get("voteQuestion", ""),
                 "document": document,
                 "result": vote_data.get("result", ""),
@@ -238,24 +423,97 @@ async def sync_house_votes(client: CongressAPIClient, output_dir: Path, congress
                 ],
                 "chamber": "House",
             }
-
-            _atomic_write_json(filepath, normalized)
-            count += 1
-            await asyncio.sleep(rate_limit)
-        except Exception:
-            print(f"  No more House votes after {vote_num - 1}")
+        except Exception as e:
+            _record_vote_failure(failures, label, _error_summary(e))
             break
+        problem = _vote_payload_problem(normalized)
+        if problem:
+            _record_vote_failure(failures, label, problem)
+            break
+        _atomic_write_json(filepath, normalized)
+        count += 1
+        await asyncio.sleep(rate_limit)
 
     print(f"  Saved {count} House votes")
     return count
 
 
-async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rate_limit: float = 0.0) -> int:
-    """Fetch only bills referenced in Senate and House vote documents. Incremental."""
-    bills_path = output_dir / "bills.json"
+# Stored bill records are re-fetched too (F002). A record used to be fetched once, so its
+# laws, latestAction and summaries kept their first values and enacted bills never showed
+# "Became law". Every record from an earlier Congress was first fetched after that Congress
+# ended, so only current-Congress records can be stale.
+BILL_REFRESH_CAP = 80   # re-fetches per run, most urgent first; new bills are not capped
+BILL_REFRESH_DAYS = 7   # the sweep re-checks a current-Congress bill with no law after a week
+_LAW_TYPES = frozenset({"hr", "s", "hjres", "sjres"})  # simple and concurrent resolutions never become law
+_FINAL_TEXT_TYPES = frozenset({"Enrolled Bill", "Public Law"})
 
-    # Collect unique bill references as (congress, ref) tuples from both chambers
+
+def _bill_key(bill: dict) -> str:
+    """bills.json key of a bill record, e.g. '119-hr-1'."""
+    return f"{bill.get('congress', 119)}-{str(bill.get('type', '')).lower()}-{bill.get('number', '')}"
+
+
+def _bill_refresh_rank(bill: dict, newest_vote: str, sweep_cutoff: str) -> tuple | None:
+    """Sort key of a stored record that needs re-fetching (most urgent first), or None.
+
+    Tier 0: a roll call on the bill is newer than its latestAction.
+    Tier 1: a bill with no law has an enrolled or public-law text version.
+    Tier 2, the sweep: no law, and last checked on or before sweep_cutoff, oldest first.
+    "Checked" is fetchedDate (ClearVote's own stamp of the last fetch) or, on a record
+    fetched before that stamp existed, Congress.gov's updateDate."""
+    if bill.get("congress") != CURRENT_CONGRESS:
+        return None
+    checked = str(bill.get("fetchedDate") or bill.get("updateDate") or "")[:10]
+    action = str((bill.get("latestAction") or {}).get("actionDate") or "")[:10]
+    if newest_vote > action:
+        return (0, checked)
+    if bill.get("laws"):
+        return None
+    versions = bill.get("textVersions")
+    if str(bill.get("type", "")).lower() in _LAW_TYPES and isinstance(versions, list) and any(
+            isinstance(v, dict) and v.get("type") in _FINAL_TEXT_TYPES for v in versions):
+        return (1, checked)
+    if checked <= sweep_cutoff:
+        return (2, checked)
+    return None
+
+
+def _merge_refreshed_bill(stored: dict, fresh: dict, summaries, today: str) -> dict:
+    """A re-fetched record merged over the stored one (F002), stamped fetchedDate=today.
+
+    Fields Congress.gov sent replace the stored ones. Two fields ClearVote fills itself
+    survive: summaries, unless the summary fetch returned some, and the textVersions list
+    carrying the text fetch_bill_texts embedded. The bill-detail API sends textVersions
+    only as a {count, url} reference, so the stored list stays unless the API now counts
+    more versions than it holds; then the reference replaces it and fetch_bill_texts
+    fetches the newer text in the same step."""
+    merged = {**stored, **fresh, "fetchedDate": today}
+    stored_versions = stored.get("textVersions")
+    if isinstance(stored_versions, list):
+        fresh_versions = fresh.get("textVersions")
+        count = (fresh_versions.get("count") if isinstance(fresh_versions, dict)
+                 else len(fresh_versions) if isinstance(fresh_versions, list) else None)
+        if not isinstance(count, int) or count <= len(stored_versions):
+            merged["textVersions"] = stored_versions
+    summaries = [s for s in summaries if isinstance(s, dict)] if isinstance(summaries, list) else []
+    merged["summaries"] = summaries or stored.get("summaries") or []
+    return merged
+
+
+async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rate_limit: float = 0.0,
+                                max_refreshes: int = BILL_REFRESH_CAP, today: str | None = None) -> int:
+    """Fetch bills referenced in Senate and House vote documents. Incremental: new bills
+    are fetched in full, and up to max_refreshes stored records that look stale
+    (_bill_refresh_rank) are re-fetched and merged in place (F002). A failed re-fetch
+    keeps the stored record."""
+    bills_path = output_dir / "bills.json"
+    today = today or datetime.now(timezone.utc).date().isoformat()
+    sweep_cutoff = (datetime.strptime(today, "%Y-%m-%d") - timedelta(days=BILL_REFRESH_DAYS)).date().isoformat()
+
+    # Collect unique bill references as (congress, ref) tuples from both chambers,
+    # and each bill's newest roll-call date
     bill_refs: set[tuple[int, str]] = set()
+    newest_votes: dict[str, str] = {}
     for chamber_dir in ["senate", "house"]:
         vote_dir = output_dir / "votes" / chamber_dir
         if not vote_dir.exists():
@@ -267,6 +525,10 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rat
             if ref:
                 vote_congress = vote.get("congress", 119)
                 bill_refs.add((vote_congress, ref))
+                parsed = _parse_vote_date(vote.get("vote_date") or "")
+                key = f"{vote_congress}-{ref}"
+                if parsed and parsed.date().isoformat() > newest_votes.get(key, ""):
+                    newest_votes[key] = parsed.date().isoformat()
 
     if not bill_refs:
         print("  No bill references found in votes — skipping")
@@ -274,16 +536,14 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rat
 
     print(f"  Found {len(bill_refs)} unique bills referenced in votes")
 
-    # Load existing bills to skip already-fetched ones
+    # Load existing bills to skip already-fetched ones (key -> position, for in-place refresh)
     existing_bills: list[dict] = []
-    existing_keys: set[str] = set()
+    existing_keys: dict[str, int] = {}
     if bills_path.exists():
         with open(bills_path) as f:
             existing_bills = json.load(f).get("bills", [])
-        for b in existing_bills:
-            congress = b.get("congress", 119)
-            key = f"{congress}-{b.get('type', '').lower()}-{b.get('number', '')}"
-            existing_keys.add(key)
+        for pos, b in enumerate(existing_bills):
+            existing_keys[_bill_key(b)] = pos
 
     # Fetch new bills
     new_bills = []
@@ -310,14 +570,48 @@ async def sync_bills_from_votes(client: CongressAPIClient, output_dir: Path, rat
             except Exception:
                 bill["summaries"] = []
 
+            bill["fetchedDate"] = today
             new_bills.append(bill)
         except Exception as e:
             print(f"  WARNING: Failed to fetch {ref}: {e}")
         await asyncio.sleep(rate_limit)
 
+    # Re-fetch stored records that may be stale, most urgent first, replacing each in place
+    due = []
+    for key, pos in existing_keys.items():
+        rank = _bill_refresh_rank(existing_bills[pos], newest_votes.get(key, ""), sweep_cutoff)
+        if rank is not None:
+            due.append((rank, key))
+    to_refresh = [key for _, key in sorted(due)][:max_refreshes]
+    if due:
+        print(f"  Re-fetching {len(to_refresh)} of {len(due)} stored bills that may be stale (cap {max_refreshes})")
+    refreshed = 0
+    for i, key in enumerate(to_refresh):
+        stored = existing_bills[existing_keys[key]]
+        bill_congress = stored.get("congress")
+        bill_type = str(stored.get("type", "")).lower()
+        print(f"  Re-fetching {bill_type.upper()} {stored.get('number')} (congress {bill_congress})... ({i + 1}/{len(to_refresh)})")
+        try:
+            bill_number = int(stored.get("number"))
+            data = await client.get_bill(bill_congress, bill_type, bill_number)
+            fresh = data.get("bill") if isinstance(data, dict) else None
+            if not isinstance(fresh, dict) or _bill_key(fresh) != key:
+                raise ValueError("response is not this bill")
+        except Exception as e:
+            print(f"  WARNING: Failed to re-fetch {key}, keeping the stored record: {e}")
+            await asyncio.sleep(rate_limit)
+            continue
+        try:
+            summaries = (await client.get_bill_summary(bill_congress, bill_type, bill_number)).get("summaries")
+        except Exception:
+            summaries = None
+        existing_bills[existing_keys[key]] = _merge_refreshed_bill(stored, fresh, summaries, today)
+        refreshed += 1
+        await asyncio.sleep(rate_limit)
+
     all_bills = existing_bills + new_bills
     _atomic_write_json(bills_path, {"bills": all_bills})
-    print(f"  Saved {len(all_bills)} bills ({len(new_bills)} new)")
+    print(f"  Saved {len(all_bills)} bills ({len(new_bills)} new, {refreshed} refreshed)")
     return len(all_bills)
 
 
@@ -377,20 +671,6 @@ def run_validation(output_dir: Path) -> int:
     return len(failures)
 
 
-def _latest_official_summary(bill: dict) -> str:
-    """Congress.gov orders summaries oldest-first, so [0] is the introduced
-    version — which can describe provisions that never became law (e.g. the
-    IRA's introduced summary is Build Back Better). Prefer the Public Law
-    summary; otherwise the newest by actionDate."""
-    summaries = bill.get("summaries")
-    if not isinstance(summaries, list) or not summaries:
-        return ""
-    law = [s for s in summaries if "public law" in (s.get("actionDesc") or "").lower()]
-    pool = law or summaries
-    best = max(pool, key=lambda s: s.get("actionDate") or "")
-    return best.get("text", "") or ""
-
-
 def _bill_text_excerpt(bill: dict) -> str:
     """Latest text version carrying embedded text. The bill-detail API stores
     textVersions as a URL-reference dict, so most bills have no embedded text
@@ -404,6 +684,23 @@ def _bill_text_excerpt(bill: dict) -> str:
     return max(with_text, key=lambda v: v.get("date") or "").get("text", "")
 
 
+# Bill text is fetched only from www.congress.gov (every formats[].url today), never from
+# whatever host an API response or a redirect names, and never more than 5 MB (F049).
+_BILL_TEXT_HOSTS = frozenset({"www.congress.gov", "congress.gov"})
+_BILL_TEXT_MAX_BYTES = 5 * 1024 * 1024
+
+
+def _is_bill_text_url(url) -> bool:
+    """https on www.congress.gov or congress.gov, with no user part or non-default port."""
+    try:
+        parts = urlsplit(str(url))
+        port = parts.port
+    except ValueError:
+        return False
+    return (parts.scheme == "https" and parts.hostname in _BILL_TEXT_HOSTS
+            and parts.username is None and port in (None, 443))
+
+
 async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3, max_fetches: int | None = None) -> int:
     """Fetch the LATEST text version for bills with no embedded text.
 
@@ -414,10 +711,10 @@ async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3, ma
     www.congress.gov rate-limits aggressively from CI (July 4 sync failure):
     429s back off and retry twice, persistent 429s end the run with progress
     saved, and max_fetches caps a run so a backlog can't blow the CI step
-    timeout — the next run resumes where this one stopped."""
-    import re
-    import httpx
+    timeout — the next run resumes where this one stopped.
 
+    The URL must pass _is_bill_text_url before the request and again after redirects,
+    and the body is read in chunks up to _BILL_TEXT_MAX_BYTES."""
     bills_path = output_dir / "bills.json"
     if not bills_path.exists():
         print("  No bills.json — skipping text fetch")
@@ -452,13 +749,24 @@ async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3, ma
             or next((f.get("url") for f in formats if f.get("type") == "Formatted XML"), None)
         if not url:
             continue
-        r = None
+        if not _is_bill_text_url(url):
+            print(f"    Skipping text for {congress}-{bt}-{bn}: URL is not on congress.gov over https")
+            continue
+        body = None
         for attempt in range(3):
             try:
                 async with httpx.AsyncClient(timeout=30.0) as http:
-                    candidate = await http.get(url, follow_redirects=True)
-                    candidate.raise_for_status()
-                    r = candidate
+                    async with http.stream("GET", url, follow_redirects=True) as candidate:
+                        if not _is_bill_text_url(candidate.url):
+                            raise ValueError(f"redirected off congress.gov to {candidate.url.host}")
+                        candidate.raise_for_status()
+                        chunks = bytearray()
+                        async with aclosing(candidate.aiter_bytes()) as stream:
+                            async for chunk in stream:
+                                chunks.extend(chunk)
+                                if len(chunks) > _BILL_TEXT_MAX_BYTES:
+                                    raise ValueError(f"body over {_BILL_TEXT_MAX_BYTES} bytes")
+                        body = chunks.decode(candidate.charset_encoding or "utf-8", errors="replace")
                 break
             except httpx.HTTPStatusError as e:
                 status = e.response.status_code if e.response is not None else None
@@ -478,9 +786,10 @@ async def fetch_bill_texts(client, output_dir: Path, rate_limit: float = 0.3, ma
         if rate_limited_out:
             print("  Persistent 429s from congress.gov — stopping this run; progress saved, next run resumes")
             break
-        if r is None:
+        if body is None:
             continue
-        clean = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", r.text)).strip()
+        # Unescape after stripping tags: an escaped "&lt;tag&gt;" in the text is content, not markup.
+        clean = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", body))).strip()
         if not clean:
             continue
         latest["text"] = clean[:6000]
@@ -536,9 +845,11 @@ async def sync_bill_summaries(
     writer_service = AISummaryService(api_key=api_key, cache=cache)
     grader = SummaryGrader(api_key=api_key)
 
-    # Load learnings
+    # The store keeps batch history only. Saved "learnings" are not fed to the
+    # grader: they were raw per-bill feedback (mostly praise) promoted to
+    # standing grading rules with no review.
     learnings_store = GraderLearnings(learnings_path)
-    grader.load_learnings(learnings_store.get_learnings(content_type="bill_summary"))
+    grader.load_learnings([])
 
     # Find bills needing summaries
     to_process = []
@@ -558,7 +869,6 @@ async def sync_bill_summaries(
 
     stats: dict = {"total": 0, "passed": 0, "failed": 0, "needs_review": []}
     grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
-    all_feedback: list[str] = []
 
     async def _process_one_bill(key: str, bill: dict) -> None:
         """Process a single bill through the writer-grader loop."""
@@ -586,8 +896,11 @@ async def sync_bill_summaries(
             result = await loop.run(
                 summary_type="bill_summary",
                 writer_kwargs={},
+                # Same text excerpt the writer saw — without it, true
+                # text-sourced details are graded as fabricated.
                 grader_context={"title": title, "official_summary": official_summary,
-                                "latest_action": latest_action},
+                                "latest_action": latest_action,
+                                "bill_text_excerpt": bill_text[:6000]},
             )
 
             summary_data = result.best_summary
@@ -595,6 +908,15 @@ async def sync_bill_summaries(
                 # Never persist the parse-failure fallback — an absent entry
                 # gets the router's honest "not available" treatment instead.
                 print(f"    NOT SAVED — generation failed for {key}")
+                stats["failed"] += 1
+                stats["total"] += 1
+                return
+            one_liner = summary_data.get("one_liner")
+            if not (isinstance(one_liner, str) and one_liner.strip()) or not summary_data.get("provisions"):
+                # Same for a structurally empty result: the data validator
+                # fails it (blocking the next weekly sync's commits), and a
+                # saved key is never retried. Absent, the next run retries it.
+                print(f"    NOT SAVED — empty one_liner or provisions for {key}")
                 stats["failed"] += 1
                 stats["total"] += 1
                 return
@@ -608,7 +930,6 @@ async def sync_bill_summaries(
             existing[key] = summary_data
             stats["total"] += 1
             grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
-            all_feedback.append(result.best_grade.feedback)
         except Exception as e:
             print(f"    SKIPPED — {e}")
             stats["failed"] += 1
@@ -623,11 +944,6 @@ async def sync_bill_summaries(
 
         # Save after each batch (crash-safe)
         _atomic_write_json(summaries_path, existing)
-
-    # Extract new learnings
-    new_patterns = learnings_store.extract_patterns(all_feedback, content_type="bill_summary")
-    for pattern in new_patterns:
-        learnings_store.add_learning(pattern, content_type="bill_summary")
 
     learnings_store.record_batch(
         total=stats["total"],
@@ -695,9 +1011,10 @@ async def sync_bill_arguments(
     writer_service = BillArgumentsService(api_key=api_key, cache=cache)
     grader = ArgumentsGrader(api_key=api_key)
 
-    # Load learnings
+    # Batch history only — saved learnings are not fed to the grader (see
+    # sync_bill_summaries).
     learnings_store = GraderLearnings(learnings_path)
-    grader.load_learnings(learnings_store.get_learnings(content_type="bill_arguments"))
+    grader.load_learnings([])
 
     # Find summaries needing arguments (incremental)
     to_process = []
@@ -713,7 +1030,6 @@ async def sync_bill_arguments(
 
     stats: dict = {"total": 0, "passed": 0, "failed": 0, "needs_review": []}
     grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
-    all_feedback: list[str] = []
 
     async def _process_one_bill(key: str, summary: dict, bill: dict) -> None:
         title = bill.get("title", "")
@@ -752,7 +1068,6 @@ async def sync_bill_arguments(
             summaries[key]["arguments"] = arguments_data
             stats["total"] += 1
             grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
-            all_feedback.append(result.best_grade.feedback)
         except Exception as e:
             print(f"    SKIPPED — {e}")
             stats["failed"] += 1
@@ -766,11 +1081,6 @@ async def sync_bill_arguments(
 
         # Save after each batch (crash-safe)
         _atomic_write_json(summaries_path, summaries)
-
-    # Extract new learnings
-    new_patterns = learnings_store.extract_patterns(all_feedback, content_type="bill_arguments")
-    for pattern in new_patterns:
-        learnings_store.add_learning(pattern, content_type="bill_arguments")
 
     learnings_store.record_batch(
         total=stats["total"],
@@ -880,7 +1190,11 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
     count = 0
 
     for member in all_members:
-        bioguide_id = member["bioguideId"]
+        bioguide_id = member.get("bioguideId")
+        if not _is_bioguide_id(bioguide_id):
+            # sync_members drops these; this covers an older or hand-edited members.json.
+            print(f"  WARNING: skipping member with malformed bioguideId {bioguide_id!r}")
+            continue
         chamber = member.get("chamber", "")
         member_last = member.get("name", "").split(",")[0].strip().lower()
         member_state = member.get("stateCode", "").upper()
@@ -1005,6 +1319,180 @@ async def build_member_votes(output_dir: Path, anthropic_key: str | None = None)
 
     print(f"  Built voting records for {count} members")
     return count
+
+
+# --- Votes index (spec §10 #3) --------------------------------------------------------
+# One pass over the roll-call files at sync time; the web runtime reads only this file.
+
+# §4.3 m4: an amendment or motion names the measure it attaches to ("... to S.Con.Res. 5").
+_PARENT_BILL_RE = re.compile(
+    r"\bto (H\.R\.|S\.|H\.J\.Res\.|S\.J\.Res\.|H\.Con\.Res\.|S\.Con\.Res\.|H\.Res\.|S\.Res\.)\s*(\d+)"
+)
+_YES_VOTES = ("Yea", "Aye")
+_NO_VOTES = ("Nay", "No")
+
+
+def _state_tallies(members: list[dict]) -> dict[str, list[int]]:
+    """{state: [yes, no, didn't vote]} for the covered states. Present counts in none of the three.
+    An impeachment verdict's Guilty / Not Guilty count as yes / no, as senate.gov's own yeas /
+    nays do (F064); only here, so _YES_VOTES / _NO_VOTES keep their meaning."""
+    tallies = {code: [0, 0, 0] for code in sorted(SYNC_STATES)}
+    for member in members:
+        row = tallies.get(str(member.get("state") or "").upper())
+        if row is None:
+            continue
+        vote = member.get("vote") or ""
+        if vote in _YES_VOTES or vote == "Guilty":
+            row[0] += 1
+        elif vote in _NO_VOTES or vote == "Not Guilty":
+            row[1] += 1
+        elif vote == "Not Voting":
+            row[2] += 1
+    return tallies
+
+
+def votes_index_payload(sync_dir: Path) -> dict:
+    """votes_index.json without generated_at: every roll call under votes/{house,senate}, a
+    per-bill list newest first with the bill's activity date, and the home page's latest vote.
+    Pure: reads files, writes nothing (build_votes_index writes)."""
+    bill_actions: dict[str, str] = {}
+    bills_path = sync_dir / "bills.json"
+    if bills_path.exists():
+        with open(bills_path) as f:
+            for bill in json.load(f).get("bills", []):
+                key = f"{bill.get('congress')}-{str(bill.get('type', '')).lower()}-{bill.get('number')}"
+                bill_actions[key] = str((bill.get("latestAction") or {}).get("actionDate") or "")[:10]
+
+    roll_calls: dict[str, dict] = {}
+    for chamber in ("house", "senate"):
+        vote_dir = sync_dir / "votes" / chamber
+        if not vote_dir.exists():
+            continue
+        for vote_file in sorted(vote_dir.glob("*.json")):
+            with open(vote_file) as f:
+                vote = json.load(f)
+            congress = vote.get("congress")
+            question = vote.get("question") or ""
+            result = vote.get("result") or ""
+            document = vote.get("document") or ""
+            ref = _parse_bill_ref(document)
+            parent = _PARENT_BILL_RE.search(question)
+            parent_ref = _parse_bill_ref(f"{parent.group(1)} {parent.group(2)}") if parent else None
+            parsed_date = _parse_vote_date(vote.get("vote_date") or "")
+            counts = vote.get("counts") or {}
+            key = roll_call_key(chamber, congress, vote.get("session"), vote.get("vote_number"))
+            plain = plain_question(question)
+            roll_calls[key] = {
+                "question": question,
+                "plain": plain,
+                "class": question_class(question),
+                "result": result,
+                "counts": {name: int(counts.get(name) or 0) for name in ("yeas", "nays", "present", "absent")},
+                "date": parsed_date.date().isoformat() if parsed_date else None,
+                "document": document,
+                "bill": f"{congress}-{ref}" if ref else None,
+                "parent": f"{congress}-{parent_ref}" if parent_ref else None,
+                "threshold": parse_threshold(result, plain, question),  # the one §7.2 threshold formatter
+                "tallies": _state_tallies(vote.get("members") or []),
+            }
+
+    def vote_number(key: str) -> int:
+        return int(key.rsplit("_", 1)[1])
+
+    def newest(key: str) -> tuple:
+        return (roll_calls[key]["date"] or "", vote_number(key), key)
+
+    bills: dict[str, dict] = {key: {"roll_calls": [], "activity_date": None} for key in bill_actions}
+    for key, rc in roll_calls.items():
+        if rc["bill"]:
+            bills.setdefault(rc["bill"], {"roll_calls": [], "activity_date": None})["roll_calls"].append(key)
+    for bill_id, entry in bills.items():
+        entry["roll_calls"].sort(key=newest, reverse=True)
+        newest_vote = roll_calls[entry["roll_calls"][0]]["date"] if entry["roll_calls"] else None
+        entry["activity_date"] = max(bill_actions.get(bill_id) or "", newest_vote or "") or None
+
+    # The hero (§4.1 m3): the newest roll call on a bill we hold; within a day a decisive
+    # vote leads a procedural one, then the higher vote number.
+    held = [key for key, rc in roll_calls.items() if rc["bill"] in bill_actions and rc["date"]]
+    latest = max(
+        held,
+        key=lambda key: (roll_calls[key]["date"], roll_calls[key]["class"] == "D", vote_number(key), key),
+        default=None,
+    )
+    return {"roll_calls": roll_calls, "bills": bills, "latest": latest}
+
+
+def build_votes_index(sync_dir: Path) -> int:
+    """Write data/synced/votes_index.json (§10 #3); returns the roll-call count."""
+    payload = votes_index_payload(sync_dir)
+    written = _write_derived_json(sync_dir / "votes_index.json", payload, compact=True)
+    print(f"  Votes index: {len(payload['roll_calls'])} roll calls, {len(payload['bills'])} bills, "
+          f"latest {payload['latest']} ({'written' if written else 'unchanged'})")
+    return len(payload["roll_calls"])
+
+
+# --- State overview (spec §10 #7) -----------------------------------------------------
+
+def _latest_decisive_vote(votes_path: Path, roll_calls: dict) -> dict | None:
+    """The member's most recent class-D roll call on a bill (§4.2 signal line), whatever the
+    position. member_votes rows are newest first, so the first qualifying row wins."""
+    if not votes_path.exists():
+        return None
+    with open(votes_path) as f:
+        rows = json.load(f).get("votes", [])
+    for row in rows:
+        if not row.get("bill_id"):
+            continue
+        try:
+            key = roll_call_key(row.get("chamber"), row.get("congress"), row.get("session"), row.get("vote_number"))
+        except (TypeError, ValueError):
+            continue
+        rc = roll_calls.get(key)
+        if rc and rc.get("class") == "D":
+            return {"rc": key, "bill_id": row["bill_id"], "position": row.get("vote") or "",
+                    "date": rc.get("date") or str(row.get("date") or "")[:10]}
+    return None
+
+
+def state_overview_payloads(sync_dir: Path, states: list[str]) -> dict[str, dict]:
+    """state_overview/{code}.json contents without generated_at, per state. Pure: writes nothing."""
+    with open(sync_dir / "members.json") as f:
+        members = json.load(f).get("members", [])
+    with open(sync_dir / "votes_index.json") as f:
+        roll_calls = json.load(f).get("roll_calls") or {}
+    expected: dict[str, int] = {}
+    crosswalk_path = sync_dir / "zip_districts.json"
+    if crosswalk_path.exists():
+        with open(crosswalk_path) as f:
+            for key, rows in json.load(f).items():
+                if key.startswith("_"):
+                    continue
+                for row in rows:
+                    expected[row["state"]] = max(expected.get(row["state"], 0), int(row["district"]))
+    payloads: dict[str, dict] = {}
+    for code in states:
+        state_members = [m for m in members if m.get("stateCode") == code]
+        latest = {
+            m["bioguideId"]: _latest_decisive_vote(sync_dir / "member_votes" / f"{m['bioguideId']}.json", roll_calls)
+            for m in state_members if _is_bioguide_id(m.get("bioguideId"))
+        }
+        districts = expected.get(code) or max((m.get("district") or 0 for m in state_members), default=0)
+        payloads[code] = state_overview_payload(code, members, latest, districts)
+    return payloads
+
+
+def build_state_overview(sync_dir: Path, states: list[str] | None = None) -> int:
+    """Write data/synced/state_overview/{code}.json per covered state (§10 #7). Needs
+    votes_index.json (run after --step votes-index); returns the number of states built."""
+    if not (sync_dir / "votes_index.json").exists():
+        print("  No votes_index.json — run --step votes-index first; state overviews not built")
+        return 0
+    states = states or SYNC_STATES
+    for code, payload in state_overview_payloads(sync_dir, states).items():
+        written = _write_derived_json(sync_dir / "state_overview" / f"{code}.json", payload)
+        print(f"  State overview {code}: {len(payload['senators'])} senators, {len(payload['house'])} House "
+              f"members, {payload['districts_expected']} districts ({'written' if written else 'unchanged'})")
+    return len(states)
 
 
 async def generate_scorecard_verdicts(
@@ -1205,19 +1693,19 @@ async def sync_member_summaries(
     service = MemberSummaryService(api_key=api_key)
     grader = MemberNarrativeGrader(api_key=api_key)
 
-    # Load learnings
+    # Batch history only — saved learnings are not fed to the grader (see
+    # sync_bill_summaries).
     learnings_store = GraderLearnings(learnings_path)
-    grader.load_learnings(learnings_store.get_learnings(content_type="member_narrative"))
+    grader.load_learnings([])
 
     stats: dict = {"total": 0, "passed": 0, "failed": 0, "needs_review": []}
     grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
-    all_feedback: list[str] = []
 
     async def _process_one_member(member: dict) -> None:
         """Process a single member through the writer-grader loop."""
         bioguide_id = member["bioguideId"]
 
-        if bioguide_id in existing:
+        if bioguide_id in existing or not _is_bioguide_id(bioguide_id):
             return
 
         votes_path = member_votes_dir / f"{bioguide_id}.json"
@@ -1312,7 +1800,6 @@ async def sync_member_summaries(
             existing[bioguide_id] = summary_data
             stats["total"] += 1
             grade_dist[result.best_grade.grade] = grade_dist.get(result.best_grade.grade, 0) + 1
-            all_feedback.append(result.best_grade.feedback)
         except Exception as e:
             print(f"  WARNING: Failed to generate summary for {member_name}: {e}")
 
@@ -1324,11 +1811,6 @@ async def sync_member_summaries(
         await asyncio.gather(*[_process_one_member(m) for m in batch])
         _atomic_write_json(summaries_path, existing)
         print(f"  Narratives: {stats['total']}/{len(to_process)} processed...")
-
-    # Extract new learnings
-    new_patterns = learnings_store.extract_patterns(all_feedback, content_type="member_narrative")
-    for pattern in new_patterns:
-        learnings_store.add_learning(pattern, content_type="member_narrative")
 
     learnings_store.record_batch(
         total=stats["total"],
@@ -1363,12 +1845,10 @@ async def check_page_coherence(
     """
     from app.services.page_coherence import PageCoherenceChecker
     from app.services.member_summary import MemberSummaryService
-    from app.services.grader_learnings import GraderLearnings
 
     members_path = output_dir / "members.json"
     member_votes_dir = output_dir / "member_votes"
     summaries_path = output_dir / "member_summaries.json"
-    learnings_path = output_dir / "grader_learnings.json"
 
     if not members_path.exists() or not summaries_path.exists():
         print("  No members or summaries — skipping coherence check")
@@ -1383,15 +1863,14 @@ async def check_page_coherence(
     checker = PageCoherenceChecker(api_key=api_key)
     writer = MemberSummaryService(api_key=api_key)
 
-    # Load learnings
-    learnings_store = GraderLearnings(learnings_path)
-    checker.load_learnings(learnings_store.get_learnings(content_type="page_coherence"))
+    # Saved learnings are not fed to the checker (see sync_bill_summaries).
+    checker.load_learnings([])
 
     stats: dict = {"total": 0, "coherent": 0, "incoherent": 0, "fixed": 0, "contradictions": []}
 
     for member in members:
         bioguide_id = member["bioguideId"]
-        if bioguide_id not in summaries:
+        if bioguide_id not in summaries or not _is_bioguide_id(bioguide_id):
             continue
 
         summary = summaries[bioguide_id]
@@ -1624,14 +2103,12 @@ async def _run_audit(anthropic_key: str | None) -> None:
     from app.services.ai_summary import AISummaryService
     from app.services.summary_grader import SummaryGrader
     from app.services.writer_grader_loop import WriterGraderLoop
-    from app.services.grader_learnings import GraderLearnings
 
     SYNC_DIR.mkdir(parents=True, exist_ok=True)
     api_key = anthropic_key or None
 
     bills_path = SYNC_DIR / "bills.json"
     summaries_path = SYNC_DIR / "ai_summaries.json"
-    learnings_path = SYNC_DIR / "grader_learnings.json"
 
     if not bills_path.exists():
         print("No bills.json — nothing to audit")
@@ -1670,32 +2147,34 @@ async def _run_audit(anthropic_key: str | None) -> None:
     cache = CacheService(cache_dir=CACHE_DIR, ttl_seconds=86400)
     grader = SummaryGrader(api_key=api_key)
     writer_service = AISummaryService(api_key=api_key, cache=cache)
-
-    learnings_store = GraderLearnings(learnings_path)
-    grader.load_learnings(learnings_store.get_learnings(content_type="bill_summary"))
+    # Saved learnings are not fed to the grader (see sync_bill_summaries).
+    grader.load_learnings([])
 
     grade_dist: dict[str, int] = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
     failures: list[tuple[str, dict]] = []
-    all_feedback: list[str] = []
 
     # Phase 1: Grade existing summaries
     print("[1/3] Grading existing summaries...")
     for i, (key, summary) in enumerate(to_audit):
         bill = bill_by_key[key]
         title = bill.get("title", "")
-        summaries_list = bill.get("summaries", [])
-        official = summaries_list[0].get("text", "") if summaries_list else ""
+        # Grade against the same inputs Phase 2 and the weekly path write
+        # from: the latest official summary (summaries[0] is the introduced
+        # version) and the bill text excerpt.
+        official = _latest_official_summary(bill)
+        latest_action = (bill.get("latestAction") or {}).get("text", "")
 
         print(f"  [{i + 1}/{len(to_audit)}] {title[:60]}...")
 
         grade_result = await grader.grade(
             summary_type="bill_summary",
             summary_text=json.dumps(summary),
-            context={"title": title, "official_summary": official},
+            context={"title": title, "official_summary": official,
+                     "latest_action": latest_action,
+                     "bill_text_excerpt": _bill_text_excerpt(bill)[:6000]},
         )
 
         grade_dist[grade_result.grade] = grade_dist.get(grade_result.grade, 0) + 1
-        all_feedback.append(grade_result.feedback)
 
         if not grade_result.passed:
             failures.append((key, bill))
@@ -1741,7 +2220,8 @@ async def _run_audit(anthropic_key: str | None) -> None:
                 summary_type="bill_summary",
                 writer_kwargs={},
                 grader_context={"title": title, "official_summary": official,
-                                "latest_action": latest_action},
+                                "latest_action": latest_action,
+                                "bill_text_excerpt": bill_text[:6000]},
             )
 
             new_summary = result.best_summary
@@ -1770,12 +2250,6 @@ async def _run_audit(anthropic_key: str | None) -> None:
     print()
     print("[3/3] Rebuilding member voting records...")
     await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
-
-    # Save learnings
-    new_patterns = learnings_store.extract_patterns(all_feedback, content_type="bill_summary")
-    for pattern in new_patterns:
-        learnings_store.add_learning(pattern, content_type="bill_summary")
-    learnings_store.save()
 
     print()
     print("=== Audit complete ===")
@@ -1903,7 +2377,7 @@ async def sync_donations(
                 _atomic_write_json(donations_path, donations)
 
         except Exception as e:
-            print(f"    {full_name} ({state}): error — {e}")
+            print(f"    {full_name} ({state}): error — {_error_summary(e)}")
             errors += 1
 
     _atomic_write_json(donations_path, donations)
@@ -1966,7 +2440,7 @@ async def main() -> None:
                         help="Clear and re-fetch all FEC donation data (fixes bad matches).")
     parser.add_argument("--step", type=str, default=None,
                         choices=["members", "senate-votes", "house-votes", "bills",
-                                 "member-votes", "metadata", "validate"],
+                                 "votes-index", "member-votes", "state-overview", "metadata", "validate"],
                         help="Run a single sync step (for CI incremental workflows).")
     parser.add_argument("--max-text-fetches", type=int, default=300,
                         help="Per-run cap on bill-text downloads (congress.gov rate-limits CI; the fetch is incremental).")
@@ -1976,13 +2450,26 @@ async def main() -> None:
                         help="Specific session number (use with --step senate-votes or house-votes).")
     mode_group = parser.add_mutually_exclusive_group()
     mode_group.add_argument("--skip-ai", action="store_true",
-                            help="Skip AI-dependent steps (5,6,8,9,11). Run government data only.")
+                            help="Skip the AI bill-summary step (5). Run government data only.")
     mode_group.add_argument("--ai-only", action="store_true",
-                            help="Run only AI-dependent steps (5,6,8,9,11). Assumes gov data is fresh.")
+                            help="Run only the AI bill-summary step (5). Assumes gov data is fresh.")
     args = parser.parse_args()
 
     raw_key = os.getenv("ANTHROPIC_API_KEY", "")
     anthropic_key = raw_key if raw_key.startswith("sk-") else ""
+
+    # --- Offline builders: they read data/synced only, so no API key is needed ---
+    if args.step == "votes-index":
+        print("[step] Building the votes index...")
+        build_votes_index(SYNC_DIR)
+        return
+
+    if args.step == "state-overview":
+        states = [s.strip().upper() for s in args.states.split(",")] if args.states else SYNC_STATES
+        print(f"[step] Building state overviews for {', '.join(states)}...")
+        if not build_state_overview(SYNC_DIR, states=states):
+            sys.exit(1)
+        return
 
     # --- Single-step mode (for CI incremental workflows) ---
     if args.step:
@@ -2003,15 +2490,21 @@ async def main() -> None:
         elif args.step == "senate-votes":
             senate_service = SenateVoteService(cache=cache)
             pairs = [(args.congress, args.session)] if args.congress and args.session else CONGRESSES
+            failures: list[str] = []
             for congress, session in pairs:
                 print(f"[step] Syncing Senate votes — Congress {congress}, Session {session}...")
-                await sync_senate_votes(senate_service, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+                await sync_senate_votes(senate_service, SYNC_DIR, congress=congress, session=session, rate_limit=0.3,
+                                        failures=failures)
+            _exit_on_vote_failures(failures)
 
         elif args.step == "house-votes":
             pairs = [(args.congress, args.session)] if args.congress and args.session else CONGRESSES
+            failures = []
             for congress, session in pairs:
                 print(f"[step] Syncing House votes — Congress {congress}, Session {session}...")
-                await sync_house_votes(client, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+                await sync_house_votes(client, SYNC_DIR, congress=congress, session=session, rate_limit=0.3,
+                                       failures=failures)
+            _exit_on_vote_failures(failures)
 
         elif args.step == "bills":
             print("[step] Syncing voted-on bills...")
@@ -2035,6 +2528,7 @@ async def main() -> None:
                 "states_synced": states,
                 "incremental": True,
             }
+            metadata.update(_ai_summaries_stamp(SYNC_DIR))
             _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
 
         return
@@ -2202,75 +2696,46 @@ async def main() -> None:
     # --ai-only mode: skip government data steps, go straight to AI
     if args.ai_only:
         SYNC_DIR.mkdir(parents=True, exist_ok=True)
+        ai_digest_before = _ai_summaries_digest(SYNC_DIR)
         print("=== ClearVote AI-Only Sync ===")
         print(f"  Mode: {'API' if anthropic_key else 'Claude CLI (Max plan)'}")
         print()
 
         await _ai_preflight(anthropic_key)
 
-        # Step 5: AI bill summaries
-        print("[5/12] Generating graded AI bill summaries...")
+        # Step 5: AI bill summaries — the only AI text the site publishes.
+        # Arguments, scorecard verdicts, member narratives and coherence checks
+        # are withdrawn; they run only through their own opt-in flags.
+        print("[5/8] Generating graded AI bill summaries...")
         summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
 
-        # Step 6: Bill arguments
+        # Step 8: Update only the AI keys of the metadata. last_sync,
+        # states_synced and the counts describe the government-data sync (the
+        # footer's "Data synced" date), so an AI run carries them over untouched.
         print()
-        print("[6/12] Generating bill arguments...")
-        args_batch = 10 if not anthropic_key else 5
-        arguments_stats = await sync_bill_arguments(SYNC_DIR, api_key=anthropic_key or None, batch_size=args_batch, rate_limit=1.0)
-
-        # Step 8: Issue scorecard verdicts
-        print()
-        print("[8/12] Generating issue scorecard verdicts...")
-        await generate_scorecard_verdicts(SYNC_DIR, api_key=anthropic_key or None)
-
-        # Step 9: Member summaries
-        print()
-        print("[9/12] Generating AI member summaries...")
-        member_summary_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
-
-        # Step 11: Page coherence check
-        print()
-        print("[11/12] Checking page coherence...")
-        coherence_stats = await check_page_coherence(SYNC_DIR, api_key=anthropic_key or None)
-
-        # Step 12: Write metadata
-        # Include zero-value keys for gov fields so downstream code doesn't break
-        print()
-        print("[12/12] Writing sync metadata...")
-        metadata = {
-            "last_sync": datetime.now(timezone.utc).isoformat(),
-            "states_synced": states,
-            "ai_only": True,
-            "members_count": 0,
-            "bills_count": 0,
-            "senate_votes_count": 0,
-            "house_votes_count": 0,
-            "member_votes_count": 0,
-            "donations_stats": {},
-            "summary_stats": summary_stats,
-            "arguments_stats": arguments_stats,
-            "member_summary_stats": member_summary_stats,
-            "coherence_stats": coherence_stats,
-        }
+        print("[8/8] Writing sync metadata...")
+        try:
+            metadata = json.loads((SYNC_DIR / "sync_metadata.json").read_text())
+        except (OSError, ValueError):
+            metadata = {}
+        if not isinstance(metadata, dict):
+            metadata = {}
+        metadata["ai_synced_at"] = datetime.now(timezone.utc).isoformat()
+        metadata["summary_stats"] = summary_stats
+        metadata.update(_ai_summaries_stamp(SYNC_DIR, rewrote=_ai_summaries_digest(SYNC_DIR) != ai_digest_before))
         _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
 
         print()
         print("=== AI-only sync complete ===")
         if summary_stats.get("total"):
             print(f"  Bill summaries: {summary_stats['total']} ({summary_stats.get('passed', 0)} passed)")
-        if arguments_stats.get("total"):
-            print(f"  Arguments: {arguments_stats['total']} ({arguments_stats.get('passed', 0)} passed)")
-        if member_summary_stats.get("total"):
-            print(f"  Member narratives: {member_summary_stats['total']} ({member_summary_stats.get('passed', 0)} passed)")
 
         # A run that attempted work but persisted nothing means every call
         # failed (dead credential mid-run, hard outage). Exit non-zero so CI
         # shows red instead of a green run that generated nothing.
         # needs_review entries count as persisted — they are saved, just flagged.
-        attempted = sum(s.get("total", 0) for s in
-                        (summary_stats, arguments_stats, member_summary_stats))
-        persisted = sum(s.get("passed", 0) + len(s.get("needs_review", []))
-                        for s in (summary_stats, arguments_stats, member_summary_stats))
+        attempted = summary_stats.get("total", 0)
+        persisted = summary_stats.get("passed", 0) + len(summary_stats.get("needs_review", []))
         if attempted > 0 and persisted == 0:
             print(f"ERROR: attempted {attempted} generations, persisted none — "
                   "treating as total failure.")
@@ -2283,6 +2748,7 @@ async def main() -> None:
         sys.exit(1)
 
     SYNC_DIR.mkdir(parents=True, exist_ok=True)
+    ai_digest_before = _ai_summaries_digest(SYNC_DIR)
     cache = CacheService(cache_dir=CACHE_DIR, ttl_seconds=86400)
     client = CongressAPIClient(api_key=api_key, cache=cache)
 
@@ -2293,81 +2759,59 @@ async def main() -> None:
     print()
 
     # Step 1: Members
-    print("[1/12] Syncing members...")
+    print("[1/8] Syncing members...")
     members_count = await sync_members(client, SYNC_DIR, states=states, rate_limit=0.5)
 
     # Step 2: Senate votes (all congresses)
     print()
     senate_service = SenateVoteService(cache=cache)
-    print("[2/12] Syncing Senate votes...")
+    print("[2/8] Syncing Senate votes...")
     senate_count = 0
+    vote_failures: list[str] = []  # the run finishes, then exits 1 if any session stopped early
     for congress, session in CONGRESSES:
         print(f"  Congress {congress}, Session {session}...")
-        count = await sync_senate_votes(senate_service, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+        count = await sync_senate_votes(senate_service, SYNC_DIR, congress=congress, session=session, rate_limit=0.3,
+                                        failures=vote_failures)
         senate_count += count
 
     # Step 3: House votes (all congresses)
     print()
-    print("[3/12] Syncing House votes...")
+    print("[3/8] Syncing House votes...")
     house_count = 0
     for congress, session in CONGRESSES:
         print(f"  Congress {congress}, Session {session}...")
-        count = await sync_house_votes(client, SYNC_DIR, congress=congress, session=session, rate_limit=0.3)
+        count = await sync_house_votes(client, SYNC_DIR, congress=congress, session=session, rate_limit=0.3,
+                                       failures=vote_failures)
         house_count += count
 
     # Step 4: Bills (only those referenced in votes from both chambers)
     print()
-    print("[4/12] Syncing voted-on bills...")
+    print("[4/8] Syncing voted-on bills...")
     bills_count = await sync_bills_from_votes(client, SYNC_DIR, rate_limit=0.5)
     print("  Fetching bill text for bills missing it...")
     await fetch_bill_texts(client, SYNC_DIR, rate_limit=0.3, max_fetches=args.max_text_fetches)
 
-    # Step 5: AI bill summaries (writer-grader loop)
+    # Step 5: AI bill summaries (writer-grader loop) — the only AI text the
+    # site publishes. Arguments, scorecard verdicts, member narratives and
+    # coherence checks are withdrawn; they run only through their own flags.
     summary_stats = {}
     if not args.skip_ai:
         print()
-        print(f"[5/12] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
+        print(f"[5/8] Generating graded AI bill summaries ({'API' if anthropic_key else 'Claude CLI'})...")
         summary_stats = await sync_bill_summaries(SYNC_DIR, anthropic_key or None, batch_size=5, rate_limit=1.0)
     else:
         print()
-        print("[5/12] Skipping AI bill summaries (--skip-ai)")
+        print("[5/8] Skipping AI bill summaries (--skip-ai)")
 
-    # Step 6: Bill arguments — both sides (writer-grader loop)
-    arguments_stats = {}
-    if not args.skip_ai:
-        print()
-        print(f"[6/12] Generating bill arguments ({'API' if anthropic_key else 'Claude CLI'})...")
-        args_batch = 10 if not anthropic_key else 5
-        arguments_stats = await sync_bill_arguments(SYNC_DIR, api_key=anthropic_key or None, batch_size=args_batch, rate_limit=1.0)
-    else:
-        print()
-        print("[6/12] Skipping bill arguments (--skip-ai)")
-
-    # Step 7: Member voting records (both chambers)
+    # Step 6: Member voting records (both chambers)
     print()
-    print("[7/12] Building member voting records...")
+    print("[6/8] Building member voting records...")
     member_votes_count = await build_member_votes(SYNC_DIR, anthropic_key=anthropic_key)
+    print("[6/8] Building the votes index...")
+    build_votes_index(SYNC_DIR)
+    build_state_overview(SYNC_DIR, states=states)
 
-    # Step 8: Issue scorecard verdicts
-    if not args.skip_ai:
-        print()
-        print(f"[8/12] Generating issue scorecard verdicts ({'API' if anthropic_key else 'Claude CLI'})...")
-        await generate_scorecard_verdicts(SYNC_DIR, api_key=anthropic_key or None)
-    else:
-        print()
-        print("[8/12] Skipping issue scorecard verdicts (--skip-ai)")
-
-    # Step 9: Member summaries
-    member_summary_stats = {}
-    if not args.skip_ai:
-        print()
-        print(f"[9/12] Generating AI member summaries ({'API' if anthropic_key else 'Claude CLI'})...")
-        member_summary_stats = await sync_member_summaries(SYNC_DIR, api_key=anthropic_key or None)
-    else:
-        print()
-        print("[9/12] Skipping AI member summaries (--skip-ai)")
-
-    # Step 10: Campaign finance (FEC)
+    # Step 7: Campaign finance (FEC)
     donations_stats = {}
     if not args.skip_donations:
         if args.resync_donations:
@@ -2379,25 +2823,15 @@ async def main() -> None:
                 _atomic_write_json(donations_path, {})
                 print("  Cleared existing donation data for re-sync")
         print()
-        print("[10/12] Syncing campaign finance data (FEC)...")
+        print("[7/8] Syncing campaign finance data (FEC)...")
         donations_stats = await sync_donations(SYNC_DIR, states=states, rate_limit=1.0)
     else:
         print()
-        print("[10/12] Skipping campaign finance sync (--skip-donations)")
+        print("[7/8] Skipping campaign finance sync (--skip-donations)")
 
-    # Step 11: Page coherence check
-    coherence_stats = {}
-    if not args.skip_ai:
-        print()
-        print(f"[11/12] Checking page coherence ({'API' if anthropic_key else 'Claude CLI'})...")
-        coherence_stats = await check_page_coherence(SYNC_DIR, api_key=anthropic_key or None)
-    else:
-        print()
-        print("[11/12] Skipping page coherence check (--skip-ai)")
-
-    # Step 12: Sync summary
+    # Step 8: Sync summary
     print()
-    print("[12/12] Sync summary")
+    print("[8/8] Sync summary")
 
     # Write metadata
     metadata = {
@@ -2408,12 +2842,10 @@ async def main() -> None:
         "senate_votes_count": senate_count,
         "house_votes_count": house_count,
         "member_votes_count": member_votes_count,
-        "member_summary_stats": member_summary_stats,
-        "coherence_stats": coherence_stats,
         "summary_stats": summary_stats,
-        "arguments_stats": arguments_stats,
         "donations_stats": donations_stats,
     }
+    metadata.update(_ai_summaries_stamp(SYNC_DIR, rewrote=_ai_summaries_digest(SYNC_DIR) != ai_digest_before))
     _atomic_write_json(SYNC_DIR / "sync_metadata.json", metadata)
     print()
     print("=== Sync complete ===")
@@ -2424,13 +2856,9 @@ async def main() -> None:
     print(f"  Member vote records: {member_votes_count}")
     if summary_stats.get("total"):
         print(f"  AI summaries graded: {summary_stats['total']} ({summary_stats.get('passed', 0)} passed)")
-    if arguments_stats.get("total"):
-        print(f"  Bill arguments graded: {arguments_stats['total']} ({arguments_stats.get('passed', 0)} passed)")
-    if member_summary_stats.get("total"):
-        print(f"  Member narratives graded: {member_summary_stats['total']} ({member_summary_stats.get('passed', 0)} passed)")
     if donations_stats.get("total"):
         print(f"  Donations: {donations_stats['total']} members ({donations_stats.get('synced', 0)} new)")
-
+    _exit_on_vote_failures(vote_failures)
 
 if __name__ == "__main__":
     asyncio.run(main())

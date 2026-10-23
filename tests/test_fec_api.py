@@ -246,3 +246,25 @@ async def test_retry_on_rate_limit():
 
     assert result["results"][0]["candidate_id"] == "H8FL07072"
     mock_sleep.assert_called_once_with(1)  # 2^0 = 1 second backoff
+
+
+@pytest.mark.asyncio
+async def test_api_key_is_sent_in_a_header_never_the_url():
+    """httpx error text and request logs repeat the URL, so the key must not be in it (F047)."""
+    import httpx
+    seen = []
+
+    def handler(request):
+        seen.append(request)
+        return httpx.Response(200, json={"results": []})
+
+    real = httpx.AsyncClient
+    with patch("app.services.fec_api.httpx.AsyncClient",
+               lambda **kw: real(transport=httpx.MockTransport(handler), **kw)):
+        await FECClient(api_key="SECRET-FEC-KEY").search_candidate("Schumer", "NY", "S")
+
+    assert len(seen) == 1
+    assert seen[0].headers["X-Api-Key"] == "SECRET-FEC-KEY"
+    assert "SECRET-FEC-KEY" not in str(seen[0].url)
+    assert "api_key" not in seen[0].url.params
+    assert seen[0].url.params["name"] == "Schumer"

@@ -6,5 +6,7 @@
     "CA",
     "TX"
   ],
-  "incremental": true
+  "incremental": true,
+  "ai_summaries_updated": "2026-07-07",
+  "ai_summaries_digest": "149d7e50baefeb454644093f7a16ea6e0e16ac31adeff048c773095b46ae3585"
 }

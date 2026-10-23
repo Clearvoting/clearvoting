@@ -1,0 +1,11 @@
+# Production dependencies. requirements.txt is the hash-locked file compiled from this one.
+# After editing, regenerate with:
+#   uv pip compile requirements.in --universal --python-version 3.12 --generate-hashes -o requirements.txt
+fastapi==0.115.0
+uvicorn[standard]==0.30.0
+httpx==0.27.0
+anthropic==0.40.0
+python-dotenv==1.2.2
+slowapi>=0.1.9
+defusedxml>=0.7.1
+gspread>=6.0.0

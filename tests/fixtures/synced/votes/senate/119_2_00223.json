@@ -1,0 +1,82 @@
+{
+  "congress": 119,
+  "session": 2,
+  "vote_number": 223,
+  "vote_date": "August 7, 2026,  11:51 AM",
+  "question": "On the Amendment S.Amdt. 6715 to S.Amdt. 6711 to H.R. 5334 (No short title on file)",
+  "document": "To strike the provision relating to duties on countries that purchase Russian-origin crude oil or natural gas or facilitate sanctions evasion.",
+  "result": "Amendment Rejected (32-64)",
+  "title": "Paul Amdt. No. 6715",
+  "counts": {
+    "yeas": 32,
+    "nays": 64,
+    "present": 0,
+    "absent": 4
+  },
+  "members": [
+    {
+      "first_name": "John",
+      "last_name": "Cornyn",
+      "party": "R",
+      "state": "TX",
+      "vote": "Nay",
+      "lis_member_id": "S287"
+    },
+    {
+      "first_name": "Ted",
+      "last_name": "Cruz",
+      "party": "R",
+      "state": "TX",
+      "vote": "Nay",
+      "lis_member_id": "S355"
+    },
+    {
+      "first_name": "Kirsten",
+      "last_name": "Gillibrand",
+      "party": "D",
+      "state": "NY",
+      "vote": "Nay",
+      "lis_member_id": "S331"
+    },
+    {
+      "first_name": "Ashley",
+      "last_name": "Moody",
+      "party": "R",
+      "state": "FL",
+      "vote": "Nay",
+      "lis_member_id": "S439"
+    },
+    {
+      "first_name": "Alex",
+      "last_name": "Padilla",
+      "party": "D",
+      "state": "CA",
+      "vote": "Yea",
+      "lis_member_id": "S413"
+    },
+    {
+      "first_name": "Adam",
+      "last_name": "Schiff",
+      "party": "D",
+      "state": "CA",
+      "vote": "Yea",
+      "lis_member_id": "S427"
+    },
+    {
+      "first_name": "Charles",
+      "last_name": "Schumer",
+      "party": "D",
+      "state": "NY",
+      "vote": "Yea",
+      "lis_member_id": "S270"
+    },
+    {
+      "first_name": "Rick",
+      "last_name": "Scott",
+      "party": "R",
+      "state": "FL",
+      "vote": "Nay",
+      "lis_member_id": "S404"
+    }
+  ]
+}

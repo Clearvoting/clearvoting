@@ -20,6 +20,7 @@ def strip_code_fences(text: str) -> str:
 
 
 GRADE_ORDER = {"A": 4, "B": 3, "C": 2, "D": 1, "F": 0}
+PASSING_GRADES = ("A", "B")
 
 
 @dataclass
@@ -28,6 +29,28 @@ class GradeResult:
     passed: bool
     feedback: str
     checks: dict = field(default_factory=dict)
+
+
+def grade_from_reply(result) -> GradeResult:
+    """Turn a grader model's parsed JSON reply into a GradeResult.
+
+    `passed` follows the letter alone (every rubric says A or B = pass); the
+    model's own "passed" field is ignored, so a self-contradicting reply
+    ({"grade": "C", "passed": true}, or "passed": "false") can't publish.
+    "a" or "B+" normalise to their letter; anything else outside A-F, or a
+    reply that isn't a JSON object, is an F.
+    """
+    if not isinstance(result, dict):
+        return GradeResult(grade="F", passed=False, feedback="Grader returned a non-object reply.", checks={})
+    grade = str(result.get("grade", "F")).strip().upper().rstrip("+-")
+    if grade not in GRADE_ORDER:
+        grade = "F"
+    return GradeResult(
+        grade=grade,
+        passed=grade in PASSING_GRADES,
+        feedback=result.get("feedback", "No feedback provided."),
+        checks=result.get("checks", {}),
+    )
 
 
 class Grader(Protocol):

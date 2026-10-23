@@ -1,0 +1,191 @@
+{
+  "S000148": {
+    "fec_candidate_id": "S8NY00082",
+    "committee_id": "C00346312",
+    "cycle": "2024",
+    "last_updated": "2026-03-20T00:10:39.880084+00:00",
+    "top_contributors": [
+      {
+        "org_name": "BELL INVESTMENT ADVISORS",
+        "total": 7500,
+        "pacs": 0,
+        "individuals": 7500
+      },
+      {
+        "org_name": "BARCLAYS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "SCHUSTERMAN INTERESTS LLC",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "TRB ADVISORS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "JMA",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "CUMBERLAND PACKING CORP.",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "LOEWS HOTELS",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "EMPIRE STATE REALTY TRUST",
+        "total": 6600,
+        "pacs": 0,
+        "individuals": 6600
+      },
+      {
+        "org_name": "NULL",
+        "total": 6450,
+        "pacs": 0,
+        "individuals": 6450
+      },
+      {
+        "org_name": "TPAG",
+        "total": 5610,
+        "pacs": 0,
+        "individuals": 5610
+      },
+      {
+        "org_name": "LTD X LIZZIE TISCH",
+        "total": 5200,
+        "pacs": 0,
+        "individuals": 5200
+      },
+      {
+        "org_name": "PITTA BISHOP & DEL GIORNO LLC",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      },
+      {
+        "org_name": "EDISON INTERNATIONAL",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      },
+      {
+        "org_name": "MOHAWK AMBULANCE",
+        "total": 5000,
+        "pacs": 0,
+        "individuals": 5000
+      },
+      {
+        "org_name": "LEPRINO FOODS",
+        "total": 3300,
+        "pacs": 0,
+        "individuals": 3300
+      }
+    ],
+    "top_industries": [
+      {
+        "industry_name": "Attorney",
+        "total": 41025,
+        "pacs": 0,
+        "individuals": 41025
+      },
+      {
+        "industry_name": "Physician",
+        "total": 26545,
+        "pacs": 0,
+        "individuals": 26545
+      },
+      {
+        "industry_name": "Executive",
+        "total": 22139,
+        "pacs": 0,
+        "individuals": 22139
+      },
+      {
+        "industry_name": "Ceo",
+        "total": 19287,
+        "pacs": 0,
+        "individuals": 19287
+      },
+      {
+        "industry_name": "Investor",
+        "total": 14510,
+        "pacs": 0,
+        "individuals": 14510
+      },
+      {
+        "industry_name": "Professor",
+        "total": 13975,
+        "pacs": 0,
+        "individuals": 13975
+      },
+      {
+        "industry_name": "President",
+        "total": 10724,
+        "pacs": 0,
+        "individuals": 10724
+      },
+      {
+        "industry_name": "Artist",
+        "total": 10647,
+        "pacs": 0,
+        "individuals": 10647
+      },
+      {
+        "industry_name": "Consultant",
+        "total": 10199,
+        "pacs": 0,
+        "individuals": 10199
+      },
+      {
+        "industry_name": "Therapist",
+        "total": 8395,
+        "pacs": 0,
+        "individuals": 8395
+      }
+    ],
+    "totals": {
+      "total_receipts": 2790888,
+      "total_disbursements": 3349300,
+      "total_individual": 2345346,
+      "total_pac": 202800
+    }
+  },
+  "G000602": {
+    "fec_candidate_id": "H2NY04244",
+    "committee_id": "C00806547",
+    "cycle": "2024",
+    "last_updated": "2026-03-20T00:15:08.282417+00:00",
+    "top_contributors": [],
+    "top_industries": [],
+    "totals": {
+      "total_receipts": 4,
+      "total_disbursements": 7351,
+      "total_individual": 0,
+      "total_pac": 0
+    }
+  },
+  "R000579": {
+    "fec_candidate_id": "H8NY19223",
+    "committee_id": "C00647115",
+    "cycle": "2024",
+    "last_updated": "2026-03-20T00:22:38.224129+00:00",
+    "top_contributors": [],
+    "top_industries": [],
+    "totals": {}
+  }
+}

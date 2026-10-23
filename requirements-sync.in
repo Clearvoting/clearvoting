@@ -1,0 +1,6 @@
+# Weekly-sync-only dependencies for the share cards (scripts/build_og_cards.py).
+# After editing this file or requirements.txt, regenerate with:
+#   uv pip compile requirements-sync.in -c requirements.txt --universal --python-version 3.12 --generate-hashes -o requirements-sync.txt
+Pillow==12.3.0
+fonttools==4.66.0
+brotli==1.2.0

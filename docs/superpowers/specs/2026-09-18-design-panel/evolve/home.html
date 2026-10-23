@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClearVoting — See How Your Representatives Vote</title>
+<meta name="description" content="Evolve mockup: the existing ClearVoting homepage with the seams fixed — ZIP entry in the first screen, an honest Record, a structured Latest Vote card, navy buttons, and no floating pill on phones.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+/* ---- Tokens: the existing broadsheet palette, with the two contrast fixes (F16) and the size floors (F47/F57) ---- */
+:root{
+  --paper:#F5F6FA; --card:#FFFFFF; --card-hover:#EEF1F6;
+  --ink:#1B1B1B; --ink-soft:#5B616B; --ink-meta:#5F656D; /* was #6E7480 (4.35:1) -> 5.45:1 on paper */
+  --navy:#112E51; --blue:#0071BC; --blue-dim:#205493;
+  --yes:#2E8540; --no:#CD2026; --nv:#5F656D;
+  --rule:#D6D7D9; --rule-soft:#E8E8E8;
+  --font-display:'Playfair Display',Georgia,serif; --font-serif:'Lora',Georgia,serif; --font-ui:'Inter',system-ui,sans-serif;
+  --radius:8px; --radius-lg:12px; --shadow:0 2px 8px rgba(0,0,0,.08); --shadow-lg:0 4px 16px rgba(0,0,0,.12);
+  --max-width:1100px; --tap:44px; --transition:.2s ease;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-serif);line-height:1.65;font-size:16px}
+img{max-width:100%;display:block}
+a{color:var(--blue)}
+button,input,select{font:inherit}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:2px}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--navy);color:#fff;padding:.6rem 1rem;font-family:var(--font-ui);z-index:100}
+.skip-link:focus{left:1rem;top:1rem}
+
+/* ---- Type roles (F57: 12px floor everywhere, 13px for meta) ---- */
+.kicker{font-family:var(--font-ui);font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.meta{font-family:var(--font-ui);font-size:.8rem;color:var(--ink-meta);letter-spacing:.02em}
+.arrow-link{font-family:var(--font-ui);font-size:.875rem;font-weight:600;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap)}
+.arrow-link:hover{color:var(--blue-dim)}
+
+/* ---- Masthead (unchanged, plus one nav item and 44px hit areas) ---- */
+.masthead{padding:1.5rem 1rem 0;text-align:center}
+.masthead .logo{font-family:var(--font-display);font-weight:800;font-size:clamp(1.9rem,4.5vw,2.5rem);color:var(--navy);line-height:1;text-decoration:none}
+.masthead .logo span{color:var(--blue);font-style:italic;font-weight:600}
+.masthead-tagline{font-family:var(--font-ui);font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-meta);margin-top:.5rem}
+.masthead-nav{max-width:var(--max-width);margin:.9rem auto 0;border-top:3px double var(--navy);border-bottom:1px solid var(--navy);display:flex;justify-content:center;gap:.25rem 1.5rem;padding:0 .5rem;flex-wrap:wrap}
+.masthead-nav a{font-family:var(--font-ui);font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap);padding:0 .25rem;border-bottom:2px solid transparent}
+.masthead-nav a:hover,.masthead-nav a[aria-current]{color:var(--navy);border-bottom-color:var(--blue)}
+.election-line{font-family:var(--font-ui);font-size:.8rem;color:var(--ink-meta);text-align:center;margin-top:.6rem}
+.election-line strong{color:var(--navy);font-weight:600}
+
+main{max-width:var(--max-width);margin:0 auto;padding:0 1rem 2rem}
+
+/* ---- Lead: same two-column grid; the finder now lives inside the left column so it is in the first screen on every viewport (F21, F03) ---- */
+.lead{display:grid;grid-template-columns:1.45fr 1fr;gap:3rem;padding:2.5rem 0 2rem;align-items:start}
+.lead-left .kicker{color:var(--blue-dim);margin-bottom:.9rem}
+.lead h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.1rem,5vw,3.2rem);line-height:1.08;letter-spacing:-.01em;margin-bottom:.9rem;color:var(--navy)}
+.lead-deck{font-size:1.08rem;color:var(--ink-soft);max-width:30rem;margin-bottom:1.5rem}
+
+/* Finder */
+.finder{border-top:1px solid var(--rule);padding-top:1.25rem}
+.finder-q{font-family:var(--font-serif);font-style:italic;font-size:1.25rem;color:var(--ink);margin-bottom:.7rem}
+.zip-form{display:flex;max-width:26rem}
+.zip-form input{flex:1;min-width:0;font-family:var(--font-ui);font-size:1rem /* 16px: no iOS zoom */;min-height:var(--tap);padding:0 .9rem;border:1px solid var(--rule);border-right:none;border-radius:var(--radius) 0 0 var(--radius);background:var(--card);color:var(--ink)}
+.zip-form input::placeholder{color:var(--ink-meta)}
+.btn-navy{font-family:var(--font-ui);font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--navy);color:#fff;border:1px solid var(--navy);border-radius:0 var(--radius) var(--radius) 0;padding:0 1.1rem;min-height:var(--tap);cursor:pointer}
+.btn-navy:hover{background:var(--blue-dim);border-color:var(--blue-dim)}
+.zip-result{font-family:var(--font-ui);font-size:.875rem;color:var(--ink-soft);margin-top:.6rem;display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap}
+.zip-result strong{color:var(--navy)}
+.zip-result a{font-weight:600}
+.finder-or{font-family:var(--font-ui);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-meta);margin:1.1rem 0 .55rem}
+.state-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;max-width:34rem}
+.state-card{font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--navy);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);padding:.6rem .5rem .55rem;cursor:pointer;box-shadow:var(--shadow);line-height:1.2;min-height:var(--tap);text-align:center}
+.state-card .state-count{display:block;font-family:var(--font-ui);font-weight:500;font-size:.75rem;color:var(--ink-meta);margin-top:.2rem}
+.state-card:hover{border-color:var(--blue)}
+.state-card.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.state-card.active .state-count{color:rgba(255,255,255,.8)}
+.coverage-line{font-family:var(--font-ui);font-size:.8rem;color:var(--ink-meta);margin-top:.8rem}
+.coverage-line button{background:none;border:none;color:var(--blue);font-weight:600;font-family:var(--font-ui);font-size:.8rem;border-bottom:1px solid var(--blue);cursor:pointer;padding:0;min-height:0}
+.coverage-line button:hover{color:var(--blue-dim)}
+
+/* Latest-vote card: structured, never a sentence template (F17); honest link when no summary (F02) */
+.vote-card{border:1px solid var(--rule);border-radius:var(--radius-lg);background:var(--card);padding:1.3rem 1.4rem 1.4rem;box-shadow:var(--shadow-lg)}
+.vote-card .kicker{color:var(--navy);display:flex;align-items:center;gap:.6rem}
+.vote-card .kicker::after{content:'';flex:1;height:1px;background:var(--rule)}
+.vote-card .dateline{margin:.7rem 0 .5rem}
+.vote-card h2{font-family:var(--font-display);font-weight:700;font-size:1.35rem;line-height:1.25;margin-bottom:.4rem;color:var(--navy)}
+.vote-card h2.official{font-family:var(--font-serif);font-weight:500;font-size:1.12rem;color:var(--ink)}
+.vote-card .outcome{font-family:var(--font-serif);font-size:1rem;color:var(--ink);margin-bottom:.8rem}
+.tally-bar{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--rule-soft)}
+.tally-yes{background:var(--yes)}.tally-no{background:var(--no)}
+.tally-labels{display:flex;justify-content:space-between;font-family:var(--font-ui);font-size:.8rem;font-weight:600;margin-top:.4rem}
+.tally-labels .yes{color:var(--yes)}.tally-labels .no{color:var(--no)}
+.summary-tag{display:inline-block;font-family:var(--font-ui);font-size:.75rem;font-weight:600;letter-spacing:.04em;color:var(--ink-meta);border:1px solid var(--rule);border-radius:4px;padding:.15rem .5rem;margin-top:.7rem}
+
+/* ---- Delegation (existing component, with rows rebuilt for recognition instead of comparison: F06) ---- */
+.delegation{padding:2.5rem 0 .5rem;border-top:3px double var(--navy);margin-top:2rem}
+.section-head{margin-bottom:1.25rem}
+.section-head .kicker{color:var(--blue-dim);margin-bottom:.4rem}
+.section-head h2{font-family:var(--font-display);font-weight:700;font-size:clamp(1.45rem,3vw,2rem);line-height:1.15;color:var(--navy)}
+.section-head .section-sub{font-size:.95rem;color:var(--ink-soft);margin-top:.3rem}
+.section-actions{display:flex;gap:.25rem 1.5rem;align-items:center;flex-wrap:wrap;margin:0 0 1.25rem;font-family:var(--font-ui);font-size:.875rem;color:var(--ink-soft)}
+.party-toggle{font-family:var(--font-ui);font-size:.875rem;font-weight:700;color:var(--blue-dim);background:none;border:none;border-bottom:2px solid var(--blue);cursor:pointer;padding:0;min-height:var(--tap)}
+.party-toggle:hover{color:var(--blue)}
+.link-btn{font-family:var(--font-ui);font-size:.875rem;font-weight:600;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;min-height:var(--tap);text-decoration:none;display:inline-flex;align-items:center}
+.roster-label{font-family:var(--font-ui);font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-meta);margin:1.5rem 0 .6rem}
+.roster-label:first-child{margin-top:0}
+.keyvote-line{font-family:var(--font-ui);font-size:.8rem;color:var(--ink-meta);margin:-.3rem 0 .8rem;line-height:1.5}
+.keyvote-line a{color:var(--blue-dim);font-weight:600}
+
+.senator-row{display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:.75rem;text-decoration:none;color:inherit}
+.senator-row:hover{border-color:var(--blue-dim);box-shadow:var(--shadow)}
+.senator-row.you{border-color:var(--navy);border-left:4px solid var(--navy)}
+.senator-photo{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--rule);background:var(--card-hover)}
+.senator-name{font-family:var(--font-display);font-weight:700;font-size:1.25rem;line-height:1.2;color:var(--navy)}
+.senator-seat{font-family:var(--font-ui);font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-meta);margin:.2rem 0 .3rem}
+.senator-line{font-family:var(--font-ui);font-size:.85rem;color:var(--ink-soft)}
+.you-tag{display:inline-block;font-family:var(--font-ui);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--navy);border-radius:4px;padding:.15rem .45rem;margin:.15rem 0 .2rem}
+
+/* Vote chip: the one place red/green live (F35). Text + border + dot, never colour alone (F36). */
+.chip{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-ui);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:.3rem .55rem;white-space:nowrap;background:var(--card)}
+.chip::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--nv)}
+.chip.yes{border-color:var(--yes)}.chip.yes::before{background:var(--yes)}
+.chip.no{border-color:var(--no)}.chip.no::before{background:var(--no)}
+.chip.nv{color:var(--ink-meta)}
+
+.roster{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .9rem}
+.roster-row{display:grid;grid-template-columns:auto 1fr auto;gap:.8rem;align-items:center;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);padding:.55rem .8rem;text-decoration:none;color:inherit;min-height:var(--tap)}
+.roster-row:hover{border-color:var(--blue-dim);background:var(--card-hover)}
+.roster-row.you{border-color:var(--navy);border-left:4px solid var(--navy)}
+.roster-photo{width:44px;height:44px;border-radius:50%;object-fit:cover;border:1.5px solid var(--rule);background:var(--card-hover)}
+.roster-id{min-width:0;display:flex;flex-direction:column}
+.roster-name{font-family:var(--font-ui);font-size:.95rem;font-weight:600;line-height:1.3;color:var(--ink)}
+.roster-district{font-family:var(--font-ui);font-size:.8rem;color:var(--ink-meta)}
+.roster-foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:1rem;align-items:center}
+
+/* ---- The Record: newest-by-date list with a designed fallback row, plus an as-of stamp (F01, F37, F40) ---- */
+.record{border-top:3px double var(--navy);margin-top:2.5rem;padding-top:2.25rem}
+.asof{font-family:var(--font-ui);font-size:.8rem;color:var(--ink-meta);border:1px solid var(--rule);border-radius:4px;padding:.55rem .8rem;background:var(--card);margin:.9rem 0 1.25rem;line-height:1.5}
+.asof strong{color:var(--ink);font-weight:600}
+.record-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:0 3rem}
+.record-lead{padding-right:3rem;border-right:1px solid var(--rule)}
+.story-kicker{display:flex;align-items:center;gap:.6rem;margin-bottom:.8rem;flex-wrap:wrap}
+.law-seal{font-family:var(--font-ui);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--navy);padding:.18rem .55rem;border-radius:4px;white-space:nowrap;display:inline-block}
+.law-seal.moving{background:transparent;color:var(--blue-dim);border:1px solid var(--blue)}
+.record-lead h3{font-family:var(--font-display);font-weight:700;font-size:clamp(1.4rem,3vw,2rem);line-height:1.18;margin-bottom:1rem}
+.record-lead h3 a{color:var(--navy);text-decoration:none}
+.record-provisions{list-style:none;margin:0 0 1rem}
+.record-provisions li{position:relative;padding:.32rem 0 .32rem 1.3rem;font-size:1.02rem;color:var(--ink-soft);line-height:1.55}
+.record-provisions li::before{content:'§';position:absolute;left:0;top:.32rem;color:var(--blue);font-family:var(--font-display)}
+.official-line{font-family:var(--font-ui);font-size:.8rem;color:var(--ink-meta);border-top:1px solid var(--rule-soft);padding-top:.7rem;margin-top:.8rem}
+.lead-label{font-family:var(--font-ui);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-meta);margin-bottom:.8rem}
+.also-list{list-style:none;margin:1.25rem 0 0;border-top:1px solid var(--rule);padding-top:.5rem}
+.also-list li{padding:.5rem 0;border-bottom:1px solid var(--rule-soft);font-size:.98rem;line-height:1.45}
+.also-list li a{color:var(--ink);text-decoration:none;font-weight:500}
+.also-list li a:hover{color:var(--blue-dim)}
+.also-list .meta{display:block;margin-top:.1rem}
+.record-list{list-style:none}
+.record-list li{border-top:1px solid var(--rule);padding:.9rem 0}
+.record-list li:first-child{border-top:none;padding-top:0}
+.record-item-meta{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-bottom:.3rem}
+.bill-no{font-family:var(--font-ui);font-size:.78rem;font-weight:700;letter-spacing:.06em;color:var(--blue-dim)}
+.record-list h4{font-family:var(--font-serif);font-weight:500;font-size:1.04rem;line-height:1.45}
+.record-list h4 a{color:var(--ink);text-decoration:none}
+.record-list h4 a:hover{color:var(--blue-dim)}
+.record-list h4.official{font-weight:400;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.record-list .meta{margin-top:.3rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.record-foot{margin-top:1.5rem;text-align:center;border-top:1px solid var(--rule);padding-top:.75rem}
+.browse-toggle{font-family:var(--font-ui);font-size:.9rem;font-weight:700;color:var(--blue);background:none;border:none;cursor:pointer;min-height:var(--tap)}
+
+/* ---- Notify (F39): asks for the state; navy button ---- */
+.notify{border-top:1px solid var(--rule);margin-top:2rem;padding-top:1.5rem;text-align:center}
+.notify p{font-family:var(--font-ui);font-size:.9rem;color:var(--ink-soft);margin-bottom:.8rem}
+.notify-form{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:.5rem}
+.notify-form select,.notify-form input{font-family:var(--font-ui);font-size:1rem;min-height:var(--tap);padding:0 .8rem;border:1px solid var(--rule);border-radius:var(--radius);background:var(--card);color:var(--ink)}
+.notify-form .btn-navy{border-radius:var(--radius)}
+.notify small{display:block;font-family:var(--font-ui);font-size:.8rem;color:var(--ink-meta);margin-top:.6rem}
+
+/* ---- Footer (unchanged, plus "Report an error" and a real freshness value) ---- */
+.site-footer{background:var(--card);border-top:3px double var(--navy);margin:3rem auto 0;padding:1.5rem 1rem 2rem;text-align:center;color:var(--ink-soft)}
+.footer-links{display:flex;justify-content:center;gap:.25rem 1.5rem;flex-wrap:wrap;margin-bottom:.5rem}
+.footer-links a{font-family:var(--font-ui);font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap);padding:0 .25rem}
+.footer-links a:hover{color:var(--blue)}
+.site-footer .meta{display:block}
+.site-footer .meta a{color:var(--ink-soft);text-decoration:underline}
+.site-footer .credo{font-family:var(--font-serif);font-style:italic;font-size:.92rem;color:var(--ink-soft);margin-top:.85rem}
+
+/* ---- Feedback control (F23): desktop-only 44px icon button with safe-area; mobile uses the footer link and nav ---- */
+.feedback-btn{position:fixed;right:1.25rem;bottom:calc(1.25rem + env(safe-area-inset-bottom));width:var(--tap);height:var(--tap);border-radius:50%;background:var(--navy);color:#fff;border:none;box-shadow:var(--shadow-lg);cursor:pointer;display:none;align-items:center;justify-content:center;z-index:90}
+@media (min-width:881px){.feedback-btn{display:flex} main{padding-bottom:calc(var(--tap) + 2rem)}}
+
+/* ---- Mockup annotation panel (not part of the product) ---- */
+.mock-notes{max-width:var(--max-width);margin:3rem auto 0;padding:0 1rem}
+.mock-notes>h2{font-family:var(--font-ui);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#8a4b00;border-top:2px dashed #e0b070;padding-top:1rem;margin-bottom:1rem}
+.mock-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.mock-card{border:1px dashed #e0b070;border-radius:var(--radius);padding:1rem;background:#fffaf2}
+.mock-card h3{font-family:var(--font-ui);font-size:.8rem;font-weight:700;color:#8a4b00;margin-bottom:.6rem}
+.mock-card p{font-family:var(--font-ui);font-size:.85rem;color:var(--ink-soft);margin-top:.6rem}
+.choice-list{list-style:none;display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem}
+.choice-list a{display:flex;justify-content:space-between;align-items:center;gap:.5rem;font-family:var(--font-ui);font-size:.9rem;color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);padding:.6rem .8rem;text-decoration:none;min-height:var(--tap)}
+.choice-list a:hover{border-color:var(--blue)}
+.choice-list a strong{color:var(--navy)}
+.choice-list a span{font-size:.8rem;color:var(--ink-meta)}
+.zip-error{font-family:var(--font-ui);font-size:.875rem;color:var(--ink);border-left:3px solid var(--navy);padding:.4rem .7rem;background:var(--card);margin-top:.6rem}
+
+/* ---- Responsive: one breakpoint set (880 / 560), declared after every base rule ---- */
+@media (max-width:880px){
+  .lead{grid-template-columns:1fr;gap:1.75rem;padding-top:1.5rem}
+  .record-grid{grid-template-columns:1fr}
+  .record-lead{padding-right:0;border-right:none;border-bottom:1px solid var(--rule);padding-bottom:1.5rem;margin-bottom:1.25rem}
+  .roster{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .masthead{padding-top:1.1rem}
+  .masthead-nav{gap:0 .9rem}
+  .masthead-nav a{font-size:.75rem;letter-spacing:.06em}
+  .lead h1{font-size:2rem}
+  .lead-deck{font-size:1rem;margin-bottom:1.1rem}
+  .state-grid{grid-template-columns:repeat(4,1fr);gap:.4rem}
+  .state-card{font-size:.95rem;padding:.5rem .25rem}
+  .state-card .state-count{font-size:.75rem}
+  .senator-row{grid-template-columns:auto 1fr;padding:.9rem 1rem}
+  .senator-row .chip{grid-column:2;justify-self:start}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body class="home">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="masthead">
+  <a href="/" class="logo" aria-label="ClearVoting home">Clear<span>Voting</span></a>
+  <p class="masthead-tagline">Facts only · No opinions · No spin</p>
+  <nav class="masthead-nav" aria-label="Main">
+    <a href="/" aria-current="page">Home</a>
+    <a href="#find">Find my representatives</a>
+    <a href="#record">The Record</a>
+    <a href="/about">About</a>
+  </nav>
+  <p class="election-line"><strong>Midterm elections: Tuesday, November 3, 2026</strong> · 46 days away</p>
+</header>
+
+<main id="main-content" tabindex="-1">
+
+  <!-- FRONT PAGE LEAD: same grid; the finder moved into the left column so it is in the first screen on phones -->
+  <section class="lead" aria-label="Start here">
+    <div class="lead-left">
+      <p class="kicker">An independent, unbiased record of Congress</p>
+      <h1>See how your representatives vote.</h1>
+      <p class="lead-deck">Every vote in Congress, translated into plain English — with party labels hidden until you ask for them.</p>
+
+      <div class="finder" id="find">
+        <p class="finder-q" id="finder-q">Where do you live?</p>
+        <form class="zip-form" action="#delegation">
+          <label for="zip" class="visually-hidden">ZIP code</label>
+          <input id="zip" name="zip" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="ZIP code" value="11570">
+          <button type="submit" class="btn-navy">Find</button>
+        </form>
+        <p class="zip-result" role="status"><strong>11570 is in New York, District 4.</strong> <a href="#delegation">Your three representatives are below ↓</a></p>
+
+        <p class="finder-or">Or pick your state</p>
+        <div class="state-grid" role="group" aria-labelledby="finder-q">
+          <button class="state-card" type="button">California<small class="state-count">54 members</small></button>
+          <button class="state-card" type="button">Florida<small class="state-count">29 members</small></button>
+          <button class="state-card active" type="button" aria-pressed="true">New York<small class="state-count">28 members</small></button>
+          <button class="state-card" type="button">Texas<small class="state-count">39 members</small></button>
+        </div>
+        <p class="coverage-line">Right now: CA, FL, NY and TX — 150 members, every roll-call vote since 2021. Somewhere else? <button type="button">Get notified when your state is added</button></p>
+      </div>
+    </div>
+
+    <!-- Latest vote: structured card. Today's vote has no plain-English summary, so the headline is the official title in body type and the link is honest. -->
+    <aside class="vote-card" aria-label="The latest vote in Congress">
+      <p class="kicker">The Latest Vote</p>
+      <p class="dateline meta">Sept. 3, 2026 · U.S. House · H.R. 4795</p>
+      <h2 class="official">Protect Economic and Academic Freedom Act of 2026</h2>
+      <p class="outcome">The House passed it, 237 to 169.</p>
+      <div class="tally-bar" role="img" aria-label="237 voted yes, 169 voted no">
+        <span class="tally-yes" style="width:58.4%"></span><span class="tally-no" style="width:41.6%"></span>
+      </div>
+      <div class="tally-labels"><span class="yes">237 voted yes</span><span class="no">169 voted no</span></div>
+      <span class="summary-tag">Plain-English summary not written yet</span><br>
+      <a class="arrow-link" href="/bill?congress=119&amp;type=hr&amp;number=4795">See the vote and the official summary →</a>
+    </aside>
+  </section>
+
+  <!-- DELEGATION: same component, same IA (senators first, House by district); rows built for recognition -->
+  <section class="delegation" id="delegation" aria-label="Your delegation">
+    <div class="section-head">
+      <p class="kicker">Your Delegation</p>
+      <h2>New York’s representatives</h2>
+      <p class="section-sub">2 senators and 26 House members · ZIP 11570 is in District 4</p>
+    </div>
+
+    <div class="section-actions">
+      <span>Party labels are hidden, so the record speaks first.</span>
+      <button class="party-toggle" type="button" aria-pressed="false">Show party labels</button>
+      <a class="link-btn" href="/state?code=NY">Share this page (clearvoting.org/state?code=NY) →</a>
+    </div>
+
+    <h3 class="roster-label">Your three representatives</h3>
+    <p class="keyvote-line">Latest vote with a plain-English summary: <a href="/bill?congress=119&amp;type=hr&amp;number=6500">Extend no-tax imports from 32 African countries through 2028</a> (H.R. 6500) — Senate passed it 90–6 on Aug. 8; House agreed 370–48 on Sept. 1.</p>
+
+    <a class="senator-row" href="/member?id=S000148">
+      <img class="senator-photo" src="https://www.congress.gov/img/member/s000148_200.jpg" alt="">
+      <span>
+        <span class="senator-name">Charles E. Schumer</span>
+        <span class="senator-seat" style="display:block">U.S. Senate · New York</span>
+        <span class="senator-line">In office since 1981 · Not on the ballot this November</span>
+      </span>
+      <span class="chip yes" aria-label="Voted yes on H.R. 6500">Yes</span>
+    </a>
+    <a class="senator-row" href="/member?id=G000555">
+      <img class="senator-photo" src="https://www.congress.gov/img/member/g000555_200.jpg" alt="">
+      <span>
+        <span class="senator-name">Kirsten E. Gillibrand</span>
+        <span class="senator-seat" style="display:block">U.S. Senate · New York</span>
+        <span class="senator-line">In office since 2007 · Not on the ballot this November</span>
+      </span>
+      <span class="chip yes" aria-label="Voted yes on H.R. 6500">Yes</span>
+    </a>
+    <a class="senator-row you" href="/member?id=G000602">
+      <img class="senator-photo" src="https://www.congress.gov/img/member/677427de0b34857ecc9090ad_200.jpg" alt="">
+      <span>
+        <span class="senator-name">Laura Gillen</span>
+        <span class="you-tag">Your House member · District 4</span>
+        <span class="senator-line" style="display:block">In office since 2025 · On the ballot this November</span>
+      </span>
+      <span class="chip yes" aria-label="Voted yes on H.R. 6500">Yes</span>
+    </a>
+
+    <h3 class="roster-label">All of New York’s House members — by district</h3>
+    <p class="keyvote-line">Each member’s vote on H.R. 6500, Sept. 1, 2026. Tap a name for their full record.</p>
+    <div class="roster">
+      <a class="roster-row" href="#member-L000598">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/l000598_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Nick LaLota</span><span class="roster-district">District 1 · In office since 2023</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-G000597">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/g000597_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Andrew R. Garbarino</span><span class="roster-district">District 2 · In office since 2021</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-S001201">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/116_rp_ny_3_suozzi_thomas_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Thomas R. Suozzi</span><span class="roster-district">District 3 · In office since 2017</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row you" href="#member-G000602">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/677427de0b34857ecc9090ad_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Laura Gillen</span><span class="you-tag">Your House member</span><span class="roster-district">District 4 · In office since 2025</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-M001137">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/m001137_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Gregory W. Meeks</span><span class="roster-district">District 5 · In office since 1997</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-M001188">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/m001188_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Grace Meng</span><span class="roster-district">District 6 · In office since 2013</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-V000081">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/v000081_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Nydia M. Velázquez</span><span class="roster-district">District 7 · In office since 1993</span></span>
+        <span class="chip nv" aria-label="Voted Didn’t vote on H.R. 6500">Didn’t vote</span>
+      </a>
+      <a class="roster-row" href="#member-J000294">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/j000294_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Hakeem S. Jeffries</span><span class="roster-district">District 8 · In office since 2013</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-C001067">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/674dfc6b5c48ff736e6e1762_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Yvette D. Clarke</span><span class="roster-district">District 9 · In office since 2007</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-G000599">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/g000599_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Daniel S. Goldman</span><span class="roster-district">District 10 · In office since 2023</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-M000317">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/m000317_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Nicole Malliotakis</span><span class="roster-district">District 11 · In office since 2021</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-N000002">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/n000002_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Jerrold Nadler</span><span class="roster-district">District 12 · In office since 1991</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-E000297">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/e000297_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Adriano Espaillat</span><span class="roster-district">District 13 · In office since 2017</span></span>
+        <span class="chip no" aria-label="Voted No on H.R. 6500">No</span>
+      </a>
+      <a class="roster-row" href="#member-O000172">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/o000172_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Alexandria Ocasio-Cortez</span><span class="roster-district">District 14 · In office since 2019</span></span>
+        <span class="chip no" aria-label="Voted No on H.R. 6500">No</span>
+      </a>
+      <a class="roster-row" href="#member-T000486">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/t000486_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Ritchie Torres</span><span class="roster-district">District 15 · In office since 2021</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-L000606">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/6774301b0b34857ecc909107_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">George Latimer</span><span class="roster-district">District 16 · In office since 2025</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-L000599">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/l000599_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Michael Lawler</span><span class="roster-district">District 17 · In office since 2023</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-R000579">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/r000579_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Patrick Ryan</span><span class="roster-district">District 18 · In office since 2022</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-R000622">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/67745e360b34857ecc909179_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Josh Riley</span><span class="roster-district">District 19 · In office since 2025</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-T000469">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/t000469_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Paul Tonko</span><span class="roster-district">District 20 · In office since 2009</span></span>
+        <span class="chip no" aria-label="Voted No on H.R. 6500">No</span>
+      </a>
+      <a class="roster-row" href="#member-S001196">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/s001196_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Elise M. Stefanik</span><span class="roster-district">District 21 · In office since 2015</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-M001231">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/677446860b34857ecc909119_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">John W. Mannion</span><span class="roster-district">District 22 · In office since 2025</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-L000600">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/680901e76c2e6631263de716_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Nicholas A. Langworthy</span><span class="roster-district">District 23 · In office since 2023</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-T000478">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/t000478_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Claudia Tenney</span><span class="roster-district">District 24 · In office since 2017</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-M001206">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/67ffc962f22eaf56065817bb_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Joseph D. Morelle</span><span class="roster-district">District 25 · In office since 2018</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+      <a class="roster-row" href="#member-K000402">
+        <img class="roster-photo" src="https://www.congress.gov/img/member/668e9306658443009a697c8c_200.jpg" alt="" loading="lazy">
+        <span class="roster-id"><span class="roster-name">Timothy M. Kennedy</span><span class="roster-district">District 26 · In office since 2024</span></span>
+        <span class="chip yes" aria-label="Voted Yes on H.R. 6500">Yes</span>
+      </a>
+    </div>
+
+    <div class="roster-foot">
+      <p class="meta">Not sure of your district? Type your ZIP above, or <a href="https://www.house.gov/representatives/find-your-representative" target="_blank" rel="noopener">look it up by street address on house.gov →</a></p>
+      <p class="meta">Attendance is shown on a member’s page only when it is below 90% of roll calls.</p>
+    </div>
+  </section>
+
+  <!-- THE RECORD: newest by action date, honest about what has a summary -->
+  <section class="record" id="record" aria-label="Recent bills in plain English">
+    <div class="section-head">
+      <p class="kicker">The Record</p>
+      <h2>What Congress is doing, in plain English</h2>
+      <p class="section-sub">Bills translated from the official text by AI — <a href="/methodology">how we keep it neutral</a></p>
+    </div>
+    <p class="asof"><strong>Votes and bills as of September 5, 2026.</strong> Plain-English summaries are written through June 30, 2026; the 60 newest bills show their official title until their summary is written.</p>
+
+    <div class="record-grid">
+      <article class="record-lead">
+        <p class="lead-label">Most recent bill with a plain-English summary</p>
+        <div class="story-kicker">
+          <span class="law-seal moving">Still in Congress</span>
+          <span class="meta">H.Con.Res. 108 · 119th Congress · June 30, 2026</span>
+        </div>
+        <h3><a href="/bill?congress=119&amp;type=hconres&amp;number=108">Order U.S. troops out of hostilities in Lebanon within seven days</a></h3>
+        <ul class="record-provisions">
+          <li>Tells the President to pull U.S. military forces out of any active fighting in Lebanon within 7 days of this resolution passing.</li>
+          <li>Does not stop the U.S. from working with Lebanon’s own military forces.</li>
+          <li>Does not stop the U.S. from protecting its embassies or other official buildings in Lebanon.</li>
+        </ul>
+        <p class="outcome" style="font-family:var(--font-serif);margin-bottom:.4rem">The House rejected it, 189 to 235, on June 30, 2026.</p>
+        <a class="arrow-link" href="/bill?congress=119&amp;type=hconres&amp;number=108">See who voted for it →</a>
+        <p class="official-line">Officially: “Directing the President pursuant to section 5(c) of the War Powers Resolution to remove United States Armed Forces from hostilities in Lebanon.”</p>
+
+        <ul class="also-list" aria-label="More bills with plain-English summaries">
+          <li><a href="/bill?congress=119&amp;type=hres&amp;number=1398">Allow the House to debate and vote on the defense budget and other bills</a><span class="meta">H.Res. 1398 · June 30, 2026</span></li>
+          <li><a href="/bill?congress=119&amp;type=hres&amp;number=1399">Require the House Ethics Committee to keep and release records on harassment settlements</a><span class="meta">H.Res. 1399 · June 30, 2026</span></li>
+          <li><a href="/bill?congress=119&amp;type=s&amp;number=629">Expand emergency aid for farmers and forest landowners hit by natural disasters</a><span class="meta">S. 629 · June 30, 2026</span></li>
+        </ul>
+      </article>
+
+      <div>
+        <p class="lead-label">Newest on the floor</p>
+        <ul class="record-list">
+          <li>
+            <div class="record-item-meta"><span class="bill-no">H.R. 4795</span><span class="law-seal">Passed House</span></div>
+            <h4 class="official"><a href="/bill?congress=119&amp;type=hr&amp;number=4795">Protect Economic and Academic Freedom Act of 2026</a></h4>
+            <p class="meta"><span>Sept. 3, 2026 · Passed 237–169</span><span class="summary-tag" style="margin:0">Summary coming</span></p>
+          </li>
+          <li>
+            <div class="record-item-meta"><span class="bill-no">H.J.Res. 1</span><span class="law-seal moving">Still in Congress</span></div>
+            <h4 class="official"><a href="/bill?congress=119&amp;type=hjres&amp;number=1">Proposing an amendment to the Constitution of the United States to require that the Supreme Court of the United States be composed of nine justices.</a></h4>
+            <p class="meta"><span>Sept. 2, 2026 · Fell short of the two-thirds needed, 212–206</span><span class="summary-tag" style="margin:0">Summary coming</span></p>
+          </li>
+          <li>
+            <div class="record-item-meta"><span class="bill-no">H.R. 1501</span><span class="law-seal">Passed House</span></div>
+            <h4 class="official"><a href="/bill?congress=119&amp;type=hr&amp;number=1501">Protecting Domestic Mining Act of 2025</a></h4>
+            <p class="meta"><span>Sept. 2, 2026 · Passed 218–201</span><span class="summary-tag" style="margin:0">Summary coming</span></p>
+          </li>
+          <li>
+            <div class="record-item-meta"><span class="bill-no">H.R. 9436</span><span class="law-seal">Passed House</span></div>
+            <h4 class="official"><a href="/bill?congress=119&amp;type=hr&amp;number=9436">Northeast Lobsterman Protection Act of 2026</a></h4>
+            <p class="meta"><span>Sept. 1, 2026 · Passed 219–196</span><span class="summary-tag" style="margin:0">Summary coming</span></p>
+          </li>
+          <li>
+            <div class="record-item-meta"><span class="bill-no">H.Res. 1490</span><span class="law-seal">Adopted</span></div>
+            <h4 class="official"><a href="/bill?congress=119&amp;type=hres&amp;number=1490">Providing for the condemnation and denouncement of socialism in all its forms, and for other purposes.</a></h4>
+            <p class="meta"><span>Sept. 1, 2026 · Adopted 220–192</span><span class="summary-tag" style="margin:0">Summary coming</span></p>
+          </li>
+          <li>
+            <div class="record-item-meta"><span class="bill-no">H.Res. 1498</span><span class="law-seal">Adopted</span></div>
+            <h4 class="official"><a href="/bill?congress=119&amp;type=hres&amp;number=1498">In the matter of allegations relating to Representative Chuck Edwards.</a></h4>
+            <p class="meta"><span>Sept. 1, 2026 · Adopted 413–2</span><span class="summary-tag" style="margin:0">Summary coming</span></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="record-foot">
+      <button class="browse-toggle" type="button" aria-expanded="false" aria-controls="browse-panel">Browse all 1,610 bills by topic →</button>
+    </p>
+
+    <div class="notify">
+      <p>Not in CA, FL, NY or TX? Tell us your state and we’ll email you when it is added.</p>
+      <form class="notify-form">
+        <label for="notify-state" class="visually-hidden">Your state</label>
+        <select id="notify-state" name="state" required>
+          <option value="">Your state</option>
+          <option>Arizona</option><option>Georgia</option><option>Michigan</option><option>Nevada</option><option>North Carolina</option><option>Pennsylvania</option><option>Wisconsin</option><option>… all 50 states + DC</option>
+        </select>
+        <label for="notify-email" class="visually-hidden">Email address</label>
+        <input type="email" id="notify-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <button type="submit" class="btn-navy">Notify me</button>
+      </form>
+      <small>We store your email and state, nothing else. <a href="/privacy">Privacy</a></small>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <nav class="footer-links" aria-label="Footer">
+    <a href="/about">About</a>
+    <a href="/methodology">Methodology &amp; Corrections</a>
+    <a href="/privacy">Privacy</a>
+    <a href="#feedback">Report an error on this page</a>
+  </nav>
+  <span class="meta">Data from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a> · Roll calls last synced September 5, 2026 · Plain-English summaries through June 30, 2026</span>
+  <p class="credo">ClearVoting does not express opinions on legislation or representatives.</p>
+</footer>
+
+<button class="feedback-btn" id="feedback-open" aria-label="Send feedback" title="Send feedback">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+
+<!-- ===== MOCKUP NOTES: other states of the finder (not part of the product page) ===== -->
+<section class="mock-notes" aria-label="Mockup notes">
+  <h2>Mockup notes — the other states of the ZIP finder</h2>
+  <div class="mock-grid">
+    <div class="mock-card">
+      <h3>1 · Empty (first visit)</h3>
+      <form class="zip-form"><label for="zip-a" class="visually-hidden">ZIP code</label><input id="zip-a" placeholder="ZIP code" inputmode="numeric"><button type="button" class="btn-navy">Find</button></form>
+      <p>Field is empty; state cards below it still work exactly as today. Nothing is pre-selected; nothing is remembered from a previous visit except the last state (see proposal §h).</p>
+    </div>
+    <div class="mock-card">
+      <h3>2 · ZIP crosses districts (split ZCTA)</h3>
+      <form class="zip-form"><label for="zip-b" class="visually-hidden">ZIP code</label><input id="zip-b" value="11580" inputmode="numeric"><button type="button" class="btn-navy">Find</button></form>
+      <p class="zip-result" style="margin-top:.6rem"><strong>11580 covers more than one district.</strong> Which is yours?</p>
+      <ul class="choice-list">
+        <li><a href="#delegation"><strong>District 4 — Laura Gillen</strong><span>Rockville Centre, Valley Stream</span></a></li>
+        <li><a href="#delegation"><strong>District 5 — Gregory W. Meeks</strong><span>North Valley Stream, Elmont</span></a></li>
+        <li><a href="#delegation"><strong>Not sure — show all 26 House members</strong></a></li>
+      </ul>
+      <p>Every district with ≥5% of the ZIP’s land area is listed (Census 2020 ZCTA↔CD119 file), largest share first. Shares are not printed: land area is not population and would read as a probability. Place names are illustrative in this mockup; the built version shows district number and member only.</p>
+    </div>
+    <div class="mock-card">
+      <h3>3 · ZIP not in the crosswalk / outside coverage</h3>
+      <form class="zip-form"><label for="zip-c" class="visually-hidden">ZIP code</label><input id="zip-c" value="30301" inputmode="numeric"><button type="button" class="btn-navy">Find</button></form>
+      <p class="zip-error">We don’t cover 30301 yet — ClearVoting has CA, FL, NY and TX right now. Tell us your state below and we’ll email you when it is added.</p>
+      <p>Same copy for PO-box-only ZIPs inside the four states, with one extra sentence: “Try a nearby ZIP, or pick your state.” Never a dead end: the state cards are always right below.</p>
+    </div>
+    <div class="mock-card">
+      <h3>4 · Single match (the state shown on this page)</h3>
+      <p style="margin-top:0">11570 → NY-4. The page scrolls to “Your three representatives” with the House member pinned and outlined. URL becomes <code>/?zip=11570</code> via <code>history.replaceState</code>, so Back restores it and the link is shareable. The delegation section below it is the existing homepage component with only its rows changed.</p>
+    </div>
+  </div>
+</section>
+</body>
+</html>

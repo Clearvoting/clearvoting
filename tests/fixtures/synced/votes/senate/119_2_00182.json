@@ -1,0 +1,82 @@
+{
+  "congress": 119,
+  "session": 2,
+  "vote_number": 182,
+  "vote_date": "June 22, 2026,  05:40 PM",
+  "question": "On the Motion (Motion to Concur in the House Amendment to the Senate Amendment to H.R. 6644 with an Amendment (SA 5823))",
+  "document": "H.R. 6644",
+  "result": "Motion Agreed to (85-5)",
+  "title": "Motion to Concur in the House Amendment to the Senate Amendment to H.R. 6644 with an Amendment (SA 5823)",
+  "counts": {
+    "yeas": 85,
+    "nays": 5,
+    "present": 0,
+    "absent": 10
+  },
+  "members": [
+    {
+      "first_name": "John",
+      "last_name": "Cornyn",
+      "party": "R",
+      "state": "TX",
+      "vote": "Yea",
+      "lis_member_id": "S287"
+    },
+    {
+      "first_name": "Ted",
+      "last_name": "Cruz",
+      "party": "R",
+      "state": "TX",
+      "vote": "Not Voting",
+      "lis_member_id": "S355"
+    },
+    {
+      "first_name": "Kirsten",
+      "last_name": "Gillibrand",
+      "party": "D",
+      "state": "NY",
+      "vote": "Yea",
+      "lis_member_id": "S331"
+    },
+    {
+      "first_name": "Ashley",
+      "last_name": "Moody",
+      "party": "R",
+      "state": "FL",
+      "vote": "Yea",
+      "lis_member_id": "S439"
+    },
+    {
+      "first_name": "Alex",
+      "last_name": "Padilla",
+      "party": "D",
+      "state": "CA",
+      "vote": "Yea",
+      "lis_member_id": "S413"
+    },
+    {
+      "first_name": "Adam",
+      "last_name": "Schiff",
+      "party": "D",
+      "state": "CA",
+      "vote": "Yea",
+      "lis_member_id": "S427"
+    },
+    {
+      "first_name": "Charles",
+      "last_name": "Schumer",
+      "party": "D",
+      "state": "NY",
+      "vote": "Yea",
+      "lis_member_id": "S270"
+    },
+    {
+      "first_name": "Rick",
+      "last_name": "Scott",
+      "party": "R",
+      "state": "FL",
+      "vote": "Nay",
+      "lis_member_id": "S404"
+    }
+  ]
+}

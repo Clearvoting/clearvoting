@@ -6,6 +6,13 @@ import sys
 
 PROJECT_ROOT = pathlib.Path(__file__).parent.parent
 
+# The redesign withdrew these generators' output from every page; the Sunday
+# AI sync and the full sync must not run them (F027). They stay reachable only
+# through their own opt-in flags.
+WITHDRAWN_AI_STEPS = ("sync_bill_arguments", "generate_scorecard_verdicts",
+                      "sync_member_summaries", "check_page_coherence",
+                      "backfill_bill_directions")
+
 
 def test_skip_ai_flag_accepted():
     """sync.py should accept --skip-ai without error."""
@@ -50,14 +57,40 @@ async def test_ai_only_skips_congress_key_check(monkeypatch, tmp_path):
     monkeypatch.delenv("CONGRESS_API_KEY", raising=False)
     monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
     monkeypatch.setattr(sync_module, "_ai_preflight", AsyncMock())
-    for step in ("sync_bill_summaries", "sync_bill_arguments", "generate_scorecard_verdicts",
-                 "sync_member_summaries", "check_page_coherence"):
+    for step in ("sync_bill_summaries", *WITHDRAWN_AI_STEPS):
         monkeypatch.setattr(sync_module, step, AsyncMock(return_value={}))
     monkeypatch.setattr(sys, "argv", ["sync.py", "--ai-only"])
 
     await sync_module.main()
 
-    assert sync_module.sync_member_summaries.await_count == 1
+    assert sync_module.sync_bill_summaries.await_count == 1
+    for step in WITHDRAWN_AI_STEPS:
+        assert getattr(sync_module, step).await_count == 0, step
+    assert (tmp_path / "sync_metadata.json").exists()
+
+
+async def test_full_sync_runs_only_the_summary_generator(monkeypatch, tmp_path):
+    """The full sync's AI section is the bill summaries alone (F027)."""
+    from unittest.mock import AsyncMock, MagicMock
+    import sync as sync_module
+
+    monkeypatch.setenv("CONGRESS_API_KEY", "test-key")
+    monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
+    for name in ("CacheService", "CongressAPIClient", "SenateVoteService",
+                 "build_votes_index", "build_state_overview"):
+        monkeypatch.setattr(sync_module, name, MagicMock())
+    for step in ("sync_members", "sync_senate_votes", "sync_house_votes",
+                 "sync_bills_from_votes", "fetch_bill_texts", "build_member_votes"):
+        monkeypatch.setattr(sync_module, step, AsyncMock(return_value=0))
+    for step in ("sync_bill_summaries", *WITHDRAWN_AI_STEPS):
+        monkeypatch.setattr(sync_module, step, AsyncMock(return_value={}))
+    monkeypatch.setattr(sys, "argv", ["sync.py", "--skip-donations"])
+
+    await sync_module.main()
+
+    assert sync_module.sync_bill_summaries.await_count == 1
+    for step in WITHDRAWN_AI_STEPS:
+        assert getattr(sync_module, step).await_count == 0, step
     assert (tmp_path / "sync_metadata.json").exists()
 
 
@@ -99,9 +132,8 @@ async def test_ai_only_fails_when_nothing_persists(monkeypatch, tmp_path):
     monkeypatch.setattr(sync_module, "SYNC_DIR", tmp_path)
     monkeypatch.setattr(sync_module, "_ai_preflight", AsyncMock())
     failed_stats = {"total": 5, "passed": 0, "failed": 5, "needs_review": []}
-    for step in ("sync_bill_summaries", "sync_bill_arguments", "sync_member_summaries"):
-        monkeypatch.setattr(sync_module, step, AsyncMock(return_value=dict(failed_stats)))
-    for step in ("generate_scorecard_verdicts", "check_page_coherence"):
+    monkeypatch.setattr(sync_module, "sync_bill_summaries", AsyncMock(return_value=failed_stats))
+    for step in WITHDRAWN_AI_STEPS:
         monkeypatch.setattr(sync_module, step, AsyncMock(return_value={}))
     monkeypatch.setattr(sys, "argv", ["sync.py", "--ai-only"])
 

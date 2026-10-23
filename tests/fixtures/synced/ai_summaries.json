@@ -4,7 +4,345 @@
       "Cuts taxes on tips for workers like servers and bartenders, up to $25,000 a year.",
       "Raises the limit on state and local tax deductions from $10,000 to $40,000."
     ],
-    "issue_categories": ["Taxes", "Cost of Living"],
+    "issue_categories": [
+      "Taxes",
+      "Cost of Living"
+    ],
+    "direction": "against"
+  },
+  "117-hres-8": {
+    "one_liner": "Set the rules for how the House of Representatives will operate in 2021",
+    "provisions": [
+      "Sets the rules for how the House of Representatives will run during the 117th Congress, which covers 2021 to 2023.",
+      "Makes the Office of Diversity and Inclusion a permanent part of the House.",
+      "Keeps rules in place requiring the House to protect employees from harassment and discrimination, and adds protections for people who report wrongdoing.",
+      "For COVID-19 relief bills, the Budget Committee chair can skip the normal rules for calculating how much a law will cost.",
+      "For bills related to climate change, the Budget Committee chair can skip the normal rules for calculating how much a law will cost.",
+      "Requires the House Clerk to keep a public list showing which members support bills already passed by the Senate.",
+      "Lets investigators demand documents or testimony in a probe into political interference at federal health agencies during the COVID-19 response."
+    ],
+    "issue_categories": [
+      "Healthcare",
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say making the Office of Diversity and Inclusion a permanent part of the House ensures staff dedicated to equal opportunity for House employees will remain in place beyond any single Congress.",
+        "Supporters say allowing the Budget Committee chair to skip normal cost calculations for COVID-19 relief bills removes a procedural step that can slow down emergency spending responses.",
+        "Supporters say requiring the House Clerk to publish a public list showing which members support Senate-passed bills that have not yet received a House vote gives voters direct information about where their representatives stand."
+      ],
+      "critics": [
+        "Critics say allowing the Budget Committee chair to skip normal cost-tracking rules for both COVID-19 and climate change bills means large amounts of spending can move forward without the standard budget review process.",
+        "Critics say granting subpoena power to investigators probing political interference at the Department of Health and Human Services and the Centers for Disease Control and Prevention before those investigators have adopted their own operating rules removes a standard oversight step.",
+        "Critics say adding climate change bills to the same budget exemption created for COVID-19 emergency spending applies a rule designed for a short-term crisis to an open-ended and broadly defined category of legislation."
+      ]
+    }
+  },
+  "118-hr-21": {
+    "one_liner": "Stop the government from using emergency oil reserves until more federal land is leased for drilling",
+    "provisions": [
+      "Stops the government from releasing oil from the Strategic Petroleum Reserve",
+      "Requires the Energy Department to create a plan to lease more federal land for oil and gas drilling",
+      "Keeps the oil release ban until the drilling plan is completed"
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say this would boost domestic oil production by requiring the Energy Department to plan for more drilling on federal lands.",
+        "Supporters say this would protect the Strategic Petroleum Reserve for real emergencies instead of allowing releases for political reasons.",
+        "Supporters say this would reduce America's dependence on foreign oil by expanding drilling opportunities on government-owned land."
+      ],
+      "critics": [
+        "Critics say this would stop the government from releasing oil from the Strategic Petroleum Reserve during gas price spikes or supply shortages.",
+        "Critics say this would force more oil and gas drilling on federal lands, which could harm wildlife and the environment.",
+        "Critics say this would tie the Energy Department's hands by linking emergency oil releases to new drilling plans."
+      ]
+    }
+  },
+  "119-hr-7148": {
+    "one_liner": "Fund the military, health care, education, housing, and other federal departments for 2026",
+    "provisions": [
+      "Pays for the U.S. military through the end of 2026.",
+      "Funds the departments that run health care, labor, and education programs through 2026.",
+      "Covers spending for the transportation and housing departments through 2026.",
+      "Keeps Homeland Security running at 2025 spending levels through February 13, 2026.",
+      "Keeps the National Flood Insurance Program, the welfare assistance program for low-income families (TANF), and several health care programs from expiring.",
+      "Extends immigration programs and cybersecurity programs that were about to expire.",
+      "Continues trade benefits for Haiti and countries in sub-Saharan Africa."
+    ],
+    "issue_categories": [
+      "Veterans & Military",
+      "Healthcare"
+    ],
+    "direction": "in_favor",
+    "needs_review": true
+  },
+  "119-hr-6500": {
+    "one_liner": "Extend no-tax imports from 32 African countries through 2028",
+    "provisions": [
+      "Removes import taxes on goods from 32 African countries through December 31, 2028",
+      "Extends customs fees and processing fees through December 31, 2031",
+      "Gives refunds for import taxes paid on African goods that entered the US after September 30, 2025",
+      "Lets African countries use fabric from China and other non-African countries and still avoid import taxes",
+      "Covers clothing and other products from countries south of the Sahara Desert"
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say removing import taxes on goods from 32 African countries through 2028 will help African businesses sell more products to US consumers and create jobs in Africa.",
+        "Supporters say the refund provision will help US companies get back money they paid in import taxes on African goods after September 30, 2025.",
+        "Supporters say letting African countries use fabric from China and other countries while still avoiding import taxes helps African clothing makers compete with cheaper materials."
+      ],
+      "critics": [
+        "Critics say eliminating import taxes on African goods will reduce US government revenue that comes from collecting these fees.",
+        "Critics say US manufacturers will lose sales because they have to compete with duty-free imports from 32 African countries.",
+        "Critics say allowing African countries to use Chinese fabric and still avoid US import taxes gives an unfair advantage to Chinese textile companies."
+      ]
+    }
+  },
+  "119-hconres-86": {
+    "one_liner": "Order the President to pull U.S. troops out of fighting with Iran",
+    "provisions": [
+      "The President must remove U.S. military forces from any fighting against Iran unless Congress officially declares war or passes a law allowing it.",
+      "U.S. troops that are defending the U.S., an ally, or a partner from an immediate attack do not have to be pulled out right away.",
+      "If troops stay to defend against an immediate threat, the President must follow the War Powers Resolution, which gives a 60-day limit on military action without Congress approving it."
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "against",
+    "arguments": {
+      "supporters": [
+        "Supporters say this resolution would require the President to pull U.S. troops out of fighting with Iran unless Congress votes to declare war or passes a specific law allowing military action — giving Congress its constitutional role in deciding when the country goes to war.",
+        "Supporters say the 60-day clock in the War Powers Resolution still applies, so troops used to stop an immediate attack cannot stay in combat indefinitely without Congress approving it.",
+        "Supporters say U.S. forces defending America, an ally, or a partner from an active attack are still allowed to act, so the resolution does not leave the country unable to respond to a real threat."
+      ],
+      "critics": [
+        "Critics say requiring Congress to vote before the President can act against Iran could slow down the military's ability to respond quickly, since getting a declaration of war or a new law passed takes time.",
+        "Critics say the 60-day limit from the War Powers Resolution may not be enough time to finish a military operation against Iran if Congress does not move fast enough to authorize it.",
+        "Critics say the line between 'defending against an immediate attack' and other military action is unclear, which could create legal confusion about when troops must be removed."
+      ]
+    }
+  },
+  "119-hr-6644": {
+    "one_liner": "Expand federal housing programs and increase government funding for housing",
+    "provisions": [
+      "Raises income limits for families who can get federal housing grants",
+      "Increases loan limits for apartment owners who want government-backed mortgages",
+      "Creates grants for cities and states to plan housing projects",
+      "Lets some housing construction skip environmental reviews",
+      "Stops counting veterans' disability money when they apply for housing help",
+      "Removes the rule that mobile homes must have permanent metal frames",
+      "Requires housing agencies to post contract details online"
+    ],
+    "issue_categories": [
+      "Housing"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say raising income limits for federal housing grants will help more working families get assistance with rent and home buying.",
+        "Supporters say not counting veterans' disability payments as income will make it easier for disabled veterans to qualify for housing help through the VASH program.",
+        "Supporters say letting some housing projects skip environmental reviews will speed up construction and get homes built faster for people who need them."
+      ],
+      "critics": [
+        "Critics say letting housing construction skip environmental reviews could harm local communities and damage air and water quality.",
+        "Critics say raising loan limits for apartment owners and income limits for housing grants will cost taxpayers more money without clear limits on spending.",
+        "Critics say removing the requirement for permanent frames on mobile homes could make them less safe during storms and other disasters."
+      ]
+    }
+  },
+  "119-s-2": {
+    "one_liner": "Fund border patrol and immigration enforcement agencies through 2029",
+    "provisions": [
+      "Gives money to Customs and Border Protection for more staff, border technology, and enforcement activities.",
+      "Gives money to Immigration and Customs Enforcement for more staff, investigations, transportation, computers, and buildings.",
+      "Pays for ICE to make arrests related to immigration enforcement.",
+      "Lets state and local police departments work with ICE on immigration enforcement.",
+      "Gives extra money to the Department of Homeland Security to work with state and local agencies on enforcement.",
+      "All of this funding stays available through the end of 2029."
+    ],
+    "issue_categories": [
+      "Immigration",
+      "Safety & Crime"
+    ],
+    "direction": "in_favor",
+    "arguments": {
+      "supporters": [
+        "Supporters say the bill gives Customs and Border Protection money for new staff and screening technology, which they say will help stop illegal crossings at the border.",
+        "Supporters say funding 287(g) agreements lets state and local police help ICE enforce immigration law, adding more officers to enforcement efforts without hiring all federal agents.",
+        "Supporters say locking in funding through FY2029 gives ICE and CBP a stable budget to plan operations, hire staff, and maintain facilities without waiting for yearly budget fights."
+      ],
+      "critics": [
+        "Critics say the bill is passed through reconciliation, a process that bypasses the normal Senate debate rules, and that it adds to the federal deficit rather than being paid for with cuts elsewhere.",
+        "Critics say expanding 287(g) agreements means local police departments—who are funded by cities and counties—will take on immigration enforcement tasks, which critics argue pulls them away from local crime and public safety work.",
+        "Critics say paying for ICE arrests and detention transportation through FY2029 will lead to a large rise in the number of people detained, including immigrants with no criminal record, raising concerns about due process."
+      ]
+    }
+  },
+  "119-sconres-33": {
+    "one_liner": "Set the federal government's spending and revenue targets for 2026 through 2035",
+    "provisions": [
+      "Sets targets for how much the government plans to spend and take in each year from 2026 through 2035.",
+      "Tells four committees — covering homeland security, immigration law, courts, and government operations — to send budget proposals by May 15, 2026.",
+      "Those proposals can add no more than $70 billion total to the deficit across 2026–2035.",
+      "In the Senate, these budget bills can pass with 51 votes instead of the usual 60, skipping a step that normally lets senators delay a vote.",
+      "Sets aside budget room for border security and immigration changes that do not add to the deficit."
+    ],
+    "issue_categories": [
+      "Taxes",
+      "Immigration"
+    ],
+    "direction": "neutral",
+    "arguments": {
+      "supporters": [
+        "Supporters say the 10-year spending plan gives Congress a clear map for cutting the deficit by setting firm limits on new spending from 2026 through 2035.",
+        "Supporters say letting budget bills pass with 51 Senate votes instead of 60 means border security and immigration enforcement changes can move faster without being blocked.",
+        "Supporters say the $70 billion cap on new deficit spending from the four committees keeps the budget process from adding too much to the national debt."
+      ],
+      "critics": [
+        "Critics say using the 51-vote rule to bypass the normal 60-vote threshold removes a key check that lets the minority party slow down major spending decisions.",
+        "Critics say the instructions to the Homeland Security and Judiciary committees prioritize border and immigration spending while leaving out other areas like health care or education.",
+        "Critics say setting a $70 billion deficit limit across 10 years still allows Congress to add to the national debt, which already stands above $36 trillion."
+      ]
+    }
+  },
+  "119-hjres-140": {
+    "one_liner": "Reopen 225,504 acres of Minnesota forest land to mining and energy leasing",
+    "provisions": [
+      "Cancels a 2023 federal order that blocked mining and energy leasing on about 225,504 acres of national forest land in Cook, Lake, and Saint Louis Counties, Minnesota.",
+      "That land had been off-limits to mineral and geothermal leasing for 20 years under the canceled order.",
+      "The land sits near the Boundary Waters Canoe Area Wilderness and the Rainy River Watershed in northeastern Minnesota.",
+      "Mining and geothermal energy companies can now apply to lease and explore this land again."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
+    "direction": "against",
+    "arguments": {
+      "supporters": [
+        "Supporters say this resolution reopens 225,504 acres of Minnesota national forest land that a 2023 federal order had locked out of mineral and geothermal leasing for 20 years, giving mining and energy companies the ability to apply for leases again.",
+        "Supporters say the Bureau of Land Management blocked this land without an act of Congress, and this resolution restores congressional authority over how federal land in Cook, Lake, and Saint Louis Counties is used.",
+        "Supporters say allowing mineral exploration on these acres could bring mining jobs and tax revenue to northeastern Minnesota communities near the Rainy River Watershed."
+      ],
+      "critics": [
+        "Critics say this resolution removes protections the Bureau of Land Management put in place in 2023 specifically to shield the Boundary Waters Canoe Area Wilderness and the Rainy River Watershed from the potential harm of mineral and geothermal drilling.",
+        "Critics say the 1854 Ceded Territory of the Lake Superior Chippewa — tribal land with treaty-protected hunting and fishing rights — sits within the affected area, and reopening it to leasing could threaten those rights and the water quality the tribe depends on.",
+        "Critics say the original 20-year withdrawal was meant to give time to study risks before any leasing decision, and canceling it now cuts that review short for all 225,504 acres."
+      ]
+    }
+  },
+  "119-hjres-142": {
+    "one_liner": "Cancel a D.C. law that changed how the city collects income taxes",
+    "provisions": [
+      "DC's city council passed a law in December 2025 to stop following some changes from a federal tax law. Congress canceled that DC law.",
+      "Tips earned by workers in DC stay free from DC income taxes, as set by the federal law.",
+      "DC residents keep a higher standard deduction — meaning they pay DC income taxes on a smaller portion of what they earn — as set by the federal law.",
+      "Business owners in DC can still write off the full cost of a non-home building in the same year they buy or improve it, for DC tax purposes.",
+      "The DC child tax credit that the city council had voted to restore does not go into effect."
+    ],
+    "issue_categories": [
+      "Taxes"
+    ],
+    "direction": "against"
+  },
+  "119-hr-6938": {
+    "one_liner": "Fund science, justice, energy, and environment agencies for the year starting October 2025",
+    "provisions": [
+      "Gives money to the Department of Commerce and the National Science Foundation for science and trade programs.",
+      "Funds the Department of Justice and federal law enforcement agencies for the year starting October 2025.",
+      "Pays for NASA space programs and related science activities.",
+      "Sends money to the U.S. Army Corps of Engineers and the Department of Energy for water and energy projects.",
+      "Sets aside money for the Department of the Interior, the EPA, the Forest Service, and the Indian Health Service.",
+      "Lays out rules for how departments can use the money this law provides."
+    ],
+    "issue_categories": [
+      "Environment & Energy",
+      "Safety & Crime"
+    ],
+    "direction": "in_favor"
+  },
+  "119-sjres-82": {
+    "one_liner": "Cancel an HHS rule requiring the department to follow rulemaking law as written",
+    "provisions": [
+      "Cancels a rule from the Department of Health and Human Services that required the department to follow the exact text of the Administrative Procedure Act when making regulations.",
+      "The Administrative Procedure Act is the law that sets the steps all federal agencies must follow when creating or changing rules.",
+      "With this HHS rule gone, the department no longer has its own written policy requiring it to stick to what that law says word for word."
+    ],
+    "issue_categories": [
+      "Healthcare"
+    ],
+    "direction": "against",
+    "arguments": {
+      "supporters": [
+        "Supporters say canceling this rule removes a requirement that was already covered by federal law, since the Administrative Procedure Act already applies to all agencies without HHS needing its own separate written policy repeating it.",
+        "Supporters say the HHS rule added an extra layer of internal policy that could slow down the department's ability to update health regulations when urgent changes are needed.",
+        "Supporters say Congress, not a single department, should decide how agencies interpret the Administrative Procedure Act, so HHS should not have its own binding text-based policy on that law."
+      ],
+      "critics": [
+        "Critics say removing this rule means HHS no longer has a written commitment to follow the exact text of the Administrative Procedure Act, which could make it easier for the department to issue regulations that bend or skip required steps.",
+        "Critics say the Administrative Procedure Act sets the process that protects the public's right to comment on new rules, and without HHS's written policy reinforcing that, those comment rights could be weakened for the millions of people affected by HHS programs.",
+        "Critics say this disapproval resolution targets a rule that kept one of the largest federal departments — which oversees Medicare, Medicaid, and public health — accountable to the law's exact wording, and canceling it reduces that accountability."
+      ]
+    }
+  },
+  "119-s-1071": {
+    "one_liner": "Fund and set rules for the U.S. military for the year starting October 2025",
+    "provisions": [
+      "Sets military spending for the year starting October 2025, covering the Army, Navy, Air Force, and other defense programs",
+      "Approves the purchase of new aircraft, ships, and missiles — including Black Hawk helicopters, Ford-class aircraft carriers, and Virginia-class submarines",
+      "Decides how many active-duty troops and reserve members the military can have",
+      "Lays out rules for military pay and healthcare for troops and their families",
+      "Covers how the military works with other countries, including Israel, Ukraine, and nations in the Pacific region",
+      "Establishes rules for how the military handles computer security and uses artificial intelligence",
+      "Also covers nuclear programs at the Department of Energy and sets rules for the Coast Guard and State Department"
+    ],
+    "issue_categories": [
+      "Veterans & Military"
+    ],
+    "direction": "in_favor"
+  },
+  "119-sres-532": {
+    "one_liner": "Allow the Senate to vote on several nominations at once",
+    "provisions": [
+      "The Senate voted to consider several nominees together in one vote, instead of voting on each person one at a time.",
+      "The nominees in this group were already on the Executive Calendar — the Senate's list of people nominated by the President who are waiting for a vote.",
+      "This is a one-time action that only applies to this specific group of nominees and does not change how future nominations are handled."
+    ],
+    "issue_categories": [
+      "Jobs & Workers"
+    ],
+    "direction": "neutral",
+    "arguments": {
+      "supporters": [
+        "Supporters say combining the nominees already on the Executive Calendar into one en bloc vote saves Senate floor time, letting the chamber move through its backlog of pending nominations faster.",
+        "Supporters say each of these nominees had already been placed on the Executive Calendar, meaning they had gone through committee review and were waiting for a floor vote — the en bloc process does not skip any prior steps.",
+        "Supporters say this is a one-time action limited to this specific group and does not change the rules for how future nominations are handled."
+      ],
+      "critics": [
+        "Critics say grouping multiple nominees into a single en bloc vote means senators cannot vote against one individual nominee without rejecting the entire group at once.",
+        "Critics say nominees on the Executive Calendar are being considered for different positions with different qualifications, and bundling them removes the chance to debate or question each person on their own record.",
+        "Critics say even a one-time en bloc vote can pressure senators to approve nominees they have concerns about in order to avoid blocking others in the same group."
+      ]
+    }
+  },
+  "119-hjres-131": {
+    "one_liner": "Allow oil and gas leasing on 1.6 million acres in Alaska's Arctic National Wildlife Refuge",
+    "provisions": [
+      "All 1.6 million acres of the Arctic National Wildlife Refuge Coastal Plain in Alaska are now open for oil and gas leasing.",
+      "Before this bill passed, only 400,000 acres were open — a 2024 rule had blocked the other 1.2 million acres.",
+      "Those 1.2 million acres had been set aside under the 2024 rule to protect wildlife and natural resources in the area."
+    ],
+    "issue_categories": [
+      "Environment & Energy"
+    ],
     "direction": "against"
   }
 }

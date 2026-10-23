@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H.R. 4795 — Protect Economic and Academic Freedom Act of 2026 | ClearVoting</title>
+<meta name="description" content="The House passed H.R. 4795, 237 to 169, on September 3, 2026. See what it does and how your representatives voted.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+/* ClearVoting — "Arrive from a share" mockup system. Paper/navy broadsheet palette kept. */
+:root{
+  --paper:#F5F6FA; --card:#FFFFFF; --ink:#1B1B1B; --ink-soft:#5B616B; --ink-meta:#5F656D;
+  --navy:#112E51; --blue:#0071BC; --blue-dim:#205493; --yes:#2E8540; --no:#CD2026; --yes-text:#1F5E2D; --no-text:#8E1B21; --absent:#5F656D;
+  --rule:#D6D7D9; --rule-soft:#E8E8E8; --yes-bg:#EAF4EC; --no-bg:#FBEAEA; --absent-bg:#EEF0F2;
+  --font-display:'Playfair Display',Georgia,serif; --font-serif:'Lora',Georgia,serif; --font-ui:'Inter',system-ui,-apple-system,sans-serif;
+  --t-1:.8rem; --t0:.9rem; --t1:1.0625rem; --t2:1.25rem; --t3:1.55rem; --t4:2rem; --t5:2.5rem;
+  --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s6:1.5rem; --s8:2rem; --s12:3rem;
+  --tap:44px; --gutter:1rem; --max:1100px; --focus:0 0 0 3px #fff,0 0 0 5px var(--blue);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-serif);font-size:var(--t1);line-height:1.6;overflow-x:hidden}
+a{color:var(--blue-dim)} a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:none;box-shadow:var(--focus);border-radius:3px}
+img{max-width:100%;display:block}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--navy);color:#fff;padding:.5rem 1rem;font-family:var(--font-ui)} .skip-link:focus{left:1rem;z-index:50}
+.kicker{font-family:var(--font-ui);font-size:var(--t-1);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-dim)}
+.meta{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta);letter-spacing:.01em;line-height:1.45}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+/* Masthead — shared chrome, kept; tighter vertical rhythm on landing pages */
+.masthead{padding:1.1rem var(--gutter) 0;text-align:center}
+.masthead .logo{font-family:var(--font-display);font-weight:800;font-size:clamp(1.6rem,4.5vw,2.5rem);color:var(--navy);line-height:1;text-decoration:none;display:inline-block;min-height:var(--tap);padding-top:.35rem}
+.masthead .logo span{color:var(--blue);font-style:italic;font-weight:600}
+.masthead-tagline{font-family:var(--font-ui);font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-meta);margin-top:.25rem}
+.masthead-nav{max-width:var(--max);margin:.7rem auto 0;border-top:3px double var(--navy);border-bottom:1px solid var(--navy);display:flex;justify-content:center;gap:1.25rem;padding:0 .5rem}
+.masthead-nav a{font-family:var(--font-ui);font-size:var(--t-1);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap);padding:0 .35rem;border-bottom:2px solid transparent}
+.masthead-nav a[aria-current],.masthead-nav a:hover{color:var(--navy);border-bottom-color:var(--blue)}
+/* Election dateline (site-wide, server-rendered, disappears after Nov 3) */
+.election{max-width:var(--max);margin:0 auto;padding:.55rem var(--gutter);font-family:var(--font-ui);font-size:var(--t-1);color:var(--navy);display:flex;gap:.6rem;align-items:baseline;justify-content:center;flex-wrap:wrap;border-bottom:1px solid var(--rule)}
+.election strong{font-weight:700} .election a{color:var(--blue-dim);font-weight:600}
+/* Buttons & controls — every control ≥44px */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:var(--tap);padding:0 1rem;font-family:var(--font-ui);font-size:var(--t0);font-weight:600;border-radius:6px;border:1px solid var(--navy);background:var(--navy);color:#fff;text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn--ghost{background:transparent;color:var(--navy)} .btn--ghost:hover{background:#fff}
+.btn--text{background:transparent;border-color:transparent;color:var(--blue-dim);padding:0 .5rem;text-decoration:underline;text-underline-offset:3px}
+.btn svg{width:18px;height:18px;flex:none}
+.actions{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+/* Party toggle: explicit, per visit, no persistence */
+.party{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta);display:inline-flex;align-items:center;gap:.5rem;min-height:var(--tap)}
+.party button{min-height:36px;padding:0 .7rem;font:inherit;font-weight:600;color:var(--blue-dim);background:#fff;border:1px solid var(--rule);border-radius:999px;cursor:pointer}
+.party button[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.party-label{display:none;font-weight:600;color:var(--ink)} body.show-party .party-label{display:inline}
+/* Rules, not cards */
+.sec{border-top:1px solid var(--rule);padding:var(--s6) 0}
+.sec--double{border-top:3px double var(--navy)}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:var(--s4);flex-wrap:wrap}
+.sec-head h2{font-family:var(--font-display);font-weight:700;font-size:var(--t2);color:var(--navy);line-height:1.2}
+.asof{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta)}
+.note{font-family:var(--font-ui);font-size:var(--t0);color:var(--ink-soft);border-left:3px solid var(--rule);padding:.35rem .75rem;margin:.75rem 0}
+/* Vote chip: the ONLY place red/green appears. Text always. */
+.chip{display:inline-flex;align-items:center;min-height:28px;padding:0 .6rem;border-radius:999px;font-family:var(--font-ui);font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;border:1px solid transparent}
+.chip--yes{background:var(--yes-bg);color:#1F5E2D;border-color:#BFDEC6} .chip--no{background:var(--no-bg);color:#8E1B21;border-color:#EFBFC1} .chip--nv{background:var(--absent-bg);color:var(--ink-meta);border-color:var(--rule)}
+.chip--page{background:var(--navy);color:#fff}
+/* Status seal */
+.seal{font-family:var(--font-ui);font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--navy);padding:.2rem .55rem;border-radius:4px;white-space:nowrap;display:inline-block}
+.seal--moving{background:transparent;color:var(--blue-dim);border:1px solid var(--blue)}
+.seal--muted{background:transparent;color:var(--ink-meta);border:1px solid var(--rule)}
+/* People rows (Your representatives, delegation) */
+.people{list-style:none}
+.person{display:grid;grid-template-columns:48px 1fr auto;gap:.8rem;align-items:center;min-height:64px;padding:.55rem 0;border-top:1px solid var(--rule-soft);text-decoration:none;color:inherit}
+.person:first-child{border-top:0}
+.person img,.person .ph{width:48px;height:48px;border-radius:4px;border:1px solid var(--rule);object-fit:cover;background:#E6E9EF;display:flex;align-items:center;justify-content:center;font-family:var(--font-ui);font-size:.85rem;font-weight:700;color:var(--ink-meta)}
+.person .nm{font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--navy);line-height:1.2}
+.person .seat{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta);margin-top:.15rem}
+.person .go{font-family:var(--font-ui);color:var(--blue-dim);font-size:1.2rem}
+.person:hover .nm{text-decoration:underline}
+/* ZIP entry */
+.zip{display:flex;gap:.5rem;flex-wrap:wrap;align-items:stretch}
+.zip label{font-family:var(--font-ui);font-size:var(--t0);font-weight:600;color:var(--navy);width:100%}
+.zip input{flex:1 1 140px;min-height:48px;font:600 1.05rem var(--font-ui);padding:0 .8rem;border:1.5px solid var(--navy);border-radius:6px;background:#fff;color:var(--ink);letter-spacing:.08em}
+.zip .btn{flex:1 1 200px}
+.zip-help{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta);margin-top:.5rem}
+.zip-help a{color:var(--blue-dim)}
+.remember{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;font-family:var(--font-ui);font-size:var(--t0);color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:.5rem .75rem;margin-top:.75rem}
+.remember .btn{min-height:40px}
+/* Vote rows grouped by bill */
+.votes{list-style:none}
+.vote{padding:.85rem 0;border-top:1px solid var(--rule-soft);display:grid;grid-template-columns:1fr auto;gap:.35rem .8rem;align-items:start}
+.vote:first-child{border-top:0}
+.vote h3{font-family:var(--font-serif);font-weight:500;font-size:1.05rem;line-height:1.35;grid-column:1}
+.vote h3 a{color:var(--navy);text-decoration:none} .vote h3 a:hover{text-decoration:underline}
+.vote .chip{grid-column:2;grid-row:1;margin-top:.15rem}
+.vote .out{grid-column:1/-1;font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta)}
+.vote .out b{color:var(--ink);font-weight:600}
+.vote .fallback{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta);grid-column:1/-1;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.vote .fallback .seal{font-size:.6rem}
+details.proc{grid-column:1/-1} details.proc summary{font-family:var(--font-ui);font-size:var(--t-1);color:var(--blue-dim);cursor:pointer;min-height:var(--tap);display:flex;align-items:center;list-style:none}
+details.proc summary::before{content:"+ ";font-weight:700} details.proc[open] summary::before{content:"– "}
+details.proc ul{list-style:none;padding:.25rem 0 .25rem .9rem;border-left:2px solid var(--rule)}
+details.proc li{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-soft);padding:.35rem 0;display:flex;gap:.6rem;justify-content:space-between;align-items:center}
+/* Disclosure */
+details.more summary{font-family:var(--font-ui);font-size:var(--t0);font-weight:600;color:var(--blue-dim);cursor:pointer;min-height:var(--tap);display:flex;align-items:center;list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+/* Share card preview (og:image 1200×630, scaled) */
+.ogwrap{border:1px solid var(--rule);background:#fff;padding:.75rem;border-radius:6px}
+.og{aspect-ratio:1200/630;background:#F5F6FA;border:3px double var(--navy);padding:6% 6% 5%;display:flex;flex-direction:column;justify-content:space-between;container-type:inline-size}
+.og .og-logo{font-family:var(--font-display);font-weight:800;color:var(--navy);font-size:clamp(.8rem,5cqw,2rem);line-height:1} .og .og-logo span{color:var(--blue);font-style:italic;font-weight:600}
+.og .og-k{font-family:var(--font-ui);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-dim);font-size:clamp(.45rem,2.4cqw,.9rem);margin-top:2%}
+.og .og-h{font-family:var(--font-display);font-weight:700;color:var(--navy);font-size:clamp(1rem,7cqw,2.6rem);line-height:1.1;margin-top:1%}
+.og .og-m{font-family:var(--font-ui);color:var(--ink-meta);font-size:clamp(.5rem,2.6cqw,1rem);margin-top:2%;display:flex;justify-content:space-between;gap:1rem;align-items:flex-end}
+.og .og-tally{font-family:var(--font-ui);font-weight:700;font-size:clamp(.55rem,3cqw,1.1rem);color:var(--ink)}
+.og .og-tally .y{color:var(--yes-text)} .og .og-tally .n{color:var(--no-text)}
+/* Toast */
+.toast{position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);background:var(--navy);color:#fff;font-family:var(--font-ui);font-size:var(--t0);padding:.6rem 1rem;border-radius:6px;display:none;z-index:20}
+.toast.on{display:block}
+/* Sticky name strip — the one sticky element on mobile; replaces the masthead once it scrolls away */
+.strip{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--navy);display:none;align-items:center;justify-content:space-between;gap:.5rem;padding:0 var(--gutter);min-height:var(--tap)}
+.strip.on{display:flex}
+.strip .sn{font-family:var(--font-display);font-weight:700;color:var(--navy);font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.strip .btn{min-height:36px;padding:0 .7rem;font-size:var(--t-1)}
+/* Footer — feedback lives HERE, not floating */
+.site-footer{max-width:var(--max);margin:var(--s12) auto 0;padding:var(--s6) var(--gutter) var(--s8);border-top:3px double var(--navy);text-align:center}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:.25rem 1.25rem;margin-bottom:.5rem}
+.footer-links a{font-family:var(--font-ui);font-size:var(--t-1);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap)}
+.site-footer .credo{font-style:italic;color:var(--ink-soft);font-size:var(--t0);margin-top:.5rem}
+.site-footer .feedback-btn{margin-top:.75rem}
+/* Mockup-only annotation */
+.mk{font-family:var(--font-ui);font-size:.72rem;color:#7A4B00;background:#FFF4DC;border:1px dashed #C9962B;padding:.25rem .5rem;border-radius:4px;display:inline-block;margin-bottom:.5rem}
+/* ---- Breakpoints: 375 first, then ≥768, then ≥1100 ---- */
+@media (min-width:768px){
+  :root{--gutter:1.5rem}
+  .masthead{padding-top:1.75rem} .masthead-nav{gap:2rem}
+  .vote h3{font-size:1.12rem}
+}
+@media (min-width:1100px){
+  .strip{display:none!important}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ---- Bill landing page (no-summary state) ---- */
+.bhead{padding:var(--s6) 0 var(--s4)}
+.bhead .kicker{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.bhead h1{font-family:var(--font-display);font-weight:800;font-size:clamp(1.6rem,6.5vw,2.4rem);line-height:1.1;color:var(--navy);margin:.4rem 0 .6rem}
+.outcome{font-family:var(--font-serif);font-size:1.15rem;line-height:1.45;color:var(--ink)}
+.outcome b{font-weight:600;color:var(--navy)}
+.tally{display:grid;grid-template-columns:auto 1fr auto;gap:.6rem;align-items:center;font-family:var(--font-ui);font-size:var(--t-1);font-weight:700;margin:.6rem 0 .25rem}
+.tally .bar{height:8px;background:var(--rule);border-radius:4px;overflow:hidden;display:flex}
+.tally .bar i{display:block;height:100%} .tally .y{color:var(--yes-text)} .tally .n{color:var(--no-text)}
+.byline{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta);line-height:1.7;margin-top:.5rem}
+.byline a{color:var(--blue-dim)}
+.bhead .actions{margin-top:.75rem}
+.empty{border:1px dashed var(--rule);border-radius:6px;padding:.75rem .9rem;font-family:var(--font-ui);font-size:var(--t0);color:var(--ink-soft);background:#fff}
+.summ{font-size:1.02rem;margin-top:.9rem}
+.summ p+p{margin-top:.6rem}
+.states{list-style:none}
+.st{border-top:1px solid var(--rule-soft)}
+.st summary{display:grid;grid-template-columns:1fr auto;gap:.5rem;align-items:center;min-height:52px;cursor:pointer;list-style:none;font-family:var(--font-ui);font-size:var(--t0)}
+.st summary::-webkit-details-marker{display:none}
+.st summary b{font-family:var(--font-display);font-size:1.05rem;color:var(--navy)}
+.st summary .nums{color:var(--ink-meta);font-size:var(--t-1);font-weight:600;text-align:right}
+.st .people{padding-bottom:.5rem}
+.st .person{min-height:52px;grid-template-columns:40px 1fr auto}
+.st .person img,.st .person .ph{width:40px;height:40px}
+.st .person .nm{font-size:.98rem}
+.roll{font-family:var(--font-ui);font-size:var(--t0)}
+.roll .row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:stretch;margin:.5rem 0 .75rem}
+.roll input{flex:1 1 180px;min-height:var(--tap);font:1rem var(--font-ui);padding:0 .7rem;border:1px solid var(--rule);border-radius:6px;background:#fff}
+.roll select{min-height:var(--tap);font:1rem var(--font-ui);padding:0 .6rem;border:1px solid var(--rule);border-radius:6px;background:#fff}
+.args{list-style:none}
+.args li{padding:.45rem 0 .45rem .9rem;border-left:2px solid var(--rule);margin:.35rem 0;font-size:.98rem}
+.grid{display:block}
+@media (min-width:768px){ .bhead .actions{flex-direction:row} }
+@media (min-width:1100px){
+  .grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:var(--s12);align-items:start}
+  .aside{position:sticky;top:1rem} .aside .sec:first-child{border-top:3px double var(--navy)}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<header class="masthead">
+  <a href="/" class="logo" aria-label="ClearVoting home">Clear<span>Voting</span></a>
+  <p class="masthead-tagline">Facts only · No opinions · No spin</p>
+  <nav class="masthead-nav" aria-label="Main"><a href="/">Home</a><a href="/bills">The Record</a><a href="/about">About</a></nav>
+</header>
+<p class="election"><strong>Election Day is Tuesday, Nov 3, 2026</strong> · 46 days away · every House seat is on the ballot</p>
+
+<div class="strip" id="strip" aria-hidden="true"><span class="sn">H.R. 4795 · House passed it, 237–169</span><button class="btn" type="button" data-share>Share</button></div>
+
+<main id="main-content" tabindex="-1" class="wrap">
+  <div class="grid">
+  <div>
+  <header class="bhead bill-header">
+    <p class="kicker">H.R. 4795 · 119th Congress <span class="seal seal--moving">Passed the House · not yet law</span></p>
+    <h1>Protect Economic and Academic Freedom Act of 2026</h1>
+    <p class="outcome"><b>The House passed it, 237 to 169, on September 3, 2026.</b> 27 members didn't vote. It has not had a Senate vote.</p>
+    <div class="tally" role="img" aria-label="237 voted yes, 169 voted no"><span class="y">237 yes</span><span class="bar"><i style="width:58%;background:var(--yes)"></i><i style="width:42%;background:var(--no)"></i></span><span class="n">169 no</span></div>
+    <p class="byline">Introduced Jul 29, 2025 by Rep. Virginia Foxx (NC‑5) — <a href="https://www.congress.gov/member/virginia-foxx/F000450">profile on Congress.gov</a> (not a state we cover) · 1 cosponsor · Topic: Education · <a href="https://www.congress.gov/bill/119th-congress/house-bill/4795">Full bill on Congress.gov</a></p>
+    <div class="actions">
+      <button class="btn" type="button" data-share><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>Share this vote</button>
+      <span class="party">Party hidden <button type="button" id="party" aria-pressed="false">Show party</button></span>
+    </div>
+  </header>
+
+  <section class="sec sec--double" aria-labelledby="you-h">
+    <p class="mk">State: first visit — no ZIP remembered. The same block shows the three remembered members once a ZIP is saved (see member.html).</p>
+    <div class="sec-head"><h2 id="you-h">How did your representatives vote?</h2></div>
+    <form class="zip" action="/bill" method="get">
+      <input type="hidden" name="congress" value="119"><input type="hidden" name="type" value="hr"><input type="hidden" name="number" value="4795">
+      <label for="zip">Your ZIP code</label>
+      <input id="zip" name="zip" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="11570">
+      <button class="btn" type="submit">Show my representatives' votes</button>
+    </form>
+    <p class="zip-help">We cover New York, Florida, California and Texas. Your ZIP is kept in your browser only. Or jump to a state below.</p>
+
+    <ul class="states" style="margin-top:1rem">
+      <li><details class="st" open><summary><b>New York</b> <span class="nums">13 yes · 11 no · 2 didn't vote</span></summary>
+        <ul class="people">
+          <li><a class="person" href="/member?id=L000598"><img src="https://www.congress.gov/img/member/l000598_200.jpg" alt=""><span><span class="nm">Nick LaLota</span><span class="seat">District 1</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=G000597"><img src="https://www.congress.gov/img/member/g000597_200.jpg" alt=""><span><span class="nm">Andrew R. Garbarino</span><span class="seat">District 2</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=S001201"><img src="https://www.congress.gov/img/member/116_rp_ny_3_suozzi_thomas_200.jpg" alt=""><span><span class="nm">Thomas R. Suozzi</span><span class="seat">District 3</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=G000602"><img src="https://www.congress.gov/img/member/677427de0b34857ecc9090ad_200.jpg" alt=""><span><span class="nm">Laura Gillen</span><span class="seat">District 4</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=M001137"><img src="https://www.congress.gov/img/member/m001137_200.jpg" alt=""><span><span class="nm">Gregory W. Meeks</span><span class="seat">District 5</span></span><span class="chip chip--no">No</span></a></li>
+          <li><a class="person" href="/member?id=M001188"><img src="https://www.congress.gov/img/member/m001188_200.jpg" alt=""><span><span class="nm">Grace Meng</span><span class="seat">District 6</span></span><span class="chip chip--no">No</span></a></li>
+          <li><a class="person" href="/member?id=V000081"><img src="https://www.congress.gov/img/member/v000081_200.jpg" alt=""><span><span class="nm">Nydia M. Velázquez</span><span class="seat">District 7</span></span><span class="chip chip--nv">Didn't vote</span></a></li>
+          <li><a class="person" href="/member?id=J000294"><img src="https://www.congress.gov/img/member/j000294_200.jpg" alt=""><span><span class="nm">Hakeem S. Jeffries</span><span class="seat">District 8</span></span><span class="chip chip--no">No</span></a></li>
+          <li><a class="person" href="/member?id=C001067"><img src="https://www.congress.gov/img/member/674dfc6b5c48ff736e6e1762_200.jpg" alt=""><span><span class="nm">Yvette D. Clarke</span><span class="seat">District 9</span></span><span class="chip chip--no">No</span></a></li>
+          <li><a class="person" href="/member?id=G000599"><img src="https://www.congress.gov/img/member/g000599_200.jpg" alt=""><span><span class="nm">Daniel S. Goldman</span><span class="seat">District 10</span></span><span class="chip chip--nv">Didn't vote</span></a></li>
+          <li><a class="person" href="/member?id=M000317"><img src="https://www.congress.gov/img/member/m000317_200.jpg" alt=""><span><span class="nm">Nicole Malliotakis</span><span class="seat">District 11</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=N000002"><img src="https://www.congress.gov/img/member/n000002_200.jpg" alt=""><span><span class="nm">Jerrold Nadler</span><span class="seat">District 12</span></span><span class="chip chip--no">No</span></a></li>
+          <li><a class="person" href="/member?id=E000297"><img src="https://www.congress.gov/img/member/e000297_200.jpg" alt=""><span><span class="nm">Adriano Espaillat</span><span class="seat">District 13</span></span><span class="chip chip--no">No</span></a></li>
+          <li><a class="person" href="/member?id=O000172"><img src="https://www.congress.gov/img/member/o000172_200.jpg" alt=""><span><span class="nm">Alexandria Ocasio-Cortez</span><span class="seat">District 14</span></span><span class="chip chip--no">No</span></a></li>
+          <li><a class="person" href="/member?id=T000486"><img src="https://www.congress.gov/img/member/t000486_200.jpg" alt=""><span><span class="nm">Ritchie Torres</span><span class="seat">District 15</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=L000606"><img src="https://www.congress.gov/img/member/6774301b0b34857ecc909107_200.jpg" alt=""><span><span class="nm">George Latimer</span><span class="seat">District 16</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=L000599"><img src="https://www.congress.gov/img/member/l000599_200.jpg" alt=""><span><span class="nm">Michael Lawler</span><span class="seat">District 17</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=R000579"><img src="https://www.congress.gov/img/member/r000579_200.jpg" alt=""><span><span class="nm">Patrick Ryan</span><span class="seat">District 18</span></span><span class="chip chip--no">No</span></a></li>
+          <li><a class="person" href="/member?id=R000622"><img src="https://www.congress.gov/img/member/67745e360b34857ecc909179_200.jpg" alt=""><span><span class="nm">Josh Riley</span><span class="seat">District 19</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=T000469"><img src="https://www.congress.gov/img/member/t000469_200.jpg" alt=""><span><span class="nm">Paul Tonko</span><span class="seat">District 20</span></span><span class="chip chip--no">No</span></a></li>
+          <li><a class="person" href="/member?id=S001196"><img src="https://www.congress.gov/img/member/s001196_200.jpg" alt=""><span><span class="nm">Elise M. Stefanik</span><span class="seat">District 21</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=M001231"><img src="https://www.congress.gov/img/member/677446860b34857ecc909119_200.jpg" alt=""><span><span class="nm">John W. Mannion</span><span class="seat">District 22</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=L000600"><img src="https://www.congress.gov/img/member/680901e76c2e6631263de716_200.jpg" alt=""><span><span class="nm">Nicholas A. Langworthy</span><span class="seat">District 23</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=T000478"><img src="https://www.congress.gov/img/member/t000478_200.jpg" alt=""><span><span class="nm">Claudia Tenney</span><span class="seat">District 24</span></span><span class="chip chip--yes">Yes</span></a></li>
+          <li><a class="person" href="/member?id=M001206"><img src="https://www.congress.gov/img/member/67ffc962f22eaf56065817bb_200.jpg" alt=""><span><span class="nm">Joseph D. Morelle</span><span class="seat">District 25</span></span><span class="chip chip--no">No</span></a></li>
+          <li><a class="person" href="/member?id=K000402"><img src="https://www.congress.gov/img/member/668e9306658443009a697c8c_200.jpg" alt=""><span><span class="nm">Timothy M. Kennedy</span><span class="seat">District 26</span></span><span class="chip chip--no">No</span></a></li>
+        </ul>
+      </details></li>
+      <li><details class="st"><summary><b>Florida</b> <span class="nums">22 yes · 2 no · 3 didn't vote</span></summary><p class="meta" style="padding:.5rem 0">(27 members, district order — same row component)</p></details></li>
+      <li><details class="st"><summary><b>California</b> <span class="nums">13 yes · 35 no · 4 didn't vote</span></summary><p class="meta" style="padding:.5rem 0">(52 members, district order)</p></details></li>
+      <li><details class="st"><summary><b>Texas</b> <span class="nums">25 yes · 11 no · 1 didn't vote</span></summary><p class="meta" style="padding:.5rem 0">(37 members, district order)</p></details></li>
+    </ul>
+    <details class="more roll" style="margin-top:.5rem"><summary>All 433 votes, every state</summary>
+      <div class="row"><label class="visually-hidden" for="q">Search by last name</label><input id="q" placeholder="Search by last name"><label class="visually-hidden" for="sf">Filter by vote</label><select id="sf"><option>All votes</option><option>Yes (237)</option><option>No (169)</option><option>Didn't vote (27)</option></select></div>
+      <p class="meta">Two-line rows (name · state, vote chip right) — never a sideways-scrolling table. Members outside the four covered states are plain text with no link. <a href="https://clerk.house.gov/Votes/2026295">Roll call source →</a></p>
+    </details>
+  </section>
+
+  <section class="sec" aria-labelledby="what-h">
+    <div class="sec-head"><h2 id="what-h">What this bill does</h2></div>
+    <p class="empty">We haven't written a plain-English summary for this bill yet. Summaries exist for bills acted on through June 30, 2026. Below is the official summary from the Congressional Research Service, unedited.</p>
+    <div class="summ">
+      <p>This bill prohibits institutions of higher education (IHEs) that participate in federal student aid programs from engaging in boycotts against Israel. Specifically, IHEs may not engage in a commercial action intended to limit commercial relations with Israel, or with an entity licensed by, regulated by, or organized under the laws of Israel…</p>
+      <details class="more"><summary>Show the full official summary</summary><p class="meta">(Full CRS text, sanitized through the existing SAFE_TAGS block.)</p></details>
+    </div>
+    <p class="meta" style="margin-top:.75rem">No AI text appears on this page. When a summary is written, the plain-English one-liner becomes the headline and the official title moves to a kicker — same as bills that already have one.</p>
+  </section>
+
+  <section class="sec" aria-labelledby="hist-h">
+    <div class="sec-head"><h2 id="hist-h">Where it stands</h2></div>
+    <ul class="votes">
+      <li class="vote"><h3>Passed the House</h3><span class="chip chip--page">Sep 3, 2026</span><p class="out">Final vote to pass · <b>237 to 169</b> · House roll call 295</p></li>
+      <li class="vote"><h3>Introduced in the House</h3><span class="chip chip--page">Jul 29, 2025</span><p class="out">Referred to committee · 24 actions on Congress.gov</p></li>
+    </ul>
+  </section>
+  </div>
+
+  <aside class="aside" aria-label="Sharing and sources">
+    <section class="sec" aria-labelledby="share-h">
+      <div class="sec-head"><h2 id="share-h">Share this vote</h2></div>
+      <p class="mk">og:image preview (1200×630), generated on first request and cached</p>
+      <div class="ogwrap"><div class="og">
+        <div><div class="og-logo">Clear<span>Voting</span></div><div class="og-k">H.R. 4795 · U.S. House · Sep 3, 2026</div><div class="og-h">Protect Economic and Academic Freedom Act of 2026</div></div>
+        <div class="og-m"><span>How did your representatives vote?</span><span class="og-tally">Passed · <span class="y">237 yes</span> · <span class="n">169 no</span></span></div>
+      </div></div>
+      <p class="meta" style="margin-top:.6rem">Share text: “The House passed H.R. 4795, 237–169. See how your representatives voted.” Always the canonical URL <code>/bill?congress=119&amp;type=hr&amp;number=4795</code>.</p>
+      <p style="margin-top:.75rem" class="actions"><button class="btn" type="button" data-share>Share</button></p>
+    </section>
+    <section class="sec" aria-labelledby="src-h">
+      <div class="sec-head"><h2 id="src-h">Sources</h2></div>
+      <p class="meta" style="line-height:1.7">Bill text, status and official summary from Congress.gov (synced Sep 5, 2026). Roll call from the Clerk of the House, vote 295 of the 2nd session. <a href="/methodology#corrections">Report an error</a>.</p>
+    </section>
+  </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <nav class="footer-links" aria-label="Footer"><a href="/about">About</a><a href="/methodology">Methodology &amp; Corrections</a><a href="/privacy">Privacy</a></nav>
+  <span class="meta">Data from <a href="https://congress.gov">Congress.gov</a> and <a href="https://senate.gov">Senate.gov</a> · <span id="data-freshness">Data last updated September 5, 2026</span></span>
+  <p class="credo">ClearVoting does not express opinions on legislation or representatives.</p>
+  <button class="btn btn--ghost feedback-btn" id="feedback-open" type="button">Send feedback about this page</button>
+</footer>
+<div class="toast" id="toast" role="status">Link copied</div>
+<script>
+/* Mockup-only demo script; production code lives in /static/js/bill.js under CSP script-src 'self'. */
+(function(){
+  var strip=document.getElementById('strip'), head=document.querySelector('.bhead');
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(e){ strip.classList.toggle('on', !e[0].isIntersecting && window.innerWidth<1100); },{threshold:0}).observe(head); }
+  var p=document.getElementById('party'); p.addEventListener('click',function(){ var on=p.getAttribute('aria-pressed')!=='true'; p.setAttribute('aria-pressed',on); p.textContent=on?'Hide party':'Show party'; document.body.classList.toggle('show-party',on); });
+  var t=document.getElementById('toast');
+  document.querySelectorAll('[data-share]').forEach(function(b){ b.addEventListener('click',function(){ var d={title:'H.R. 4795 — Protect Economic and Academic Freedom Act of 2026',text:'The House passed H.R. 4795, 237–169. See how your representatives voted.',url:'https://clearvoting.org/bill?congress=119&type=hr&number=4795'}; if(navigator.share){ navigator.share(d).catch(function(){}); } else { (navigator.clipboard?navigator.clipboard.writeText(d.url):Promise.resolve()).then(function(){ t.classList.add('on'); setTimeout(function(){t.classList.remove('on')},1800); }); } }); });
+})();
+</script>
+</body>
+</html>

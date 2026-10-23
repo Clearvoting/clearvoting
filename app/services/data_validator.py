@@ -9,15 +9,35 @@ but do not block (e.g. orphan files for departed members).
 """
 import json
 import re
+from datetime import datetime
 from pathlib import Path
+
+from app.services.data_service import roll_call_key
 
 _ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}")
 _PLACEHOLDER_MARKERS = ("temporarily unavailable",)
+_STALE_BILL_DAYS = 7  # a roll call this many days past a bill's latestAction means a stale record
 
 
 def _load(path: Path):
     with open(path) as f:
         return json.load(f)
+
+
+def _iso_day(value):
+    """The date of an ISO date or timestamp string, or None."""
+    try:
+        return datetime.strptime(str(value or "")[:10], "%Y-%m-%d").date()
+    except ValueError:
+        return None
+
+
+def _row_key(vote: dict) -> str | None:
+    """The votes_index.json key of one member_votes row, or None when the row lacks a part."""
+    try:
+        return roll_call_key(vote.get("chamber"), vote.get("congress"), vote.get("session"), vote.get("vote_number"))
+    except (TypeError, ValueError):
+        return None
 
 
 def validate_synced_data(
@@ -45,6 +65,7 @@ def validate_synced_data(
 
     # --- bills.json ---
     bills_path = sync_dir / "bills.json"
+    bills: list = []
     bill_keys: set = set()
     if bills_path.exists():
         try:
@@ -80,6 +101,38 @@ def validate_synced_data(
         if len(lost) > 10:
             failures.append(f"...and {len(lost) - 10} more lost summaries")
 
+    # --- votes_index.json (§10 #3): pages read roll calls only through the index ---
+    index_keys: set | None = None
+    roll_calls: dict = {}
+    index_path = sync_dir / "votes_index.json"
+    if not index_path.exists():
+        failures.append("votes_index.json missing (run: python sync.py --step votes-index)")
+    else:
+        try:
+            roll_calls = _load(index_path).get("roll_calls") or {}
+            index_keys = set(roll_calls)
+        except json.JSONDecodeError:
+            failures.append("votes_index.json is not valid JSON")
+
+    # A roll call more than a week after a bill's latestAction means the stored record
+    # missed later actions (F002). A warning: sync re-fetches a capped number per run.
+    newest_votes: dict = {}
+    for rc in (roll_calls.values() if isinstance(roll_calls, dict) else ()):
+        day = _iso_day(rc.get("date")) if isinstance(rc, dict) and rc.get("bill") else None
+        if day:
+            newest_votes[rc["bill"]] = max(day, newest_votes.get(rc["bill"], day))
+    stale_bills = []
+    for b in bills:
+        key = f"{b.get('congress')}-{str(b.get('type', '')).lower()}-{b.get('number')}"
+        action = _iso_day((b.get("latestAction") or {}).get("actionDate"))
+        gap = (newest_votes[key] - action).days if key in newest_votes and action else 0
+        if gap > _STALE_BILL_DAYS:
+            stale_bills.append(f"bills.json: {key} has a roll call on {newest_votes[key]}, "
+                               f"{gap} days after its latest action ({action})")
+    warnings.extend(stale_bills[:10])
+    if len(stale_bills) > 10:
+        warnings.append(f"...and {len(stale_bills) - 10} more bills with a stale latest action")
+
     # --- member_votes/*.json ---
     votes_dir = sync_dir / "member_votes"
     scorecard_members: set = set()
@@ -108,6 +161,14 @@ def validate_synced_data(
                 keys.append((date, v.get("vote_number", 0)))
             if keys and keys != sorted(keys, reverse=True):
                 failures.append(f"member_votes/{member_id}.json: votes not sorted newest-first")
+            if index_keys is not None:
+                unindexed = [key or "(row without chamber/congress/session/vote_number)"
+                             for key in map(_row_key, votes) if key not in index_keys]
+                if unindexed:
+                    failures.append(
+                        f"member_votes/{member_id}.json: {len(unindexed)} vote(s) missing from "
+                        f"votes_index.json, first {unindexed[0]}"
+                    )
     missing_files = member_ids - seen_files
     for member_id in sorted(missing_files):
         failures.append(f"member {member_id} has no member_votes file")

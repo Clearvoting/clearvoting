@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About — ClearVoting</title>
-    <meta name="description" content="Why we built ClearVoting and how you can help make congressional voting records accessible to everyone.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css?v=8">
-    <link rel="stylesheet" href="/static/css/broadsheet.css?v=1">
+    <meta name="description" content="Who runs ClearVoting, how it is funded, what it covers and what it does not do.">
+    <link rel="preload" href="/static/fonts/playfair-display-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/static/fonts/lora-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/static/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/static/css/site.css?v=1">
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 </head>
-<body class="broadsheet">
+<body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <header class="masthead">
@@ -20,109 +19,86 @@
         <p class="masthead-tagline">Facts only · No opinions · No spin</p>
         <nav class="masthead-nav" aria-label="Main">
             <a href="/">Home</a>
-            <a href="/#record">The Record</a>
+            <a href="/#find" id="nav-mine">My representatives</a>
+            <a href="/#record" class="nav-wide">The Record</a>
             <a href="/about" aria-current="page">About</a>
         </nav>
+        <!--edition-->
     </header>
 
-    <main id="main-content">
-        <article class="about-page">
-            <section class="about-section animate-in">
-                <h2>Why We Built This</h2>
-                <p>We built ClearVoting because we couldn't find a simple way to see how our representatives actually vote. Congressional voting records are public, but they're buried in government websites, written in legal language, and hard to make sense of.</p>
-                <p>We believe democracy works better when everyone can understand what's happening in Congress — not just lawyers and policy experts. So we built a tool that takes real voting data and presents it in plain language, without jargon, without spin, and without telling you what to think.</p>
-            </section>
+    <main id="main-content" tabindex="-1">
+        <article class="trust">
+          <p class="kicker">About</p>
+          <h1>About ClearVoting</h1>
+          <p class="deck">An independent record of how members of Congress vote, in plain English, with party labels hidden until you ask.</p>
 
-            <section class="about-section animate-in">
-                <h2>About This Project</h2>
-                <p>ClearVoting is an independent, non-partisan volunteer project. It is not funded by or affiliated with any campaign, party, or advocacy group. If you spot an error or have a question, use the feedback button on any page — a person reads every message.</p>
-                <p>Data updates weekly through an automated sync from Congress.gov and Senate.gov, and the footer of every page shows when the last update ran.</p>
-                <p>Today we cover the US Congress for members from California, Florida, New York, and Texas, including House and Senate roll-call votes from the 117th through 119th Congresses. Campaign finance figures come from the FEC's 2024 election cycle. More states are coming.</p>
-            </section>
+          <section id="why" aria-labelledby="why-h">
+            <h2 id="why-h">Why we built this</h2>
+            <p>We built ClearVoting because we couldn't find a simple way to see how our representatives actually vote. The records are public, but they are buried in government websites and written in legal language.</p>
+            <p>Democracy works better when everyone can follow what Congress does. So ClearVoting takes the official voting record and shows it in plain language, without spin and without telling you what to think.</p>
+          </section>
 
-            <section class="about-section animate-in">
-                <h2>What We Do Differently</h2>
-                <ul class="about-list">
-                    <li><strong>Plain language</strong> — Bill summaries written so anyone can understand them, not just policy experts</li>
-                    <li><strong>No party bias</strong> — Party affiliations are hidden by default so you can evaluate representatives on their votes, not their label</li>
-                    <li><strong>Just the facts</strong> — We show voting records and let you form your own opinion. No editorials, no ratings, no spin.</li>
-                    <li><strong>Real data</strong> — Everything comes directly from Congress.gov and Senate.gov official records</li>
-                </ul>
-            </section>
+          <section id="who" aria-labelledby="who-h">
+            <h2 id="who-h">Who runs it</h2>
+            <p>ClearVoting is maintained by Joseph Garcia, an independent volunteer. To reach him, use <em>Report an error</em> at the foot of any page, or the form below.</p>
+          </section>
 
-            <section class="about-section-highlight animate-scale">
-                <h2>How We Stay Unbiased</h2>
-                <ul class="about-list">
-                    <li><strong>Official data only</strong> — Every vote, bill, and action comes directly from government sources. We never editorialize or add our own interpretation.</li>
-                    <li><strong>AI with guardrails</strong> — Our plain-language summaries follow 12 strict rules for neutrality: no loaded language, no editorial framing, no implicit judgment. Each summary presents what a bill does, not whether it's good or bad.</li>
-                    <li><strong>Party labels hidden</strong> — By default, you see representatives and their votes without party labels. This lets you evaluate their record on its merits before knowing their affiliation.</li>
-                    <li><strong>Both sides presented</strong> — When we show what people are saying about a bill, we always present both supporters and critics side by side.</li>
-                </ul>
-            </section>
+          <section id="funding" aria-labelledby="funding-h">
+            <h2 id="funding-h">Funding</h2>
+            <p>Unfunded and not affiliated with any campaign, party or advocacy group.</p>
+          </section>
 
-            <section class="about-section animate-in">
-                <h2>Our Data Sources</h2>
-                <p>ClearVoting pulls all data directly from official government sources. We don't use intermediaries, aggregators, or third-party databases.</p>
-                <div class="about-data-sources">
-                    <a href="https://congress.gov" target="_blank" rel="noopener" class="about-data-source">
-                        <strong>Congress.gov</strong>
-                        <span>Bills, summaries, sponsorship data, and House roll call votes from the official legislative database.</span>
-                    </a>
-                    <a href="https://senate.gov" target="_blank" rel="noopener" class="about-data-source">
-                        <strong>Senate.gov</strong>
-                        <span>Senate roll call votes parsed from official XML records published after each vote.</span>
-                    </a>
-                </div>
-            </section>
+          <section id="cover" aria-labelledby="cover-h">
+            <h2 id="cover-h">What we cover</h2>
+            <!--content-->
+            <p>How we count, and what is not in our data yet: <a href="/methodology#coverage">Methodology &amp; Corrections →</a></p>
+          </section>
 
-            <section class="about-section animate-in">
-                <h2>What We Don't Do</h2>
-                <ul class="about-dont-list">
-                    <li>We don't score or rank representatives</li>
-                    <li>We don't endorse candidates or parties</li>
-                    <li>We don't add editorial opinions to any page</li>
-                    <li>We don't sell data or target you with ads</li>
-                    <li>We don't tell you how to vote — we show you how they voted</li>
-                </ul>
-            </section>
+          <section id="dont" aria-labelledby="dont-h">
+            <h2 id="dont-h">What we don't do</h2>
+            <ul>
+              <li>No scores, rankings or endorsements of anyone.</li>
+              <li>Party labels are hidden until you ask.</li>
+              <li>No opinions on bills or on the people who vote on them.</li>
+              <li>No ads, and we don't sell data.</li>
+              <li>We don't tell you how to vote — we show you how they voted.</li>
+            </ul>
+            <p>How we keep to this, including the exact rules our AI follows: <a href="/methodology#ai">Methodology &amp; Corrections →</a></p>
+          </section>
 
-            <section class="about-section animate-in">
-                <h2>Help Us Improve</h2>
-                <p>ClearVoting is a work in progress and your feedback makes it better. Tell us what's working, what's confusing, or what you wish this tool could do.</p>
-                <button class="btn btn-primary about-cta" id="about-feedback-cta">Share Your Feedback</button>
-            </section>
+          <section id="help" aria-labelledby="help-h">
+            <h2 id="help-h">Help us improve</h2>
+            <p>ClearVoting is a work in progress. Tell us what's working, what's confusing, or what's wrong.</p>
+            <button type="button" class="btn btn--secondary" id="about-feedback-cta">Share your feedback</button>
+          </section>
         </article>
     </main>
 
     <footer class="site-footer">
         <nav class="footer-links" aria-label="Footer">
             <a href="/about">About</a>
-            <a href="/about">Methodology &amp; Corrections</a>
-            <a href="/about">Privacy</a>
+            <a href="/methodology">Methodology &amp; Corrections</a>
+            <a href="/privacy">Privacy</a>
+            <button type="button" id="feedback-open" class="footer-feedback">Report an error on this page</button>
         </nav>
-        <span class="meta">Data from <a href="https://congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://senate.gov" target="_blank" rel="noopener">Senate.gov</a> · <span id="data-freshness"></span></span>
+        <p class="data-line meta">Data from <a href="https://www.congress.gov" target="_blank" rel="noopener">Congress.gov</a> and <a href="https://www.senate.gov" target="_blank" rel="noopener">Senate.gov</a><span id="data-freshness"></span></p>
         <p class="credo">ClearVoting does not express opinions on legislation or representatives.</p>
+        <button class="feedback-btn" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Feedback</button>
     </footer>
 
-    <button class="feedback-btn" id="feedback-open" aria-label="Send feedback">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        Feedback
-    </button>
-
-    <div id="feedback-modal" class="feedback-modal" hidden>
-        <div class="feedback-overlay" id="feedback-overlay"></div>
-        <form class="feedback-form" id="feedback-form">
-            <h3>Send Feedback</h3>
-            <p class="feedback-context" id="feedback-context"></p>
-            <textarea id="feedback-message" placeholder="What's on your mind?" rows="4" required maxlength="2000"></textarea>
-            <div class="feedback-actions">
-                <button type="button" class="btn btn-secondary btn-small" id="feedback-cancel">Cancel</button>
-                <button type="submit" class="btn btn-primary btn-small" id="feedback-submit" style="width:auto">Send</button>
-            </div>
-            <p class="feedback-status" id="feedback-status" hidden></p>
+    <dialog id="feedback-modal" class="feedback-modal" aria-labelledby="feedback-title">
+        <div id="feedback-overlay" class="feedback-overlay"></div>
+        <form id="feedback-form" class="feedback-form">
+            <h2 id="feedback-title">Send feedback</h2>
+            <p id="feedback-context" class="meta"></p>
+            <label for="feedback-message">What did you see?</label>
+            <textarea id="feedback-message" rows="4" required maxlength="2000" autofocus></textarea>
+            <div class="feedback-actions"><button type="button" class="btn--secondary" id="feedback-cancel">Cancel</button><button type="submit" class="btn" id="feedback-submit">Send</button></div>
+            <p id="feedback-status" role="status"></p>
         </form>
-    </div>
+    </dialog>
 
-    <script src="/static/js/feedback.js?v=5"></script>
+    <script src="/static/js/site.js?v=1"></script>
+    <script src="/static/js/feedback.js?v=6"></script>
 </body>
 </html>
