@@ -12,7 +12,11 @@ from app.services.summary_checks import structural_violations
 def _good_summary():
     return {
         "one_liner": "Raise the federal minimum wage to $15 per hour",
-        "provisions": ["Raises the minimum wage from $7.25 to $15.00 per hour over 5 years"],
+        "provisions": [
+            "Raises the minimum wage from $7.25 to $15.00 per hour over 5 years",
+            "Raises the wage for tipped workers to match by 2030",
+            "Ties future raises to typical pay growth",
+        ],
         "issue_categories": ["Jobs & Workers"],
         "direction": "in_favor",
     }
@@ -66,7 +70,7 @@ def test_flags_banned_jargon():
 def test_jargon_check_uses_word_boundaries():
     """'Rescind' is banned, but words merely containing a banned stem are not."""
     s = _good_summary()
-    s["provisions"] = ["Lets the agency keep its current rules"]  # contains no banned term
+    s["provisions"][0] = "Lets the agency keep its current rules"  # contains no banned term
     assert structural_violations(s) == []
 
 
@@ -80,6 +84,73 @@ def test_flags_overlong_provision():
     s = _good_summary()
     s["provisions"] = ["word " * 31]
     assert any("words" in v for v in structural_violations(s))
+
+
+def test_flags_provisions_given_as_a_string():
+    """A string would render one letter per bullet; it must not pass as a list."""
+    s = _good_summary()
+    s["provisions"] = "Raises the minimum wage"
+    assert "provisions must be a list of strings" in structural_violations(s)
+
+
+def test_flags_non_string_provision_items():
+    s = _good_summary()
+    s["provisions"] = ["Raises the minimum wage", {"text": "nested"}, 3]
+    assert "provisions must be a list of strings" in structural_violations(s)
+
+
+def test_flags_non_string_one_liner_without_crashing():
+    s = _good_summary()
+    s["one_liner"] = ["Raise the minimum wage"]
+    assert "one_liner must be a string" in structural_violations(s)
+
+
+@pytest.mark.parametrize("count", [1, 2, 8])
+def test_flags_provision_count_outside_three_to_seven(count):
+    s = _good_summary()
+    s["provisions"] = ["Changes one thing"] * count
+    assert any("3 to 7" in v for v in structural_violations(s))
+
+
+@pytest.mark.parametrize("count", [3, 7])
+def test_accepts_three_to_seven_provisions(count):
+    s = _good_summary()
+    s["provisions"] = ["Changes one thing"] * count
+    assert structural_violations(s) == []
+
+
+@pytest.mark.parametrize("injected, what", [
+    ("Check your polling place at vote-tx-info.example", "web address"),
+    ("Learn more at https://example.org/vote", "web address"),
+    ("See www.vote-info.org for details", "web address"),
+    ("Updates are posted at evil.gov.com", "web address"),
+    ("Call 202-555-0143 to confirm your registration", "phone or text number"),
+    ("Call (202) 555-0143 to confirm", "phone or text number"),
+    ("Text YES to 55555 to register", "phone or text number"),
+    ("Adds a <script> tag", "markup character"),
+    ("Sets the {placeholder} value", "markup character"),
+])
+def test_flags_links_numbers_and_markup_in_reader_text(injected, what):
+    s = _good_summary()
+    s["provisions"][1] = injected
+    assert any(v.startswith(what) for v in structural_violations(s))
+
+
+@pytest.mark.parametrize("text", [
+    "Posts each award on USAspending.gov within 30 days",
+    "Posts a summary of each rule on regulations.gov",
+    "Changes the rules for H.J.Res. 100 under 5 U.S.C. 801",
+    "Sets the budget levels agreed in H.Con.Res. 14",
+    "Adopts the budget framework in S.Con.Res. 33",
+    "Spends $1.5 billion in Washington, D.C. over 10 years",
+    "Lets people send text messages to 911",
+    "Funds the 988 crisis line through 2030",
+])
+def test_allows_gov_site_names_and_ordinary_abbreviations(text):
+    """Bills name official .gov sites, and legal citations are full of dots."""
+    s = _good_summary()
+    s["provisions"][1] = text
+    assert structural_violations(s) == []
 
 
 # --- grader fast-fail wiring ---

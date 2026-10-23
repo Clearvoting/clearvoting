@@ -3,11 +3,8 @@ services:
     name: clearvoting
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --ws none --http httptools
+    healthCheckPath: /api/health
     envVars:
-      - key: CONGRESS_API_KEY
-        sync: false
-      - key: ANTHROPIC_API_KEY
-        sync: false
       - key: CACHE_TTL_SECONDS
         value: 3600

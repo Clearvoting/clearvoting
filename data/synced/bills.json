@@ -240880,6 +240880,176 @@
       "type": "S",
       "updateDate": "2026-09-08T18:12:22Z",
       "updateDateIncludingText": "2026-09-08T18:17:10Z"
+    },
+    {
+      "actions": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/197/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/197/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 15,
+        "countIncludingWithdrawnCosponsors": 15,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/197/cosponsors?format=json"
+      },
+      "introducedDate": "2026-06-17",
+      "latestAction": {
+        "actionDate": "2026-09-29",
+        "text": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 48 - 51. Record Vote Number: 251. (consideration: CR S5139-5140)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/197",
+      "number": "197",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "Health"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/197/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "B001230",
+          "firstName": "Tammy",
+          "fullName": "Sen. Baldwin, Tammy [D-WI]",
+          "isByRequest": "N",
+          "lastName": "Baldwin",
+          "party": "D",
+          "state": "WI",
+          "url": "https://api.congress.gov/v3/member/B001230?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 11,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/197/subjects?format=json"
+      },
+      "textVersions": [
+        {
+          "date": "2026-07-14T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/sjres197/BILLS-119sjres197pcs.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/sjres197/BILLS-119sjres197pcs.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/sjres197/BILLS-119sjres197pcs.xml"
+            }
+          ],
+          "type": "Placed on Calendar Senate",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [S.J. Res. 197 Placed on Calendar Senate (PCS)] &lt;DOC&gt; Calendar No. 456 119th CONGRESS 2d Session S. J. RES. 197 Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Centers for Medicare & Medicaid Services of the Department of Health and Human Services relating to ``Patient Protection and Affordable Care Act, HHS Notice of Benefit and Payment Parameters for 2027; and Basic Health Program''. _______________________________________________________________________ IN THE SENATE OF THE UNITED STATES June 17, 2026 Ms. Baldwin (for herself, Mr. Schumer, Mr. Wyden, Mr. Markey, Mrs. Murray, Ms. Alsobrooks, Mr. King, Mr. Lujan, Mr. Bennet, Mrs. Shaheen, Mr. Merkley, Mr. Hickenlooper, Mr. Warner, Ms. Klobuchar, and Mr. Blumenthal) introduced the following joint resolution; which was read twice and referred to the Committee on Health, Education, Labor, and Pensions July 14, 2026 Committee discharged, by petition, pursuant to 5 U.S.C. 802(c), and placed on the calendar _______________________________________________________________________ JOINT RESOLUTION Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Centers for Medicare & Medicaid Services of the Department of Health and Human Services relating to ``Patient Protection and Affordable Care Act, HHS Notice of Benefit and Payment Parameters for 2027; and Basic Health Program''. Resolved by the Senate and House of Representatives of the United States of America in Congress assembled, That Congress disapproves the rule submitted by the Centers for Medicare & Medicaid Services of the Department of Health and Human Services relating to ``Patient Protection and Affordable Care Act, HHS Notice of Benefit and Payment Parameters for 2027; and Basic Health Program'' (91 Fed. Reg. 29526 (May 20, 2026)), and such rule shall have no force or effect. Calendar No. 456 119th CONGRESS 2d Session S. J. RES. 197 _______________________________________________________________________ JOINT RESOLUTION Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Centers for Medicare & Medicaid Services of the Department of Health and Human Services relating to ``Patient Protection and Affordable Care Act, HHS Notice of Benefit and Payment Parameters for 2027; and Basic Health Program''. _______________________________________________________________________ July 14, 2026 Committee discharged, by petition, pursuant to 5 U.S.C. 802(c), and placed on the calendar"
+        },
+        {
+          "date": "2026-06-17T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/sjres197/BILLS-119sjres197is.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/sjres197/BILLS-119sjres197is.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/sjres197/BILLS-119sjres197is.xml"
+            }
+          ],
+          "type": "Introduced in Senate"
+        }
+      ],
+      "title": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Centers for Medicare & Medicaid Services of the Department of Health and Human Services relating to \"Patient Protection and Affordable Care Act, HHS Notice of Benefit and Payment Parameters for 2027; and Basic Health Program\".",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/197/titles?format=json"
+      },
+      "type": "SJRES",
+      "updateDate": "2026-10-02T10:56:44Z",
+      "updateDateIncludingText": "2026-10-02T10:56:44Z",
+      "summaries": []
+    },
+    {
+      "actions": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/sres/852/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sres/852/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 25,
+        "countIncludingWithdrawnCosponsors": 25,
+        "url": "https://api.congress.gov/v3/bill/119/sres/852/cosponsors?format=json"
+      },
+      "introducedDate": "2026-09-14",
+      "latestAction": {
+        "actionDate": "2026-09-29",
+        "text": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 47 - 51. Record Vote Number: 252. (consideration: CR S5158-5159)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-resolution/852",
+      "number": "852",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "policyArea": {
+        "name": "International Affairs"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "V000128",
+          "firstName": "Chris",
+          "fullName": "Sen. Van Hollen, Chris [D-MD]",
+          "isByRequest": "N",
+          "lastName": "Van Hollen",
+          "party": "D",
+          "state": "MD",
+          "url": "https://api.congress.gov/v3/member/V000128?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/sres/852/subjects?format=json"
+      },
+      "textVersions": [
+        {
+          "date": "2026-09-14T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/sres852/BILLS-119sres852is.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/sres852/BILLS-119sres852is.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/sres852/BILLS-119sres852is.xml"
+            }
+          ],
+          "type": "Introduced in Senate",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [S. Res. 852 Introduced in Senate (IS)] &lt;DOC&gt; 119th CONGRESS 2d Session S. RES. 852 Requesting information on Israel's human rights practices pursuant to section 502B(c) of the Foreign Assistance Act of 1961. _______________________________________________________________________ IN THE SENATE OF THE UNITED STATES September 14, 2026 Mr. Van Hollen (for himself, Mr. Kaine, Mr. Sanders, Mr. Markey, Mr. Merkley, Mr. Welch, Mr. Heinrich, Ms. Warren, Ms. Hirono, Ms. Smith, Mr. Lujan, Mr. Blumenthal, Mr. Wyden, Mr. Schatz, Mr. Murphy, Mr. Coons, Mr. Durbin, Ms. Blunt Rochester, Mrs. Shaheen, Mrs. Murray, Mr. Reed, and Mr. Whitehouse) submitted the following resolution; which was referred to the Committee on Foreign Relations _______________________________________________________________________ RESOLUTION Requesting information on Israel's human rights practices pursuant to section 502B(c) of the Foreign Assistance Act of 1961. Whereas protecting and supporting United States citizens abroad is one of the foremost responsibilities of the United States Government; Whereas, since January 2022, at least nine United States citizens have been killed by violent Israeli settlers or Israeli security forces in the West Bank, including Omar Assad, Shireen Abu Akleh, Tawfic Abdel Jabbar, Mohammad Khdour, Aysenur Ezgi Eygi, Amer Rabee, Sayfollah Kamel Musallet, Khamis Ayyad, and Nasrallah Abu Siyam; Whereas the killings of these Americans in the West Bank have been met by a lack of accountability from the Netanyahu government and an inability to secure justice by the United States Government; Whereas, in January 2022, Omar Assad, a 78-year-old United States citizen, was stopped at a checkpoint in his village of Jiljilya, dragged by Israeli soldiers from his car, and left lying on the ground outside with his hands bound behind his back, gagged, and blindfolded, where he died of a stress-induced heart attack; Whereas, in May 2022, Shireen Abu Akleh, a Palestinian-American journalist, referenced by some as the ``voice of a generation'', was shot in the head and killed near the Jenin refugee camp by Israeli security forces while she wore a vest clearly marking her as a journalist; Whereas, in January 2024, Tawfic Abdel Jabbar, a 17-year-old American boy, was shot in the head and killed, reportedly by an Israeli settler, an off- duty Israeli police officer, and an Israel Defense Forces soldier, while driving east of Ramallah; Whereas, in February 2024, in circumstances similar to Tawfic Abdel Jabbar's killing, Mohammad Ahmad Alkhdour, another 17-year-old American boy, was shot twice in the head while driving, reportedly by Israeli forces, near the town of Biddu; Whereas, in September 2024, Aysenur Ezgi Eygi, a 26-year-old American raised in Seattle, was shot in the head by an Israeli soldier from a distance of 200 meters; Whereas, in April 2025, Amer Mohammad Saada Rabee, a 14-year-old boy from New Jersey, was shot and killed at the entrance to Turmus Ayya by Israeli security forces, with reports suggesting he was shot a total of 11 times by two different guns; Whereas, in July 2025, Sayfollah Kamel Musallet, a 20-year-old American from Florida who was visiting family in the West Bank, was beaten to death by violent Israeli settlers during a settler attack on the town of Sinjil, where eyewitness accounts report that settlers and Israeli forces impeded ambulance access for more than two hours; Whereas, on July 15, 2025, Ambassador Mike Huckabee called the killing of Mr. Musallet a ``criminal and terrorist act'' and stated ``there must be accountability''; Whereas, in August 2025, Khamis Ayyad, a 40-year-old Palestinian-American and father of five, died of smoke inhalation after violent Israeli settlers set homes and cars on fire during an attack on the village of Silwad; Whereas, in February 2026, Nasrallah Abu Siyam, a 19-year-old American born in Philadelphia, was shot and killed in the West Bank village of Mukhmas, near Ramallah, by violent Israeli settlers during an attack on Palestinian farmers; Whereas, in August 2026, Khamis Rabee Jabara, an 82-year-old Palestinian American, was hospitalized after Israeli soldiers used a flashbang grenade against him and then confiscated bystander footage of the incident in the village of Turmusayya; Whereas the Israeli government has failed to address this pattern of violence against Americans in the West Bank and hold perpetrators accountable; Whereas United States Federal agencies, including the Department of Justice and the Department of State, have either failed to open their own independent investigations into these killings or have not provided substantive information on the status of existing investigations; Whereas, in February 2025, Mohammed Ibrahim, a 16-year-old American boy from Florida, was arrested and held in pre-trial detention for nine months where he was denied any contact with his family until his release on Thanksgiving Day 2025; Whereas the United States Embassy officials and lawyers who met Mohammed in person told his family that he lost close to one-quarter of his body weight, contracted scabies, and was beaten and tortured during his imprisonment; Whereas, in June 2026, Sama Safi, a 20-year-old Palestinian-American student, was detained in a series of raids targeting students at Birzeit University, and she remains in detention in an Israeli military prison; Whereas, in July 2026, Adam Wajeh Abdelfattah Karakrah, a 16-year-old Palestinian-American boy, was arrested, and moments before he was set to be released after his family paid bail, the Israeli authorities decided to hold him for an entirely new case, and he remains in pre-trial detention in an Israeli military prison; Whereas hundreds of Palestinian children are detained and prosecuted in the Israeli military court system each year while Israeli children in the West Bank are subject to Israeli civil law; "
+        }
+      ],
+      "title": "A resolution requesting information on Israel's human rights practices pursuant to section 502B(c) of the Foreign Assistance Act of 1961.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/sres/852/titles?format=json"
+      },
+      "type": "SRES",
+      "updateDate": "2026-10-02T10:56:39Z",
+      "updateDateIncludingText": "2026-10-02T10:56:39Z",
+      "summaries": []
     }
   ]
 }

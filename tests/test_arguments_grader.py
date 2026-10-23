@@ -104,3 +104,23 @@ async def test_grade_handles_api_error():
     assert result.grade == "F"
     assert result.passed is False
     assert "API timeout" in result.feedback
+
+
+@pytest.mark.asyncio
+async def test_grade_ignores_self_reported_passed():
+    """A C is a fail even when the model also says "passed": true."""
+    grader = ArgumentsGrader(api_key="test")
+
+    mock_response = MagicMock()
+    mock_response.content = [MagicMock(text='{"grade": "C", "passed": true, "feedback": "Vague."}')]
+
+    with patch.object(grader, "client") as mock_client:
+        mock_client.messages.create = AsyncMock(return_value=mock_response)
+        result = await grader.grade(
+            summary_type="bill_arguments",
+            summary_text="test",
+            context={"title": "Test"},
+        )
+
+    assert result.grade == "C"
+    assert result.passed is False

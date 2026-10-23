@@ -203,3 +203,28 @@ async def test_grade_handles_malformed_json():
 
     assert result.grade == "F"
     assert result.passed is False
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("reply, grade", [
+    ('{"grade": "C", "passed": true, "feedback": "Cherry-picks."}', "C"),
+    ('["A"]', "F"),
+])
+async def test_grade_ignores_self_reported_passed(reply, grade):
+    """Only an A or B passes, whatever the model says in "passed"."""
+    grader = MemberNarrativeGrader(api_key="test")
+
+    mock_response = MagicMock()
+    mock_response.content = [MagicMock(text=reply)]
+
+    grader.client = MagicMock()
+    grader.client.messages.create = AsyncMock(return_value=mock_response)
+
+    result = await grader.grade(
+        summary_type="member_narrative",
+        summary_text='{"narrative": "Test"}',
+        context={"top_areas": [], "stats": {}},
+    )
+
+    assert result.grade == grade
+    assert result.passed is False

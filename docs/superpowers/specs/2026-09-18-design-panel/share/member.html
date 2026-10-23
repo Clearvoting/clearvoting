@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charles E. Schumer (NY) — Voting Record | ClearVoting</title>
+<meta name="description" content="How Sen. Charles E. Schumer of New York has voted, in plain English. 1,061 roll-call votes since 2021, party label hidden until you ask.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+/* ClearVoting — "Arrive from a share" mockup system. Paper/navy broadsheet palette kept. */
+:root{
+  --paper:#F5F6FA; --card:#FFFFFF; --ink:#1B1B1B; --ink-soft:#5B616B; --ink-meta:#5F656D;
+  --navy:#112E51; --blue:#0071BC; --blue-dim:#205493; --yes:#2E8540; --no:#CD2026; --yes-text:#1F5E2D; --no-text:#8E1B21; --absent:#5F656D;
+  --rule:#D6D7D9; --rule-soft:#E8E8E8; --yes-bg:#EAF4EC; --no-bg:#FBEAEA; --absent-bg:#EEF0F2;
+  --font-display:'Playfair Display',Georgia,serif; --font-serif:'Lora',Georgia,serif; --font-ui:'Inter',system-ui,-apple-system,sans-serif;
+  --t-1:.8rem; --t0:.9rem; --t1:1.0625rem; --t2:1.25rem; --t3:1.55rem; --t4:2rem; --t5:2.5rem;
+  --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s6:1.5rem; --s8:2rem; --s12:3rem;
+  --tap:44px; --gutter:1rem; --max:1100px; --focus:0 0 0 3px #fff,0 0 0 5px var(--blue);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-serif);font-size:var(--t1);line-height:1.6;overflow-x:hidden}
+a{color:var(--blue-dim)} a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:none;box-shadow:var(--focus);border-radius:3px}
+img{max-width:100%;display:block}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--navy);color:#fff;padding:.5rem 1rem;font-family:var(--font-ui)} .skip-link:focus{left:1rem;z-index:50}
+.kicker{font-family:var(--font-ui);font-size:var(--t-1);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-dim)}
+.meta{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta);letter-spacing:.01em;line-height:1.45}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+/* Masthead — shared chrome, kept; tighter vertical rhythm on landing pages */
+.masthead{padding:1.1rem var(--gutter) 0;text-align:center}
+.masthead .logo{font-family:var(--font-display);font-weight:800;font-size:clamp(1.6rem,4.5vw,2.5rem);color:var(--navy);line-height:1;text-decoration:none;display:inline-block;min-height:var(--tap);padding-top:.35rem}
+.masthead .logo span{color:var(--blue);font-style:italic;font-weight:600}
+.masthead-tagline{font-family:var(--font-ui);font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-meta);margin-top:.25rem}
+.masthead-nav{max-width:var(--max);margin:.7rem auto 0;border-top:3px double var(--navy);border-bottom:1px solid var(--navy);display:flex;justify-content:center;gap:1.25rem;padding:0 .5rem}
+.masthead-nav a{font-family:var(--font-ui);font-size:var(--t-1);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap);padding:0 .35rem;border-bottom:2px solid transparent}
+.masthead-nav a[aria-current],.masthead-nav a:hover{color:var(--navy);border-bottom-color:var(--blue)}
+/* Election dateline (site-wide, server-rendered, disappears after Nov 3) */
+.election{max-width:var(--max);margin:0 auto;padding:.55rem var(--gutter);font-family:var(--font-ui);font-size:var(--t-1);color:var(--navy);display:flex;gap:.6rem;align-items:baseline;justify-content:center;flex-wrap:wrap;border-bottom:1px solid var(--rule)}
+.election strong{font-weight:700} .election a{color:var(--blue-dim);font-weight:600}
+/* Buttons & controls — every control ≥44px */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:var(--tap);padding:0 1rem;font-family:var(--font-ui);font-size:var(--t0);font-weight:600;border-radius:6px;border:1px solid var(--navy);background:var(--navy);color:#fff;text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn--ghost{background:transparent;color:var(--navy)} .btn--ghost:hover{background:#fff}
+.btn--text{background:transparent;border-color:transparent;color:var(--blue-dim);padding:0 .5rem;text-decoration:underline;text-underline-offset:3px}
+.btn svg{width:18px;height:18px;flex:none}
+.actions{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+/* Party toggle: explicit, per visit, no persistence */
+.party{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta);display:inline-flex;align-items:center;gap:.5rem;min-height:var(--tap)}
+.party button{min-height:36px;padding:0 .7rem;font:inherit;font-weight:600;color:var(--blue-dim);background:#fff;border:1px solid var(--rule);border-radius:999px;cursor:pointer}
+.party button[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.party-label{display:none;font-weight:600;color:var(--ink)} body.show-party .party-label{display:inline}
+/* Rules, not cards */
+.sec{border-top:1px solid var(--rule);padding:var(--s6) 0}
+.sec--double{border-top:3px double var(--navy)}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:var(--s4);flex-wrap:wrap}
+.sec-head h2{font-family:var(--font-display);font-weight:700;font-size:var(--t2);color:var(--navy);line-height:1.2}
+.asof{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta)}
+.note{font-family:var(--font-ui);font-size:var(--t0);color:var(--ink-soft);border-left:3px solid var(--rule);padding:.35rem .75rem;margin:.75rem 0}
+/* Vote chip: the ONLY place red/green appears. Text always. */
+.chip{display:inline-flex;align-items:center;min-height:28px;padding:0 .6rem;border-radius:999px;font-family:var(--font-ui);font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;border:1px solid transparent}
+.chip--yes{background:var(--yes-bg);color:#1F5E2D;border-color:#BFDEC6} .chip--no{background:var(--no-bg);color:#8E1B21;border-color:#EFBFC1} .chip--nv{background:var(--absent-bg);color:var(--ink-meta);border-color:var(--rule)}
+.chip--page{background:var(--navy);color:#fff}
+/* Status seal */
+.seal{font-family:var(--font-ui);font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--navy);padding:.2rem .55rem;border-radius:4px;white-space:nowrap;display:inline-block}
+.seal--moving{background:transparent;color:var(--blue-dim);border:1px solid var(--blue)}
+.seal--muted{background:transparent;color:var(--ink-meta);border:1px solid var(--rule)}
+/* People rows (Your representatives, delegation) */
+.people{list-style:none}
+.person{display:grid;grid-template-columns:48px 1fr auto;gap:.8rem;align-items:center;min-height:64px;padding:.55rem 0;border-top:1px solid var(--rule-soft);text-decoration:none;color:inherit}
+.person:first-child{border-top:0}
+.person img,.person .ph{width:48px;height:48px;border-radius:4px;border:1px solid var(--rule);object-fit:cover;background:#E6E9EF;display:flex;align-items:center;justify-content:center;font-family:var(--font-ui);font-size:.85rem;font-weight:700;color:var(--ink-meta)}
+.person .nm{font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--navy);line-height:1.2}
+.person .seat{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta);margin-top:.15rem}
+.person .go{font-family:var(--font-ui);color:var(--blue-dim);font-size:1.2rem}
+.person:hover .nm{text-decoration:underline}
+/* ZIP entry */
+.zip{display:flex;gap:.5rem;flex-wrap:wrap;align-items:stretch}
+.zip label{font-family:var(--font-ui);font-size:var(--t0);font-weight:600;color:var(--navy);width:100%}
+.zip input{flex:1 1 140px;min-height:48px;font:600 1.05rem var(--font-ui);padding:0 .8rem;border:1.5px solid var(--navy);border-radius:6px;background:#fff;color:var(--ink);letter-spacing:.08em}
+.zip .btn{flex:1 1 200px}
+.zip-help{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta);margin-top:.5rem}
+.zip-help a{color:var(--blue-dim)}
+.remember{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;font-family:var(--font-ui);font-size:var(--t0);color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:.5rem .75rem;margin-top:.75rem}
+.remember .btn{min-height:40px}
+/* Vote rows grouped by bill */
+.votes{list-style:none}
+.vote{padding:.85rem 0;border-top:1px solid var(--rule-soft);display:grid;grid-template-columns:1fr auto;gap:.35rem .8rem;align-items:start}
+.vote:first-child{border-top:0}
+.vote h3{font-family:var(--font-serif);font-weight:500;font-size:1.05rem;line-height:1.35;grid-column:1}
+.vote h3 a{color:var(--navy);text-decoration:none} .vote h3 a:hover{text-decoration:underline}
+.vote .chip{grid-column:2;grid-row:1;margin-top:.15rem}
+.vote .out{grid-column:1/-1;font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta)}
+.vote .out b{color:var(--ink);font-weight:600}
+.vote .fallback{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta);grid-column:1/-1;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.vote .fallback .seal{font-size:.6rem}
+details.proc{grid-column:1/-1} details.proc summary{font-family:var(--font-ui);font-size:var(--t-1);color:var(--blue-dim);cursor:pointer;min-height:var(--tap);display:flex;align-items:center;list-style:none}
+details.proc summary::before{content:"+ ";font-weight:700} details.proc[open] summary::before{content:"– "}
+details.proc ul{list-style:none;padding:.25rem 0 .25rem .9rem;border-left:2px solid var(--rule)}
+details.proc li{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-soft);padding:.35rem 0;display:flex;gap:.6rem;justify-content:space-between;align-items:center}
+/* Disclosure */
+details.more summary{font-family:var(--font-ui);font-size:var(--t0);font-weight:600;color:var(--blue-dim);cursor:pointer;min-height:var(--tap);display:flex;align-items:center;list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+/* Share card preview (og:image 1200×630, scaled) */
+.ogwrap{border:1px solid var(--rule);background:#fff;padding:.75rem;border-radius:6px}
+.og{aspect-ratio:1200/630;background:#F5F6FA;border:3px double var(--navy);padding:6% 6% 5%;display:flex;flex-direction:column;justify-content:space-between;container-type:inline-size}
+.og .og-logo{font-family:var(--font-display);font-weight:800;color:var(--navy);font-size:clamp(.8rem,5cqw,2rem);line-height:1} .og .og-logo span{color:var(--blue);font-style:italic;font-weight:600}
+.og .og-k{font-family:var(--font-ui);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-dim);font-size:clamp(.45rem,2.4cqw,.9rem);margin-top:2%}
+.og .og-h{font-family:var(--font-display);font-weight:700;color:var(--navy);font-size:clamp(1rem,7cqw,2.6rem);line-height:1.1;margin-top:1%}
+.og .og-m{font-family:var(--font-ui);color:var(--ink-meta);font-size:clamp(.5rem,2.6cqw,1rem);margin-top:2%;display:flex;justify-content:space-between;gap:1rem;align-items:flex-end}
+.og .og-tally{font-family:var(--font-ui);font-weight:700;font-size:clamp(.55rem,3cqw,1.1rem);color:var(--ink)}
+.og .og-tally .y{color:var(--yes-text)} .og .og-tally .n{color:var(--no-text)}
+/* Toast */
+.toast{position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);background:var(--navy);color:#fff;font-family:var(--font-ui);font-size:var(--t0);padding:.6rem 1rem;border-radius:6px;display:none;z-index:20}
+.toast.on{display:block}
+/* Sticky name strip — the one sticky element on mobile; replaces the masthead once it scrolls away */
+.strip{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--navy);display:none;align-items:center;justify-content:space-between;gap:.5rem;padding:0 var(--gutter);min-height:var(--tap)}
+.strip.on{display:flex}
+.strip .sn{font-family:var(--font-display);font-weight:700;color:var(--navy);font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.strip .btn{min-height:36px;padding:0 .7rem;font-size:var(--t-1)}
+/* Footer — feedback lives HERE, not floating */
+.site-footer{max-width:var(--max);margin:var(--s12) auto 0;padding:var(--s6) var(--gutter) var(--s8);border-top:3px double var(--navy);text-align:center}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:.25rem 1.25rem;margin-bottom:.5rem}
+.footer-links a{font-family:var(--font-ui);font-size:var(--t-1);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap)}
+.site-footer .credo{font-style:italic;color:var(--ink-soft);font-size:var(--t0);margin-top:.5rem}
+.site-footer .feedback-btn{margin-top:.75rem}
+/* Mockup-only annotation */
+.mk{font-family:var(--font-ui);font-size:.72rem;color:#7A4B00;background:#FFF4DC;border:1px dashed #C9962B;padding:.25rem .5rem;border-radius:4px;display:inline-block;margin-bottom:.5rem}
+/* ---- Breakpoints: 375 first, then ≥768, then ≥1100 ---- */
+@media (min-width:768px){
+  :root{--gutter:1.5rem}
+  .masthead{padding-top:1.75rem} .masthead-nav{gap:2rem}
+  .vote h3{font-size:1.12rem}
+}
+@media (min-width:1100px){
+  .strip{display:none!important}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ---- Member landing page ---- */
+.mhead{padding:var(--s6) 0 var(--s4);display:grid;grid-template-columns:72px 1fr;gap:var(--s4);align-items:start}
+.mhead img{width:72px;height:72px;border:1px solid var(--rule);border-radius:4px;object-fit:cover;background:#E6E9EF}
+.mhead h1{font-family:var(--font-display);font-weight:800;font-size:clamp(1.7rem,7vw,2.6rem);line-height:1.05;color:var(--navy);margin:.2rem 0 .35rem}
+.mhead .kicker{color:var(--ink-meta)}
+.mhead .facts{font-family:var(--font-ui);font-size:var(--t0);color:var(--ink-soft);line-height:1.5}
+.mhead .facts b{color:var(--ink);font-weight:600}
+.mhead .actions{grid-column:1/-1;margin-top:.25rem}
+.ballot{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:.7rem 0;font-family:var(--font-ui);font-size:var(--t0);color:var(--ink);display:flex;gap:.75rem;align-items:baseline;flex-wrap:wrap}
+.ballot .seal{font-size:.62rem}
+.you{padding:var(--s4) 0}
+.you .who{font-family:var(--font-ui);font-size:var(--t0);color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
+.you .who b{color:var(--ink);font-weight:600}
+.narr{font-size:1.02rem;color:var(--ink)}
+.narr .clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.narr details[open] .clamp{display:block;-webkit-line-clamp:unset}
+.money li{font-family:var(--font-ui);font-size:var(--t0);display:flex;justify-content:space-between;padding:.45rem 0;border-top:1px solid var(--rule-soft)}
+.money li:first-child{border-top:0}
+.money{list-style:none}
+.srcs{font-family:var(--font-ui);font-size:var(--t-1);color:var(--ink-meta);line-height:1.6}
+.grid{display:block}
+@media (min-width:768px){
+  .mhead{grid-template-columns:96px 1fr auto;align-items:center}
+  .mhead img{width:96px;height:96px}
+  .mhead .actions{grid-column:3;grid-row:1;margin:0;flex-direction:column;align-items:stretch}
+}
+@media (min-width:1100px){
+  .grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:var(--s12);align-items:start}
+  .aside{position:sticky;top:1rem}
+  .aside .sec:first-child{border-top:3px double var(--navy)}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<header class="masthead">
+  <a href="/" class="logo" aria-label="ClearVoting home">Clear<span>Voting</span></a>
+  <p class="masthead-tagline">Facts only · No opinions · No spin</p>
+  <nav class="masthead-nav" aria-label="Main"><a href="/">Home</a><a href="/bills">The Record</a><a href="/about">About</a></nav>
+</header>
+<p class="election"><strong>Election Day is Tuesday, Nov 3, 2026</strong> · 46 days away · <a href="/state?code=NY">See everyone who represents New York →</a></p>
+
+<div class="strip" id="strip" aria-hidden="true"><span class="sn">Charles E. Schumer · U.S. Senator, NY</span><button class="btn" type="button" data-share>Share</button></div>
+
+<main id="main-content" tabindex="-1" class="wrap">
+  <div class="grid">
+  <div>
+  <header class="mhead member-header">
+    <img src="https://www.congress.gov/img/member/s000148_200.jpg" alt="Portrait of Charles E. Schumer" width="72" height="72">
+    <div>
+      <p class="kicker">United States Senator · New York</p>
+      <h1>Charles E. Schumer</h1>
+      <p class="facts"><b>In Congress since 1981</b> — House 1981–1999, Senate since 1999 · Voted in <b>1,060 of 1,061</b> roll calls since 2021 <span class="party-label">· Democratic</span></p>
+    </div>
+    <div class="actions">
+      <button class="btn" type="button" data-share><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>Share this record</button>
+      <span class="party">Party hidden <button type="button" id="party" aria-pressed="false">Show party</button></span>
+    </div>
+  </header>
+
+  <p class="ballot"><span class="seal seal--muted">Not on the ballot Nov 3</span> Senator Schumer's seat is next up in <b>2028</b>. New York's 26 House seats are all on the ballot this November.</p>
+
+  <section class="you sec" aria-labelledby="you-h">
+    <p class="mk">State: returning visitor, ZIP remembered (localStorage <code>cv-zip</code>)</p>
+    <div class="sec-head"><h2 id="you-h">Your representatives</h2></div>
+    <p class="who"><span>ZIP <b>11570</b> · Rockville Centre · <b>New York's 4th district</b></span><button class="btn btn--text" type="button">Change ZIP</button></p>
+    <ul class="people">
+      <li><a class="person" href="/member?id=S000148" aria-current="page"><img src="https://www.congress.gov/img/member/s000148_200.jpg" alt=""><span><span class="nm">Charles E. Schumer</span><span class="seat">U.S. Senator · this page</span></span><span class="chip chip--page">You're here</span></a></li>
+      <li><a class="person" href="/member?id=G000555"><img src="https://www.congress.gov/img/member/g000555_200.jpg" alt=""><span><span class="nm">Kirsten E. Gillibrand</span><span class="seat">U.S. Senator · since 2009</span></span><span class="go" aria-hidden="true">→</span></a></li>
+      <li><a class="person" href="/member?id=G000602"><img src="https://www.congress.gov/img/member/677427de0b34857ecc9090ad_200.jpg" alt=""><span><span class="nm">Laura Gillen</span><span class="seat">U.S. Representative · District 4 · since 2025 · on the ballot Nov 3</span></span><span class="go" aria-hidden="true">→</span></a></li>
+    </ul>
+  </section>
+
+  <section class="sec sec--double" aria-labelledby="key-h">
+    <div class="sec-head"><h2 id="key-h">Key votes</h2><span class="asof">Chosen by rule: final votes on bills with a plain-English summary, spread across topics</span></div>
+    <p class="kicker" style="margin-bottom:.4rem">Voted yes</p>
+    <ul class="votes">
+      <li class="vote"><h3><a href="/bill?congress=119&type=hr&number=6500">Extend no-tax imports from 32 African countries through 2028</a></h3><span class="chip chip--yes">Yes</span><p class="out">H.R. 6500 · <b>Senate passed it, 90 to 6</b> · Aug 8, 2026</p></li>
+      <li class="vote"><h3><a href="/bill?congress=119&type=hconres&number=86">Order the President to pull U.S. troops out of fighting with Iran</a></h3><span class="chip chip--yes">Yes</span><p class="out">H.Con.Res. 86 · <b>Senate agreed, 50 to 48</b> · Jun 23, 2026</p></li>
+      <li class="vote"><h3><a href="/bill?congress=119&type=hr&number=3944">Fund military construction and veterans programs for 2026</a></h3><span class="chip chip--yes">Yes</span><p class="out">H.R. 3944 · <b>Senate passed it, 87 to 9</b> · Aug 1, 2025</p></li>
+    </ul>
+    <p class="kicker" style="margin:1rem 0 .4rem">Voted no</p>
+    <ul class="votes">
+      <li class="vote"><h3><a href="/bill?congress=119&type=s&number=2">Fund border patrol and immigration enforcement agencies through 2029</a></h3><span class="chip chip--no">No</span><p class="out">S. 2 · <b>Senate passed it, 52 to 47</b> · Jun 5, 2026</p></li>
+      <li class="vote"><h3><a href="/bill?congress=119&type=sconres&number=33">Set the federal government's spending and revenue targets for 2026 through 2035</a></h3><span class="chip chip--no">No</span><p class="out">S.Con.Res. 33 · <b>Senate agreed, 50 to 48</b> · Apr 23, 2026</p></li>
+      <li class="vote"><h3><a href="/bill?congress=119&type=hjres&number=140">Reopen 225,504 acres of Minnesota forest land to mining and energy leasing</a></h3><span class="chip chip--no">No</span><p class="out">H.J.Res. 140 · <b>Senate passed it, 50 to 49</b> · Apr 16, 2026</p></li>
+    </ul>
+  </section>
+
+  <section class="sec" aria-labelledby="rec-h">
+    <div class="sec-head"><h2 id="rec-h">Recent votes</h2><span class="asof">Grouped by bill · votes as of Sep 5, 2026</span></div>
+    <ul class="votes">
+      <li class="vote">
+        <h3><a href="/bill?congress=119&type=s&number=5271">S. 5271 — A bill to amend the Help America Vote Act of 2002 to require voters to provide photo identification</a></h3><span class="chip chip--no">No</span>
+        <p class="fallback"><span class="seal seal--muted">Plain-English summary not yet written</span> official title shown</p>
+        <p class="out"><b>Vote to end debate failed, 52 to 46</b> (needed 60) · Aug 8, 2026</p>
+      </li>
+      <li class="vote">
+        <h3><a href="/bill?congress=119&type=hr&number=6500">Extend no-tax imports from 32 African countries through 2028</a></h3><span class="chip chip--yes">Yes</span>
+        <p class="out">H.R. 6500 · <b>Senate passed it, 90 to 6</b> · Aug 8, 2026</p>
+        <details class="proc"><summary>2 procedural votes on this bill</summary><ul>
+          <li><span>Aug 7 · Vote to end debate on the substitute amendment · agreed 91–6</span><span class="chip chip--yes">Yes</span></li>
+          <li><span>Aug 3 · Vote to end debate on taking up the bill · agreed 89–4</span><span class="chip chip--yes">Yes</span></li>
+        </ul></details>
+      </li>
+      <li class="vote">
+        <h3><a href="/bill?congress=119&type=hr&number=5334">H.R. 5334 — SEED Act</a></h3><span class="chip chip--yes">Yes</span>
+        <p class="fallback"><span class="seal seal--muted">Plain-English summary not yet written</span> official title shown</p>
+        <p class="out"><b>Senate passed it, 86 to 11</b> · Aug 7, 2026</p>
+        <details class="proc"><summary>2 procedural votes on this bill</summary><ul>
+          <li><span>Jul 29 · Vote to take up the bill · agreed 84–12</span><span class="chip chip--yes">Yes</span></li>
+          <li><span>Jul 28 · Vote to end debate on taking up the bill · agreed 86–12</span><span class="chip chip--yes">Yes</span></li>
+        </ul></details>
+      </li>
+      <li class="vote">
+        <h3>Amendment: “To strike section 2019.”</h3><span class="chip chip--yes">Yes</span>
+        <p class="fallback"><span class="seal seal--muted">Amendment · parent bill not identified in our data</span></p>
+        <p class="out"><b>Vote to set the amendment aside, agreed 61 to 32</b> · Aug 8, 2026 · <a href="https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00229.htm">Roll call source →</a></p>
+      </li>
+      <li class="vote">
+        <h3><a href="/bill?congress=119&type=sjres&number=187">S.J.Res. 187 — A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code…</a></h3><span class="chip chip--yes">Yes</span>
+        <p class="fallback"><span class="seal seal--muted">Plain-English summary not yet written</span> official title clamped</p>
+        <p class="out"><b>Vote to take up the resolution failed, 48 to 50</b> · Aug 5, 2026</p>
+      </li>
+      <li class="vote">
+        <h3><a href="/bill?congress=119&type=sres&number=817">S.Res. 817 — An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations…</a></h3><span class="chip chip--no">No</span>
+        <p class="fallback"><span class="seal seal--muted">Plain-English summary not yet written</span> official title clamped</p>
+        <p class="out"><b>Senate agreed, 50 to 47</b> · Jul 30, 2026</p>
+        <details class="proc"><summary>1 procedural vote on this resolution</summary><ul>
+          <li><span>Jul 29 · Vote to end debate · agreed 50–45</span><span class="chip chip--no">No</span></li>
+        </ul></details>
+      </li>
+    </ul>
+    <p style="margin-top:1rem"><a class="btn btn--ghost" href="/member?id=S000148&page=2">Show 20 more votes</a> <span class="asof" style="margin-left:.75rem">1,061 roll calls since 2021 · 519 yes · 540 no · 1 missed</span></p>
+  </section>
+
+  <section class="sec narr" aria-labelledby="sum-h">
+    <div class="sec-head"><h2 id="sum-h">In summary</h2><span class="asof">Written by AI from the record · Jun 13, 2026</span></div>
+    <details class="more"><summary>Schumer votes most often on economics and public finance bills, where his record is split nearly evenly between votes in favor and against. On armed forces and national security bills, he votes in favor at a much higher rate than against… <span style="text-decoration:underline">Read the summary</span></summary>
+      <p>Schumer votes most often on economics and public finance bills, where his record is split nearly evenly between votes in favor and against. On armed forces and national security bills, he votes in favor at a much higher rate than against. He also leans in favor on international affairs, transportation, and science and technology bills. He voted in favor of bills to fund the government, cap insulin costs under Medicare, and set defense policies. He voted against bills that would have removed federal protections for certain wildlife species and canceled rules on gender identity in food programs.</p>
+      <p class="meta" style="margin-top:.5rem">Votes most often on: Economics and Public Finance · International Affairs · Armed Forces and National Security · Transportation and Public Works · Science, Technology, Communications</p>
+    </details>
+  </section>
+
+  <section class="sec" aria-labelledby="money-h">
+    <div class="sec-head"><h2 id="money-h">Money</h2><span class="asof">FEC · 2024 election cycle · as of Mar 20, 2026</span></div>
+    <details class="more"><summary>Top contributors to Schumer's campaign committee, 2024 cycle</summary>
+      <ul class="money">
+        <li><span>Bell Investment Advisors</span><span>$7,500 · individuals</span></li>
+        <li><span>Barclays</span><span>$6,600 · individuals</span></li>
+        <li><span>Schusterman Interests LLC</span><span>$6,600 · individuals</span></li>
+        <li><span>TRB Advisors</span><span>$6,600 · individuals</span></li>
+      </ul>
+      <p class="note">Contributions listed by employer of the individual donor, as reported to the FEC. This is the most recent complete cycle we have; 2026 data is not loaded.</p>
+    </details>
+  </section>
+  </div>
+
+  <aside class="aside" aria-label="Sharing and sources">
+    <section class="sec" aria-labelledby="share-h">
+      <div class="sec-head"><h2 id="share-h">Share this record</h2></div>
+      <p class="mk">Preview of the og:image share card (1200×630) generated at sync time</p>
+      <div class="ogwrap"><div class="og">
+        <div><div class="og-logo">Clear<span>Voting</span></div><div class="og-k">Voting record · United States Senator · New York</div><div class="og-h">Charles E. Schumer</div></div>
+        <div class="og-m"><span>1,061 roll-call votes since 2021 · in plain English</span><span class="og-tally"><span class="y">519 yes</span> · <span class="n">540 no</span></span></div>
+      </div></div>
+      <p class="meta" style="margin-top:.6rem">Shares the canonical link <code>clearvoting.org/member?id=S000148</code> with the text “How Sen. Charles E. Schumer (NY) votes, in plain English.” On phones this opens the system share sheet; elsewhere it copies the link.</p>
+      <p style="margin-top:.75rem" class="actions"><button class="btn" type="button" data-share>Share</button><a class="btn btn--ghost" href="https://www.congress.gov/member/S000148">Congress.gov profile</a></p>
+    </section>
+    <section class="sec" aria-labelledby="src-h">
+      <div class="sec-head"><h2 id="src-h">Sources &amp; corrections</h2></div>
+      <p class="srcs">Votes from Senate.gov roll-call records via Congress.gov, synced Sep 5, 2026. Plain-English bill summaries and the “In summary” paragraph are written by AI from official text and reviewed against <a href="/methodology">our neutrality rules</a>. Summaries exist for bills acted on through Jun 30, 2026; newer bills show their official title until the next summary run.<br><a href="/methodology#corrections">Report an error on this page</a> · <a href="/privacy">What we store about you</a> (your ZIP stays in your browser).</p>
+    </section>
+  </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <nav class="footer-links" aria-label="Footer"><a href="/about">About</a><a href="/methodology">Methodology &amp; Corrections</a><a href="/privacy">Privacy</a></nav>
+  <span class="meta">Data from <a href="https://congress.gov">Congress.gov</a> and <a href="https://senate.gov">Senate.gov</a> · <span id="data-freshness">Data last updated September 5, 2026</span></span>
+  <p class="credo">ClearVoting does not express opinions on legislation or representatives.</p>
+  <button class="btn btn--ghost feedback-btn" id="feedback-open" type="button">Send feedback about this page</button>
+</footer>
+<div class="toast" id="toast" role="status">Link copied</div>
+<script>
+/* Mockup-only demo script. In production this lives in /static/js/member.js (CSP script-src 'self'). */
+(function(){
+  var strip=document.getElementById('strip'), head=document.querySelector('.mhead');
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(e){ strip.classList.toggle('on', !e[0].isIntersecting && window.innerWidth<1100); strip.setAttribute('aria-hidden', e[0].isIntersecting?'true':'false'); },{threshold:0}).observe(head); }
+  var p=document.getElementById('party'); p.addEventListener('click',function(){ var on=p.getAttribute('aria-pressed')!=='true'; p.setAttribute('aria-pressed',on); p.textContent=on?'Hide party':'Show party'; document.body.classList.toggle('show-party',on); p.parentNode.firstChild.textContent=on?'Party shown ':'Party hidden '; });
+  var t=document.getElementById('toast');
+  document.querySelectorAll('[data-share]').forEach(function(b){ b.addEventListener('click',function(){ var d={title:'Charles E. Schumer (NY) — Voting Record',text:'How Sen. Charles E. Schumer (NY) votes, in plain English.',url:'https://clearvoting.org/member?id=S000148'}; if(navigator.share){ navigator.share(d).catch(function(){}); } else { (navigator.clipboard?navigator.clipboard.writeText(d.url):Promise.resolve()).then(function(){ t.classList.add('on'); setTimeout(function(){t.classList.remove('on')},1800); }); } }); });
+})();
+</script>
+</body>
+</html>

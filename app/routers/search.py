@@ -1,6 +1,8 @@
 import logging
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Request
 from app.dependencies import get_data_service
+from app.limiter import limiter
+from app.routers.bills import LIST_FIELDS
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +31,7 @@ def _bill_matches(bill: dict, q_lower: str) -> bool:
     if q_lower in bill.get("title", "").lower():
         return True
     # Check the plain-language one-liner ("stablecoin" should find the GENIUS Act)
-    if q_lower in bill.get("one_liner", "").lower():
+    if q_lower in (bill.get("one_liner") or "").lower():
         return True
     # Check policyArea name
     policy_area = bill.get("policyArea", {})
@@ -45,8 +47,10 @@ def _bill_matches(bill: dict, q_lower: str) -> bool:
 
 
 @router.get("/bills")
-async def search_bills(
-    q: str = Query(..., min_length=1),
+@limiter.limit("60/minute")
+def search_bills(
+    request: Request,
+    q: str = Query(..., min_length=1, max_length=100),  # longer is a crafted link, not a search (F042)
     congress: int | None = Query(None, ge=1, le=200),
     offset: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=50),
@@ -56,4 +60,5 @@ async def search_bills(
     q_lower = q.lower()
     filtered = [b for b in all_bills["bills"] if _bill_matches(b, q_lower)]
     paginated = filtered[offset:offset + limit]
-    return {"bills": paginated, "total": len(filtered)}
+    # Same allowlist as /api/bills: the browse panel renders these rows (spec §2.2 #10).
+    return {"bills": [{k: b[k] for k in LIST_FIELDS if k in b} for b in paginated], "total": len(filtered)}

@@ -1,0 +1,14 @@
+{
+  "_source": {
+    "name": "U.S. Senate — senators by class (Class II terms expire January 3, 2027; appointed Class III seats face a special election at the November 2026 general election)",
+    "url": "https://www.senate.gov/senators/Class_II.htm and https://www.senate.gov/senators/Class_III.htm",
+    "retrieved": "2026-09-19",
+    "scope": "Only the senators of the four covered states (CA, FL, NY, TX) are listed; House seats are all on the November 3, 2026 ballot by definition and are not listed here.",
+    "method": "Class II page lists Cornyn (R-TX); Class III page lists Moody (R-FL), who took the seat by appointment in 2025 and therefore faces a special election in November 2026. Schumer (NY, III), Padilla (CA, III), Gillibrand (NY, I), Scott (FL, I), Schiff (CA, I), Cruz (TX, I) are not up in 2026."
+  },
+  "election_day": "2026-11-03",
+  "seats": [
+    { "state": "TX", "bioguideId": "C001056", "name": "Cornyn, John", "kind": "regular", "class": 2 },
+    { "state": "FL", "bioguideId": "M001244", "name": "Moody, Ashley", "kind": "special", "class": 3 }
+  ]
+}

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charles E. Schumer (NY) — Voting Record | ClearVoting</title>
+<meta name="description" content="Spine mockup: record-first member page for Sen. Charles E. Schumer (S000148). Real data as of September 5, 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F6FA; --card:#FFFFFF; --card-hover:#EEF1F6;
+  --ink:#1B1B1B; --ink-soft:#5B616B; --ink-meta:#5F656D;
+  --navy:#112E51; --blue:#0071BC; --blue-dim:#205493;
+  --yes:#2E7D3A; --no:#B3261E; --error:#8A1C1C;
+  --rule:#D6D7D9; --rule-soft:#E8E8E8;
+  --font-display:'Playfair Display',Georgia,serif; --font-serif:'Lora',Georgia,serif; --font-ui:'Inter',system-ui,-apple-system,sans-serif;
+  --t-kicker:.75rem; --t-meta:.8rem; --t-ui:.875rem; --t-body:1rem; --t-lede:1.125rem; --t-h3:1.35rem; --t-h2:clamp(1.45rem,3vw,2rem); --t-display:clamp(2rem,5vw,3.2rem);
+  --tap:44px; --max:1100px; --radius:4px; --radius-ctl:8px; --shadow:0 2px 8px rgba(0,0,0,.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;color-scheme:light;scroll-padding-top:56px}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-serif);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+img{max-width:100%;display:block}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.kicker{font-family:var(--font-ui);font-size:var(--t-kicker);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-dim)}
+.meta{font-family:var(--font-ui);font-size:var(--t-meta);color:var(--ink-meta);letter-spacing:.01em}
+.arrow{font-family:var(--font-ui);font-size:var(--t-ui);font-weight:600;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap)}
+.arrow:hover{color:var(--blue-dim);text-decoration:underline}
+main{max-width:var(--max);margin:0 auto;padding:0 1rem}
+@media (min-width:880px){main{padding:0 1.5rem}}
+
+/* Masthead (identical to home) */
+.masthead{padding:1.25rem 1rem 0;text-align:center}
+.masthead .logo{font-family:var(--font-display);font-weight:800;font-size:clamp(1.8rem,4.5vw,2.4rem);color:var(--navy);line-height:1;text-decoration:none;display:inline-block}
+.masthead .logo span{color:var(--blue);font-style:italic;font-weight:600}
+.masthead-tagline{font-family:var(--font-ui);font-size:var(--t-kicker);font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-meta);margin-top:.45rem}
+.masthead-nav{max-width:var(--max);margin:.75rem auto 0;border-top:3px double var(--navy);border-bottom:1px solid var(--navy);display:flex;justify-content:center;flex-wrap:wrap;gap:0 .5rem;padding:0 .5rem}
+.masthead-nav a{font-family:var(--font-ui);font-size:var(--t-kicker);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap);padding:0 .5rem;border-bottom:2px solid transparent}
+.masthead-nav a:hover,.masthead-nav a[aria-current]{color:var(--navy);border-bottom-color:var(--blue)}
+.masthead-nav .nav-mobile-only{display:inline-flex}
+@media (min-width:880px){.masthead{padding-top:2rem}.masthead-nav{gap:0 1.5rem}.masthead-nav .nav-mobile-only{display:none}}
+
+/* Chips */
+.chip{display:inline-block;font-family:var(--font-ui);font-size:var(--t-kicker);font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .5rem;border-radius:var(--radius);border:1px solid var(--rule);color:var(--ink-meta);background:var(--card);line-height:1.2;white-space:nowrap}
+.chip-pending{border-style:dashed}
+.vote-chip{display:inline-flex;align-items:center;font-family:var(--font-ui);font-size:var(--t-meta);font-weight:700;padding:.3rem .55rem;border-radius:var(--radius);border:1px solid currentColor;line-height:1.1;white-space:nowrap}
+.vote-chip.yes{color:var(--yes);background:rgba(46,125,58,.10)}
+.vote-chip.no{color:var(--no);background:rgba(179,38,30,.10)}
+.vote-chip.nv{color:var(--ink-meta);background:var(--card-hover)}
+.bill-no{font-family:var(--font-ui);font-size:var(--t-kicker);font-weight:700;letter-spacing:.06em;color:var(--blue-dim)}
+
+/* Breadcrumb */
+.crumb{display:flex;align-items:center;min-height:var(--tap);margin-top:.25rem}
+.crumb a{font-family:var(--font-ui);font-size:var(--t-ui);font-weight:600;color:var(--blue-dim);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+
+/* Member header: broadsheet byline block */
+.member-header{display:grid;grid-template-columns:64px 1fr;gap:.9rem 1rem;align-items:start;padding:.5rem 0 1.25rem;border-bottom:1px solid var(--navy)}
+.photo{width:64px;height:64px;border-radius:50%;border:2px solid var(--rule);background:var(--rule-soft);position:relative;overflow:hidden}
+.photo .mono{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;color:var(--navy);font-size:1.1rem}
+.photo img{position:relative;width:100%;height:100%;object-fit:cover}
+.member-header .kicker{margin-bottom:.25rem}
+.member-header h1{font-family:var(--font-display);font-weight:700;font-size:var(--t-display);line-height:1.05;color:var(--navy);letter-spacing:-.01em}
+.facts{grid-column:1/-1;font-family:var(--font-ui);font-size:var(--t-ui);color:var(--ink-soft);line-height:1.6}
+.facts b{font-weight:600;color:var(--ink)}
+.facts .sep{color:var(--rule);margin:0 .35rem}
+.actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:0 1.25rem}
+.actions a,.actions button{font-family:var(--font-ui);font-size:var(--t-ui);font-weight:600;color:var(--blue);background:none;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;min-height:var(--tap);padding:0}
+.actions a:hover,.actions button:hover{text-decoration:underline}
+.actions .label{color:var(--ink-soft);font-weight:500}
+@media (min-width:880px){
+  .member-header{grid-template-columns:96px 1fr;gap:.5rem 1.5rem;padding:1rem 0 1.5rem}
+  .photo{width:96px;height:96px}
+  .facts,.actions{grid-column:2}
+}
+
+/* Sticky name strip: the only sticky element, mobile only, appears after the header scrolls off */
+.stick{position:sticky;top:0;z-index:20;display:none;background:var(--paper);border-bottom:1px solid var(--rule);margin:0 -1rem;padding:0 1rem;height:var(--tap);align-items:center;justify-content:space-between;gap:1rem;font-family:var(--font-ui)}
+.stick.show{display:flex}
+.stick .n{font-family:var(--font-display);font-weight:700;color:var(--navy);font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stick nav{display:flex;gap:.25rem}
+.stick nav a{font-size:var(--t-kicker);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-dim);text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap);padding:0 .4rem}
+@media (min-width:880px){.stick.show{display:none}}
+
+/* Sections: rules, not cards */
+.section{margin-top:2rem}
+.section+.section{border-top:3px double var(--navy);padding-top:2rem;margin-top:2.5rem}
+.section-head{margin-bottom:1rem;display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap}
+.section-head h2{font-family:var(--font-display);font-weight:700;font-size:var(--t-h2);line-height:1.15;color:var(--navy)}
+.section-head .kicker{margin-bottom:.35rem;display:block}
+.section-head .meta{max-width:34rem}
+.rule-note{font-family:var(--font-ui);font-size:var(--t-meta);color:var(--ink-meta);line-height:1.5;margin-top:.75rem}
+
+/* Vote rows: one component for key votes and the record */
+.votes{list-style:none;border-top:1px solid var(--rule)}
+.vrow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.2rem .9rem;align-items:start;padding:.85rem 0;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}
+.vrow .vt{grid-column:2;grid-row:1}
+.vrow .vm{grid-column:2;grid-row:2}
+.vrow:hover .vt{color:var(--blue-dim)}
+.vrow .vt{font-family:var(--font-serif);font-weight:500;font-size:1.05rem;line-height:1.4;color:var(--ink)}
+.vrow .vt.no-summary{font-weight:400;color:var(--ink-soft)}
+.clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vrow .vm{display:flex;flex-wrap:wrap;gap:.25rem .6rem;align-items:center;margin-top:.15rem}
+.vrow .vm .meta{white-space:normal}
+.vrow .vote-chip{grid-column:1;grid-row:1/3;align-self:center;justify-self:start;min-width:5.4rem;justify-content:center}
+.vrow.grp{grid-template-columns:1fr}
+.vrow.grp summary{list-style:none;cursor:pointer;font-family:var(--font-ui);font-size:var(--t-ui);font-weight:600;color:var(--blue-dim);display:flex;align-items:center;min-height:var(--tap);gap:.5rem}
+.vrow.grp summary::-webkit-details-marker{display:none}
+.vrow.grp summary::before{content:'+';display:inline-flex;width:1.2rem;height:1.2rem;border:1px solid var(--rule);border-radius:var(--radius);align-items:center;justify-content:center;font-weight:700;color:var(--ink-meta);flex:none}
+details[open] > summary::before{content:'–'}
+.sub{list-style:none;margin:.25rem 0 .25rem 1.7rem;border-left:2px solid var(--rule-soft);padding-left:.9rem}
+.sub li{display:grid;grid-template-columns:1fr auto;gap:.25rem .75rem;align-items:center;padding:.5rem 0;font-family:var(--font-ui);font-size:var(--t-ui);color:var(--ink-soft);line-height:1.45}
+.sub li .amend{font-family:var(--font-serif);font-size:var(--t-body);color:var(--ink)}
+details.proc{grid-column:1/-1}
+details.proc summary{list-style:none;cursor:pointer;font-family:var(--font-ui);font-size:var(--t-meta);font-weight:600;color:var(--blue-dim);display:inline-flex;align-items:center;min-height:var(--tap);gap:.4rem}
+details.proc summary::-webkit-details-marker{display:none}
+details.proc summary::before{content:'+';display:inline-flex;width:1rem;height:1rem;border:1px solid var(--rule);border-radius:var(--radius);align-items:center;justify-content:center;font-size:.7rem;color:var(--ink-meta)}
+.key-grid{display:grid;grid-template-columns:1fr;gap:0 2.5rem}
+.key-grid .kl{margin-bottom:.5rem}
+.key-grid .kl .kicker{display:block;padding:.5rem 0;border-bottom:1px solid var(--navy)}
+.key-grid .votes{border-top:none}
+@media (min-width:880px){.key-grid{grid-template-columns:1fr 1fr}}
+
+/* Summary */
+.summary{max-width:42rem}
+.summary p.body{font-size:var(--t-lede);line-height:1.65;color:var(--ink)}
+.summary .clamp{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.summary .readmore{display:inline-flex;align-items:center;min-height:var(--tap);font-family:var(--font-ui);font-size:var(--t-ui);font-weight:600;color:var(--blue);background:none;border:none;cursor:pointer;padding:0}
+.summary .prov{margin-top:.5rem;display:flex;gap:.5rem 1rem;flex-wrap:wrap}
+@media (min-width:880px){.summary p.body{font-size:var(--t-body)}.summary .clamp{-webkit-line-clamp:unset;display:block}.summary .readmore{display:none}}
+
+/* Two-column band on desktop: key votes | summary */
+@media (min-width:1100px){
+  .band{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(18rem,1fr);gap:3rem;align-items:start}
+  .band .section{margin-top:2rem}
+  .band .section+.section{border-top:none;padding-top:0;margin-top:2rem;border-left:1px solid var(--rule);padding-left:3rem}
+}
+
+/* Record controls */
+.controls{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;align-items:center;margin:.25rem 0 .75rem;font-family:var(--font-ui);font-size:var(--t-ui)}
+.controls select{font-family:var(--font-ui);font-size:1rem;height:var(--tap);padding:0 .75rem;border:1px solid var(--rule);border-radius:var(--radius-ctl);background:var(--card);color:var(--ink);max-width:100%}
+.controls label.cb{display:inline-flex;align-items:center;gap:.5rem;min-height:var(--tap);cursor:pointer}
+.controls input[type=checkbox]{width:20px;height:20px;accent-color:var(--navy)}
+.pager{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:1rem;font-family:var(--font-ui);font-size:var(--t-ui);color:var(--ink-soft)}
+.pager a{display:inline-flex;align-items:center;min-height:var(--tap);padding:0 .9rem;border:1px solid var(--navy);border-radius:var(--radius-ctl);color:var(--navy);font-weight:700;text-decoration:none}
+.pager a[aria-disabled=true]{opacity:.4;pointer-events:none}
+.status{font-family:var(--font-ui);font-size:var(--t-meta);color:var(--ink-meta)}
+
+/* Inline minor sections */
+.minor{border-top:1px solid var(--rule);padding:.5rem 0}
+.minor summary{list-style:none;cursor:pointer;font-family:var(--font-ui);font-size:var(--t-ui);font-weight:600;color:var(--navy);display:flex;align-items:center;justify-content:space-between;min-height:var(--tap)}
+.minor summary::-webkit-details-marker{display:none}
+.minor summary::after{content:'+';color:var(--ink-meta);font-weight:700}
+.minor[open] summary::after{content:'–'}
+.minor .meta{display:block;padding:.25rem 0 .75rem}
+.errline{font-family:var(--font-ui);font-size:var(--t-meta);color:var(--ink-meta);margin-top:.5rem}
+.errline a{color:var(--blue-dim)}
+
+/* Footer + desktop feedback */
+.site-footer{background:var(--card);border-top:3px double var(--navy);margin:3rem auto 0;padding:1.5rem 1rem 2rem;text-align:center;color:var(--ink-soft)}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:0 .5rem;margin-bottom:.5rem}
+.footer-links a{font-family:var(--font-ui);font-size:var(--t-kicker);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap);padding:0 .5rem}
+.site-footer .meta{display:block;line-height:1.6}
+.site-footer .meta a{color:var(--ink-soft)}
+.site-footer .credo{font-style:italic;font-size:.95rem;margin-top:.75rem}
+.fb-desktop{display:none}
+@media (min-width:880px){
+  .fb-desktop{display:inline-flex;position:fixed;right:1.25rem;bottom:calc(1.25rem + env(safe-area-inset-bottom));min-height:var(--tap);align-items:center;gap:.4rem;background:var(--navy);color:#fff;border:none;border-radius:999px;padding:0 1rem;font-family:var(--font-ui);font-size:var(--t-ui);font-weight:600;cursor:pointer;box-shadow:var(--shadow)}
+  main{padding-bottom:72px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.masthead-nav,.fb-desktop,.actions,.stick,.controls,.pager{display:none!important}}
+</style>
+</head>
+<body>
+<a href="#main-content" class="visually-hidden">Skip to main content</a>
+
+<header class="masthead">
+  <a href="home.html" class="logo" aria-label="ClearVoting home">Clear<span>Voting</span></a>
+  <p class="masthead-tagline">Facts only · No opinions · No spin</p>
+  <nav class="masthead-nav" aria-label="Main">
+    <a href="home.html">Home</a>
+    <a href="home.html" aria-current="page">My representatives</a>
+    <a href="home.html#record">The Record</a>
+    <a href="#">About</a>
+    <a href="#" class="nav-mobile-only">Feedback</a>
+  </nav>
+</header>
+
+<main id="main-content" tabindex="-1">
+  <nav class="crumb" aria-label="Breadcrumb"><a href="home.html">← Your representatives · New York</a></nav>
+
+  <header class="member-header">
+    <span class="photo"><span class="mono">CS</span><img src="https://www.congress.gov/img/member/s000148_200.jpg" alt=""></span>
+    <div>
+      <p class="kicker">U.S. Senator · New York</p>
+      <h1>Charles E. Schumer</h1>
+    </div>
+    <p class="facts">
+      <b>In Congress since 1981</b> — House 1981–99, Senate since 1999<span class="sep">·</span>
+      Voted in <b>1,060 of 1,061</b> roll calls since 2021<span class="sep">·</span>
+      <b>Not on the ballot in 2026</b>
+    </p>
+    <div class="actions">
+      <button type="button" aria-pressed="false"><span class="label">Party labels: hidden —</span> show</button>
+      <a href="#">Share</a>
+      <a href="#">Congress.gov profile ↗</a>
+    </div>
+  </header>
+
+  <div class="stick" id="stick" aria-label="Page sections">
+    <span class="n">Charles E. Schumer</span>
+    <nav><a href="#key">Key votes</a><a href="#record">Record</a></nav>
+  </div>
+
+  <div class="band">
+  <!-- KEY VOTES: first thing after the header on every viewport -->
+  <section class="section" id="key" aria-labelledby="key-h">
+    <div class="section-head">
+      <div><span class="kicker">Key votes</span><h2 id="key-h">What he voted for and against</h2></div>
+    </div>
+    <div class="key-grid">
+      <div>
+        <p class="kl"><span class="kicker">Voted yes</span></p>
+        <ul class="votes">
+          <li><a class="vrow" href="#"><span class="vt">Extend no-tax imports from 32 African countries through 2028</span><span class="vm"><span class="bill-no">H.R. 6500</span><span class="meta">Passed 90–6 · Aug 8, 2026</span></span><span class="vote-chip yes">Voted yes</span></a></li>
+          <li><a class="vrow" href="#"><span class="vt">Order the President to pull U.S. troops out of fighting with Iran</span><span class="vm"><span class="bill-no">H.Con.Res. 86</span><span class="meta">Adopted 50–48 · June 23, 2026</span></span><span class="vote-chip yes">Voted yes</span></a></li>
+          <li><a class="vrow" href="#"><span class="vt">Cancel a Department of Education rule on federal student loan programs</span><span class="vm"><span class="bill-no">S.J.Res. 196</span><span class="meta">Not taken up, 45–52 · June 24, 2026</span></span><span class="vote-chip yes">Voted yes</span></a></li>
+          <li><a class="vrow" href="#"><span class="vt">Restore a rule against deceptive and unfair medical debt collection</span><span class="vm"><span class="bill-no">S.J.Res. 141</span><span class="meta">Not taken up, 50–50 · May 13, 2026</span></span><span class="vote-chip yes">Voted yes</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="kl"><span class="kicker">Voted no</span></p>
+        <ul class="votes">
+          <li><a class="vrow" href="#"><span class="vt">Fund border patrol and immigration enforcement agencies through 2029</span><span class="vm"><span class="bill-no">S. 2</span><span class="meta">Passed 52–47 · June 5, 2026</span></span><span class="vote-chip no">Voted no</span></a></li>
+          <li><a class="vrow" href="#"><span class="vt">Set the federal government's spending and revenue targets for 2026 through 2035</span><span class="vm"><span class="bill-no">S.Con.Res. 33</span><span class="meta">Adopted 50–48 · Apr 23, 2026</span></span><span class="vote-chip no">Voted no</span></a></li>
+          <li><a class="vrow" href="#"><span class="vt">Reopen 225,504 acres of Minnesota forest land to mining and energy leasing</span><span class="vm"><span class="bill-no">H.J.Res. 140</span><span class="meta">Passed 50–49 · Apr 16, 2026</span></span><span class="vote-chip no">Voted no</span></a></li>
+          <li><a class="vrow" href="#"><span class="vt">Fund homeland security agencies for the year starting October 2025</span><span class="vm"><span class="bill-no">H.R. 7147</span><span class="meta">Blocked — needed 60 votes (53–47) · Mar 26, 2026</span></span><span class="vote-chip no">Voted no</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="rule-note">Chosen by rule, not by us: the most recent final votes on bills that have a plain-English summary, spread across topics, equal numbers of yes and no. <a href="#">How key votes are picked →</a></p>
+  </section>
+
+  <!-- SUMMARY: below key votes on mobile, beside them on wide screens; dated -->
+  <section class="section" id="summary" aria-labelledby="sum-h">
+    <div class="section-head">
+      <div><span class="kicker">Summary</span><h2 id="sum-h">His record, in a paragraph</h2></div>
+    </div>
+    <div class="summary">
+      <p class="body clamp" id="narrative">Schumer votes most often on economics and public finance bills, where his record is split nearly evenly between votes in favor and against. On armed forces and national security bills, he votes in favor at a much higher rate than against. He also leans in favor on international affairs, transportation, and science and technology bills. He voted in favor of bills to fund the government, cap insulin costs under Medicare, and set defense policies. He voted against bills that would have removed federal protections for certain wildlife species and canceled rules on gender identity in food programs.</p>
+      <button class="readmore" type="button" id="readmore" aria-expanded="false" aria-controls="narrative">Read the whole paragraph</button>
+      <p class="prov"><span class="meta">Written by AI on <b>June 13, 2026</b> from the official record · votes after that date aren't reflected</span><a class="meta" href="#" style="color:var(--blue-dim)">How we keep it neutral</a><a class="meta" href="#" style="color:var(--blue-dim)">Something wrong? Tell us</a></p>
+    </div>
+  </section>
+  </div>
+
+  <!-- THE RECORD: grouped by bill, newest first, procedural votes collapsed -->
+  <section class="section" id="record" aria-labelledby="rec-h">
+    <div class="section-head">
+      <div><span class="kicker">The record</span><h2 id="rec-h">Every vote, by bill</h2></div>
+      <p class="meta">268 bills · 1,061 roll calls since 2021 · Roll-call data as of Sept 5, 2026</p>
+    </div>
+    <form class="controls" aria-label="Filter the record">
+      <label class="visually-hidden" for="topic">Topic</label>
+      <select id="topic" name="policy_area"><option>All topics</option><option>Agriculture and Food</option><option>Armed Forces and National Security</option><option>Economics and Public Finance</option><option>Education</option><option>Environmental Protection</option><option>Health</option><option>Housing and Community Development</option><option>Immigration</option><option>International Affairs</option><option>Taxation</option><option>… 28 topics</option></select>
+      <label class="cb"><input type="checkbox" name="procedural" value="1"> Show amendments and motions (478)</label>
+    </form>
+    <p class="status" role="status">Showing bills 1–15 of 268, newest first</p>
+
+    <ul class="votes" id="record-list" tabindex="-1">
+      <li><a class="vrow" href="#">
+        <span class="vt no-summary clamp2">A bill to amend the Help America Vote Act of 2002 to require voters to provide photo identification.</span>
+        <span class="vm"><span class="bill-no">S. 5271</span><span class="chip chip-pending">No plain-English summary yet</span><span class="meta">Vote to end debate · Blocked — needed 60 votes (52–46) · Aug 8, 2026</span></span>
+        <span class="vote-chip no">Voted no</span>
+      </a></li>
+
+      <li><a class="vrow" href="#">
+        <span class="vt">Extend no-tax imports from 32 African countries through 2028</span>
+        <span class="vm"><span class="bill-no">H.R. 6500</span><span class="meta">Final vote to pass · Passed 90–6 · Aug 8, 2026</span></span>
+        <span class="vote-chip yes">Voted yes</span>
+        </a>
+        <details class="proc"><summary>1 procedural vote on this bill</summary>
+          <ul class="sub"><li><span>Aug 3, 2026 · Vote to end debate on taking it up · Agreed 89–4</span><span class="vote-chip yes">Voted yes</span></li></ul>
+        </details>
+      </li>
+
+      <li><details class="vrow grp"><summary>2 amendments and motions · Aug 7–8, 2026 <span class="meta">(no bill page — floor amendments)</span></summary>
+        <ul class="sub">
+          <li><span><span class="amend">To strike section 2019.</span><br>Aug 8, 2026 · Motion to table · Agreed 61–32</span><span class="vote-chip yes">Voted yes</span></li>
+          <li><span><span class="amend">In the nature of a substitute.</span><br>Aug 7, 2026 · Vote to end debate · Agreed 91–6</span><span class="vote-chip yes">Voted yes</span></li>
+        </ul>
+      </details></li>
+
+      <li><a class="vrow" href="#">
+        <span class="vt no-summary">SEED Act</span>
+        <span class="vm"><span class="bill-no">H.R. 5334</span><span class="chip chip-pending">No plain-English summary yet</span><span class="meta">Final vote to pass · Passed 86–11 · Aug 7, 2026</span></span>
+        <span class="vote-chip yes">Voted yes</span>
+        </a>
+        <details class="proc"><summary>2 procedural votes on this bill</summary>
+          <ul class="sub">
+            <li><span>July 29, 2026 · Vote to take it up · Agreed 84–12</span><span class="vote-chip yes">Voted yes</span></li>
+            <li><span>July 28, 2026 · Vote to end debate on taking it up · Agreed 86–12</span><span class="vote-chip yes">Voted yes</span></li>
+          </ul>
+        </details>
+      </li>
+
+      <li><details class="vrow grp"><summary>1 amendment · Aug 7, 2026 <span class="meta">(no bill page — floor amendment)</span></summary>
+        <ul class="sub"><li><span><span class="amend">To strike the provision relating to duties on countries that purchase Russian-origin crude oil or natural gas or facilitate sanctions evasion.</span><br>Aug 7, 2026 · Amendment rejected 32–64</span><span class="vote-chip yes">Voted yes</span></li></ul>
+      </details></li>
+
+      <li><a class="vrow" href="#">
+        <span class="vt no-summary clamp2">A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to “Modification to the Start of the Submission Period for Perfluoroalkyl and Polyfluoroalkyl Substances (PFAS) Reporting and Recordkeeping Under TSCA 8(a)(7)”.</span>
+        <span class="vm"><span class="bill-no">S.J.Res. 187</span><span class="chip chip-pending">No plain-English summary yet</span><span class="meta">Vote to take it up · Not taken up, 48–50 · Aug 5, 2026</span></span>
+        <span class="vote-chip yes">Voted yes</span>
+      </a></li>
+
+      <li><a class="vrow" href="#">
+        <span class="vt no-summary clamp2">An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.</span>
+        <span class="vm"><span class="bill-no">S.Res. 817</span><span class="chip chip-pending">No plain-English summary yet</span><span class="meta">Adopted 50–47 · July 30, 2026</span></span>
+        <span class="vote-chip no">Voted no</span>
+        </a>
+        <details class="proc"><summary>1 procedural vote on this resolution</summary>
+          <ul class="sub"><li><span>July 29, 2026 · Vote to end debate · Agreed 50–45</span><span class="vote-chip no">Voted no</span></li></ul>
+        </details>
+      </li>
+
+      <li><a class="vrow" href="#">
+        <span class="vt no-summary clamp2">A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.</span>
+        <span class="vm"><span class="bill-no">S.J.Res. 181</span><span class="chip chip-pending">No plain-English summary yet</span><span class="meta">Vote to force it out of committee · Rejected 49–50 · July 30, 2026</span></span>
+        <span class="vote-chip yes">Voted yes</span>
+      </a></li>
+
+      <li><a class="vrow" href="#">
+        <span class="vt no-summary clamp2">A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Health and Human Services relating to “Restoring Flexibility in the Child Care and Development Fund (CCDF)”.</span>
+        <span class="vm"><span class="bill-no">S.J.Res. 199</span><span class="chip chip-pending">No plain-English summary yet</span><span class="meta">Vote to take it up · Not taken up, 47–52 · July 30, 2026</span></span>
+        <span class="vote-chip yes">Voted yes</span>
+      </a></li>
+
+      <li><a class="vrow" href="#">
+        <span class="vt no-summary">National Defense Authorization Act for Fiscal Year 2027</span>
+        <span class="vm"><span class="bill-no">S. 4784</span><span class="chip chip-pending">No plain-English summary yet</span><span class="meta">Vote to end debate · Blocked — needed 60 votes (50–46) · July 14, 2026</span></span>
+        <span class="vote-chip no">Voted no</span>
+      </a></li>
+
+      <li><a class="vrow" href="#">
+        <span class="vt">Order US troops out of combat against Iran that Congress did not approve</span>
+        <span class="vm"><span class="bill-no">S.J.Res. 185</span><span class="meta">Vote to take it up · Not taken up, 47–50 · June 24, 2026</span></span>
+        <span class="vote-chip yes">Voted yes</span>
+        </a>
+        <details class="proc"><summary>1 procedural vote on this resolution</summary>
+          <ul class="sub"><li><span>May 19, 2026 · Vote to force it out of committee · Agreed 50–47</span><span class="vote-chip yes">Voted yes</span></li></ul>
+        </details>
+      </li>
+
+      <li><a class="vrow" href="#">
+        <span class="vt">Cancel a Department of Education rule on federal student loan programs</span>
+        <span class="vm"><span class="bill-no">S.J.Res. 196</span><span class="meta">Vote to take it up · Not taken up, 45–52 · June 24, 2026</span></span>
+        <span class="vote-chip yes">Voted yes</span>
+      </a></li>
+
+      <li><a class="vrow" href="#">
+        <span class="vt">Order the President to pull U.S. troops out of fighting with Iran</span>
+        <span class="vm"><span class="bill-no">H.Con.Res. 86</span><span class="meta">Adopted 50–48 · June 23, 2026</span></span>
+        <span class="vote-chip yes">Voted yes</span>
+      </a></li>
+
+      <li><a class="vrow" href="#">
+        <span class="vt">Expand federal housing programs and increase government funding for housing</span>
+        <span class="vm"><span class="bill-no">H.R. 6644</span><span class="meta">Motion agreed to, 85–5 · June 22, 2026</span></span>
+        <span class="vote-chip yes">Voted yes</span>
+        </a>
+        <details class="proc"><summary>2 procedural votes on this bill</summary>
+          <ul class="sub">
+            <li><span>June 18, 2026 · Vote to end debate · Agreed 84–8</span><span class="vote-chip yes">Voted yes</span></li>
+            <li><span>June 16, 2026 · Vote to take it up · Agreed 87–8</span><span class="vote-chip yes">Voted yes</span></li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+
+    <nav class="pager" aria-label="Record pages">
+      <a href="#" aria-disabled="true">← Newer</a>
+      <span>Bills 1–15 of 268</span>
+      <a href="#">Older →</a>
+    </nav>
+    <p class="errline">Every row links to the bill and its roll call on ClearVoting; each roll call links to the official record on Senate.gov. Spot an error? <a href="#">Report it on this page</a>.</p>
+  </section>
+
+  <!-- Minor sections: inline, short, no tabs -->
+  <section class="section" aria-label="More about this senator">
+    <details class="minor">
+      <summary>Sponsored bills (6)</summary>
+      <span class="meta">Bills Sen. Schumer introduced in the 119th Congress, with their last official action, formatted like every other bill code on the site (S. 3385, S.Res. 417 …). Loads from Congress.gov when opened.</span>
+    </details>
+    <div class="minor">
+      <p class="meta" style="display:block;padding:.6rem 0">Campaign finance is reported to the Federal Election Commission. <a href="https://www.fec.gov/data/candidate/S8NY00082/" style="color:var(--blue-dim)">See Schumer's FEC filings ↗</a> — ClearVoting does not summarize money data until it is current for the 2026 cycle.</p>
+    </div>
+  </section>
+</main>
+
+<button class="fb-desktop" type="button" aria-label="Send feedback">✎ Feedback</button>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="#">About</a><a href="#">Methodology &amp; corrections</a><a href="#">Privacy</a><a href="#">Report an error on this page</a>
+  </div>
+  <span class="meta">Data from <a href="#">Congress.gov</a> and <a href="#">Senate.gov</a> · Roll-call data last updated September 5, 2026 · Plain-English summaries through July 2, 2026</span>
+  <p class="credo">ClearVoting does not express opinions on legislation or representatives.</p>
+</footer>
+
+<script>
+/* MOCKUP-ONLY. In the product these two behaviours live in static/js/member.js (CSP script-src 'self'). */
+(function(){
+  var h=document.querySelector('.member-header'), s=document.getElementById('stick');
+  function tick(){ if(window.innerWidth<880 && window.scrollY>h.offsetTop+h.offsetHeight){s.classList.add('show')}else{s.classList.remove('show')} }
+  window.addEventListener('scroll',tick,{passive:true}); window.addEventListener('resize',tick); tick();
+  var b=document.getElementById('readmore'), p=document.getElementById('narrative');
+  b.addEventListener('click',function(){var open=p.classList.toggle('clamp')===false; b.setAttribute('aria-expanded',open); b.textContent=open?'Show less':'Read the whole paragraph';});
+})();
+</script>
+</body>
+</html>

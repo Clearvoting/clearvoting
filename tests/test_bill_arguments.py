@@ -1,5 +1,11 @@
+import json
+from pathlib import Path
+
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
+from httpx import AsyncClient, ASGITransport
+from app.main import app
+from app.limiter import limiter
 from app.services.bill_arguments import BillArgumentsService, SYSTEM_PROMPT
 
 
@@ -169,3 +175,28 @@ async def test_generate_arguments_validates_structure():
 
     assert isinstance(result["supporters"], list)
     assert isinstance(result["critics"], list)
+
+
+# --- Endpoint level: arguments are never served (plan T7.4, spec §2.3 C-2) ---
+
+FIXTURES = Path(__file__).parent / "fixtures" / "synced"
+
+
+@pytest.mark.asyncio
+async def test_bill_page_and_payload_never_serve_arguments_or_direction():
+    summaries = json.loads((FIXTURES / "ai_summaries.json").read_text())
+    bill_id = next(k for k, v in summaries.items() if v.get("arguments") and not v.get("needs_review"))
+    congress, bill_type, number = bill_id.split("-")
+    from app.dependencies import get_data_service
+    limiter.reset()
+    with patch("app.dependencies.get_data_dir", return_value=FIXTURES):
+        get_data_service.cache_clear()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            page = await client.get(f"/bill?congress={congress}&type={bill_type}&number={number}")
+            payload = await client.get(f"/api/bills/{congress}/{bill_type}/{number}")
+    get_data_service.cache_clear()
+    for response in (page, payload):
+        assert response.status_code == 200
+        assert "Supporters say" not in response.text and "Critics say" not in response.text
+    assert '"arguments"' not in payload.text and '"direction"' not in payload.text

@@ -1,0 +1,82 @@
+{
+  "congress": 119,
+  "session": 2,
+  "vote_number": 184,
+  "vote_date": "June 23, 2026,  03:01 PM",
+  "question": "On the Concurrent Resolution H.Con.Res. 86",
+  "document": "H.Con.Res. 86",
+  "result": "Concurrent Resolution Agreed to (50-48)",
+  "title": "H. Con. Res. 86",
+  "counts": {
+    "yeas": 50,
+    "nays": 48,
+    "present": 0,
+    "absent": 2
+  },
+  "members": [
+    {
+      "first_name": "John",
+      "last_name": "Cornyn",
+      "party": "R",
+      "state": "TX",
+      "vote": "Nay",
+      "lis_member_id": "S287"
+    },
+    {
+      "first_name": "Ted",
+      "last_name": "Cruz",
+      "party": "R",
+      "state": "TX",
+      "vote": "Nay",
+      "lis_member_id": "S355"
+    },
+    {
+      "first_name": "Kirsten",
+      "last_name": "Gillibrand",
+      "party": "D",
+      "state": "NY",
+      "vote": "Yea",
+      "lis_member_id": "S331"
+    },
+    {
+      "first_name": "Ashley",
+      "last_name": "Moody",
+      "party": "R",
+      "state": "FL",
+      "vote": "Nay",
+      "lis_member_id": "S439"
+    },
+    {
+      "first_name": "Alex",
+      "last_name": "Padilla",
+      "party": "D",
+      "state": "CA",
+      "vote": "Yea",
+      "lis_member_id": "S413"
+    },
+    {
+      "first_name": "Adam",
+      "last_name": "Schiff",
+      "party": "D",
+      "state": "CA",
+      "vote": "Yea",
+      "lis_member_id": "S427"
+    },
+    {
+      "first_name": "Charles",
+      "last_name": "Schumer",
+      "party": "D",
+      "state": "NY",
+      "vote": "Yea",
+      "lis_member_id": "S270"
+    },
+    {
+      "first_name": "Rick",
+      "last_name": "Scott",
+      "party": "R",
+      "state": "FL",
+      "vote": "Nay",
+      "lis_member_id": "S404"
+    }
+  ]
+}

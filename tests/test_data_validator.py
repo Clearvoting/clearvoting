@@ -34,9 +34,15 @@ def _good_sync_dir(tmp_path: Path) -> Path:
         "stats": {"total_votes": 2, "yea_count": 1, "nay_count": 1, "not_voting_count": 0, "participation_rate": 100.0},
         "scorecard": [{"category": "Immigration", "verdict": "x"}],
         "votes": [
-            {"bill_number": "S. 2", "date": "2026-06-24T22:30:00", "vote": "Yea", "vote_number": 129},
-            {"bill_number": "S. 1", "date": "2025-09-09T18:46:00", "vote": "Nay", "vote_number": 511},
+            {"bill_number": "S. 2", "date": "2026-06-24T22:30:00", "vote": "Yea",
+             "chamber": "Senate", "congress": 119, "session": 2, "vote_number": 129},
+            {"bill_number": "S. 1", "date": "2025-09-09T18:46:00", "vote": "Nay",
+             "chamber": "Senate", "congress": 119, "session": 1, "vote_number": 511},
         ],
+    })
+    _write(d / "votes_index.json", {
+        "roll_calls": {"senate/119_2_00129": {"class": "D"}, "senate/119_1_00511": {"class": "D"}},
+        "bills": {}, "latest": None, "generated_at": "2026-09-22T00:00:00+00:00",
     })
     return d
 
@@ -119,3 +125,61 @@ def test_validate_step_is_wired():
     """sync.py exposes the validate step."""
     import sync
     assert callable(sync.run_validation)
+
+
+def test_member_vote_missing_from_votes_index_fails(tmp_path):
+    """Every member_votes row must resolve in votes_index.json (spec §10 #3)."""
+    d = _good_sync_dir(tmp_path)
+    index = json.loads((d / "votes_index.json").read_text())
+    del index["roll_calls"]["senate/119_1_00511"]
+    _write(d / "votes_index.json", index)
+    failures, _ = validate_synced_data(d)
+    assert any("votes_index.json" in f and "senate/119_1_00511" in f for f in failures)
+
+
+def test_missing_votes_index_fails(tmp_path):
+    d = _good_sync_dir(tmp_path)
+    (d / "votes_index.json").unlink()
+    failures, _ = validate_synced_data(d)
+    assert any("votes_index.json missing" in f for f in failures)
+
+
+def _with_stale_bill(d: Path, latest_action: str, roll_call_date: str) -> None:
+    bills = json.loads((d / "bills.json").read_text())
+    bills["bills"][0]["latestAction"] = {"actionDate": latest_action, "text": "Placed on the calendar."}
+    _write(d / "bills.json", bills)
+    index = json.loads((d / "votes_index.json").read_text())
+    index["roll_calls"]["senate/119_2_00129"].update({"bill": "119-s-2", "date": roll_call_date})
+    index["roll_calls"]["senate/119_1_00511"].update({"bill": "119-s-2", "date": "2025-09-09"})
+    _write(d / "votes_index.json", index)
+
+
+def test_roll_call_long_after_latest_action_warns_not_fails(tmp_path):
+    """A roll call more than 7 days after a bill's latestAction means bills.json holds a
+    stale record (F002): a warning, since sync re-fetches only a capped number per run."""
+    d = _good_sync_dir(tmp_path)
+    _with_stale_bill(d, "2026-06-01", "2026-06-24")
+    failures, warnings = validate_synced_data(d)
+    assert failures == []
+    assert any("119-s-2" in w and "2026-06-24" in w and "23 days" in w for w in warnings)
+
+
+def test_roll_call_within_a_week_of_latest_action_does_not_warn(tmp_path):
+    d = _good_sync_dir(tmp_path)
+    _with_stale_bill(d, "2026-06-17", "2026-06-24")
+    _, warnings = validate_synced_data(d)
+    assert not any("119-s-2" in w for w in warnings)
+
+
+def test_stale_bill_warnings_are_capped(tmp_path):
+    d = _good_sync_dir(tmp_path)
+    bills = [{"congress": 119, "type": "HR", "number": str(n), "latestAction": {"actionDate": "2026-01-01"}}
+             for n in range(12)]
+    _write(d / "bills.json", {"bills": bills})
+    index = json.loads((d / "votes_index.json").read_text())
+    for n in range(12):
+        index["roll_calls"][f"house/119_2_{n:05d}"] = {"bill": f"119-hr-{n}", "date": "2026-03-01"}
+    _write(d / "votes_index.json", index)
+    _, warnings = validate_synced_data(d)
+    assert len([w for w in warnings if w.startswith("bills.json:")]) == 10
+    assert "...and 2 more bills with a stale latest action" in warnings

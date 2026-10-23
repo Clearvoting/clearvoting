@@ -1,8 +1,10 @@
+import json
 import pytest
 from unittest.mock import patch
 from pathlib import Path
 from httpx import AsyncClient, ASGITransport
 from app.main import app
+from app.limiter import limiter
 
 FIXTURES = Path(__file__).parent / "fixtures" / "synced"
 
@@ -18,30 +20,6 @@ def _clear_data_service_cache():
 
 
 # --- Members Router ---
-
-@pytest.mark.asyncio
-async def test_get_members_by_state():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/FL")
-
-    _clear_data_service_cache()
-    assert response.status_code == 200
-    data = response.json()
-    assert len(data["members"]) == 2
-    for member in data.get("members", []):
-        assert "partyName" not in member
-
-
-@pytest.mark.asyncio
-async def test_invalid_state_code():
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/api/members/INVALID")
-    assert response.status_code == 400
-
 
 @pytest.mark.asyncio
 async def test_get_member_detail_strips_party_by_default():
@@ -71,7 +49,8 @@ async def test_get_member_detail_shows_party_when_requested():
 
 
 @pytest.mark.asyncio
-async def test_get_member_summary():
+async def test_member_summary_endpoint_is_deleted():
+    """Member narratives are withdrawn (spec §2.5 A). No route matches the path any more."""
     with _patch_data_dir():
         _clear_data_service_cache()
         transport = ASGITransport(app=app)
@@ -79,23 +58,8 @@ async def test_get_member_summary():
             response = await client.get("/api/members/S001217/summary")
 
     _clear_data_service_cache()
-    assert response.status_code == 200
-    data = response.json()
-    assert data["member_id"] == "S001217"
-    assert "stats" in data
-    assert "top_policy_areas" in data
-
-
-@pytest.mark.asyncio
-async def test_get_member_summary_not_found():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/X999999/summary")
-
-    _clear_data_service_cache()
     assert response.status_code == 404
+    assert "narrative" not in response.text
 
 
 # --- Bills Router ---
@@ -111,7 +75,9 @@ async def test_list_bills():
     _clear_data_service_cache()
     assert response.status_code == 200
     data = response.json()
-    assert len(data["bills"]) == 3
+    fixture_bills = json.loads((FIXTURES / "bills.json").read_text())["bills"]
+    # Default page size is 20; the real-data fixtures hold more bills than that.
+    assert len(data["bills"]) == min(len(fixture_bills), 20)
 
 
 @pytest.mark.asyncio
@@ -121,13 +87,67 @@ async def test_list_bills_congress_filter():
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
             match = await client.get("/api/bills?congress=119")
-            no_match = await client.get("/api/bills?congress=118")
+            no_match = await client.get("/api/bills?congress=116")
 
     _clear_data_service_cache()
+    fixture_bills = json.loads((FIXTURES / "bills.json").read_text())["bills"]
+    in_119 = [b for b in fixture_bills if b["congress"] == 119]
     assert match.status_code == 200
-    assert len(match.json()["bills"]) == 3
+    assert len(match.json()["bills"]) == min(len(in_119), 20)
+    assert all(b["congress"] == 119 for b in match.json()["bills"])
     assert no_match.status_code == 200
     assert no_match.json()["bills"] == []
+
+
+@pytest.mark.asyncio
+async def test_list_bills_newest_activity_first_with_status():
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/bills?limit=50")
+
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    bills = response.json()["bills"]
+    dates = [b["activity_date"] or "" for b in bills]
+    assert dates == sorted(dates, reverse=True)
+    for bill in bills:
+        assert bill["derived_status"]
+        assert bill["one_liner"] is None or (isinstance(bill["one_liner"], str) and bill["one_liner"])
+
+
+@pytest.mark.asyncio
+async def test_latest_vote_extended_payload_keeps_old_keys_and_hides_party():
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/votes/latest")
+
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    data = response.json()
+    # Old app.js reads these (spec §10.3 commit 1: additive only)
+    assert {"chamber", "date", "document", "result", "counts", "bill"} <= set(data)
+    assert {"congress", "type", "number", "title"} <= set(data["bill"])
+    # New card fields (spec §10 #11)
+    assert {"one_liner", "has_summary", "plain_question", "outcome", "state_tallies", "covered"} <= set(data)
+    assert '"party' not in json.dumps(data)
+
+
+@pytest.mark.asyncio
+async def test_search_tolerates_bills_without_a_summary():
+    # one_liner is None for unsummarized/withheld bills; search must not call .lower() on it
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/api/search/bills?q=zzzz-no-such-bill")
+
+    _clear_data_service_cache()
+    assert response.status_code == 200
+    assert response.json() == {"bills": [], "total": 0}
 
 
 @pytest.mark.asyncio
@@ -153,39 +173,6 @@ async def test_get_bill_detail_not_found():
 
     _clear_data_service_cache()
     assert response.status_code == 404
-
-
-@pytest.mark.asyncio
-async def test_get_bill_votes_includes_house():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/bills/119/hjres/20/votes")
-
-    _clear_data_service_cache()
-    assert response.status_code == 200
-    data = response.json()
-    assert len(data["senate"]) == 1
-    assert len(data["house"]) == 1
-    # Vote refs are summary-only — member positions come from /api/votes/senate
-    for vote in data["senate"] + data["house"]:
-        assert "members" not in vote
-
-
-@pytest.mark.asyncio
-async def test_get_bill_votes_wrong_congress_returns_empty():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/bills/117/hjres/20/votes")
-
-    _clear_data_service_cache()
-    assert response.status_code == 200
-    data = response.json()
-    assert data["senate"] == []
-    assert data["house"] == []
 
 
 # --- Votes Router ---
@@ -267,8 +254,8 @@ async def test_search_bills_congress_filter():
         _clear_data_service_cache()
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:
-            match = await client.get("/api/search/bills?q=energy&congress=119")
-            no_match = await client.get("/api/search/bills?q=energy&congress=118")
+            match = await client.get("/api/search/bills?q=beautiful&congress=119")
+            no_match = await client.get("/api/search/bills?q=beautiful&congress=118")
 
     _clear_data_service_cache()
     assert match.status_code == 200
@@ -276,3 +263,47 @@ async def test_search_bills_congress_filter():
     assert no_match.status_code == 200
     assert no_match.json()["bills"] == []
     assert no_match.json()["total"] == 0
+
+
+# --- Bill detail allowlist (plan T7.4, spec §10 #9) ---
+
+async def _get_json(path: str):
+    limiter.reset()
+    with _patch_data_dir():
+        _clear_data_service_cache()
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get(path)
+    _clear_data_service_cache()
+    return response
+
+
+@pytest.mark.asyncio
+async def test_bill_detail_sponsor_has_built_name_and_no_party():
+    response = await _get_json("/api/bills/119/hr/1")
+    assert response.status_code == 200
+    sponsor = response.json()["bill"]["sponsors"][0]
+    assert "party" not in sponsor
+    assert "[" not in sponsor["fullName"]
+
+
+# --- Retired routes (F016): no page called them, so they are gone, not just unlinked ---
+
+RETIRED_PATHS = [
+    "/api/members/S000148/votes",
+    "/api/members/S000148/votes?group=bill",
+    "/api/members/S000148/donations",
+    "/api/members/S000148/sponsored",
+    "/api/members/counts",
+    "/api/members/FL",
+    "/api/members/FL/19",
+    "/api/bills/119/hr/1/ai-summary",
+    "/api/bills/119/hjres/20/votes",
+]
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path", RETIRED_PATHS)
+async def test_retired_api_paths_are_404(path):
+    response = await _get_json(path)
+    assert response.status_code == 404
