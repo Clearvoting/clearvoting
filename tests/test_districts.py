@@ -1,5 +1,7 @@
 """ZIP → congressional district (spec §5.1, §5.2, §3.2) and the per-client rate-limit key (§10 #18)."""
 import json
+import logging
+import re
 from pathlib import Path
 from unittest.mock import patch
 
@@ -89,7 +91,8 @@ def test_zip_plus_four_and_spaces_normalize_to_five_digits(ds, raw):
     assert ds.lookup_zip(raw)["zip"] == "11570"
 
 
-@pytest.mark.parametrize("raw", ["", "abc", "1157", "115700", "11570-12", "11570--1234", "_source", None])
+@pytest.mark.parametrize("raw", ["", "abc", "1157", "115700", "11570-12", "11570--1234", "_source", None,
+                                 "١١٥٧٠", "１１５７０", "11570-١٢٣٤"])   # other scripts' digits (F044)
 def test_malformed_input_is_rejected(ds, raw):
     assert normalize_zip(raw) is None
     assert ds.lookup_zip(raw) is None
@@ -192,7 +195,7 @@ async def test_api_rate_limit_is_60_per_minute_per_client():
             one_client = [(await client.get("/api/districts/11570")).status_code for _ in range(61)]
             limiter.reset()
             two_clients = [(await client.get("/api/districts/11570",
-                                             headers={"CF-Connecting-IP": f"203.0.113.{i % 2}"})).status_code
+                                             headers=_via_cloudflare(f"203.0.113.{i % 2}"))).status_code
                            for i in range(100)]
     get_data_service.cache_clear()
     limiter.reset()
@@ -201,25 +204,131 @@ async def test_api_rate_limit_is_60_per_minute_per_client():
     assert two_clients == [200] * 100  # 50 each: separate buckets per client (§10 #18)
 
 
-# --- limiter key (§10 #18) ---
+@pytest.mark.asyncio
+async def test_api_rate_limit_holds_across_zip_variants():
+    """One bucket per route, not per URL (F062): ZIP+4 suffixes, other ZIPs and bad input share it."""
+    from app.dependencies import get_data_service
+    limiter.reset()
+    with patch("app.dependencies.get_data_dir", return_value=FIXTURES):
+        get_data_service.cache_clear()
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            variants = [(await client.get(f"/api/districts/11570-{i:04d}")).status_code for i in range(60)]
+            after = [(await client.get(path)).status_code
+                     for path in ("/api/districts/11570-9999", "/api/districts/11201", "/api/districts/abc")]
+    get_data_service.cache_clear()
+    limiter.reset()
+    assert variants == [200] * 60
+    assert after == [429, 429, 429]
 
-def _request(headers: dict, client=("10.0.0.1", 1234)) -> Request:
+
+@pytest.mark.asyncio
+async def test_rate_limit_log_names_neither_the_address_nor_the_zip(caplog):
+    """F054: the refusal is logged with a salted hash of the client and the route's name."""
+    from app.dependencies import get_data_service
+    limiter.reset()
+    with patch("app.dependencies.get_data_dir", return_value=FIXTURES), \
+         caplog.at_level(logging.WARNING, logger="slowapi"):
+        get_data_service.cache_clear()
+        async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+            codes = [(await client.get("/api/districts/11570", headers=_via_cloudflare("203.0.113.77"))).status_code
+                     for _ in range(62)]
+    get_data_service.cache_clear()
+    limiter.reset()
+    assert codes.count(429) == 2
+    lines = [r.getMessage() for r in caplog.records if r.name == "slowapi"]
+    assert len(lines) == 2 and lines[0] == lines[1]
+    assert re.fullmatch(r"ratelimit 60 per 1 minute \(client [0-9a-f]{10}\) exceeded at endpoint: "
+                        r"app\.routers\.districts\.get_districts", lines[0])
+    assert "203.0.113.77" not in caplog.text and "11570" not in caplog.text
+
+
+# --- limiter key (§10 #18, F011) ---
+
+CF_EDGE = "172.70.12.34"  # inside Cloudflare's 172.64.0.0/13
+
+
+def _via_cloudflare(ip: str) -> dict:
+    """Headers as they reach the app through Cloudflare and Render's proxy."""
+    return {"CF-Connecting-IP": ip, "X-Forwarded-For": f"{ip}, {CF_EDGE}"}
+
+
+def _request(headers, client=("10.0.0.1", 1234)) -> Request:
+    pairs = headers.items() if isinstance(headers, dict) else headers
     return Request({
         "type": "http", "method": "GET", "path": "/", "query_string": b"",
-        "headers": [(k.lower().encode(), v.encode()) for k, v in headers.items()],
+        "headers": [(k.lower().encode(), v.encode()) for k, v in pairs],
         "client": client,
     })
 
 
-def test_client_key_prefers_cf_connecting_ip():
-    request = _request({"CF-Connecting-IP": "203.0.113.9", "X-Forwarded-For": "198.51.100.1, 10.0.0.2"})
-    assert client_key(request) == "203.0.113.9"
+def test_client_key_trusts_a_valid_cf_connecting_ip_whatever_x_forwarded_for_holds():
+    """Cloudflare overwrites CF-Connecting-IP, so it is the visitor whichever proxy hops sit
+    between Cloudflare and the app (F011)."""
+    assert client_key(_request(_via_cloudflare("203.0.113.9"))) == "203.0.113.9"
+    # A Render-internal hop last in X-Forwarded-For does not fold two visitors into one bucket.
+    assert client_key(_request({"CF-Connecting-IP": "203.0.113.9",
+                                "X-Forwarded-For": f"203.0.113.9, {CF_EDGE}, 10.204.5.6"})) == "203.0.113.9"
+    assert client_key(_request({"CF-Connecting-IP": "198.51.100.77",
+                                "X-Forwarded-For": f"198.51.100.77, {CF_EDGE}, 10.204.5.6"})) == "198.51.100.77"
+    # Nor does a hop with a port, a hop outside Cloudflare's ranges, or no X-Forwarded-For at all.
+    assert client_key(_request({"CF-Connecting-IP": "203.0.113.9",
+                                "X-Forwarded-For": f"203.0.113.9, {CF_EDGE}:443"})) == "203.0.113.9"
+    assert client_key(_request({"CF-Connecting-IP": "203.0.113.9", "X-Forwarded-For": "198.51.100.7"})) == "203.0.113.9"
+    assert client_key(_request({"CF-Connecting-IP": "203.0.113.9"})) == "203.0.113.9"
 
 
-def test_client_key_uses_the_first_forwarded_for_entry():
-    assert client_key(_request({"X-Forwarded-For": "198.51.100.1, 10.0.0.2"})) == "198.51.100.1"
+def test_client_key_uses_the_rightmost_forwarded_for_entry():
+    """With no CF-Connecting-IP, the entry the nearest proxy appended; everything to its left is
+    written by the client (F011)."""
+    assert client_key(_request({"X-Forwarded-For": "198.51.100.1, 203.0.113.2"})) == "203.0.113.2"
+    # Two header lines read as one list, in order.
+    assert client_key(_request([("X-Forwarded-For", "198.51.100.1"), ("X-Forwarded-For", "203.0.113.3")])) == "203.0.113.3"
+
+
+def test_client_key_skips_values_that_are_not_ip_addresses():
+    # A CF-Connecting-IP that is not an address falls through to the last X-Forwarded-For entry.
+    assert client_key(_request({"CF-Connecting-IP": "lol-1", "X-Forwarded-For": "1.2.3.4, 198.51.100.7"})) == "198.51.100.7"
+    assert client_key(_request({"CF-Connecting-IP": "lol-1"})) == "10.0.0.1"
+    assert client_key(_request({"X-Forwarded-For": "198.51.100.1, garbage"})) == "10.0.0.1"
+    assert client_key(_request({"X-Forwarded-For": "198.51.100.1, 198.51.100.7:443"})) == "10.0.0.1"
+    assert client_key(_request({}, client=("testclient", 50000))) == "testclient"
+
+
+def test_client_key_buckets_ipv6_by_64_and_unmaps_ipv4():
+    def key(ip: str) -> str:
+        return client_key(_request(_via_cloudflare(ip)))
+    assert key("2001:db8:1:2::1") == key("2001:db8:1:2:ffff:ffff:ffff:fffe") == "2001:db8:1:2::/64"
+    assert key("2001:db8:1:3::1") == "2001:db8:1:3::/64"
+    assert key("::ffff:203.0.113.9") == "203.0.113.9"
+    assert client_key(_request({"X-Forwarded-For": "::ffff:198.51.100.7"})) == "198.51.100.7"
+    assert client_key(_request({}, client=("2001:db8:9::5", 1234))) == "2001:db8:9::/64"
 
 
 def test_client_key_falls_back_to_the_peer():
     assert client_key(_request({})) == "10.0.0.1"
     assert client_key(_request({}, client=None)) == "127.0.0.1"
+
+
+def test_client_key_trusts_cf_connecting_ip_only_with_the_origin_secret_once_it_is_set(monkeypatch):
+    """F011: with CV_ORIGIN_SECRET set, CF-Connecting-IP counts only on requests carrying the secret
+    Cloudflare adds; a request sent straight to the origin is keyed by the hop Render appended."""
+    direct = {"CF-Connecting-IP": "203.0.113.9", "X-Forwarded-For": "198.51.100.66"}
+    monkeypatch.delenv("CV_ORIGIN_SECRET", raising=False)
+    assert client_key(_request(direct)) == "203.0.113.9"  # unset: today's behaviour
+    monkeypatch.setenv("CV_ORIGIN_SECRET", "")
+    assert client_key(_request(direct)) == "203.0.113.9"  # empty counts as unset
+    monkeypatch.setenv("CV_ORIGIN_SECRET", "s3cret-value")
+    assert client_key(_request(direct)) == "198.51.100.66"
+    assert client_key(_request({**direct, "X-Origin-Auth": "wrong"})) == "198.51.100.66"
+    assert client_key(_request({**direct, "X-Origin-Auth": "s3cret-value"})) == "203.0.113.9"
+
+
+def test_site_limit_reads_cv_site_rate_limit_and_ignores_garbage(caplog):
+    """F007: the site-wide per-client limit; a value the limiter cannot parse falls back to the default."""
+    from app.limiter import DEFAULT_SITE_LIMIT, _site_limit
+    assert DEFAULT_SITE_LIMIT == "600/minute"
+    assert _site_limit(None) == _site_limit("") == _site_limit("  ") == "600/minute"
+    assert _site_limit(" 1200/minute ") == "1200/minute"
+    with caplog.at_level(logging.ERROR, logger="app.limiter"):
+        assert _site_limit("lots") == "600/minute"
+    assert "CV_SITE_RATE_LIMIT" in caplog.text

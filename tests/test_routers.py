@@ -22,30 +22,6 @@ def _clear_data_service_cache():
 # --- Members Router ---
 
 @pytest.mark.asyncio
-async def test_get_members_by_state():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/members/FL")
-
-    _clear_data_service_cache()
-    assert response.status_code == 200
-    data = response.json()
-    assert len(data["members"]) == 2
-    for member in data.get("members", []):
-        assert "partyName" not in member
-
-
-@pytest.mark.asyncio
-async def test_invalid_state_code():
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/api/members/INVALID")
-    assert response.status_code == 400
-
-
-@pytest.mark.asyncio
 async def test_get_member_detail_strips_party_by_default():
     with _patch_data_dir():
         _clear_data_service_cache()
@@ -74,8 +50,7 @@ async def test_get_member_detail_shows_party_when_requested():
 
 @pytest.mark.asyncio
 async def test_member_summary_endpoint_is_deleted():
-    """Member narratives are withdrawn (spec §2.5 A). The path now falls through to
-    /{state_code}/{district}, whose int district rejects 'summary' with 422."""
+    """Member narratives are withdrawn (spec §2.5 A). No route matches the path any more."""
     with _patch_data_dir():
         _clear_data_service_cache()
         transport = ASGITransport(app=app)
@@ -83,7 +58,7 @@ async def test_member_summary_endpoint_is_deleted():
             response = await client.get("/api/members/S001217/summary")
 
     _clear_data_service_cache()
-    assert response.status_code == 422
+    assert response.status_code == 404
     assert "narrative" not in response.text
 
 
@@ -200,39 +175,6 @@ async def test_get_bill_detail_not_found():
     assert response.status_code == 404
 
 
-@pytest.mark.asyncio
-async def test_get_bill_votes_includes_house():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/bills/119/hjres/20/votes")
-
-    _clear_data_service_cache()
-    assert response.status_code == 200
-    data = response.json()
-    assert len(data["senate"]) == 1
-    assert len(data["house"]) == 1
-    # Vote refs are summary-only — member positions come from /api/votes/senate
-    for vote in data["senate"] + data["house"]:
-        assert "members" not in vote
-
-
-@pytest.mark.asyncio
-async def test_get_bill_votes_wrong_congress_returns_empty():
-    with _patch_data_dir():
-        _clear_data_service_cache()
-        transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
-            response = await client.get("/api/bills/117/hjres/20/votes")
-
-    _clear_data_service_cache()
-    assert response.status_code == 200
-    data = response.json()
-    assert data["senate"] == []
-    assert data["house"] == []
-
-
 # --- Votes Router ---
 
 @pytest.mark.asyncio
@@ -323,7 +265,7 @@ async def test_search_bills_congress_filter():
     assert no_match.json()["total"] == 0
 
 
-# --- /ai-summary allowlist (plan T7.4, spec §10 #9) ---
+# --- Bill detail allowlist (plan T7.4, spec §10 #9) ---
 
 async def _get_json(path: str):
     limiter.reset()
@@ -337,33 +279,31 @@ async def _get_json(path: str):
 
 
 @pytest.mark.asyncio
-async def test_ai_summary_returns_only_one_liner_and_provisions():
-    response = await _get_json("/api/bills/119/hr/1/ai-summary")
-    assert response.status_code == 200
-    assert set(response.json()) == {"one_liner", "provisions"}
-
-
-@pytest.mark.asyncio
-async def test_ai_summary_missing_is_404_unavailable():
-    response = await _get_json("/api/bills/119/s/9999/ai-summary")
-    assert response.status_code == 404
-    assert response.json() == {"available": False}
-
-
-@pytest.mark.asyncio
-async def test_ai_summary_needs_review_is_404_unavailable():
-    summaries = json.loads((FIXTURES / "ai_summaries.json").read_text())
-    bill_id = next(k for k, v in summaries.items() if v.get("needs_review"))
-    congress, bill_type, number = bill_id.split("-")
-    response = await _get_json(f"/api/bills/{congress}/{bill_type}/{number}/ai-summary")
-    assert response.status_code == 404
-    assert response.json() == {"available": False}
-
-
-@pytest.mark.asyncio
 async def test_bill_detail_sponsor_has_built_name_and_no_party():
     response = await _get_json("/api/bills/119/hr/1")
     assert response.status_code == 200
     sponsor = response.json()["bill"]["sponsors"][0]
     assert "party" not in sponsor
     assert "[" not in sponsor["fullName"]
+
+
+# --- Retired routes (F016): no page called them, so they are gone, not just unlinked ---
+
+RETIRED_PATHS = [
+    "/api/members/S000148/votes",
+    "/api/members/S000148/votes?group=bill",
+    "/api/members/S000148/donations",
+    "/api/members/S000148/sponsored",
+    "/api/members/counts",
+    "/api/members/FL",
+    "/api/members/FL/19",
+    "/api/bills/119/hr/1/ai-summary",
+    "/api/bills/119/hjres/20/votes",
+]
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path", RETIRED_PATHS)
+async def test_retired_api_paths_are_404(path):
+    response = await _get_json(path)
+    assert response.status_code == 404

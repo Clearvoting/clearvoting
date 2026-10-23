@@ -14,9 +14,9 @@ async def test_bill_summary_full_loop():
 
     # Mock writer responses — each round gets better
     writer_responses = [
-        '{"one_liner": "Set rules for stablecoins called the GENIUS Act", "provisions": ["Creates rules for stablecoins"], "issue_categories": ["Economy"]}',
-        '{"one_liner": "Set rules for dollar-backed digital coins", "provisions": ["Creates rules for companies that issue digital coins backed by US dollars"], "issue_categories": ["Economy"]}',
-        '{"one_liner": "Set rules for dollar-backed digital coins", "provisions": ["Creates rules for companies that issue digital coins backed by US dollars", "Requires these companies to hold $1 in reserve for every digital coin"], "issue_categories": ["Economy"]}',
+        '{"one_liner": "Set rules for stablecoins called the GENIUS Act", "provisions": ["Creates rules for stablecoins", "Names a regulator", "Sets a start date"], "issue_categories": ["Economy"]}',
+        '{"one_liner": "Set rules for dollar-backed digital coins", "provisions": ["Creates rules for companies that issue digital coins backed by US dollars", "Names a regulator", "Sets a start date"], "issue_categories": ["Economy"]}',
+        '{"one_liner": "Set rules for dollar-backed digital coins", "provisions": ["Creates rules for companies that issue digital coins backed by US dollars", "Requires these companies to hold $1 in reserve for every digital coin", "Sets a start date"], "issue_categories": ["Economy"]}',
     ]
     writer_call_count = 0
 

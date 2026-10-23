@@ -21,6 +21,8 @@
 
     var SENT = 'Thanks — sent.';
     var FAILED = "We couldn't send that. Please try again in a few minutes.";
+    // A 422 is the report itself, not an outage: waiting and retrying would fail the same way.
+    var REFUSED = "We couldn't accept that message. Please shorten it and try again.";
     var opener = null;
 
     function getPageContext() {
@@ -184,6 +186,9 @@
         if (!message) return;
 
         var ctx = getPageContext();
+        // No #fragment, and never over the server's 500 characters (F070): a long ?q= or
+        // tracking parameters used to turn every report from the page into a 422.
+        var pageUrl = (window.location.origin + window.location.pathname + window.location.search).slice(0, 500);
         submitBtn.disabled = true;
         setStatus('', false);
 
@@ -192,21 +197,21 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 message: message,
-                page_url: window.location.href,
+                page_url: pageUrl,
                 page_type: ctx.page_type,
                 context_id: ctx.context_id,
                 context_label: ctx.context_label
             })
         })
         .then(function (res) {
-            if (!res.ok) throw new Error('Failed');
+            if (!res.ok) throw new Error(res.status === 422 ? 'Refused' : 'Failed');
             // Success stays in the dialog until the reader closes it (§6.4).
             messageEl.value = '';
             setStatus(SENT, false);
             submitBtn.disabled = false;
         })
-        .catch(function () {
-            setStatus(FAILED, true);
+        .catch(function (err) {
+            setStatus(err && err.message === 'Refused' ? REFUSED : FAILED, true);
             submitBtn.disabled = false;
         });
     });

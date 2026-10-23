@@ -9,17 +9,27 @@ but do not block (e.g. orphan files for departed members).
 """
 import json
 import re
+from datetime import datetime
 from pathlib import Path
 
 from app.services.data_service import roll_call_key
 
 _ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}")
 _PLACEHOLDER_MARKERS = ("temporarily unavailable",)
+_STALE_BILL_DAYS = 7  # a roll call this many days past a bill's latestAction means a stale record
 
 
 def _load(path: Path):
     with open(path) as f:
         return json.load(f)
+
+
+def _iso_day(value):
+    """The date of an ISO date or timestamp string, or None."""
+    try:
+        return datetime.strptime(str(value or "")[:10], "%Y-%m-%d").date()
+    except ValueError:
+        return None
 
 
 def _row_key(vote: dict) -> str | None:
@@ -55,6 +65,7 @@ def validate_synced_data(
 
     # --- bills.json ---
     bills_path = sync_dir / "bills.json"
+    bills: list = []
     bill_keys: set = set()
     if bills_path.exists():
         try:
@@ -92,14 +103,35 @@ def validate_synced_data(
 
     # --- votes_index.json (§10 #3): pages read roll calls only through the index ---
     index_keys: set | None = None
+    roll_calls: dict = {}
     index_path = sync_dir / "votes_index.json"
     if not index_path.exists():
         failures.append("votes_index.json missing (run: python sync.py --step votes-index)")
     else:
         try:
-            index_keys = set(_load(index_path).get("roll_calls") or {})
+            roll_calls = _load(index_path).get("roll_calls") or {}
+            index_keys = set(roll_calls)
         except json.JSONDecodeError:
             failures.append("votes_index.json is not valid JSON")
+
+    # A roll call more than a week after a bill's latestAction means the stored record
+    # missed later actions (F002). A warning: sync re-fetches a capped number per run.
+    newest_votes: dict = {}
+    for rc in (roll_calls.values() if isinstance(roll_calls, dict) else ()):
+        day = _iso_day(rc.get("date")) if isinstance(rc, dict) and rc.get("bill") else None
+        if day:
+            newest_votes[rc["bill"]] = max(day, newest_votes.get(rc["bill"], day))
+    stale_bills = []
+    for b in bills:
+        key = f"{b.get('congress')}-{str(b.get('type', '')).lower()}-{b.get('number')}"
+        action = _iso_day((b.get("latestAction") or {}).get("actionDate"))
+        gap = (newest_votes[key] - action).days if key in newest_votes and action else 0
+        if gap > _STALE_BILL_DAYS:
+            stale_bills.append(f"bills.json: {key} has a roll call on {newest_votes[key]}, "
+                               f"{gap} days after its latest action ({action})")
+    warnings.extend(stale_bills[:10])
+    if len(stale_bills) > 10:
+        warnings.append(f"...and {len(stale_bills) - 10} more bills with a stale latest action")
 
     # --- member_votes/*.json ---
     votes_dir = sync_dir / "member_votes"

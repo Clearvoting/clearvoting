@@ -1,15 +1,18 @@
+import gc
 import hashlib
 import logging
 import mimetypes
 import os
 import re
+from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from html import escape
 from xml.sax.saxutils import escape as xml_escape
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exception_handlers import http_exception_handler
+from fastapi.exceptions import RequestValidationError
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse, PlainTextResponse, RedirectResponse, Response
+from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse, Response
 from pathlib import Path
 from slowapi.middleware import SlowAPIMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -35,7 +38,24 @@ from app.routers.notify import router as notify_router
 from app.routers.districts import router as districts_router
 from app.services.ai_summary import SYSTEM_PROMPT
 
-app = FastAPI(title="ClearVoting", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None)
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    """Load the data once, before uvicorn opens the port (F003, F030). Requests never race
+    on the first load, and a data file that cannot be loaded fails startup, so Render fails
+    the deploy and keeps the previous one serving. The loaded data lives as long as the
+    process, so it is frozen out of the garbage collector's full scans (F072); collecting
+    first keeps import-time garbage from being frozen with it."""
+    from app.dependencies import get_data_service
+    data_service = get_data_service()
+    logger.info("data loaded: %d members, %d bills", len(data_service._members), len(data_service._bills))
+    gc.collect()
+    gc.freeze()
+    yield
+
+
+app = FastAPI(title="ClearVoting", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None,
+              lifespan=lifespan)
 app.state.limiter = limiter
 app.add_middleware(SlowAPIMiddleware)
 
@@ -76,7 +96,11 @@ _h1_re = re.compile(r"(<h1\b[^>]*>).*?(</h1>)", re.DOTALL)
 
 _TITLE_SUFFIX = " | ClearVoting"
 _OG_TITLE_MAX = 90
-_ISO_DAY_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+_ISO_DAY_RE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}\Z")   # fullmatch, ASCII digits (F044)
+# /bill's congress and number: ASCII digits, bounded (F060). Not str.isdigit(): it is True for
+# "²" (int() raises, a 500) and for other scripts' digits, and int() refuses 4,300+ digits.
+_BILL_CONGRESS_RE = re.compile(r"[0-9]{1,3}")
+_BILL_NUMBER_RE = re.compile(r"[0-9]{1,6}")
 
 
 def _og_title(title: str) -> str:
@@ -96,7 +120,8 @@ def _normalize_bill_params(congress, bill_type, number) -> tuple[int, str, int] 
     congress_raw = str(congress if congress is not None else "").strip()
     number_raw = str(number if number is not None else "").strip()
     type_lower = str(bill_type or "").strip().lower()
-    if not (congress_raw.isdigit() and number_raw.isdigit()) or type_lower not in VALID_BILL_TYPES:
+    if (not (_BILL_CONGRESS_RE.fullmatch(congress_raw) and _BILL_NUMBER_RE.fullmatch(number_raw))
+            or type_lower not in VALID_BILL_TYPES):
         return None
     congress_int, number_int = int(congress_raw), int(number_raw)
     if not 1 <= congress_int <= 200 or number_int < 1:
@@ -106,7 +131,7 @@ def _normalize_bill_params(congress, bill_type, number) -> tuple[int, str, int] 
 
 def _iso_day(value) -> str | None:
     day = str(value or "")[:10]
-    return day if _ISO_DAY_RE.match(day) else None
+    return day if _ISO_DAY_RE.fullmatch(day) else None
 
 
 def _inject_meta(html: str, meta: dict) -> str:
@@ -178,14 +203,26 @@ def _fill_freshness(html: str) -> str:
         lambda _match: f'<span id="data-freshness">{_freshness_text()}</span>', html, count=1)
 
 
+def _now() -> datetime:
+    """The request clock, in one place so tests can pin it: the edition line and the ballot
+    copy that changes after Election Day (seat seals, /methodology, the overview API) read it (F066)."""
+    return datetime.now(timezone.utc)
+
+
 def _edition_html() -> str:
+    """The masthead edition line. It sits outside every page's _page_content, so a failure
+    here logs and drops the line instead of turning every page, 404s included, into a 500 (F067)."""
     from app.dependencies import get_data_service
-    data_service = get_data_service()
-    return render.render_edition(
-        data_service.get_sync_metadata().get("last_sync"),
-        data_service.latest_roll_call_date(),
-        datetime.now(timezone.utc),
-    )
+    try:
+        data_service = get_data_service()
+        return render.render_edition(
+            data_service.get_sync_metadata().get("last_sync"),
+            data_service.latest_roll_call_date(),
+            _now(),
+        )
+    except Exception:
+        logger.exception("edition line failed")
+        return ""
 
 
 def _page_content(build, meta: dict) -> tuple[str, int]:
@@ -228,6 +265,8 @@ app.include_router(districts_router)
 CACHE_NO_STORE = "no-store"
 CACHE_404 = "public, max-age=60"
 CACHE_STATIC = "public, max-age=31536000, immutable"
+CACHE_STATIC_OTHER_VERSION = "public, max-age=60"
+CACHE_STATIC_UNVERSIONED = "public, max-age=86400"
 CACHE_OG = "public, max-age=86400"
 CACHE_FAVICON = "public, max-age=31536000"
 CACHE_HTML = "public, max-age=0, s-maxage=600, stale-while-revalidate=3600"
@@ -260,7 +299,14 @@ def _cache_control_for(method: str, path: str, query, status: int, existing: str
     if path.startswith("/static/og/"):
         return CACHE_OG
     if path.startswith("/static/"):
-        return CACHE_STATIC
+        # Immutable only under this deploy's own ?v= (F008). StaticFiles ignores the query,
+        # so under any other v these bytes may not be the ones that URL names (an old
+        # instance asked for the next deploy's ?v= mid-rollout); unversioned files (fonts,
+        # favicon.svg) have no URL change to refresh them.
+        version = query.get("v")
+        if version is None:
+            return CACHE_STATIC_UNVERSIONED
+        return CACHE_STATIC if version == _asset_version else CACHE_STATIC_OTHER_VERSION
     if path == "/favicon.ico":
         return CACHE_FAVICON
     if path.startswith("/api/"):
@@ -271,27 +317,44 @@ def _cache_control_for(method: str, path: str, query, status: int, existing: str
     return existing
 
 
-@app.middleware("http")
-async def add_security_headers(request: Request, call_next):
-    response = await call_next(request)
-    response.headers["X-Content-Type-Options"] = "nosniff"
-    response.headers["X-Frame-Options"] = "DENY"
-    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
-    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
-    response.headers["Content-Security-Policy"] = (
+# Sent on every response (F086): add_security_headers covers what the app answers, and the
+# 500 handler and the body cap's 413, which answer from outside it, add the same set.
+SECURITY_HEADERS = {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    # base-uri, form-action and object-src do not fall back to default-src (F037); every
+    # form posts to this site, and nothing uses <base>, plugins or framing.
+    "Content-Security-Policy": (
         "default-src 'self'; "
         "style-src 'self' 'unsafe-inline'; "
         "font-src 'self'; "
         "img-src 'self' https://www.congress.gov; "
         "script-src 'self'; "
-        "connect-src 'self'"
-    )
-    path = request.url.path
+        "connect-src 'self'; "
+        "base-uri 'none'; "
+        "form-action 'self'; "
+        "object-src 'none'; "
+        "frame-ancestors 'none'"
+    ),
+    # A day to start (F038); browsers act on it only over HTTPS, which Cloudflare serves.
+    "Strict-Transport-Security": "max-age=86400",
+}
+
+
+@app.middleware("http")
+async def add_security_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers.update(SECURITY_HEADERS)
+    # scope["path"], not request.url.path: Starlette 0.38 rebuilds request.url from the Host
+    # header, so a Host such as "x/static/a" would pick these rules (F035).
+    path = request.scope["path"]
     if path.startswith("/static/") and path.endswith(".html"):
         response.headers["X-Robots-Tag"] = "noindex"
     cache_control = _cache_control_for(
         request.method,
-        request.url.path,
+        path,
         request.query_params,
         response.status_code,
         response.headers.get("cache-control"),
@@ -301,8 +364,119 @@ async def add_security_headers(request: Request, call_next):
     return response
 
 
+class ForwardedProtoMiddleware:
+    """Take the request scheme from X-Forwarded-Proto (F038). TLS ends before the app, so it
+    saw http, and Starlette's trailing-slash redirects (/about/ to /about) sent visitors to
+    http://. Only the scheme is taken, and only http or https, from the rightmost entry (the
+    nearest proxy's). uvicorn's ProxyHeadersMiddleware with every proxy trusted would also
+    swap the socket peer for the leftmost, client-written X-Forwarded-For entry, and
+    limiter.client_key falls back to that peer. In the app, so no start command is needed."""
+
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] == "http":
+            values = [value.decode("latin-1") for name, value in scope["headers"]
+                      if name == b"x-forwarded-proto"]
+            if values:
+                proto = ",".join(values).rsplit(",", 1)[-1].strip().lower()
+                if proto in ("http", "https"):
+                    scope["scheme"] = proto
+        await self.app(scope, receive, send)
+
+
+app.add_middleware(ForwardedProtoMiddleware)
+
+
+MAX_BODY_BYTES = 32 * 1024
+_BODY_METHODS = frozenset({"POST", "PUT", "PATCH"})
+_BODY_TOO_LARGE = "Request body too large"
+
+
+class _BodyTooLarge(Exception):
+    """Raised from receive() once a streamed body passes the cap, so nothing reads on."""
+
+
+class BodySizeLimitMiddleware:
+    """Refuse POST/PUT/PATCH bodies over 32 KiB before anything buffers them (F004).
+
+    FastAPI reads and JSON-parses the whole body before the rate limiter runs, so an
+    uncapped body let a few requests run the instance out of memory. The largest real
+    feedback is about 16 KB (2000 characters, every one escaped); a signup is under 400 B.
+    A declared Content-Length over the cap gets 413 without calling the app; a chunked or
+    under-declared body is counted as it arrives and stopped at the same cap. Added last,
+    so it is the outermost middleware."""
+
+    def __init__(self, app, max_bytes: int = MAX_BODY_BYTES):
+        self.app = app
+        self.max_bytes = max_bytes
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http" or scope["method"] not in _BODY_METHODS:
+            await self.app(scope, receive, send)
+            return
+        for name, value in scope["headers"]:
+            if name == b"content-length":
+                try:
+                    too_large = int(value) > self.max_bytes
+                except ValueError:
+                    too_large = True
+                if too_large:
+                    await self._too_large(scope, receive, send)
+                    return
+                break
+
+        received = 0
+        over_cap = False
+        response_started = False
+
+        async def capped_receive():
+            nonlocal received, over_cap
+            message = await receive()
+            if message["type"] == "http.request":
+                received += len(message.get("body", b""))
+                if received > self.max_bytes:
+                    over_cap = True
+                    raise _BodyTooLarge()
+            return message
+
+        async def capped_send(message):
+            nonlocal response_started
+            if over_cap:
+                # The app answers the cut-off body with an error of its own (the
+                # BaseHTTPMiddleware layers wrap the exception, so FastAPI makes it a 400):
+                # send the 413 in its place and drop the rest of the app's response.
+                if message["type"] == "http.response.start" and not response_started:
+                    response_started = True
+                    await self._too_large(scope, receive, send)
+                return
+            if message["type"] == "http.response.start":
+                response_started = True
+            await send(message)
+
+        try:
+            await self.app(scope, capped_receive, capped_send)
+        except Exception:
+            if not over_cap or response_started:
+                raise
+            await self._too_large(scope, receive, send)
+
+    @staticmethod
+    async def _too_large(scope, receive, send) -> None:
+        response = JSONResponse({"detail": _BODY_TOO_LARGE}, status_code=413,
+                                headers={"Cache-Control": CACHE_NO_STORE, **SECURITY_HEADERS})
+        await response(scope, receive, send)
+
+
+app.add_middleware(BodySizeLimitMiddleware)
+
+
 @app.get("/api/health")
-async def health_check() -> dict:
+@limiter.exempt
+def health_check(response: Response) -> dict:
+    """Ops and deploy check. 503 when the load left no members or no bills: a sync that wiped
+    either still loads without an exception, and must not read as a healthy deploy (F028)."""
     from app.dependencies import get_data_service
     data_service = get_data_service()
     metadata = data_service.get_sync_metadata()
@@ -316,11 +490,19 @@ async def health_check() -> dict:
         for b in data_service._bills
     }
     covered = len(bill_keys & set(data_service._ai_summaries))
+    members = len(data_service._members)
+    healthy = members > 0 and bills > 0
+    if not healthy:
+        response.status_code = 503
+    # The deployed commit, so a correction can be confirmed live before a cache purge (G1-015);
+    # "" off Render. Every page's ?v= already carries the same 12 characters.
+    commit = str(os.environ.get("RENDER_GIT_COMMIT") or "").strip()
     return {
-        "status": "ok",
+        "status": "ok" if healthy else "error",
         "version": "0.1.0",
+        "commit": commit[:12].lower() if _COMMIT_RE.match(commit) else "",
         "last_sync": metadata.get("last_sync"),
-        "members": len(data_service._members),
+        "members": members,
         "bills": bills,
         "ai_summaries": ai_summaries,
         "member_summaries": len(data_service._member_summaries),
@@ -500,9 +682,11 @@ def serve_member(request: Request):
     from app.routers.members import BIOGUIDE_PATTERN
 
     params = request.query_params
-    member_id = (params.get("id") or "").strip().upper()
-    if not BIOGUIDE_PATTERN.match(member_id):
+    member_id = (params.get("id") or "").strip()
+    # ASCII before .upper(), which folds "ſ" to "S" and "ı" to "I" into an alias URL (F044).
+    if not (member_id.isascii() and BIOGUIDE_PATTERN.fullmatch(member_id.upper())):
         raise StarletteHTTPException(status_code=404)
+    member_id = member_id.upper()
     data_service = get_data_service()
     detail = data_service.get_member_detail(member_id)      # members.json lookup, in memory
     if detail is None:
@@ -520,7 +704,7 @@ def serve_member(request: Request):
         page = data_service.get_member_page(member_id, page_no, topic, position, plain)
         if page is None:   # the id vanished between the lookup and the read: treat as a failure
             raise LookupError(f"member {member_id} missing from get_member_page")
-        return render.render_member_page(page)
+        return render.render_member_page(page, _now())
 
     content, status = _page_content(build, meta)
     strip = (render.render_member_strip(render.display_name(detail["member"].get("name") or ""), content)
@@ -536,7 +720,8 @@ def serve_bill(request: Request):
     bill_type = (params.get("type") or "").strip().lower()
     congress_raw = (params.get("congress") or "").strip()
     number_raw = (params.get("number") or "").strip()
-    if not (congress_raw.isdigit() and number_raw.isdigit()) or bill_type not in VALID_BILL_TYPES:
+    if (not (_BILL_CONGRESS_RE.fullmatch(congress_raw) and _BILL_NUMBER_RE.fullmatch(number_raw))
+            or bill_type not in VALID_BILL_TYPES):
         raise HTTPException(status_code=404)
     congress, number = int(congress_raw), int(number_raw)
     if not 1 <= congress <= 200:
@@ -609,7 +794,8 @@ def serve_methodology():
     def build() -> str:
         ds = get_data_service()
         return render.render_methodology(
-            _trust_counts(), ds._crosswalk_source, render.prompt_rules(SYSTEM_PROMPT), ds._senate_file)
+            _trust_counts(), ds._crosswalk_source, render.prompt_rules(SYSTEM_PROMPT), ds._senate_file,
+            _now())
 
     content, status = _trust_block(build)
     return _serve_html("methodology.html", {
@@ -660,9 +846,14 @@ def _zip_target(result: dict) -> str | None:
     return None
 
 
+_DISTRICT_RE = re.compile(r"[0-9]{1,3}")
+
+
 def _parse_district(raw: str | None) -> int | None:
+    """A district number from the query string: 1-3 ASCII digits, else None (junk is ignored).
+    Not str.isdigit(): it is True for "²" (int() raises) and for digits of other scripts."""
     value = (raw or "").strip()
-    return int(value) if value.isdigit() and len(value) <= 3 else None
+    return int(value) if _DISTRICT_RE.fullmatch(value) else None
 
 
 def _serve_state_page(code: str | None, h1: str, build) -> HTMLResponse:
@@ -690,12 +881,15 @@ def serve_state(request: Request):
     if raw_zip:
         lookup = data_service.lookup_zip(raw_zip)  # T1.5: None when the input is not a ZIP
         if lookup is None:
+            # The field keeps what was typed, but no more than its maxlength="10" allows: a
+            # crafted link cannot put a sentence of its own into the ZIP box (F041).
+            zip_echo = raw_zip[:10]
             if not code:
                 return _serve_state_page(None, _FINDER_H1, lambda: render.render_zip_finder_page(
-                    data_service.get_member_counts(), value=raw_zip, error=_ZIP_ERROR))
+                    data_service.get_member_counts(), value=zip_echo, error=_ZIP_ERROR))
             return _serve_state_page(code, state_h1, lambda: render.render_state_page(
                 data_service.get_state_overview(code, fallback=True), None, None, _ZIP_ERROR,
-                ds=data_service, zip_value=raw_zip))
+                ds=data_service, zip_value=zip_echo, now=_now()))
         target = _zip_target(lookup)
         if target is None:
             return _serve_state_page(None, _FINDER_H1, lambda: render.render_zip_not_found(
@@ -713,13 +907,14 @@ def serve_state(request: Request):
     h1 = _YOURS_H1 if (lookup is not None or district is not None) else state_h1
     return _serve_state_page(code, h1, lambda: render.render_state_page(
         data_service.get_state_overview(code, fallback=True), district, lookup, "",
-        ds=data_service, zip_value=lookup["zip"] if lookup else ""))
+        ds=data_service, zip_value=lookup["zip"] if lookup else "", now=_now()))
 
 
 _FAVICON_SVG = (static_dir / "favicon.svg").read_bytes()
 
 
 @app.get("/favicon.ico", include_in_schema=False)
+@limiter.exempt
 def serve_favicon() -> Response:
     return Response(
         content=_FAVICON_SVG,
@@ -755,7 +950,7 @@ def serve_sitemap() -> Response:
 
     for member in data_service._members:
         bioguide = str(member.get("bioguideId") or "").strip().upper()
-        if BIOGUIDE_PATTERN.match(bioguide):
+        if BIOGUIDE_PATTERN.fullmatch(bioguide):
             entries.append((f"{SITE_URL}/member?id={bioguide}", member_last_vote.get(bioguide)))
 
     index_bills = (data_service._votes_index or {}).get("bills", {})
@@ -786,6 +981,7 @@ def serve_sitemap() -> Response:
 
 
 @app.get("/robots.txt")
+@limiter.exempt
 async def serve_robots() -> PlainTextResponse:
     body = f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n"
     return PlainTextResponse(body)
@@ -793,18 +989,36 @@ async def serve_robots() -> PlainTextResponse:
 
 @app.exception_handler(Exception)
 async def server_error_handler(request: Request, exc: Exception) -> PlainTextResponse:
-    """Generic 500 that is never cached (§9.5). Starlette still logs the traceback."""
+    """Generic 500 that is never cached (§9.5). Starlette still logs the traceback. It is sent
+    from outside add_security_headers, so it carries the security headers itself (F086)."""
     return PlainTextResponse(
         "Internal Server Error",
         status_code=500,
-        headers={"Cache-Control": CACHE_NO_STORE},
+        headers={"Cache-Control": CACHE_NO_STORE, **SECURITY_HEADERS},
     )
+
+
+_MAX_VALIDATION_ERRORS = 10
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_error_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
+    """422 as FastAPI sends it, minus each error's input, ctx and url (F004). The default
+    handler echoed the submitted value back, so a large invalid body came back whole. The
+    site's JS only reads the status; the first ten errors are plenty to debug with."""
+    errors = [
+        {"loc": err.get("loc", ()), "msg": err.get("msg", ""), "type": err.get("type", "")}
+        for err in exc.errors()[:_MAX_VALIDATION_ERRORS]
+    ]
+    return JSONResponse({"detail": errors}, status_code=422)
 
 
 @app.exception_handler(StarletteHTTPException)
 async def custom_exception_handler(request: Request, exc: StarletteHTTPException):
-    """Serve the "Not in this edition" page for page routes; keep JSON for the API."""
-    if exc.status_code == 404 and not request.url.path.startswith("/api"):
+    """Serve the "Not in this edition" page for page routes; keep JSON for the API.
+    The path is scope["path"], not the Host-derived request.url.path (F035)."""
+    path = request.scope["path"]
+    if exc.status_code == 404 and not path.startswith("/api"):
         from app.dependencies import get_data_service
         try:
             member_counts = get_data_service().get_member_counts()
@@ -820,7 +1034,7 @@ async def custom_exception_handler(request: Request, exc: StarletteHTTPException
             "title": "Page Not Found — ClearVoting",
             "h1": "We don't have that page",
             "description": "The link may be old, or the bill or member may be outside our four-state coverage.",
-            "url": f"{SITE_URL}{request.url.path}",
+            "url": f"{SITE_URL}{path}",
             "canonical": False,
         }, content)
         response.status_code = 404

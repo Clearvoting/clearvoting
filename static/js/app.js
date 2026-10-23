@@ -83,8 +83,10 @@
         const panel = document.getElementById('browse-panel');
         if (!toggle || !panel) return;
         toggle.addEventListener('click', () => setPanelOpen(toggle, panel, panel.hidden, ''));
+        // A ?q= over 100 characters is a crafted message, not a search (the API refuses it
+        // too), so the panel ignores it rather than put it in the search box (F042).
         const q = (new URLSearchParams(window.location.search).get('q') || '').trim();
-        if (q) {
+        if (q && q.length <= 100) {
             setPanelOpen(toggle, panel, true, q);
             toggle.scrollIntoView({ block: 'start', behavior: 'auto' });
         }
@@ -188,9 +190,11 @@
             const res = await fetch(`/api/search/bills?q=${encodeURIComponent(query)}&limit=50`);
             if (!res.ok) throw new Error(String(res.status));
             const bills = (await res.json()).bills || [];
+            // Fixed copy: the query is never echoed, so a crafted ?q= link cannot put its own
+            // sentence on the page (F042). The search box above still shows what was searched.
             results.textContent = bills.length
-                ? `${bills.length} bill${bills.length !== 1 ? 's' : ''} found for “${query}”`
-                : `No bills found for “${query}”. Try a broader term or pick a topic above.`;
+                ? `${bills.length} bill${bills.length !== 1 ? 's' : ''} found`
+                : 'No bills match that search. Try a broader term or pick a topic above.';
             bills.forEach(b => list.appendChild(createBillRow(b)));
         } catch (e) {
             results.textContent = "We couldn't search the record right now. Please try again in a moment.";
@@ -205,16 +209,20 @@
    section.lead (after the Latest Vote card) and before the Record, so it never moves the
    fold. If the fetch fails, one "Remembered from your last visit" line appears under the
    Find button instead. Forget clears either one and focuses the ZIP field (form#find). */
-function homeVacantRow(home) {
+function homeVacantRow(home, vacantSeal) {
     // Spec §5.3: the crosswalk names this district, but members.json has no one in it.
     // The button is opened by feedback.js's delegated [data-feedback-open] listener (T2.4).
+    // vacantSeal is the overview's vacant_seal: the seat is on the ballot too, in the
+    // server's wording (G1-025).
+    const body = el('span', { className: 'person-body' },
+        el('span', { className: 'person-vacancy' },
+            el('span', { className: 'person-name' }, `District ${home.district} — vacant in our data`),
+            ' · ',
+            el('button', { type: 'button', className: 'btn btn--secondary', 'data-feedback-open': true },
+                'Tell us if this is wrong')));
+    if (vacantSeal) body.append(' ', seal(vacantSeal, 'ballot'));
     return el('div', { className: 'person person--vacant', 'data-state': home.state, 'data-district': String(home.district) },
-        el('span', { className: 'person-body' },
-            el('span', { className: 'person-vacancy' },
-                el('span', { className: 'person-name' }, `District ${home.district} — vacant in our data`),
-                ' · ',
-                el('button', { type: 'button', className: 'btn btn--secondary', 'data-feedback-open': true },
-                    'Tell us if this is wrong'))));
+        body);
 }
 
 function forgetHomeBlock(clearBlock) {
@@ -248,7 +256,7 @@ async function initYourRepresentatives() {
         (data.senators || []).forEach((m) => list.appendChild(el('li', null, personRow(m, home.state))));
         const house = (data.house || []).filter((m) => m.district === home.district);
         if (house.length) house.forEach((m) => list.appendChild(el('li', null, personRow(m, home.state))));
-        else list.appendChild(el('li', null, homeVacantRow(home)));
+        else list.appendChild(el('li', null, homeVacantRow(home, data.vacant_seal)));
         const forget = el('button', { type: 'button', className: 'btn--secondary' }, 'Forget');
         forget.addEventListener('click', () => forgetHomeBlock(() => mount.replaceChildren()));
         mount.appendChild(el('section', { className: 'yours home-yours', 'aria-labelledby': 'home-yours-h' },

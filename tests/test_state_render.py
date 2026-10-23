@@ -4,6 +4,7 @@
 The renderers are pure string builders over an overview dict; FakeDS supplies the five
 DataService reads they make, so every expected string here is exact."""
 import re
+from datetime import datetime, timezone
 from html.parser import HTMLParser
 
 import pytest
@@ -58,9 +59,9 @@ class FakeDS:
         bill = self.bills.get(f"{congress}-{bill_type.lower()}-{number}")
         return {"bill": bill} if bill else None
 
-    def seat_up_2026(self, member):
+    def seat_up_2026(self, member, state_code=None):
         if "Senate" not in (member.get("chamber") or ""):
-            return "regular"
+            return render.house_seat_2026(member.get("stateCode") or state_code)
         if member.get("bioguideId") in self.special:
             return "special"
         if member.get("bioguideId") in self.regular_senators:
@@ -192,6 +193,36 @@ def test_overview_member_fields_for_a_senator_whose_seat_is_not_up():
 def test_special_election_seat_is_described_as_the_seat():
     raw = member_raw("M001244", "Moody, Ashley", chamber="Senate")
     assert render.overview_member_fields(raw, make_ds())["seat_seal"] == "Special election Nov 3"
+
+
+@pytest.mark.parametrize("code, seal", [
+    ("CA", "Seat up Nov 3 · new district lines"),
+    ("FL", "Seat up Nov 3 · new district lines"),
+    ("TX", "Seat up Nov 3 · new district lines"),
+    ("NY", "Seat up Nov 3"),
+])
+def test_house_seal_says_when_the_state_drew_new_district_lines(code, seal):
+    # G1-013: a ZIP finds a 119th-Congress district; in CA, FL and TX the 2026 lines are new.
+    house = member_raw("C001131", "Casar, Greg", district=35)
+    senator = member_raw("M001244", "Moody, Ashley", chamber="Senate")
+    assert render.overview_member_fields(house, make_ds(), state_code=code)["seat_seal"] == seal
+    assert render.overview_member_fields(senator, make_ds(), state_code=code)["seat_seal"] == (
+        "Special election Nov 3")   # a Senate seat has no district lines
+
+
+@pytest.mark.parametrize("now, shown", [
+    (datetime(2026, 11, 2, 20, 0, tzinfo=timezone.utc), True),
+    (datetime(2026, 11, 3, 20, 0, tzinfo=timezone.utc), True),
+    (datetime(2026, 11, 4, 8, 0, tzinfo=timezone.utc), False),   # midnight Pacific, Nov 4
+])
+def test_seat_seals_follow_the_request_clock(now, shown):
+    # F066: rows stop saying "Seat up Nov 3" once Election Day is over in California.
+    moody = member_raw("M001244", "Moody, Ashley", chamber="Senate")
+    assert render.overview_member_fields(moody, make_ds(), now)["seat_seal"] == (
+        "Special election Nov 3" if shown else "")
+    html = render.render_state_page(ny_overview(), ds=make_ds(), now=now)
+    assert ('<span class="seal seal--ballot">Seat up Nov 3</span>' in html) is shown
+    assert ("seal--ballot" in html) is shown
 
 
 def test_withheld_summary_falls_back_to_the_official_title():
@@ -363,6 +394,46 @@ def test_vacant_district_row_invites_a_correction():
     assert ('<span class="person-vacancy"><span class="person-name">District 3 — vacant in our data</span> · '
             '<button type="button" class="btn btn--secondary" data-feedback-open>Tell us if this is wrong'
             '</button></span>') in yours
+
+
+def _texas(house=()):
+    return {"state": "TX", "state_name": "Texas", "roster_as_of": "2026-09-05", "districts_expected": 3,
+            "senators": [member_raw("C001056", "Cornyn, John", chamber="Senate")], "house": list(house)}
+
+
+def test_vacant_district_carries_the_seat_seal_like_a_filled_one():
+    # G1-025: an empty House seat is on the ballot too; without the seal it read as not up.
+    oct_22 = datetime(2026, 10, 22, 18, 0, tzinfo=timezone.utc)
+    yours = section(render.render_state_page(ny_overview(), 3, ds=make_ds(), now=oct_22),
+                    '<section class="yours"')
+    assert ('data-feedback-open>Tell us if this is wrong</button></span> '
+            '<span class="seal seal--ballot">Seat up Nov 3</span></span></div>') in yours
+    roster = section(render.render_state_page(ny_overview(), ds=make_ds(), now=oct_22), '<section class="house"')
+    assert ('<span class="person-name">District 2 — vacant in our data</span> '
+            '<span class="seal seal--ballot">Seat up Nov 3</span>') in roster
+    # Texas drew new lines (G1-013), on the district page, the split-ZIP rows and the roster.
+    texas = render.render_state_page(_texas([member_raw("X000002", "Example, Sam", district=1)]), 2,
+                                     ds=make_ds(), now=oct_22)
+    assert ('Tell us if this is wrong</button></span> '
+            '<span class="seal seal--ballot">Seat up Nov 3 · new district lines</span>') in texas
+    assert texas.count("Seat up Nov 3 · new district lines") == 4   # district 1 and 3 rows, 2 twice
+    assert "Seat up Nov 3</span>" not in texas.replace("Seat up Nov 3 · new district lines", "")
+    split = {"zip": "73301", "kind": "split", "covered_share": 1.0, "matches": [
+        {"state": "TX", "district": 1, "share": 0.6}, {"state": "TX", "district": 3, "share": 0.4}]}
+    split_html = render.render_state_page(_texas([member_raw("X000002", "Example, Sam", district=1)]), None,
+                                          split, ds=make_ds(), now=oct_22)
+    vacant = split_html.split('data-district="3">', 1)[1].split("</div>", 1)[0]
+    assert '<span class="seal seal--ballot">Seat up Nov 3 · new district lines</span>' in vacant
+
+
+@pytest.mark.parametrize("now, shown", [
+    (datetime(2026, 11, 3, 20, 0, tzinfo=timezone.utc), True),
+    (datetime(2026, 11, 4, 8, 0, tzinfo=timezone.utc), False),   # midnight Pacific, Nov 4 (F066)
+])
+def test_vacant_seat_seal_follows_the_request_clock(now, shown):
+    html = render.render_state_page(_texas(), 2, ds=make_ds(), now=now)
+    assert html.count("vacant in our data") == 4    # Your representatives, then the three-row roster
+    assert html.count("Seat up Nov 3 · new district lines") == (4 if shown else 0)
 
 
 def test_out_of_range_district_is_named_above_the_roster():
