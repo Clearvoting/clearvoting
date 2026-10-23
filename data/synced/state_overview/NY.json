@@ -1,7 +1,7 @@
 {
   "state": "NY",
   "state_name": "New York",
-  "roster_as_of": "2026-10-03",
+  "roster_as_of": "2026-10-17",
   "senators": [
     {
       "bioguideId": "G000555",
@@ -582,5 +582,5 @@
     }
   ],
   "districts_expected": 26,
-  "generated_at": "2026-10-04T16:04:33+00:00"
+  "generated_at": "2026-10-23T02:08:14+00:00"
 }
