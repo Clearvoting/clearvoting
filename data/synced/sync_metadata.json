@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-10-17T13:18:09.603647+00:00",
+  "last_sync": "2026-10-24T13:44:39.577123+00:00",
   "states_synced": [
     "NY",
     "FL",
@@ -7,6 +7,6 @@
     "TX"
   ],
   "incremental": true,
-  "ai_summaries_updated": "2026-07-07",
-  "ai_summaries_digest": "149d7e50baefeb454644093f7a16ea6e0e16ac31adeff048c773095b46ae3585"
+  "ai_summaries_digest": "730bbc5cb084b828b748771da894d71782f03ef39ebf22d5066b2c75b50fae16",
+  "ai_summaries_updated": "2026-10-24"
 }
