@@ -7,6 +7,16 @@
     "TX"
   ],
   "incremental": true,
-  "ai_summaries_digest": "730bbc5cb084b828b748771da894d71782f03ef39ebf22d5066b2c75b50fae16",
-  "ai_summaries_updated": "2026-10-24"
+  "ai_summaries_digest": "1d8b8a83aa0d00fdfa4ce0627fc41b94bd691f969fb58cd020bebb9a1527ff4f",
+  "ai_summaries_updated": "2026-10-30",
+  "ai_synced_at": "2026-10-30T13:22:59.517560+00:00",
+  "summary_stats": {
+    "total": 2,
+    "passed": 0,
+    "failed": 2,
+    "needs_review": [
+      "119-sjres-197",
+      "119-sres-852"
+    ]
+  }
 }
