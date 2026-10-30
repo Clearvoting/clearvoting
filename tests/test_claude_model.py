@@ -33,7 +33,31 @@ CLAUDE_SERVICE_MODULES = [
 
 
 def test_claude_model_is_undated_alias():
-    assert grader_common.CLAUDE_MODEL == "claude-sonnet-4-6"
+    assert grader_common.CLAUDE_MODEL == "claude-sonnet-5-5"
+
+
+def test_reply_text_skips_leading_thinking_block():
+    """Sonnet 5.5 thinks by default: an API reply can open with a thinking block whose
+    text is empty (display "omitted"), so content[0].text is not the reply."""
+    from types import SimpleNamespace
+
+    response = SimpleNamespace(content=[
+        SimpleNamespace(type="thinking", thinking="", signature="sig"),
+        SimpleNamespace(type="text", text='{"grade": "A"}'),
+    ])
+    assert grader_common.reply_text(response) == '{"grade": "A"}'
+
+
+def test_api_call_sites_read_reply_by_type_and_size_for_thinking():
+    for module in CLAUDE_SERVICE_MODULES:
+        source = inspect.getsource(module)
+        assert "content[0]" not in source, (
+            f"{module.__name__} reads the API reply by position; use reply_text()"
+        )
+        if "messages.create(" in source:
+            assert "max_tokens=MAX_TOKENS" in source, (
+                f"{module.__name__} sizes max_tokens for the reply only; thinking counts too"
+            )
 
 
 def test_all_services_use_shared_model_constant():

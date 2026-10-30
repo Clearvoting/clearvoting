@@ -1,7 +1,7 @@
 import json
 import logging
 import anthropic
-from app.services.grader_common import CLAUDE_MODEL
+from app.services.grader_common import CLAUDE_MODEL, MAX_TOKENS, reply_text
 
 logger = logging.getLogger(__name__)
 
@@ -86,12 +86,12 @@ Generate a corrected version. Return ONLY valid JSON."""
         try:
             response = await self.client.messages.create(
                 model=CLAUDE_MODEL,
-                max_tokens=256,
+                max_tokens=MAX_TOKENS,
                 system=self.SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": prompt}],
             )
 
-            raw_text = response.content[0].text
+            raw_text = reply_text(response)
             result = json.loads(raw_text)
             return result.get("one_liner", bill_title)
         except json.JSONDecodeError:

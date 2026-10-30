@@ -1,7 +1,7 @@
 import json
 import logging
 import anthropic
-from app.services.grader_common import CLAUDE_MODEL, GradeResult, grade_from_reply, strip_code_fences
+from app.services.grader_common import CLAUDE_MODEL, MAX_TOKENS, reply_text, GradeResult, grade_from_reply, strip_code_fences
 
 logger = logging.getLogger(__name__)
 
@@ -18,11 +18,11 @@ class SummaryGrader:
         if self.client:
             response = await self.client.messages.create(
                 model=CLAUDE_MODEL,
-                max_tokens=1024,
+                max_tokens=MAX_TOKENS,
                 system=system,
                 messages=[{"role": "user", "content": user_prompt}],
             )
-            return response.content[0].text
+            return reply_text(response)
         else:
             from app.services.claude_cli import call_claude_cli
             return await call_claude_cli(system, user_prompt)
@@ -63,10 +63,10 @@ NO BIAS OR EDITORIAL LANGUAGE
 - No framing: "generally seen as", "made it easier/harder", "widely considered"
 - No value judgments: "this would help/hurt", "beneficial", "harmful"
 
-FACTUAL CONTEXT
-- When a bill changes a number (fee, cap, limit, threshold), include both old and new values
-- When a bill affects a group, include how many people are affected if publicly known
-- Include scale references where helpful
+FACTUAL CONTEXT (only from the source)
+- The writer may use only the title, official summary, latest action and bill text excerpt in the context. Any specific (number, date, name, count, legal effect) that is not in the source is a factual failure, even if it is true.
+- When the source gives a number a bill changes (fee, cap, limit, threshold), include both old and new values
+- Include counts of people affected or scale references only when the source states them. Never fail a summary for leaving out a figure or detail that is not in the source.
 
 DIRECTION ACCURACY
 - The "direction" field must be one of: "in_favor", "against", "neutral"

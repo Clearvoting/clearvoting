@@ -149,12 +149,17 @@ and live.** One open PR (#24, docs-only: the review report + this STATUS update)
 6. Repo reconciled: April's stranded work (no-overall-stats narratives) committed;
    docs reorganized into docs/archive + docs/reviews.
 
-## Data (2026-10-22, PR #31 merged with main)
-4 states (NY, FL, CA, TX), 150 members incl. senators, 1,658 bills, 1,656 AI summaries
-(2 bills added by October weekly syncs still unsummarized — the Sunday AI job still has no
-secret; 128 flagged needs_review), argument sets and member narratives withdrawn by the
-redesign, vote dates ISO 8601 & chronologically sorted, donations 2024 cycle (stale — see
-open items). Votes through House roll call 314 (Sep 16) and Senate 256 (Sep 30).
+## Data (2026-10-30, Sunday AI job run locally on the Max plan)
+4 states (NY, FL, CA, TX), 150 members incl. senators, 1,658 bills, 1,658 AI summaries
+(100%; 129 flagged needs_review and withheld, incl. 119-sres-852), argument sets and member
+narratives withdrawn by the redesign, vote dates ISO 8601 & chronologically sorted, donations
+2024 cycle (stale — see open items). Votes through House roll call 314 (Sep 16) and Senate
+256 (Sep 30). The cloud Sunday AI job still has no secret (7-second no-op runs).
+
+**AI model: Claude Sonnet 5.5** (switched 2026-10-30 from Sonnet 4.6). On the 2 bills compared,
+5.5 drafts had 0 confirmed factual errors vs 2 for 4.6, and won 8/8 blind judge votes. The 5.5
+grader is stricter: expect a higher needs_review rate than 4.6's ~7%. The grader rubric no longer
+asks for outside facts ("if publicly known"), which contradicted the writer's source-only rule.
 
 **2026-09-28 member-profile refresh:** the 106 bills voted on since July had no summaries
 (member profiles showed raw titles for 95%+ of Jul–Sep votes). Generated all 106 via the

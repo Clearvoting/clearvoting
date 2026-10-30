@@ -34,6 +34,16 @@ def test_grader_system_prompt_contains_checklist_items():
     assert "CRA" in prompt or "Congressional Review Act" in prompt or "disapproval" in prompt
 
 
+def test_grader_rubric_never_asks_for_facts_outside_the_source():
+    """The writer may use only the source it was given (ai_summary rule 16). A rubric
+    asking for counts "if publicly known" made the grader fail accurate summaries
+    for omitting outside facts (Sonnet 5.5 comparison, 2026-10-30)."""
+    prompt = SummaryGrader(api_key="test")._build_system_prompt()
+    assert "if publicly known" not in prompt
+    assert "only from the source" in prompt.lower()
+    assert "not in the source" in prompt.lower()
+
+
 def test_grader_build_prompt_for_bill_summary():
     grader = SummaryGrader(api_key="test")
     prompt = grader._build_grade_prompt(

@@ -37025,5 +37025,35 @@
       "Education"
     ],
     "direction": "neutral"
+  },
+  "119-sjres-197": {
+    "one_liner": "Cancel a federal health insurance rule for 2027 plans and the Basic Health Program",
+    "provisions": [
+      "Cancels a rule from the Centers for Medicare & Medicaid Services, a part of the Department of Health and Human Services.",
+      "The rule is named \"Patient Protection and Affordable Care Act, HHS Notice of Benefit and Payment Parameters for 2027; and Basic Health Program.\"",
+      "The rule was published on May 20, 2026, and this resolution says the rule would stop having any effect.",
+      "Senators brought the resolution on June 17, 2026, and a group of senators moved it out of committee on July 14, 2026.",
+      "The Senate voted 48 to 51 against a motion to start debate on the resolution."
+    ],
+    "issue_categories": [
+      "Healthcare"
+    ],
+    "direction": "against"
+  },
+  "119-sres-852": {
+    "one_liner": "Ask the State Department for information on Israel's human rights practices",
+    "provisions": [
+      "Asks the Secretary of State for information on Israel's human rights practices under section 502B(c) of the Foreign Assistance Act of 1961.",
+      "Lists nine U.S. citizens the text says were killed in the West Bank since January 2022 by Israeli settlers or Israeli security forces.",
+      "Describes the arrests of U.S. citizens held in Israeli detention, including three people aged 16 to 20.",
+      "States that U.S. agencies, including the Department of Justice and the Department of State, have not opened their own investigations or shared details on existing ones.",
+      "States that hundreds of Palestinian children are tried in Israeli military courts each year, while Israeli children in the West Bank are tried under civil law.",
+      "On a vote to pull the resolution from committee, the Senate said no, 47 to 51."
+    ],
+    "issue_categories": [
+      "Safety & Crime"
+    ],
+    "direction": "neutral",
+    "needs_review": true
   }
 }

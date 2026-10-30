@@ -5,7 +5,22 @@ from typing import Protocol
 
 # Single source of truth for the Claude model used by all AI services.
 # Use the undated alias — date-suffixed snapshot IDs retire and break every call site.
-CLAUDE_MODEL = "claude-sonnet-4-6"
+CLAUDE_MODEL = "claude-sonnet-5-5"
+
+# API-path max_tokens. Sonnet 5.5 thinks by default and thinking counts toward
+# max_tokens, so the old reply-sized caps (256-1536) would truncate the JSON.
+MAX_TOKENS = 16000
+
+
+def reply_text(response) -> str:
+    """The reply text of a Messages API response, read by block type: on Sonnet 5.5
+    a reply can open with a thinking block whose text is empty, so content[0] is
+    not the reply."""
+    return "".join(
+        block.text for block in response.content
+        if getattr(block, "type", None) not in ("thinking", "redacted_thinking")
+        and isinstance(getattr(block, "text", None), str)
+    )
 
 
 def strip_code_fences(text: str) -> str:
