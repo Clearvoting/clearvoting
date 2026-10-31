@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-10-24T13:44:39.577123+00:00",
+  "last_sync": "2026-10-31T15:35:41.471110+00:00",
   "states_synced": [
     "NY",
     "FL",
@@ -8,15 +8,5 @@
   ],
   "incremental": true,
   "ai_summaries_digest": "1d8b8a83aa0d00fdfa4ce0627fc41b94bd691f969fb58cd020bebb9a1527ff4f",
-  "ai_summaries_updated": "2026-10-30",
-  "ai_synced_at": "2026-10-30T13:22:59.517560+00:00",
-  "summary_stats": {
-    "total": 2,
-    "passed": 0,
-    "failed": 2,
-    "needs_review": [
-      "119-sjres-197",
-      "119-sres-852"
-    ]
-  }
+  "ai_summaries_updated": "2026-10-30"
 }
