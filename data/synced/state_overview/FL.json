@@ -1,7 +1,7 @@
 {
   "state": "FL",
   "state_name": "Florida",
-  "roster_as_of": "2026-10-24",
+  "roster_as_of": "2026-10-31",
   "senators": [
     {
       "bioguideId": "M001244",
@@ -587,5 +587,5 @@
     }
   ],
   "districts_expected": 28,
-  "generated_at": "2026-10-24T13:44:37+00:00"
+  "generated_at": "2026-10-31T15:35:40+00:00"
 }
