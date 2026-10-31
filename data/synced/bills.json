@@ -2547,7 +2547,7 @@
         "name": "Economics and Public Finance"
       },
       "relatedBills": {
-        "count": 7,
+        "count": 8,
         "url": "https://api.congress.gov/v3/bill/119/hr/3944/relatedbills?format=json"
       },
       "sponsors": [
@@ -2565,7 +2565,7 @@
         }
       ],
       "subjects": {
-        "count": 74,
+        "count": 75,
         "url": "https://api.congress.gov/v3/bill/119/hr/3944/subjects?format=json"
       },
       "summaries": [
@@ -2679,12 +2679,18 @@
       ],
       "title": "Military Construction and Veterans Affairs, Agriculture, and Legislative Branch Appropriations Act, 2026",
       "titles": {
-        "count": 10,
+        "count": 15,
         "url": "https://api.congress.gov/v3/bill/119/hr/3944/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-11-12T16:42:10Z",
-      "updateDateIncludingText": "2025-11-12T16:42:10Z"
+      "updateDate": "2026-07-27T16:03:35Z",
+      "updateDateIncludingText": "2026-07-27T16:03:35Z",
+      "notes": [
+        {
+          "text": "The text of <a href=\"https://www.congress.gov/bill/119/HR/3944\" target=\"_blank\">H.R.3944</a> is contained in the text of <a href=\"https://www.congress.gov/bill/119/HR/5371\" target=\"_blank\">H.R.5371</a>, which became Public Law 119-37."
+        }
+      ],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -3780,8 +3786,9 @@
         "url": "https://api.congress.gov/v3/bill/119/sjres/10/titles?format=json"
       },
       "type": "SJRES",
-      "updateDate": "2025-12-05T22:56:30Z",
-      "updateDateIncludingText": "2025-12-05T22:56:30Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:18:48Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -3979,7 +3986,7 @@
         "name": "Environmental Protection"
       },
       "relatedBills": {
-        "count": 1,
+        "count": 2,
         "url": "https://api.congress.gov/v3/bill/119/sjres/12/relatedbills?format=json"
       },
       "sponsors": [
@@ -4052,8 +4059,14 @@
         "url": "https://api.congress.gov/v3/bill/119/sjres/12/titles?format=json"
       },
       "type": "SJRES",
-      "updateDate": "2025-12-05T06:21:25Z",
-      "updateDateIncludingText": "2025-12-05T06:21:25Z"
+      "updateDate": "2026-09-08T18:12:22Z",
+      "updateDateIncludingText": "2026-09-08T18:17:01Z",
+      "notes": [
+        {
+          "text": "The text of <a href=\"https://www.congress.gov/bill/119/SJRES/12\" target=\"_blank\">S.J.Res.12</a> is contained in the text of <a href=\"https://www.congress.gov/bill/119/HJRES/35\" target=\"_blank\">H.J.Res.35</a>, which became Public Law 119-2."
+        }
+      ],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -4484,7 +4497,8 @@
       },
       "type": "SJRES",
       "updateDate": "2025-12-06T06:41:04Z",
-      "updateDateIncludingText": "2025-12-06T06:41:04Z"
+      "updateDateIncludingText": "2025-12-06T06:41:04Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -5220,7 +5234,8 @@
       },
       "type": "SJRES",
       "updateDate": "2025-12-05T21:45:51Z",
-      "updateDateIncludingText": "2025-12-05T21:45:51Z"
+      "updateDateIncludingText": "2026-07-18T22:06:50Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -6879,12 +6894,13 @@
       ],
       "title": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the United States Fish and Wildlife Service relating to \"Endangered and Threatened Wildlife and Plants; Endangered Species Status for the San Francisco Bay-Delta Distinct Population Segment of the Longfin Smelt\".",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hjres/78/titles?format=json"
       },
       "type": "HJRES",
-      "updateDate": "2025-10-09T03:26:12Z",
-      "updateDateIncludingText": "2025-10-09T03:26:12Z"
+      "updateDate": "2026-07-10T15:38:29Z",
+      "updateDateIncludingText": "2026-07-13T19:41:07Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -7219,7 +7235,7 @@
         "name": "Labor and Employment"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hr/1156/relatedbills?format=json"
       },
       "sponsors": [
@@ -7325,12 +7341,13 @@
       ],
       "title": "Pandemic Unemployment Fraud Enforcement Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/1156/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T00:11:25Z",
-      "updateDateIncludingText": "2025-10-09T00:11:25Z"
+      "updateDate": "2026-07-23T23:06:19Z",
+      "updateDateIncludingText": "2026-07-23T23:06:19Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -7841,12 +7858,17 @@
       ],
       "title": "Simplifying Forms for Veterans Claims Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/1286/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:14Z",
-      "updateDateIncludingText": "2025-10-09T03:26:14Z"
+      "updateDate": "2026-07-10T20:43:22Z",
+      "updateDateIncludingText": "2026-07-13T19:44:12Z",
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1286/relatedbills?format=json"
+      },
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -8120,12 +8142,13 @@
       ],
       "title": "TICKET Act",
       "titles": {
-        "count": 10,
+        "count": 11,
         "url": "https://api.congress.gov/v3/bill/119/hr/1402/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-05T21:34:52Z",
-      "updateDateIncludingText": "2025-12-05T21:34:52Z"
+      "updateDate": "2026-07-10T20:38:21Z",
+      "updateDateIncludingText": "2026-07-13T19:44:26Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -8399,14 +8422,15 @@
           "type": "Introduced in House"
         }
       ],
-      "title": "Youth Poisoning Protection Act",
+      "title": "To ban the sale of products with a high concentration of sodium nitrite to individuals, and for other purposes.",
       "titles": {
-        "count": 4,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/1442/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-05T21:41:49Z",
-      "updateDateIncludingText": "2025-12-05T21:41:49Z"
+      "updateDate": "2026-09-03T20:07:16Z",
+      "updateDateIncludingText": "2026-09-03T20:07:16Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -9011,12 +9035,13 @@
       ],
       "title": "NORRA of 2025",
       "titles": {
-        "count": 9,
+        "count": 10,
         "url": "https://api.congress.gov/v3/bill/119/hr/1526/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T00:11:26Z",
-      "updateDateIncludingText": "2025-10-09T00:11:26Z"
+      "updateDate": "2026-08-10T11:51:27Z",
+      "updateDateIncludingText": "2026-08-10T11:51:27Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -9135,12 +9160,13 @@
       ],
       "title": "Post-Disaster Assistance Online Accountability Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/153/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-05T21:38:13Z",
-      "updateDateIncludingText": "2025-12-05T21:38:13Z"
+      "updateDate": "2026-09-19T23:06:40Z",
+      "updateDateIncludingText": "2026-09-19T23:06:40Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -9382,12 +9408,13 @@
       ],
       "title": "POWER Act of 2025",
       "titles": {
-        "count": 8,
+        "count": 9,
         "url": "https://api.congress.gov/v3/bill/119/hr/164/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-05T21:50:19Z",
-      "updateDateIncludingText": "2025-12-05T21:50:19Z"
+      "updateDate": "2026-09-19T23:07:51Z",
+      "updateDateIncludingText": "2026-09-19T23:07:51Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -9534,12 +9561,13 @@
       ],
       "title": "Connecting Small Businesses with Career and Technical Education Graduates Act of 2025",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/1642/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T00:06:28Z",
-      "updateDateIncludingText": "2025-10-09T00:06:28Z"
+      "updateDate": "2026-09-08T18:08:35Z",
+      "updateDateIncludingText": "2026-09-08T18:08:35Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -10339,12 +10367,13 @@
       ],
       "title": "7(a) Loan Agent Oversight Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/1804/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T00:11:24Z",
-      "updateDateIncludingText": "2025-10-09T00:11:24Z"
+      "updateDate": "2026-09-08T18:08:35Z",
+      "updateDateIncludingText": "2026-09-08T18:08:35Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -11054,12 +11083,13 @@
       ],
       "title": "Amtrak Executive Bonus Disclosure Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/192/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:18Z",
-      "updateDateIncludingText": "2025-10-09T03:26:18Z"
+      "updateDate": "2026-09-08T18:03:40Z",
+      "updateDateIncludingText": "2026-09-08T18:03:40Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -11329,12 +11359,17 @@
       ],
       "title": "American Cargo for American Ships Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/2035/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:23Z",
-      "updateDateIncludingText": "2025-10-09T03:26:23Z"
+      "updateDate": "2026-09-08T18:03:40Z",
+      "updateDateIncludingText": "2026-09-08T18:03:40Z",
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2035/relatedbills?format=json"
+      },
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -11489,12 +11524,13 @@
       ],
       "title": "District of Columbia Federal Immigration Compliance Act of 2025",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/2056/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-06T06:27:05Z",
-      "updateDateIncludingText": "2025-12-06T06:27:05Z"
+      "updateDate": "2026-07-10T19:08:27Z",
+      "updateDateIncludingText": "2026-07-30T16:27:18Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -11650,12 +11686,13 @@
       ],
       "title": "Protecting Our Nation\u2019s Capital Emergency Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/2096/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:20Z",
-      "updateDateIncludingText": "2025-10-09T03:26:20Z"
+      "updateDate": "2026-07-10T19:08:30Z",
+      "updateDateIncludingText": "2026-07-13T20:05:20Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -12117,7 +12154,7 @@
         }
       ],
       "subjects": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/2240/subjects?format=json"
       },
       "summaries": [
@@ -12206,12 +12243,13 @@
       ],
       "title": "Improving Law Enforcement Officer Safety and Wellness Through Data Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/2240/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-05T21:46:20Z",
-      "updateDateIncludingText": "2025-12-05T21:46:20Z"
+      "updateDate": "2026-08-10T11:51:27Z",
+      "updateDateIncludingText": "2026-08-10T11:51:27Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -12366,12 +12404,13 @@
       ],
       "title": "LEOSA Reform Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/2243/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:13Z",
-      "updateDateIncludingText": "2025-10-09T03:26:13Z"
+      "updateDate": "2026-08-10T11:51:27Z",
+      "updateDateIncludingText": "2026-08-10T11:51:27Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -12415,7 +12454,7 @@
         "name": "Crime and Law Enforcement"
       },
       "relatedBills": {
-        "count": 1,
+        "count": 2,
         "url": "https://api.congress.gov/v3/bill/119/hr/2255/relatedbills?format=json"
       },
       "sponsors": [
@@ -12521,12 +12560,13 @@
       ],
       "title": "Federal Law Enforcement Officer Service Weapon Purchase Act of 2025",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/2255/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:13Z",
-      "updateDateIncludingText": "2025-10-09T03:26:13Z"
+      "updateDate": "2026-08-10T11:51:27Z",
+      "updateDateIncludingText": "2026-08-10T11:51:27Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -12759,7 +12799,7 @@
       "introducedDate": "2025-01-09",
       "latestAction": {
         "actionDate": "2025-12-09",
-        "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held."
+        "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held. With printed Hearing: S.Hrg. 119-238."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/249",
       "number": "249",
@@ -12871,12 +12911,13 @@
       ],
       "title": "To redesignate certain facilities at Paterson Great Falls National Historical Park in honor of Congressman Bill Pascrell, Jr.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hr/249/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-10T11:56:37Z",
-      "updateDateIncludingText": "2025-12-10T11:56:37Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -13286,12 +13327,13 @@
       ],
       "title": "Special Interest Alien Reporting Act of 2025",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/275/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:24Z",
-      "updateDateIncludingText": "2025-10-09T03:26:24Z"
+      "updateDate": "2026-07-11T02:23:20Z",
+      "updateDateIncludingText": "2026-07-13T20:10:25Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -13447,12 +13489,13 @@
       ],
       "title": "Gulf of America Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/276/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:12Z",
-      "updateDateIncludingText": "2025-10-09T03:26:12Z"
+      "updateDate": "2026-07-11T02:23:21Z",
+      "updateDateIncludingText": "2026-07-13T20:10:30Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -13591,7 +13634,7 @@
         "name": "Immigration"
       },
       "relatedBills": {
-        "count": 1,
+        "count": 2,
         "url": "https://api.congress.gov/v3/bill/119/hr/29/relatedbills?format=json"
       },
       "sponsors": [
@@ -13679,12 +13722,18 @@
       ],
       "title": "Laken Riley Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/29/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-11-30T06:37:21Z",
-      "updateDateIncludingText": "2025-11-30T06:37:21Z"
+      "updateDate": "2026-07-27T16:30:22Z",
+      "updateDateIncludingText": "2026-07-27T16:30:22Z",
+      "notes": [
+        {
+          "text": "The text of <a href=\"https://www.congress.gov/bill/119/HR/29\" target=\"_blank\">H.R.29</a> is contained in the text of <a href=\"https://www.congress.gov/bill/119/S/5\" target=\"_blank\">S.5</a>, which became Public Law 119-1."
+        }
+      ],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -13831,12 +13880,13 @@
       ],
       "title": "Save SBA from Sanctuary Cities Act of 2025",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/2931/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:18Z",
-      "updateDateIncludingText": "2025-10-09T03:26:18Z"
+      "updateDate": "2026-09-08T18:08:35Z",
+      "updateDateIncludingText": "2026-09-08T18:08:35Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -13983,12 +14033,13 @@
       ],
       "title": "American Entrepreneurs First Act of 2025",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/2966/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:18Z",
-      "updateDateIncludingText": "2025-10-09T03:26:18Z"
+      "updateDate": "2026-09-08T18:08:35Z",
+      "updateDateIncludingText": "2026-09-08T18:08:35Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -14042,7 +14093,7 @@
         }
       ],
       "subjects": {
-        "count": 6,
+        "count": 4,
         "url": "https://api.congress.gov/v3/bill/119/hr/2987/subjects?format=json"
       },
       "summaries": [
@@ -14131,12 +14182,13 @@
       ],
       "title": "CEASE Act of 2025",
       "titles": {
-        "count": 10,
+        "count": 11,
         "url": "https://api.congress.gov/v3/bill/119/hr/2987/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:18Z",
-      "updateDateIncludingText": "2025-10-09T03:26:18Z"
+      "updateDate": "2026-09-08T18:08:35Z",
+      "updateDateIncludingText": "2026-09-08T18:08:35Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -14255,12 +14307,13 @@
       ],
       "title": "Preventing Violence Against Women by Illegal Aliens Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/30/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-05T21:45:33Z",
-      "updateDateIncludingText": "2025-12-05T21:45:33Z"
+      "updateDate": "2026-09-19T23:07:38Z",
+      "updateDateIncludingText": "2026-09-19T23:07:38Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -14800,12 +14853,17 @@
       ],
       "title": "Enhancing Multi-Class Share Disclosures Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/3357/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:19Z",
-      "updateDateIncludingText": "2025-10-09T03:26:19Z"
+      "updateDate": "2026-07-18T00:01:01Z",
+      "updateDateIncludingText": "2026-07-18T00:01:01Z",
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3357/relatedbills?format=json"
+      },
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -14945,12 +15003,13 @@
       ],
       "title": "Fair Investment Opportunities for Professional Experts Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/3394/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:18Z",
-      "updateDateIncludingText": "2025-10-09T03:26:18Z"
+      "updateDate": "2026-07-11T01:08:25Z",
+      "updateDateIncludingText": "2026-07-13T20:15:12Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -15089,12 +15148,17 @@
       ],
       "title": "Promoting Opportunities for Non-Traditional Capital Formation Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/3422/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:18Z",
-      "updateDateIncludingText": "2025-10-09T03:26:18Z"
+      "updateDate": "2026-08-20T22:41:40Z",
+      "updateDateIncludingText": "2026-08-20T22:41:40Z",
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3422/relatedbills?format=json"
+      },
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -15125,7 +15189,7 @@
         "name": "Crime and Law Enforcement"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hr/35/relatedbills?format=json"
       },
       "sponsors": [
@@ -15213,12 +15277,13 @@
       ],
       "title": "Agent Raul Gonzalez Officer Safety Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/35/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-05T21:44:31Z",
-      "updateDateIncludingText": "2025-12-05T21:44:31Z"
+      "updateDate": "2026-08-10T11:51:27Z",
+      "updateDateIncludingText": "2026-08-10T11:51:27Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -15454,12 +15519,13 @@
       ],
       "title": "MEGOBARI Act",
       "titles": {
-        "count": 8,
+        "count": 9,
         "url": "https://api.congress.gov/v3/bill/119/hr/36/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-11-27T02:33:25Z",
-      "updateDateIncludingText": "2025-11-27T02:33:25Z"
+      "updateDate": "2026-09-19T23:07:38Z",
+      "updateDateIncludingText": "2026-09-19T23:07:38Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -17123,12 +17189,13 @@
       ],
       "title": "ACES Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/530/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-09-27T08:06:09Z",
-      "updateDateIncludingText": "2025-09-27T08:06:09Z"
+      "updateDate": "2026-07-11T15:38:23Z",
+      "updateDateIncludingText": "2026-07-13T18:52:05Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -17368,12 +17435,13 @@
       ],
       "title": "China Exchange Rate Transparency Act of 2025",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/692/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-09T18:53:56Z",
-      "updateDateIncludingText": "2025-12-09T18:53:56Z"
+      "updateDate": "2026-08-20T22:26:40Z",
+      "updateDateIncludingText": "2026-08-20T22:26:40Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -17960,7 +18028,7 @@
         "name": "Government Operations and Politics"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 4,
         "url": "https://api.congress.gov/v3/bill/119/hr/77/relatedbills?format=json"
       },
       "sponsors": [
@@ -18048,12 +18116,13 @@
       ],
       "title": "Midnight Rules Relief Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/77/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-06T06:30:10Z",
-      "updateDateIncludingText": "2025-12-06T06:30:10Z"
+      "updateDate": "2026-09-22T08:05:42Z",
+      "updateDateIncludingText": "2026-09-22T08:05:42Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -18414,12 +18483,13 @@
       ],
       "title": "Rural Small Business Resilience Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/804/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-05T21:48:36Z",
-      "updateDateIncludingText": "2025-12-16T17:27:12Z"
+      "updateDate": "2026-09-08T18:08:35Z",
+      "updateDateIncludingText": "2026-09-08T18:08:35Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -18905,12 +18975,13 @@
       ],
       "title": "Safe and Smart Federal Purchasing Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/856/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-05T21:51:56Z",
-      "updateDateIncludingText": "2025-12-05T21:51:56Z"
+      "updateDate": "2026-07-11T23:53:18Z",
+      "updateDateIncludingText": "2026-07-18T22:25:36Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -19061,12 +19132,13 @@
       ],
       "title": "Informing Consumers about Smart Devices Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/859/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:11Z",
-      "updateDateIncludingText": "2025-10-09T03:26:11Z"
+      "updateDate": "2026-07-11T23:53:19Z",
+      "updateDateIncludingText": "2026-07-18T22:25:49Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -19220,12 +19292,13 @@
       ],
       "title": "Jeremy and Angel Seay and Sergeant Brandon Mendoza Protect Our Communities from DUIs Act of 2025",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/875/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:24Z",
-      "updateDateIncludingText": "2025-10-09T03:26:24Z"
+      "updateDate": "2026-08-10T11:51:27Z",
+      "updateDateIncludingText": "2026-08-10T11:51:27Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -19380,12 +19453,13 @@
       ],
       "title": "DHS Restrictions on Confucius Institutes and Chinese Entities of Concern Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/881/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-10-09T03:26:12Z",
-      "updateDateIncludingText": "2025-10-09T03:26:12Z"
+      "updateDate": "2026-07-11T23:28:24Z",
+      "updateDateIncludingText": "2026-07-19T00:05:41Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -19540,12 +19614,13 @@
       ],
       "title": "To prohibit individuals who are not citizens of the United States from voting in elections in the District of Columbia and to repeal the Local Resident Voting Rights Amendment Act of 2022.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hr/884/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-05T21:40:33Z",
-      "updateDateIncludingText": "2025-12-05T21:40:33Z"
+      "updateDate": "2026-07-11T23:29:36Z",
+      "updateDateIncludingText": "2026-07-19T00:06:13Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -19792,12 +19867,13 @@
       ],
       "title": "Setting Consumer Standards for Lithium-Ion Batteries Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/973/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-11-27T23:13:54Z",
-      "updateDateIncludingText": "2025-11-27T23:13:54Z"
+      "updateDate": "2026-07-11T22:08:20Z",
+      "updateDateIncludingText": "2026-07-19T00:15:27Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -19923,7 +19999,7 @@
     },
     {
       "actions": {
-        "count": 17,
+        "count": 22,
         "url": "https://api.congress.gov/v3/bill/119/hr/997/actions?format=json"
       },
       "cboCostEstimates": [
@@ -19953,8 +20029,8 @@
       },
       "introducedDate": "2025-02-05",
       "latestAction": {
-        "actionDate": "2025-04-01",
-        "text": "Received in the Senate and Read twice and referred to the Committee on Finance."
+        "actionDate": "2026-10-14",
+        "text": "Message on Senate action sent to the House."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/997",
       "number": "997",
@@ -19964,7 +20040,7 @@
         "name": "Taxation"
       },
       "relatedBills": {
-        "count": 1,
+        "count": 2,
         "url": "https://api.congress.gov/v3/bill/119/hr/997/relatedbills?format=json"
       },
       "sponsors": [
@@ -19995,6 +20071,28 @@
       ],
       "textVersions": [
         {
+          "date": null,
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997enr.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997enr.pdf"
+            },
+            {
+              "type": "United States Legislative Markup",
+              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997enr_uslm.xml"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997enr.xml"
+            }
+          ],
+          "type": "Enrolled Bill"
+        },
+        {
           "date": "2025-04-01T04:00:00Z",
           "formats": [
             {
@@ -20011,7 +20109,7 @@
             }
           ],
           "type": "Referred in Senate",
-          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H.R. 997 Referred in Senate (RFS)] &lt;DOC&gt; 119th CONGRESS 1st Session H. R. 997 _______________________________________________________________________ IN THE SENATE OF THE UNITED STATES April 1 (legislative day, March 31), 2025 Received; read twice and referred to the Committee on Finance _______________________________________________________________________ AN ACT To amend the Internal Revenue Code of 1986 to conform to the intent of the Internal Revenue Service Restructuring and Reform Act of 1998, as set forth in the joint explanatory statement of the committee of conference accompanying Conference Report 105-599, that the National Taxpayer Advocate be able to hire and consult counsel as appropriate. Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, SECTION 1. SHORT TITLE. This Act may be cited as the ``National Taxpayer Advocate Enhancement Act of 2025''. SEC. 2. AUTHORITY OF TAXPAYER ADVOCATE TO APPOINT COUNSEL. (a) In General.--Section 7803(c)(2)(D)(i) of the Internal Revenue Code of 1986 is amended by striking ``and'' at the end of subclause (I), by redesignating subclause (II) as subclause (III), and by inserting after subclause (I) the following new subclause: ``(II) appoint counsel in the Office of the Taxpayer Advocate to report directly to the National Taxpayer Advocate, or delegate thereof; and''. (b) Conforming Amendment.--Section 7803(c)(2)(D)(i)(III) of such Code, as redesignated by subsection (a), is amended by striking ``any employee of any local office of a taxpayer advocate described in subclause (I)'' and inserting ``any employee of the Office of the Taxpayer Advocate''. (c) Effective Date.--The amendments made by this section shall take effect as if included in the enactment of section 1102 of the Internal Revenue Service Restructuring and Reform Act of 1998. Passed the House of Representatives March 31, 2025. Attest: KEVIN F. MCCUMBER, Clerk."
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H.R. 997 Referred in Senate (RFS)] <DOC> 119th CONGRESS 1st Session H. R. 997 _______________________________________________________________________ IN THE SENATE OF THE UNITED STATES April 1 (legislative day, March 31), 2025 Received; read twice and referred to the Committee on Finance _______________________________________________________________________ AN ACT To amend the Internal Revenue Code of 1986 to conform to the intent of the Internal Revenue Service Restructuring and Reform Act of 1998, as set forth in the joint explanatory statement of the committee of conference accompanying Conference Report 105-599, that the National Taxpayer Advocate be able to hire and consult counsel as appropriate. Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, SECTION 1. SHORT TITLE. This Act may be cited as the ``National Taxpayer Advocate Enhancement Act of 2025''. SEC. 2. AUTHORITY OF TAXPAYER ADVOCATE TO APPOINT COUNSEL. (a) In General.--Section 7803(c)(2)(D)(i) of the Internal Revenue Code of 1986 is amended by striking ``and'' at the end of subclause (I), by redesignating subclause (II) as subclause (III), and by inserting after subclause (I) the following new subclause: ``(II) appoint counsel in the Office of the Taxpayer Advocate to report directly to the National Taxpayer Advocate, or delegate thereof; and''. (b) Conforming Amendment.--Section 7803(c)(2)(D)(i)(III) of such Code, as redesignated by subsection (a), is amended by striking ``any employee of any local office of a taxpayer advocate described in subclause (I)'' and inserting ``any employee of the Office of the Taxpayer Advocate''. (c) Effective Date.--The amendments made by this section shall take effect as if included in the enactment of section 1102 of the Internal Revenue Service Restructuring and Reform Act of 1998. Passed the House of Representatives March 31, 2025. Attest: KEVIN F. MCCUMBER, Clerk."
         },
         {
           "date": "2025-03-31T04:00:00Z",
@@ -20070,12 +20168,13 @@
       ],
       "title": "National Taxpayer Advocate Enhancement Act of 2025",
       "titles": {
-        "count": 6,
+        "count": 8,
         "url": "https://api.congress.gov/v3/bill/119/hr/997/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-06T06:53:39Z",
-      "updateDateIncludingText": "2025-12-06T06:53:39Z"
+      "updateDate": "2026-10-15T10:56:21Z",
+      "updateDateIncludingText": "2026-10-15T10:56:21Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -20779,7 +20878,8 @@
       "type": "HRES",
       "updateDate": "2025-10-09T00:11:26Z",
       "updateDateIncludingText": "2025-10-09T00:11:26Z",
-      "summaries": []
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -20811,7 +20911,7 @@
         "name": "Congress"
       },
       "relatedBills": {
-        "count": 11,
+        "count": 13,
         "url": "https://api.congress.gov/v3/bill/119/hres/294/relatedbills?format=json"
       },
       "sponsors": [
@@ -20872,13 +20972,14 @@
       ],
       "title": "Providing for consideration of the joint resolution (S.J. Res. 18) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to \"Overdraft Lending: Very Large Financial Institutions\"; providing for consideration of the joint resolution (S.J. Res. 28) disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to \"Defining Larger Participants of a Market for General-Use Digital Consumer Payment Applications\"; providing for consideration of the bill (H.R. 1526) to amend title 28, United States Code, to limit the authority of district courts to provide injunctive relief, and for other purposes; providing for consideration of the bill (H.R. 22) to amend the National Voter Registration Act of 1993 to require proof of United States citizenship to register an individual to vote in elections for Federal office, and for other purposes; and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/294/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-10-09T00:11:26Z",
-      "updateDateIncludingText": "2025-10-09T00:11:26Z",
-      "summaries": []
+      "updateDate": "2026-07-11T21:14:49Z",
+      "updateDateIncludingText": "2026-07-19T00:20:47Z",
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -21274,15 +21375,16 @@
           "type": "Reported in House"
         }
       ],
-      "title": "Providing for consideration of the bill (H.R. 276) to rename the Gulf of Mexico as the \"Gulf of America\", and providing for consideration of the bill (H.R. 881) to establish Department of Homeland Security funding restrictions on institutions of higher education that have a relationship with Confucius Institutes, and for other purposes.",
+      "title": "Providing for consideration of the bill (H.R. 276) to rename the Gulf of Mexico as the \u2018\u2018Gulf of America\u201d, and providing for consideration of the bill (H.R. 881) to establish Department of Homeland Security funding restrictions on institutions of higher education that have a relationship with Confucius Institutes, and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/377/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-10-09T03:26:12Z",
-      "updateDateIncludingText": "2025-10-09T03:26:12Z",
-      "summaries": []
+      "updateDate": "2026-07-11T21:09:29Z",
+      "updateDateIncludingText": "2026-07-19T00:21:28Z",
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -21375,13 +21477,14 @@
       ],
       "title": "Providing for consideration of the bill (H.R. 2240) to require the Attorney General to develop reports relating to violent attacks against law enforcement officers, and for other purposes; providing for consideration of the bill (H.R. 2243) to amend title 18, United States Code, to improve the Law Enforcement Officer Safety Act and provisions relating to the carrying of concealed weapons by law enforcement officers, and for other purposes; and providing for consideration of the bill (H.R. 2255) to allow Federal law enforcement officers to purchase retired service weapons, and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/405/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-10-09T03:26:13Z",
-      "updateDateIncludingText": "2025-10-09T03:26:13Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:59:08Z",
+      "updateDateIncludingText": "2026-07-19T00:21:42Z",
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -21475,13 +21578,22 @@
       ],
       "title": "Providing for consideration of the joint resolution (S.J. Res. 13) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Office of the Comptroller of the Currency of the Department of the Treasury relating to the review of applications under the Bank Merger Act; providing for consideration of the joint resolution (S.J. Res. 31) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Review of Final Rule Reclassification of Major Sources as Area Sources Under Section 112 of the Clean Air Act\"; and waiving a requirement of clause 6(a) of rule XIII with respect to consideration of certain resolutions reported from the Committee on Rules.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/426/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-10-09T03:26:15Z",
-      "updateDateIncludingText": "2025-10-09T03:26:15Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:59:09Z",
+      "updateDateIncludingText": "2026-07-19T00:21:51Z",
+      "summaries": [
+        {
+          "actionDate": "2025-05-19",
+          "actionDesc": "Reported to House",
+          "text": "<p>This resolution provides for the consideration of&nbsp;S.J. Res. 13 and S.J. Res. 31, which nullify specified agency rules, and certain resolutions related to establishing budgetary levels for&nbsp;FY2025 through FY2034.&nbsp;</p><p>The resolution waives all points of order against the consideration of&nbsp;S.J. Res. 13, which nullifies the final rule issued by the Department of the Treasury\u2019s Office of the Comptroller of the Currency titled <em>Business Combinations Under the Bank Merger Act</em>, and S.J. Res. 31, which nullifies the Environmental Protection Agency rule titled <em>Review of Final Rule Reclassification of Major Sources as Area Sources Under Section 112 of the Clean Air Act.</em></p><p>The resolution also waives a House rule requiring a two-thirds vote to consider a report&nbsp;from the Committee on Rules on the same day it is presented to the House with respect to any resolution reported through the legislative day of May 23, 2025, relating to Title II of&nbsp;H.Con. Res. 14.&nbsp;Title II&nbsp;sets forth instructions to House and Senate committees to develop legislation related to budgetary levels for&nbsp;FY2025&nbsp;through FY2034.</p>",
+          "updateDate": "2026-07-07T21:08:16Z",
+          "versionCode": "07"
+        }
+      ],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -21574,13 +21686,14 @@
       ],
       "title": "Providing for consideration of the bill (H.R. 1) to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/436/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-10-09T03:26:15Z",
-      "updateDateIncludingText": "2025-10-09T03:26:15Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:59:09Z",
+      "updateDateIncludingText": "2026-07-19T00:21:56Z",
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -21673,13 +21786,14 @@
       ],
       "title": "Providing for consideration of the bill (H.R. 2483) to reauthorize certain programs that provide for opioid use disorder prevention, treatment, and recovery, and for other purposes; providing for consideration of the bill (H.R. 2931) to direct the Administrator of the Small Business Administration to relocate certain offices of the Small Business Administration in sanctuary jurisdictions, and for other purposes; providing for consideration of the bill (H.R. 2966) to require the Administrator of the Small Business Administration to require an applicant for certain loans of the Administration to provide certain citizenship status documentation, and for other purposes; and providing for consideration of the bill (H.R. 2987) to amend the Small Business Act to require a limit on the number of small business lending companies, and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/458/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-10-09T03:26:18Z",
-      "updateDateIncludingText": "2025-10-09T03:26:18Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:59:09Z",
+      "updateDateIncludingText": "2026-07-19T00:22:07Z",
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -21959,13 +22073,14 @@
       ],
       "title": "Providing for consideration of the bill (H.R. 884) to prohibit individuals who are not citizens of the United States from voting in elections in the District of Columbia and to repeal the Local Resident Voting Rights Amendment Act of 2022; providing for consideration of the bill (H.R. 2056) to require the District of Columbia to comply with federal immigration laws; providing for consideration of the bill (H.R. 2096) to restore the right to negotiate matters pertaining to the discipline of law enforcement officers of the District of Columbia through collective bargaining, to restore the statute of limitations for bringing disciplinary cases against members or civilian employees of the Metropolitan Police Department of the District of Columbia, and for other purposes; and providing for consideration of the bill (S. 331) to amend the Controlled Substances Act with respect to the scheduling of fentanyl-related substances, and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/489/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-10-09T03:26:20Z",
-      "updateDateIncludingText": "2025-10-09T03:26:20Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:54:31Z",
+      "updateDateIncludingText": "2026-07-19T00:22:22Z",
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -22058,13 +22173,14 @@
       ],
       "title": "Providing for consideration of the bill (H.R. 4) to rescind certain budget authority proposed to be rescinded in special messages transmitted to the Congress by the President on June 3, 2025, in accordance with section 1012(a) of the Congressional Budget and Impoundment Control Act of 1974, and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/499/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-10-09T03:26:22Z",
-      "updateDateIncludingText": "2025-10-09T03:26:22Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:54:32Z",
+      "updateDateIncludingText": "2026-07-19T00:22:27Z",
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -22244,12 +22360,13 @@
       ],
       "title": "Condemning the violent June 2025 riots in Los Angeles, California.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/516/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-10-09T03:26:24Z",
-      "updateDateIncludingText": "2025-10-09T03:26:24Z"
+      "updateDate": "2026-07-11T20:54:32Z",
+      "updateDateIncludingText": "2026-07-19T00:22:35Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -22350,12 +22467,13 @@
       ],
       "title": "Condemning the attacks on Minnesota lawmakers in Brooklyn Park and Champlin, Minnesota, and calling for unity and the rejection of political violence in Minnesota and across the United States.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/519/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-12-06T06:59:28Z",
-      "updateDateIncludingText": "2025-12-06T06:59:28Z"
+      "updateDate": "2026-07-11T20:54:32Z",
+      "updateDateIncludingText": "2026-07-19T00:22:37Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -22536,7 +22654,8 @@
       "type": "HRES",
       "updateDate": "2025-10-09T03:26:24Z",
       "updateDateIncludingText": "2025-10-09T03:26:24Z",
-      "summaries": []
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -22567,7 +22686,7 @@
         "name": "Government Operations and Politics"
       },
       "relatedBills": {
-        "count": 1,
+        "count": 2,
         "url": "https://api.congress.gov/v3/bill/119/hres/537/relatedbills?format=json"
       },
       "sponsors": [
@@ -22623,8 +22742,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/537/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-12-13T09:07:09Z",
-      "updateDateIncludingText": "2025-12-13T09:07:09Z"
+      "updateDate": "2026-09-18T08:07:01Z",
+      "updateDateIncludingText": "2026-09-18T08:07:01Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -22998,13 +23118,29 @@
       ],
       "title": "Relating to consideration of the Senate amendment to the bill (H.R. 4) to rescind certain budget authority proposed to be rescinded in special messages transmitted to the Congress by the President on June 3, 2025, in accordance with section 1012(a) of the Congressional Budget and Impoundment Control Act of 1974.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/590/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-09-30T17:44:41Z",
-      "updateDateIncludingText": "2025-09-30T17:44:41Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:44:45Z",
+      "updateDateIncludingText": "2026-07-19T00:23:10Z",
+      "summaries": [
+        {
+          "actionDate": "2025-07-17",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This resolution provides for the consideration of the Senate amendment to H.R. 4 (Rescissions Act of 2025).&nbsp;</p>",
+          "updateDate": "2026-07-07T15:09:07Z",
+          "versionCode": "00"
+        },
+        {
+          "actionDate": "2025-07-17",
+          "actionDesc": "Reported to House",
+          "text": "<p>This resolution adopts H.R. 4, the Rescissions Act of 2025, as amended by the Senate. Specifically, upon the resolution's passage, the House is deemed to have agreed to the Senate amendment and passed H.R. 4.</p>",
+          "updateDate": "2026-07-08T19:34:37Z",
+          "versionCode": "07"
+        }
+      ],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -23696,7 +23832,8 @@
       "type": "SRES",
       "updateDate": "2025-12-05T21:50:49Z",
       "updateDateIncludingText": "2025-12-05T21:50:49Z",
-      "summaries": []
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -70434,8 +70571,13 @@
         "url": "https://api.congress.gov/v3/bill/119/hconres/61/titles?format=json"
       },
       "type": "HCONRES",
-      "updateDate": "2025-12-19T15:43:43Z",
-      "updateDateIncludingText": "2025-12-19T15:43:43Z"
+      "updateDate": "2026-09-22T15:36:53Z",
+      "updateDateIncludingText": "2026-09-22T15:36:53Z",
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hconres/61/relatedbills?format=json"
+      },
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -70691,7 +70833,8 @@
       "type": "HJRES",
       "updateDate": "2025-11-05T09:05:43Z",
       "updateDateIncludingText": "2025-11-05T09:05:43Z",
-      "summaries": []
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -71611,8 +71754,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/1005/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-06T04:23:20Z",
-      "updateDateIncludingText": "2025-12-06T04:23:20Z"
+      "updateDate": "2026-09-07T10:56:18Z",
+      "updateDateIncludingText": "2026-09-07T10:56:18Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -71932,7 +72076,8 @@
       },
       "type": "HR",
       "updateDate": "2025-12-06T20:32:10Z",
-      "updateDateIncludingText": "2025-12-06T20:32:10Z"
+      "updateDateIncludingText": "2026-07-13T19:41:47Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -72092,7 +72237,8 @@
       },
       "type": "HR",
       "updateDate": "2025-12-06T09:05:26Z",
-      "updateDateIncludingText": "2025-12-06T09:05:26Z"
+      "updateDateIncludingText": "2026-07-13T19:41:54Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -72264,7 +72410,7 @@
       "type": "HR",
       "updateDate": "2026-09-19T23:06:37Z",
       "updateDateIncludingText": "2026-09-26T16:27:16Z",
-      "fetchedDate": "2026-10-24"
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -73786,7 +73932,8 @@
       },
       "type": "HR",
       "updateDate": "2025-12-18T17:55:04Z",
-      "updateDateIncludingText": "2025-12-18T17:55:04Z"
+      "updateDateIncludingText": "2026-07-13T20:08:55Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -74534,8 +74681,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/2965/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-06T04:08:22Z",
-      "updateDateIncludingText": "2025-12-06T04:18:21Z"
+      "updateDate": "2026-09-08T18:08:35Z",
+      "updateDateIncludingText": "2026-09-08T18:08:35Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -77620,8 +77768,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3898/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-17T04:23:21Z",
-      "updateDateIncludingText": "2025-12-17T04:23:21Z"
+      "updateDate": "2026-09-08T18:12:22Z",
+      "updateDateIncludingText": "2026-09-08T18:12:22Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -79578,7 +79727,7 @@
       "type": "HR",
       "updateDate": "2026-07-11T15:58:18Z",
       "updateDateIncludingText": "2026-07-13T18:49:45Z",
-      "fetchedDate": "2026-10-24"
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -81126,8 +81275,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/6019/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-10T16:56:08Z",
-      "updateDateIncludingText": "2025-12-10T16:56:08Z"
+      "updateDate": "2026-07-11T14:25:01Z",
+      "updateDateIncludingText": "2026-07-13T18:58:47Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -85335,14 +85485,15 @@
           "type": "Introduced in House"
         }
       ],
-      "title": "Disapproving the behavior of Representative Jes\u00fas G. \"Chuy\" Garc\u00eda of Illinois.",
+      "title": "Disapproving the behavior of Representative Jes\u00fas G. Chuy Garc\u00eda of Illinois.",
       "titles": {
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/878/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2025-11-20T09:05:38Z",
-      "updateDateIncludingText": "2025-11-20T09:05:38Z"
+      "updateDate": "2026-07-10T14:58:30Z",
+      "updateDateIncludingText": "2026-07-13T18:33:51Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -85517,7 +85668,8 @@
       "type": "HRES",
       "updateDate": "2025-11-21T18:58:35Z",
       "updateDateIncludingText": "2025-11-21T18:58:35Z",
-      "summaries": []
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -85588,7 +85740,8 @@
       "type": "HRES",
       "updateDate": "2025-12-02T19:17:49Z",
       "updateDateIncludingText": "2025-12-02T19:17:49Z",
-      "summaries": []
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -222563,8 +222716,9 @@
         "url": "https://api.congress.gov/v3/bill/119/sjres/60/titles?format=json"
       },
       "type": "SJRES",
-      "updateDate": "2025-09-24T14:04:06Z",
-      "updateDateIncludingText": "2025-09-24T14:04:06Z"
+      "updateDate": "2026-09-08T18:12:22Z",
+      "updateDateIncludingText": "2026-09-08T18:17:14Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -222847,8 +223001,9 @@
         "url": "https://api.congress.gov/v3/bill/119/sjres/76/titles?format=json"
       },
       "type": "SJRES",
-      "updateDate": "2025-12-02T20:01:19Z",
-      "updateDateIncludingText": "2025-12-02T20:01:19Z"
+      "updateDate": "2026-09-08T18:12:22Z",
+      "updateDateIncludingText": "2026-09-08T18:17:02Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -222954,7 +223109,8 @@
       },
       "type": "SJRES",
       "updateDate": "2025-12-05T21:44:25Z",
-      "updateDateIncludingText": "2025-12-06T17:27:17Z"
+      "updateDateIncludingText": "2026-07-18T22:07:07Z",
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -223236,7 +223392,8 @@
       "type": "SJRES",
       "updateDate": "2025-12-05T22:02:52Z",
       "updateDateIncludingText": "2025-12-05T22:02:52Z",
-      "summaries": []
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
@@ -223989,7 +224146,8 @@
       "type": "SRES",
       "updateDate": "2025-12-12T23:05:19Z",
       "updateDateIncludingText": "2025-12-13T03:18:27Z",
-      "summaries": []
+      "summaries": [],
+      "fetchedDate": "2026-10-31"
     },
     {
       "actions": {
