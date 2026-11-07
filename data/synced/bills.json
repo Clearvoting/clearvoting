@@ -3548,8 +3548,8 @@
       },
       "congress": 119,
       "cosponsors": {
-        "count": 48,
-        "countIncludingWithdrawnCosponsors": 48,
+        "count": 50,
+        "countIncludingWithdrawnCosponsors": 50,
         "url": "https://api.congress.gov/v3/bill/119/s/6/cosponsors?format=json"
       },
       "introducedDate": "2025-01-15",
@@ -3620,8 +3620,9 @@
         "url": "https://api.congress.gov/v3/bill/119/s/6/titles?format=json"
       },
       "type": "S",
-      "updateDate": "2026-01-29T12:03:17Z",
-      "updateDateIncludingText": "2026-01-29T12:03:17Z"
+      "updateDate": "2026-07-30T11:03:19Z",
+      "updateDateIncludingText": "2026-07-30T11:03:19Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -6040,7 +6041,7 @@
         "name": "Economics and Public Finance"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 4,
         "url": "https://api.congress.gov/v3/bill/119/hconres/14/relatedbills?format=json"
       },
       "sponsors": [
@@ -6169,12 +6170,13 @@
       ],
       "title": "Establishing the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hconres/14/titles?format=json"
       },
       "type": "HCONRES",
-      "updateDate": "2026-02-04T04:26:27Z",
-      "updateDateIncludingText": "2026-02-04T04:26:27Z"
+      "updateDate": "2026-09-19T23:18:25Z",
+      "updateDateIncludingText": "2026-09-19T23:18:25Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -7462,12 +7464,13 @@
       ],
       "title": "ANCHOR Act",
       "titles": {
-        "count": 8,
+        "count": 9,
         "url": "https://api.congress.gov/v3/bill/119/hr/1223/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:13Z",
-      "updateDateIncludingText": "2026-02-04T05:06:13Z"
+      "updateDate": "2026-09-08T18:03:40Z",
+      "updateDateIncludingText": "2026-09-08T18:03:40Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -10063,12 +10066,13 @@
       ],
       "title": "Communications Security Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/1717/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:11:37Z",
-      "updateDateIncludingText": "2026-02-04T04:11:37Z"
+      "updateDate": "2026-09-08T18:03:40Z",
+      "updateDateIncludingText": "2026-09-08T18:03:40Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -10215,12 +10219,13 @@
       ],
       "title": "Consumer Safety Technology Act",
       "titles": {
-        "count": 18,
+        "count": 19,
         "url": "https://api.congress.gov/v3/bill/119/hr/1770/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:11:36Z",
-      "updateDateIncludingText": "2026-02-04T04:11:36Z"
+      "updateDate": "2026-09-08T18:03:40Z",
+      "updateDateIncludingText": "2026-09-08T18:03:40Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -10394,7 +10399,7 @@
       "introducedDate": "2025-01-03",
       "latestAction": {
         "actionDate": "2025-12-09",
-        "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held."
+        "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held. With printed Hearing: S.Hrg. 119-238."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/186",
       "number": "186",
@@ -10404,7 +10409,7 @@
         "name": "Public Lands and Natural Resources"
       },
       "relatedBills": {
-        "count": 1,
+        "count": 2,
         "url": "https://api.congress.gov/v3/bill/119/hr/186/relatedbills?format=json"
       },
       "sponsors": [
@@ -10493,12 +10498,18 @@
       ],
       "title": "Hershel Woody Williams National Medal of Honor Monument Location Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/186/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-15T04:29:43Z",
-      "updateDateIncludingText": "2026-01-15T04:29:43Z"
+      "updateDate": "2026-09-18T15:00:09Z",
+      "updateDateIncludingText": "2026-09-18T15:00:09Z",
+      "notes": [
+        {
+          "text": "The text of <a href=\"https://www.congress.gov/bill/119/HR/186\" target=\"_blank\">H.R.186</a> is contained in the text of <a href=\"https://www.congress.gov/bill/119/S/858\" target=\"_blank\">S.858</a>, which became Public Law 119-104."
+        }
+      ],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -10820,12 +10831,13 @@
       ],
       "title": "Great Lakes Mass Marking Program Act of 2025",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/1917/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:11:38Z",
-      "updateDateIncludingText": "2026-02-04T04:11:38Z"
+      "updateDate": "2026-09-08T18:12:22Z",
+      "updateDateIncludingText": "2026-09-08T18:12:22Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -10875,7 +10887,7 @@
         "name": "Finance and Financial Sector"
       },
       "relatedBills": {
-        "count": 3,
+        "count": 5,
         "url": "https://api.congress.gov/v3/bill/119/hr/1919/relatedbills?format=json"
       },
       "sponsors": [
@@ -10963,12 +10975,13 @@
       ],
       "title": "Anti-CBDC Surveillance State Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/1919/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:28Z",
-      "updateDateIncludingText": "2026-02-04T04:26:28Z"
+      "updateDate": "2026-09-19T23:27:02Z",
+      "updateDateIncludingText": "2026-09-19T23:27:02Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -13077,7 +13090,7 @@
         "name": "Crime and Law Enforcement"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hr/27/relatedbills?format=json"
       },
       "sponsors": [
@@ -13166,12 +13179,18 @@
       ],
       "title": "HALT Fentanyl Act",
       "titles": {
-        "count": 8,
+        "count": 9,
         "url": "https://api.congress.gov/v3/bill/119/hr/27/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-07T01:05:27Z",
-      "updateDateIncludingText": "2026-01-07T01:05:27Z"
+      "updateDate": "2026-08-10T11:51:27Z",
+      "updateDateIncludingText": "2026-08-10T11:51:27Z",
+      "notes": [
+        {
+          "text": "The text of <a href=\"https://www.congress.gov/bill/119/HR/27\" target=\"_blank\">H.R.27</a> is contained in the text of <a href=\"https://www.congress.gov/bill/119/S/331\" target=\"_blank\">S.331</a>, which became Public Law 119-26."
+        }
+      ],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -14548,13 +14567,14 @@
       ],
       "title": "To amend the Internal Revenue Code of 1986 to provide special rules for the taxation of certain residents of Taiwan with income from sources within the United States.",
       "titles": {
-        "count": 8,
+        "count": 9,
         "url": "https://api.congress.gov/v3/bill/119/hr/33/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-10T06:55:49Z",
-      "updateDateIncludingText": "2026-01-10T06:55:49Z",
-      "summaries": []
+      "updateDate": "2026-09-19T23:07:28Z",
+      "updateDateIncludingText": "2026-09-19T23:07:28Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -14705,12 +14725,13 @@
       ],
       "title": "Improving Access to Small Business Information Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/3351/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-08T19:59:09Z",
-      "updateDateIncludingText": "2026-01-08T19:59:09Z"
+      "updateDate": "2026-07-18T00:00:23Z",
+      "updateDateIncludingText": "2026-07-18T00:00:23Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -16197,12 +16218,13 @@
       ],
       "title": "Made-in-America Defense Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/4216/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:27Z",
-      "updateDateIncludingText": "2026-02-04T04:26:27Z"
+      "updateDate": "2026-07-18T00:01:55Z",
+      "updateDateIncludingText": "2026-07-18T00:01:55Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -16336,13 +16358,14 @@
       ],
       "title": "Coast Guard Authorization Act of 2025",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/4275/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-05T22:01:02Z",
-      "updateDateIncludingText": "2026-01-05T22:01:02Z",
-      "summaries": []
+      "updateDate": "2026-09-08T18:03:40Z",
+      "updateDateIncludingText": "2026-09-08T18:03:40Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -16685,7 +16708,7 @@
         }
       ],
       "subjects": {
-        "count": 48,
+        "count": 50,
         "url": "https://api.congress.gov/v3/bill/119/hr/471/subjects?format=json"
       },
       "summaries": [
@@ -16738,12 +16761,13 @@
       ],
       "title": "Fix Our Forests Act",
       "titles": {
-        "count": 4,
+        "count": 5,
         "url": "https://api.congress.gov/v3/bill/119/hr/471/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:23Z",
-      "updateDateIncludingText": "2026-02-04T05:06:23Z"
+      "updateDate": "2026-10-23T15:40:22Z",
+      "updateDateIncludingText": "2026-10-23T15:40:22Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -17731,12 +17755,13 @@
       ],
       "title": "Protect Small Businesses from Excessive Paperwork Act of 2025",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/736/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-22T00:26:13Z",
-      "updateDateIncludingText": "2026-01-22T00:26:13Z"
+      "updateDate": "2026-07-11T11:58:28Z",
+      "updateDateIncludingText": "2026-07-13T19:19:36Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -17871,12 +17896,13 @@
       ],
       "title": "Stop Chinese Fentanyl Act of 2025",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/747/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2025-12-29T22:29:42Z",
-      "updateDateIncludingText": "2025-12-29T22:29:42Z"
+      "updateDate": "2026-07-11T11:53:23Z",
+      "updateDateIncludingText": "2026-07-13T19:20:24Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -17992,12 +18018,13 @@
       ],
       "title": "Mail Traffic Deaths Reporting Act of 2025",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/758/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:11:36Z",
-      "updateDateIncludingText": "2026-02-04T04:11:36Z"
+      "updateDate": "2026-07-11T11:38:24Z",
+      "updateDateIncludingText": "2026-07-13T19:39:33Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -20174,7 +20201,7 @@
       "type": "HR",
       "updateDate": "2026-10-15T10:56:21Z",
       "updateDateIncludingText": "2026-10-15T10:56:21Z",
-      "fetchedDate": "2026-10-31"
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -21894,12 +21921,13 @@
       ],
       "title": "Condemning the rise in ideologically motivated attacks on Jewish individuals in the United States, including the recent violent assault in Boulder, Colorado, and reaffirming the House of Representatives commitment to combating antisemitism and politically motivated violence.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/481/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-12T15:00:28Z",
-      "updateDateIncludingText": "2026-01-12T15:00:28Z"
+      "updateDate": "2026-07-11T20:54:31Z",
+      "updateDateIncludingText": "2026-07-19T00:22:18Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -22254,12 +22282,13 @@
       ],
       "title": "Adopting the Rules of the House of Representatives for the One Hundred Nineteenth Congress, and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/5/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-04T05:06:20Z",
-      "updateDateIncludingText": "2026-02-04T05:06:20Z"
+      "updateDate": "2026-09-29T12:10:06Z",
+      "updateDateIncludingText": "2026-09-29T12:10:06Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -70666,7 +70695,8 @@
       },
       "type": "HCONRES",
       "updateDate": "2026-01-23T09:06:23Z",
-      "updateDateIncludingText": "2026-01-23T09:06:23Z"
+      "updateDateIncludingText": "2026-01-23T09:06:23Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -70755,7 +70785,8 @@
       },
       "type": "HCONRES",
       "updateDate": "2026-01-23T20:11:04Z",
-      "updateDateIncludingText": "2026-01-23T20:11:04Z"
+      "updateDateIncludingText": "2026-05-29T16:27:22Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -71829,8 +71860,8 @@
         {
           "actionDate": "2025-02-06",
           "actionDesc": "Introduced in House",
-          "text": "<p><strong>Guaranteeing Reliability through the Interconnection of Dispatchable Power Act or the GRID Power Act</strong></p><p>This bill requires the Federal Energy Regulatory Commission (FERC) to issue a rule that revises the prioritization and approval process for interconnection requests for dispatchable power projects.&nbsp;(Under the bill,<em> d</em><em>ispatchable power</em> generally refers to an an electric energy generation resource capable of providing known and forecastable electric supply in time intervals necessary to ensure grid reliability.)</p><p>First, the rule must address the&nbsp;efficiency and effectiveness of the existing procedures&nbsp;for processing interconnection&nbsp;requests for new&nbsp;dispatchable power projects to ensure that new projects that improve grid reliability and resource adequacy can interconnect to the electric grid quickly, cost-effectively, and reliably.&nbsp;</p><p>Second, the rule must revise the pro forma Large Generator Interconnection Procedures, and the pro forma Large Generator Interconnection Agreement as appropriate,&nbsp;to authorize transmission providers to submit proposals to FERC  to adjust the interconnection queue of the provider to prioritize new dispatchable power projects that will improve grid reliability and resource adequacy by assigning those projects a higher positions in the queue. FERC must review and approve or deny such proposals within 60 days after the proposal is submitted.</p>",
-          "updateDate": "2025-09-15T18:55:29Z",
+          "text": "<p><strong>Guaranteeing Reliability through the Interconnection of Dispatchable Power Act or the GRID Power Act</strong>&nbsp;<em></em><em></em></p><p>This bill requires the Federal Energy Regulatory Commission (FERC) to issue and periodically review a rule that revises the approval process for interconnection requests of generating units that produce electricity to prioritize dispatchable power projects (e.g., certain fossil fuel projects).&nbsp;</p><p>Under the bill, <em>dispatchable power</em> generally refers to an electric energy generation resource, such as a generating unit that produces electricity from fossil fuels, capable of providing known and forecastable electric supply in time intervals necessary to ensure grid reliability. Currently, FERC receives interconnection requests from those projects and other generating units, such as units that produce electricity from renewable energy. Interconnection requests are requests from generating units to connect to the high voltage transmission lines of the electric grid.</p><p>First, the rule must address the efficiency and effectiveness of the existing procedures for processing interconnection requests to ensure that new dispatchable power projects that improve grid reliability and resource adequacy can interconnect to the electric grid quickly, cost-effectively, and reliably.&nbsp;</p><p>Second, the rule must revise the pro forma Large Generator Interconnection Procedures, and the pro forma Large Generator Interconnection Agreement as appropriate, to authorize transmission providers to submit proposals to FERC to prioritize new dispatchable power projects that will improve grid reliability and resource adequacy by assigning those projects higher positions in the interconnection queue of the provider. FERC must review and approve or deny such proposals within 60 days after the proposal is submitted.</p>",
+          "updateDate": "2026-04-17T13:31:00Z",
           "versionCode": "00"
         }
       ],
@@ -71915,8 +71946,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/1047/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:20Z",
-      "updateDateIncludingText": "2026-02-04T05:06:20Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -72410,7 +72442,7 @@
       "type": "HR",
       "updateDate": "2026-09-19T23:06:37Z",
       "updateDateIncludingText": "2026-09-26T16:27:16Z",
-      "fetchedDate": "2026-10-31"
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -72868,8 +72900,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/1608/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:11:38Z",
-      "updateDateIncludingText": "2026-02-04T04:11:38Z"
+      "updateDate": "2026-07-09T13:27:22Z",
+      "updateDateIncludingText": "2026-07-13T19:46:01Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -73012,8 +73045,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/1676/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:24Z",
-      "updateDateIncludingText": "2026-02-04T05:06:24Z"
+      "updateDate": "2026-09-08T18:12:22Z",
+      "updateDateIncludingText": "2026-09-08T18:12:22Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -73707,8 +73741,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/2270/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-15T17:10:43Z",
-      "updateDateIncludingText": "2026-01-15T17:10:43Z"
+      "updateDate": "2026-11-05T21:42:13Z",
+      "updateDateIncludingText": "2026-11-05T21:42:13Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -73824,8 +73859,17 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/2312/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-15T17:11:07Z",
-      "updateDateIncludingText": "2026-01-15T17:11:07Z"
+      "updateDate": "2026-09-23T18:05:23Z",
+      "updateDateIncludingText": "2026-09-23T18:05:23Z",
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Education and Workforce on December 30, 2025",
+          "pubDate": "2026-09-23T18:04:00Z",
+          "title": "H.R. 2312, Tipped Employee Protection Act",
+          "url": "https://www.cbo.gov/publication/62788"
+        }
+      ],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -74245,8 +74289,13 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/2659/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:11:39Z",
-      "updateDateIncludingText": "2026-02-04T04:11:39Z"
+      "updateDate": "2026-06-17T15:14:54Z",
+      "updateDateIncludingText": "2026-07-13T20:09:44Z",
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2659/relatedbills?format=json"
+      },
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -74374,7 +74423,8 @@
       },
       "type": "HR",
       "updateDate": "2026-01-15T04:08:18Z",
-      "updateDateIncludingText": "2026-01-15T04:08:18Z"
+      "updateDateIncludingText": "2026-07-13T20:09:53Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -74517,12 +74567,13 @@
       ],
       "title": "Honoring Our Heroes Act of 2025",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/2721/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:20Z",
-      "updateDateIncludingText": "2026-02-04T05:06:20Z"
+      "updateDate": "2026-07-11T02:28:20Z",
+      "updateDateIncludingText": "2026-07-13T20:10:12Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -74838,8 +74889,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/2988/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-03T09:09:12Z",
-      "updateDateIncludingText": "2026-02-03T09:09:12Z"
+      "updateDate": "2026-06-11T23:26:37Z",
+      "updateDateIncludingText": "2026-07-13T20:12:03Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -74995,8 +75047,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3015/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:28Z",
-      "updateDateIncludingText": "2026-02-04T04:26:28Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -75154,8 +75207,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3062/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:28Z",
-      "updateDateIncludingText": "2026-02-04T04:26:28Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -75612,8 +75666,13 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3187/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:23Z",
-      "updateDateIncludingText": "2026-02-04T05:06:23Z"
+      "updateDate": "2026-07-11T01:39:15Z",
+      "updateDateIncludingText": "2026-07-13T20:13:37Z",
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3187/relatedbills?format=json"
+      },
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -75662,7 +75721,7 @@
         "name": "Finance and Financial Sector"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hr/3383/relatedbills?format=json"
       },
       "sponsors": [
@@ -75772,8 +75831,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3383/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-12T09:09:12Z",
-      "updateDateIncludingText": "2026-01-12T09:09:12Z"
+      "updateDate": "2026-03-18T19:37:48Z",
+      "updateDateIncludingText": "2026-07-13T20:15:04Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -75919,12 +75979,17 @@
       ],
       "title": "TRAVEL Act of 2025",
       "titles": {
-        "count": 10,
+        "count": 11,
         "url": "https://api.congress.gov/v3/bill/119/hr/3400/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:33Z",
-      "updateDateIncludingText": "2026-02-04T04:26:33Z"
+      "updateDate": "2026-07-18T00:00:19Z",
+      "updateDateIncludingText": "2026-07-18T00:00:19Z",
+      "relatedBills": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3400/relatedbills?format=json"
+      },
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -76064,12 +76129,13 @@
       ],
       "title": "SPACE Act of 2025",
       "titles": {
-        "count": 10,
+        "count": 11,
         "url": "https://api.congress.gov/v3/bill/119/hr/3424/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:30Z",
-      "updateDateIncludingText": "2026-02-04T04:26:30Z"
+      "updateDate": "2026-09-08T18:12:22Z",
+      "updateDateIncludingText": "2026-09-08T18:12:22Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -76123,7 +76189,7 @@
         }
       ],
       "subjects": {
-        "count": 8,
+        "count": 9,
         "url": "https://api.congress.gov/v3/bill/119/hr/3425/subjects?format=json"
       },
       "summaries": [
@@ -76212,12 +76278,13 @@
       ],
       "title": "Personnel Oversight and Shift Tracking Act of 2025",
       "titles": {
-        "count": 8,
+        "count": 9,
         "url": "https://api.congress.gov/v3/bill/119/hr/3425/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:30Z",
-      "updateDateIncludingText": "2026-02-04T04:26:30Z"
+      "updateDate": "2026-07-11T01:08:28Z",
+      "updateDateIncludingText": "2026-07-13T20:15:31Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -76347,12 +76414,13 @@
       ],
       "title": "Stop Illegal Entry Act of 2025",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/3486/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:27Z",
-      "updateDateIncludingText": "2026-02-04T04:26:27Z"
+      "updateDate": "2026-07-11T00:58:24Z",
+      "updateDateIncludingText": "2026-07-30T16:27:18Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -76512,8 +76580,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3492/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:14Z",
-      "updateDateIncludingText": "2026-02-04T05:06:14Z"
+      "updateDate": "2026-08-10T11:51:27Z",
+      "updateDateIncludingText": "2026-08-10T11:51:27Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -76676,8 +76745,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3616/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:19Z",
-      "updateDateIncludingText": "2026-02-04T05:06:19Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -76996,8 +77066,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3628/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:19Z",
-      "updateDateIncludingText": "2026-02-04T05:06:19Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -77157,8 +77228,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3632/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:32Z",
-      "updateDateIncludingText": "2026-02-04T04:26:32Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -77221,15 +77293,15 @@
         }
       ],
       "subjects": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/3638/subjects?format=json"
       },
       "summaries": [
         {
           "actionDate": "2025-09-19",
           "actionDesc": "Reported to House",
-          "text": "<p><strong>Electric Supply Chain Act</strong></p><p>This bill requires the Department of Energy (DOE) to periodically assess the supply chain that supports the generation and transmission of electricity and report on the assessment to the appropriate congressional committees.</p><p>Specifically, DOE must periodically assess and report on</p><ul><li>information including trends and vulnerabilities in the supply of components needed for generating or transmitting electricity, barriers to expanding U.S. capacity to process critical minerals, and domestic policies that deter greater investment into the supply chain;</li><li>emerging issues in the supply chain; and</li><li>recommendations to address these emerging issues and to secure and expand the supply chain.</li></ul><p>The initial report must be submitted no later than one year after the date of enactment of this bill.&nbsp;</p>",
-          "updateDate": "2025-12-08T17:42:29Z",
+          "text": "<p><strong>Electric Supply Chain Act</strong></p><p>This bill requires the Department of Energy (DOE) to periodically assess the supply chain that supports the generation and transmission of electricity and report on the assessment to the appropriate congressional committees.</p><p>Specifically, DOE must periodically assess and report on</p><ul><li>information including trends and vulnerabilities in the supply of components needed for generating or transmitting electricity, barriers to expanding U.S. capacity to process critical materials, and domestic policies that deter greater investment into the supply chain;</li><li>emerging issues in the supply chain; and</li><li>recommendations to address these emerging issues and to secure and expand the supply chain.</li></ul><p>The initial report must be submitted no later than one year after the date of enactment of this bill.&nbsp;</p>",
+          "updateDate": "2026-04-13T14:04:56Z",
           "versionCode": "07"
         }
       ],
@@ -77314,8 +77386,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3638/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:20Z",
-      "updateDateIncludingText": "2026-02-04T05:06:20Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -77474,8 +77547,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3668/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:32Z",
-      "updateDateIncludingText": "2026-02-04T04:26:32Z"
+      "updateDate": "2026-09-08T18:03:40Z",
+      "updateDateIncludingText": "2026-09-08T18:03:40Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -77829,7 +77903,7 @@
         }
       ],
       "subjects": {
-        "count": 6,
+        "count": 4,
         "url": "https://api.congress.gov/v3/bill/119/hr/4058/subjects?format=json"
       },
       "summaries": [
@@ -77923,7 +77997,8 @@
       },
       "type": "HR",
       "updateDate": "2026-02-04T05:06:12Z",
-      "updateDateIncludingText": "2026-02-04T05:06:12Z"
+      "updateDateIncludingText": "2026-07-13T18:38:11Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -78116,7 +78191,7 @@
         "name": "Commerce"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hr/4305/relatedbills?format=json"
       },
       "sponsors": [
@@ -78226,8 +78301,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/4305/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:25Z",
-      "updateDateIncludingText": "2026-02-04T05:06:25Z"
+      "updateDate": "2026-09-08T18:08:35Z",
+      "updateDateIncludingText": "2026-09-08T18:08:35Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -78360,8 +78436,17 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/4371/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:14Z",
-      "updateDateIncludingText": "2026-02-04T05:06:14Z"
+      "updateDate": "2026-05-29T21:20:26Z",
+      "updateDateIncludingText": "2026-07-30T16:27:18Z",
+      "cboCostEstimates": [
+        {
+          "description": "As passed by the House of Representatives on December 16, 2025",
+          "pubDate": "2026-05-29T21:10:00Z",
+          "title": "H.R. 4371, Kayla Hamilton Act",
+          "url": "https://www.cbo.gov/publication/62493"
+        }
+      ],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -78686,8 +78771,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/4423/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:30Z",
-      "updateDateIncludingText": "2026-02-19T17:27:15Z"
+      "updateDate": "2026-07-18T00:01:43Z",
+      "updateDateIncludingText": "2026-07-18T00:01:43Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -78842,8 +78928,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/4593/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-17T05:53:16Z",
-      "updateDateIncludingText": "2026-01-17T05:53:16Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -79311,8 +79398,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/4776/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-16T09:09:13Z",
-      "updateDateIncludingText": "2026-01-16T09:09:13Z"
+      "updateDate": "2026-09-08T18:12:22Z",
+      "updateDateIncludingText": "2026-09-08T18:12:22Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -79425,12 +79513,13 @@
       ],
       "title": "D. C. Criminal Reforms to Immediately Make Everyone Safe Act of 2025",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/4922/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:28Z",
-      "updateDateIncludingText": "2026-02-04T04:26:28Z"
+      "updateDate": "2026-07-11T16:08:23Z",
+      "updateDateIncludingText": "2026-07-13T18:48:57Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -79554,7 +79643,8 @@
       },
       "type": "HR",
       "updateDate": "2026-01-22T09:06:06Z",
-      "updateDateIncludingText": "2026-01-22T09:06:06Z"
+      "updateDateIncludingText": "2026-07-13T18:49:24Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -79727,7 +79817,7 @@
       "type": "HR",
       "updateDate": "2026-07-11T15:58:18Z",
       "updateDateIncludingText": "2026-07-13T18:49:45Z",
-      "fetchedDate": "2026-10-31"
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -79988,7 +80078,8 @@
       },
       "type": "HR",
       "updateDate": "2026-02-04T04:26:28Z",
-      "updateDateIncludingText": "2026-02-04T04:26:28Z"
+      "updateDateIncludingText": "2026-07-13T18:50:22Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -80101,12 +80192,13 @@
       ],
       "title": "To lower the age at which a minor may be tried as an adult for certain criminal offenses in the District of Columbia to 14 years of age.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hr/5140/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T04:26:28Z",
-      "updateDateIncludingText": "2026-02-04T04:26:28Z"
+      "updateDate": "2026-07-11T15:54:49Z",
+      "updateDateIncludingText": "2026-07-13T18:50:29Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -80224,7 +80316,8 @@
       },
       "type": "HR",
       "updateDate": "2026-02-04T04:26:28Z",
-      "updateDateIncludingText": "2026-02-04T04:26:28Z"
+      "updateDateIncludingText": "2026-07-13T18:50:30Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -80383,8 +80476,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/5184/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-14T03:23:16Z",
-      "updateDateIncludingText": "2026-01-14T03:23:16Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -80663,7 +80757,8 @@
       },
       "type": "HR",
       "updateDate": "2026-02-04T05:06:23Z",
-      "updateDateIncludingText": "2026-02-04T05:06:23Z"
+      "updateDateIncludingText": "2026-07-13T18:52:24Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -81021,8 +81116,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/5763/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-29T05:23:16Z",
-      "updateDateIncludingText": "2026-01-29T05:23:16Z"
+      "updateDate": "2026-09-08T18:08:35Z",
+      "updateDateIncludingText": "2026-09-08T18:08:35Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -81565,8 +81661,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/6359/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-30T04:08:16Z",
-      "updateDateIncludingText": "2026-01-30T04:08:16Z"
+      "updateDate": "2026-06-11T05:06:24Z",
+      "updateDateIncludingText": "2026-07-13T19:01:51Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -82442,7 +82539,7 @@
         }
       ],
       "subjects": {
-        "count": 14,
+        "count": 15,
         "url": "https://api.congress.gov/v3/bill/119/hr/6703/subjects?format=json"
       },
       "textVersions": [
@@ -82486,9 +82583,10 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/6703/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-01-28T16:27:00Z",
-      "updateDateIncludingText": "2026-01-28T16:27:00Z",
-      "summaries": []
+      "updateDate": "2026-04-08T16:50:52Z",
+      "updateDateIncludingText": "2026-04-08T16:50:52Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -83630,8 +83728,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/845/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-04T05:06:25Z",
-      "updateDateIncludingText": "2026-02-04T05:06:25Z"
+      "updateDate": "2026-09-08T18:12:22Z",
+      "updateDateIncludingText": "2026-09-08T18:12:22Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -83884,8 +83983,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/1009/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-23T09:05:43Z",
-      "updateDateIncludingText": "2026-01-23T09:05:43Z"
+      "updateDate": "2026-07-11T22:09:33Z",
+      "updateDateIncludingText": "2026-07-19T00:15:54Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -83979,9 +84079,25 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/1014/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-28T09:09:13Z",
-      "updateDateIncludingText": "2026-01-28T09:09:13Z",
-      "summaries": []
+      "updateDate": "2026-07-11T22:09:33Z",
+      "updateDateIncludingText": "2026-07-19T00:15:57Z",
+      "summaries": [
+        {
+          "actionDate": "2026-01-22",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 7148) making further consolidated appropriations for the fiscal year ending September 30, 2026, and for other purposes; providing for consideration of the bill (H.R. 7147) making further consolidated appropriations for the fiscal year ending September 30, 2026, and for other purposes; and for other purposes.",
+          "updateDate": "2026-03-13T12:10:55Z",
+          "versionCode": "07"
+        }
+      ],
+      "policyArea": {
+        "name": "Congress"
+      },
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1014/subjects?format=json"
+      },
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -84704,8 +84820,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/432/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-07T16:16:55Z",
-      "updateDateIncludingText": "2026-01-07T16:16:55Z"
+      "updateDate": "2026-07-11T20:59:09Z",
+      "updateDateIncludingText": "2026-07-19T00:21:54Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -85290,8 +85407,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/780/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-31T09:05:30Z",
-      "updateDateIncludingText": "2026-01-31T09:05:30Z"
+      "updateDate": "2026-07-11T20:24:35Z",
+      "updateDateIncludingText": "2026-07-19T00:24:51Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -85833,15 +85951,24 @@
           "type": "Reported in House"
         }
       ],
-      "title": "Providing for consideration of the bill (H.R. 4312) to protect the name, image, and likeness rights of student athletes and to promote fair competition with respect to intercollegiate athletics, and for other purposes; providing for consideration of the bill (H.R. 1005) to prohibit elementary and secondary schools from accepting funds from or entering into contracts with the Government of the People's Republic of China and the Chinese Communist Party, and for other purposes; providing for consideration of the bill (H.R. 1049) to ensure that parents are aware of foreign influence in their child's public school, and for other purposes; providing for consideration of the bill (H.R. 1069) to prohibit the availability of Federal education funds for elementary and secondary schools that receive direct or indirect support from the Government of the People's Republic of China; providing for consideration of the bill (H.R. 2965) to require the Administrator of the Small Business Administration to ensure that the small business regulatory budget for a small business concern in a fiscal year is not greater than zero, and for other purposes; and providing for consideration of the bill (H.R. 4305) to direct the Chief Counsel for Advocacy of the Small Business Administration to establish a Red Tape Hotline to receive notifications of burdensome agency rules, and for other purposes.",
+      "title": "Providing for consideration of the bill (H.R. 4312) to protect the name, image, and likeness rights of student athletes and to promote fair competition with respect to intercollegiate athletics, and for other purposes; providing for consideration of the bill (H.R. 1005) to prohibit elementary and secondary schools from accepting funds from or entering into contracts with the Government of the People\u2019s Republic of China and the Chinese Communist Party, and for other purposes; providing for consideration of the bill (H.R. 1049) to ensure that parents are aware of foreign influence in their child\u2019s public school, and for other purposes; providing for consideration of the bill (H.R. 1069) to prohibit the availability of Federal education funds for elementary and secondary schools that receive direct or indirect support from the Government of the People\u2019s Republic of China; providing for consideration of the bill (H.R. 2965) to require the Administrator of the Small Business Administration to ensure that the small business regulatory budget for a small business concern in a fiscal year is not greater than zero, and for other purposes; and providing for consideration of the bill (H.R. 4305) to direct the Chief Counsel for Advocacy of the Small Business Administration to establish a Red Tape Hotline to receive notifications of burdensome agency rules, and for other purposes.",
       "titles": {
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/916/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-20T16:24:43Z",
-      "updateDateIncludingText": "2026-01-20T16:24:43Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:14:40Z",
+      "updateDateIncludingText": "2026-07-18T15:50:07Z",
+      "summaries": [
+        {
+          "actionDate": "2025-12-01",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 4312) to protect the name, image, and likeness rights of student athletes and to promote fair competition with respect to intercollegiate athletics, and for other purposes; providing for consideration of the bill (H.R. 1005) to prohibit elementary and secondary schools from accepting funds from or entering into contracts with the Government of the People's Republic of China and the Chinese Communist Party, and for other purposes; providing for consideration of the bill (H.R. 1049) to ensure that parents are aware of foreign influence in their child's public school, and for other purposes; providing for consideration of the bill (H.R. 1069) to prohibit the availability of Federal education funds for elementary and secondary schools that receive direct or indirect support from the Government of the People's Republic of China; providing for consideration of the bill (H.R. 2965) to require the Administrator of the Small Business Administration to ensure that the small business regulatory budget for a small business concern in a fiscal year is not greater than zero, and for other purposes; and providing for consideration of the bill (H.R. 4305) to direct the Chief Counsel for Advocacy of the Small Business Administration to establish a Red Tape Hotline to receive notifications of burdensome agency rules, and for other purposes.",
+          "updateDate": "2026-03-13T12:11:00Z",
+          "versionCode": "07"
+        }
+      ],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -85938,9 +86065,18 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/936/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-20T16:24:16Z",
-      "updateDateIncludingText": "2026-02-11T17:27:20Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:09:46Z",
+      "updateDateIncludingText": "2026-07-18T15:50:16Z",
+      "summaries": [
+        {
+          "actionDate": "2025-12-09",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 3898) to amend the Federal Water Pollution Control Act to make targeted reforms with respect to waters of the United States and other matters, and for other purposes; providing for consideration of the bill (H.R. 3383) to amend the Investment Company Act of 1940 with respect to the authority of closed-end companies to invest in private funds; providing for consideration of the bill (H.R. 3638) to direct the Secretary of Energy to prepare periodic assessments and submit reports on the supply chain for the generation and transmission of electricity, and for other purposes; providing for consideration of the bill (H.R. 3628) to amend the Public Utility Regulatory Policies Act of 1978 to add a standard related to State consideration of reliable generation, and for other purposes; providing for consideration of the bill (H.R. 3668) to promote interagency coordination for reviewing certain authorizations under section 3 of the Natural Gas Act, and for other purposes; providing for consideration of the bill (S. 1071) to require the Secretary of Veterans Affairs to disinter the remains of Fernando V. Cota from Fort Sam Houston National Cemetery, Texas, and for other purposes; and for other purposes.",
+          "updateDate": "2026-03-13T12:11:00Z",
+          "versionCode": "07"
+        }
+      ],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -85971,7 +86107,7 @@
         "name": "Government Operations and Politics"
       },
       "relatedBills": {
-        "count": 1,
+        "count": 2,
         "url": "https://api.congress.gov/v3/bill/119/hres/939/relatedbills?format=json"
       },
       "sponsors": [
@@ -86018,9 +86154,18 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/939/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-31T09:05:42Z",
-      "updateDateIncludingText": "2026-01-31T09:05:42Z",
-      "summaries": []
+      "updateDate": "2026-09-18T08:06:49Z",
+      "updateDateIncludingText": "2026-09-18T08:06:49Z",
+      "summaries": [
+        {
+          "actionDate": "2025-12-10",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This resolution sets forth two articles of impeachment against President Donald Trump for high crimes and misdemeanors on charges of&nbsp;(1) abuse of presidential power by calling for the execution of Members of Congress, and (2) abuse of presidential power to intimidate federal judges in violation of the separation of powers and independence of the judiciary.</p>",
+          "updateDate": "2026-04-09T14:45:36Z",
+          "versionCode": "00"
+        }
+      ],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -86118,9 +86263,18 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/951/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-20T16:23:55Z",
-      "updateDateIncludingText": "2026-01-20T16:23:55Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:09:47Z",
+      "updateDateIncludingText": "2026-07-18T15:50:22Z",
+      "summaries": [
+        {
+          "actionDate": "2025-12-16",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 4776) to amend the National Environmental Policy Act of 1969 to clarify ambiguous provisions and facilitate a more efficient, effective, and timely environmental review process; providing for consideration of the bill (H.R. 1366) to provide for the location of multiple hardrock mining mill sites, to establish the Abandoned Hardrock Mine Fund, and for other purposes; providing for consideration of the bill (H.R. 845) to require the Secretary of the Interior to reissue regulations removing the gray wolf from the list of endangered and threatened wildlife under the Endangered Species Act of 1973; providing for consideration of the bill (H.R. 3616) to require the Federal Energy Regulatory Commission to review regulations that may affect the reliable operation of the bulk-power system; providing for consideration of the bill (H.R. 3632) to amend the Federal Power Act to adjust the requirements for orders, rules, and regulations relating to furnishing adequate service, to require owners or operators of generating facilities to provide notice of planned retirements of certain electric generating units, and for other purposes; and providing for consideration of the bill (H.R. 4371) to amend the William Wilberforce Trafficking Victims Protection Reauthorization Act of 2008 to enhance efforts to combat the trafficking of children.",
+          "updateDate": "2026-03-13T12:11:01Z",
+          "versionCode": "07"
+        }
+      ],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -86218,9 +86372,18 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/953/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-20T16:23:32Z",
-      "updateDateIncludingText": "2026-01-20T16:23:32Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:09:47Z",
+      "updateDateIncludingText": "2026-07-18T15:50:23Z",
+      "summaries": [
+        {
+          "actionDate": "2025-12-17",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 6703) to ensure access to affordable health insurance; providing for consideration of the bill (H.R. 498) to amend title XIX of the Social Security Act to prohibit Federal Medicaid funding for gender transition procedures for minors; providing for consideration of the bill (H.R. 3492) to amend section 116 of title 18, United States Code, with respect to genital and bodily mutilation and chemical castration of minors; and relating to consideration of the bill (H.R. 4776) to amend the National Environmental Policy Act of 1969 to clarify ambiguous provisions and facilitate a more efficient, effective, and timely environmental review process.",
+          "updateDate": "2026-03-13T12:10:53Z",
+          "versionCode": "07"
+        }
+      ],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -86317,9 +86480,18 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/977/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-20T16:22:40Z",
-      "updateDateIncludingText": "2026-01-20T16:22:40Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:09:47Z",
+      "updateDateIncludingText": "2026-07-18T15:50:32Z",
+      "summaries": [
+        {
+          "actionDate": "2026-01-07",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 4593) to amend the Energy Policy and Conservation Act to revise the definition of showerhead; providing for consideration of the bill (H.R. 5184) to prohibit the Secretary of Energy from enforcing energy efficiency standards applicable to manufactured housing, and for other purposes; and providing for consideration of the bill (H.R. 6938) making consolidated appropriations for the fiscal year ending September 30, 2026, and for other purposes.",
+          "updateDate": "2026-03-13T12:11:01Z",
+          "versionCode": "07"
+        }
+      ],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -86416,9 +86588,18 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/988/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-20T16:25:56Z",
-      "updateDateIncludingText": "2026-01-20T16:25:56Z",
-      "summaries": []
+      "updateDate": "2026-07-10T14:58:30Z",
+      "updateDateIncludingText": "2026-07-13T18:33:51Z",
+      "summaries": [
+        {
+          "actionDate": "2026-01-12",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 2988) to amend the Employee Retirement Income Security Act of 1974 to specify requirements concerning the consideration of pecuniary and non-pecuniary factors, and for other purposes; providing for consideration of the bill (H.R. 2262) to amend the Fair Labor Standards Act of 1938 to exclude certain activities from hours worked, and for other purposes; providing for consideration of the bill (H.R. 2270) to amend the Fair Labor Standards Act of 1938 to exclude child and dependent care services and payments from the rate used to compute overtime compensation; providing for consideration of the bill (H.R. 2312) to amend the Fair Labor Standards Act of 1938 to revise the definition of the term ''tipped employee'', and for other purposes; and providing for consideration of the bill (H.R. 4366) to clarify the treatment of 2 or more employers as joint employers under the National Labor Relations Act and the Fair Labor Standards Act of 1938.",
+          "updateDate": "2026-03-13T12:10:54Z",
+          "versionCode": "07"
+        }
+      ],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -86515,9 +86696,18 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/992/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-01-20T16:23:10Z",
-      "updateDateIncludingText": "2026-01-20T16:23:10Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:09:47Z",
+      "updateDateIncludingText": "2026-07-18T15:50:38Z",
+      "summaries": [
+        {
+          "actionDate": "2026-01-13",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 7006) making further consolidated appropriations for the fiscal year ending September 30, 2026, and for other purposes.",
+          "updateDate": "2026-03-13T12:11:03Z",
+          "versionCode": "07"
+        }
+      ],
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -87301,8 +87491,8 @@
       },
       "congress": 119,
       "cosponsors": {
-        "count": 23,
-        "countIncludingWithdrawnCosponsors": 23,
+        "count": 24,
+        "countIncludingWithdrawnCosponsors": 24,
         "url": "https://api.congress.gov/v3/bill/119/s/3627/cosponsors?format=json"
       },
       "introducedDate": "2026-01-13",
@@ -87373,8 +87563,9 @@
         "url": "https://api.congress.gov/v3/bill/119/s/3627/titles?format=json"
       },
       "type": "S",
-      "updateDate": "2026-01-31T13:48:19Z",
-      "updateDateIncludingText": "2026-01-31T13:48:19Z"
+      "updateDate": "2026-07-28T11:03:28Z",
+      "updateDateIncludingText": "2026-07-28T11:03:28Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -87920,7 +88111,8 @@
       },
       "type": "SJRES",
       "updateDate": "2026-01-15T16:06:27Z",
-      "updateDateIncludingText": "2026-01-15T16:06:27Z"
+      "updateDateIncludingText": "2026-01-15T16:06:27Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -88014,8 +88206,9 @@
         "url": "https://api.congress.gov/v3/bill/119/sjres/86/titles?format=json"
       },
       "type": "SJRES",
-      "updateDate": "2026-01-08T21:18:16Z",
-      "updateDateIncludingText": "2026-01-08T21:18:16Z"
+      "updateDate": "2026-09-08T18:12:22Z",
+      "updateDateIncludingText": "2026-09-08T18:17:03Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
@@ -222285,8 +222478,9 @@
         "url": "https://api.congress.gov/v3/bill/119/s/2882/titles?format=json"
       },
       "type": "S",
-      "updateDate": "2026-01-10T06:32:27Z",
-      "updateDateIncludingText": "2026-01-10T06:32:27Z"
+      "updateDate": "2026-06-16T16:14:35Z",
+      "updateDateIncludingText": "2026-06-16T16:14:35Z",
+      "fetchedDate": "2026-11-07"
     },
     {
       "actions": {
