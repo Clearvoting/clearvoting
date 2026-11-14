@@ -3127,7 +3127,7 @@
         "name": "Armed Forces and National Security"
       },
       "relatedBills": {
-        "count": 31,
+        "count": 50,
         "url": "https://api.congress.gov/v3/bill/119/s/2296/relatedbills?format=json"
       },
       "sponsors": [
@@ -3144,7 +3144,7 @@
         }
       ],
       "subjects": {
-        "count": 262,
+        "count": 264,
         "url": "https://api.congress.gov/v3/bill/119/s/2296/subjects?format=json"
       },
       "summaries": [
@@ -3201,8 +3201,9 @@
         "url": "https://api.congress.gov/v3/bill/119/s/2296/titles?format=json"
       },
       "type": "S",
-      "updateDate": "2026-02-25T12:03:23Z",
-      "updateDateIncludingText": "2026-02-25T12:03:23Z"
+      "updateDate": "2026-11-03T21:00:06Z",
+      "updateDateIncludingText": "2026-11-03T21:00:06Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -4704,7 +4705,7 @@
         "name": "Taxation"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/sjres/3/relatedbills?format=json"
       },
       "sponsors": [
@@ -4795,8 +4796,14 @@
         "url": "https://api.congress.gov/v3/bill/119/sjres/3/titles?format=json"
       },
       "type": "SJRES",
-      "updateDate": "2026-02-27T09:07:08Z",
-      "updateDateIncludingText": "2026-02-27T09:07:08Z"
+      "updateDate": "2026-06-09T21:56:03Z",
+      "updateDateIncludingText": "2026-07-18T22:06:52Z",
+      "notes": [
+        {
+          "text": "The text of <a href=\"https://www.congress.gov/bill/119/SJRES/3\" target=\"_blank\">S.J.Res.3</a> is contained in the text of <a href=\"https://www.congress.gov/bill/119/HJRES/25\" target=\"_blank\">H.J.Res.25</a>, which became Public Law 119-5."
+        }
+      ],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -5405,7 +5412,8 @@
       },
       "type": "SJRES",
       "updateDate": "2026-02-27T09:06:47Z",
-      "updateDateIncludingText": "2026-02-27T09:06:47Z"
+      "updateDateIncludingText": "2026-02-27T09:06:47Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -11861,7 +11869,7 @@
         "name": "Government Operations and Politics"
       },
       "relatedBills": {
-        "count": 6,
+        "count": 9,
         "url": "https://api.congress.gov/v3/bill/119/hr/22/relatedbills?format=json"
       },
       "sponsors": [
@@ -11931,12 +11939,13 @@
       ],
       "title": "SAVE Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/22/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-24T13:22:54Z",
-      "updateDateIncludingText": "2026-02-24T13:22:54Z"
+      "updateDate": "2026-08-10T14:13:39Z",
+      "updateDateIncludingText": "2026-08-10T14:13:39Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -15856,7 +15865,7 @@
     },
     {
       "actions": {
-        "count": 18,
+        "count": 22,
         "url": "https://api.congress.gov/v3/bill/119/hr/3937/actions?format=json"
       },
       "committeeReports": [
@@ -15873,8 +15882,8 @@
       "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 100 (Wednesday, June 11, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. TIFFANY:\nH.R. 3937.\nCongress has the power to enact this legislation pursuant\nto the following:\nForest Service land conveyance\n[Page H2656]\n</pre>",
       "introducedDate": "2025-06-11",
       "latestAction": {
-        "actionDate": "2026-02-12",
-        "text": "Committee on Energy and Natural Resources Subcommittee on Public Lands, Forests, and Mining. Hearings held."
+        "actionDate": "2026-07-23",
+        "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 494."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/3937",
       "number": "3937",
@@ -15912,6 +15921,25 @@
       ],
       "textVersions": [
         {
+          "date": "2026-07-23T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr3937/BILLS-119hr3937rs.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr3937/BILLS-119hr3937rs.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr3937/BILLS-119hr3937rs.xml"
+            }
+          ],
+          "type": "Reported to Senate",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H.R. 3937 Reported in Senate (RS)] <DOC> Calendar No. 494 119th CONGRESS 2d Session H. R. 3937 _______________________________________________________________________ IN THE SENATE OF THE UNITED STATES July 23, 2025 Received; read twice and referred to the Committee on Energy and Natural Resources July 23, 2026 Reported by Mr. Lee, without amendment _______________________________________________________________________ AN ACT To provide for the conveyance of certain Federal land in Chequamegon- Nicolet National Forest, and for other purposes. Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, SECTION 1. SHORT TITLE. This Act may be cited as the ``Wabeno Economic Development Act''. SEC. 2. CONVEYANCE OF CERTAIN NATIONAL FOREST SYSTEM LAND IN THE CHEQUAMEGON-NICOLET NATIONAL FOREST TO TONY'S WABENO REDI-MIX, LLC. (a) Conveyance Required.--If, during the 180-day period beginning on the date of Federal approval of the appraisal under subsection (d), Tony's Wabeno Redi-Mix, LLC submits to the Secretary an offer to acquire the property described in subsection (b) for market value, as determined by such appraisal, the Secretary shall, not later than 180 days after receiving such offer, convey to Tony's Wabeno Redi-Mix, LLC all right, title, and interest of the United States, including mineral rights, in and to the property described in subsection (b). (b) Description of Property.-- (1) In general.--The property referred to in subsection (a) is the parcel of real property, including all land and improvements, generally depicted as ``Federal Parcel to be Conveyed'' on the Map, consisting of approximately 14 acres of National Forest System land located in the Chequamegon-Nicolet National Forest in Wisconsin. (2) Map.-- (A) Minor errors.--The Secretary may correct minor errors in the Map. (B) Availability.--A copy of the Map shall be on file and available for public inspection in the appropriate office of the Forest Service. (3) Survey.--The exact acreage and legal description of the National Forest System land to be conveyed under subsection (a) shall be determined by a survey satisfactory to the Secretary. (c) Terms and Conditions of the Conveyance.-- (1) Requirements.--The conveyance under subsection (a) shall be-- (A) subject to valid existing rights; (B) made by quitclaim deed; and (C) subject to such other terms and conditions as the Secretary considers to be appropriate to protect the interests of the United States. (2) Costs.--As a condition of the conveyance under subsection (a), Tony's Wabeno Redi-Mix, LLC shall pay to the Secretary-- (A) an amount equal to the market value of the land to be conveyed under subsection (a), as determined by the appraisal under subsection (d); and (B) all costs associated with the conveyance, including the cost of-- (i) a survey, if necessary, under subsection (b)(3); (ii) conducting the appraisal under subsection (d); and (iii) any environmental analysis or resource survey required under Federal law. (d) Appraisal.-- (1) In general.--Not later than 300 days after the date of enactment of this Act, the Secretary shall complete an appraisal to determine the market value of the land to be conveyed under subsection (a). (2) Standards.--The appraisal under paragraph (1) shall be conducted in accordance with-- (A) the Uniform Appraisal Standards for Federal Land Acquisitions; and (B) the Uniform Standards of Professional Appraisal Practice. (e) Definitions.--In this section: (1) Map.--The term ``Map'' means the map entitled ``Conveyance of Federal Parcel Chequamegon-Nicolet National Forest'' and dated September 27, 2023. (2) Secretary.--The term ``Secretary'' means the Secretary of Agriculture, acting through the Chief of the Forest Service. SEC. 3. COMPREHENSIVE REVIEW OF FEDERAL PERMITTING PROCESSES FOR STONE, SAND, AND GRAVEL DEVELOPMENT ON FEDERAL LANDS. (a) Review.--The Secretary of the Interior, in consultation with the heads of other relevant Federal agencies, industry stakeholders, and State permitting authorities, shall conduct a comprehensive review of the Federal permitting processes for the development of stone, sand, and gravel on Federal lands. (b) Report.--Not later than 180 days after the date of enactment of this Act, the Secretary of the Interior, in consultation with the entities referred to in subsection (a), shall submit to the Committee on Natural Resources of the House of Representatives and the Committee on Energy and Natural Resources of the Senate, and make publicly available on the website of the Department of the Interior a report that includes-- (1) a detailed description of the current Federal permitting process for stone, sand, and gravel development, including average timelines from initial application to final approval; (2) an analysis identifying potential inefficiencies and duplicative steps in such permitting process and the impact of such inefficiencies and duplicative steps on project timelines; (3) the Secretary's recommendations for legislative or administrative actions to streamline such permitting process; and (4) a summary of the economic impacts associated with current permitting timelines under such permitting process, specifically focusing on the stone, sand, and gravel sectors. Calendar No. 494 119th CONGRESS 2d Session H. R. 3937 _______________________________________________________________________ AN ACT To provide for the conveyance of certain Federal land in Chequamegon- Nicolet National Forest, and for other purposes. _______________________________________________________________________ July 23, 2026 Reported without amendment"
+        },
+        {
           "date": "2025-07-23T04:00:00Z",
           "formats": [
             {
@@ -15927,8 +15955,7 @@
               "url": "https://www.congress.gov/119/bills/hr3937/BILLS-119hr3937rfs.xml"
             }
           ],
-          "type": "Referred in Senate",
-          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H.R. 3937 Referred in Senate (RFS)] &lt;DOC&gt; 119th CONGRESS 1st Session H. R. 3937 _______________________________________________________________________ IN THE SENATE OF THE UNITED STATES July 23, 2025 Received; read twice and referred to the Committee on Energy and Natural Resources _______________________________________________________________________ AN ACT To provide for the conveyance of certain Federal land in Chequamegon- Nicolet National Forest, and for other purposes. Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, SECTION 1. SHORT TITLE. This Act may be cited as the ``Wabeno Economic Development Act''. SEC. 2. CONVEYANCE OF CERTAIN NATIONAL FOREST SYSTEM LAND IN THE CHEQUAMEGON-NICOLET NATIONAL FOREST TO TONY'S WABENO REDI-MIX, LLC. (a) Conveyance Required.--If, during the 180-day period beginning on the date of Federal approval of the appraisal under subsection (d), Tony's Wabeno Redi-Mix, LLC submits to the Secretary an offer to acquire the property described in subsection (b) for market value, as determined by such appraisal, the Secretary shall, not later than 180 days after receiving such offer, convey to Tony's Wabeno Redi-Mix, LLC all right, title, and interest of the United States, including mineral rights, in and to the property described in subsection (b). (b) Description of Property.-- (1) In general.--The property referred to in subsection (a) is the parcel of real property, including all land and improvements, generally depicted as ``Federal Parcel to be Conveyed'' on the Map, consisting of approximately 14 acres of National Forest System land located in the Chequamegon-Nicolet National Forest in Wisconsin. (2) Map.-- (A) Minor errors.--The Secretary may correct minor errors in the Map. (B) Availability.--A copy of the Map shall be on file and available for public inspection in the appropriate office of the Forest Service. (3) Survey.--The exact acreage and legal description of the National Forest System land to be conveyed under subsection (a) shall be determined by a survey satisfactory to the Secretary. (c) Terms and Conditions of the Conveyance.-- (1) Requirements.--The conveyance under subsection (a) shall be-- (A) subject to valid existing rights; (B) made by quitclaim deed; and (C) subject to such other terms and conditions as the Secretary considers to be appropriate to protect the interests of the United States. (2) Costs.--As a condition of the conveyance under subsection (a), Tony's Wabeno Redi-Mix, LLC shall pay to the Secretary-- (A) an amount equal to the market value of the land to be conveyed under subsection (a), as determined by the appraisal under subsection (d); and (B) all costs associated with the conveyance, including the cost of-- (i) a survey, if necessary, under subsection (b)(3); (ii) conducting the appraisal under subsection (d); and (iii) any environmental analysis or resource survey required under Federal law. (d) Appraisal.-- (1) In general.--Not later than 300 days after the date of enactment of this Act, the Secretary shall complete an appraisal to determine the market value of the land to be conveyed under subsection (a). (2) Standards.--The appraisal under paragraph (1) shall be conducted in accordance with-- (A) the Uniform Appraisal Standards for Federal Land Acquisitions; and (B) the Uniform Standards of Professional Appraisal Practice. (e) Definitions.--In this section: (1) Map.--The term ``Map'' means the map entitled ``Conveyance of Federal Parcel Chequamegon-Nicolet National Forest'' and dated September 27, 2023. (2) Secretary.--The term ``Secretary'' means the Secretary of Agriculture, acting through the Chief of the Forest Service. SEC. 3. COMPREHENSIVE REVIEW OF FEDERAL PERMITTING PROCESSES FOR STONE, SAND, AND GRAVEL DEVELOPMENT ON FEDERAL LANDS. (a) Review.--The Secretary of the Interior, in consultation with the heads of other relevant Federal agencies, industry stakeholders, and State permitting authorities, shall conduct a comprehensive review of the Federal permitting processes for the development of stone, sand, and gravel on Federal lands. (b) Report.--Not later than 180 days after the date of enactment of this Act, the Secretary of the Interior, in consultation with the entities referred to in subsection (a), shall submit to the Committee on Natural Resources of the House of Representatives and the Committee on Energy and Natural Resources of the Senate, and make publicly available on the website of the Department of the Interior a report that includes-- (1) a detailed description of the current Federal permitting process for stone, sand, and gravel development, including average timelines from initial application to final approval; (2) an analysis identifying potential inefficiencies and duplicative steps in such permitting process and the impact of such inefficiencies and duplicative steps on project timelines; (3) the Secretary's recommendations for legislative or administrative actions to streamline such permitting process; and (4) a summary of the economic impacts associated with current permitting timelines under such permitting process, specifically focusing on the stone, sand, and gravel sectors. Passed the House of Representatives July 22, 2025. Attest: KEVIN F. MCCUMBER, Clerk."
+          "type": "Referred in Senate"
         },
         {
           "date": "2025-07-22T04:00:00Z",
@@ -15969,12 +15996,21 @@
       ],
       "title": "Wabeno Economic Development Act",
       "titles": {
-        "count": 5,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/3937/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-13T11:56:38Z",
-      "updateDateIncludingText": "2026-02-13T11:56:38Z"
+      "updateDate": "2026-11-03T20:21:07Z",
+      "updateDateIncludingText": "2026-11-03T20:21:07Z",
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the Senate Committee on Energy and Natural Resources on July 23, 2026",
+          "pubDate": "2026-11-03T20:18:00Z",
+          "title": "H.R. 3937, Wabeno Economic Development Act",
+          "url": "https://www.cbo.gov/publication/62897"
+        }
+      ],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -16098,12 +16134,13 @@
       ],
       "title": "Department of Defense Appropriations Act, 2026",
       "titles": {
-        "count": 5,
+        "count": 9,
         "url": "https://api.congress.gov/v3/bill/119/hr/4016/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-21T05:09:15Z",
-      "updateDateIncludingText": "2026-02-21T05:09:15Z"
+      "updateDate": "2026-07-10T23:58:21Z",
+      "updateDateIncludingText": "2026-07-13T18:37:49Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -16651,12 +16688,13 @@
       ],
       "title": "Energy and Water Development and Related Agencies Appropriations Act, 2026",
       "titles": {
-        "count": 5,
+        "count": 9,
         "url": "https://api.congress.gov/v3/bill/119/hr/4553/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-03-06T12:08:32Z",
-      "updateDateIncludingText": "2026-03-06T12:08:32Z"
+      "updateDate": "2026-07-18T00:00:29Z",
+      "updateDateIncludingText": "2026-07-18T00:00:29Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -20026,7 +20064,7 @@
     },
     {
       "actions": {
-        "count": 22,
+        "count": 28,
         "url": "https://api.congress.gov/v3/bill/119/hr/997/actions?format=json"
       },
       "cboCostEstimates": [
@@ -20056,8 +20094,8 @@
       },
       "introducedDate": "2025-02-05",
       "latestAction": {
-        "actionDate": "2026-10-14",
-        "text": "Message on Senate action sent to the House."
+        "actionDate": "2026-11-10",
+        "text": "Became Public Law No: 119-139."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/997",
       "number": "997",
@@ -20067,7 +20105,7 @@
         "name": "Taxation"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hr/997/relatedbills?format=json"
       },
       "sponsors": [
@@ -20096,112 +20134,25 @@
           "versionCode": "00"
         }
       ],
-      "textVersions": [
-        {
-          "date": null,
-          "formats": [
-            {
-              "type": "Formatted Text",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997enr.htm"
-            },
-            {
-              "type": "PDF",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997enr.pdf"
-            },
-            {
-              "type": "United States Legislative Markup",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997enr_uslm.xml"
-            },
-            {
-              "type": "Formatted XML",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997enr.xml"
-            }
-          ],
-          "type": "Enrolled Bill"
-        },
-        {
-          "date": "2025-04-01T04:00:00Z",
-          "formats": [
-            {
-              "type": "Formatted Text",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997rfs.htm"
-            },
-            {
-              "type": "PDF",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997rfs.pdf"
-            },
-            {
-              "type": "Formatted XML",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997rfs.xml"
-            }
-          ],
-          "type": "Referred in Senate",
-          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H.R. 997 Referred in Senate (RFS)] <DOC> 119th CONGRESS 1st Session H. R. 997 _______________________________________________________________________ IN THE SENATE OF THE UNITED STATES April 1 (legislative day, March 31), 2025 Received; read twice and referred to the Committee on Finance _______________________________________________________________________ AN ACT To amend the Internal Revenue Code of 1986 to conform to the intent of the Internal Revenue Service Restructuring and Reform Act of 1998, as set forth in the joint explanatory statement of the committee of conference accompanying Conference Report 105-599, that the National Taxpayer Advocate be able to hire and consult counsel as appropriate. Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, SECTION 1. SHORT TITLE. This Act may be cited as the ``National Taxpayer Advocate Enhancement Act of 2025''. SEC. 2. AUTHORITY OF TAXPAYER ADVOCATE TO APPOINT COUNSEL. (a) In General.--Section 7803(c)(2)(D)(i) of the Internal Revenue Code of 1986 is amended by striking ``and'' at the end of subclause (I), by redesignating subclause (II) as subclause (III), and by inserting after subclause (I) the following new subclause: ``(II) appoint counsel in the Office of the Taxpayer Advocate to report directly to the National Taxpayer Advocate, or delegate thereof; and''. (b) Conforming Amendment.--Section 7803(c)(2)(D)(i)(III) of such Code, as redesignated by subsection (a), is amended by striking ``any employee of any local office of a taxpayer advocate described in subclause (I)'' and inserting ``any employee of the Office of the Taxpayer Advocate''. (c) Effective Date.--The amendments made by this section shall take effect as if included in the enactment of section 1102 of the Internal Revenue Service Restructuring and Reform Act of 1998. Passed the House of Representatives March 31, 2025. Attest: KEVIN F. MCCUMBER, Clerk."
-        },
-        {
-          "date": "2025-03-31T04:00:00Z",
-          "formats": [
-            {
-              "type": "Formatted Text",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997eh.htm"
-            },
-            {
-              "type": "PDF",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997eh.pdf"
-            },
-            {
-              "type": "Formatted XML",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997eh.xml"
-            }
-          ],
-          "type": "Engrossed in House"
-        },
-        {
-          "date": "2025-03-27T04:00:00Z",
-          "formats": [
-            {
-              "type": "Formatted Text",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997rh.htm"
-            },
-            {
-              "type": "PDF",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997rh.pdf"
-            },
-            {
-              "type": "Formatted XML",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997rh.xml"
-            }
-          ],
-          "type": "Reported in House"
-        },
-        {
-          "date": "2025-02-05T05:00:00Z",
-          "formats": [
-            {
-              "type": "Formatted Text",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997ih.htm"
-            },
-            {
-              "type": "PDF",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997ih.pdf"
-            },
-            {
-              "type": "Formatted XML",
-              "url": "https://www.congress.gov/119/bills/hr997/BILLS-119hr997ih.xml"
-            }
-          ],
-          "type": "Introduced in House"
-        }
-      ],
+      "textVersions": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/997/text?format=json"
+      },
       "title": "National Taxpayer Advocate Enhancement Act of 2025",
       "titles": {
         "count": 8,
         "url": "https://api.congress.gov/v3/bill/119/hr/997/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-10-15T10:56:21Z",
-      "updateDateIncludingText": "2026-10-15T10:56:21Z",
-      "fetchedDate": "2026-11-07"
+      "updateDate": "2026-11-13T14:22:51Z",
+      "updateDateIncludingText": "2026-11-13T14:22:51Z",
+      "fetchedDate": "2026-11-14",
+      "laws": [
+        {
+          "number": "119-139",
+          "type": "Public Law"
+        }
+      ]
     },
     {
       "actions": {
@@ -20522,7 +20473,7 @@
     },
     {
       "actions": {
-        "count": 15,
+        "count": 14,
         "url": "https://api.congress.gov/v3/bill/119/hres/189/actions?format=json"
       },
       "committees": {
@@ -20619,12 +20570,13 @@
       ],
       "title": "Censuring Representative Al Green of Texas.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/189/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-03-02T17:53:16Z",
-      "updateDateIncludingText": "2026-03-02T17:53:16Z"
+      "updateDate": "2026-07-11T21:24:27Z",
+      "updateDateIncludingText": "2026-07-19T00:19:54Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -20715,15 +20667,16 @@
           "type": "Engrossed in House"
         }
       ],
-      "title": "Providing for consideration of the joint resolution (H.J. Res. 25) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Internal Revenue Service relating to \"Gross Proceeds Reporting by Brokers That Regularly Provide Services Effectuating Digital Asset Sales\"; providing for consideration of the bill (H.R. 1156) to amend the CARES Act to extend the statute of limitations for fraud under certain unemployment programs, and for other purposes; providing for consideration of the bill (H.R. 1968) making further continuing appropriations and other extensions for the fiscal year ending September 30, 2025, and for other purposes; and for other purposes.",
+      "title": "Providing for consideration of the joint resolution (H.J. Res. 25) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Internal Revenue Service relating to \u2018\u2018Gross Proceeds Reporting by Brokers That Regularly Provide Services Effectuating Digital Asset Sales\u2019\u2019; providing for consideration of the bill (H.R. 1156) to amend the CARES Act to extend the statute of limitations for fraud under certain unemployment programs, and for other purposes; providing for consideration of the bill (H.R. 1968) making further continuing appropriations and other extensions for the fiscal year ending September 30, 2025, and for other purposes; and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/211/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-25T09:06:17Z",
-      "updateDateIncludingText": "2026-02-25T09:06:17Z",
-      "summaries": []
+      "updateDate": "2026-07-11T21:24:28Z",
+      "updateDateIncludingText": "2026-07-19T00:20:08Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -21099,13 +21052,22 @@
       ],
       "title": "Providing for consideration of the Senate amendment to the concurrent resolution (H. Con. Res. 14) establishing the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034, and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/313/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-25T09:06:13Z",
-      "updateDateIncludingText": "2026-02-25T09:06:13Z",
-      "summaries": []
+      "updateDate": "2026-07-11T21:09:28Z",
+      "updateDateIncludingText": "2026-07-19T00:20:58Z",
+      "summaries": [
+        {
+          "actionDate": "2025-04-09",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This resolution provides for the consideration of the Senate amendment to H. Con. Res. 14, which establishes the congressional budget for the federal government for FY2025 and sets forth budgetary levels for FY2026-FY2034.</p>",
+          "updateDate": "2026-07-09T13:58:02Z",
+          "versionCode": "00"
+        }
+      ],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -21303,15 +21265,16 @@
           "type": "Reported in House"
         }
       ],
-      "title": "Providing for consideration of the joint resolution (H.J. Res. 60) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Park Service relating to \"Glen Canyon National Recreation Area: Motor Vehicles\"; providing for consideration of the joint resolution (H.J. Res. 78) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the United States Fish and Wildlife Service relating to \"Endangered and Threatened Wildlife and Plants; Endangered Species Status for the San Francisco Bay-Delta Distinct Population Segment of the Longfin Smelt\"; providing for consideration of the joint resolution (H.J. Res. 87) providing congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"California State Motor Vehicle and Engine Pollution Control Standards; Heavy-Duty Vehicle and Engine Emission Warranty and Maintenance Provisions; Advanced Clean Trucks; Zero Emission Airport Shuttle; Zero-Emission Power Train Certification; Waiver of Preemption; Notice of Decision\"; providing for consideration of the joint resolution (H.J. Res. 88) providing congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"California State Motor Vehicle and Engine Pollution Control Standards; Advanced Clean Cars II; Waiver of Preemption; Notice of Decision\"; providing for consideration of the joint resolution (H.J. Res. 89) providing congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"California State Motor Vehicle and Engine and Nonroad Engine Pollution Control Standards; The 'Omnibus' Low NOX Regulation; Waiver of Preemption; Notice of Decision\"; and for other purposes.",
+      "title": "Providing for consideration of the joint resolution (H.J. Res. 60) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Park Service relating to \"Glen Canyon National Recreation Area: Motor Vehicles\"; providing for consideration of the joint resolution (H.J. Res. 78) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the United States Fish and Wildlife Service relating to \"Endangered and Threatened Wildlife and Plants; Endangered Species Status for the San Francisco Bay-Delta Distinct Population Segment of the Longfin Smelt\"; providing for consideration of the joint resolution (H.J. Res. 87) providing congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"California State Motor Vehicle and Engine Pollution Control Standards; Heavy-Duty Vehicle and Engine Emission Warranty and Maintenance Provisions; Advanced Clean Trucks; Zero Emission Airport Shuttle; Zero-Emission Power Train Certification; Waiver of Preemption; Notice of Decision\"; providing for consideration of the joint resolution (H.J. Res. 88) providing congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"California State Motor Vehicle and Engine Pollution Control Standards; Advanced Clean Cars II; Waiver of Preemption; Notice of Decision\"; providing for consideration of the joint resolution (H.J. Res. 89) providing congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"California State Motor Vehicle and Engine and Nonroad Engine Pollution Control Standards; The \"Omnibus\" Low NOX Regulation; Waiver of Preemption; Notice of Decision\"; and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/354/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-25T09:06:24Z",
-      "updateDateIncludingText": "2026-02-25T09:06:24Z",
-      "summaries": []
+      "updateDate": "2026-07-11T21:09:29Z",
+      "updateDateIncludingText": "2026-07-19T00:21:17Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -23201,7 +23164,7 @@
         "name": "Congress"
       },
       "relatedBills": {
-        "count": 9,
+        "count": 11,
         "url": "https://api.congress.gov/v3/bill/119/hres/672/relatedbills?format=json"
       },
       "sponsors": [
@@ -23261,15 +23224,24 @@
           "type": "Reported in House"
         }
       ],
-      "title": "Providing for consideration of the bill (H.R. 4553) making appropriations for energy and water development and related agencies for the fiscal year ending September 30, 2026, and for other purposes; providing for consideration of the joint resolution (H.J. Res. 104) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to ''Miles City Field Office Record of Decision and Approved Resource Management Plan Amendment''; providing for consideration of the joint resolution (H.J. Res. 105) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to ''North Dakota Field Office Record of Decision and Approved Resource Management Plan''; providing for consideration of the joint resolution (H.J. Res. 106) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to ''Central Yukon Record of Decision and Approved Resource Management Plan''; and for other purposes.",
+      "title": "Providing for consideration of the bill (H.R. 4553) making appropriations for energy and water development and related agencies for the fiscal year ending September 30, 2026, and for other purposes; providing for consideration of the joint resolution (H.J. Res. 104) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to \u2018\u2018Miles City Field Office Record of Decision and Approved Resource Management Plan Amendment\u2019\u2019; providing for consideration of the joint resolution (H.J. Res. 105) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to \u2018\u2018North Dakota Field Office Record of Decision and Approved Resource Management Plan\u2019\u2019; providing for consideration of the joint resolution (H.J. Res. 106) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to \u2018\u2018Central Yukon Record of Decision and Approved Resource Management Plan\u2019\u2019; and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/672/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-05T01:06:13Z",
-      "updateDateIncludingText": "2026-02-05T01:06:13Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:39:31Z",
+      "updateDateIncludingText": "2026-07-19T00:23:54Z",
+      "summaries": [
+        {
+          "actionDate": "2025-09-03",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 4553) making appropriations for energy and water development and related agencies for the fiscal year ending September 30, 2026, and for other purposes; providing for consideration of the joint resolution (H.J. Res. 104) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to ''Miles City Field Office Record of Decision and Approved Resource Management Plan Amendment''; providing for consideration of the joint resolution (H.J. Res. 105) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to ''North Dakota Field Office Record of Decision and Approved Resource Management Plan''; providing for consideration of the joint resolution (H.J. Res. 106) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to ''Central Yukon Record of Decision and Approved Resource Management Plan''; and for other purposes.",
+          "updateDate": "2026-03-13T12:10:54Z",
+          "versionCode": "07"
+        }
+      ],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -70330,7 +70302,7 @@
     },
     {
       "actions": {
-        "count": 15,
+        "count": 13,
         "url": "https://api.congress.gov/v3/bill/119/hconres/38/actions?format=json"
       },
       "committees": {
@@ -70370,7 +70342,7 @@
         }
       ],
       "subjects": {
-        "count": 1,
+        "count": 8,
         "url": "https://api.congress.gov/v3/bill/119/hconres/38/subjects?format=json"
       },
       "summaries": [
@@ -70409,8 +70381,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hconres/38/titles?format=json"
       },
       "type": "HCONRES",
-      "updateDate": "2026-03-06T19:29:53Z",
-      "updateDateIncludingText": "2026-03-06T19:29:53Z"
+      "updateDate": "2026-03-10T16:05:32Z",
+      "updateDateIncludingText": "2026-03-10T16:05:32Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -70440,7 +70413,7 @@
         "name": "Government Operations and Politics"
       },
       "relatedBills": {
-        "count": 3,
+        "count": 4,
         "url": "https://api.congress.gov/v3/bill/119/hconres/58/relatedbills?format=json"
       },
       "sponsors": [
@@ -70515,8 +70488,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hconres/58/titles?format=json"
       },
       "type": "HCONRES",
-      "updateDate": "2026-02-05T01:06:14Z",
-      "updateDateIncludingText": "2026-02-05T01:06:14Z"
+      "updateDate": "2026-10-27T20:11:35Z",
+      "updateDateIncludingText": "2026-10-27T20:11:35Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -71623,9 +71597,10 @@
         "url": "https://api.congress.gov/v3/bill/119/hjres/72/titles?format=json"
       },
       "type": "HJRES",
-      "updateDate": "2026-02-13T15:23:43Z",
-      "updateDateIncludingText": "2026-02-14T04:33:23Z",
-      "summaries": []
+      "updateDate": "2026-07-10T15:38:29Z",
+      "updateDateIncludingText": "2026-07-13T19:41:03Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -72308,7 +72283,7 @@
         "name": "Water Resources Development"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 4,
         "url": "https://api.congress.gov/v3/bill/119/hr/131/relatedbills?format=json"
       },
       "sponsors": [
@@ -72440,13 +72415,13 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/131/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-09-19T23:06:37Z",
-      "updateDateIncludingText": "2026-09-26T16:27:16Z",
-      "fetchedDate": "2026-11-07"
+      "updateDate": "2026-11-13T23:55:48Z",
+      "updateDateIncludingText": "2026-11-13T23:55:48Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
-        "count": 25,
+        "count": 26,
         "url": "https://api.congress.gov/v3/bill/119/hr/1366/actions?format=json"
       },
       "amendments": {
@@ -72472,8 +72447,8 @@
       },
       "introducedDate": "2025-02-14",
       "latestAction": {
-        "actionDate": "2025-12-18",
-        "text": "Received in the Senate."
+        "actionDate": "2026-03-17",
+        "text": "Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 357."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/1366",
       "number": "1366",
@@ -72483,7 +72458,7 @@
         "name": "Environmental Protection"
       },
       "relatedBills": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/1366/relatedbills?format=json"
       },
       "sponsors": [
@@ -72590,12 +72565,13 @@
       ],
       "title": "Mining Regulatory Clarity Act",
       "titles": {
-        "count": 6,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/1366/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-24T23:26:17Z",
-      "updateDateIncludingText": "2026-02-24T23:26:17Z"
+      "updateDate": "2026-11-14T00:31:08Z",
+      "updateDateIncludingText": "2026-11-14T00:31:08Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -72747,8 +72723,13 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/1531/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-13T04:08:22Z",
-      "updateDateIncludingText": "2026-02-13T04:08:22Z"
+      "updateDate": "2026-11-12T20:38:50Z",
+      "updateDateIncludingText": "2026-11-12T20:38:50Z",
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1531/relatedbills?format=json"
+      },
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -73181,15 +73162,16 @@
           "type": "Introduced in House"
         }
       ],
-      "title": "Breaking the Gridlock Act",
+      "title": "To advance policy priorities that will break the gridlock.",
       "titles": {
         "count": 4,
         "url": "https://api.congress.gov/v3/bill/119/hr/1834/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-11T11:56:35Z",
-      "updateDateIncludingText": "2026-02-12T04:03:32Z",
-      "summaries": []
+      "updateDate": "2026-09-08T19:31:27Z",
+      "updateDateIncludingText": "2026-09-08T19:31:27Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -73348,8 +73330,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/1949/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-05T01:06:14Z",
-      "updateDateIncludingText": "2026-02-05T01:06:14Z"
+      "updateDate": "2026-07-17T23:59:48Z",
+      "updateDateIncludingText": "2026-07-17T23:59:48Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -73398,7 +73381,7 @@
         "name": "Crime and Law Enforcement"
       },
       "relatedBills": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/2189/relatedbills?format=json"
       },
       "sponsors": [
@@ -73484,14 +73467,15 @@
           "type": "Introduced in House"
         }
       ],
-      "title": "Law-Enforcement Innovate to De-Escalate Act",
+      "title": "To modernize Federal firearms laws to account for advancements in technology and less-than-lethal weapons, and for other purposes.",
       "titles": {
         "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/2189/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-25T11:56:34Z",
-      "updateDateIncludingText": "2026-02-25T11:56:34Z"
+      "updateDate": "2026-07-18T00:02:40Z",
+      "updateDateIncludingText": "2026-09-17T16:27:22Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -73615,8 +73599,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/2262/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-03-06T01:41:18Z",
-      "updateDateIncludingText": "2026-03-06T01:41:18Z"
+      "updateDate": "2026-11-05T21:42:13Z",
+      "updateDateIncludingText": "2026-11-05T21:42:13Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -74137,8 +74122,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/261/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-14T04:38:25Z",
-      "updateDateIncludingText": "2026-02-14T04:38:25Z"
+      "updateDate": "2026-09-08T18:03:40Z",
+      "updateDateIncludingText": "2026-09-08T18:03:40Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -75365,8 +75351,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3109/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-05T01:06:14Z",
-      "updateDateIncludingText": "2026-02-05T01:06:14Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -75519,7 +75506,8 @@
       },
       "type": "HR",
       "updateDate": "2026-02-05T04:23:16Z",
-      "updateDateIncludingText": "2026-02-05T04:23:16Z"
+      "updateDateIncludingText": "2026-07-13T20:13:03Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -76813,7 +76801,7 @@
         }
       ],
       "subjects": {
-        "count": 8,
+        "count": 9,
         "url": "https://api.congress.gov/v3/bill/119/hr/3617/subjects?format=json"
       },
       "summaries": [
@@ -76906,8 +76894,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3617/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-14T04:38:25Z",
-      "updateDateIncludingText": "2026-02-14T04:38:25Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -77575,7 +77564,7 @@
         }
       ],
       "committees": {
-        "count": 2,
+        "count": 19,
         "url": "https://api.congress.gov/v3/bill/119/hr/3838/committees?format=json"
       },
       "congress": 119,
@@ -77598,7 +77587,7 @@
         "name": "Armed Forces and National Security"
       },
       "relatedBills": {
-        "count": 25,
+        "count": 31,
         "url": "https://api.congress.gov/v3/bill/119/hr/3838/relatedbills?format=json"
       },
       "sponsors": [
@@ -77615,7 +77604,7 @@
         }
       ],
       "subjects": {
-        "count": 246,
+        "count": 248,
         "url": "https://api.congress.gov/v3/bill/119/hr/3838/subjects?format=json"
       },
       "summaries": [
@@ -77690,8 +77679,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/3838/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-03-09T19:59:35Z",
-      "updateDateIncludingText": "2026-03-09T19:59:35Z"
+      "updateDate": "2026-10-14T18:14:47Z",
+      "updateDateIncludingText": "2026-10-14T18:14:47Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -78002,7 +77992,7 @@
     },
     {
       "actions": {
-        "count": 26,
+        "count": 27,
         "url": "https://api.congress.gov/v3/bill/119/hr/4090/actions?format=json"
       },
       "amendments": {
@@ -78028,8 +78018,8 @@
       },
       "introducedDate": "2025-06-23",
       "latestAction": {
-        "actionDate": "2026-02-05",
-        "text": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources."
+        "actionDate": "2026-07-15",
+        "text": "Committee on Energy and Natural Resources Subcommittee on Public Lands, Forests, and Mining. Hearings held."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/4090",
       "number": "4090",
@@ -78056,7 +78046,7 @@
         }
       ],
       "subjects": {
-        "count": 7,
+        "count": 8,
         "url": "https://api.congress.gov/v3/bill/119/hr/4090/subjects?format=json"
       },
       "summaries": [
@@ -78149,8 +78139,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/4090/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-07T05:08:21Z",
-      "updateDateIncludingText": "2026-02-07T05:08:21Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -79085,8 +79076,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/4626/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-28T06:38:18Z",
-      "updateDateIncludingText": "2026-02-28T06:48:21Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -79242,8 +79234,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/4758/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-27T09:05:27Z",
-      "updateDateIncludingText": "2026-02-27T09:05:27Z"
+      "updateDate": "2026-09-08T18:09:59Z",
+      "updateDateIncludingText": "2026-09-08T18:09:59Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -79817,7 +79810,7 @@
       "type": "HR",
       "updateDate": "2026-07-11T15:58:18Z",
       "updateDateIncludingText": "2026-07-13T18:49:45Z",
-      "fetchedDate": "2026-11-07"
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -79959,8 +79952,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/5107/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-11T22:06:16Z",
-      "updateDateIncludingText": "2026-02-11T22:06:16Z"
+      "updateDate": "2026-06-11T23:26:34Z",
+      "updateDateIncludingText": "2026-07-13T18:50:16Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -80611,9 +80605,18 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/5214/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-11T22:06:16Z",
-      "updateDateIncludingText": "2026-02-11T22:06:16Z",
-      "summaries": []
+      "updateDate": "2026-06-11T23:26:34Z",
+      "updateDateIncludingText": "2026-07-13T18:51:19Z",
+      "summaries": [
+        {
+          "actionDate": "2025-09-30",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>District of Columbia Cash Bail Reform Act of 2025</strong></p><p>This bill mandates, in the District of Columbia (DC), pretrial&nbsp;and post-conviction detention for crimes of violence and dangerous crimes and  cash bail to obtain pretrial release&nbsp;for public safety or order crimes.&nbsp;</p><p>Under current DC law, a court may generally order a defendant released before trial&nbsp;based on the judge\u2019s assessment of the risks posed by the defendant's release. If the defendant is charged with a crime of violence or a dangerous crime, the court must determine conditions for release; if the defendant has a prior history of such crimes, is charged with a crime that involves deadly weapons, or is charged with a crime of violence, there is a rebuttable presumption that the defendant must be detained.</p><p>The bill requires defendants charged with a crime of violence or a dangerous crime to be detained while awaiting trial.&nbsp;It also prohibits a court from releasing a defendant charged with a public safety or order crime without&nbsp;a secured appearance bond (i.e., money or property subject to forfeiture). <em>Public safety or order crimes </em>include fleeing from a law enforcement officer, rioting, and stalking.</p><p><em></em><em></em>Current DC law also allows individuals who are convicted of an offense to be released pending sentencing or an appeal if the court finds the individual is unlikely to flee or pose a danger to others. The bill requires individuals who are convicted of a crime of violence or a dangerous crime to be detained in these circumstances.</p>",
+          "updateDate": "2026-03-31T23:41:48Z",
+          "versionCode": "07"
+        }
+      ],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -81265,8 +81268,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/5764/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-05T16:14:06Z",
-      "updateDateIncludingText": "2026-02-05T16:14:06Z"
+      "updateDate": "2026-09-08T18:08:35Z",
+      "updateDateIncludingText": "2026-09-08T18:08:35Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -81502,7 +81506,8 @@
       },
       "type": "HR",
       "updateDate": "2026-02-28T06:38:19Z",
-      "updateDateIncludingText": "2026-02-28T06:48:22Z"
+      "updateDateIncludingText": "2026-07-13T19:01:29Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -81667,7 +81672,7 @@
     },
     {
       "actions": {
-        "count": 16,
+        "count": 17,
         "url": "https://api.congress.gov/v3/bill/119/hr/6472/actions?format=json"
       },
       "cboCostEstimates": [
@@ -81685,7 +81690,7 @@
         }
       ],
       "committees": {
-        "count": 1,
+        "count": 2,
         "url": "https://api.congress.gov/v3/bill/119/hr/6472/committees?format=json"
       },
       "congress": 119,
@@ -81697,9 +81702,8 @@
       },
       "introducedDate": "2025-12-04",
       "latestAction": {
-        "actionDate": "2026-03-04",
-        "actionTime": "14:21:29",
-        "text": "Motion to reconsider laid on the table Agreed to without objection."
+        "actionDate": "2026-03-09",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Health, Education, Labor, and Pensions."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/6472",
       "number": "6472",
@@ -81811,12 +81815,13 @@
       ],
       "title": "Territorial Student Access to Higher Education Act",
       "titles": {
-        "count": 5,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/hr/6472/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-03-06T06:23:23Z",
-      "updateDateIncludingText": "2026-03-06T06:23:22Z"
+      "updateDate": "2026-06-11T23:26:38Z",
+      "updateDateIncludingText": "2026-07-13T19:02:55Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -82218,8 +82223,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/6504/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-05T17:34:49Z",
-      "updateDateIncludingText": "2026-02-05T17:34:49Z"
+      "updateDate": "2026-06-11T05:06:22Z",
+      "updateDateIncludingText": "2026-07-13T19:03:27Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -82806,7 +82812,7 @@
         "name": "Families"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hr/6945/relatedbills?format=json"
       },
       "sponsors": [
@@ -82898,8 +82904,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/6945/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-06T14:50:17Z",
-      "updateDateIncludingText": "2026-02-06T14:50:17Z"
+      "updateDate": "2026-06-11T05:06:24Z",
+      "updateDateIncludingText": "2026-07-13T19:12:01Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -83011,8 +83018,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/7006/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-02-05T23:45:07Z",
-      "updateDateIncludingText": "2026-02-05T23:45:07Z"
+      "updateDate": "2026-09-08T19:31:27Z",
+      "updateDateIncludingText": "2026-09-08T19:31:27Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -83453,20 +83461,19 @@
     },
     {
       "actions": {
-        "count": 19,
+        "count": 20,
         "url": "https://api.congress.gov/v3/bill/119/hr/7744/actions?format=json"
       },
       "committees": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hr/7744/committees?format=json"
       },
       "congress": 119,
       "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 39 (Monday, March 2, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. COLE:\nH.R. 7744.\nCongress has the power to enact this legislation pursuant\nto the following:\nThe principal constitutional authority for this legislation\nis clause 7 of section 9 of article I of the Constitution of\nthe United States (the appropriation power), which states:\n``No Money shall be drawn from the Treasury, but in\nConsequence of Appropriations made by Law . . . .'' In\naddition, clause 1 of section 8 of article I of the\nConstitution (the spending power) provides: ``The Congress\nshall have the Power . . . to pay the Debts and provide for\nthe common Defence and general Welfare of the United States .\n. . .'' Together, these specific constitutional provisions\nestablish the congressional power of the purse, granting\nCongress the authority to appropriate funds, to determine\ntheir purpose, amount, and period of availability, and to set\nforth terms and conditions governing their use.\n[Page H2336]\n</pre>",
       "introducedDate": "2026-03-02",
       "latestAction": {
-        "actionDate": "2026-03-05",
-        "actionTime": "16:51:22",
-        "text": "The Clerk was authorized to correct section numbers, punctuation, and cross references, and to make other necessary technical and conforming corrections in the engrossment of H.R. 7744."
+        "actionDate": "2026-03-09",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Appropriations."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/7744",
       "number": "7744",
@@ -83476,7 +83483,7 @@
         "name": "Economics and Public Finance"
       },
       "relatedBills": {
-        "count": 5,
+        "count": 8,
         "url": "https://api.congress.gov/v3/bill/119/hr/7744/relatedbills?format=json"
       },
       "sponsors": [
@@ -83493,7 +83500,7 @@
         }
       ],
       "subjects": {
-        "count": 1,
+        "count": 48,
         "url": "https://api.congress.gov/v3/bill/119/hr/7744/subjects?format=json"
       },
       "summaries": [
@@ -83564,12 +83571,13 @@
       ],
       "title": "Department of Homeland Security Appropriations Act, 2026",
       "titles": {
-        "count": 5,
+        "count": 12,
         "url": "https://api.congress.gov/v3/bill/119/hr/7744/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-03-07T09:05:25Z",
-      "updateDateIncludingText": "2026-03-07T09:05:25Z"
+      "updateDate": "2026-09-08T19:31:27Z",
+      "updateDateIncludingText": "2026-09-08T19:31:27Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -83877,7 +83885,8 @@
       },
       "type": "HR",
       "updateDate": "2026-02-05T04:08:16Z",
-      "updateDateIncludingText": "2026-02-05T04:18:17Z"
+      "updateDateIncludingText": "2026-07-19T00:15:34Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -84187,9 +84196,25 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/1032/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-05T09:05:30Z",
-      "updateDateIncludingText": "2026-02-05T09:05:30Z",
-      "summaries": []
+      "updateDate": "2026-07-11T22:09:34Z",
+      "updateDateIncludingText": "2026-07-19T00:16:04Z",
+      "summaries": [
+        {
+          "actionDate": "2026-02-03",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the Senate amendments to the bill (H.R. 7148) making further consolidated appropriations for the fiscal year ending September 30, 2026, and for other purposes; providing for consideration of the joint resolution (H.J. Res. 142) disapproving the action of the District of Columbia Council in approving the D.C. Income and Franchise Tax Conformity and Revision Temporary Amendment Act of 2025; and providing for consideration of the bill (H.R. 4090) to codify certain provisions of certain Executive Orders relating to domestic mining and hardrock mineral resources, and for other purposes.",
+          "updateDate": "2026-03-13T12:10:57Z",
+          "versionCode": "07"
+        }
+      ],
+      "policyArea": {
+        "name": "Congress"
+      },
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1032/subjects?format=json"
+      },
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -84262,9 +84287,25 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/1042/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-11T14:54:26Z",
-      "updateDateIncludingText": "2026-02-11T14:54:26Z",
-      "summaries": []
+      "updateDate": "2026-06-13T02:26:22Z",
+      "updateDateIncludingText": "2026-06-13T02:26:22Z",
+      "summaries": [
+        {
+          "actionDate": "2026-02-09",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 2189) to modernize Federal firearms laws to account for advancements in technology and less-than-lethal weapons, and for other purposes; providing for consideration of the bill (H.R. 261) to amend the National Marine Sanctuaries Act to prohibit requiring an authorization for the installation, continued presence, operation, maintenance, repair, or recovery of undersea fiber optic cables in a national marine sanctuary if such activities have previously been authorized by a Federal or State agency; providing for consideration of the bill (H.R. 3617) to amend the Department of Energy Organization Act to secure the supply of critical energy resources, including critical minerals and other materials, and for other purposes; and for other purposes.",
+          "updateDate": "2026-03-13T12:10:48Z",
+          "versionCode": "07"
+        }
+      ],
+      "policyArea": {
+        "name": "Congress"
+      },
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1042/subjects?format=json"
+      },
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -84358,9 +84399,25 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/1057/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-14T02:06:13Z",
-      "updateDateIncludingText": "2026-02-14T02:06:13Z",
-      "summaries": []
+      "updateDate": "2026-07-11T21:59:39Z",
+      "updateDateIncludingText": "2026-07-19T00:16:14Z",
+      "summaries": [
+        {
+          "actionDate": "2026-02-11",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (S. 1383) to establish the Veterans Advisory Committee on Equal Access, and for other purposes; providing for consideration of the bill (H.R. 2189) to modernize Federal firearms laws to account for advancements in technology and less-than-lethal weapons, and for other purposes; providing for consideration of the bill (H.R. 261) to amend the National Marine Sanctuaries Act to prohibit requiring an authorization for the installation, continued presence, operation, maintenance, repair, or recovery of undersea fiber optic cables in a national marine sanctuary if such activities have previously been authorized by a Federal or State agency; providing for consideration of the bill (H.R. 3617) to amend the Department of Energy Organization Act to secure the supply of critical energy resources, including critical minerals and other materials, and for other purposes; and waiving a requirement of clause 6(a) of rule XIII with respect to consideration of certain resolutions reported from the Committee on Rules.",
+          "updateDate": "2026-03-13T12:10:49Z",
+          "versionCode": "07"
+        }
+      ],
+      "policyArea": {
+        "name": "Congress"
+      },
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1057/subjects?format=json"
+      },
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -84445,15 +84502,31 @@
           "type": "Engrossed in House"
         }
       ],
-      "title": "Providing for consideration of the bill (H.R. 4626) to amend the Energy Policy and Conservation Act to prohibit the Secretary of Energy from prescribing any new or amended energy conservation standard for a product that is not technologically feasible and economically justified, and for other purposes, and providing for consideration of the bill (H.R. 4758) to repeal provisions of Public Law 117-169 relating to taxpayer subsidies for home electrification, and for other purposes.",
+      "title": "Providing for consideration of the bill (H.R. 4626) to amend the Energy Policy and Conservation Act to prohibit the Secretary of Energy from prescribing any new or amended energy conservation standard for a product that is not technologically feasible and economically justified, and for other purposes, and providing for consideration of the bill (H.R. 4758) to repeal provisions of Public Law 117\u2013169 relating to taxpayer subsidies for home electrification, and for other purposes.",
       "titles": {
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/1075/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-26T09:05:40Z",
-      "updateDateIncludingText": "2026-02-26T09:05:40Z",
-      "summaries": []
+      "updateDate": "2026-07-11T21:59:39Z",
+      "updateDateIncludingText": "2026-07-19T00:16:23Z",
+      "summaries": [
+        {
+          "actionDate": "2026-02-24",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 4626) to amend the Energy Policy and Conservation Act to prohibit the Secretary of Energy from prescribing any new or amended energy conservation standard for a product that is not technologically feasible and economically justified, and for other purposes, and providing for consideration of the bill (H.R. 4758) to repeal provisions of Public Law 117-169 relating to taxpayer subsidies for home electrification, and for other purposes.",
+          "updateDate": "2026-03-13T12:10:51Z",
+          "versionCode": "07"
+        }
+      ],
+      "policyArea": {
+        "name": "Congress"
+      },
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1075/subjects?format=json"
+      },
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -84543,9 +84616,25 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/1095/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-03-06T09:05:43Z",
-      "updateDateIncludingText": "2026-03-06T09:05:43Z",
-      "summaries": []
+      "updateDate": "2026-07-11T21:59:40Z",
+      "updateDateIncludingText": "2026-07-19T00:16:31Z",
+      "summaries": [
+        {
+          "actionDate": "2026-03-03",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 7744) making appropriations for the Department of Homeland Security for the fiscal year ending September 30, 2026, and for other purposes.",
+          "updateDate": "2026-03-13T12:10:53Z",
+          "versionCode": "07"
+        }
+      ],
+      "policyArea": {
+        "name": "Congress"
+      },
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1095/subjects?format=json"
+      },
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -84647,8 +84736,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/1099/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-03-06T19:29:27Z",
-      "updateDateIncludingText": "2026-03-06T19:29:27Z"
+      "updateDate": "2026-07-11T21:59:40Z",
+      "updateDateIncludingText": "2026-07-19T00:16:33Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -84717,9 +84807,18 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/1100/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-03-09T14:06:53Z",
-      "updateDateIncludingText": "2026-03-09T14:06:53Z",
-      "summaries": []
+      "updateDate": "2026-03-10T15:01:34Z",
+      "updateDateIncludingText": "2026-03-10T15:01:34Z",
+      "summaries": [
+        {
+          "actionDate": "2026-03-04",
+          "actionDesc": "Introduced in House",
+          "text": "<p>This resolution directs the House Committee on Ethics to preserve and publicly disclose records related to violations or alleged violations of the Code of Official Conduct involving acts of sexual harassment, unwelcome sexual advance, or sexual assault by a Member, Delegate, or Resident Commissioner. (The Code of Official Conduct is Rule XXIII of the Rules of the House of Representatives.)&nbsp;</p><p>Under the resolution, the committee must preserve all records (including investigative materials) of such a violation or alleged violation.</p><p>Further, within 60 days after the resolution is adopted, the committee must publicly release available reports, conclusions, recommendations, exhibits, and attachments related to such investigations. The personally identifiable information of victims, alleged victims, and witnesses must be redacted.</p>",
+          "updateDate": "2026-03-10T14:51:33Z",
+          "versionCode": "00"
+        }
+      ],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -84915,17 +85014,26 @@
       ],
       "title": "Providing for consideration of the bill (H.R. 3838) to authorize appropriations for fiscal year 2026 for military activities of the Department of Defense, for military construction, and for defense activities of the Department of Energy, to prescribe military personnel strengths for such fiscal year, and for other purposes, and providing for consideration of the bill (H.R. 3486) to amend the Immigration and Nationality Act to increase penalties for individuals who illegally enter and reenter the United States after being removed, and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/682/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-04T04:26:27Z",
-      "updateDateIncludingText": "2026-02-11T17:27:20Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:39:31Z",
+      "updateDateIncludingText": "2026-07-19T00:23:59Z",
+      "summaries": [
+        {
+          "actionDate": "2025-09-09",
+          "actionDesc": "Reported to House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 3838) to authorize appropriations for fiscal year 2026 for military activities of the Department of Defense, for military construction, and for defense activities of the Department of Energy, to prescribe military personnel strengths for such fiscal year, and for other purposes, and providing for consideration of the bill (H.R. 3486) to amend the Immigration and Nationality Act to increase penalties for individuals who illegally enter and reenter the United States after being removed, and for other purposes.",
+          "updateDate": "2026-03-13T12:10:51Z",
+          "versionCode": "07"
+        }
+      ],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
-        "count": 13,
+        "count": 14,
         "url": "https://api.congress.gov/v3/bill/119/hres/707/actions?format=json"
       },
       "committeeReports": [
@@ -84941,9 +85049,9 @@
       "congress": 119,
       "introducedDate": "2025-09-15",
       "latestAction": {
-        "actionDate": "2025-09-17",
-        "actionTime": "18:05:25",
-        "text": "Pursuant to the provisions of H.Res. 722, H.Res. 707 is amended."
+        "actionDate": "2026-03-25",
+        "actionTime": "14:07:00",
+        "text": "Pursuant to the provisions of H.Res. 1131, H.Res. 707 is amended."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/707",
       "number": "707",
@@ -84953,7 +85061,7 @@
         "name": "Congress"
       },
       "relatedBills": {
-        "count": 18,
+        "count": 19,
         "url": "https://api.congress.gov/v3/bill/119/hres/707/relatedbills?format=json"
       },
       "sponsors": [
@@ -85015,13 +85123,14 @@
       ],
       "title": "Providing for consideration of the bill (H.R. 4922) to limit youth offender status in the District of Columbia to individuals 18 years of age or younger, to direct the Attorney General of the District of Columbia to establish and operate a publicly accessible website containing updated statistics on juvenile crime in the District of Columbia, to amend the District of Columbia Home Rule Act to prohibit the Council of the District of Columbia from enacting changes to existing criminal liability sentences, and for other purposes; providing for consideration of the bill (H.R. 5143) to establish standards for law enforcement officers in the District of Columbia to engage in vehicular pursuits of suspects, and for other purposes; providing for consideration of the bill (H.R. 5140) to lower the age at which a minor may be tried as an adult for certain criminal offenses in the District of Columbia to 14 years of age; providing for consideration of the bill (H.R. 5125) to amend the District of Columbia Home Rule Act to terminate the District of Columbia Judicial Nomination Commission, and for other purposes; providing for consideration of the bill (H.R. 1047) to require the Federal Energy Regulatory Commission to reform the interconnection queue process for the prioritization and approval of certain projects, and for other purposes; providing for consideration of the bill (H.R. 3015) to reestablish the National Coal Council in the Department of Energy to provide advice and recommendations to the Secretary of Energy on matters related to coal and the coal industry, and for other purposes; providing for consideration of the bill (H.R. 3062) to establish a more uniform, transparent, and modern process to authorize the construction, connection, operation, and maintenance of international border-crossing facilities for the import and export of oil and natural gas and the transmission of electricity; and for other purposes.",
       "titles": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/707/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-27T09:06:54Z",
-      "updateDateIncludingText": "2026-02-27T09:06:54Z",
-      "summaries": []
+      "updateDate": "2026-07-11T20:39:32Z",
+      "updateDateIncludingText": "2026-07-19T00:24:14Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -85200,14 +85309,15 @@
           "type": "Introduced in House"
         }
       ],
-      "title": "Honoring the life and legacy of Charles \"Charlie\" James Kirk.",
+      "title": "Honoring the life and legacy of Charles Charlie James Kirk.",
       "titles": {
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/719/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-04T04:26:28Z",
-      "updateDateIncludingText": "2026-02-04T04:26:28Z"
+      "updateDate": "2026-06-29T11:28:27Z",
+      "updateDateIncludingText": "2026-07-13T18:33:50Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -85298,15 +85408,16 @@
           "type": "Reported in House"
         }
       ],
-      "title": "Providing for consideration of the bill (H.R. 5371) making continuing appropriations and extensions for fiscal year 2026, and for other purposes; providing for consideration of the resolution (H. Res. 719) honoring the life and legacy of Charles \"Charlie\" James Kirk; and for other purposes.",
+      "title": "Providing for consideration of the bill (H.R. 5371) making continuing appropriations and extensions for fiscal year 2026, and for other purposes; providing for consideration of the resolution (H. Res. 719) honoring the life and legacy of Charles Charlie James Kirk; and for other purposes.",
       "titles": {
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/722/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-27T09:06:54Z",
-      "updateDateIncludingText": "2026-02-27T09:06:54Z",
-      "summaries": []
+      "updateDate": "2026-07-10T14:58:30Z",
+      "updateDateIncludingText": "2026-07-13T18:33:50Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -85515,8 +85626,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/873/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-04T05:06:18Z",
-      "updateDateIncludingText": "2026-02-04T05:06:18Z"
+      "updateDate": "2026-07-11T20:24:37Z",
+      "updateDateIncludingText": "2026-07-19T00:25:32Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -85702,15 +85814,16 @@
           "type": "Reported in House"
         }
       ],
-      "title": "Providing for consideration of the joint resolution (S.J. Res. 80) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to ''National Petroleum Reserve in Alaska Integrated Activity Plan Record of Decision''; providing for consideration of the joint resolution (H.J. Res. 130) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to ''Buffalo Field Office Record of Decision and Approved Resource Management Plan Amendment''; providing for consideration of the joint resolution (H.J. Res. 131) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to ''Coastal Plain Oil and Gas Leasing Program Record of Decision''; providing for consideration of the concurrent resolution (H. Con. Res. 58) denouncing the horrors of socialism; providing for consideration of the bill (H.R. 1949) to repeal restrictions on the export and import of natural gas; providing for consideration of the bill (H.R. 3109) to require the Secretary of Energy to direct the National Petroleum Council to issue a report with respect to petrochemical refineries in the United States, and for other purposes; providing for consideration of the bill (H.R. 5107) to repeal the Comprehensive Policing and Justice Reform Amendment Act of 2022 enacted by the District of Columbia Council; providing for consideration of the bill (H.R. 5214) to require mandatory pretrial and post conviction detention for crimes of violence and dangerous crimes and require mandatory cash bail for certain offenses that pose a threat to public safety or order in the District of Columbia, and for other purposes; and for other purposes.",
+      "title": "Providing for consideration of the joint resolution (S.J. Res. 80) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to National Petroleum Reserve in Alaska Integrated Activity Plan Record of Decision; providing for consideration of the joint resolution (H.J. Res. 130) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to Buffalo Field Office Record of Decision and Approved Resource Management Plan Amendment; providing for consideration of the joint resolution (H.J. Res. 131) providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Land Management relating to Coastal Plain Oil and Gas Leasing Program Record of Decision; providing for consideration of the concurrent resolution (H. Con. Res. 58) denouncing the horrors of socialism; providing for consideration of the bill (H.R. 1949) to repeal restrictions on the export and import of natural gas; providing for consideration of the bill (H.R. 3109) to require the Secretary of Energy to direct the National Petroleum Council to issue a report with respect to petrochemical refineries in the United States, and for other purposes; providing for consideration of the bill (H.R. 5107) to repeal the Comprehensive Policing and Justice Reform Amendment Act of 2022 enacted by the District of Columbia Council; providing for consideration of the bill (H.R. 5214) to require mandatory pretrial and post conviction detention for crimes of violence and dangerous crimes and require mandatory cash bail for certain offenses that pose a threat to public safety or order in the District of Columbia, and for other purposes; and for other purposes.",
       "titles": {
         "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hres/879/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-02-05T01:06:14Z",
-      "updateDateIncludingText": "2026-02-05T01:06:14Z",
-      "summaries": []
+      "updateDate": "2026-07-10T14:58:30Z",
+      "updateDateIncludingText": "2026-07-13T18:33:51Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -87180,8 +87293,9 @@
         "url": "https://api.congress.gov/v3/bill/119/s/2503/titles?format=json"
       },
       "type": "S",
-      "updateDate": "2026-03-09T19:59:45Z",
-      "updateDateIncludingText": "2026-03-09T19:59:45Z"
+      "updateDate": "2026-09-08T18:03:40Z",
+      "updateDateIncludingText": "2026-09-08T18:03:40Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -87837,8 +87951,13 @@
         "url": "https://api.congress.gov/v3/bill/119/sjres/104/titles?format=json"
       },
       "type": "SJRES",
-      "updateDate": "2026-03-05T18:05:13Z",
-      "updateDateIncludingText": "2026-03-05T18:05:13Z"
+      "updateDate": "2026-05-13T20:21:18Z",
+      "updateDateIncludingText": "2026-05-13T20:21:18Z",
+      "relatedBills": {
+        "count": 15,
+        "url": "https://api.congress.gov/v3/bill/119/sjres/104/relatedbills?format=json"
+      },
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -88300,7 +88419,8 @@
       "type": "SJRES",
       "updateDate": "2026-02-12T16:34:01Z",
       "updateDateIncludingText": "2026-02-12T16:34:01Z",
-      "summaries": []
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -88324,7 +88444,7 @@
       "introducedDate": "2025-12-03",
       "latestAction": {
         "actionDate": "2026-01-14",
-        "text": "Point of order that the measure is not entitled to expedited procedures under 50 U.S.C. 1546(a) against the measure agreed to in Senate by Yea-Nay Vote. 50 - 50. Record Vote Number: 9."
+        "text": "Point of order that the measure is not entitled to expedited procedures under 50 U.S.C. 1546(a) raised against the measure agreed to in Senate by Yea-Nay Vote. 50 - 50. Record Vote Number: 9."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/98",
       "number": "98",
@@ -88408,8 +88528,9 @@
         "url": "https://api.congress.gov/v3/bill/119/sjres/98/titles?format=json"
       },
       "type": "SJRES",
-      "updateDate": "2026-03-09T20:24:13Z",
-      "updateDateIncludingText": "2026-03-09T20:24:13Z"
+      "updateDate": "2026-04-29T10:56:39Z",
+      "updateDateIncludingText": "2026-04-29T10:56:39Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -96537,7 +96658,7 @@
         }
       ],
       "subjects": {
-        "count": 1,
+        "count": 5,
         "url": "https://api.congress.gov/v3/bill/119/hjres/139/subjects?format=json"
       },
       "summaries": [
@@ -96601,12 +96722,13 @@
         "url": "https://api.congress.gov/v3/bill/119/hjres/139/titles?format=json"
       },
       "type": "HJRES",
-      "updateDate": "2026-03-19T08:07:13Z",
-      "updateDateIncludingText": "2026-03-19T08:07:13Z"
+      "updateDate": "2026-06-11T23:26:43Z",
+      "updateDateIncludingText": "2026-06-11T23:26:43Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
-        "count": 18,
+        "count": 19,
         "url": "https://api.congress.gov/v3/bill/119/hr/1958/actions?format=json"
       },
       "amendments": {
@@ -96628,7 +96750,7 @@
         }
       ],
       "committees": {
-        "count": 1,
+        "count": 2,
         "url": "https://api.congress.gov/v3/bill/119/hr/1958/committees?format=json"
       },
       "congress": 119,
@@ -96640,9 +96762,8 @@
       },
       "introducedDate": "2025-03-06",
       "latestAction": {
-        "actionDate": "2026-03-18",
-        "actionTime": "17:28:31",
-        "text": "Motion to reconsider laid on the table Agreed to without objection."
+        "actionDate": "2026-03-19",
+        "text": "Received in the Senate and Read twice and referred to the Committee on the Judiciary."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/1958",
       "number": "1958",
@@ -96759,12 +96880,13 @@
       ],
       "title": "Deporting Fraudsters Act of 2026",
       "titles": {
-        "count": 4,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/1958/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-03-19T08:09:15Z",
-      "updateDateIncludingText": "2026-03-19T08:09:15Z"
+      "updateDate": "2026-08-10T11:51:27Z",
+      "updateDateIncludingText": "2026-08-10T11:51:27Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -96903,16 +97025,17 @@
       ],
       "title": "MAWS Act of 2026",
       "titles": {
-        "count": 9,
+        "count": 11,
         "url": "https://api.congress.gov/v3/bill/119/hr/4294/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-03-19T10:56:38Z",
-      "updateDateIncludingText": "2026-03-19T10:56:38Z"
+      "updateDate": "2026-09-08T18:03:40Z",
+      "updateDateIncludingText": "2026-09-08T18:03:40Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
-        "count": 25,
+        "count": 26,
         "url": "https://api.congress.gov/v3/bill/119/hr/556/actions?format=json"
       },
       "amendments": {
@@ -96934,7 +97057,7 @@
         }
       ],
       "committees": {
-        "count": 2,
+        "count": 3,
         "url": "https://api.congress.gov/v3/bill/119/hr/556/committees?format=json"
       },
       "congress": 119,
@@ -96946,9 +97069,8 @@
       },
       "introducedDate": "2025-01-16",
       "latestAction": {
-        "actionDate": "2026-03-18",
-        "actionTime": "17:21:52",
-        "text": "Motion to reconsider laid on the table Agreed to without objection."
+        "actionDate": "2026-03-19",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/556",
       "number": "556",
@@ -97065,12 +97187,13 @@
       ],
       "title": "Protecting Access for Hunters and Anglers Act",
       "titles": {
-        "count": 4,
+        "count": 7,
         "url": "https://api.congress.gov/v3/bill/119/hr/556/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-03-19T08:09:15Z",
-      "updateDateIncludingText": "2026-03-19T08:09:15Z"
+      "updateDate": "2026-09-08T18:12:22Z",
+      "updateDateIncludingText": "2026-09-08T18:12:22Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -97176,8 +97299,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/1115/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-03-19T08:05:28Z",
-      "updateDateIncludingText": "2026-03-19T08:05:28Z"
+      "updateDate": "2026-07-11T21:59:40Z",
+      "updateDateIncludingText": "2026-07-19T00:16:41Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -97340,8 +97464,8 @@
       },
       "congress": 119,
       "cosponsors": {
-        "count": 5,
-        "countIncludingWithdrawnCosponsors": 5,
+        "count": 6,
+        "countIncludingWithdrawnCosponsors": 6,
         "url": "https://api.congress.gov/v3/bill/119/sjres/118/cosponsors?format=json"
       },
       "introducedDate": "2026-03-05",
@@ -97357,7 +97481,7 @@
         "name": "International Affairs"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 5,
         "url": "https://api.congress.gov/v3/bill/119/sjres/118/relatedbills?format=json"
       },
       "sponsors": [
@@ -97403,9 +97527,18 @@
         "url": "https://api.congress.gov/v3/bill/119/sjres/118/titles?format=json"
       },
       "type": "SJRES",
-      "updateDate": "2026-03-19T10:56:31Z",
-      "updateDateIncludingText": "2026-03-19T10:56:31Z",
-      "summaries": []
+      "updateDate": "2026-09-25T10:56:56Z",
+      "updateDateIncludingText": "2026-09-25T10:56:56Z",
+      "summaries": [
+        {
+          "actionDate": "2026-03-05",
+          "actionDesc": "Introduced in Senate",
+          "text": "<p>This joint resolution directs the President to remove U.S. Armed Forces from hostilities within or against Iran unless a declaration of war or authorization to use military force for such purpose has been enacted.</p><p>The resolution specifies that it shall not be construed to prevent the United States from defending against an attack on the United States or its personnel or facilities in other nations.</p>",
+          "updateDate": "2026-04-27T14:29:30Z",
+          "versionCode": "00"
+        }
+      ],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -141539,9 +141672,10 @@
         "url": "https://api.congress.gov/v3/bill/119/sjres/103/titles?format=json"
       },
       "type": "SJRES",
-      "updateDate": "2026-03-27T10:56:38Z",
-      "updateDateIncludingText": "2026-03-27T10:56:38Z",
-      "summaries": []
+      "updateDate": "2026-06-16T14:42:04Z",
+      "updateDateIncludingText": "2026-06-16T14:42:04Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -141568,7 +141702,7 @@
       "originChamber": "Senate",
       "originChamberCode": "S",
       "policyArea": {
-        "name": "Energy"
+        "name": "Taxation"
       },
       "sponsors": [
         {
@@ -141631,9 +141765,10 @@
         "url": "https://api.congress.gov/v3/bill/119/sjres/107/titles?format=json"
       },
       "type": "SJRES",
-      "updateDate": "2026-03-27T17:10:55Z",
-      "updateDateIncludingText": "2026-03-27T17:10:55Z",
-      "summaries": []
+      "updateDate": "2026-04-14T01:40:51Z",
+      "updateDateIncludingText": "2026-04-14T01:40:51Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -141646,14 +141781,14 @@
       },
       "congress": 119,
       "cosponsors": {
-        "count": 6,
-        "countIncludingWithdrawnCosponsors": 6,
+        "count": 9,
+        "countIncludingWithdrawnCosponsors": 9,
         "url": "https://api.congress.gov/v3/bill/119/sjres/116/cosponsors?format=json"
       },
       "introducedDate": "2026-03-05",
       "latestAction": {
         "actionDate": "2026-03-24",
-        "text": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 47 - 53. Record Vote Number: 69. (consideration: CR S1577)"
+        "text": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 47 - 53. Record Vote Number: 69."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/116",
       "number": "116",
@@ -141663,7 +141798,7 @@
         "name": "International Affairs"
       },
       "relatedBills": {
-        "count": 2,
+        "count": 6,
         "url": "https://api.congress.gov/v3/bill/119/sjres/116/relatedbills?format=json"
       },
       "sponsors": [
@@ -141710,9 +141845,18 @@
         "url": "https://api.congress.gov/v3/bill/119/sjres/116/titles?format=json"
       },
       "type": "SJRES",
-      "updateDate": "2026-03-26T14:31:33Z",
-      "updateDateIncludingText": "2026-03-26T14:31:33Z",
-      "summaries": []
+      "updateDate": "2026-05-06T20:31:00Z",
+      "updateDateIncludingText": "2026-05-06T20:31:00Z",
+      "summaries": [
+        {
+          "actionDate": "2026-03-05",
+          "actionDesc": "Introduced in Senate",
+          "text": "<p>This joint resolution directs the President to remove U.S. Armed Forces from hostilities within or against Iran unless a declaration of war or authorization to use military force for such purpose has been enacted.</p><p>The resolution specifies that it shall not be construed to prevent the United States from defending against an attack on the United States or its personnel or facilities in other nations.</p>",
+          "updateDate": "2026-04-27T14:27:26Z",
+          "versionCode": "00"
+        }
+      ],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -185906,7 +186050,7 @@
     },
     {
       "actions": {
-        "count": 28,
+        "count": 29,
         "url": "https://api.congress.gov/v3/bill/119/hr/5103/actions?format=json"
       },
       "amendments": {
@@ -185944,8 +186088,8 @@
       },
       "introducedDate": "2025-09-03",
       "latestAction": {
-        "actionDate": "2026-03-26",
-        "text": "Received in the Senate."
+        "actionDate": "2026-06-16",
+        "text": "Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 437."
       },
       "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/5103",
       "number": "5103",
@@ -186062,12 +186206,13 @@
       ],
       "title": "Make the District of Columbia Safe and Beautiful Act of 2025",
       "titles": {
-        "count": 7,
+        "count": 8,
         "url": "https://api.congress.gov/v3/bill/119/hr/5103/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-03-27T15:04:33Z",
-      "updateDateIncludingText": "2026-03-27T15:04:32Z"
+      "updateDate": "2026-06-24T14:23:29Z",
+      "updateDateIncludingText": "2026-07-30T16:27:18Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -186210,8 +186355,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hr/6422/titles?format=json"
       },
       "type": "HR",
-      "updateDate": "2026-04-02T17:06:17Z",
-      "updateDateIncludingText": "2026-04-02T17:06:17Z"
+      "updateDate": "2026-09-08T18:12:22Z",
+      "updateDateIncludingText": "2026-09-08T18:12:22Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -186563,8 +186709,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/1128/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-03-28T08:05:38Z",
-      "updateDateIncludingText": "2026-03-28T08:05:38Z"
+      "updateDate": "2026-07-11T21:54:20Z",
+      "updateDateIncludingText": "2026-07-19T00:16:46Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -186670,8 +186817,9 @@
         "url": "https://api.congress.gov/v3/bill/119/hres/1131/titles?format=json"
       },
       "type": "HRES",
-      "updateDate": "2026-04-01T13:32:42Z",
-      "updateDateIncludingText": "2026-04-01T13:32:42Z"
+      "updateDate": "2026-07-11T21:54:20Z",
+      "updateDateIncludingText": "2026-07-19T00:16:48Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -222384,7 +222532,8 @@
       },
       "type": "S",
       "updateDate": "2026-03-12T15:09:20Z",
-      "updateDateIncludingText": "2026-03-12T15:09:20Z"
+      "updateDateIncludingText": "2026-03-12T15:09:20Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -222566,7 +222715,8 @@
       },
       "type": "S",
       "updateDate": "2026-03-30T18:55:08Z",
-      "updateDateIncludingText": "2026-03-30T18:55:08Z"
+      "updateDateIncludingText": "2026-03-30T18:55:08Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -222656,7 +222806,8 @@
       },
       "type": "S",
       "updateDate": "2026-03-12T15:10:00Z",
-      "updateDateIncludingText": "2026-03-12T15:10:00Z"
+      "updateDateIncludingText": "2026-03-12T15:10:00Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -222738,7 +222889,8 @@
       },
       "type": "S",
       "updateDate": "2026-03-12T15:10:01Z",
-      "updateDateIncludingText": "2026-03-12T15:10:01Z"
+      "updateDateIncludingText": "2026-07-30T16:27:18Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -223692,7 +223844,8 @@
       },
       "type": "SJRES",
       "updateDate": "2026-02-27T09:06:47Z",
-      "updateDateIncludingText": "2026-02-27T09:06:47Z"
+      "updateDateIncludingText": "2026-07-18T22:07:13Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -224093,7 +224246,8 @@
       },
       "type": "SRES",
       "updateDate": "2026-03-12T15:09:01Z",
-      "updateDateIncludingText": "2026-03-12T15:09:01Z"
+      "updateDateIncludingText": "2026-03-12T15:09:01Z",
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -224180,7 +224334,8 @@
       "type": "SRES",
       "updateDate": "2026-03-12T15:09:21Z",
       "updateDateIncludingText": "2026-03-12T15:09:21Z",
-      "summaries": []
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -224253,7 +224408,8 @@
       "type": "SRES",
       "updateDate": "2026-03-12T15:09:57Z",
       "updateDateIncludingText": "2026-03-12T15:09:57Z",
-      "summaries": []
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     },
     {
       "actions": {
@@ -242112,6 +242268,976 @@
       "updateDate": "2026-10-02T10:56:39Z",
       "updateDateIncludingText": "2026-10-02T10:56:39Z",
       "summaries": []
+    },
+    {
+      "actions": {
+        "count": 17,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1013/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1013/amendments?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-390",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/390?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1013/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 24 (Wednesday, February 5, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. LUCAS:\nH.R. 1013.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle I, Section 8, Clause 3 of the U.S. Constitution\n[Page H505]\n</pre>",
+      "cosponsors": {
+        "count": 24,
+        "countIncludingWithdrawnCosponsors": 24,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1013/cosponsors?format=json"
+      },
+      "introducedDate": "2025-02-05",
+      "latestAction": {
+        "actionDate": "2026-11-12",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/1013",
+      "number": "1013",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Finance and Financial Sector"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1013/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "L000491",
+          "district": 3,
+          "firstName": "Frank",
+          "fullName": "Rep. Lucas, Frank D. [R-OK-3]",
+          "isByRequest": "N",
+          "lastName": "Lucas",
+          "middleName": "D.",
+          "party": "R",
+          "state": "OK",
+          "url": "https://api.congress.gov/v3/member/L000491?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1013/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-02-05",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Retirement Fairness for Charities and Educational Institutions Act of 2025</strong><em></em></p><p>This bill allows 403(b) retirement plans (i.e., retirement plans designed for certain employees of public schools, charities, and churches) to invest in collective investment trusts, which are a group of pooled investment assets held by a bank or trust company, and in insurance company separate accounts.</p>",
+          "updateDate": "2025-06-09T19:50:46Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": [
+        {
+          "date": "2026-11-11T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr1013/BILLS-119hr1013eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr1013/BILLS-119hr1013eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr1013/BILLS-119hr1013eh.xml"
+            }
+          ],
+          "type": "Engrossed in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H.R. 1013 Engrossed in House (EH)] <DOC> 119th CONGRESS 2d Session H. R. 1013 _______________________________________________________________________ AN ACT To amend the Federal securities laws to enhance 403(b) plans, and for other purposes. Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, SECTION 1. SHORT TITLE. This Act may be cited as the ``Retirement Fairness for Charities and Educational Institutions Act of 2025''. SEC. 2. ENHANCEMENT OF 403(B) PLANS. (a) Amendments to the Investment Company Act of 1940.--Section 3(c)(11) of the Investment Company Act of 1940 (15 U.S.C. 80a-3(c)(11)) is amended to read as follows: ``(11) Any-- ``(A) trust forming part of an employee's stock bonus, pension, or profit-sharing plan which meets the requirements for qualification under section 401 of the Internal Revenue Code of 1986; ``(B) custodial account meeting the requirements of section 403(b)(7) of such Code; ``(C) governmental plan described in section 3(a)(2)(C) of the Securities Act of 1933 (15 U.S.C. 77c(a)(2)(C)); ``(D) collective trust fund maintained by a bank consisting solely of assets of one or more-- ``(i) trusts described in subparagraph (A); ``(ii) governmental plans described in subparagraph (C); ``(iii) church plans, companies, or accounts that are excluded from the definition of an investment company under paragraph (14) of this subsection; or ``(iv) plans which meet the requirements of section 403(b) of the Internal Revenue Code of 1986-- ``(I) if-- ``(aa) such plan is subject to title I of the Employee Retirement Income Security Act of 1974 (29 U.S.C. 1001 et seq.); ``(bb) any employer making such plan available agrees to serve as a fiduciary for the plan with respect to the selection of the plan's investments among which participants can choose; or ``(cc) such plan is a governmental plan (as defined in section 414(d) of such Code); and ``(II) if the employer, a fiduciary of the plan, or another person acting on behalf of the employer reviews and approves each investment alternative offered under such plan described under subclause (I)(cc) prior to the investment being offered to participants in the plan; or ``(E) separate account the assets of which are derived solely from-- ``(i) contributions under pension or profit-sharing plans which meet the requirements of section 401 of the Internal Revenue Code of 1986 or the requirements for deduction of the employer's contribution under section 404(a)(2) of such Code; ``(ii) contributions under governmental plans in connection with which interests, participations, or securities are exempted from the registration provisions of section 5 of the Securities Act of 1933 (15 U.S.C. 77e) by section 3(a)(2)(C) of such Act (15 U.S.C. 77c(a)(2)(C)); ``(iii) advances made by an insurance company in connection with the operation of such separate account; and ``(iv) contributions to a plan described in clause (iii) or (iv) of subparagraph (D).''. (b) Amendments to the Securities Act of 1933.--Section 3(a)(2) of the Securities Act of 1933 (15 U.S.C. 77c(a)(2)) is amended-- (1) by striking ``beneficiaries, or (D)'' and inserting ``beneficiaries, (D) a plan which meets the requirements of section 403(b) of such Code (i) if (I) such plan is subject to title I of the Employee Retirement Income Security Act of 1974 (29 U.S.C. 1001 et seq.), (II) any employer making such plan available agrees to serve as a fiduciary for the plan with respect to the selection of the plan's investments among which participants can choose, or (III) such plan is a governmental plan (as defined in section 414(d) of such Code), and (ii) if the employer, a fiduciary of the plan, or another person acting on behalf of the employer reviews and approves each investment alternative offered under any plan described under clause (i)(III) prior to the investment being offered to participants in the plan, or (E)''; (2) by striking ``(C), or (D)'' and inserting ``(C), (D), or (E)''; and (3) by striking ``(iii) which is a plan funded'' and all that follows through ``retirement income account).'' and inserting ``(iii) in the case of a plan not described in subparagraph (D) or (E), which is a plan funded by an annuity contract described in section 403(b) of such Code.''. (c) Amendments to the Securities Exchange Act of 1934.--Section 3(a)(12)(C) of the Securities Exchange Act of 1934 (15 U.S.C. 78c(a)(12)(C)) is amended-- (1) by striking ``or (iv)'' and inserting ``(iv) a plan which meets the requirements of section 403(b) of such Code (I) if (aa) such plan is subject to title I of the Employee Retirement Income Security Act of 1974 (29 U.S.C. 1001 et seq.), (bb) any employer making such plan available agrees to serve as a fiduciary for the plan with respect to the selection of the plan's investments among which participants can choose, or (cc) such plan is a governmental plan (as defined in section 414(d) of such Code), and (II) if the employer, a fiduciary of the plan, or another person acting on behalf of the employer reviews and approves each investment alternative offered under any plan described under subclause (I)(cc) prior to the investment being offered to participants in the plan, or (v)''; (2) by striking ``(ii), or (iii)'' and inserting ``(ii), (iii), or (iv)''; and (3) by striking ``(II) is a plan funded'' and inserting ``(II) in the case of a plan not described in clause (iv), is a plan funded''. (d) Conforming Amendment to the Securities Exchange Act of 1934.-- Section 12(g)(2)(H) of the Securities Exchange Act of 1934 (15 U.S.C. 78l(g)(2)(H)) is amended by striking ``or (iii)'' and inserting ``(iii) a plan described in section 3(a)(12)(C)(iv) of this Act, or (iv)''. Passed the House of Representatives November 11, 2026. Attest: Clerk. 119th CONGRESS 2d Session H. R. 1013 ____________________________________________________________"
+        },
+        {
+          "date": "2025-11-28T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr1013/BILLS-119hr1013rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr1013/BILLS-119hr1013rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr1013/BILLS-119hr1013rh.xml"
+            }
+          ],
+          "type": "Reported in House"
+        },
+        {
+          "date": "2025-02-05T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr1013/BILLS-119hr1013ih.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr1013/BILLS-119hr1013ih.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr1013/BILLS-119hr1013ih.xml"
+            }
+          ],
+          "type": "Introduced in House"
+        }
+      ],
+      "title": "Retirement Fairness for Charities and Educational Institutions Act of 2025",
+      "titles": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/1013/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-11-13T11:57:00Z",
+      "updateDateIncludingText": "2026-11-13T18:03:46Z",
+      "fetchedDate": "2026-11-14"
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2102/actions?format=json"
+      },
+      "amendments": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2102/amendments?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As introduced in the House of Representatives on March 14, 2025",
+          "pubDate": "2026-03-23T18:03:00Z",
+          "title": "H.R. 2102, Major Richard Star Act",
+          "url": "https://www.cbo.gov/publication/62237"
+        },
+        {
+          "description": "As modified by H. Res. 1247",
+          "pubDate": "2026-10-27T17:03:00Z",
+          "title": "H.R. 2102, Major Richard Star Act",
+          "url": "https://www.cbo.gov/publication/62877"
+        }
+      ],
+      "committees": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2102/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 49 (Friday, March 14, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. BILIRAKIS:\nH.R. 2102.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle 1, Section 8\n[Page H1162]\n</pre>",
+      "cosponsors": {
+        "count": 342,
+        "countIncludingWithdrawnCosponsors": 342,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2102/cosponsors?format=json"
+      },
+      "introducedDate": "2025-03-14",
+      "latestAction": {
+        "actionDate": "2026-11-12",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Armed Services."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/2102",
+      "number": "2102",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Armed Forces and National Security"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2102/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "B001257",
+          "district": 12,
+          "firstName": "Gus",
+          "fullName": "Rep. Bilirakis, Gus M. [R-FL-12]",
+          "isByRequest": "N",
+          "lastName": "Bilirakis",
+          "middleName": "M.",
+          "party": "R",
+          "state": "FL",
+          "url": "https://api.congress.gov/v3/member/B001257?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2102/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-03-14",
+          "actionDesc": "Introduced in House",
+          "text": "<p><strong>Major Richard Star Act</strong></p><p>This bill allows a veteran with a combat-related disability to receive retirement pay, without reduction, concurrently with their disability compensation. This includes veterans with a combat-related disability and fewer than 20 years of creditable service. (Currently, veterans who receive combat-related special compensation and retirement pay are subject to an offset in retirement pay for concurrent receipt of such benefits.)</p>",
+          "updateDate": "2026-08-31T18:42:18Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": [
+        {
+          "date": "2026-11-12T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr2102/BILLS-119hr2102eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr2102/BILLS-119hr2102eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr2102/BILLS-119hr2102eh.xml"
+            }
+          ],
+          "type": "Engrossed in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H.R. 2102 Engrossed in House (EH)] <DOC> 119th CONGRESS 2d Session H. R. 2102 _______________________________________________________________________ AN ACT To amend title 10, United States Code, to provide for concurrent receipt of veterans' disability compensation and retired pay for disability retirees with combat-related disabilities, and for other purposes. Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, SECTION 1. SHORT TITLE. This Act may be cited as the ``Major Richard Star Act''. SEC. 2. EXPANSIONS OF ELIGIBILITY TO CERTAIN MILITARY RETIREES FOR CONCURRENT RECEIPT OF VETERANS' DISABILITY COMPENSATION AND RETIRED PAY OR COMBAT-RELATED SPECIAL COMPENSATION. (a) Inclusion of Chapter 61 Disability Retirees With Fewer Than 20 Years of Service Who Are Eligible for Combat-Related Special Compensation.--Section 1413a(b)(3) of title 10, United States Code, is amended-- (1) in subparagraph (A), by striking ``In'' and inserting ``Subject to subparagraph (B), in''; and (2) in subparagraph (B), by striking ``In the case of'' and all that follows and inserting ``The retired pay of an eligible combat-related disabled uniformed services retiree, who is retired under chapter 61 of this title with fewer than 20 years of creditable service, is not subject to reduction under sections 5304 and 5305 of title 38.''. (b) Technical and Conforming Amendments.-- (1) Section heading.--The heading of section 1414 of such title is amended to read as follows: ``Sec. 1414. Members eligible for retired pay who are also eligible for veterans' disability compensation: concurrent receipt''. (2) Table of sections.--The item relating to such section 1414 in the table of sections at the beginning of chapter 71 of such title is amended to read as follows: ``1414. Members eligible for retired pay who are also eligible for veterans' disability compensation: concurrent receipt.''. (3) Conforming amendments reflecting end of concurrent receipt phase-in period.--Such section 1414 is further amended-- (A) in subsection (a)(1)-- (i) by striking the second sentence; and (ii) by striking subparagraphs (A) and (B); (B) by striking subsection (c) and redesignating subsections (d) and (e) as subsections (c) and (d), respectively; and (C) in subsection (d), as redesignated, by striking paragraphs (3) and (4). (c) Effective Date.--The amendments made by this section shall take effect on the first day of the first month beginning after the date of the enactment of this Act and shall apply to payments for months beginning on or after such date. Passed the House of Representatives November 12, 2026. Attest: Clerk. 119th CONGRESS 2d Session H. R. 2102 _______________________________________________________________________ AN ACT To amend title 10, United States Code, to provide for concurrent receipt of veterans' disability compensation and retired pay for disability retirees with combat-related disabilities, and for other purposes."
+        },
+        {
+          "date": "2025-03-14T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr2102/BILLS-119hr2102ih.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr2102/BILLS-119hr2102ih.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr2102/BILLS-119hr2102ih.xml"
+            }
+          ],
+          "type": "Introduced in House"
+        }
+      ],
+      "title": "Major Richard Star Act",
+      "titles": {
+        "count": 5,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2102/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-11-14T09:06:01Z",
+      "updateDateIncludingText": "2026-11-14T09:06:01Z",
+      "fetchedDate": "2026-11-14"
+    },
+    {
+      "actions": {
+        "count": 26,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2347/actions?format=json"
+      },
+      "amendments": {
+        "count": 159,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2347/amendments?format=json"
+      },
+      "cboCostEstimates": [
+        {
+          "description": "As reported by the House Committee on Ways and Means on April 9, 2026",
+          "pubDate": "2026-04-24T19:11:00Z",
+          "title": "H.R. 2347, Survivor Justice Tax Prevention Act",
+          "url": "https://www.cbo.gov/publication/62383"
+        },
+        {
+          "description": "Letter to the Honorable Ron Johnson and the Honorable Jeff Merkley",
+          "pubDate": "2026-11-13T14:40:00Z",
+          "title": "Preliminary Estimate of the Budgetary Effects of the Bipartisan American Affordability and Jobs Act of 2026, an Amendment in the Nature of a Substitute to H.R. 2347, the Survivor Justice Tax Prevention Act",
+          "url": "https://www.cbo.gov/publication/62908"
+        }
+      ],
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-599",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/599?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2347/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 54 (Tuesday, March 25, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. SMUCKER:\nH.R. 2347.\nCongress has the power to enact this legislation pursuant\nto the following:\nClause I of Section 8 of the Constitution\n[Page H1275]\n</pre>",
+      "cosponsors": {
+        "count": 3,
+        "countIncludingWithdrawnCosponsors": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2347/cosponsors?format=json"
+      },
+      "introducedDate": "2025-03-25",
+      "latestAction": {
+        "actionDate": "2026-11-11",
+        "text": "Cloture motion on the measure presented in Senate. (CR S5568)"
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/2347",
+      "number": "2347",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Taxation"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2347/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "S001199",
+          "district": 11,
+          "firstName": "Lloyd",
+          "fullName": "Rep. Smucker, Lloyd [R-PA-11]",
+          "isByRequest": "N",
+          "lastName": "Smucker",
+          "party": "R",
+          "state": "PA",
+          "url": "https://api.congress.gov/v3/member/S001199?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2347/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-09",
+          "actionDesc": "Reported to House",
+          "text": "<p><strong>Survivor Justice Tax Prevention Act</strong></p><p>This bill excludes from gross income certain damages received by an individual due to any sexual act or sexual contact and establishes the applicable burden of proof in court proceedings regarding the characterization of such damages for federal tax purposes.&nbsp;</p><p>Under current law, amounts received as damages (other than punitive damages) from a judgment, award, or settlement of a claim may be excluded from gross income and, thus, are not subject to federal income tax, if attributable to a personal physical injury or physical sickness. The Internal Revenue Service (IRS) generally interprets <em>personal physical injury</em> to require observable bodily harm (e.g., bruising, cuts, swelling, or bleeding).</p><p>Under the bill, amounts received as damages (other than punitive damages) from a judgment, award, or settlement due to any sexual act or sexual conduct, whether or not there are medical records or observable injuries of such act or contact, may be excluded from gross income.</p><p>Further, if a judgment, award, or settlement states that damages are due to any sexual act or sexual conduct, then the IRS has the burden of proving otherwise in court proceedings related to the tax liability associated with such damages.&nbsp;</p><p>Finally, the bill requires the IRS to promote public awareness of the exclusion from gross income of damages related to any sexual act or sexual contact.</p>",
+          "updateDate": "2026-04-23T14:31:37Z",
+          "versionCode": "07"
+        }
+      ],
+      "textVersions": [
+        {
+          "date": "2026-07-14T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr2347/BILLS-119hr2347pcs.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr2347/BILLS-119hr2347pcs.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr2347/BILLS-119hr2347pcs.xml"
+            }
+          ],
+          "type": "Placed on Calendar Senate",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H.R. 2347 Placed on Calendar Senate (PCS)] <DOC> Calendar No. 453 119th CONGRESS 2d Session H. R. 2347 _______________________________________________________________________ IN THE SENATE OF THE UNITED STATES April 28, 2026 Received July 13, 2026 Read the first time July 14, 2026 Read the second time and placed on the calendar _______________________________________________________________________ AN ACT To amend the Internal Revenue Code of 1986 to exclude from gross income any damages, other than punitive damages, received on account of any sexual acts or sexual contact. Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, SECTION 1. SHORT TITLE. This Act may be cited as the ``Survivor Justice Tax Prevention Act''. SEC. 2. EXCLUSION FROM GROSS INCOME OF ANY DAMAGES, OTHER THAN PUNITIVE DAMAGES, RECEIVED ON ACCOUNT OF SEXUAL ACTS OR SEXUAL CONTACT. (a) In General.--Section 104(a)(2) of the Internal Revenue Code of 1986 is amended by striking ``on account of personal physical injuries or physical sickness;'' and inserting ``on account of-- ``(A) personal physical injuries or physical sickness, or ``(B) any sexual act (as defined in paragraph (2) of section 2246 of title 18, United States Code, as in effect on the date of the enactment of this subparagraph) or sexual contact (as defined in paragraph (3) of such section, as so in effect), whether or not there are medical records or observable injuries of such act or contact;''. (b) Burden of Proof With Respect to Whether Damages Are on Account of Sexual Act or Sexual Contact.--Section 104 of such Code is amended by redesignating subsection (d) as subsection (e) and by inserting after subsection (c) the following new subsection: ``(d) Burden of Proof With Respect to Whether Damages Are on Account of Sexual Act or Sexual Contact.--For purposes of subsection (a)(2), if a decision or agreement states that any damages received therefrom are on account of a sexual act or sexual contact referred to in subsection (a)(2)(B)-- ``(1) such statement shall be treated as credible evidence that such damages are so on account for purposes of section 7491(a), and ``(2) the taxpayer shall be treated as having met the requirements of section 7491(a)(2) with respect to the issue of whether such damages are so on account.''. (c) Effective Date.-- (1) In general.--The amendments made by this section shall apply to amounts received pursuant to decisions made, and agreements entered into, after the date of the enactment of this Act. (2) Special rule for decisions.--For purposes of paragraph (1), a decision shall be treated as made after the date of the enactment of this Act if the first payment pursuant to such decision is received after such date. (3) Special rule for agreements.--For purposes of paragraph (1), an agreement shall not be treated as entered into after the date of the enactment of this Act if such agreement replaces, supersedes, or revises an agreement entered into on or before such date. (d) No Inference With Respect to Effect of Medical Records or Observable Injuries on Determinations With Respect to Personal Physical Injuries or Physical Sickness.--No inference may be drawn from the amendment made by subsection (a) (or from section 104(a)(2)(B) of the Internal Revenue Code of 1986, as amended by subsection (a)) with respect to whether the term ``personal physical injuries or physical sickness'' as used in section 104(a)(2) of such Code includes injuries or sickness with respect to which there are no medical records or observable injuries. (e) Promotion of Public Awareness of Exclusion.--The Secretary of the Treasury (or the Secretary's delegate), in consultation with the Department of Justice Office on Violence Against Women and other relevant Federal agencies, shall conduct a program to promote public awareness of the exclusion from gross income pro- vided by section 104(a)(2)(B) of the Internal Revenue Code of 1986, as amended by this section. Passed the House of Representatives April 27, 2026. Attest: KEVIN F. MCCUMBER, Clerk. Calendar No. 453 119th CONGRESS 2d Session H. R. 2347 _______________________________________________________________________ AN ACT To amend the Internal Revenue Code of 1986 to exclude from gross income any damages, other than punitive damages, received on account of any sexual acts or sexual contact. _______________________________________________________________________ July 14, 2026 Read the second time and placed on the calendar"
+        },
+        {
+          "date": "2026-04-27T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr2347/BILLS-119hr2347eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr2347/BILLS-119hr2347eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr2347/BILLS-119hr2347eh.xml"
+            }
+          ],
+          "type": "Engrossed in House"
+        },
+        {
+          "date": "2026-04-09T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr2347/BILLS-119hr2347rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr2347/BILLS-119hr2347rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr2347/BILLS-119hr2347rh.xml"
+            }
+          ],
+          "type": "Reported in House"
+        },
+        {
+          "date": "2025-03-25T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr2347/BILLS-119hr2347ih.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr2347/BILLS-119hr2347ih.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr2347/BILLS-119hr2347ih.xml"
+            }
+          ],
+          "type": "Introduced in House"
+        }
+      ],
+      "title": "Survivor Justice Tax Prevention Act",
+      "titles": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/2347/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-11-14T12:08:57Z",
+      "updateDateIncludingText": "2026-11-14T12:08:57Z",
+      "fetchedDate": "2026-11-14"
+    },
+    {
+      "actions": {
+        "count": 18,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3978/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3978/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 171, Number 101 (Thursday, June 12, 2025)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. LATTA:\nH.R. 3978.\nCongress has the power to enact this legislation pursuant\nto the following:\nThis resolution is enacted pursuant to the power granted to\nCongress under Article I, Section 8, Clause 3 of the United\nStates Constitution.\n[Page H2822]\n</pre>",
+      "cosponsors": {
+        "count": 28,
+        "countIncludingWithdrawnCosponsors": 28,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3978/cosponsors?format=json"
+      },
+      "introducedDate": "2025-06-12",
+      "latestAction": {
+        "actionDate": "2026-11-10",
+        "text": "Received in the Senate. Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 695."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/3978",
+      "number": "3978",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Energy"
+      },
+      "relatedBills": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3978/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "L000566",
+          "district": 5,
+          "firstName": "Robert",
+          "fullName": "Rep. Latta, Robert E. [R-OH-5]",
+          "isByRequest": "N",
+          "lastName": "Latta",
+          "middleName": "E.",
+          "party": "R",
+          "state": "OH",
+          "url": "https://api.congress.gov/v3/member/L000566?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3978/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2025-06-12",
+          "actionDesc": "Introduced in House",
+          "text": "<p><em>The following analysis is based on <a href=\"https://docs.house.gov/billsthisweek/20261109/H.R.%203978,%20Nuclear%20REFUEL%20Act.pdf\">draft bill text</a> that was made available by the House of Representatives and may differ from the bill text as introduced.</em></p><p><strong>Nuclear REFUEL (Recycling Efficient Fuels Utilizing Expedited Licensing) Act</strong></p><p>This bill directs the Nuclear Regulatory Commission (NRC) to license future recycling facilities that reprocess certain spent nuclear fuel&nbsp;(i.e., radioactive waste) under&nbsp;<a href=\"https://www.ecfr.gov/current/title-10/chapter-I/part-70\">regulations</a> for special nuclear material rather&nbsp;than <a href=\"https://www.ecfr.gov/current/title-10/chapter-I/part-50\">regulations</a> for production and utilization facilities. The bill applies to domestic facilities that reprocess spent nuclear fuel in a manner that does not isolate plutonium. Generally, such recycling facilities reprocess spent nuclear fuel into materials that may be reused as nuclear fuel for electricity.</p><p>While there are no commercial reprocessing facilities currently operating in the United States, the bill specifies which regulatory framework the NRC must use when issuing licenses to future facilities by excluding such facilities from the statutory definition of <em>production facility</em>. The licensing process under regulations for special nuclear material has&nbsp;fewer steps than the licensing process under regulations for production and utilization facilities.</p>",
+          "updateDate": "2026-11-04T20:13:02Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": [
+        {
+          "date": "2026-11-10T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr3978/BILLS-119hr3978pcs.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr3978/BILLS-119hr3978pcs.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr3978/BILLS-119hr3978pcs.xml"
+            }
+          ],
+          "type": "Placed on Calendar Senate",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H.R. 3978 Placed on Calendar Senate (PCS)] <DOC> Calendar No. 695 119th CONGRESS 2d Session H. R. 3978 _______________________________________________________________________ IN THE SENATE OF THE UNITED STATES November 10, 2026 Received; read twice and placed on the calendar _______________________________________________________________________ AN ACT To amend the definition of ``production facility'' in the Atomic Energy Act of 1954 to exclude an equipment or device capable of reprocessing spent nuclear fuel in a manner that does not separate plutonium from other transuranic elements, and for other purposes. Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, SECTION 1. SHORT TITLE. This Act may be cited as the ``Nuclear REFUEL (Recycling Efficient Fuels Utilizing Expedited Licensing) Act''. SEC. 2. EXCLUSION FROM DEFINITION OF PRODUCTION FACILITY. Section 11 v. of the Atomic Energy Act of 1954 (42 U.S.C. 2014(v)) is amended-- (1) by inserting ``or reprocessing'' after ``uranium enrichment''; and (2) by striking ``separating the isotopes of uranium or enriching uranium in the isotope 235'' and inserting ``(A) separating isotopes of uranium or enriching uranium in the isotope 235; or (B) reprocessing spent nuclear fuel in a manner that does not isolate plutonium''. Passed the House of Representatives November 9, 2026. Attest: KEVIN F. MCCUMBER, Clerk. Calendar No. 695 119th CONGRESS 2d Session H. R. 3978 _______________________________________________________________________ AN ACT To amend the definition of ``production facility'' in the Atomic Energy Act of 1954 to exclude an equipment or device capable of reprocessing spent nuclear fuel in a manner that does not separate plutonium from other transuranic elements, and for other purposes. _______________________________________________________________________ November 10, 2026 Received; read twice and placed on the calendar"
+        },
+        {
+          "date": "2026-11-09T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr3978/BILLS-119hr3978eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr3978/BILLS-119hr3978eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr3978/BILLS-119hr3978eh.xml"
+            }
+          ],
+          "type": "Engrossed in House"
+        },
+        {
+          "date": "2026-11-05T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr3978/BILLS-119hr3978rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr3978/BILLS-119hr3978rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr3978/BILLS-119hr3978rh.xml"
+            }
+          ],
+          "type": "Reported in House"
+        },
+        {
+          "date": "2025-06-12T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr3978/BILLS-119hr3978ih.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr3978/BILLS-119hr3978ih.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr3978/BILLS-119hr3978ih.xml"
+            }
+          ],
+          "type": "Introduced in House"
+        }
+      ],
+      "title": "Nuclear REFUEL (Recycling Efficient Fuels Utilizing Expedited Licensing) Act",
+      "titles": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/3978/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-11-13T07:08:33Z",
+      "updateDateIncludingText": "2026-11-13T07:19:31Z",
+      "fetchedDate": "2026-11-14"
+    },
+    {
+      "actions": {
+        "count": 18,
+        "url": "https://api.congress.gov/v3/bill/119/hr/9612/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-875",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/875?format=json"
+        }
+      ],
+      "committees": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hr/9612/committees?format=json"
+      },
+      "congress": 119,
+      "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 172, Number 112 (Thursday, July 9, 2026)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. FRY:\nH.R. 9612.\nCongress has the power to enact this legislation pursuant\nto the following:\nSection 8 of Article I of the Constitution\n[Page H4380]\n</pre>",
+      "cosponsors": {
+        "count": 6,
+        "countIncludingWithdrawnCosponsors": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/9612/cosponsors?format=json"
+      },
+      "introducedDate": "2026-07-09",
+      "latestAction": {
+        "actionDate": "2026-11-10",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-bill/9612",
+      "number": "9612",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Energy"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "F000478",
+          "district": 7,
+          "firstName": "Russell",
+          "fullName": "Rep. Fry, Russell [R-SC-7]",
+          "isByRequest": "N",
+          "lastName": "Fry",
+          "party": "R",
+          "state": "SC",
+          "url": "https://api.congress.gov/v3/member/F000478?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 6,
+        "url": "https://api.congress.gov/v3/bill/119/hr/9612/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-07-09",
+          "actionDesc": "Introduced in House",
+          "text": "<p><em>The following analysis is based on <a href=\"https://docs.house.gov/billsthisweek/20261109/H.R.%209612,%20American%20Enrichment%20Deployment%20Act.pdf\">draft bill text</a> that was made available by the House of Representatives and may differ from the bill text as introduced.</em></p><p><strong>American Enrichment Deployment Act</strong></p><p>This bill allows for the construction of a uranium enrichment facility before a license is issued by the Nuclear Regulatory Commission (NRC).</p><p>Under current law, a license is required from the NRC prior to the construction of a uranium enrichment facility. Under the bill, uranium enrichment facilities are allowed to be constructed under the same terms and conditions applicable to other fuel cycle facilities (i.e., uranium conversion and fuel fabrication facilities). Such facilities must be licensed by the NRC to process and handle special nuclear material and source&nbsp;material.</p><p>NRC must issue or revise regulations to carry out this bill not later than 180 days after enactment.&nbsp;</p>",
+          "updateDate": "2026-11-05T14:55:29Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": [
+        {
+          "date": "2026-11-10T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr9612/BILLS-119hr9612rfs.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr9612/BILLS-119hr9612rfs.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr9612/BILLS-119hr9612rfs.xml"
+            }
+          ],
+          "type": "Referred in Senate",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H.R. 9612 Referred in Senate (RFS)] <DOC> 119th CONGRESS 2d Session H. R. 9612 _______________________________________________________________________ IN THE SENATE OF THE UNITED STATES November 10, 2026 Received; read twice and referred to the Committee on Environment and Public Works _______________________________________________________________________ AN ACT To amend the Atomic Energy Act of 1954 to update the licensing procedures for uranium enrichment facilities to enable the timely, safe deployment of such facilities, and for other purposes. Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, SECTION 1. SHORT TITLE. This Act may be cited as the ``American Enrichment Deployment Act''. SEC. 2. LICENSING OF URANIUM ENRICHMENT FACILITIES. (a) In General.--Section 193 of the Atomic Energy Act of 1954 (42 U.S.C. 2243) is amended-- (1) by striking subsections (a) through (c) and inserting the following: ``(a) At-risk Construction.-- ``(1) In general.--Construction of a uranium enrichment facility prior to the issuance of a license under sections 53 and 63 for that facility shall be permitted under the same terms and conditions applicable to other fuel cycle facilities licensed under such sections. ``(2) Rule of construction.--Paragraph (1) may not be construed to modify the licensing and regulatory authority of the Commission to issue a license under sections 53 and 63 for a uranium enrichment facility, including the authority to deny an application for such a license for the failure of an applicant to meet regulatory requirements.''; and (2) by redesignating subsections (d) through (f) as subsections (b) through (d), respectively. (b) Regulations Required.--Not later than 180 days after the date of enactment of this Act, the Nuclear Regulatory Commission shall issue or revise regulations to carry out this Act and the amendments made by this Act. (c) Rule of Construction.--None of the amendments made by this Act shall be construed to affect-- (1) the applicability of the National Environmental Policy Act of 1969 (42 U.S.C. 4321 et seq.) to the issuance of a license under section 53 or 63 of the Atomic Energy Act of 1954 (42 U.S.C. 2073 or 2093) for a uranium enrichment facility; (2) the right of any person whose interest may be affected by a proceeding under the Atomic Energy Act of 1954 (42 U.S.C. 2011 et seq.) to a hearing under section 189 of such Act; or (3) the authority of the Nuclear Regulatory Commission to conduct inspections of uranium enrichment facilities. Passed the House of Representatives November 9, 2026. Attest: KEVIN F. MCCUMBER, Clerk."
+        },
+        {
+          "date": "2026-11-09T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr9612/BILLS-119hr9612eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr9612/BILLS-119hr9612eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr9612/BILLS-119hr9612eh.xml"
+            }
+          ],
+          "type": "Engrossed in House"
+        },
+        {
+          "date": "2026-11-05T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr9612/BILLS-119hr9612rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr9612/BILLS-119hr9612rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr9612/BILLS-119hr9612rh.xml"
+            }
+          ],
+          "type": "Reported in House"
+        },
+        {
+          "date": "2026-07-09T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hr9612/BILLS-119hr9612ih.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hr9612/BILLS-119hr9612ih.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hr9612/BILLS-119hr9612ih.xml"
+            }
+          ],
+          "type": "Introduced in House"
+        }
+      ],
+      "title": "American Enrichment Deployment Act",
+      "titles": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hr/9612/titles?format=json"
+      },
+      "type": "HR",
+      "updateDate": "2026-11-13T21:06:29Z",
+      "updateDateIncludingText": "2026-11-13T21:06:29Z",
+      "fetchedDate": "2026-11-14"
+    },
+    {
+      "actions": {
+        "count": 19,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1247/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1247/committees?format=json"
+      },
+      "congress": 119,
+      "cosponsors": {
+        "count": 2,
+        "countIncludingWithdrawnCosponsors": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1247/cosponsors?format=json"
+      },
+      "introducedDate": "2026-04-30",
+      "latestAction": {
+        "actionDate": "2026-11-12",
+        "actionTime": "09:46:07",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1247",
+      "number": "1247",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1247/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "T000472",
+          "district": 39,
+          "firstName": "Mark",
+          "fullName": "Rep. Takano, Mark [D-CA-39]",
+          "isByRequest": "N",
+          "lastName": "Takano",
+          "party": "D",
+          "state": "CA",
+          "url": "https://api.congress.gov/v3/member/T000472?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1247/subjects?format=json"
+      },
+      "summaries": [
+        {
+          "actionDate": "2026-04-30",
+          "actionDesc": "Introduced in House",
+          "text": "This resolution provides for the consideration of the bill (H.R. 2102) to amend title 10, United States Code, to provide for concurrent receipt of veterans' disability compensation and retired pay for disability retirees with combat-related disabilities, and for other purposes.",
+          "updateDate": "2026-05-04T13:34:27Z",
+          "versionCode": "00"
+        }
+      ],
+      "textVersions": [
+        {
+          "date": "2026-11-12T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres1247/BILLS-119hres1247eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres1247/BILLS-119hres1247eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres1247/BILLS-119hres1247eh.xml"
+            }
+          ],
+          "type": "Engrossed in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H. Res. 1247 Engrossed in House (EH)] <DOC> H. Res. 1247 In the House of Representatives, U. S., November 12, 2026. Resolved, That immediately upon adoption of this resolution, the House shall proceed to the consideration in the House of the bill (H.R. 2102) to amend title 10, United States Code, to provide for concurrent receipt of veterans' disability compensation and retired pay for disability retirees with combat- related disabilities, and for other purposes. All points of order against consideration of the bill are waived. The amendment in the nature of a substitute specified in section 4 of this resolution shall be considered as adopted. The bill, as amended, shall be considered as read. All points of order against provisions in the bill, as amended, are waived. The previous question shall be considered as ordered on the bill, as amended, and on any further amendment thereto, to final passage without intervening motion except: (1) one hour of debate equally divided among and controlled by the chair and ranking minority member of the Committee on Armed Services or their respective designees and the chair and ranking minority member of the Committee on Veterans' Affairs or their respective designees; and (2) one motion to recommit. Sec. 2. Clause 1(c) of rule XIX and clause 8 of rule XX shall not apply to the consideration of H.R. 2102. Sec. 3. The Clerk shall transmit to the Senate a message that the House has passed H.R. 2102 no later than three calendar days after passage. Sec. 4. The amendment in the nature of a substitute referred to in the first section of this resolution is as follows: Strike all after the enacting clause and insert the following: SECTION 1. SHORT TITLE. This Act may be cited as the ``Major Richard Star Act''. SEC. 2. EXPANSIONS OF ELIGIBILITY TO CERTAIN MILITARY RETIREES FOR CONCURRENT RECEIPT OF VETERANS' DISABILITY COMPENSATION AND RETIRED PAY OR COMBAT-RELATED SPECIAL COMPENSATION. (a) Inclusion of Chapter 61 Disability Retirees With Fewer Than 20 Years of Service Who Are Eligible for Combat-Related Special Compensation.--Section 1413a(b)(3) of title 10, United States Code, is amended-- (1) in subparagraph (A), by striking ``In'' and inserting ``Subject to subparagraph (B), in''; and (2) in subparagraph (B), by striking ``In the case of'' and all that follows and inserting ``The retired pay of an eligible combat-related disabled uniformed services retiree, who is retired under chapter 61 of this title with fewer than 20 years of creditable service, is not subject to reduction under sections 5304 and 5305 of title 38.''. (b) Technical and Conforming Amendments.-- (1) Section heading.--The heading of section 1414 of such title is amended to read as follows: ``Sec. 1414. Members eligible for retired pay who are also eligible for veterans' disability compensation: concurrent receipt''. (2) Table of sections.--The item relating to such section 1414 in the table of sections at the beginning of chapter 71 of such title is amended to read as follows: ``1414. Members eligible for retired pay who are also eligible for veterans' disability compensation: concurrent receipt.''. (3) Conforming amendments reflecting end of concurrent receipt phase-in period.--Such section 1414 is further amended-- (A) in subsection (a)(1)-- (i) by striking the second sentence; and (ii) by striking subparagraphs (A) and (B); (B) by striking subsection (c) and redesignating subsections (d) and (e) as subsections (c) and (d), respectively; and (C) in subsection (d), as redesignated, by striking paragraphs (3) and (4). (c) Effective Date.--The amendments made by this section shall take effect on the first day of the first month beginning after the date of the enactment of this Act and shall apply to payments for months beginning on or after such date. Attest: Clerk."
+        },
+        {
+          "date": "2026-04-30T04:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres1247/BILLS-119hres1247ih.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres1247/BILLS-119hres1247ih.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres1247/BILLS-119hres1247ih.xml"
+            }
+          ],
+          "type": "Introduced in House"
+        }
+      ],
+      "title": "Providing for consideration of the bill (H.R. 2102) to amend title 10, United States Code, to provide for concurrent receipt of veterans' disability compensation and retired pay for disability retirees with combat-related disabilities, and for other purposes.",
+      "titles": {
+        "count": 4,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1247/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-11-13T16:23:50Z",
+      "updateDateIncludingText": "2026-11-14T07:48:53Z",
+      "fetchedDate": "2026-11-14"
+    },
+    {
+      "actions": {
+        "count": 12,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1650/actions?format=json"
+      },
+      "committeeReports": [
+        {
+          "citation": "H. Rept. 119-878",
+          "url": "https://api.congress.gov/v3/committee-report/119/HRPT/878?format=json"
+        }
+      ],
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1650/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-11-09",
+      "latestAction": {
+        "actionDate": "2026-11-10",
+        "actionTime": "18:20:57",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1650",
+      "number": "1650",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "policyArea": {
+        "name": "Congress"
+      },
+      "relatedBills": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1650/relatedbills?format=json"
+      },
+      "sponsors": [
+        {
+          "bioguideId": "G000568",
+          "district": 9,
+          "firstName": "H.",
+          "fullName": "Rep. Griffith, H. Morgan [R-VA-9]",
+          "isByRequest": "N",
+          "lastName": "Griffith",
+          "middleName": "Morgan",
+          "party": "R",
+          "state": "VA",
+          "url": "https://api.congress.gov/v3/member/G000568?format=json"
+        }
+      ],
+      "subjects": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1650/subjects?format=json"
+      },
+      "textVersions": [
+        {
+          "date": "2026-11-10T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres1650/BILLS-119hres1650eh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres1650/BILLS-119hres1650eh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres1650/BILLS-119hres1650eh.xml"
+            }
+          ],
+          "type": "Engrossed in House",
+          "text": "[Congressional Bills 119th Congress] [From the U.S. Government Publishing Office] [H. Res. 1650 Engrossed in House (EH)] <DOC> H. Res. 1650 In the House of Representatives, U. S., November 10, 2026. Resolved, That upon adoption of this resolution it shall be in order to consider in the House the bill (H.R. 1013) to amend the Federal securities laws to enhance 403(b) plans, and for other purposes. All points of order against consideration of the bill are waived. The amendment in the nature of a substitute recommended by the Committee on Financial Services now printed in the bill shall be considered as adopted. The bill, as amended, shall be considered as read. All points of order against provisions in the bill, as amended, are waived. The previous question shall be considered as ordered on the bill, as amended, and on any further amendment thereto, to final passage without intervening motion except: (1) one hour of debate equally divided and controlled by the chair and ranking minority member of the Committee on Financial Services or their respective designees; and (2) one motion to recommit. Attest: Clerk."
+        },
+        {
+          "date": "2026-11-09T05:00:00Z",
+          "formats": [
+            {
+              "type": "Formatted Text",
+              "url": "https://www.congress.gov/119/bills/hres1650/BILLS-119hres1650rh.htm"
+            },
+            {
+              "type": "PDF",
+              "url": "https://www.congress.gov/119/bills/hres1650/BILLS-119hres1650rh.pdf"
+            },
+            {
+              "type": "Formatted XML",
+              "url": "https://www.congress.gov/119/bills/hres1650/BILLS-119hres1650rh.xml"
+            }
+          ],
+          "type": "Reported in House"
+        }
+      ],
+      "title": "Providing for consideration of the bill (H.R. 1013) to amend the Federal securities laws to enhance 403(b) plans, and for other purposes.",
+      "titles": {
+        "count": 3,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1650/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-11-12T15:24:19Z",
+      "updateDateIncludingText": "2026-11-12T15:24:19Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
+    },
+    {
+      "actions": {
+        "count": 7,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1655/actions?format=json"
+      },
+      "committees": {
+        "count": 1,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1655/committees?format=json"
+      },
+      "congress": 119,
+      "introducedDate": "2026-11-10",
+      "latestAction": {
+        "actionDate": "2026-11-10",
+        "actionTime": "18:02:43",
+        "text": "Motion to reconsider laid on the table Agreed to without objection."
+      },
+      "legislationUrl": "https://www.congress.gov/bill/119th-congress/house-resolution/1655",
+      "number": "1655",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "sponsors": [
+        {
+          "bioguideId": "M001184",
+          "district": 4,
+          "firstName": "Thomas",
+          "fullName": "Rep. Massie, Thomas [R-KY-4]",
+          "isByRequest": "N",
+          "lastName": "Massie",
+          "party": "R",
+          "state": "KY",
+          "url": "https://api.congress.gov/v3/member/M001184?format=json"
+        }
+      ],
+      "title": "Impeaching Peter Brian Hegseth, Secretary of Defense, for high crimes and misdemeanors.",
+      "titles": {
+        "count": 2,
+        "url": "https://api.congress.gov/v3/bill/119/hres/1655/titles?format=json"
+      },
+      "type": "HRES",
+      "updateDate": "2026-11-12T15:27:51Z",
+      "updateDateIncludingText": "2026-11-12T15:27:51Z",
+      "summaries": [],
+      "fetchedDate": "2026-11-14"
     }
   ]
 }
