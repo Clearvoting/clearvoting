@@ -6,14 +6,46 @@
     119
   ],
   "stats": {
-    "total_votes": 1078,
-    "yea_count": 544,
+    "total_votes": 1080,
+    "yea_count": 546,
     "nay_count": 528,
     "not_voting_count": 5,
     "participation_rate": 99.4
   },
   "scorecard": [],
   "votes": [
+    {
+      "bill_number": "H.R. 2347",
+      "bill_id": "119-hr-2347",
+      "one_liner": "Survivor Justice Tax Prevention Act",
+      "has_plain_summary": false,
+      "vote": "Yea",
+      "date": "2026-11-10T19:37:00",
+      "result": "Motion to Proceed Agreed to (62-21)",
+      "policy_area": "Taxation",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 258
+    },
+    {
+      "bill_number": "H.R. 2347",
+      "bill_id": "119-hr-2347",
+      "one_liner": "Survivor Justice Tax Prevention Act",
+      "has_plain_summary": false,
+      "vote": "Yea",
+      "date": "2026-11-09T17:31:00",
+      "result": "Cloture on the Motion to Proceed Agreed to (73-25, 3/5 majority required)",
+      "policy_area": "Taxation",
+      "chamber": "Senate",
+      "cbo_deficit_impact": null,
+      "direction": null,
+      "congress": 119,
+      "session": 2,
+      "vote_number": 257
+    },
     {
       "bill_number": "H.R. 9340",
       "bill_id": "119-hr-9340",
@@ -1862,7 +1894,7 @@
       "vote": "Yea",
       "date": "2026-03-25T14:06:00",
       "result": "Motion to Proceed Rejected (47-53)",
-      "policy_area": "Energy",
+      "policy_area": "Taxation",
       "chamber": "Senate",
       "cbo_deficit_impact": null,
       "direction": "against",
