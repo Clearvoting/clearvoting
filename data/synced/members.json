@@ -658,6 +658,28 @@
       "chamber": "Senate"
     },
     {
+      "bioguideId": "M001244",
+      "depiction": {
+        "attribution": "Official U.S. Senate Photo",
+        "imageUrl": "https://www.congress.gov/img/member/695d82c8550dfb80c3063bee_200.jpg"
+      },
+      "name": "Moody, Ashley",
+      "partyName": "Republican",
+      "state": "Florida",
+      "terms": {
+        "item": [
+          {
+            "chamber": "Senate",
+            "startYear": 2025
+          }
+        ]
+      },
+      "updateDate": "2026-11-19T11:33:08Z",
+      "url": "https://api.congress.gov/v3/member/M001244?format=json",
+      "stateCode": "FL",
+      "chamber": "Senate"
+    },
+    {
       "bioguideId": "F000476",
       "depiction": {
         "attribution": "Image courtesy of the Member",
@@ -1300,25 +1322,30 @@
       "chamber": "Senate"
     },
     {
-      "bioguideId": "M001244",
+      "bioguideId": "S001150",
       "depiction": {
         "attribution": "Official U.S. Senate Photo",
-        "imageUrl": "https://www.congress.gov/img/member/695d82c8550dfb80c3063bee_200.jpg"
+        "imageUrl": "https://www.congress.gov/img/member/677d870dfdb6cf36bbb649b3_200.jpg"
       },
-      "name": "Moody, Ashley",
-      "partyName": "Republican",
-      "state": "Florida",
+      "name": "Schiff, Adam B.",
+      "partyName": "Democratic",
+      "state": "California",
       "terms": {
         "item": [
           {
+            "chamber": "House of Representatives",
+            "endYear": 2024,
+            "startYear": 2001
+          },
+          {
             "chamber": "Senate",
-            "startYear": 2025
+            "startYear": 2024
           }
         ]
       },
-      "updateDate": "2026-11-01T11:31:15Z",
-      "url": "https://api.congress.gov/v3/member/M001244?format=json",
-      "stateCode": "FL",
+      "updateDate": "2026-11-19T11:33:58Z",
+      "url": "https://api.congress.gov/v3/member/S001150?format=json",
+      "stateCode": "CA",
       "chamber": "Senate"
     },
     {
@@ -2530,33 +2557,6 @@
       "url": "https://api.congress.gov/v3/member/H001068?format=json",
       "stateCode": "CA",
       "chamber": "House of Representatives"
-    },
-    {
-      "bioguideId": "S001150",
-      "depiction": {
-        "attribution": "Official U.S. Senate Photo",
-        "imageUrl": "https://www.congress.gov/img/member/677d870dfdb6cf36bbb649b3_200.jpg"
-      },
-      "name": "Schiff, Adam B.",
-      "partyName": "Democratic",
-      "state": "California",
-      "terms": {
-        "item": [
-          {
-            "chamber": "House of Representatives",
-            "endYear": 2024,
-            "startYear": 2001
-          },
-          {
-            "chamber": "Senate",
-            "startYear": 2024
-          }
-        ]
-      },
-      "updateDate": "2026-11-01T11:31:17Z",
-      "url": "https://api.congress.gov/v3/member/S001150?format=json",
-      "stateCode": "CA",
-      "chamber": "Senate"
     },
     {
       "bioguideId": "P000145",
